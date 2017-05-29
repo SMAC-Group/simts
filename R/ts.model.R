@@ -716,13 +716,13 @@ print.ts.model = function(x, ...){
 #' @examples
 #' desc.to.ts.model(c("AR1","WN"))
 desc.to.ts.model = function(desc){
-  theta = simts_model_theta(desc)
+  theta = model_theta(desc)
   
-  out = structure(list(process.desc = simts_model_process_desc(desc),
+  out = structure(list(process.desc = model_process_desc(desc),
                        theta = theta,
                        plength = length(theta),
                        desc = desc,
-                       obj.desc = simts_model_objdesc(desc),
+                       obj.desc = model_objdesc(desc),
                        starting = TRUE), class = "ts.model")
   invisible(out)
 }

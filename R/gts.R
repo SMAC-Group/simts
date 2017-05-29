@@ -204,7 +204,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
       theta = conv.gm.to.ar1(theta, model$process.desc, freq)
     }
     
-    out = simts_gen_model(n, theta, desc, obj)
+    out = gen_model(n, theta, desc, obj)
   }else{
     stop("Need to supply initial values within the ts.model object.")
   }

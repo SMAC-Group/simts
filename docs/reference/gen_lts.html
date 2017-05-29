@@ -136,7 +136,8 @@
     <pre class="examples"><div class='input'><span class='co'># AR</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1336</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.99</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>test</span> <span class='kw'>=</span> <span class='fu'>gen_lts</span>(<span class='fl'>1000</span>, <span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("gmwm_gen_lts_cpp", PACKAGE = "gmwm", n, theta, desc, obj): "gmwm_gen_lts_cpp" not available for .Call() for package "gmwm"</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>test</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(test): object 'test' not found</span></div></pre>
+<span class='no'>test</span> <span class='kw'>=</span> <span class='fu'>gen_lts</span>(<span class='fl'>1000</span>, <span class='no'>model</span>)
+<span class='fu'>plot</span>(<span class='no'>test</span>)</div><img src='gen_lts-2.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -159,7 +160,7 @@ JJB, Wenchao
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Lee, Stephane Guerrier, James Balamuta.</p>
+  <p>Developed by Justin Lee, Stephane Guerrier, James Balamuta, Wenchao Yang.</p>
 </div>
 
 <div class="pkgdown">

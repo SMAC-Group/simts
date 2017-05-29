@@ -15,7 +15,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-vignette">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -42,11 +42,79 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
-    Generates various time series objects for use in other packages. (GMWM TS, Latent TS, IMU)
+  <div class="col-md-9">
+    
+
+    
+    
+<div class="contents">
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="simts-r-package" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#simts-r-package" class="anchor"></a><code>simts</code> R Package</h1></div>
+<p>This repository holds the Time Series Simulation (simts) R package.</p>
+<p>Below are examples of the capabilities of the <code>simts</code> package.</p>
+<p>We can generate different types of time series data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Data generation ##
+<span class="co"># Specify model</span>
+m =<span class="st"> </span><span class="kw"><a href="reference/AR1.html">AR1</a></span>(<span class="dt">phi =</span> .<span class="dv">98</span>, <span class="dt">sigma2 =</span> .<span class="dv">01</span>) +<span class="st"> </span><span class="kw"><a href="reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
+
+<span class="co"># Generate Data</span>
+d =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">gen_gts</a></span>(<span class="dv">10000</span>, m)</code></pre></div>
+</div>
+<div id="install-instructions" class="section level1">
+<h1 class="hasAnchor">
+<a href="#install-instructions" class="anchor"></a>Install Instructions</h1>
+<p>To install the <code>simts</code> package, there is currently one option: GitHub (Developmental).</p>
+<div id="recommended-r-interface" class="section level2">
+<h2 class="hasAnchor">
+<a href="#recommended-r-interface" class="anchor"></a>Recommended R Interface</h2>
+<p>We firmly recommend that any users of this package use the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio IDE</a> over the default R GUI.</p>
+</div>
+<div id="installing-the-package-through-github-developmental" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installing-the-package-through-github-developmental" class="anchor"></a>Installing the package through GitHub (Developmental)</h2>
+<p>For users who are interested in having the latest and greatest developments withing wavelets or GMWM methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. <strong>The setup to obtain the development version is platform dependent.</strong></p>
+<p>Specifically, one <strong>must</strong> have a compiler installed on your system that is compatible with R.</p>
+<p>For help on obtaining a compiler consult:</p>
+<ul>
+<li><a href="http://thecoatlessprofessor.com/programming/r-compiler-tools-for-rcpp-on-os-x/">OS X</a></li>
+<li><a href="https://cran.r-project.org/bin/windows/Rtools/">Windows</a></li>
+</ul>
+<p>Depending on your operating system, further requirements exist such as:</p>
+<p><strong>OS X</strong></p>
+<p>Some user report the need to use X11 to suppress shared library errors. To install X11, visit <a href="http://www.xquartz.org/">xquartz.org</a></p>
+<p><strong>Linux</strong></p>
+<p>Both curl and libxml are required.</p>
+<p>For <strong>Debian</strong> systems, enter the following in terminal:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install curl libcurl3 libcurl3-dev libxml2 libxml2-dev</code></pre></div>
+<p>For <strong>RHEL</strong> systems, enter the following in terminal:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> yum install curl curl-devel libxml2 libxml2-dev</code></pre></div>
+<p><strong>All Systems</strong></p>
+<p>With the system dependency taken care of, we continue on by installing the R specific package dependencies and finally the package itself by doing the following in an R session:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install dependencies</span>
+<span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">"RcppArmadillo"</span>,<span class="st">"ggplot2"</span>,<span class="st">"reshape2"</span>,<span class="st">"devtools"</span>,<span class="st">"knitr"</span>,<span class="st">"rmarkdown"</span>))
+
+<span class="co"># Install the package from GitHub without Vignettes/User Guides</span>
+devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/simts"</span>)</code></pre></div>
+</div>
+<div id="supplementary-data-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#supplementary-data-package" class="anchor"></a>Supplementary data package</h2>
+<p>To test the package performance on real-world data that is <em>stationary</em> or work with some of the examples, you will need to download and install the <code>imudata</code> and/or the <code>datapkg</code> R package.</p>
+<p>To do so, please use the following installation method within the <code>gmwm</code> R package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the imudata package containing real world IMU data sets</span>
+gmwm::<span class="kw"><a href="reference/install_imudata.html">install_imudata</a></span>()
+
+<span class="co"># Install the datapkg package containing miscellaneous data sets</span>
+gmwm::<span class="kw"><a href="reference/install_datapkg.html">install_datapkg</a></span>()</code></pre></div>
+<p>For more information about the <code>imudata</code> and <code>datapkg</code> package, see the <a href="https://github.com/SMAC-Group/imudata" class="uri">https://github.com/SMAC-Group/imudata</a> and <a href="https://github.com/SMAC-Group/datapkg" class="uri">https://github.com/SMAC-Group/datapkg</a>.</p>
+</div>
+</div>
+</div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>License</h2>
 <p>GPL (&gt;= 2)</p>
 <h2>Developers</h2>
@@ -54,14 +122,15 @@
 <li>Justin Lee <br><small class="roles"> Author, maintainer </small> </li>
 <li>Stephane Guerrier <br><small class="roles"> Author </small> </li>
 <li>James Balamuta <br><small class="roles"> Author </small> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li>Wenchao Yang <br><small class="roles"> Author </small> </li>
 </ul>
 </div>
+
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Justin Lee, Stephane Guerrier, James Balamuta.</p>
+  <p>Developed by Justin Lee, Stephane Guerrier, James Balamuta, Wenchao Yang.</p>
 </div>
 
 <div class="pkgdown">

@@ -121,71 +121,31 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>m</span> <span class='kw'>=</span> <span class='fu'>data.frame</span>(<span class='fu'>rnorm</span>(<span class='fl'>50</span>))
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gts</span>(<span class='no'>m</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>'sec'</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>'example'</span>)
-<span class='no'>x</span></div><div class='output co'>#&gt;           example
-#&gt;  [1,] -0.15666689
-#&gt;  [2,] -2.50383734
-#&gt;  [3,] -1.08495472
-#&gt;  [4,]  0.66982062
-#&gt;  [5,]  1.30495036
-#&gt;  [6,] -1.52951121
-#&gt;  [7,]  1.37485234
-#&gt;  [8,] -1.34116149
-#&gt;  [9,] -1.30285133
-#&gt; [10,]  0.25788892
-#&gt; [11,]  1.95694576
-#&gt; [12,]  0.37584286
-#&gt; [13,]  0.56703756
-#&gt; [14,]  0.16758051
-#&gt; [15,]  0.85202743
-#&gt; [16,] -0.83005772
-#&gt; [17,]  1.30135255
-#&gt; [18,] -1.77081733
-#&gt; [19,] -0.54265504
-#&gt; [20,]  0.53319464
-#&gt; [21,]  1.21898511
-#&gt; [22,]  1.22245286
-#&gt; [23,] -0.57962141
-#&gt; [24,] -0.49987212
-#&gt; [25,] -0.04230386
-#&gt; [26,] -0.82171168
-#&gt; [27,]  1.73203863
-#&gt; [28,]  1.33128021
-#&gt; [29,]  0.15595874
-#&gt; [30,] -0.12739316
-#&gt; [31,]  1.23448550
-#&gt; [32,]  0.42790975
-#&gt; [33,] -1.38146293
-#&gt; [34,]  0.84573902
-#&gt; [35,] -0.29375511
-#&gt; [36,]  0.74714070
-#&gt; [37,]  0.32656288
-#&gt; [38,] -1.69302376
-#&gt; [39,] -0.98411635
-#&gt; [40,]  0.12303130
-#&gt; [41,]  1.20040238
-#&gt; [42,] -1.10558210
-#&gt; [43,] -0.94883340
-#&gt; [44,]  0.29181556
-#&gt; [45,] -0.15802769
-#&gt; [46,]  0.23337971
-#&gt; [47,] -0.29738957
-#&gt; [48,]  1.74988013
-#&gt; [49,] -0.84866143
-#&gt; [50,] -0.63529470
-#&gt; attr(,"start")
-#&gt; [1] 0
-#&gt; attr(,"end")
-#&gt; [1] 49
-#&gt; attr(,"freq")
-#&gt; [1] 1
-#&gt; attr(,"unit")
-#&gt; [1] "sec"
-#&gt; attr(,"name")
-#&gt; [1] "example"
-#&gt; attr(,"class")
-#&gt; [1] "gts"    "matrix"</div><div class='input'><span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-4.png' alt='' width='540' height='400' /><div class='input'>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>50</span>, <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='output co'>#&gt; <span class='error'>Error in gen_gts(50, WN(sigma2 = 1)): could not find function "is.ts.model"</span></div><div class='input'><span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gts</span>(<span class='no'>x</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
-<span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-8.png' alt='' width='540' height='400' /></pre>
+<span class='no'>x</span></div><div class='output co'>#&gt;                example
+#&gt;  1: -0.156666894649192
+#&gt;  2:  -2.50383733966227
+#&gt;  3:  -1.08495472224127
+#&gt;  4:  0.669820623021991
+#&gt;  5:   1.30495036447416
+#&gt;  6:   -1.5295112051031
+#&gt;  7:   1.37485234057825
+#&gt;  8:  -1.34116148638815
+#&gt;  9:  -1.30285133163884
+#&gt; 10:  0.257888920956716
+#&gt; ---                   
+#&gt; 41:   1.20040237647258
+#&gt; 42:  -1.10558209976912
+#&gt; 43: -0.948833396923832
+#&gt; 44:  0.291815555154494
+#&gt; 45: -0.158027688120339
+#&gt; 46:  0.233379712424301
+#&gt; 47: -0.297389569270799
+#&gt; 48:   1.74988012568865
+#&gt; 49: -0.848661427463536
+#&gt; 50: -0.635294701859219</div><div class='input'><span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-4.png' alt='' width='540' height='400' /><div class='input'>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>50</span>, <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gts</span>(<span class='no'>x</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
+<span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-6.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,7 +166,7 @@ JJB, Wenchao
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Lee, Stephane Guerrier, James Balamuta.</p>
+  <p>Developed by Justin Lee, Stephane Guerrier, James Balamuta, Wenchao Yang.</p>
 </div>
 
 <div class="pkgdown">

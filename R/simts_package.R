@@ -37,6 +37,5 @@
 #' @useDynLib simts
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats arima predict ts as.ts is.ts qnorm
-#' @import ggplot2 
 #' @exportPattern ^[[:alpha:]]+
 NULL

@@ -102,7 +102,12 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Creates a parameter space for guessing</span>
-<span class='fu'><a href='QN.html'>QN</a></span>() + <span class='fu'><a href='DR.html'>DR</a></span>() + <span class='fu'><a href='WN.html'>WN</a></span>() + <span class='fu'><a href='RW.html'>RW</a></span>() + <span class='fu'><a href='AR1.html'>AR1</a></span>() + <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in SARIMA(ar = ar, i = 0, ma = ma, sar = 0, si = 0, sma = 0, s = 0,     sigma2 = sigma2): could not find function "is.whole"</span></div><div class='input'>
+<span class='fu'><a href='QN.html'>QN</a></span>() + <span class='fu'><a href='DR.html'>DR</a></span>() + <span class='fu'><a href='WN.html'>WN</a></span>() + <span class='fu'><a href='RW.html'>RW</a></span>() + <span class='fu'><a href='AR1.html'>AR1</a></span>() + <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>)</div><div class='output co'>#&gt; 
+#&gt; Guess Starting Values: TRUE 
+#&gt; The program will attempt to guess starting values for...
+#&gt;  [1] "QN"     "DR"     "WN"     "RW"     "AR1"    "SIGMA2" "AR"     "MA"    
+#&gt;  [9] "MA"     "SIGMA2"
+#&gt; To have the option of using your own starting values, please supply values for each parameter.</div><div class='input'>
 <span class='co'># Creates a user-specified starting value model</span>
 <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.9</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; 
 #&gt; Guess Starting Values: FALSE 
@@ -112,9 +117,34 @@
 #&gt;      WN            1.0
 #&gt; The model will be initiated using the initial values you supplied.</div><div class='input'>
 <span class='co'># Similarly, with the addition of a generic ARMA</span>
-<span class='fu'><a href='RW.html'>RW</a></span>(<span class='kw'>gamma2</span> <span class='kw'>=</span> <span class='fl'>.3</span>) + <span class='fu'><a href='DR.html'>DR</a></span>(<span class='kw'>omega</span> <span class='kw'>=</span> <span class='fl'>.5</span>) + <span class='fu'><a href='QN.html'>QN</a></span>(<span class='kw'>q2</span> <span class='kw'>=</span> <span class='fl'>.9</span>) + <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.1</span>), <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.2</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.99</span>)</div><div class='output co'>#&gt; <span class='error'>Error in SARIMA(ar = ar, i = 0, ma = ma, sar = 0, si = 0, sma = 0, s = 0,     sigma2 = sigma2): could not find function "is.whole"</span></div><div class='input'>
+<span class='fu'><a href='RW.html'>RW</a></span>(<span class='kw'>gamma2</span> <span class='kw'>=</span> <span class='fl'>.3</span>) + <span class='fu'><a href='DR.html'>DR</a></span>(<span class='kw'>omega</span> <span class='kw'>=</span> <span class='fl'>.5</span>) + <span class='fu'><a href='QN.html'>QN</a></span>(<span class='kw'>q2</span> <span class='kw'>=</span> <span class='fl'>.9</span>) + <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.1</span>), <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.2</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.99</span>)</div><div class='output co'>#&gt; 
+#&gt; Guess Starting Values: FALSE 
+#&gt;   Terms Initial.Values
+#&gt;      RW           0.30
+#&gt;      DR           0.50
+#&gt;      QN           0.90
+#&gt;      AR           0.30
+#&gt;      AR           0.10
+#&gt;      MA           0.30
+#&gt;      MA           0.20
+#&gt;  SIGMA2           0.99
+#&gt; The model will be initiated using the initial values you supplied.</div><div class='input'>
 <span class='co'># In a similar vein, this example highlights the lack of need for specifying parameters. </span>
-<span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='fl'>.9</span>,<span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='fl'>1</span>) + <span class='fu'><a href='RW.html'>RW</a></span>(<span class='fl'>.3</span>) + <span class='fu'><a href='DR.html'>DR</a></span>(<span class='fl'>.5</span>) + <span class='fu'><a href='QN.html'>QN</a></span>(<span class='fl'>.9</span>) + <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.1</span>), <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.2</span>), <span class='fl'>.99</span>)</div><div class='output co'>#&gt; <span class='error'>Error in SARIMA(ar = ar, i = 0, ma = ma, sar = 0, si = 0, sma = 0, s = 0,     sigma2 = sigma2): could not find function "is.whole"</span></div></pre>
+<span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='fl'>.9</span>,<span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='fl'>1</span>) + <span class='fu'><a href='RW.html'>RW</a></span>(<span class='fl'>.3</span>) + <span class='fu'><a href='DR.html'>DR</a></span>(<span class='fl'>.5</span>) + <span class='fu'><a href='QN.html'>QN</a></span>(<span class='fl'>.9</span>) + <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.1</span>), <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.2</span>), <span class='fl'>.99</span>)</div><div class='output co'>#&gt; 
+#&gt; Guess Starting Values: FALSE 
+#&gt;   Terms Initial.Values
+#&gt;     AR1           0.90
+#&gt;  SIGMA2           0.10
+#&gt;      WN           1.00
+#&gt;      RW           0.30
+#&gt;      DR           0.50
+#&gt;      QN           0.90
+#&gt;      AR           0.30
+#&gt;      AR           0.10
+#&gt;      MA           0.30
+#&gt;      MA           0.20
+#&gt;  SIGMA2           0.99
+#&gt; The model will be initiated using the initial values you supplied.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

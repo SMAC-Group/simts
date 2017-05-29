@@ -118,10 +118,12 @@ randomization functions expecting a variance instead of a standard deviation lik
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create an ARMA(1,2) process</span>
-<span class='fu'>ARIMA</span>(<span class='kw'>ar</span><span class='kw'>=</span><span class='fl'>1</span>,<span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in SARIMA(ar = ar, i = i, ma = ma, sar = 0, si = 0, sma = 0, s = 0,     sigma2 = sigma2): could not find function "is.whole"</span></div><div class='input'><span class='co'># Creates an ARMA(3,2) process with predefined coefficients.</span>
-<span class='fu'>ARIMA</span>(<span class='kw'>ar</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.23</span>,<span class='fl'>.43</span>, <span class='fl'>.59</span>), <span class='kw'>ma</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.4</span>,<span class='fl'>.3</span>))</div><div class='output co'>#&gt; <span class='error'>Error in SARIMA(ar = ar, i = i, ma = ma, sar = 0, si = 0, sma = 0, s = 0,     sigma2 = sigma2): could not find function "is.whole"</span></div><div class='input'>
+<span class='fu'>ARIMA</span>(<span class='kw'>ar</span><span class='kw'>=</span><span class='fl'>1</span>,<span class='fl'>2</span>)
+<span class='co'># Creates an ARMA(3,2) process with predefined coefficients.</span>
+<span class='fu'>ARIMA</span>(<span class='kw'>ar</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.23</span>,<span class='fl'>.43</span>, <span class='fl'>.59</span>), <span class='kw'>ma</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.4</span>,<span class='fl'>.3</span>))
+
 <span class='co'># Creates an ARMA(3,2) process with predefined coefficients and standard deviation</span>
-<span class='fu'>ARIMA</span>(<span class='kw'>ar</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.23</span>,<span class='fl'>.43</span>, <span class='fl'>.59</span>), <span class='kw'>ma</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.4</span>,<span class='fl'>.3</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)</div><div class='output co'>#&gt; <span class='error'>Error in SARIMA(ar = ar, i = i, ma = ma, sar = 0, si = 0, sma = 0, s = 0,     sigma2 = sigma2): could not find function "is.whole"</span></div></pre>
+<span class='fu'>ARIMA</span>(<span class='kw'>ar</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.23</span>,<span class='fl'>.43</span>, <span class='fl'>.59</span>), <span class='kw'>ma</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>0.4</span>,<span class='fl'>.3</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1.5</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

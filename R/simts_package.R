@@ -37,6 +37,7 @@
 #' @useDynLib simts
 #' @import ggplot2 reshape2
 #' @importFrom methods is
+#' @importFrom utils install.packages
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats arima predict ts as.ts is.ts qnorm
 #' @exportPattern ^[[:alpha:]]+

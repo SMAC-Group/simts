@@ -17,6 +17,7 @@ Imports:
     ggplot2,
     methods,
     stats,
+    utils, 
     reshape2
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000

@@ -12,6 +12,10 @@ Authors@R: c(
 Maintainer: Justin Lee <munsheet93@gmail.com>
 Description: Generates various time series objects for use in other packages. (GMWM TS, Latent TS, IMU)
 License: GPL (>= 2)
-Imports: Rcpp (>= 0.12.11)
+Imports: 
+    Rcpp (>= 0.12.11), 
+    ggplot2,
+    methods,
+    stats
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000

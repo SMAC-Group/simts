@@ -7,7 +7,7 @@ Authors@R: c(
     person("Justin", "Lee", email = "munsheet93@gmail.com", role = c("aut","cre")),
     person("Stephane", "Guerrier", role = "aut"),
     person("James", "Balamuta", role = "aut"),
-    person("Wenchao", "Yang", role = "auth")
+    person("Wenchao", "Yang", role = "aut")
     )
 Maintainer: Justin Lee <munsheet93@gmail.com>
 Description: Generates various time series objects for use in other packages. (GMWM TS, Latent TS, IMU)
@@ -16,6 +16,7 @@ Imports:
     Rcpp (>= 0.12.11), 
     ggplot2,
     methods,
-    stats
+    stats,
+    reshape2
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000

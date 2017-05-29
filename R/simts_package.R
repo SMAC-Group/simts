@@ -35,7 +35,7 @@
 #' @name simts-package
 #' @docType package
 #' @useDynLib simts
-#' @import ggplot2
+#' @import ggplot2 reshape2
 #' @importFrom methods is
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats arima predict ts as.ts is.ts qnorm

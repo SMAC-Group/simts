@@ -716,13 +716,13 @@ print.ts.model = function(x, ...){
 #' @examples
 #' desc.to.ts.model(c("AR1","WN"))
 desc.to.ts.model = function(desc){
-  theta = .Call('simts_model_theta', PACKAGE = 'gmwm', desc)
+  theta = simts_model_theta(desc)
   
-  out = structure(list(process.desc = .Call('simts_model_process_desc', PACKAGE='gmwm', desc),
+  out = structure(list(process.desc = simts_model_process_desc(desc),
                        theta = theta,
                        plength = length(theta),
                        desc = desc,
-                       obj.desc = .Call('simts_model_objdesc', PACKAGE = 'gmwm', desc),
+                       obj.desc = simts_model_objdesc(desc),
                        starting = TRUE), class = "ts.model")
   invisible(out)
 }

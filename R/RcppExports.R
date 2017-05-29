@@ -468,6 +468,50 @@ do_polyroot_cpp <- function(z) {
     .Call('simts_do_polyroot_cpp', PACKAGE = 'simts', z)
 }
 
+#' @title Read an IMU Binary File into R
+#' 
+#' @description
+#' The function will take a file location in addition to the type of sensor it
+#' came from and read the data into R.
+#' 
+#' @param file_path A \code{string} that contains the full file path.
+#' @param imu_type A \code{string} that contains a supported IMU type given below.
+#' @details
+#' Currently supports the following IMUs:
+#' \itemize{
+#' \item IMAR
+#' \item LN200
+#' \item LN200IG
+#' \item IXSEA
+#' \item NAVCHIP_INT
+#' \item NAVCHIP_FLT
+#' }
+#' 
+#' We hope to soon be able to support delimited files.
+#' @return A matrix with dimensions N x 7, where the columns represent:
+#' \describe{
+#' \item{Col 0}{Time}
+#' \item{Col 1}{Gyro 1}
+#' \item{Col 2}{Gyro 2}
+#' \item{Col 3}{Gyro 3}
+#' \item{Col 4}{Accel 1}
+#' \item{Col 5}{Accel 2}
+#' \item{Col 6}{Accel 3}
+#' }
+#' @references
+#' Thanks goes to Philipp Clausen of Labo TOPO, EPFL, Switzerland, topo.epfl.ch, Tel:+41(0)21 693 27 55
+#' for providing a matlab function that reads in IMUs.
+#' The function below is a heavily modified port of MATLAB code into Armadillo/C++. 
+#' 
+#' @examples
+#' \dontrun{
+#' read_imu(file_path = "F:/Desktop/short_test_data.imu", imu_type = "IXSEA")
+#' }
+#' @keywords internal
+read_imu <- function(file_path, imu_type) {
+    .Call('simts_read_imu', PACKAGE = 'simts', file_path, imu_type)
+}
+
 #' @title Generate a sequence of values
 #' @description Creates a vector containing a sequence of values starting at the initial point and going to the terminal point.
 #' @param a An \code{int}, that denotes the starting point.
@@ -783,5 +827,92 @@ count_models <- function(desc) {
 #' @keywords internal
 order_AR1s <- function(theta, desc, objdesc) {
     .Call('simts_order_AR1s', PACKAGE = 'simts', theta, desc, objdesc)
+}
+
+#' @title Transform AR1 to GM
+#' @description 
+#' Takes AR1 values and transforms them to GM
+#' @param theta A \code{vec} that contains AR1 values.
+#' @param freq  A \code{double} indicating the frequency of the data.
+#' @return A \code{vec} containing GM values.
+#' @details
+#' The function takes a vector of AR1 values \eqn{\phi}{phi} and \eqn{\sigma ^2}{sigma ^2}
+#' and transforms them to GM values \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma ^2[gm]}
+#' using the formulas:
+#' \eqn{\beta  =  - \frac{{\ln \left( \phi  \right)}}{{\Delta t}}}{beta = -ln(phi)/delta_t}
+#' \eqn{\sigma _{gm}^2 = \frac{{{\sigma ^2}}}{{1 - {\phi ^2}}} }{sigma^2[gm] = sigma^2/(1-phi^2)}
+#' @keywords internal
+#' @author JJB
+#' @backref src/ts_model_cpp.cpp
+#' @backref src/ts_model_cpp.h
+#' @examples
+#' ar1_to_gm(c(0.3,1,0.6,.3), 2)
+ar1_to_gm <- function(theta, freq) {
+    .Call('simts_ar1_to_gm', PACKAGE = 'simts', theta, freq)
+}
+
+#' @title Transform GM to AR1
+#' @description Takes GM values and transforms them to AR1
+#' @param theta A \code{vec} that contains AR1 values.
+#' @param freq A \code{double} indicating the frequency of the data.
+#' @return A \code{vec} containing GM values.
+#' @keywords internal
+#' @author JJB
+#' The function takes a vector of GM values \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma ^2[gm]}
+#' and transforms them to AR1 values \eqn{\phi}{phi} and \eqn{\sigma ^2}{sigma ^2}
+#' using the formulas:
+#' \eqn{\phi  = \exp \left( { - \beta \Delta t} \right)}{phi = exp(-beta * delta[t])}
+#' \eqn{{\sigma ^2} = \sigma _{gm}^2\left( {1 - \exp \left( { - 2\beta \Delta t} \right)} \right)}{sigma^2 = sigma^2[gm]*(1-exp(-2*beta*delta[t]))}
+#' @backref src/ts_model_cpp.cpp
+#' @backref src/ts_model_cpp.h
+#' @examples
+#' gm_to_ar1(c(0.3,1,0.6,.3), 2)
+gm_to_ar1 <- function(theta, freq) {
+    .Call('simts_gm_to_ar1', PACKAGE = 'simts', theta, freq)
+}
+
+#' @title Generate the ts model object description
+#' @description Creates the ts.model's obj.desc value
+#' @param desc A \code{vector<string>} that contains a list of the strings of each process.
+#' @return A \code{field<vec>} that contains the object description of each process.
+#' @details
+#' This function currently does NOT support ARMA(P,Q) models. 
+#' That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
+#' There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
+#' @keywords internal
+#' @backref src/ts_model_cpp.cpp
+#' @backref src/ts_model_cpp.h
+model_objdesc <- function(desc) {
+    .Call('simts_model_objdesc', PACKAGE = 'simts', desc)
+}
+
+#' @title Generate the ts model object's theta vector
+#' @description Creates the ts.model's theta vector
+#' @param desc A \code{vector<string>} that contains a list of the strings of each process.
+#' @return A \code{vec} with values initialized at 0 that span the space of parameters to be estimated.
+#' @details
+#' This function currently does NOT support ARMA(P,Q) models. 
+#' That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
+#' There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
+#' @keywords internal
+#' @backref src/ts_model_cpp.cpp
+#' @backref src/ts_model_cpp.h
+model_theta <- function(desc) {
+    .Call('simts_model_theta', PACKAGE = 'simts', desc)
+}
+
+#' @title Generate the ts model object's process desc
+#' @description Creates the ts.model's process desc
+#' @param desc A \code{vector<string>} that contains a list of the strings of each process.
+#' @return A \code{vector<string>} with a list of descriptive values to label the estimate matrix with
+#' @details
+#' This function currently does NOT support ARMA(P,Q) models. 
+#' That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
+#' There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
+#' @keywords internal
+#' @backref src/ts_model_cpp.cpp
+#' @backref src/ts_model_cpp.h
+model_process_desc <- function(desc) {
+    .Call('simts_model_process_desc', PACKAGE = 'simts', desc)
 }
 

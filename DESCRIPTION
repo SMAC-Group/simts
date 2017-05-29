@@ -18,6 +18,9 @@ Imports:
     methods,
     stats,
     utils, 
-    reshape2
+    reshape2, 
+    ggfortify, 
+    scales, 
+    grDevices
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000

@@ -321,6 +321,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// read_imu
+arma::field<arma::mat> read_imu(std::string file_path, std::string imu_type);
+RcppExport SEXP simts_read_imu(SEXP file_pathSEXP, SEXP imu_typeSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type file_path(file_pathSEXP);
+    Rcpp::traits::input_parameter< std::string >::type imu_type(imu_typeSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_imu(file_path, imu_type));
+    return rcpp_result_gen;
+END_RCPP
+}
 // seq_cpp
 arma::vec seq_cpp(int a, int b);
 RcppExport SEXP simts_seq_cpp(SEXP aSEXP, SEXP bSEXP) {
@@ -605,6 +617,63 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ar1_to_gm
+arma::vec ar1_to_gm(arma::vec theta, double freq);
+RcppExport SEXP simts_ar1_to_gm(SEXP thetaSEXP, SEXP freqSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< double >::type freq(freqSEXP);
+    rcpp_result_gen = Rcpp::wrap(ar1_to_gm(theta, freq));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gm_to_ar1
+arma::vec gm_to_ar1(arma::vec theta, double freq);
+RcppExport SEXP simts_gm_to_ar1(SEXP thetaSEXP, SEXP freqSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< double >::type freq(freqSEXP);
+    rcpp_result_gen = Rcpp::wrap(gm_to_ar1(theta, freq));
+    return rcpp_result_gen;
+END_RCPP
+}
+// model_objdesc
+arma::field<arma::vec> model_objdesc(std::vector<std::string> desc);
+RcppExport SEXP simts_model_objdesc(SEXP descSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type desc(descSEXP);
+    rcpp_result_gen = Rcpp::wrap(model_objdesc(desc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// model_theta
+arma::vec model_theta(std::vector<std::string> desc);
+RcppExport SEXP simts_model_theta(SEXP descSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type desc(descSEXP);
+    rcpp_result_gen = Rcpp::wrap(model_theta(desc));
+    return rcpp_result_gen;
+END_RCPP
+}
+// model_process_desc
+std::vector<std::string> model_process_desc(std::vector<std::string> desc);
+RcppExport SEXP simts_model_process_desc(SEXP descSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector<std::string> >::type desc(descSEXP);
+    rcpp_result_gen = Rcpp::wrap(model_process_desc(desc));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"simts_sort_mat", (DL_FUNC) &simts_sort_mat, 2},
@@ -631,6 +700,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"simts_gen_lts_cpp", (DL_FUNC) &simts_gen_lts_cpp, 4},
     {"simts_do_polyroot_arma", (DL_FUNC) &simts_do_polyroot_arma, 1},
     {"simts_do_polyroot_cpp", (DL_FUNC) &simts_do_polyroot_cpp, 1},
+    {"simts_read_imu", (DL_FUNC) &simts_read_imu, 2},
     {"simts_seq_cpp", (DL_FUNC) &simts_seq_cpp, 2},
     {"simts_seq_len_cpp", (DL_FUNC) &simts_seq_len_cpp, 1},
     {"simts_quantile_cpp", (DL_FUNC) &simts_quantile_cpp, 2},
@@ -653,6 +723,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"simts_invert_check", (DL_FUNC) &simts_invert_check, 1},
     {"simts_count_models", (DL_FUNC) &simts_count_models, 1},
     {"simts_order_AR1s", (DL_FUNC) &simts_order_AR1s, 3},
+    {"simts_ar1_to_gm", (DL_FUNC) &simts_ar1_to_gm, 2},
+    {"simts_gm_to_ar1", (DL_FUNC) &simts_gm_to_ar1, 2},
+    {"simts_model_objdesc", (DL_FUNC) &simts_model_objdesc, 1},
+    {"simts_model_theta", (DL_FUNC) &simts_model_theta, 1},
+    {"simts_model_process_desc", (DL_FUNC) &simts_model_process_desc, 1},
     {NULL, NULL, 0}
 };
 

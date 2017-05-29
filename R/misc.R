@@ -345,44 +345,6 @@ addUnits = function(units, sensor){
   return(sensor)
 }
 
-#' @title Check Equal Attributes in a GMWM List
-#' @description Check whether the \code{gmwm} objects in \code{obj.list} have equal attributes.
-#' @return A list of square matrix indicating whether the objects have the same attributes.
-#' @param obj.list A list of \code{gmwm} objects.
-#' @keywords internal
-#' @author Wenchao
-#' @details 
-#' This function is used in \code{\link{compare.models}}.
-checkEquality = function(obj.list){
-  res = list(scales = NULL, ci.low = NULL, ci.high = NULL, wv.empir = NULL, theo = NULL)
-  elements = names(res)
-  
-  numObj = length(obj.list)
-  store = matrix(data = NA, nrow = numObj, ncol = numObj)
-  
-  for(element in elements){
-    
-    for(i in 1:numObj){
-      for(j in 1:numObj){
-        store[i,j] = identical(obj.list[[i]][[element]], obj.list[[j]][[element]])
-      }
-    }
-    res[[element]] = store
-  }
-  
-  res$bounds = res$ci.low & res$ci.high
-  res$ci.low = NULL
-  res$ci.high = NULL
-  
-  #If scales are different, everything is different
-  if(any(res$scales == F)){
-    res = lapply(X = res, FUN = function(x){ x & res$scales })
-  }
-  
-  return(res)
-}
-
-
 #' @title Autofill A Vector
 #' @description Autofill a vector to a target length with the specified element
 #' @return A new \code{vector}

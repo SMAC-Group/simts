@@ -35,10 +35,12 @@
 #' @name simts-package
 #' @docType package
 #' @useDynLib simts
-#' @import ggplot2 reshape2
+#' @import ggplot2 reshape2 ggfortify
+#' @importFrom grDevices gray.colors hcl graphics.off
 #' @importFrom methods is
-#' @importFrom utils install.packages
+#' @importFrom utils install.packages tail head
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats arima predict ts as.ts is.ts qnorm
+#' @importFrom scales trans_breaks trans_format math_format
 #' @exportPattern ^[[:alpha:]]+
 NULL

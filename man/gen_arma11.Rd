@@ -36,7 +36,7 @@ This process is defined as:
 
 \section{Generation Algorithm}{
 
-The function first generates a vector of white noise using \code{\link[gmwm]{gen_wn}} and then obtains the
+The function first generates a vector of white noise using \code{gen_wn} and then obtains the
 ARMA values under the above equation.
 
 The \eqn{X_0}{X[0]} (first value of \eqn{X_t}{X[t]}) is discarded.

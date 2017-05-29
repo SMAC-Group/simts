@@ -10,7 +10,7 @@ Authors@R: c(
     person("Wenchao", "Yang", role = "aut")
     )
 Maintainer: Justin Lee <munsheet93@gmail.com>
-Description: Generates various time series objects for use in other packages. (GMWM TS, Latent TS, IMU)
+Description: Generates various time series objects for use in other packages.
 License: GPL (>= 2)
 Imports: 
     Rcpp (>= 0.12.11), 

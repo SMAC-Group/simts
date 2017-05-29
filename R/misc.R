@@ -65,38 +65,6 @@ ggColor <- function(n) {
   rev(hcl(h=hues, l=70, c=100)[1:n])
 }
 
-#' @title Get the model in a \code{gmwm} object
-#' @description Extracts and formats the model string.
-#' @param object A \code{gmwm} object
-#' @return A \code{string} containing the model
-#' @keywords internal
-getModel.gmwm = function(object){
-  if( !is(object, 'gmwm') ){
-    stop('It must be a gmwm object')
-  }
-  model.desc = object$model.hat$desc
-  count.map = count_models(model.desc)
-  all.model = names(count.map)
-  
-  model = ''
-  for (i in 1:length(all.model)){
-    if(length(model)==1){
-      if(count.map[all.model[i]] == 1){
-        model = bquote(.(all.model[i]))
-      }else if(count.map[all.model[i]]>1){
-        model = bquote(.(count.map[all.model[i]])%*%.(all.model[i]))
-      }
-    }else{
-      if(count.map[all.model[i]] == 1){
-        model = bquote(.(model) * "+" *.(all.model[i]))
-      }else if(count.map[all.model[i]]>1){
-        model = bquote(.(model) * "+" *.(count.map[all.model[i]])%*%.(all.model[i]) )
-      }
-    }
-  }
-  return(as.expression(model) )
-}
-
 
 #' @title Order the Model
 #' @description Orders the model and changes it to the correct format
@@ -130,63 +98,6 @@ orderModel = function(models){
   }
 }
 
-#' @title Get the Computation Method and Efficiency of \code{gmwm} Object
-#' @description The computation method (classical/robust) and efficiency will be returned in a certain format.
-#' @param x A \code{gmwm} object
-#' @details Used in \code{compare.eff()}.
-#' @keywords internal
-#' @examples 
-#' n = 1000
-#' x = gen_gts(n, AR1(phi = .1, sigma2 = 1) + AR1(phi = 0.95, sigma2 = .1))
-#' GMWM1 = gmwm(2*AR1()+RW(), data = x, robust  = TRUE, eff = 0.9)
-#' GMWM2 = gmwm(2*AR1()+RW(), data = x, robust  = FALSE)
-#' 
-#' formatRobustEff(GMWM1)
-#' formatRobustEff(GMWM2)
-formatRobustEff = function(x){
-  if(!x$robust){
-    return('Classical')
-  }else{
-    res = paste0('Robust eff. ', x$eff)
-    return(res)
-  }
-} 
-
-#' @title Validity of the Object List for \code{compare.eff}
-#' @description Check whether the object list is valid for function \code{compare.eff}.
-#' @param obj.list A \code{list} of \code{gmwm} object
-#' @details 
-#' A valid object list should contain \code{gmwm} objects constructed by the same data
-#' and the same model.
-#' 
-#' @keywords internal
-is.validCompEffObj = function(obj.list){
-  
-  # All gmwm object
-  sapply(obj.list, FUN = 
-                     function(x){ 
-                       if( !is.gmwm(x) ){
-                          stop('The function can only work on gmwm object.')}
-                     })
-  
-  #constructed by same data
-  expectDiff = sapply(obj.list, FUN = 
-                      function(x){x$expect.diff})
-  if( any(expectDiff!=expectDiff[1]) ){
-    stop('This function can only operate on models constrcuted by the same data.') 
-  }
-  
-  #same model
-  count.map = sapply(obj.list, FUN = function(x){
-    count_models( x$model.hat$desc )
-  })
-  sameModel = apply(count.map, 2, identical, count.map[,1])
-  
-  if(any(sameModel==F)){
-    stop('gmwm objects are not constructed by the same model.')
-  }
-  
-}
 
 #' @title Add Space to Avoid Duplicate Elements
 #' @description Add space to every element if there are duplicates in the vector.
@@ -221,39 +132,6 @@ addSpaceIfDuplicate = function(x){
   return(res)
 }
 
-
-#' @title Get \code{gmwm} Efficiency Values
-#' @description Get efficiency values from a list of \code{gmwm} object
-#' @param obj.list A \code{list} of \code{gmwm} object
-#' @return A \code{numeric vector}.
-#' @keywords internal
-#' @details 
-#' 
-#' If the object is computed by classical method, it will return 1.1. The reason is:
-#' 
-#' It's possible for user to create one object by robust method with eff=1, though it is exactly same
-#' as classical method. In this case, if we want the classical method to always appear on the 
-#' top left corner,  number larger than 1 (e.g. 1.1) is used. This setting makes it easy to draw the graph.
-#' 
-#' @examples 
-#' set.seed(8836)
-#' n = 1000
-#' x = gen_gts(n, AR1(phi = .1, sigma2 = 1) + AR1(phi = 0.95, sigma2 = .1))
-#' GMWM1 = gmwm(2*AR1()+RW(), data = x, robust  = FALSE)
-#' GMWM2 = gmwm(2*AR1()+RW(), data = x, robust  = TRUE, eff = 0.1)
-#' GMWM3 = gmwm(2*AR1()+RW(), data = x, robust  = TRUE, eff = 0.6)
-#' obj.list = list(GMWM1, GMWM2, GMWM3)
-#' getEff(obj.list)
-getEff = function(obj.list){
-  res = sapply(obj.list, FUN = function(x){
-    
-    if(x$robust){return(x$eff)
-    }else{return(1.1)} #classical method is robust with eff=1
-    #eff = Var(Robust)/Var(Classical)
-  })
-  
-  return(res)
-}
 
 #' @title Get N Colors
 #' @description Creates n colors from specific palette

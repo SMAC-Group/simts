@@ -14,47 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Latest Version of Package on CRAN
-#' 
-#' Determines the version number on cran via obtaining the packages page
-#' 
-#' @param pkg         Name of Package
-#' @param cran_url    URL to CRAN Packages
-#' @return A \code{vector} of \code{string}s that contain:
-#' \itemize{
-#' \item the verison of the package on cran
-#' \item release date of the package on cran
-#' }
-#' @keywords internal
-#' @examples 
-#' library(gmwm)
-#' packageVersion("gmwm")
-#' packageVersionCRAN("gmwm")
-#' 
-#' @author JJB
-packageVersionCRAN = function(pkg, cran_url="http://cran.r-project.org/web/packages/")
-{
-  
-  cran_pkg_loc = paste0(cran_url,pkg)
-  
-  suppressWarnings( conn <- try( url(cran_pkg_loc) , silent=TRUE ) )
-  
-  if ( all( class(conn) != "try-error") ) {
-    suppressWarnings( cran_pkg_page <- try( readLines(conn) , silent=TRUE ) )
-    close(conn)
-  } else {
-    return(NULL)
-  }
-  
-  version_line = cran_pkg_page[grep("Version:",cran_pkg_page)+1]
-  version_num_cran = gsub("<(td|\\/td)>","",version_line)
-  
-  publish_line = cran_pkg_page[grep("Published:",cran_pkg_page)+1]
-  publish_date_cran = gsub("<(td|\\/td)>","",publish_line)
-  
-  c(version_num_cran,publish_date_cran)  
-}
-
 #' GM Conversion
 #' 
 #' Convert from AR1 to GM and vice-versa
@@ -161,7 +120,7 @@ outf = function(x, obs = 10L, row.names = TRUE){
 #' @title Is GMWM Object
 #' @description 
 #' Is the object a
-#' \code{gts}, \code{imu}, \code{lts}, \code{wvar}, or \code{gmwm} object?
+#' \code{gts}, \code{imu}, or \code{lts} object?
 #' @param x  A \code{gts}, \code{imu}, \code{lts} object.
 #' @return 
 #' A \code{logical} value that indicates whether the object is of that class (TRUE) or not (FALSE).
@@ -179,14 +138,6 @@ is.imu = function(x){ inherits(x, "imu") }
 #' @rdname is_func
 #' @export
 is.lts = function(x){ inherits(x, "lts") }
-
-#' @rdname is_func
-#' @export
-is.gmwm = function(x){ inherits(x, "gmwm") }
-
-#' @rdname is_func
-#' @export
-is.wvar = function(x){ inherits(x, "wvar") }
 
 #' @rdname is_func
 #' @export

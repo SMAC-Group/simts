@@ -4,8 +4,6 @@
 \alias{is.gts}
 \alias{is.imu}
 \alias{is.lts}
-\alias{is.gmwm}
-\alias{is.wvar}
 \alias{is.ts.model}
 \title{Is GMWM Object}
 \usage{
@@ -14,10 +12,6 @@ is.gts(x)
 is.imu(x)
 
 is.lts(x)
-
-is.gmwm(x)
-
-is.wvar(x)
 
 is.ts.model(x)
 }
@@ -29,7 +23,7 @@ A \code{logical} value that indicates whether the object is of that class (TRUE)
 }
 \description{
 Is the object a
-\code{gts}, \code{imu}, \code{lts}, \code{wvar}, or \code{gmwm} object?
+\code{gts}, \code{imu}, or \code{lts} object?
 }
 \details{
 Uses \code{\link[base]{inherits}} over \code{\link[methods]{is}} for speed.

@@ -237,7 +237,7 @@ arma::vec gen_ma1(const unsigned int N, const double theta = .3, const double si
 //' The function implements a way to generate the \eqn{x_t}{x[t]} values without calling the general ARMA function.
 //' @template processes_defined/process_arma11
 //' @section Generation Algorithm:
-//' The function first generates a vector of white noise using \code{\link[gmwm]{gen_wn}} and then obtains the
+//' The function first generates a vector of white noise using \code{gen_wn} and then obtains the
 //' ARMA values under the above equation.
 //' 
 //' The \eqn{X_0}{X[0]} (first value of \eqn{X_t}{X[t]}) is discarded.

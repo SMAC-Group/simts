@@ -46,7 +46,6 @@ n = 1000
 # AR1 + WN
 model = AR1(phi = .5, sigma2 = .1) + WN(sigma2=1)
 x = gen_gts(n, model)
-plot(x)
 
 # Reset seed
 set.seed(1336)
@@ -58,7 +57,6 @@ m = ar1_to_gm(c(.5,.1),10)
 # Beta = 6.9314718, Sigma2_gm = 0.1333333
 model = GM(beta = m[1], sigma2_gm = m[2]) + WN(sigma2=1)
 x2 = gen_gts(n, model, freq = 10, unit = 'sec')
-plot(x2, to.unit = 'min')
 
 # Same time series
 all.equal(x, x2, check.attributes = FALSE)

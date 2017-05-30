@@ -36,11 +36,9 @@ Setups a time series oriented object that works well with graphing and summary u
 m = data.frame(rnorm(50))
 x = gts(m, unit = 'sec', name = 'example')
 x
-plot(x)
 
 x = gen_gts(50, WN(sigma2 = 1))
 x = gts(x, freq = 100, unit = 'sec')
-plot(x)
 }
 \author{
 JJB, Wenchao

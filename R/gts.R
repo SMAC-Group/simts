@@ -35,11 +35,9 @@
 #' m = data.frame(rnorm(50))
 #' x = gts(m, unit = 'sec', name = 'example')
 #' x
-#' plot(x)
 #' 
 #' x = gen_gts(50, WN(sigma2 = 1))
 #' x = gts(x, freq = 100, unit = 'sec')
-#' plot(x)
 gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
   
   # 1. requirement for 'data'
@@ -134,7 +132,6 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
 #' # AR1 + WN
 #' model = AR1(phi = .5, sigma2 = .1) + WN(sigma2=1)
 #' x = gen_gts(n, model)
-#' plot(x)
 #' 
 #' # Reset seed
 #' set.seed(1336)
@@ -146,7 +143,6 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
 #' # Beta = 6.9314718, Sigma2_gm = 0.1333333
 #' model = GM(beta = m[1], sigma2_gm = m[2]) + WN(sigma2=1)
 #' x2 = gen_gts(n, model, freq = 10, unit = 'sec')
-#' plot(x2, to.unit = 'min')
 #' 
 #' # Same time series
 #' all.equal(x, x2, check.attributes = FALSE)

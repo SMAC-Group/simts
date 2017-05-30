@@ -35,7 +35,7 @@
 #' @name simts-package
 #' @docType package
 #' @useDynLib simts
-#' @import ggplot2 reshape2 ggfortify
+#' @import reshape2
 #' @importFrom grDevices gray.colors hcl graphics.off
 #' @importFrom methods is
 #' @importFrom utils install.packages tail head

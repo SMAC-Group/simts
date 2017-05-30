@@ -1,6 +1,6 @@
 # Copyright (C) 2014 - 2017  
 #
-# This file is part of GMWM R Methods Package
+# This file is part of simts R Methods Package
 #
 # The `simts` R package is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as

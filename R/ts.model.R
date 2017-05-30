@@ -109,12 +109,13 @@ MA1 = function(theta = NULL, sigma2 = 1) {
 }
 
 
-#' Create an Autoregressive Order 1 - Moving Average Order 1 (ARMA(1,1)) Process
+#' Definition of an ARMA(1,1)
 #' 
-#' Sets up the necessary backend for the ARMA(1,1) process.
-#' @param phi    A \code{double} containing the coefficients for \eqn{\phi _1}{phi[1]}'s for the Autoregressive 1 (AR1) term.
-#' @param theta  A \code{double} containing  the coefficients for \eqn{\theta _1}{theta[1]}'s for the Moving Average 1 (MA1) term.
-#' @param sigma2 A \code{double} value for the standard deviation, \eqn{\sigma}{sigma}, of the ARMA process.
+#' @param phi    A \code{double} containing the parameter \eqn{\phi _1}{phi[1]} (see Note for details).
+#' @param theta  A \code{double} containing the parameter \eqn{\theta _1}{theta[1]} (see Note for details).
+#' @param sigma2 A \code{double} value for the parameter \eqn{\sigma^2}{sigma^2} (see Note for details).
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \theta_1 \varepsilon_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{\eqn{AR1}, \eqn{MA1}, \eqn{SIGMA2}}
@@ -144,6 +145,18 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
     starting = TRUE;
   }else if(length(phi) != 1 || length(theta) != 1){
     stop("`phi` and `theta` must have only one value.")
+  }
+  
+  if (abs(phi) < 1){
+    stop("Parameter phi must be such that |phi| < 1.")
+  }
+  
+  if (abs(theta) < 1){
+    stop("Parameter theta must be such that |theta| < 1.")
+  }
+  
+  if (sigma2 <= 0){
+    stop("Variance must be > 0.")
   }
   
   out = structure(list(process.desc = c("AR1","MA1","SIGMA2"),

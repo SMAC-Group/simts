@@ -1,24 +1,24 @@
-# Copyright (C) 2014 - 2015  James Balamuta, Stephane Guerrier, Roberto Molinari
+# Copyright (C) 2014 - 2017 
 #
 # This file is part of GMWM R Methods Package
 #
-# The `gmwm` R package is free software: you can redistribute it and/or modify it
+# The `simts` R package is free software: you can redistribute it and/or modify it
 # under the terms of the Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
 # included within the packages source as the LICENSE file.
 #
-# The `gmwm` R package is distributed in the hope that it will be useful, but
+# The `simts` R package is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
 # You should have received a copy of the Attribution-NonCommercial-ShareAlike 4.0 International 
-# (CC BY-NC-SA 4.0) along with `gmwm`.  If not, see <http://www.smac-group.com/licensing/>.
+# (CC BY-NC-SA 4.0) along with `simts`.  If not, see <http://www.smac-group.com/licensing/>.
 
 #' @title Integer Check
 #' @description Checks whether the submitted value is an integer
 #' @keywords internal
 #' @param x A \code{numeric} value to check to see if it is an integer.
 #' @return A \code{boolean} value indicating whether the value is an integer or not.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' is.whole(2.3)
 #' is.whole(4)

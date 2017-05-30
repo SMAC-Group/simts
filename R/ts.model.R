@@ -18,7 +18,7 @@
 #'
 #' @param phi A \code{double} value for the parameter \eqn{\phi}{phi} (see Note for details).
 #' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
-#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\phi} is iid from a zero 
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
 #' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
@@ -62,8 +62,10 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 
 #' Definition of an Moving Average Process of Order 1
 #' 
-#' @param theta  A \code{double} value for the \eqn{\theta}{theta} of an MA1 process.
-#' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
+#' @param theta  A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).
+#' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
+#' @note We consider the following model: \deqn{X_t = \theta \varepsilon_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "MA1","SIGMA2"}
@@ -73,10 +75,10 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' MA1()
-#' MA1(theta=.32, sigma2=1.3)
+#' MA1(theta = .32, sigma2 = 1.3)
 MA1 = function(theta = NULL, sigma2 = 1) {
   starting = FALSE;
   if(is.null(theta)){
@@ -84,9 +86,19 @@ MA1 = function(theta = NULL, sigma2 = 1) {
     sigma2 = 1;
     starting = TRUE;
   }
+  
   if(length(theta) != 1 & length(sigma2) != 1){
-    stop("Bad MA1 model submitted. Must be double values for two parameters.")
+    stop("Incorect MA1 model submitted. Must be double values for two parameters.")
   }
+  
+  if (abs(theta) < 1){
+    stop("Parameter theta must be such that |theta| < 1.")
+  }
+  
+  if (sigma2 <= 0){
+    stop("Variance must be > 0.")
+  }
+  
   out = structure(list(process.desc = c("MA1","SIGMA2"),
                        theta = c(theta,sigma2),
                        plength = 2,

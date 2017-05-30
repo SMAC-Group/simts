@@ -2,14 +2,14 @@
 % Please edit documentation in R/ts.model.R
 \name{AR1}
 \alias{AR1}
-\title{Create an Autoregressive 1 [AR(1)] Process}
+\title{Simulation of an Autoregressive Process of Order 1}
 \usage{
 AR1(phi = NULL, sigma2 = 1)
 }
 \arguments{
-\item{phi}{A \code{double} value for the \eqn{\phi}{phi} of an AR1 process.}
+\item{phi}{A \code{double} value for the \eqn{\phi}{phi} of an AR1 process (see Note for details).}
 
-\item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.}
+\item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
@@ -23,12 +23,15 @@ An S3 object with called ts.model with the following structure:
 }
 }
 \description{
-Setups the necessary backend for the AR1 process.
+Simulation of an Autoregressive Process of Order 1
+}
+\note{
+We consider the following model: \deqn{X_t = \phi X_{t-1} + \sigma \varepsilon_t,} where \eqn{\phi} is iid from a standard normal distribution.
 }
 \examples{
 AR1()
 AR1(phi=.32, sigma2=1.3)
 }
 \author{
-JJB
+James Balamuta
 }

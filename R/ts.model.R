@@ -14,11 +14,12 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Create an Autoregressive 1 [AR(1)] Process
+#' Definition of an Autoregressive Process of Order 1
 #'
-#' Setups the necessary backend for the AR1 process.
-#' @param phi A \code{double} value for the \eqn{\phi}{phi} of an AR1 process.
-#' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
+#' @param phi A \code{double} value for the parameter \eqn{\phi}{phi} (see Note for details).
+#' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\phi} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "AR1","SIGMA2"}
@@ -28,10 +29,10 @@
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' AR1()
-#' AR1(phi=.32, sigma2=1.3)
+#' AR1(phi=.32, sigma2 = 1.3)
 AR1 = function(phi = NULL, sigma2 = 1) {
   starting = FALSE;
   if(is.null(phi)){
@@ -40,7 +41,15 @@ AR1 = function(phi = NULL, sigma2 = 1) {
     starting = TRUE;
   }
   if(length(phi) != 1 & length(sigma2) != 1){
-    stop("Bad AR1 model submitted. Must be double values for two parameters.")
+    stop("Incorrect AR1 model submitted. Must be double values for two parameters.")
+  }
+  
+  if (abs(phi) < 1){
+    stop("Parameter phi must be such that |phi| < 1.")
+  }
+  
+  if (sigma2 <= 0){
+    stop("Variance must be > 0.")
   }
   out = structure(list(process.desc = c("AR1","SIGMA2"),
                        theta = c(phi,sigma2),
@@ -51,10 +60,9 @@ AR1 = function(phi = NULL, sigma2 = 1) {
   invisible(out)
 }
 
-#' Create an Moving Average 1 [MA(1)] Process
+#' Definition of an Moving Average Process of Order 1
 #' 
-#' Setups the necessary backend for the MA1 process.
-#' @param theta  A \code{double} value for the \eqn{\phi}{phi} of an MA1 process.
+#' @param theta  A \code{double} value for the \eqn{\theta}{theta} of an MA1 process.
 #' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{

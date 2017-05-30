@@ -1,13 +1,13 @@
-# Copyright (C) 2014 - 2016  James Balamuta, Stephane Guerrier, Roberto Molinari
+# Copyright (C) 2014 - 2017  
 #
 # This file is part of GMWM R Methods Package
 #
-# The `gmwm` R package is free software: you can redistribute it and/or modify
+# The `simts` R package is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 #
-# The `gmwm` R package is distributed in the hope that it will be useful, but
+# The `simts` R package is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
@@ -21,7 +21,7 @@
 #' @param process.desc A \code{character vector} containing the names of parameters.
 #' @param freq         A \code{double} indicating the frequency of the data.
 #' @keywords internal
-#' @author JJB
+#' @author James Balamuta
 #' @rdname gm_conv
 conv.ar1.to.gm = function(theta, process.desc, freq){
   idx = process.desc %in% c("BETA","SIGMA2_GM")
@@ -39,7 +39,7 @@ conv.gm.to.ar1 = function(theta, process.desc, freq){
 }
 
 
-#' @title Print GMWM Data Object
+#' @title Print simts Objects
 #' @description 
 #' Pretty formatting for \code{gts}, \code{imu}, and \code{lts} objects.
 #' @param x         A \code{gts}, \code{imu}, \code{lts} object.
@@ -48,7 +48,7 @@ conv.gm.to.ar1 = function(theta, process.desc, freq){
 #' @param ...       Further arguments passed to or from other methods.
 #' @return 
 #' A \code{logical} value that indicates whether the object is of that class (TRUE) or not (FALSE).
-#' @author JJB
+#' @author James Balamuta
 #' @rdname print_data
 #' @export
 print.imu = function(x,
@@ -117,7 +117,7 @@ outf = function(x, obs = 10L, row.names = TRUE){
   return(invisible())
 }
 
-#' @title Is GMWM Object
+#' @title Is simts Object
 #' @description 
 #' Is the object a
 #' \code{gts}, \code{imu}, or \code{lts} object?
@@ -160,7 +160,7 @@ is.ts.model = function(x){ inherits(x, "ts.model") }
 #'  \item{\code{"gyro"}}{Returns the number of gyroscopes}
 #'  \item{\code{"sensors"}}{Returns total number of sensors}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @export
 value = function(x, type){
   UseMethod("value")
@@ -192,7 +192,7 @@ value.imu = function(x, type){
 #'  \item{\code{"gyro"}}{Returns whether accelerometers have been specified}
 #'  \item{\code{"sensors"}}{Returns whether there exists both types of sensors}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @export
 has = function(x, type){
   UseMethod("has")

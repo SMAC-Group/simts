@@ -291,7 +291,7 @@ unitConversion = function(x, from.unit, to.unit){
 #' @method plot gts
 #' @export
 #' @keywords internal
-#' @param object          A \code{gts} object
+#' @param x               A \code{gts} object
 #' @param xlab            A \code{string} that gives a title for the x axis.
 #' @param ylab            A \code{string} that gives a title for the y axis.
 #' @param main            A \code{string} that gives an overall title for the plot.
@@ -299,18 +299,18 @@ unitConversion = function(x, from.unit, to.unit){
 #' @param ... other arguments passed to specific methods
 #' @return A plot containing the graph of the gts time series.
 #' @author Justin Lee
-plot.gts = function(object, xlab = "Time", ylab = "Observation", main = NULL, col = "dodgerblue", ...){
-  unit_ts = attr(object, 'unit_ts')
-  unit_time = attr(object, 'unit_time')
-  name = attr(object, 'name')
-  start =  attr(object, 'start')
-  end = attr(object, 'end')
+plot.gts = function(x, xlab = "Time", ylab = "Observation", main = NULL, col = "blue4"){
+  unit_ts = attr(x, 'unit_ts')
+  unit_time = attr(x, 'unit_time')
+  name = attr(x, 'name')
+  start =  attr(x, 'start')
+  end = attr(x, 'end')
   
-  if(!is(object,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
+  if(!is(x,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
   
   # Labels
   if (!is.null(unit_time)){
-    xlab = paste(xlab, " (", unit_time, ")", sep = "")
+    xlab = paste("Time", " (", unit_time, ")", sep = "")
   }
   
   if (!is.null(name)){
@@ -326,15 +326,15 @@ plot.gts = function(object, xlab = "Time", ylab = "Observation", main = NULL, co
   }
   
   # Main Plot 
-  plot(NA, xlim = c(start, end), ylim = range(object), xlab = xlab, ylab = ylab, main = main)
+  plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab, ylab = ylab, main = main)
   
   # X Scales
-  scales = seq(start, end, length = length(object))
+  scales = seq(start, end, length = length(x))
  
-  # Add grid 
-  grid(NULL, NULL, lty = 1, col = "grey95") 
-     
+  # Add grid
+  grid(NULL, NULL, lty = 1, col = "grey95")
+
   # Add lines 
-  lines(scales, object, type = "l", col = col, pch = 16)
-  lines(scales, object, type = "p", col = col, pch = 16, cex = 0.5)
+  lines(scales, x, type = "l", col = col, pch = 16)
+  lines(scales, x, type = "p", col = col, pch = 16, cex = 0.5)
 }

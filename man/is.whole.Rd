@@ -23,6 +23,6 @@ is.whole(c(.4,.5,.6))
 is.whole(c(7,.8,9))
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

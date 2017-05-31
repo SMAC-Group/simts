@@ -20,6 +20,6 @@ conv.gm.to.ar1(theta, process.desc, freq)
 Convert from AR1 to GM and vice-versa
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

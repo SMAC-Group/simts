@@ -36,5 +36,5 @@ To access information about \code{imu} properties use:
 }}
 
 \author{
-JJB
+James Balamuta
 }

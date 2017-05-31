@@ -5,7 +5,7 @@
 \alias{is.imu}
 \alias{is.lts}
 \alias{is.ts.model}
-\title{Is GMWM Object}
+\title{Is simts Object}
 \usage{
 is.gts(x)
 

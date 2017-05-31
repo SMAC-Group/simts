@@ -5,7 +5,7 @@
 \alias{print.lts}
 \alias{print.gts}
 \alias{outf}
-\title{Print GMWM Data Object}
+\title{Print simts Objects}
 \usage{
 \method{print}{imu}(x, obs = 10L, row.names = TRUE, ...)
 
@@ -31,5 +31,5 @@ A \code{logical} value that indicates whether the object is of that class (TRUE)
 Pretty formatting for \code{gts}, \code{imu}, and \code{lts} objects.
 }
 \author{
-JJB
+James Balamuta
 }

@@ -16,29 +16,31 @@
 
 #' @title Create a GMWM TS Object based on data
 #' @description Setups a time series oriented object that works well with graphing and summary utilities
-#' @param data A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.
-#' @param start A \code{numeric} that provides the time of the first observation.
-#' @param end A \code{numeric} that provides the time of the last observation.
-#' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.
-#' @param name A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
+#' @param data      A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.
+#' @param start     A \code{numeric} that provides the time of the first observation.
+#' @param end       A \code{numeric} that provides the time of the last observation.
+#' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
+#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param name      A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
 #' @return A \code{gts} object with the following attributes:
 #' \describe{
 #'   \item{start}{The time of the first observation}
 #'   \item{end}{The time of the last observation}
 #'   \item{freq}{Numeric representation of frequency}
-#'   \item{unit}{String representation of the unit}
+#'   \item{unit_time}{String representation of the unit}
 #'   \item{name}{Name of the dataset}
 #' }
 #' @author JJB, Wenchao
 #' @examples
 #' m = data.frame(rnorm(50))
-#' x = gts(m, unit = 'sec', name = 'example')
-#' x
+#' x = gts(m, unit_time = 'sec', name = 'example')
+#' plot(x)
 #' 
 #' x = gen_gts(50, WN(sigma2 = 1))
-#' x = gts(x, freq = 100, unit = 'sec')
-gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
+#' x = gts(x, freq = 100, unit_time = 'sec')
+#' plot(x)
+gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name = NULL){
   
   # 1. requirement for 'data'
   # Force data.frame to matrix  
@@ -82,9 +84,9 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
   else if ( is.null(start) ){
     start = end - (ndata - 1)/freq}
   
-  # 4. requirement for 'unit'
-  if(!is.null(unit)){
-    if(!unit %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
+  # 4. requirement for 'unit_time'
+  if(!is.null(unit_time)){
+    if(!unit_time %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
       stop('The supported units are "ns", "ms", "sec", "min", "hour", "day", "month", "year". ')
     }
   }
@@ -97,7 +99,8 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
                 start = start, 
                 end= end, # start and end will not be null now
                 freq = freq,
-                unit = unit,
+                unit_ts = unit_ts, 
+                unit_time = unit_time,
                 name = name, 
                 class = c("gts","matrix"))
   
@@ -107,19 +110,20 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
 
 #' @title Create a GMWM TS Object based on model
 #' @description Create a \code{gts} object based on a supplied time series model.
-#' @param n An \code{interger} containing the amount of observations for the time series.
-#' @param model A \code{ts.model} or \code{gmwm} object containing one of the allowed models.
-#' @param start A \code{numeric} that provides the time of the first observation.
-#' @param end A \code{numeric} that provides the time of the last observation.
-#' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.
-#' @param name A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
+#' @param n          An \code{interger} containing the amount of observations for the time series.
+#' @param model      A \code{ts.model} or \code{gmwm} object containing one of the allowed models.
+#' @param start      A \code{numeric} that provides the time of the first observation.
+#' @param end        A \code{numeric} that provides the time of the last observation.
+#' @param freq       A \code{numeric} that provides the rate of samples. Default value is 1.
+#' @param unit_ts    A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
+#' @param unit_time  A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param name       A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
 #' @return A \code{gts} object with the following attributes:
 #' \describe{
 #'   \item{start}{The time of the first observation}
 #'   \item{end}{The time of the last observation}
 #'   \item{freq}{Numeric representation of frequency}
-#'   \item{unit}{String representation of the unit}
+#'   \item{unit_time}{String representation of the unit}
 #'   \item{name}{Name of the dataset}
 #' }
 #' @details
@@ -132,6 +136,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
 #' # AR1 + WN
 #' model = AR1(phi = .5, sigma2 = .1) + WN(sigma2=1)
 #' x = gen_gts(n, model)
+#' plot(x)
 #' 
 #' # Reset seed
 #' set.seed(1336)
@@ -142,11 +147,12 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
 #' 
 #' # Beta = 6.9314718, Sigma2_gm = 0.1333333
 #' model = GM(beta = m[1], sigma2_gm = m[2]) + WN(sigma2=1)
-#' x2 = gen_gts(n, model, freq = 10, unit = 'sec')
+#' x2 = gen_gts(n, model, freq = 10, unit_time = 'sec')
+#' plot(x2)
 #' 
 #' # Same time series
 #' all.equal(x, x2, check.attributes = FALSE)
-gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL){
+gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name = NULL){
   
   # 1. Do we have a valid model?
   if(!(is.ts.model(model))){
@@ -170,9 +176,9 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
   else if ( is.null(start) ){
     start = end - (n - 1)/freq}
   
-  # 4. 'unit'
-  if(!is.null(unit)){
-    if(!unit %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
+  # 4. 'unit_time'
+  if(!is.null(unit_time)){
+    if(!unit_time %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
       stop('The supported units are "ns", "ms", "sec", "min", "hour", "day", "month", "year". ')
     }
   }
@@ -207,7 +213,8 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
                   start = start, 
                   end   = end, # start and end will not be null now
                   freq  = freq,
-                  unit  = unit,
+                  unit_ts = unit_ts, 
+                  unit_time  = unit_time,
                   name  = name, 
                   class = c("gts","matrix"))
   
@@ -218,9 +225,9 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
 #' @title Convert Unit of Time Series Data
 #' @description Manipulate the units of time to different ones
 #' @keywords internal
-#' @param x A \code{vector} containing the values on x-axis.
-#' @param from.unit A \code{string} indicating the unit which the data is converted from.
-#' @param to.unit A \code{string} indicating the unit which the data is converted to.
+#' @param x          A \code{vector} containing the values on x-axis.
+#' @param from.unit  A \code{string} indicating the unit which the data is converted from.
+#' @param to.unit    A \code{string} indicating the unit which the data is converted to.
 #' @details
 #' The supported units are "ns"(nanosecond), "ms"(millisecond), "sec", "min", "hour", "day", "month", and "year".
 #' Make sure \code{from.unit} and \code{to.unit} are not \code{NULL} before it is passed to this function.
@@ -275,4 +282,58 @@ unitConversion = function(x, from.unit, to.unit){
   }
   obj = list(x = x, converted = !no.convert)  
   return(obj)
+}
+
+
+#' @title Plot Time Series Data
+#' @description Plot Time Series Data generated by gts or gen_gts. 
+#' @method plot gts
+#' @export
+#' @keywords internal
+#' @param object          A \code{gts} object
+#' @param xlab            A \code{string} that gives a title for the x axis.
+#' @param ylab            A \code{string} that gives a title for the y axis.
+#' @param main            A \code{string} that gives an overall title for the plot.
+#' @param col             A \code{string} that gives a color for the line. 
+#' @param ... other arguments passed to specific methods
+#' @return A plot containing the graph of the gts time series.
+#' @author Justin Lee
+plot.gts = function(object, xlab = "Time", ylab = "Observation", main = NULL, col = "dodgerblue", ...){
+  unit_ts = attr(object, 'unit_ts')
+  unit_time = attr(object, 'unit_time')
+  name = attr(object, 'name')
+  start =  attr(object, 'start')
+  end = attr(object, 'end')
+  
+  if(!is(object,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
+  
+  # Labels
+  if (!is.null(unit_time)){
+    xlab = paste(xlab, " (", unit_time, ")", sep = "")
+  }
+  
+  if (!is.null(name)){
+    if (is.null(unit_ts)){
+      ylab = name
+    }else{
+      ylab = paste(name, " (", unit_ts, ")", sep = "")
+    }
+  }
+  
+  if (is.null(main)){
+    main = "GMWM Time Series"
+  }
+  
+  # Main Plot 
+  plot(NA, xlim = c(start, end), ylim = range(object), xlab = xlab, ylab = ylab, main = main)
+  
+  # X Scales
+  scales = seq(start, end, length = length(object))
+ 
+  # Add grid 
+  grid(NULL, NULL, lty = 1, col = "grey95") 
+     
+  # Add lines 
+  lines(scales, object, type = "l", col = col, pch = 16)
+  lines(scales, object, type = "p", col = col, pch = 16, cex = 0.5)
 }

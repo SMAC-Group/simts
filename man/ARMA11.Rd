@@ -2,16 +2,16 @@
 % Please edit documentation in R/ts.model.R
 \name{ARMA11}
 \alias{ARMA11}
-\title{Create an Autoregressive Order 1 - Moving Average Order 1 (ARMA(1,1)) Process}
+\title{Definition of an ARMA(1,1)}
 \usage{
 ARMA11(phi = NULL, theta = NULL, sigma2 = 1)
 }
 \arguments{
-\item{phi}{A \code{double} containing the coefficients for \eqn{\phi _1}{phi[1]}'s for the Autoregressive 1 (AR1) term.}
+\item{phi}{A \code{double} containing the parameter \eqn{\phi _1}{phi[1]} (see Note for details).}
 
-\item{theta}{A \code{double} containing  the coefficients for \eqn{\theta _1}{theta[1]}'s for the Moving Average 1 (MA1) term.}
+\item{theta}{A \code{double} containing the parameter \eqn{\theta _1}{theta[1]} (see Note for details).}
 
-\item{sigma2}{A \code{double} value for the standard deviation, \eqn{\sigma}{sigma}, of the ARMA process.}
+\item{sigma2}{A \code{double} value for the parameter \eqn{\sigma^2}{sigma^2} (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
@@ -24,11 +24,15 @@ An S3 object with called ts.model with the following structure:
 }
 }
 \description{
-Sets up the necessary backend for the ARMA(1,1) process.
+Definition of an ARMA(1,1)
 }
 \details{
 A variance is required since the model generation statements utilize 
 randomization functions expecting a variance instead of a standard deviation like R.
+}
+\note{
+We consider the following model: \deqn{X_t = \phi X_{t-1} + \theta_1 \varepsilon_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{
 # Creates an ARMA(1,1) process with predefined coefficients.

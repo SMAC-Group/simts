@@ -7,9 +7,9 @@
 MA1(theta = NULL, sigma2 = 1)
 }
 \arguments{
-\item{theta}{A \code{double} value for the \eqn{\theta}{theta} of an MA1 process.}
+\item{theta}{A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).}
 
-\item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.}
+\item{sigma2}{A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
@@ -25,10 +25,14 @@ An S3 object with called ts.model with the following structure:
 \description{
 Definition of an Moving Average Process of Order 1
 }
+\note{
+We consider the following model: \deqn{X_t = \theta \varepsilon_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+mean normal distribution with variance \eqn{\sigma^2}.
+}
 \examples{
 MA1()
-MA1(theta=.32, sigma2=1.3)
+MA1(theta = .32, sigma2 = 1.3)
 }
 \author{
-JJB
+James Balamuta
 }

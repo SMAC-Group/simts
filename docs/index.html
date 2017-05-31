@@ -55,12 +55,17 @@
 <p>This repository holds the Time Series Simulation (simts) R package.</p>
 <p>Below are examples of the capabilities of the <code>simts</code> package.</p>
 <p>We can generate different types of time series data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Data generation ##
-<span class="co"># Specify model</span>
-m =<span class="st"> </span><span class="kw"><a href="reference/AR1.html">AR1</a></span>(<span class="dt">phi =</span> .<span class="dv">98</span>, <span class="dt">sigma2 =</span> .<span class="dv">01</span>) +<span class="st"> </span><span class="kw"><a href="reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-
-<span class="co"># Generate Data</span>
-d =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">gen_gts</a></span>(<span class="dv">10000</span>, m)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(smacdata)
+<span class="kw">data</span>(<span class="st">"hydro"</span>)
+hydro =<span class="st"> </span><span class="kw"><a href="reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(hydro), <span class="dt">start =</span> <span class="dv">1907</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"in."</span>, 
+            <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, <span class="dt">data_name =</span> <span class="st">"Hydrology data"</span>)
+<span class="kw">plot</span>(hydro)</code></pre></div>
+<p><img src="README-unnamed-chunk-2-1.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"savingrt"</span>)
+savingrt =<span class="st"> </span><span class="kw"><a href="reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, 
+            <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>)
+<span class="kw">plot</span>(savingrt)</code></pre></div>
+<p><img src="README-unnamed-chunk-3-1.png" width="672"></p>
 </div>
 <div id="install-instructions" class="section level1">
 <h1 class="hasAnchor">
@@ -74,7 +79,7 @@ d =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">ge
 <div id="installing-the-package-through-github-developmental" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-the-package-through-github-developmental" class="anchor"></a>Installing the package through GitHub (Developmental)</h2>
-<p>For users who are interested in having the latest and greatest developments withing wavelets or GMWM methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. <strong>The setup to obtain the development version is platform dependent.</strong></p>
+<p>For users who are interested in having the latest and greatest developments withing wavelets or simts methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. <strong>The setup to obtain the development version is platform dependent.</strong></p>
 <p>Specifically, one <strong>must</strong> have a compiler installed on your system that is compatible with R.</p>
 <p>For help on obtaining a compiler consult:</p>
 <ul>
@@ -102,12 +107,12 @@ devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/si
 <h2 class="hasAnchor">
 <a href="#supplementary-data-package" class="anchor"></a>Supplementary data package</h2>
 <p>To test the package performance on real-world data that is <em>stationary</em> or work with some of the examples, you will need to download and install the <code>imudata</code> and/or the <code>datapkg</code> R package.</p>
-<p>To do so, please use the following installation method within the <code>gmwm</code> R package:</p>
+<p>To do so, please use the following installation method within the <code>simts</code> R package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the imudata package containing real world IMU data sets</span>
-gmwm::<span class="kw"><a href="reference/install_imudata.html">install_imudata</a></span>()
+simts::<span class="kw"><a href="reference/install_imudata.html">install_imudata</a></span>()
 
 <span class="co"># Install the datapkg package containing miscellaneous data sets</span>
-gmwm::<span class="kw"><a href="reference/install_datapkg.html">install_datapkg</a></span>()</code></pre></div>
+simts::<span class="kw"><a href="reference/install_datapkg.html">install_datapkg</a></span>()</code></pre></div>
 <p>For more information about the <code>imudata</code> and <code>datapkg</code> package, see the <a href="https://github.com/SMAC-Group/imudata" class="uri">https://github.com/SMAC-Group/imudata</a> and <a href="https://github.com/SMAC-Group/datapkg" class="uri">https://github.com/SMAC-Group/datapkg</a>.</p>
 </div>
 </div>

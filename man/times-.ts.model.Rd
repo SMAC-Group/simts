@@ -31,6 +31,6 @@ DR()*4 + WN()*2
 AR1(phi=.3,sigma=.2)*3
 }
 \author{
-James Balamuta
+James Balamuta and Stephane Guerrier
 }
 \keyword{internal}

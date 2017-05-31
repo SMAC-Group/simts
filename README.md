@@ -10,13 +10,23 @@ Below are examples of the capabilities of the `simts` package.
 We can generate different types of time series data:
 
 ``` r
-## Data generation ##
-# Specify model
-m = AR1(phi = .98, sigma2 = .01) + WN(sigma2 = 1)
-
-# Generate Data
-d = gen_gts(10000, m)
+library(smacdata)
+data("hydro")
+hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.", 
+            name_ts = "Precipitation", data_name = "Hydrology data")
+plot(hydro)
 ```
+
+![](README-unnamed-chunk-2-1.png)
+
+``` r
+data("savingrt")
+savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
+            name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
+plot(savingrt)
+```
+
+![](README-unnamed-chunk-3-1.png)
 
 Install Instructions
 ====================
@@ -31,7 +41,7 @@ We firmly recommend that any users of this package use the [RStudio IDE](https:/
 Installing the package through GitHub (Developmental)
 -----------------------------------------------------
 
-For users who are interested in having the latest and greatest developments withing wavelets or GMWM methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. **The setup to obtain the development version is platform dependent.**
+For users who are interested in having the latest and greatest developments withing wavelets or simts methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. **The setup to obtain the development version is platform dependent.**
 
 Specifically, one **must** have a compiler installed on your system that is compatible with R.
 
@@ -79,14 +89,14 @@ Supplementary data package
 
 To test the package performance on real-world data that is *stationary* or work with some of the examples, you will need to download and install the `imudata` and/or the `datapkg` R package.
 
-To do so, please use the following installation method within the `gmwm` R package:
+To do so, please use the following installation method within the `simts` R package:
 
 ``` r
 # Install the imudata package containing real world IMU data sets
-gmwm::install_imudata()
+simts::install_imudata()
 
 # Install the datapkg package containing miscellaneous data sets
-gmwm::install_datapkg()
+simts::install_datapkg()
 ```
 
 For more information about the `imudata` and `datapkg` package, see the <https://github.com/SMAC-Group/imudata> and <https://github.com/SMAC-Group/datapkg>.

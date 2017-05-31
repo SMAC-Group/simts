@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a GMWM TS Object based on model — gen_gts • simts</title>
+<title>Create a simts TS Object based on model — gen_gts • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,15 +68,15 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a GMWM TS Object based on model</h1>
+    <h1>Create a simts TS Object based on model</h1>
     </div>
 
     
     <p>Create a <code>gts</code> object based on a supplied time series model.</p>
     
 
-    <pre class="usage"><span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>unit_ts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name_ts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -87,7 +87,7 @@
     </tr>
     <tr>
       <th>model</th>
-      <td><p>A <code>ts.model</code> or <code>gmwm</code> object containing one of the allowed models.</p></td>
+      <td><p>A <code>ts.model</code> or <code>simts</code> object containing one of the allowed models.</p></td>
     </tr>
     <tr>
       <th>start</th>
@@ -102,29 +102,30 @@
       <td><p>A <code>numeric</code> that provides the rate of samples. Default value is 1.</p></td>
     </tr>
     <tr>
-      <th>unit</th>
-      <td><p>A <code>string</code> that contains the unit expression of the frequency. Default value is <code>NULL</code>.</p></td>
+      <th>unit_ts</th>
+      <td><p>A <code>string</code> that contains the unit expression of the time series. Default value is <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>A <code>string</code> that provides an identifier to the data. Default value is <code>NULL</code>.</p></td>
+      <th>unit_time</th>
+      <td><p>A <code>string</code> that contains the unit expression of the time. Default value is <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>name_ts</th>
+      <td><p>A <code>string</code> that provides an identifier for the time series data. Default value is <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>name_time</th>
+      <td><p>A <code>string</code> that provides an identifier for the time. Default value is <code>NULL</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>gts</code> object with the following attributes:</p><dl class='dl-horizontal'>
-  <dt>start</dt><dd><p>The time of the first observation</p></dd>
-  <dt>end</dt><dd><p>The time of the last observation</p></dd>
-  <dt>freq</dt><dd><p>Numeric representation of frequency</p></dd>
-  <dt>unit</dt><dd><p>String representation of the unit</p></dd>
-  <dt>name</dt><dd><p>Name of the dataset</p></dd>
-</dl>
-
+    <p>A <code>gts</code> object with the following attributes:</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function accepts either a <code>ts.model</code> object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a <code>gmwm</code> object.</p>
+    <p>This function accepts either a <code>ts.model</code> object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a <code>simts</code> object.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -134,21 +135,17 @@
 
 <span class='co'># AR1 + WN</span>
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.5</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>)
-
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_count_models", PACKAGE = "simts", desc): "simts_count_models" not available for .Call() for package "simts"</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gen_gts-4.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># Reset seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1336</span>)
 
 <span class='co'># GM + WN</span>
 <span class='co'># Convert from AR1 to GM values</span>
-<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='ar1_to_gm.html'>ar1_to_gm</a></span>(<span class='fu'>c</span>(<span class='fl'>.5</span>,<span class='fl'>.1</span>),<span class='fl'>10</span>)
-
+<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='ar1_to_gm.html'>ar1_to_gm</a></span>(<span class='fu'>c</span>(<span class='fl'>.5</span>,<span class='fl'>.1</span>),<span class='fl'>10</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_ar1_to_gm", PACKAGE = "simts", theta, freq): "simts_ar1_to_gm" not available for .Call() for package "simts"</span></div><div class='input'>
 <span class='co'># Beta = 6.9314718, Sigma2_gm = 0.1333333</span>
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='GM.html'>GM</a></span>(<span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>1</span>], <span class='kw'>sigma2_gm</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>2</span>]) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
-
+<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='GM.html'>GM</a></span>(<span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>1</span>], <span class='kw'>sigma2_gm</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>2</span>]) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in GM(beta = m[1], sigma2_gm = m[2]): object 'm' not found</span></div><div class='input'><span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_count_models", PACKAGE = "simts", desc): "simts_count_models" not available for .Call() for package "simts"</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>x2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in xy.coords(x, y, xlabel, ylabel, log): invalid first argument</span></div><div class='input'>
 <span class='co'># Same time series</span>
-<span class='fu'>all.equal</span>(<span class='no'>x</span>, <span class='no'>x2</span>, <span class='kw'>check.attributes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+<span class='fu'>all.equal</span>(<span class='no'>x</span>, <span class='no'>x2</span>, <span class='kw'>check.attributes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "target is gts, current is expression"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -161,6 +158,10 @@
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+James Balamuta and Wenchao Yang
 
   </div>
 </div>

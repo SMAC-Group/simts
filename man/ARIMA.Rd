@@ -21,6 +21,7 @@ An S3 object with called ts.model with the following structure:
  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}
  \item{theta}{\eqn{\sigma}{sigma}}
  \item{plength}{Number of Parameters}
+ \item{print}{String containing simplified model}
  \item{obj.desc}{y desc replicated x times}
  \item{obj}{Depth of Parameters e.g. list(c(length(ar),length(ma),1) )}
  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -32,6 +33,10 @@ Sets up the necessary backend for the ARIMA process.
 \details{
 A variance is required since the model generation statements utilize 
 randomization functions expecting a variance instead of a standard deviation like R.
+}
+\note{
+We consider the following model: \deqn{\Delta^i X_t = \sum_{j = 1}^p \phi_j \Delta^i X_{t-j} + \sum_{j = 1}^q \theta_j \varepsilon_{t-j} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
+mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{
 # Create an ARMA(1,2) process

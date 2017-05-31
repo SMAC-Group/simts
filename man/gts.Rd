@@ -5,7 +5,7 @@
 \title{Create a simts TS Object based on data}
 \usage{
 gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
-  unit_time = NULL, name_ts = NULL, name_time = NULL)
+  unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL)
 }
 \arguments{
 \item{data}{A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.}
@@ -23,6 +23,8 @@ gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 \item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
 
 \item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
+
+\item{data_name}{A \code{string} that contains the name of data.}
 }
 \value{
 A \code{gts} object with the following attributes:

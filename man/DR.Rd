@@ -14,6 +14,7 @@ An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "DR"}
  \item{theta}{slope}
+ \item{print}{String containing simplified model}
  \item{plength}{Number of Parameters}
  \item{obj.desc}{y desc replicated x times}
  \item{obj}{Depth of Parameters e.g. list(1)}

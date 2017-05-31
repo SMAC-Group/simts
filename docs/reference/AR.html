@@ -82,7 +82,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>phi</th>
-      <td><p>A <code>vector</code> with double values for the \(\phi\) of an AR(P) process.</p></td>
+      <td><p>A <code>vector</code> with double values for the \(\sum_{j = 1}^q \theta_j\) of an AR(P) process.</p></td>
     </tr>
     <tr>
       <th>sigma2</th>
@@ -97,10 +97,16 @@
  <dt>theta</dt><dd><p>\(\phi_1\), \(\phi_2\), ..., \(\phi_p\), \(\sigma^2\)</p></dd>
  <dt>plength</dt><dd><p>Number of Parameters</p></dd>
  <dt>desc</dt><dd><p>"AR"</p></dd>
+ <dt>print</dt><dd><p>String containing simplified model</p></dd>
  <dt>obj.desc</dt><dd><p>Depth of Parameters e.g. list(p,1)</p></dd>
  <dt>starting</dt><dd><p>Guess Starting values? TRUE or FALSE (e.g. specified value)</p></dd>
 </dl>
 
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>We consider the following model: $$X_t = \phi X_{t-1} + \varepsilon_t,$$ where \(\varepsilon_t\) is iid from a zero 
+mean normal distribution with variance \(\sigma^2\).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -114,13 +120,15 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
     
-JJB
+James Balamuta
 
   </div>
 </div>

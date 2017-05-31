@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Simulation of an Autoregressive Process of Order 1 — AR1 • simts</title>
+<title>Definition of an Autoregressive Process of Order 1 — AR1 • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -68,11 +68,11 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Simulation of an Autoregressive Process of Order 1</h1>
+    <h1>Definition of an Autoregressive Process of Order 1</h1>
     </div>
 
     
-    <p>Simulation of an Autoregressive Process of Order 1</p>
+    <p>Definition of an Autoregressive Process of Order 1</p>
     
 
     <pre class="usage"><span class='fu'>AR1</span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
@@ -82,11 +82,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>phi</th>
-      <td><p>A <code>double</code> value for the \(\phi\) of an AR1 process (see Note for details).</p></td>
+      <td><p>A <code>double</code> value for the parameter \(\phi\) (see Note for details).</p></td>
     </tr>
     <tr>
       <th>sigma2</th>
-      <td><p>A <code>double</code> value for the variance, \(\sigma ^2\), of a WN process (see Note for details).</p></td>
+      <td><p>A <code>double</code> value for the variance parameter \(\sigma ^2\) (see Note for details).</p></td>
     </tr>
     </table>
     
@@ -96,6 +96,7 @@
  <dt>process.desc</dt><dd><p>Used in summary: "AR1","SIGMA2"</p></dd>
  <dt>theta</dt><dd><p>\(\phi\), \(\sigma^2\)</p></dd>
  <dt>plength</dt><dd><p>Number of Parameters</p></dd>
+ <dt>print</dt><dd><p>String containing simplified model</p></dd>
  <dt>desc</dt><dd><p>"AR1"</p></dd>
  <dt>obj.desc</dt><dd><p>Depth of Parameters e.g. list(1,1)</p></dd>
  <dt>starting</dt><dd><p>Guess Starting values? TRUE or FALSE (e.g. specified value)</p></dd>
@@ -104,12 +105,13 @@
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>We consider the following model: $$X_t = \phi X_{t-1} + \sigma \varepsilon_t,$$ where \(\phi\) is iid from a standard normal distribution.</p>
+    <p>We consider the following model: $$X_t = \phi X_{t-1} + \varepsilon_t,$$ where \(\varepsilon_t\) is iid from a zero 
+mean normal distribution with variance \(\sigma^2\).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>AR1</span>()
-<span class='fu'>AR1</span>(<span class='kw'>phi</span><span class='kw'>=</span><span class='fl'>.32</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1.3</span>)</div></pre>
+<span class='fu'>AR1</span>(<span class='kw'>phi</span><span class='kw'>=</span><span class='fl'>.32</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1.3</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

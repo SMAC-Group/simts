@@ -29,7 +29,10 @@ An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}, \eqn{SAR*P}{SAR x P}, \eqn{SMA*Q}{SMA x Q}}
  \item{theta}{\eqn{\sigma}{sigma}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
+ \item{desc}{Type of model}
+ \item{desc.simple}{Type of model (after simplification)}
+ \item{print}{String containing simplified model}
  \item{obj.desc}{y desc replicated x times}
  \item{obj}{Depth of Parameters e.g. list(c(length(ar), length(ma), length(sar), length(sma), 1, i, si) )}
  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}

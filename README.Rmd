@@ -10,6 +10,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+library(simts)
 ```
 
 
@@ -20,14 +21,31 @@ This repository holds the Time Series Simulation (simts) R package.
 Below are examples of the capabilities of the `simts` package.
 
 We can generate different types of time series data:
-```{r, eval = F}
-## Data generation ##
-# Specify model
-m = AR1(phi = .98, sigma2 = .01) + WN(sigma2 = 1)
 
-# Generate Data
-d = gen_gts(10000, m)
+```{r}
+library(smacdata)
+data("hydro")
+hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.", 
+            name_ts = "Precipitation", data_name = "Hydrology data")
+plot(hydro)
 ```
+
+```{r}
+data("savingrt")
+savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
+            name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
+plot(savingrt)
+```
+
+
+```{r}
+n = 1000
+model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
+Xt = gen_gts(n = n, model  = model)
+plot(Xt)
+```
+
+
 
 
 # Install Instructions

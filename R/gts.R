@@ -20,6 +20,7 @@
 #' @param start     A \code{numeric} that provides the time of the first observation.
 #' @param end       A \code{numeric} that provides the time of the last observation.
 #' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
+#' @param data_name A \code{string} that contains the name of data.
 #' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
@@ -34,7 +35,9 @@
 #' x = gen_gts(50, WN(sigma2 = 1))
 #' x = gts(x, freq = 100, unit_time = 'sec')
 #' plot(x)
-gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL){
+gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, 
+               unit_time = NULL, name_ts = NULL, name_time = NULL,
+               data_name = NULL){
   
   # 1. requirement for 'data'
   # Force data.frame to matrix  
@@ -97,6 +100,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
                   unit_time = unit_time,
                   name_ts = name_ts,
                   name_time = name_time,
+                  data_name = data_name,
                   class = c("gts","matrix"))
   
   out
@@ -176,6 +180,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   # Information Required by simts:
   desc = model$desc
   obj = model$obj.desc
+  print = model$print
   
   # Identifiability issues
   if(any( count_models(desc)[c("DR","QN","RW","WN")] >1)){
@@ -199,7 +204,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   colnames(out) = if(is.null(name_ts)) 'Observed' else name_ts 
   
   # reupdate desc for plotting
-  desc = paste0(model$desc, collapse = " + ")
+  desc = paste0(model$desc, "()", collapse = " + ")
   
   out = structure(.Data = out, 
                   start = start, 
@@ -210,6 +215,9 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
                   unit_time  = unit_time,
                   name_ts  = name_ts,
                   name_time = name_time, 
+                  model = model,
+                  print = print,
+                  simulated = TRUE,
                   class = c("gts","matrix"))
   
   out
@@ -300,12 +308,13 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   start =  attr(x, 'start')
   end = attr(x, 'end')
   freq = attr(x, 'freq')
-  main = attr(x, 'desc')
+  title_x = attr(x, 'print')
+  simulated = attr(x, 'simulated')
   n_x = length(x)
   
   if (n_x == 0){stop('Time series is empty!')}
   
-  if(!is(x,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
+  if(!is(x,"gts")){stop('object must be a gts object. Use functions gts() or gen_gts() to create it.')}
   
   # Labels
   if (!is.null(xlab)){
@@ -325,15 +334,24 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   }
   
   if (!is.null(unit_time)){
-    xlab = paste(name_time, " (", unit_time, ")", sep = "")
+    name_time = paste(name_time, " (", unit_time, ")", sep = "")
   }
   
   if (!is.null(unit_ts)){
-    ylab = paste(name_ts, " (", unit_ts, ")", sep = "")
+    name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")
   }
 
+  
   if (is.null(main)){
-    main = "Simulation Time Series"
+    if (!is.null(simulated)){
+      main = title_x
+    }else{
+      if (is.null(attr(x, "data_name"))){
+        main = "Time series"
+      }else{
+        main = attr(x, "data_name")
+      }
+    }
   }
   
   # X Scales
@@ -344,13 +362,13 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   }
   
   # Main plot                     
-  plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab, ylab = ylab, 
+  plot(NA, xlim = c(start, end), ylim = range(x), xlab = name_time, ylab = name_ts, 
        xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
   win_dim = par("usr")
   
   par(new = TRUE)
   plot(NA, xlim = c(start, end), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+       xlab = name_time, ylab = name_ts, xaxt = 'n', yaxt = 'n', bty = "n")
   win_dim = par("usr")
   
   # Add grid

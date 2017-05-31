@@ -19,6 +19,7 @@ An S3 object with called ts.model with the following structure:
  \item{process.desc}{\eqn{AR1}, \eqn{MA1}, \eqn{SIGMA2}}
  \item{theta}{\eqn{\phi}{phi}, \eqn{\theta}{theta}, \eqn{\sigma^2}{sigma^2}}
  \item{plength}{Number of Parameters: 3}
+ \item{print}{String containing simplified model}
  \item{obj.desc}{Depth of Parameters e.g. list(c(1,1,1))}
  \item{starting}{Guess Starting values? \code{TRUE} or \code{FALSE} (e.g. specified value)}
 }

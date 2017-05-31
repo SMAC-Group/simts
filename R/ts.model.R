@@ -814,7 +814,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
                        theta = c(x$theta,y$theta),
                        plength = x$plength + y$plength,
                        desc = c(x$desc, y$desc),
-                       print = c(x$print, y$print),
+                       print = paste(c(x$print, y$print), collapse = " + "),
                        obj.desc = c(x$obj.desc, y$obj.desc),
                        starting = starting), class = "ts.model")
   invisible(out)

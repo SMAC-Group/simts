@@ -127,7 +127,7 @@ MA1 = function(theta = NULL, sigma2 = 1) {
 #' @details
 #' A variance is required since the model generation statements utilize 
 #' randomization functions expecting a variance instead of a standard deviation like R.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' # Creates an ARMA(1,1) process with predefined coefficients.
 #' ARMA11(phi = .23, theta = .1, sigma2 = 1)
@@ -191,10 +191,10 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 #' 
 #' Internally, GM parameters are converted to AR1 using the `freq` 
 #' supplied when creating data objects (\link{imu}, \link{gts})
-#' or specifying a `freq` parameter in gmwm or gmwm.imu.
+#' or specifying a `freq` parameter in simts or simts.imu.
 #' 
 #' The `freq` of a data object takes precedence over the `freq` set when modeling.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' GM()
 #' GM(beta=.32, sigma2_gm=1.3)
@@ -230,7 +230,7 @@ GM = function(beta = NULL, sigma2_gm = 1) {
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' QN()
 #' QN(q2=3.4)
@@ -265,7 +265,7 @@ QN = function(q2 = NULL) {
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' WN()
 #' WN(sigma2=3.4)
@@ -300,7 +300,7 @@ WN = function(sigma2 = NULL) {
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' RW()
 #' RW(gamma2=3.4)
@@ -335,7 +335,7 @@ RW = function(gamma2 = NULL) {
 #'  \item{obj}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' DR()
 #' DR(omega=3.4)
@@ -372,7 +372,7 @@ DR = function(omega = NULL) {
 #'  \item{obj.desc}{Depth of Parameters e.g. list(p,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' AR(1) # Slower version of AR1()
 #' AR(phi=.32, sigma=1.3) # Slower version of AR1()
@@ -403,7 +403,7 @@ AR = function(phi = NULL, sigma2 = 1) {
 #'  \item{obj.desc}{Depth of Parameters e.g. list(q,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' MA(1) # One theta
 #' MA(2) # Two thetas!
@@ -438,7 +438,7 @@ MA = function(theta = NULL, sigma2 = 1) {
 #' @details
 #' A variance is required since the model generation statements utilize 
 #' randomization functions expecting a variance instead of a standard deviation like R.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' # Create an ARMA(1,2) process
 #' ARMA(ar=1,2)
@@ -472,7 +472,7 @@ ARMA = function(ar = 1, ma = 1, sigma2 = 1.0) {
 #' @details
 #' A variance is required since the model generation statements utilize 
 #' randomization functions expecting a variance instead of a standard deviation like R.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' # Create an ARMA(1,2) process
 #' ARIMA(ar=1,2)
@@ -507,7 +507,7 @@ ARIMA = function(ar = 1, i = 0, ma = 1, sigma2 = 1.0) {
 #' @details
 #' A variance is required since the model generation statements utilize 
 #' randomization functions expecting a variance instead of a standard deviation unlike R.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' # Create an SARMA(1,2)x(1,1) process
 #' SARMA(ar = 1, ma = 2,sar = 1, sma =1)
@@ -544,7 +544,7 @@ SARMA = function(ar = 1, ma = 1, sar = 1, sma = 1, s = 12, sigma2 = 1.0) {
 #' @details
 #' A variance is required since the model generation statements utilize 
 #' randomization functions expecting a variance instead of a standard deviation unlike R.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' # Create an SARIMA(1,1,2)x(1,0,1) process
 #' SARIMA(ar = 1, i = 1, ma = 2, sar = 1, si = 0, sma =1)
@@ -640,7 +640,7 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 #'  \item{obj.desc}{Depth of Parameters e.g. list(c(1,1),c(1,1))}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @keywords internal
 #' @export
 #' @examples
@@ -677,7 +677,7 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1, c(1,1), c(length(ar),length(ma),1) )}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @export
 #' @keywords internal
 #' @examples
@@ -709,7 +709,7 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 #'  \item{theta}
 #' }
 #' @keywords internal
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' # Creates a parameter space for guessing
 #' QN() + DR() + WN() + RW() + AR1() + ARMA(1,2)
@@ -744,7 +744,7 @@ print.ts.model = function(x, ...){
 #'  \item{desc}
 #'  \item{theta}
 #' }
-#' @author JJB
+#' @author James Balamuta
 #' @keywords internal
 #' @examples
 #' desc.to.ts.model(c("AR1","WN"))

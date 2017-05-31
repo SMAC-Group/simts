@@ -12,7 +12,7 @@ install_imudata(type = "ONL", loc = NULL)
 \item{loc}{A \code{string} that contains the file location.}
 }
 \description{
-Downloads and Install the IMU Data Package to use with the GMWM Package
+Downloads and Install the IMU Data Package to use with the simts Package
 }
 \details{
 The IMU Data Package contains data from real life IMUs and is approximately a
@@ -28,5 +28,5 @@ install_imudata("LOCAL","C:/Users/James/Documents/imudata_x.y.z.tar.gz")
 }
 }
 \author{
-JJB
+James Balamuta
 }

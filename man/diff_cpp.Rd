@@ -24,6 +24,6 @@ x = rnorm(10, 0, 1)
 diff_cpp(x,1,1)
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

@@ -19,6 +19,6 @@ Sums vectors in a field into a single variable.
 x=rnorm(100)
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

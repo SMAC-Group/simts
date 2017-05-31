@@ -39,7 +39,7 @@ We firmly recommend that any users of this package use the [RStudio IDE](https:/
 
 ## Installing the package through GitHub (Developmental)
 
-For users who are interested in having the latest and greatest developments withing wavelets or GMWM methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. **The setup to obtain the development version is platform dependent.**
+For users who are interested in having the latest and greatest developments withing wavelets or simts methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. **The setup to obtain the development version is platform dependent.**
 
 Specifically, one **must** have a compiler installed on your system that is compatible with R.
 
@@ -86,14 +86,14 @@ devtools::install_github("SMAC-Group/simts")
 
 To test the package performance on real-world data that is *stationary* or work with some of the examples, you will need to download and install the `imudata` and/or the `datapkg` R package.
 
-To do so, please use the following installation method within the `gmwm` R package:
+To do so, please use the following installation method within the `simts` R package:
 
 ```{r, eval = F}
 # Install the imudata package containing real world IMU data sets
-gmwm::install_imudata()
+simts::install_imudata()
 
 # Install the datapkg package containing miscellaneous data sets
-gmwm::install_datapkg()
+simts::install_datapkg()
 ```
 
 For more information about the `imudata` and `datapkg` package, see the <https://github.com/SMAC-Group/imudata> and <https://github.com/SMAC-Group/datapkg>.

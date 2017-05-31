@@ -105,11 +105,11 @@ orderModel = function(models){
 #' @keywords internal
 #' @examples 
 #' ##no duplicate
-#' x1 = c('GMWM2', 'GMWM1', 'GMWM3')
+#' x1 = c('simts2', 'simts1', 'simts3')
 #' addSpaceIfDuplicate(x1)
 #' 
 #' ##duplicate
-#' x2 = c('GMWM3', 'GMWM4', 'GMWM3', 'GMWM4', 'GMWM5', 'GMWM6','GMWM3')
+#' x2 = c('simts3', 'simts4', 'simts3', 'simts4', 'simts5', 'simts6','simts3')
 #' addSpaceIfDuplicate(x2)
 addSpaceIfDuplicate = function(x){
   res = x

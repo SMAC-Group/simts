@@ -31,5 +31,5 @@ AR(phi=.32, sigma=1.3) # Slower version of AR1()
 AR(2) # Equivalent to ARMA(2,0).
 }
 \author{
-JJB
+James Balamuta
 }

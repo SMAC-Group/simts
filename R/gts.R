@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title Create a GMWM TS Object based on data
+#' @title Create a simts TS Object based on data
 #' @description Setups a time series oriented object that works well with graphing and summary utilities
 #' @param data      A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.
 #' @param start     A \code{numeric} that provides the time of the first observation.
@@ -31,7 +31,7 @@
 #'   \item{unit_time}{String representation of the unit}
 #'   \item{name}{Name of the dataset}
 #' }
-#' @author JJB, Wenchao
+#' @author James Balamuta and Wenchao Yang
 #' @examples
 #' m = data.frame(rnorm(50))
 #' x = gts(m, unit_time = 'sec', name = 'example')
@@ -108,10 +108,10 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 }
 
 
-#' @title Create a GMWM TS Object based on model
+#' @title Create a simts TS Object based on model
 #' @description Create a \code{gts} object based on a supplied time series model.
 #' @param n          An \code{interger} containing the amount of observations for the time series.
-#' @param model      A \code{ts.model} or \code{gmwm} object containing one of the allowed models.
+#' @param model      A \code{ts.model} or \code{simts} object containing one of the allowed models.
 #' @param start      A \code{numeric} that provides the time of the first observation.
 #' @param end        A \code{numeric} that provides the time of the last observation.
 #' @param freq       A \code{numeric} that provides the rate of samples. Default value is 1.
@@ -126,8 +126,9 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 #'   \item{unit_time}{String representation of the unit}
 #'   \item{name}{Name of the dataset}
 #' }
+#' @author James Balamuta and Wenchao Yang
 #' @details
-#' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{gmwm} object.
+#' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
 #' @examples
 #' # Set seed for reproducibility
 #' set.seed(1336)
@@ -156,7 +157,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   
   # 1. Do we have a valid model?
   if(!(is.ts.model(model))){
-    stop("model must be created from a ts.model or gmwm object using a supported component (e.g. AR1(), ARMA(p,q), DR(), RW(), QN(), and WN(). ")
+    stop("model must be created from a ts.model or simts object using a supported component (e.g. AR1(), ARMA(p,q), DR(), RW(), QN(), and WN(). ")
   }
   
   # 2. requirement for 'freq'
@@ -183,7 +184,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
     }
   }
   
-  # Information Required by GMWM:
+  # Information Required by simts:
   desc = model$desc
   
   obj = model$obj.desc
@@ -321,7 +322,7 @@ plot.gts = function(object, xlab = "Time", ylab = "Observation", main = NULL, co
   }
   
   if (is.null(main)){
-    main = "GMWM Time Series"
+    main = "simts Time Series"
   }
   
   # Main Plot 

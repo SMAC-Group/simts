@@ -33,5 +33,5 @@ MA(theta=.32, sigma=1.3) # 1 theta with a specific value.
 MA(theta=c(.3,.5), sigma=.3) # 2 thetas with specific values.
 }
 \author{
-JJB
+James Balamuta
 }

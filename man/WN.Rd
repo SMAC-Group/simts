@@ -28,5 +28,5 @@ WN()
 WN(sigma2=3.4)
 }
 \author{
-JJB
+James Balamuta
 }

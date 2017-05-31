@@ -126,7 +126,7 @@ outf = function(x, obs = 10L, row.names = TRUE){
 #' A \code{logical} value that indicates whether the object is of that class (TRUE) or not (FALSE).
 #' @details
 #'  Uses \code{\link[base]{inherits}} over \code{\link[methods]{is}} for speed. 
-#' @author JJB
+#' @author James Balamuta
 #' @rdname is_func
 #' @export
 is.gts = function(x){ inherits(x, "gts") }

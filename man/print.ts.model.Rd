@@ -35,6 +35,6 @@ RW(gamma2 = .3) + DR(omega = .5) + QN(q2 = .9) + ARMA(ar = c(.3,.1), ma = c(.3,.
 AR1(.9,.1) + WN(1) + RW(.3) + DR(.5) + QN(.9) + ARMA(c(.3,.1), c(.3,.2), .99)
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

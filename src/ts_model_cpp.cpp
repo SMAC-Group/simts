@@ -1,13 +1,13 @@
-/* Copyright (C) 2014 - 2016  James Balamuta, Stephane Guerrier, Roberto Molinari
+/* Copyright (C) 2014 - 2017  James Balamuta, Stephane Guerrier, Roberto Molinari
  *
- * This file is part of GMWM R Methods Package
+ * This file is part of simts R Methods Package
  *
- * The `gmwm` R package is free software: you can redistribute it and/or modify
+ * The `simts` R package is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * The `gmwm` R package is distributed in the hope that it will be useful, but
+ * The `simts` R package is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
@@ -38,7 +38,7 @@
 //' \eqn{\beta  =  - \frac{{\ln \left( \phi  \right)}}{{\Delta t}}}{beta = -ln(phi)/delta_t}
 //' \eqn{\sigma _{gm}^2 = \frac{{{\sigma ^2}}}{{1 - {\phi ^2}}} }{sigma^2[gm] = sigma^2/(1-phi^2)}
 //' @keywords internal
-//' @author JJB
+//' @author James Balamuta
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
 //' @examples
@@ -68,7 +68,7 @@ arma::vec ar1_to_gm(arma::vec theta, double freq){
 //' @param freq A \code{double} indicating the frequency of the data.
 //' @return A \code{vec} containing GM values.
 //' @keywords internal
-//' @author JJB
+//' @author James Balamuta
 //' The function takes a vector of GM values \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma ^2[gm]}
 //' and transforms them to AR1 values \eqn{\phi}{phi} and \eqn{\sigma ^2}{sigma ^2}
 //' using the formulas:

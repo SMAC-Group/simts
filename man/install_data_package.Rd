@@ -29,6 +29,6 @@ install_data_package("LOCAL","C:/Users/James/Documents/imudata_x.y.z.tar.gz")
 }
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

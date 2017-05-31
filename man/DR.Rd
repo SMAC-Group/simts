@@ -28,5 +28,5 @@ DR()
 DR(omega=3.4)
 }
 \author{
-JJB
+James Balamuta
 }

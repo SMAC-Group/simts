@@ -21,7 +21,7 @@ Takes GM values and transforms them to AR1
 gm_to_ar1(c(0.3,1,0.6,.3), 2)
 }
 \author{
-JJB
+James Balamuta
 The function takes a vector of GM values \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma ^2[gm]}
 and transforms them to AR1 values \eqn{\phi}{phi} and \eqn{\sigma ^2}{sigma ^2}
 using the formulas:

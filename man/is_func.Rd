@@ -29,5 +29,5 @@ Is the object a
 Uses \code{\link[base]{inherits}} over \code{\link[methods]{is}} for speed.
 }
 \author{
-JJB
+James Balamuta
 }

@@ -19,6 +19,6 @@ Unlists vectors in a field and places them into a matrix
 x=rnorm(100)
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

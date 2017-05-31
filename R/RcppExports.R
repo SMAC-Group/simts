@@ -27,7 +27,7 @@ sort_mat <- function(x, col) {
 #' @details Consider a vector x=[[1,2],[3,4]].
 #' By setting \code{start=1} and \code{end=0}, the function would output x=[[2,1],[4,1]].
 #' Start and end must be valid C++ matrix locations. (e.g. matrix cols start at 0 and not 1)
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' x = matrix(c(1,2,3,4), nrow = 2,byrow = TRUE)
 #' rev_col_subset(x, 1, 0)
@@ -44,7 +44,7 @@ rev_col_subset <- function(x, start, end) {
 #' @return x A \code{matrix} with matrix rows displayed in reversed order
 #' @details Consider a vector x=[[1,2],[3,4]], the function would output x=[[3,4],[1,2]].
 #' Start and end must be valid C++ matrix locations. (e.g. matrix rows start at 0 and not 1)
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' x = matrix(c(1,2,3,4), nrow=2,byrow=TRUE)
 #' rev_row_subset(x, 1, 0)
@@ -59,7 +59,7 @@ rev_row_subset <- function(x, start, end) {
 #' @param x A \code{column vector} of length N
 #' @return x A \code{column vector} with its contents reversed.
 #' @details Consider a vector x=[1,2,3,4,5], the function would output x=[5,4,3,2,1].
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' x = 1:5
 #' reverse_vec(x)
@@ -72,7 +72,7 @@ reverse_vec <- function(x) {
 #' @description Unlists vectors in a field and places them into a matrix
 #' @param x A \code{field<vec>}.
 #' @return A \code{mat} containing the field elements within a column.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' x=rnorm(100)
 #' @keywords internal
@@ -84,7 +84,7 @@ field_to_matrix <- function(x) {
 #' @description Sums vectors in a field into a single variable.
 #' @param x A \code{field<vec>}.
 #' @return An \code{mat} containing the field elements within a column.
-#' @author JJB
+#' @author James Balamuta
 #' @examples
 #' x=rnorm(100)
 #' @keywords internal
@@ -561,7 +561,7 @@ quantile_cpp <- function(x, probs) {
 #' @param lag A \code{unsigned int} that indicates the lag
 #' @param differences A \code{dif} that indicates how many differences should be taken
 #' @return A \code{vector} containing the differenced time series.
-#' @author JJB
+#' @author James Balamuta
 #' @keywords internal
 #' @examples
 #' x = rnorm(10, 0, 1)
@@ -577,7 +577,7 @@ diff_cpp <- function(x, lag, differences) {
 #' @param lag_max A \code{int} of the largest MA(Inf) coefficient required.
 #' @return A \code{column vector} containing coefficients
 #' @details This function is a port of the base stats package's ARMAtoMA. There is no significant speed difference between the two.
-#' @author R Core Team and JJB
+#' @author R Core Team and James Balamuta
 #' @keywords internal
 #' @examples
 #' # ARMA(2,1)
@@ -597,7 +597,7 @@ ARMAtoMA_cpp <- function(ar, ma, lag_max) {
 #' @return A \code{column vec} that contains the results of the filtering process.
 #' @details This is a port of the cfilter function harnessed by the filter function in stats. 
 #' It is about 5-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
-#' @author R Core Team and JJB
+#' @author R Core Team and James Balamuta
 #' @keywords internal
 #' @examples
 #' x = 1:15
@@ -627,7 +627,7 @@ cfilter <- function(x, filter, sides, circular) {
 #' @details Note: The length of 'init' must be equal to the length of 'filter'.
 #' This is a port of the rfilter function harnessed by the filter function in stats. 
 #' It is about 6-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
-#' @author R Core Team and JJB
+#' @author R Core Team and James Balamuta
 #' @keywords internal
 #' @examples
 #' x = 1:15
@@ -842,7 +842,7 @@ order_AR1s <- function(theta, desc, objdesc) {
 #' \eqn{\beta  =  - \frac{{\ln \left( \phi  \right)}}{{\Delta t}}}{beta = -ln(phi)/delta_t}
 #' \eqn{\sigma _{gm}^2 = \frac{{{\sigma ^2}}}{{1 - {\phi ^2}}} }{sigma^2[gm] = sigma^2/(1-phi^2)}
 #' @keywords internal
-#' @author JJB
+#' @author James Balamuta
 #' @backref src/ts_model_cpp.cpp
 #' @backref src/ts_model_cpp.h
 #' @examples
@@ -857,7 +857,7 @@ ar1_to_gm <- function(theta, freq) {
 #' @param freq A \code{double} indicating the frequency of the data.
 #' @return A \code{vec} containing GM values.
 #' @keywords internal
-#' @author JJB
+#' @author James Balamuta
 #' The function takes a vector of GM values \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma ^2[gm]}
 #' and transforms them to AR1 values \eqn{\phi}{phi} and \eqn{\sigma ^2}{sigma ^2}
 #' using the formulas:

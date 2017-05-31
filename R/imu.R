@@ -1,13 +1,13 @@
-# Copyright (C) 2014 - 2017  James Balamuta, Stephane Guerrier, Roberto Molinari
+# Copyright (C) 2014 - 2017 James Balamuta, Stephane Guerrier, Roberto Molinari
 #
-# This file is part of GMWM R Methods Package
+# This file is part of simts R Methods Package
 #
-# The `gmwm` R package is free software: you can redistribute it and/or modify
+# The `simts` R package is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 #
-# The `gmwm` R package is distributed in the hope that it will be useful, but
+# The `simts` R package is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
@@ -41,7 +41,7 @@
 #' In \code{axis}, duplicate elements are not alowed for each sensor. In the new implementation, please specify the axis for each column of data.
 #' \code{axis} will be automatically generated if there are less than or equal to 3 axises for each sensor.
 #' 
-#' @author JJB, Wenchao
+#' @author James Balamuta and Wenchao Yang
 #' @examples
 #' \dontrun{
 #' if(!require("imudata")){
@@ -183,6 +183,7 @@ imu = function(data, gyros = NULL, accels = NULL, axis = NULL, freq = NULL, unit
 #' @param name A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
 #' @param stype A \code{string} that describes the sensor type. Default value is \code{NULL}.
 #' @return An \code{imu} object class.
+#' @author James Balamuta
 #' @keywords internal
 create_imu = function(data, ngyros, nacces, axis, freq, unit = NULL, name = NULL, stype = NULL){
   
@@ -303,7 +304,7 @@ create_imu = function(data, ngyros, nacces, axis, freq, unit = NULL, name = NULL
 #' \item NAVCHIP_INT
 #' \item NAVCHIP_FLT
 #' }
-#' 
+#' @author James Balamuta
 #' We hope to soon be able to support delimited files.
 #' @return An \code{imu} object that contains 3 gyroscopes and 3 accelerometers in that order.
 #' @references

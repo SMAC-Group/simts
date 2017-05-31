@@ -33,7 +33,7 @@
 #'   \item{name}{Name of the dataset}
 #'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 #' }
-#' @author Wenchao
+#' @author Wenchao Yang
 #' @examples
 #' model1 = AR1(phi = .99, sigma2 = 1) 
 #' model2 = WN(sigma2 = 1)
@@ -123,7 +123,7 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #' @title Generate Latent Time Series Object Based on Model
 #' @description Create a \code{lts} object based on a supplied time series model.
 #' @param n An \code{interger} indicating the amount of observations generated in this function.
-#' @param model A \code{ts.model} or \code{gmwm} object containing one of the allowed models.
+#' @param model A \code{ts.model} or \code{simts} object containing one of the allowed models.
 #' @param start A \code{numeric} that provides the time of the first observation.
 #' @param end A \code{numeric} that provides the time of the last observation.
 #' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
@@ -139,9 +139,9 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #'   \item{name}{Name of the dataset}
 #'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 #' }
-#' @author JJB, Wenchao
+#' @author James Balamuta and Wenchao Yang
 #' @details
-#' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{gmwm} object.
+#' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
 #' @examples
 #' # AR
 #' set.seed(1336)
@@ -151,10 +151,10 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, process = NULL){
   
   # 1. Do we have a valid model?
-  if(!(is(model, "ts.model") || is(model, "gmwm"))){
-    stop("model must be created from a ts.model or gmwm object using a supported component (e.g. AR1(), ARMA(p,q), DR(), RW(), QN(), and WN(). ")
+  if(!(is(model, "ts.model") || is(model, "simts"))){
+    stop("model must be created from a ts.model or simts object using a supported component (e.g. AR1(), ARMA(p,q), DR(), RW(), QN(), and WN(). ")
   }
-  if(is(model,"gmwm")){
+  if(is(model,"simts")){
     model = model$model.hat
   }
   
@@ -182,7 +182,7 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
     }
   }
   
-  # Information Required by GMWM:
+  # Information Required by simts:
   desc = model$desc
   p = length(desc) # p decomposed processes
   obj = model$obj.desc

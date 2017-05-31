@@ -1,6 +1,6 @@
 /* Copyright (C) 2014 - 2015  James Balamuta
  *
- * This file is part of GMWM R Methods Package
+ * This file is part of simts R Methods Package
  *
  * The file uses methods in the r-to-armadillo project and is free software: you can redistribute it and/or modify it
  * under the terms of the MIT License.

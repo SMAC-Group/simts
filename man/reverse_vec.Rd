@@ -23,6 +23,6 @@ x = 1:5
 reverse_vec(x)
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

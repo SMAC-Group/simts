@@ -12,7 +12,7 @@ install_datapkg(type = "ONL", loc = NULL)
 \item{loc}{A \code{string} that contains the file location.}
 }
 \description{
-Downloads and Install the Data Package to use with the GMWM Package
+Downloads and Install the Data Package to use with the simts Package
 }
 \examples{
 \dontrun{
@@ -24,5 +24,5 @@ install_datapkg("LOCAL","C:/Users/James/Documents/datapkg_x.y.z.tar.gz")
 }
 }
 \author{
-JJB
+James Balamuta
 }

@@ -1,13 +1,13 @@
-# Copyright (C) 2014 - 2016 James Balamuta, Stephane Guerrier, Roberto Molinari
+# Copyright (C) 2014 - 2017 James Balamuta, Stephane Guerrier, Roberto Molinari
 #
-# This file is part of GMWM R Methods Package
+# This file is part of simts R Methods Package
 #
-# The `gmwm` R package is free software: you can redistribute it and/or modify
+# The `simts` R package is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 #
-# The `gmwm` R package is distributed in the hope that it will be useful, but
+# The `simts` R package is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
@@ -16,13 +16,13 @@
 
 
 #' @title Install IMU Data Package
-#' @description Downloads and Install the IMU Data Package to use with the GMWM Package
+#' @description Downloads and Install the IMU Data Package to use with the simts Package
 #' @param type A \code{string} with value \code{"ONL"} or \code{"LOCAL"}
 #' @param loc  A \code{string} that contains the file location.
 #' @details 
 #' The IMU Data Package contains data from real life IMUs and is approximately a
 #'  20 MB download.
-#' @author JJB
+#' @author James Balamuta
 #' @examples 
 #' \dontrun{
 #' # Online install
@@ -36,10 +36,10 @@ install_imudata = function(type="ONL",loc=NULL){
 }
 
 #' @title Install Data Package
-#' @description Downloads and Install the Data Package to use with the GMWM Package
+#' @description Downloads and Install the Data Package to use with the simts Package
 #' @param type A \code{string} with value \code{"ONL"} or \code{"LOCAL"}
 #' @param loc  A \code{string} that contains the file location.
-#' @author JJB
+#' @author James Balamuta
 #' @examples 
 #' \dontrun{
 #' # Online install
@@ -60,7 +60,7 @@ install_datapkg = function(type="ONL",loc=NULL){
 #' @param loc  A \code{string} that contains the file location.
 #' @details 
 #' For a list of data packages please see the SMAC-Group data repo \url{http://smac-group.com/datarepo}.
-#' @author JJB
+#' @author James Balamuta
 #' @keywords internal
 #' @examples 
 #' \dontrun{

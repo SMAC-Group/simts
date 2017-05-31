@@ -2,7 +2,7 @@
 % Please edit documentation in R/gts.R
 \name{gts}
 \alias{gts}
-\title{Create a GMWM TS Object based on data}
+\title{Create a simts TS Object based on data}
 \usage{
 gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   unit_time = NULL, name = NULL)
@@ -45,5 +45,5 @@ x = gts(x, freq = 100, unit_time = 'sec')
 plot(x)
 }
 \author{
-JJB, Wenchao
+James Balamuta and Wenchao Yang
 }

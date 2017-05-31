@@ -46,5 +46,5 @@ testLts = lts(testMat, unit = 'sec', process = c('AR1', 'WN', 'AR1+WN'))
 plot(testLts)
 }
 \author{
-Wenchao
+Wenchao Yang
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gts.R
 \name{gen_gts}
 \alias{gen_gts}
-\title{Create a GMWM TS Object based on model}
+\title{Create a simts TS Object based on model}
 \usage{
 gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   unit_time = NULL, name = NULL)
@@ -10,7 +10,7 @@ gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 \arguments{
 \item{n}{An \code{interger} containing the amount of observations for the time series.}
 
-\item{model}{A \code{ts.model} or \code{gmwm} object containing one of the allowed models.}
+\item{model}{A \code{ts.model} or \code{simts} object containing one of the allowed models.}
 
 \item{start}{A \code{numeric} that provides the time of the first observation.}
 
@@ -38,7 +38,7 @@ A \code{gts} object with the following attributes:
 Create a \code{gts} object based on a supplied time series model.
 }
 \details{
-This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{gmwm} object.
+This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
 }
 \examples{
 # Set seed for reproducibility
@@ -64,4 +64,7 @@ plot(x2)
 
 # Same time series
 all.equal(x, x2, check.attributes = FALSE)
+}
+\author{
+James Balamuta and Wenchao Yang
 }

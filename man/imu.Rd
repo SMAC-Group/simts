@@ -78,5 +78,5 @@ plot(df4)
 }
 }
 \author{
-JJB, Wenchao
+James Balamuta and Wenchao Yang
 }

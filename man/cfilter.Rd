@@ -41,6 +41,6 @@ cfilter(x, rep(1, 3), sides = 1, circular = TRUE)
 filter(x, rep(1, 3), sides = 1, circular = TRUE)
 }
 \author{
-R Core Team and JJB
+R Core Team and James Balamuta
 }
 \keyword{internal}

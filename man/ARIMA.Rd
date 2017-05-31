@@ -43,5 +43,5 @@ ARIMA(ar=c(0.23,.43, .59), ma=c(0.4,.3))
 ARIMA(ar=c(0.23,.43, .59), ma=c(0.4,.3), sigma2 = 1.5)
 }
 \author{
-JJB
+James Balamuta
 }

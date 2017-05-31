@@ -29,6 +29,6 @@ ARMAtoMA_cpp(c(1.0, -0.25), 1.0, 10)
 ARMAtoMA_cpp(numeric(0), 1.0, 10)
 }
 \author{
-R Core Team and JJB
+R Core Team and James Balamuta
 }
 \keyword{internal}

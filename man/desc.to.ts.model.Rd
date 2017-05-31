@@ -23,6 +23,6 @@ Sets up the necessary backend for using Cpp functions to build R ts.model object
 desc.to.ts.model(c("AR1","WN"))
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

@@ -45,5 +45,5 @@ SARMA(ar = 1, ma = 2,sar = 1, sma =1)
 SARMA(ar=0.23, ma=0.4, sar = .3, sma = .3)
 }
 \author{
-JJB
+James Balamuta
 }

@@ -42,5 +42,5 @@ ARMA11(phi = .23, theta = .1, sigma2 = 1)
 ARMA11()
 }
 \author{
-JJB
+James Balamuta
 }

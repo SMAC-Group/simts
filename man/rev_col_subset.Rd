@@ -29,6 +29,6 @@ x = matrix(c(1,2,3,4), nrow = 2,byrow = TRUE)
 rev_col_subset(x, 1, 0)
 }
 \author{
-JJB
+James Balamuta
 }
 \keyword{internal}

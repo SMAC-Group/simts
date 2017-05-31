@@ -10,7 +10,7 @@ gen_lts(n, model, start = 0, end = NULL, freq = 1, unit = NULL,
 \arguments{
 \item{n}{An \code{interger} indicating the amount of observations generated in this function.}
 
-\item{model}{A \code{ts.model} or \code{gmwm} object containing one of the allowed models.}
+\item{model}{A \code{ts.model} or \code{simts} object containing one of the allowed models.}
 
 \item{start}{A \code{numeric} that provides the time of the first observation.}
 
@@ -39,7 +39,7 @@ A \code{lts} object with the following attributes:
 Create a \code{lts} object based on a supplied time series model.
 }
 \details{
-This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{gmwm} object.
+This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
 }
 \examples{
 # AR
@@ -49,5 +49,5 @@ test = gen_lts(1000, model)
 plot(test)
 }
 \author{
-JJB, Wenchao
+James Balamuta and Wenchao Yang
 }

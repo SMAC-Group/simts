@@ -30,4 +30,7 @@ An \code{imu} object class.
 \description{
 Internal quick build for imu object.
 }
+\author{
+James Balamuta
+}
 \keyword{internal}

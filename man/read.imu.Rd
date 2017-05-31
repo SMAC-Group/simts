@@ -31,8 +31,6 @@ Currently supports the following IMUs:
 \item NAVCHIP_INT
 \item NAVCHIP_FLT
 }
-
-We hope to soon be able to support delimited files.
 }
 \examples{
 \dontrun{
@@ -49,4 +47,8 @@ b = read.imu(file = "F:/Desktop/short_test_data.imu", type = "IXSEA")
 Thanks goes to Philipp Clausen of Labo TOPO, EPFL, Switzerland, topo.epfl.ch, Tel:+41(0)21 693 27 55
 for providing a matlab function that reads in IMUs.
 This function is a heavily modified port of MATLAB code into Armadillo/C++.
+}
+\author{
+James Balamuta
+We hope to soon be able to support delimited files.
 }

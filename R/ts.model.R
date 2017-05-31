@@ -152,11 +152,11 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
     stop("`phi` and `theta` must have only one value.")
   }
   
-  if (abs(phi) < 1){
+  if (abs(phi) >= 1){
     stop("Parameter phi must be such that |phi| < 1.")
   }
   
-  if (abs(theta) < 1){
+  if (abs(theta) >= 1){
     stop("Parameter theta must be such that |theta| < 1.")
   }
   

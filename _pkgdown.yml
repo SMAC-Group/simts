@@ -1,0 +1,10 @@
+template:
+  params:
+    bootswatch: cerulean
+
+navbar:
+  left:
+  - text: Time Series Models
+    href: articles/sim_models.html
+  - text: Reference
+    href: reference/index.html

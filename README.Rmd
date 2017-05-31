@@ -24,27 +24,11 @@ Below are examples of the capabilities of the `simts` package.
 
 
 
-```{r, fig.height = 5, fig.width = 7.25}
+```{r}
 datasets::Nile
-
-# Install and Load SMAC Data 
-install_smacdata()
-library(smacdata)
-
-data("hydro")
-hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.", 
-            name_ts = "Precipitation", data_name = "Hydrology data")
-plot(hydro)
 ```
 
 
-
-```{r, fig.height = 5, fig.width = 7.25}
-data("savingrt")
-savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
-            name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
-plot(savingrt)
-```
 
 
 ```{r, fig.height = 5, fig.width = 7.25}

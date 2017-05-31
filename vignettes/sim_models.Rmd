@@ -1,6 +1,6 @@
 ---
 author: "Justin Lee"
-title: "Simulations through Models"
+title: "Simulations from Time Series Models"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{simts}
@@ -11,8 +11,6 @@ vignette: >
 ```{r, echo = FALSE}
 library(simts)
 ```
-
-## Time Series Models 
 
 In this section we briefly list, describe and provide the syntax for the models available for simulation purposes within the simts package. Under some minor constraints, all these models can then be combined into a specific class of linear state-space models which can be represented as a sum of underlying models. Having stated this, some of the basic models available in the `simts` package to simulate from (and to estimate) are the following:
 
@@ -60,7 +58,15 @@ sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
                         sigma2 = 1.5, s = 12))
 ```
 
-The simts package therefore allows to easily simulate from a wide variety of models, includ- ing SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to de- liver many state-space (latent) models which can be represented by the sum of basic models. The construction of such linear state-space models is very simple with the simts package allowing it to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is to use the “+” symbol between them and, supposing that different AR1() processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k\*AR1(). So, for example, the sum of three AR(1) models, a random walk and a white noise process can be specified as: 3\*AR1()+RW()+WN(). As we see below, the function specifically provided to generate and represent these models is the `gen.lts()` which, while simulating from these models, also gives the option to plot a breakdown of the underly- ing processes by applying the plot() function on the result of `gen.lts()`.
+By applying the plot() function on the result of `gen.lts()`, we can observe a visualization of the data simulated. 
+
+```{r}
+plot(sarima)
+```
+
+The simts package therefore allows to easily simulate from a wide variety of models, includ- ing SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to de- liver many state-space (latent) models which can be represented by the sum of basic models. 
+
+The construction of such linear state-space models is very simple with the simts package allowing it to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is to use the “+” symbol between them and, supposing that different AR1() processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k\*AR1(). So, for example, the sum of three AR(1) models, a random walk and a white noise process can be specified as: 3\*AR1()+RW()+WN(). As we see below, the function specifically provided to generate and represent these models is the `gen.lts()` which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the plot() function on the result of `gen.lts()`.
 
 ```{r, fig.height = 7, fig.width = 7.25}
 sarma_wn_model = 

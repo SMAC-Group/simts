@@ -300,7 +300,7 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   start =  attr(x, 'start')
   end = attr(x, 'end')
   freq = attr(x, 'freq')
-  title_x = attr(x, 'desc')
+  main = attr(x, 'desc')
   n_x = length(x)
   
   if (n_x == 0){stop('Time series is empty!')}
@@ -332,9 +332,8 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
     ylab = paste(name_ts, " (", unit_ts, ")", sep = "")
   }
 
-  
   if (is.null(main)){
-    main = title_x
+    main = "Simulation Time Series"
   }
   
   # X Scales

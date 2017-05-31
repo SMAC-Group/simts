@@ -4,7 +4,7 @@
 \alias{plot.gts}
 \title{Plot Time Series Data}
 \usage{
-\method{plot}{gts}(x, xlab = "Time", ylab = "Observation", main = NULL,
+\method{plot}{gts}(x, xlab = NULL, ylab = NULL, main = NULL,
   col = "blue4")
 }
 \arguments{

@@ -199,7 +199,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   colnames(out) = if(is.null(name_ts)) 'Observed' else name_ts 
   
   # reupdate desc for plotting
-  desc = paste0(model$desc, "()", collapse = " + ")
+  desc = paste0(model$desc, collapse = " + ")
   
   out = structure(.Data = out, 
                   start = start, 

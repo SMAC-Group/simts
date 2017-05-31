@@ -222,7 +222,7 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
   
   out = structure(.Data = out, 
                   start = start, 
-                  end= end, # start and end will not be null now
+                  end = end, # start and end will not be null now
                   freq = freq,
                   unit = unit,
                   name = name, 

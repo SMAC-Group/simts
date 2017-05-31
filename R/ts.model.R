@@ -761,7 +761,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
 #'  \item{obj.desc}{Depth of Parameters e.g. list(c(1,1),c(1,1))}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
-#' @author James Balamuta
+#' @author James Balamuta and Stephane Guerrier
 #' @keywords internal
 #' @export
 #' @examples
@@ -779,6 +779,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
                        theta = rep(y$theta,x),
                        plength = y$plength*x,
                        desc = rep(y$desc,x),
+                       print = paste(x,"*",y$print, sep = ""),
                        obj.desc = rep(y$obj.desc,x),
                        starting = y$starting), class = "ts.model")
   invisible(out)
@@ -813,6 +814,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
                        theta = c(x$theta,y$theta),
                        plength = x$plength + y$plength,
                        desc = c(x$desc, y$desc),
+                       print = c(x$print, y$print),
                        obj.desc = c(x$obj.desc, y$obj.desc),
                        starting = starting), class = "ts.model")
   invisible(out)

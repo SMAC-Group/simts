@@ -175,6 +175,8 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 #' Setups the necessary backend for the GM process.
 #' @param beta A \code{double} value for the \eqn{\beta}{beta} of an GM process.
 #' @param sigma2_gm A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a WN process.
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "BETA","SIGMA2"}
@@ -256,6 +258,8 @@ QN = function(q2 = NULL) {
 #' 
 #' Sets up the necessary backend for the WN process.
 #' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "WN"}
@@ -291,6 +295,8 @@ WN = function(sigma2 = NULL) {
 #' 
 #' Sets up the necessary backend for the RW process.
 #' @param gamma2 A \code{double} value for the variance \eqn{\gamma ^2}{gamma^2}
+#' @note We consider the following model: \deqn{Y_t = \sum\nolimits_{t=0}^{T} \gamma_0*Z_t} where \eqn{Z_t} is iid 
+#' from a standard normal distribution.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "RW"}
@@ -361,8 +367,10 @@ DR = function(omega = NULL) {
 
 #' @title Create an Autoregressive P [AR(P)] Process
 #' @description Setups the necessary backend for the AR(P) process.
-#' @param phi A \code{vector} with double values for the \eqn{\phi}{phi} of an AR(P) process.
+#' @param phi A \code{vector} with double values for the \eqn{\sum_{j = 1}^q \theta_j}{phi} of an AR(P) process.
 #' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "AR-1","AR-2", ..., "AR-P", "SIGMA2"}
@@ -392,8 +400,10 @@ AR = function(phi = NULL, sigma2 = 1) {
 #' Create an Moving Average Q [MA(Q)] Process
 #' 
 #' Setups the necessary backend for the MA(Q) process.
-#' @param theta A \code{vector} with double values for the \eqn{\theta}{theta} of an MA(Q) process.
+#' @param theta A \code{vector} with double values for the \eqn{\sum_{j = 1}^q \theta_j}{theta} of an MA(Q) process.
 #' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "MA-1","MA-2", ..., "MA-Q", "SIGMA2"}
@@ -426,6 +436,8 @@ MA = function(theta = NULL, sigma2 = 1) {
 #' @param ar A \code{vector} or \code{integer} containing either the coefficients for \eqn{\phi}{phi}'s or the process number \eqn{p} for the Autoregressive (AR) term.
 #' @param ma A \code{vector} or \code{integer} containing either the coefficients for \eqn{\theta}{theta}'s or the process number \eqn{q} for the Moving Average (MA) term.
 #' @param sigma2 A \code{double} value for the standard deviation, \eqn{\sigma}{sigma}, of the ARMA process.
+#' @note We consider the following model: \deqn{X_t = \sum_{j = 1}^p \phi_j X_{t-j} + \sum_{j = 1}^q \theta_j \varepsilon_{t-j} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}
@@ -460,6 +472,8 @@ ARMA = function(ar = 1, ma = 1, sigma2 = 1.0) {
 #' @param i      An \code{integer} containing the number of differences to be done.
 #' @param ma     A \code{vector} or \code{integer} containing either the coefficients for \eqn{\theta}{theta}'s or the process number \eqn{q} for the Moving Average (MA) term.
 #' @param sigma2 A \code{double} value for the standard deviation, \eqn{\sigma}{sigma}, of the ARIMA process.
+#' @note We consider the following model: \deqn{\Delta^i X_t = \sum_{j = 1}^p \phi_j \Delta^i X_{t-j} + \sum_{j = 1}^q \theta_j \varepsilon_{t-j} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}

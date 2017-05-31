@@ -293,10 +293,6 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')
   unit_time = attr(x, 'unit_time')
-<<<<<<< Updated upstream
-  name_ts = attr(x, 'name_ts')
-=======
->>>>>>> Stashed changes
   name_time = attr(x, 'name_time')
   start =  attr(x, 'start')
   end = attr(x, 'end')
@@ -309,22 +305,6 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   if(!is(x,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
   
   # Labels
-<<<<<<< Updated upstream
-  if (!is.null(name_time)){
-    if(is.null(unit_time)){
-      xlab = name_time
-    }else{
-      xlab = paste("Time", " (", unit_time, ")", sep = "")
-    }
-  }
-  
-  if (!is.null(name_ts)){
-    if (is.null(unit_ts)){
-      ylab = name_ts
-    }else{
-      ylab = paste(name, " (", unit_ts, ")", sep = "")
-    }
-=======
   if (is.null(name_time)){
     name_time = "Time"
   }
@@ -347,7 +327,6 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   
   if (!is.null(unit_ts) && !is.null(ylab)){
     ylab = paste(ylab, " (", unit_ts, ")", sep = "")
->>>>>>> Stashed changes
   }
   
   if (is.null(main)){

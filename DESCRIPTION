@@ -19,6 +19,7 @@ Imports:
     utils, 
     reshape2, 
     scales, 
-    grDevices
+    grDevices, 
+    graphics
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000

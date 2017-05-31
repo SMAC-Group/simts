@@ -8,7 +8,7 @@ gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL)
 }
 \arguments{
-\item{data}{A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.}
+\item{data}{A one-couleurumn \code{matrix}, \code{data.frame}, or a numeric \code{vector}.}
 
 \item{start}{A \code{numeric} that provides the time of the first observation.}
 

@@ -44,7 +44,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
     stop("Incorrect AR1 model submitted. Must be double values for two parameters.")
   }
   
-  if (abs(phi) < 1){
+  if (abs(phi) >= 1){
     stop("Parameter phi must be such that |phi| < 1.")
   }
   

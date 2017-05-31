@@ -5,7 +5,7 @@
 \title{Create a simts TS Object based on model}
 \usage{
 gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
-  unit_time = NULL, name = NULL)
+  unit_time = NULL, name_ts = NULL, name_time = NULL)
 }
 \arguments{
 \item{n}{An \code{interger} containing the amount of observations for the time series.}
@@ -22,17 +22,12 @@ gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 
 \item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
 
-\item{name}{A \code{string} that provides an identifier to the data. Default value is \code{NULL}.}
+\item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
+
+\item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 }
 \value{
 A \code{gts} object with the following attributes:
-\describe{
-  \item{start}{The time of the first observation}
-  \item{end}{The time of the last observation}
-  \item{freq}{Numeric representation of frequency}
-  \item{unit_time}{String representation of the unit}
-  \item{name}{Name of the dataset}
-}
 }
 \description{
 Create a \code{gts} object based on a supplied time series model.

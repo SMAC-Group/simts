@@ -5,7 +5,7 @@
 \title{Create a simts TS Object based on data}
 \usage{
 gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
-  unit_time = NULL, name = NULL)
+  unit_time = NULL, name_ts = NULL, name_time = NULL)
 }
 \arguments{
 \item{data}{A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.}
@@ -20,24 +20,19 @@ gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 
 \item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
 
-\item{name}{A \code{string} that provides an identifier to the data. Default value is \code{NULL}.}
+\item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
+
+\item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 }
 \value{
 A \code{gts} object with the following attributes:
-\describe{
-  \item{start}{The time of the first observation}
-  \item{end}{The time of the last observation}
-  \item{freq}{Numeric representation of frequency}
-  \item{unit_time}{String representation of the unit}
-  \item{name}{Name of the dataset}
-}
 }
 \description{
 Setups a time series oriented object that works well with graphing and summary utilities
 }
 \examples{
 m = data.frame(rnorm(50))
-x = gts(m, unit_time = 'sec', name = 'example')
+x = gts(m, unit_time = 'sec', name_ts = 'example')
 plot(x)
 
 x = gen_gts(50, WN(sigma2 = 1))

@@ -22,25 +22,19 @@
 #' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
 #' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
-#' @param name      A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
+#' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
+#' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
 #' @return A \code{gts} object with the following attributes:
-#' \describe{
-#'   \item{start}{The time of the first observation}
-#'   \item{end}{The time of the last observation}
-#'   \item{freq}{Numeric representation of frequency}
-#'   \item{unit_time}{String representation of the unit}
-#'   \item{name}{Name of the dataset}
-#' }
 #' @author James Balamuta and Wenchao Yang
 #' @examples
 #' m = data.frame(rnorm(50))
-#' x = gts(m, unit_time = 'sec', name = 'example')
+#' x = gts(m, unit_time = 'sec', name_ts = 'example')
 #' plot(x)
 #' 
 #' x = gen_gts(50, WN(sigma2 = 1))
 #' x = gts(x, freq = 100, unit_time = 'sec')
 #' plot(x)
-gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name = NULL){
+gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL){
   
   # 1. requirement for 'data'
   # Force data.frame to matrix  
@@ -101,7 +95,8 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
                 freq = freq,
                 unit_ts = unit_ts, 
                 unit_time = unit_time,
-                name = name, 
+                name_ts = name_ts,
+                name_time = name_time,
                 class = c("gts","matrix"))
   
   out
@@ -115,17 +110,11 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 #' @param start      A \code{numeric} that provides the time of the first observation.
 #' @param end        A \code{numeric} that provides the time of the last observation.
 #' @param freq       A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit_ts    A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
-#' @param unit_time  A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
-#' @param name       A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
+#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
+#' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
 #' @return A \code{gts} object with the following attributes:
-#' \describe{
-#'   \item{start}{The time of the first observation}
-#'   \item{end}{The time of the last observation}
-#'   \item{freq}{Numeric representation of frequency}
-#'   \item{unit_time}{String representation of the unit}
-#'   \item{name}{Name of the dataset}
-#' }
 #' @author James Balamuta and Wenchao Yang
 #' @details
 #' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
@@ -153,7 +142,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 #' 
 #' # Same time series
 #' all.equal(x, x2, check.attributes = FALSE)
-gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name = NULL){
+gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL){
   
   # 1. Do we have a valid model?
   if(!(is.ts.model(model))){
@@ -216,7 +205,8 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
                   freq  = freq,
                   unit_ts = unit_ts, 
                   unit_time  = unit_time,
-                  name  = name, 
+                  name_ts  = name_ts,
+                  name_time = name_time, 
                   class = c("gts","matrix"))
   
   out
@@ -302,20 +292,25 @@ unitConversion = function(x, from.unit, to.unit){
 plot.gts = function(x, xlab = "Time", ylab = "Observation", main = NULL, col = "blue4"){
   unit_ts = attr(x, 'unit_ts')
   unit_time = attr(x, 'unit_time')
-  name = attr(x, 'name')
+  name_ts = attr(x, 'name_ts')
+  name_time = attr(x, 'name_time')
   start =  attr(x, 'start')
   end = attr(x, 'end')
   
   if(!is(x,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
   
   # Labels
-  if (!is.null(unit_time)){
-    xlab = paste("Time", " (", unit_time, ")", sep = "")
+  if (!is.null(name_time)){
+    if(is.null(unit_time)){
+      xlab = name_time
+    }else{
+      xlab = paste("Time", " (", unit_time, ")", sep = "")
+    }
   }
   
-  if (!is.null(name)){
+  if (!is.null(name_ts)){
     if (is.null(unit_ts)){
-      ylab = name
+      ylab = name_ts
     }else{
       ylab = paste(name, " (", unit_ts, ")", sep = "")
     }

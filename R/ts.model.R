@@ -638,10 +638,13 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
   P = length(sar)
   Q = length(sma)
   
+  simple = simplified_print_SARIMA(p, i, q, P, si, Q)
   out = structure(list(process.desc = c(rep("AR", p), rep("MA",q), rep("SAR", P), rep("SMA",Q), "SIGMA2"),
                        theta = c(ar, ma, sar, sma, sigma2),
                        plength = p + q + P + Q + 1,
                        desc = "SARIMA",
+                       print = simple$print,
+                       desc.simple = simple$simplified,
                        obj.desc = list(c(p, q, P, Q, 1, s, i, si)),
                        starting = starting), class = "ts.model")
   invisible(out)

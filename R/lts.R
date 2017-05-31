@@ -273,8 +273,24 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
     name_time = xlab
   }
   
+  if (!is.null(ylab)){
+    name_ts = ylab
+  }
+  
   if (is.null(name_time)){
     name_time = "Time"
+  }
+  
+  if (is.null(name_ts)){
+    name_ts = "Observation"
+  }
+  
+  if (!is.null(unit_time)){
+    name_time = paste(name_time, " (", unit_time, ")", sep = "")
+  }
+  
+  if (!is.null(unit_ts)){
+    name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")
   }
   
   
@@ -307,8 +323,8 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
   }
   
   # Main plot
-  par(mfrow = c(dim_x[2], 1), mar = c(0.7, 2,0,0), oma = c(4,1,1,1))
-  
+  par(mfrow = c(dim_x[2], 1), mar = c(0.7, 2,0,0), oma = c(4,3.2,1,1))
+  #, mar = c(0.7, 2,0,0), oma = c(4,2,1,1)
   for (i in 1:dim_x[2]){
     plot(NA, xlim = c(start, end), ylim = range(x[,i]), xlab = xlab,
          xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
@@ -334,11 +350,6 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
     lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = "grey50")
     box(col = "grey50")
     
-    if (i == dim_x[2]){
-      axis(1, padj = 0.3)
-      mtext("Time", side = 1, line = 3, cex = 0.8) 
-    } 
-    
     y_axis = axis(2, labels = FALSE, tick = FALSE)  
     y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
     axis(2, padj = -0.2, at = y_axis)  
@@ -346,4 +357,7 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
     # Add lines 
     lines(scales, x[,i], type = "l", col = couleur[i], pch = 16)
   }
+  
+  mtext(name_time, side = 1, outer = TRUE, line = 2)
+  mtext(name_ts, side = 2, outer = TRUE, line = 2)
 }

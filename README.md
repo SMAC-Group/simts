@@ -48,18 +48,22 @@ plot(savingrt)
 ![](man/figures/README-unnamed-chunk-3-1.png)
 
 ``` r
-par(mfrow = c(2,1), mar = c(3,3,0,0), oma = c(5,2,1,1))
 n = 1000
 model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
 Xt = gen_gts(n = n, model  = model)
 plot(Xt)
+```
+
+![](man/figures/README-unnamed-chunk-4-1.png)
+
+``` r
 
 model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + WN(sigma = 4)
 Yt = gen_gts(n = n, model  = model)
 plot(Yt)
 ```
 
-![](man/figures/README-unnamed-chunk-4-1.png)
+![](man/figures/README-unnamed-chunk-4-2.png)
 
 ``` r
 model = SARMA(ar = 0, ma = 0.3, sar = 0.9, sma = 0, s = 10, sigma2 = 1)

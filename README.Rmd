@@ -44,8 +44,7 @@ plot(savingrt)
 ```
 
 
-```{r, fig.height = 7, fig.width = 7.25}
-par(mfrow = c(2,1), mar = c(3,3,0,0), oma = c(5,2,1,1))
+```{r}
 n = 1000
 model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
 Xt = gen_gts(n = n, model  = model)

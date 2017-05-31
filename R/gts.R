@@ -316,6 +316,10 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
     xlab = paste(name_time, " (", unit_time, ")", sep = " ")
   }
   
+  if (is.null(unit_time)  && is.null(xlab)){
+    xlab = name_time
+  }
+  
   if (!is.null(unit_time) && !is.null(xlab)){
     xlab = paste(xlab, " (", unit_time, ")", sep = " ")
   }
@@ -324,6 +328,10 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
     name_ts = "Observation"
   }
 
+  if (is.null(unit_ts)  && is.null(ylab)){
+    ylab = name_ts
+  }
+  
   if (!is.null(unit_ts) && is.null(ylab)){
     ylab = paste(name_ts, " (", unit_ts, ")", sep = "")
   }
@@ -343,16 +351,13 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
     end = scales[n_x]
   }
   
-  # Main Plot 
-  plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab, ylab = ylab, main = main)
-  
   # Main plot                     
   plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab, ylab = ylab, 
        xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
   win_dim = par("usr")
   
   par(new = TRUE)
-  plot(NA, xlim = c(start, end), ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+  plot(NA, xlim = c(start, end), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
        xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
   win_dim = par("usr")
   
@@ -360,15 +365,15 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   grid(NULL, NULL, lty = 1, col = "grey95")
   
   # Add title
-  x_vec = 10^c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
-  y_vec = 10^c(win_dim[4], win_dim[4],
+  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = c(win_dim[4], win_dim[4],
                win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
                win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
   polygon(x_vec, y_vec, col = "grey95", border = NA)
-  text(x = 10^mean(c(win_dim[1], win_dim[2])), y = 10^(win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
+  text(x = mean(c(win_dim[1], win_dim[2])), y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
   
   # Add axes and box
-  lines(x_vec[1:2], rep(10^(win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
+  lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
   box()
   axis(1, padj = 0.3)
   axis(2, padj = -0.2)  

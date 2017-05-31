@@ -119,9 +119,10 @@ mean normal distribution with variance \(\sigma^2\).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Creates an ARMA(1,1) process with predefined coefficients.</span>
-<span class='fu'>ARMA11</span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.23</span>, <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>.1</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in ARMA11(phi = 0.23, theta = 0.1, sigma2 = 1): Parameter phi must be such that |phi| &lt; 1.</span></div><div class='input'>
+<span class='fu'>ARMA11</span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.23</span>, <span class='kw'>theta</span> <span class='kw'>=</span> <span class='fl'>.1</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
 <span class='co'># Creates an ARMA(1,1) process with values to be guessed on callibration.</span>
-<span class='fu'>ARMA11</span>()</div><div class='output co'>#&gt; <span class='error'>Error in ARMA11(): Parameter phi must be such that |phi| &lt; 1.</span></div></pre>
+<span class='fu'>ARMA11</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

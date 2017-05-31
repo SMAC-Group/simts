@@ -55,18 +55,37 @@
 <p>This repository holds the Time Series Simulation (simts) R package.</p>
 <p>Below are examples of the capabilities of the <code>simts</code> package.</p>
 <p>We can generate different types of time series data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(smacdata)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datasets::Nile
+<span class="co">#&gt; Time Series:</span>
+<span class="co">#&gt; Start = 1871 </span>
+<span class="co">#&gt; End = 1970 </span>
+<span class="co">#&gt; Frequency = 1 </span>
+<span class="co">#&gt;   [1] 1120 1160  963 1210 1160 1160  813 1230 1370 1140  995  935 1110  994</span>
+<span class="co">#&gt;  [15] 1020  960 1180  799  958 1140 1100 1210 1150 1250 1260 1220 1030 1100</span>
+<span class="co">#&gt;  [29]  774  840  874  694  940  833  701  916  692 1020 1050  969  831  726</span>
+<span class="co">#&gt;  [43]  456  824  702 1120 1100  832  764  821  768  845  864  862  698  845</span>
+<span class="co">#&gt;  [57]  744  796 1040  759  781  865  845  944  984  897  822 1010  771  676</span>
+<span class="co">#&gt;  [71]  649  846  812  742  801 1040  860  874  848  890  744  749  838 1050</span>
+<span class="co">#&gt;  [85]  918  986  797  923  975  815 1020  906  901 1170  912  746  919  718</span>
+<span class="co">#&gt;  [99]  714  740</span>
+
+<span class="co"># Install and Load SMAC Data </span>
+<span class="kw"><a href="reference/install_smacdata.html">install_smacdata</a></span>()
+<span class="co">#&gt; Skipping install of 'smacdata' from a github remote, the SHA1 (ef856a4f) has not changed since last install.</span>
+<span class="co">#&gt;   Use `force = TRUE` to force installation</span>
+<span class="kw">library</span>(smacdata)
+
 <span class="kw">data</span>(<span class="st">"hydro"</span>)
 hydro =<span class="st"> </span><span class="kw"><a href="reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(hydro), <span class="dt">start =</span> <span class="dv">1907</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"in."</span>, 
             <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, <span class="dt">data_name =</span> <span class="st">"Hydrology data"</span>)
 <span class="kw">plot</span>(hydro)</code></pre></div>
-<p><img src="README-unnamed-chunk-2-1.png" width="672"></p>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"savingrt"</span>)
 savingrt =<span class="st"> </span><span class="kw"><a href="reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, 
             <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>)
 <span class="kw">plot</span>(savingrt)</code></pre></div>
-<p><img src="README-unnamed-chunk-3-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>), <span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">oma =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>))
 n =<span class="st"> </span><span class="dv">1000</span>
 model =<span class="st"> </span><span class="kw"><a href="reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, -<span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>)
 Xt =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> model)
@@ -75,7 +94,20 @@ Xt =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">g
 model =<span class="st"> </span><span class="kw"><a href="reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, -<span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span><span class="kw"><a href="reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)
 Yt =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> model)
 <span class="kw">plot</span>(Yt)</code></pre></div>
-<p><img src="README-unnamed-chunk-4-1.png" width="480"></p>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="696"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model =<span class="st"> </span><span class="kw"><a href="reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>)
+Xt =<span class="st"> </span><span class="kw"><a href="reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> model)
+<span class="kw">plot</span>(Xt)</code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model =<span class="st"> </span><span class="kw"><a href="reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span><span class="kw"><a href="reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>)
+Xt =<span class="st"> </span><span class="kw"><a href="reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> model)
+<span class="kw">plot</span>(Xt)</code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-6-1.png" width="696"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model =<span class="st"> </span><span class="kw"><a href="reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.25</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span><span class="kw"><a href="reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>) +
+<span class="st">  </span><span class="kw"><a href="reference/MA.html">MA</a></span>(<span class="dt">theta =</span> <span class="kw">c</span>(<span class="fl">0.1</span>,-<span class="fl">0.8</span>), <span class="dt">sigma2 =</span> <span class="dv">2</span>)
+Xt =<span class="st"> </span><span class="kw"><a href="reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> model)
+<span class="kw">plot</span>(Xt)</code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-7-1.png" width="696"></p>
 </div>
 <div id="install-instructions" class="section level1">
 <h1 class="hasAnchor">

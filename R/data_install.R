@@ -51,7 +51,6 @@ install_smacdata = function(){
   install_github("SMAC-Group/smacdata")
 }
 
-
 #' @title Install Data Package
 #' @description Downloads and Install the Data Package to use with the simts Package
 #' @param type A \code{string} with value \code{"ONL"} or \code{"LOCAL"}
@@ -103,4 +102,3 @@ install_data_package = function(pkg = "imudata", type = "ONL", loc = NULL){
   }
   
 }
-

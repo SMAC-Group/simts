@@ -7,8 +7,6 @@ This repository holds the Time Series Simulation (simts) R package.
 
 Below are examples of the capabilities of the `simts` package.
 
-We can generate different types of time series data:
-
 ``` r
 datasets::Nile
 #> Time Series:
@@ -72,23 +70,6 @@ plot(Xt)
 ```
 
 ![](man/figures/README-unnamed-chunk-5-1.png)
-
-``` r
-model = SARMA(ar = 0, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + WN(sigma2 = 2)
-Xt = gen_lts(n = n, model  = model)
-plot(Xt)
-```
-
-![](man/figures/README-unnamed-chunk-6-1.png)
-
-``` r
-model = SARMA(ar = 0.25, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + WN(sigma2 = 2) +
-  MA(theta = c(0.1,-0.8), sigma2 = 2)
-Xt = gen_lts(n = n, model  = model)
-plot(Xt)
-```
-
-![](man/figures/README-unnamed-chunk-7-1.png)
 
 Install Instructions
 ====================

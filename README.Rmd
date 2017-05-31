@@ -21,9 +21,10 @@ This repository holds the Time Series Simulation (simts) R package.
 
 Below are examples of the capabilities of the `simts` package.
 
-We can generate different types of time series data:
 
-```{r}
+
+
+```{r, fig.height = 5, fig.width = 7.25}
 datasets::Nile
 
 # Install and Load SMAC Data 
@@ -36,7 +37,9 @@ hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.",
 plot(hydro)
 ```
 
-```{r}
+
+
+```{r, fig.height = 5, fig.width = 7.25}
 data("savingrt")
 savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
@@ -44,7 +47,7 @@ plot(savingrt)
 ```
 
 
-```{r}
+```{r, fig.height = 5, fig.width = 7.25}
 n = 1000
 model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
 Xt = gen_gts(n = n, model  = model)
@@ -55,23 +58,12 @@ Yt = gen_gts(n = n, model  = model)
 plot(Yt)
 ```
 
-```{r}
+```{r, fig.height = 5, fig.width = 7.25}
 model = SARMA(ar = 0, ma = 0.3, sar = 0.9, sma = 0, s = 10, sigma2 = 1)
 Xt = gen_gts(n = n, model  = model)
 plot(Xt)
 ```
-```{r, fig.height = 7, fig.width = 7.25}
-model = SARMA(ar = 0, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + WN(sigma2 = 2)
-Xt = gen_lts(n = n, model  = model)
-plot(Xt)
-```
 
-```{r, fig.height = 9, fig.width = 7.25}
-model = SARMA(ar = 0.25, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + WN(sigma2 = 2) +
-  MA(theta = c(0.1,-0.8), sigma2 = 2)
-Xt = gen_lts(n = n, model  = model)
-plot(Xt)
-```
 
 # Install Instructions
 To install the `simts` package, there is currently one option: GitHub (Developmental).

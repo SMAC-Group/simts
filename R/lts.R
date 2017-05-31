@@ -350,6 +350,10 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
     lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = "grey50")
     box(col = "grey50")
     
+    if (i == dim_x[2]){
+      axis(1, padj = 0.3)
+    } 
+    
     y_axis = axis(2, labels = FALSE, tick = FALSE)  
     y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
     axis(2, padj = -0.2, at = y_axis)  

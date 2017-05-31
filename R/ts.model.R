@@ -55,6 +55,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
                        theta = c(phi,sigma2),
                        plength = 2,
                        desc = "AR1",
+                       print = "AR(1)",
                        obj.desc = list(c(1,1)),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -103,6 +104,7 @@ MA1 = function(theta = NULL, sigma2 = 1) {
                        theta = c(theta,sigma2),
                        plength = 2,
                        desc = "MA1",
+                       print = "MA(1)",
                        obj.desc = list(c(1,1)),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -163,6 +165,7 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
                        theta = c(phi, theta, sigma2),
                        plength = 3,
                        desc = "ARMA11",
+                       print = "ARMA(1,1)",
                        obj.desc = list(c(1,1,1)),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -214,6 +217,7 @@ GM = function(beta = NULL, sigma2_gm = 1) {
                        theta = c(beta,sigma2_gm),
                        plength = 2,
                        desc = "GM",
+                       print = "GM(1)",
                        obj.desc = list(c(1,1)),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -249,6 +253,7 @@ QN = function(q2 = NULL) {
                        theta = q2,
                        plength = 1,
                        desc = "QN",
+                       print = "QN()",
                        obj.desc = list(1),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -286,6 +291,7 @@ WN = function(sigma2 = NULL) {
                        theta = sigma2,
                        plength = 1,
                        desc = "WN",
+                       print = "WN()",
                        obj.desc = list(1),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -323,6 +329,7 @@ RW = function(gamma2 = NULL) {
                        theta = gamma2,
                        plength = 1,
                        desc = "RW",
+                       print = "RW()",
                        obj.desc = list(1),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -358,6 +365,7 @@ DR = function(omega = NULL) {
                        theta = omega,
                        plength = 1,
                        desc = "DR",
+                       print = "DR()",
                        obj.desc = list(1),
                        starting = starting), class = "ts.model")
   invisible(out)
@@ -639,6 +647,82 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
   invisible(out)
 }
 
+#' @title Simplify and print SARIMA model
+#' @param p  An \code{integer} denoting the length of \code{ar}.
+#' @param i   An \code{integer} containing the number of differences to be done.
+#' @param q  An \code{integer} denoting the length of \code{ma}.
+#' @param P An \code{integer} denoting the length of \code{sma}.
+#' @param si  An \code{integer} containing the number of seasonal differences to be done.
+#' @param Q An \code{integer} denoting the length of \code{sar}.
+#' @return Simplified model (string)
+#' @author Stephane Guerrier
+#' @export
+simplified_print_SARIMA = function(p, i, q, P, si, Q){
+  # ARMA models
+  if (i == 0 && P == 0 && Q == 0){
+    # White noise
+    if (p == 0 && q == 0){
+      print = "WN()"
+      out = list(print = print, simplified = "WN")
+      return(out)
+    }else if (p == 0){
+      # MA
+      print = paste("MA(", q, ")", sep = "")
+      out = list(print = print, simplified = "MA")
+      return(out)
+    }else if (q == 0){
+      # AR
+      print = paste("AR(", p, ")", sep = "")
+      out = list(print = print, simplified = "AR")
+      return(out)
+    }else{
+      # ARMA
+      print = paste("ARMA(", p, ",", q, ")", sep = "")
+      out = list(print = print, simplified = "ARMA")
+      return(out)
+    }
+  }else if (i > 0 && P == 0 && Q == 0){
+    # ARIMA models
+      if (p == 0 && q == 0 && i == 1){
+        print = "RW()"
+        out = list(print = print, simplified = "RW")
+        return(out)
+      }else{
+        print = paste("ARIMA(", p, ",", i, ",", q, ")", sep = "")
+        out = list(print = print, simplified = "ARIMA")
+        return(out)
+      }
+  }else if (i == 0 && si == 0 && p == 0 && q == 0){
+    # Pure seasonal
+    if (Q == 0){
+      # SAR
+      print = paste("SAR(", P, ")", sep = "")
+      out = list(print = print, simplified = "SAR")
+      return(out)
+    }else if (P == 0){
+      # SMA
+      print = paste("SMA(", Q, ")", sep = "")
+      out = list(print = print, simplified = "SMA")
+      return(out)
+    }else{
+      # SARMA
+      print = paste("SARMA(0,0) x (", P, ",", Q, ")", sep = "")
+      out = list(print = print, simplified = "SARMA")
+      return(out)
+    }
+  }else if (i == 0 && si == 0){
+    # SARMA
+    print = paste("SARMA(", p, ",", q, ") x (", P, ",", Q, ")", sep = "")
+    out = list(print = print, simplified = "SARMA")
+    return(out)
+  }else{
+    # SARIMA
+    print = paste("SARMA(", p, ",", i, ",", q, ") x (", P, ",", si, ",", Q, ")", sep = "")
+    out = list(print = print, simplified = "SARIMA")
+    return(out)
+  }
+}
+  
 
 #' @title Multiple a ts.model by constant
 #' @description Sets up the necessary backend for creating multiple model objects.

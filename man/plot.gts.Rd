@@ -4,11 +4,11 @@
 \alias{plot.gts}
 \title{Plot Time Series Data}
 \usage{
-\method{plot}{gts}(object, xlab = "Time", ylab = "Observation",
-  main = NULL, col = "dodgerblue", ...)
+\method{plot}{gts}(x, xlab = "Time", ylab = "Observation", main = NULL,
+  col = "blue4")
 }
 \arguments{
-\item{object}{A \code{gts} object}
+\item{x}{A \code{gts} object}
 
 \item{xlab}{A \code{string} that gives a title for the x axis.}
 

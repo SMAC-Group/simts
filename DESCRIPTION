@@ -18,7 +18,6 @@ Imports:
     stats,
     utils, 
     reshape2, 
-    ggfortify, 
     scales, 
     grDevices
 LinkingTo: Rcpp, RcppArmadillo

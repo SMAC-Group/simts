@@ -36,7 +36,7 @@
 #' @docType package
 #' @useDynLib simts
 #' @import reshape2
-#' @importFrom grDevices gray.colors hcl graphics.off
+#' @importFrom grDevices hcl
 #' @importFrom methods is
 #' @importFrom utils install.packages tail head
 #' @importFrom Rcpp evalCpp

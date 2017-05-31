@@ -257,15 +257,12 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
   start =  attr(x, 'start')
   end = attr(x, 'end')
   freq = attr(x, 'freq')
-<<<<<<< HEAD
   print = attr(x, 'print')
   dim_x = attr(x, 'dim')
-=======
   title_x = attr(x,"dimnames")[[2]]
   dim_x = attr(x, "dim")
   n_x = length(x)
->>>>>>> origin/master
-  
+
   if (dim_x[1] == 0){stop('Time series is empty!')}
   if (dim_x[2] < 3){stop('There is only one latent time series, use gts instead.')}
   

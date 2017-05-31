@@ -16,7 +16,7 @@
 
 #' @title Create a simts TS Object based on data
 #' @description Setups a time series oriented object that works well with graphing and summary utilities
-#' @param data      A one-couleurumn \code{matrix}, \code{data.frame}, or a numeric \code{vector}.
+#' @param data      A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.
 #' @param start     A \code{numeric} that provides the time of the first observation.
 #' @param end       A \code{numeric} that provides the time of the last observation.
 #' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
@@ -47,10 +47,10 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   
   # Check if the data is in matrix form
   if (is.matrix(data)) {
-    # Check ncouleur
-    ncouleurumn = ncouleur(data)
-    if(ncouleurumn != 1){
-      stop("'data' must have one couleurumn.")
+    # Check ncol
+    ncolumn = ncol(data)
+    if(ncolumn != 1){
+      stop("'data' must have one column.")
     }
     
   } else {
@@ -58,10 +58,10 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   }
   
   ndata = nrow(data)
-  couleurnames(data) = if(is.null(name_ts)) 'Observed' else name_ts
+  colnames(data) = if(is.null(name_ts)) 'Observed' else name_ts
   
   if(ndata == 0) {
-    stop("Not a valid data object! Please supply a data set with one couleurumn that is in either a data.frame, matrix, or numeric object.")
+    stop("Not a valid data object! Please supply a data set with one column that is in either a data.frame, matrix, or numeric object.")
   }
   
   # 2. requirement for 'freq'
@@ -201,10 +201,10 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
     stop("Need to supply initial values within the ts.model object.")
   }
   
-  couleurnames(out) = if(is.null(name_ts)) 'Observed' else name_ts 
+  colnames(out) = if(is.null(name_ts)) 'Observed' else name_ts 
   
   # reupdate desc for plotting
-  desc = paste0(model$desc, "()", couleurlapse = " + ")
+  desc = paste0(model$desc, "()", collapse = " + ")
   
   out = structure(.Data = out, 
                   start = start, 

@@ -94,7 +94,7 @@ MA1 = function(theta = NULL, sigma2 = 1) {
     stop("Incorect MA1 model submitted. Must be double values for two parameters.")
   }
   
-  if (abs(theta) < 1){
+  if (abs(theta) >= 1){
     stop("Parameter theta must be such that |theta| < 1.")
   }
   

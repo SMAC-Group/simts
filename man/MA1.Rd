@@ -2,12 +2,12 @@
 % Please edit documentation in R/ts.model.R
 \name{MA1}
 \alias{MA1}
-\title{Create an Moving Average 1 [MA(1)] Process}
+\title{Definition of an Moving Average Process of Order 1}
 \usage{
 MA1(theta = NULL, sigma2 = 1)
 }
 \arguments{
-\item{theta}{A \code{double} value for the \eqn{\phi}{phi} of an MA1 process.}
+\item{theta}{A \code{double} value for the \eqn{\theta}{theta} of an MA1 process.}
 
 \item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.}
 }
@@ -23,7 +23,7 @@ An S3 object with called ts.model with the following structure:
 }
 }
 \description{
-Setups the necessary backend for the MA1 process.
+Definition of an Moving Average Process of Order 1
 }
 \examples{
 MA1()

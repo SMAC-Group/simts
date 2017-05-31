@@ -14,7 +14,6 @@ Description: Generates various time series objects for use in other packages.
 License: GPL (>= 2)
 Imports: 
     Rcpp (>= 0.12.11), 
-    ggplot2,
     methods,
     stats,
     utils, 

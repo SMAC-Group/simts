@@ -22,7 +22,11 @@ In this section we briefly list, describe and provide the syntax for the models 
 * ARIMA: Integrated Autoregressive Moving Average process (ARIMA())
 * SARIMA: Seasonal ARIMA process (SARIMA())
 
-The expressions in brackets in the above list represent the syntax used in the simts package to specify the model. The only model which may be less known is the quantization noise which is a process that is often used in engineering fields and can be described in layperson terms as being a good approximation of a rounding error. The brackets for the syntax of each model are left to specify parameter values for simulation purposes or to specify starting values for estimation purposes. The code below shows how these model specifications can be used for simulations based on the built-in function `gen.gts()` which allows to generate samples from all these models.
+The expressions in brackets in the above list represent the syntax used in the simts package to specify the model. The only model which may be less known is the quantization noise which is a process that is often used in engineering fields and can be described in layperson terms as being a good approximation of a rounding error. The brackets for the syntax of each model are left to specify parameter values for simulation purposes or to specify starting values for estimation purposes. 
+
+## Simulations
+
+The code below shows how these model specifications can be used for simulations based on the built-in function `gen_gts()` which allows to generate samples from all these models.
 
 ```{r}
 # Set seed for reproducibility
@@ -58,15 +62,28 @@ sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
                         sigma2 = 1.5, s = 12))
 ```
 
-By applying the plot() function on the result of `gen.lts()`, we can observe a visualization of the data simulated. 
-
-```{r}
-plot(sarima)
-```
-
 The simts package therefore allows to easily simulate from a wide variety of models, includ- ing SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to de- liver many state-space (latent) models which can be represented by the sum of basic models. 
 
-The construction of such linear state-space models is very simple with the simts package allowing it to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is to use the “+” symbol between them and, supposing that different AR1() processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k\*AR1(). So, for example, the sum of three AR(1) models, a random walk and a white noise process can be specified as: 3\*AR1()+RW()+WN(). As we see below, the function specifically provided to generate and represent these models is the `gen.lts()` which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the plot() function on the result of `gen.lts()`.
+The construction of such linear state-space models is very simple with the simts package allowing it to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is to use the “+” symbol between them and, supposing that different AR1() processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k\*AR1(). So, for example, the sum of three AR(1) models, a random walk and a white noise process can be specified as: 3\*AR1()+RW()+WN(). 
+
+## Visualizations 
+
+By applying the `plot()` function on the result of `gen_gts()`, we can observe a visualization of the data simulated. 
+
+```{r}
+# Plot simulation of a SARIMA Model 
+plot(sarima)
+
+# Generate a ARMA + WN process 
+arma_wn_model =
+  ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + 
+  WN(sigma = 4)
+arma_wn_sim = gen_gts(n = n, model  = arma_wn_model)
+# Plot simulation 
+plot(arma_wn_sim)
+```
+
+In addition, the function specifically provided to generate and represent these models more specifically is the `gen_lts()` which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`.
 
 ```{r, fig.height = 7, fig.width = 7.25}
 sarma_wn_model = 

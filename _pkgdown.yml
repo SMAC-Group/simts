@@ -6,5 +6,7 @@ navbar:
   left:
   - text: Time Series Models
     href: articles/sim_models.html
+  - text: Time Series Data 
+    href: articles/sim_data.html
   - text: Reference
     href: reference/index.html

@@ -17,39 +17,12 @@ library(simts)
 
 # `simts` R Package
 
-This repository holds the Time Series Simulation (simts) R package.  
+This repository holds the Time Series Simulation (simts) R package. `simts` generates various time series objects for use in other packages.
 
-Below are examples of the capabilities of the `simts` package.
-
-
-
-
-```{r}
-datasets::Nile
-```
-
-
-
-
-```{r, fig.height = 5, fig.width = 7.25}
-n = 1000
-model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
-Xt = gen_gts(n = n, model  = model)
-plot(Xt)
-
-model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + WN(sigma = 4)
-Yt = gen_gts(n = n, model  = model)
-plot(Yt)
-```
-
-```{r, fig.height = 5, fig.width = 7.25}
-model = SARMA(ar = 0, ma = 0.3, sar = 0.9, sma = 0, s = 10, sigma2 = 1)
-Xt = gen_gts(n = n, model  = model)
-plot(Xt)
-```
-
+Please refer to the vignettes for examples of the capabilities of the `simts` package.
 
 # Install Instructions
+
 To install the `simts` package, there is currently one option: GitHub (Developmental).
 
 ## Recommended R Interface

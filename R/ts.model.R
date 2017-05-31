@@ -25,6 +25,7 @@
 #'  \item{process.desc}{Used in summary: "AR1","SIGMA2"}
 #'  \item{theta}{\eqn{\phi}{phi}, \eqn{\sigma^2}{sigma^2}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{desc}{"AR1"}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -72,6 +73,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #'  \item{process.desc}{Used in summary: "MA1","SIGMA2"}
 #'  \item{theta}{\eqn{\theta}{theta}, \eqn{\sigma^2}{sigma^2}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{desc}{"MA1"}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -123,6 +125,7 @@ MA1 = function(theta = NULL, sigma2 = 1) {
 #'  \item{process.desc}{\eqn{AR1}, \eqn{MA1}, \eqn{SIGMA2}}
 #'  \item{theta}{\eqn{\phi}{phi}, \eqn{\theta}{theta}, \eqn{\sigma^2}{sigma^2}}
 #'  \item{plength}{Number of Parameters: 3}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(c(1,1,1))}
 #'  \item{starting}{Guess Starting values? \code{TRUE} or \code{FALSE} (e.g. specified value)}
 #' }
@@ -185,6 +188,7 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 #'  \item{process.desc}{Used in summary: "BETA","SIGMA2"}
 #'  \item{theta}{\eqn{\beta}{beta}, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{desc}{"GM"}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -232,6 +236,7 @@ GM = function(beta = NULL, sigma2_gm = 1) {
 #'  \item{process.desc}{Used in summary: "QN"}
 #'  \item{theta}{\eqn{Q^2}{Q^2}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{desc}{y desc replicated x times}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -270,6 +275,7 @@ QN = function(q2 = NULL) {
 #'  \item{process.desc}{Used in summary: "WN"}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{desc}{y desc replicated x times}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -308,6 +314,7 @@ WN = function(sigma2 = NULL) {
 #'  \item{process.desc}{Used in summary: "RW"}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{desc}{y desc replicated x times}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -343,6 +350,7 @@ RW = function(gamma2 = NULL) {
 #' \describe{
 #'  \item{process.desc}{Used in summary: "DR"}
 #'  \item{theta}{slope}
+#'  \item{print}{String containing simplified model}
 #'  \item{plength}{Number of Parameters}
 #'  \item{obj.desc}{y desc replicated x times}
 #'  \item{obj}{Depth of Parameters e.g. list(1)}
@@ -385,6 +393,7 @@ DR = function(omega = NULL) {
 #'  \item{theta}{\eqn{\phi_1}{phi[[1]]}, \eqn{\phi_2}{phi[[2]]}, ..., \eqn{\phi_p}{phi[[p]]}, \eqn{\sigma^2}{sigma^2}}
 #'  \item{plength}{Number of Parameters}
 #'  \item{desc}{"AR"}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(p,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
@@ -418,6 +427,7 @@ AR = function(phi = NULL, sigma2 = 1) {
 #'  \item{theta}{\eqn{\theta_1}{theta[[1]]}, \eqn{\theta_2}{theta[[2]]}, ..., \eqn{\theta_q}{theta[[q]]}, \eqn{\sigma^2}{sigma^2}}
 #'  \item{plength}{Number of Parameters}
 #'  \item{desc}{"MA"}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(q,1)}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
 #' }
@@ -451,6 +461,7 @@ MA = function(theta = NULL, sigma2 = 1) {
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{y desc replicated x times}
 #'  \item{obj}{Depth of Parameters e.g. list(c(length(ar),length(ma),1) )}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -487,6 +498,7 @@ ARMA = function(ar = 1, ma = 1, sigma2 = 1.0) {
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
 #'  \item{plength}{Number of Parameters}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{y desc replicated x times}
 #'  \item{obj}{Depth of Parameters e.g. list(c(length(ar),length(ma),1) )}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -522,6 +534,7 @@ ARIMA = function(ar = 1, i = 0, ma = 1, sigma2 = 1.0) {
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}, \eqn{SAR*P}{SAR x P}, \eqn{SMA*Q}{SMA x Q}}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
 #'  \item{plength}{Number of Parameters}
+#'  \tem{print}{String containing simplified model}
 #'  \item{obj.desc}{y desc replicated x times}
 #'  \item{obj}{Depth of Parameters e.g. list(c(length(ar), length(ma), length(sar), length(sma), 1) )}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -558,7 +571,10 @@ SARMA = function(ar = 1, ma = 1, sar = 1, sma = 1, s = 12, sigma2 = 1.0) {
 #' \describe{
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}, \eqn{SAR*P}{SAR x P}, \eqn{SMA*Q}{SMA x Q}}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
+#'  \item{desc}{Type of model}
+#'  \item{desc.simple}{Type of model (after simplification)}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{y desc replicated x times}
 #'  \item{obj}{Depth of Parameters e.g. list(c(length(ar), length(ma), length(sar), length(sma), 1, i, si) )}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
@@ -651,13 +667,17 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 }
 
 #' @title Simplify and print SARIMA model
-#' @param p  An \code{integer} denoting the length of \code{ar}.
+#' @param p   An \code{integer} denoting the length of \code{ar}.
 #' @param i   An \code{integer} containing the number of differences to be done.
-#' @param q  An \code{integer} denoting the length of \code{ma}.
-#' @param P An \code{integer} denoting the length of \code{sma}.
+#' @param q   An \code{integer} denoting the length of \code{ma}.
+#' @param P   An \code{integer} denoting the length of \code{sma}.
 #' @param si  An \code{integer} containing the number of seasonal differences to be done.
-#' @param Q An \code{integer} denoting the length of \code{sar}.
-#' @return Simplified model (string)
+#' @param Q   An \code{integer} denoting the length of \code{sar}.
+#' @return An S3 object with the following structure:
+#' \describe{
+#'  \item{print}{String containing simplified model}
+#'  \item{simplified}{Type of model (after simplification)}
+#' }
 #' @author Stephane Guerrier
 #' @export
 simplified_print_SARIMA = function(p, i, q, P, si, Q){

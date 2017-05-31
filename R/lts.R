@@ -225,7 +225,8 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
                   end = end, # start and end will not be null now
                   freq = freq,
                   unit = unit,
-                  name = name, 
+                  name = name,
+                  print = model$print,
                   process = process,
                   class = c("lts","matrix"))
   
@@ -246,8 +247,8 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL){
   start =  attr(x, 'start')
   end = attr(x, 'end')
   freq = attr(x, 'freq')
-  title_x = attr(x,"dimnames")[[2]]
-  dim_x = attr(x, "dim")
+  print = attr(x, 'print')
+  dim_x = attr(x, 'dim')
   
   if (dim_x[1] == 0){stop('Time series is empty!')}
   if (dim_x[2] < 3){stop('There is only one latent time series, use gts instead.')}
@@ -264,6 +265,7 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL){
   }
   
   
+  title_x = c(strsplit(print," [+] ")[[1]], print)
   if (is.null(main)){
     main = title_x
   }else{
@@ -285,10 +287,10 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL){
   }
   
   # X Scales
-  scales = seq(start, end, length = n_x)
+  scales = seq(start, end, length = dim_x[1])
   if (is.null(end)){
     scales = scales/freq
-    end = scales[n_x]
+    end = scales[dim_x[1]]
   }
   
   # Main plot

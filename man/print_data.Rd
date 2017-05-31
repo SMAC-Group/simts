@@ -33,3 +33,4 @@ Pretty formatting for \code{gts}, \code{imu}, and \code{lts} objects.
 \author{
 James Balamuta
 }
+\keyword{internal}

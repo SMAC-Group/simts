@@ -40,6 +40,7 @@ conv.gm.to.ar1 = function(theta, process.desc, freq){
 
 
 #' @title Print simts Objects
+#' @keywords internal
 #' @description 
 #' Pretty formatting for \code{gts}, \code{imu}, and \code{lts} objects.
 #' @param x         A \code{gts}, \code{imu}, \code{lts} object.
@@ -178,6 +179,7 @@ value.imu = function(x, type){
 }
 
 #' @title Obtain the value of an object's properties
+#' @keywords internal
 #' @description 
 #' Used to access different properties of the
 #'  \code{gts}, \code{imu}, or \code{lts} object.

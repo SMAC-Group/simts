@@ -37,3 +37,4 @@ To access information about \code{imu} properties use:
 \author{
 James Balamuta
 }
+\keyword{internal}

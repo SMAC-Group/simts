@@ -2,6 +2,42 @@ template:
   params:
     bootswatch: cerulean
 
+reference:
+  - title: Install
+    desc:  Install necessary dataset packages.
+    contents:
+    - starts_with("install_")
+  - title: Time Series Models 
+    contents:
+    - AR
+    - AR1 
+    - ARIMA 
+    - ARMA
+    - DR
+    - GM
+    - MA
+    - MA1
+    - QN
+    - RW
+    - SARIMA
+    - SARMA
+    - WN
+  - title: Simulation 
+    contents: 
+    - gen_gts
+    - gen_lts 
+    - gts 
+    - lts 
+  - title: Helpers
+    contents:
+    - imu_time
+    - imu
+    - outf
+    - read.imu
+    - sarma_objdesc
+    - simplified_print_SARIMA
+    - value
+
 navbar:
   left:
   - text: Time Series Models

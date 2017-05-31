@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #' Simulated Time Series (simts) Package
-#'
+#' @keywords internal
 #' @details 
 #' \tabular{ll}{
 #' Package: \tab simts\cr

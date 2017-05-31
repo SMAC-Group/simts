@@ -308,37 +308,30 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   if(!is(x,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
   
   # Labels
+  if (!is.null(xlab)){
+    name_time = xlab
+  }
+  
+  if (!is.null(ylab)){
+    name_ts = ylab
+  }
+  
   if (is.null(name_time)){
     name_time = "Time"
-  }
-  
-  if (!is.null(unit_time)  && is.null(xlab)){
-    xlab = paste(name_time, " (", unit_time, ")", sep = " ")
-  }
-  
-  if (is.null(unit_time)  && is.null(xlab)){
-    xlab = name_time
-  }
-  
-  if (!is.null(unit_time) && !is.null(xlab)){
-    xlab = paste(xlab, " (", unit_time, ")", sep = " ")
   }
   
   if (is.null(name_ts)){
     name_ts = "Observation"
   }
-
-  if (is.null(unit_ts)  && is.null(ylab)){
-    ylab = name_ts
+  
+  if (!is.null(unit_time)){
+    xlab = paste(name_time, " (", unit_time, ")", sep = "")
   }
   
-  if (!is.null(unit_ts) && is.null(ylab)){
+  if (!is.null(unit_ts)){
     ylab = paste(name_ts, " (", unit_ts, ")", sep = "")
   }
-  
-  if (!is.null(unit_ts) && !is.null(ylab)){
-    ylab = paste(ylab, " (", unit_ts, ")", sep = "")
-  }
+
   
   if (is.null(main)){
     main = title_x
@@ -376,8 +369,10 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
   box()
   axis(1, padj = 0.3)
-  axis(2, padj = -0.2)  
-
+  y_axis = axis(2, labels = FALSE, tick = FALSE)  
+  y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+  axis(2, padj = -0.2, at = y_axis)  
+  
   # Add lines 
   lines(scales, x, type = "l", col = col, pch = 16)
 }

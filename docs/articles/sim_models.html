@@ -113,7 +113,7 @@ sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.
 <p>By applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, we can observe a visualization of the data simulated.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot simulation of a SARIMA Model </span>
 <span class="kw">plot</span>(sarima)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<p><img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" width="696"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a ARMA + WN process </span>
 arma_wn_model =
 <span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, -<span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
@@ -121,7 +121,7 @@ arma_wn_model =
 arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)
 <span class="co"># Plot simulation </span>
 <span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-3-2.png" width="672"></p>
+<p><img src="sim_models_files/figure-html/unnamed-chunk-3-2.png" width="696"></p>
 <p>In addition, the function specifically provided to generate and represent these models more specifically is the <code><a href="../reference/gen_lts.html">gen_lts()</a></code> which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sarma_wn_model =<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>

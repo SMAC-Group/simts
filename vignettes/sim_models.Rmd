@@ -70,7 +70,7 @@ The construction of such linear state-space models is very simple with the simts
 
 By applying the `plot()` function on the result of `gen_gts()`, we can observe a visualization of the data simulated. 
 
-```{r}
+```{r, fig.height = 5, fig.width = 7.25}
 # Plot simulation of a SARIMA Model 
 plot(sarima)
 

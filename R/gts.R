@@ -289,17 +289,27 @@ unitConversion = function(x, from.unit, to.unit){
 #' @param ... other arguments passed to specific methods
 #' @return A plot containing the graph of the gts time series.
 #' @author Justin Lee
-plot.gts = function(x, xlab = "Time", ylab = "Observation", main = NULL, col = "blue4"){
+plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, col = "blue4"){
   unit_ts = attr(x, 'unit_ts')
-  unit_time = attr(x, 'unit_time')
   name_ts = attr(x, 'name_ts')
+  unit_time = attr(x, 'unit_time')
+<<<<<<< Updated upstream
+  name_ts = attr(x, 'name_ts')
+=======
+>>>>>>> Stashed changes
   name_time = attr(x, 'name_time')
   start =  attr(x, 'start')
   end = attr(x, 'end')
+  freq = attr(x, 'freq')
+  title_x = attr(x, 'desc')
+  n_x = length(x)
+  
+  if (n_x == 0){stop('Time series is empty!')}
   
   if(!is(x,"gts")){stop('object must be a gts object. Use function gts() or gen_gts() to create it.')}
   
   # Labels
+<<<<<<< Updated upstream
   if (!is.null(name_time)){
     if(is.null(unit_time)){
       xlab = name_time
@@ -314,22 +324,73 @@ plot.gts = function(x, xlab = "Time", ylab = "Observation", main = NULL, col = "
     }else{
       ylab = paste(name, " (", unit_ts, ")", sep = "")
     }
+=======
+  if (is.null(name_time)){
+    name_time = "Time"
+  }
+  
+  if (!is.null(unit_time)  && is.null(xlab)){
+    xlab = paste(name_time, " (", unit_time, ")", sep = " ")
+  }
+  
+  if (!is.null(unit_time) && !is.null(xlab)){
+    xlab = paste(xlab, " (", unit_time, ")", sep = " ")
+  }
+  
+  if (is.null(name_ts)){
+    name_ts = "Observation"
+  }
+
+  if (!is.null(unit_ts) && is.null(ylab)){
+    ylab = paste(name_ts, " (", unit_ts, ")", sep = "")
+  }
+  
+  if (!is.null(unit_ts) && !is.null(ylab)){
+    ylab = paste(ylab, " (", unit_ts, ")", sep = "")
+>>>>>>> Stashed changes
   }
   
   if (is.null(main)){
-    main = "simts Time Series"
+    main = title_x
+  }
+  
+  # X Scales
+  scales = seq(start, end, length = n_x)
+  if (is.null(end)){
+    scales = scales/freq
+    end = scales[n_x]
   }
   
   # Main Plot 
   plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab, ylab = ylab, main = main)
   
-  # X Scales
-  scales = seq(start, end, length = length(x))
- 
+  # Main plot                     
+  plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab, ylab = ylab, 
+       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+  win_dim = par("usr")
+  
+  par(new = TRUE)
+  plot(NA, xlim = c(start, end), ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  win_dim = par("usr")
+  
   # Add grid
   grid(NULL, NULL, lty = 1, col = "grey95")
+  
+  # Add title
+  x_vec = 10^c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = 10^c(win_dim[4], win_dim[4],
+               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
+               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+  polygon(x_vec, y_vec, col = "grey95", border = NA)
+  text(x = 10^mean(c(win_dim[1], win_dim[2])), y = 10^(win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
+  
+  # Add axes and box
+  lines(x_vec[1:2], rep(10^(win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
+  box()
+  axis(1, padj = 0.3)
+  axis(2, padj = -0.2)  
 
   # Add lines 
   lines(scales, x, type = "l", col = col, pch = 16)
-  lines(scales, x, type = "p", col = col, pch = 16, cex = 0.5)
 }

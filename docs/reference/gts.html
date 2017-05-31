@@ -128,8 +128,9 @@
     <pre class="examples"><div class='input'><span class='no'>m</span> <span class='kw'>=</span> <span class='fu'>data.frame</span>(<span class='fu'>rnorm</span>(<span class='fl'>50</span>))
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gts</span>(<span class='no'>m</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>, <span class='kw'>name_ts</span> <span class='kw'>=</span> <span class='st'>'example'</span>)
 <span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-2.png' alt='' width='540' height='400' /><div class='input'>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>50</span>, <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_count_models", PACKAGE = "simts", desc): "simts_count_models" not available for .Call() for package "simts"</span></div><div class='input'><span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gts</span>(<span class='no'>x</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
-<span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-6.png' alt='' width='540' height='400' /></pre>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>50</span>, <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gts</span>(<span class='no'>x</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
+<span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gts-4.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

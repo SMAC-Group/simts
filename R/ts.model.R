@@ -534,7 +534,7 @@ ARIMA = function(ar = 1, i = 0, ma = 1, sigma2 = 1.0) {
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}, \eqn{SAR*P}{SAR x P}, \eqn{SMA*Q}{SMA x Q}}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
 #'  \item{plength}{Number of Parameters}
-#'  \tem{print}{String containing simplified model}
+#'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{y desc replicated x times}
 #'  \item{obj}{Depth of Parameters e.g. list(c(length(ar), length(ma), length(sar), length(sma), 1) )}
 #'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}

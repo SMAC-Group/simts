@@ -38,11 +38,16 @@ plot(savingrt)
 ```
 
 
-```{r}
+```{r, fig.height = 6, fig.width = 5}
+par(mfrow = c(2,1))
 n = 1000
 model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
 Xt = gen_gts(n = n, model  = model)
 plot(Xt)
+
+model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + WN(sigma = 4)
+Yt = gen_gts(n = n, model  = model)
+plot(Yt)
 ```
 
 

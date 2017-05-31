@@ -135,17 +135,21 @@
 
 <span class='co'># AR1 + WN</span>
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.5</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_count_models", PACKAGE = "simts", desc): "simts_count_models" not available for .Call() for package "simts"</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gen_gts-4.png' alt='' width='540' height='400' /><div class='input'>
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>)
+<span class='fu'>plot</span>(<span class='no'>x</span>)</div><img src='gen_gts-2.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># Reset seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1336</span>)
 
 <span class='co'># GM + WN</span>
 <span class='co'># Convert from AR1 to GM values</span>
-<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='ar1_to_gm.html'>ar1_to_gm</a></span>(<span class='fu'>c</span>(<span class='fl'>.5</span>,<span class='fl'>.1</span>),<span class='fl'>10</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_ar1_to_gm", PACKAGE = "simts", theta, freq): "simts_ar1_to_gm" not available for .Call() for package "simts"</span></div><div class='input'>
+<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='ar1_to_gm.html'>ar1_to_gm</a></span>(<span class='fu'>c</span>(<span class='fl'>.5</span>,<span class='fl'>.1</span>),<span class='fl'>10</span>)
+
 <span class='co'># Beta = 6.9314718, Sigma2_gm = 0.1333333</span>
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='GM.html'>GM</a></span>(<span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>1</span>], <span class='kw'>sigma2_gm</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>2</span>]) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in GM(beta = m[1], sigma2_gm = m[2]): object 'm' not found</span></div><div class='input'><span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_count_models", PACKAGE = "simts", desc): "simts_count_models" not available for .Call() for package "simts"</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>x2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in xy.coords(x, y, xlabel, ylabel, log): invalid first argument</span></div><div class='input'>
+<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='GM.html'>GM</a></span>(<span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>1</span>], <span class='kw'>sigma2_gm</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>2</span>]) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
+<span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
+<span class='fu'>plot</span>(<span class='no'>x2</span>)</div><img src='gen_gts-4.png' alt='' width='540' height='400' /><div class='input'>
 <span class='co'># Same time series</span>
-<span class='fu'>all.equal</span>(<span class='no'>x</span>, <span class='no'>x2</span>, <span class='kw'>check.attributes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "target is gts, current is expression"</div></pre>
+<span class='fu'>all.equal</span>(<span class='no'>x</span>, <span class='no'>x2</span>, <span class='kw'>check.attributes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

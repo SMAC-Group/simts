@@ -136,7 +136,8 @@
     <pre class="examples"><div class='input'><span class='co'># AR</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1336</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.99</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>test</span> <span class='kw'>=</span> <span class='fu'>gen_lts</span>(<span class='fl'>1000</span>, <span class='no'>model</span>)</div><div class='output co'>#&gt; <span class='error'>Error in .Call("simts_count_models", PACKAGE = "simts", desc): "simts_count_models" not available for .Call() for package "simts"</span></div><div class='input'><span class='fu'>plot</span>(<span class='no'>test</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot(test): object 'test' not found</span></div></pre>
+<span class='no'>test</span> <span class='kw'>=</span> <span class='fu'>gen_lts</span>(<span class='fl'>1000</span>, <span class='no'>model</span>)
+<span class='fu'>plot</span>(<span class='no'>test</span>)</div><div class='output co'>#&gt; <span class='error'>Error in seq.default(start, end, length = n_x): object 'n_x' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

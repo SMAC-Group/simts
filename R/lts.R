@@ -232,3 +232,103 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
   out
 
 }
+
+
+
+
+#' @title Plot Time Series Data
+#' @export
+plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL){
+  unit_ts = attr(x, 'unit_ts')
+  name_ts = attr(x, 'name_ts')
+  unit_time = attr(x, 'unit_time')
+  name_time = attr(x, 'name_time')
+  start =  attr(x, 'start')
+  end = attr(x, 'end')
+  freq = attr(x, 'freq')
+  title_x = attr(x,"dimnames")[[2]]
+  dim_x = attr(x, "dim")
+  
+  if (dim_x[1] == 0){stop('Time series is empty!')}
+  if (dim_x[2] < 3){stop('There is only one latent time series, use gts instead.')}
+  
+  if(!is(x,"lts")){stop('object must be a lts object. Use function gen_lts() to create it.')}
+  
+  # Labels
+  if (!is.null(xlab)){
+    name_time = xlab
+  }
+  
+  if (is.null(name_time)){
+    name_time = "Time"
+  }
+  
+  
+  if (is.null(main)){
+    main = title_x
+  }else{
+    if (length(main) != dim_x[2]){
+      warning('"main" is not of the same dimension as lts object, using
+              default names instead.')
+      main = title_x
+    }
+  }
+  
+  # Couleur
+  if (is.null(couleur)){
+    hues = seq(15, 375, length = dim_x[2] + 1)
+    couleur = hcl(h = hues, l = 65, c = 100, alpha = 1)[seq_len(dim_x[2])]
+  }else{
+    if (length(couleur) == 1 || length(couleur) != dim_x[2]){
+      couleur = rep(couleur[1],dim_x[2])
+    }
+  }
+  
+  # X Scales
+  scales = seq(start, end, length = n_x)
+  if (is.null(end)){
+    scales = scales/freq
+    end = scales[n_x]
+  }
+  
+  # Main plot
+  par(mfrow = c(dim_x[2], 1), mar = c(0.7, 2,0,0), oma = c(4,1,1,1))
+  
+  for (i in 1:dim_x[2]){
+    plot(NA, xlim = c(start, end), ylim = range(x[,i]), xlab = xlab,
+         xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    win_dim = par("usr")
+    
+    par(new = TRUE)
+    plot(NA, xlim = c(start, end), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, xaxt = 'n', yaxt = 'n', bty = "n")
+    win_dim = par("usr")
+    
+    # Add grid
+    grid(NULL, NULL, lty = 1, col = "grey95")
+    
+    # Add title
+    x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+    y_vec = c(win_dim[4], win_dim[4],
+              win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
+              win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+    polygon(x_vec, y_vec, col = "grey95", border = NA)
+    text(x = mean(c(win_dim[1], win_dim[2])), y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main[i])
+    
+    # Add axes and box
+    lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = "grey50")
+    box(col = "grey50")
+    
+    if (i == dim_x[2]){
+      axis(1, padj = 0.3)
+      mtext("Time", side = 1, line = 3, cex = 0.8) 
+    } 
+    
+    y_axis = axis(2, labels = FALSE, tick = FALSE)  
+    y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+    axis(2, padj = -0.2, at = y_axis)  
+    
+    # Add lines 
+    lines(scales, x[,i], type = "l", col = couleur[i], pch = 16)
+  }
+}

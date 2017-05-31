@@ -28,6 +28,20 @@ plot(savingrt)
 
 ![](README-unnamed-chunk-3-1.png)
 
+``` r
+par(mfrow = c(2,1))
+n = 1000
+model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1)
+Xt = gen_gts(n = n, model  = model)
+plot(Xt)
+
+model = ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + WN(sigma = 4)
+Yt = gen_gts(n = n, model  = model)
+plot(Yt)
+```
+
+![](README-unnamed-chunk-4-1.png)
+
 Install Instructions
 ====================
 

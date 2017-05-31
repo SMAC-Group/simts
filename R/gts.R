@@ -55,7 +55,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
   }
   
   ndata = nrow(data)
-  colnames(data) = if(is.null(name)) 'Observed' else name 
+  colnames(data) = if(is.null(name_ts)) 'Observed' else name_ts
   
   if(ndata == 0) {
     stop("Not a valid data object! Please supply a data set with one column that is in either a data.frame, matrix, or numeric object.")
@@ -90,14 +90,14 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
   # x = x/freq ###when generate the object, not deal with freq
   
   out = structure(data, 
-                start = start, 
-                end= end, # start and end will not be null now
-                freq = freq,
-                unit_ts = unit_ts, 
-                unit_time = unit_time,
-                name_ts = name_ts,
-                name_time = name_time,
-                class = c("gts","matrix"))
+                  start = start, 
+                  end= end, # start and end will not be null now
+                  freq = freq,
+                  unit_ts = unit_ts, 
+                  unit_time = unit_time,
+                  name_ts = name_ts,
+                  name_time = name_time,
+                  class = c("gts","matrix"))
   
   out
 }
@@ -175,7 +175,6 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   
   # Information Required by simts:
   desc = model$desc
-  
   obj = model$obj.desc
   
   # Identifiability issues
@@ -197,11 +196,15 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
     stop("Need to supply initial values within the ts.model object.")
   }
   
-  colnames(out) = if(is.null(name)) 'Observed' else name 
+  colnames(out) = if(is.null(name_ts)) 'Observed' else name_ts 
+  
+  # reupdate desc for plotting
+  desc = paste0(model$desc, "()", collapse = " + ")
   
   out = structure(.Data = out, 
                   start = start, 
                   end   = end, # start and end will not be null now
+                  desc = desc, 
                   freq  = freq,
                   unit_ts = unit_ts, 
                   unit_time  = unit_time,

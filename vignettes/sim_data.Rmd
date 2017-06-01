@@ -20,12 +20,6 @@ In this section, we breifly explain how simulations can be done using Time Serie
 
 ## Simulations
 
-```{r}
-# SMAC data contains `hydro` and `savingrt`
-install_smacdata()
-library(smacdata)
-```
-
 The code below shows how these model specifications can be used for simulations based on the built-in function `gts()` which allows to generate samples from all the example datasets. 
 
 ```{r}
@@ -52,7 +46,7 @@ nile = gts(as.vector(niles), start = 1871, end = 1970, freq = 1, unit_ts = as.ex
 
 By applying the `plot()` function on the result of `gts()`, we can observe a visualization of the data simulated. 
 
-```{r, fig.height = 5, fig.width = 7.25}
+```{r, fig.align='center', fig.height = 5, fig.width = 7.25}
 # Plot hydro simulation
 plot(hydro)
 

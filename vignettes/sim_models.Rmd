@@ -77,7 +77,7 @@ The construction of such linear state-space models is very simple with the simts
 
 By applying the `plot()` function on the result of `gen_gts()`, we can observe a visualization of the data simulated. 
 
-```{r, fig.height = 5, fig.width = 7.25}
+```{r, fig.align='center', fig.height = 5, fig.width = 7.25}
 # Plot simulation of a SARIMA Model 
 plot(sarima)
 
@@ -92,7 +92,7 @@ plot(arma_wn_sim)
 
 In addition, the function specifically provided to generate and represent these models more specifically is the `gen_lts()` which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`.
 
-```{r, fig.height = 7, fig.width = 7.25}
+```{r, fig.align='center', fig.height = 7, fig.width = 7.25}
 sarma_wn_model = 
   SARMA(ar = 0, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + 
   WN(sigma2 = 2)

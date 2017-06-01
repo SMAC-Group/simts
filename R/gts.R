@@ -334,11 +334,19 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
   }
   
   if (!is.null(unit_time)){
-    name_time = paste(name_time, " (", unit_time, ")", sep = "")
+    if (class(unit_time) == "name" || class(unit_time) == "call"){
+      name_time = comb(name_time, " (", unit_time, ")")
+    }else{
+      name_time = paste(name_time, " (", unit_time, ")", sep = "")
+    }
   }
   
   if (!is.null(unit_ts)){
-    name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")
+    if (class(unit_ts) == "name" || class(unit_ts) == "call"){
+      name_ts = comb(name_ts, " (", unit_ts, ")")
+    }else{
+      name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")
+    }
   }
 
   
@@ -395,3 +403,11 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
   # Add lines 
   lines(scales, x, type = "l", col = couleur, pch = 16)
 }
+
+#' @title Combine math expressions
+#' @export
+comb <- function(...) {
+  Reduce(function(x, y) substitute(x * y, env = list(x = x, y = y)), 
+         list(...))
+}
+

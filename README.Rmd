@@ -28,8 +28,9 @@ To install the `simts` package, there is currently one option: GitHub (Developme
 
 ## Installing the package through GitHub (Developmental)
 
-For users who are interested in having the latest and greatest developments in wavelets or simts methodology, this option is ideal. Though, there is considerably more work that a user must do in order to have a stable version of the package. **The setup to obtain the development version is platform dependent.** Most importantly, users **must** have a compiler installed on their machine that is compatible with R. (Clang, for example).
+For users who are interested in having the latest and greatest developments in wavelets and simts methodology, this option is ideal. Though, more work is required to have a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R. (Clang, for example.)
 
+**The setup to obtain the development version of `simts` is platform dependent.**
 System Requirements:
 
 **OS X**
@@ -54,7 +55,7 @@ sudo yum install curl curl-devel libxml2 libxml2-dev
 
 **All Systems**
 
-The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the `simts` package.
+The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the latest `simts` package.
 
 ```{r, eval = F}
 # Install dependencies

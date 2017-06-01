@@ -35,22 +35,6 @@ install_imudata = function(type="ONL",loc=NULL){
   install_data_package("imudata", type, loc)
 }
 
-#' @title Install SMAC Data Package
-#' @description Downloads and Install the SMAC Data Package to use with the simts Package
-#' @details 
-#' The SMAC Data Package contains data sets used in various packages.
-#' @author Justin Lee
-#' @examples 
-#' \dontrun{
-#' # Online install
-#' install_smacdata()
-#' }
-#' @importFrom devtools install_github
-#' @export
-install_smacdata = function(){
-  install_github("SMAC-Group/smacdata")
-}
-
 #' @title Install Data Package
 #' @description Downloads and Install the Data Package to use with the simts Package
 #' @param type A \code{string} with value \code{"ONL"} or \code{"LOCAL"}

@@ -35,7 +35,6 @@
 #' @name simts-package
 #' @docType package
 #' @useDynLib simts
-#' @import reshape2
 #' @importFrom graphics plot par grid polygon text lines box axis mtext
 #' @importFrom grDevices hcl
 #' @importFrom methods is

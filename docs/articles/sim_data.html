@@ -70,11 +70,6 @@
 <div id="simulations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simulations" class="anchor"></a>Simulations</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># SMAC data contains `hydro` and `savingrt`</span>
-<span class="kw"><a href="../reference/install_smacdata.html">install_smacdata</a></span>()</code></pre></div>
-<pre><code>## Skipping install of 'smacdata' from a github remote, the SHA1 (ef856a4f) has not changed since last install.
-##   Use `force = TRUE` to force installation</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(smacdata)</code></pre></div>
 <p>The code below shows how these model specifications can be used for simulations based on the built-in function <code><a href="../reference/gts.html">gts()</a></code> which allows to generate samples from all the example datasets.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load hydro dataset </span>
 <span class="kw">data</span>(<span class="st">"hydro"</span>)
@@ -99,13 +94,13 @@ nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">
 <p>By applying the <code>plot()</code> function on the result of <code><a href="../reference/gts.html">gts()</a></code>, we can observe a visualization of the data simulated.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot hydro simulation</span>
 <span class="kw">plot</span>(hydro)</code></pre></div>
-<p><img src="sim_data_files/figure-html/unnamed-chunk-4-1.png" width="696"></p>
+<p><img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" width="696" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot savingrt simulation</span>
 <span class="kw">plot</span>(savingrt)</code></pre></div>
-<p><img src="sim_data_files/figure-html/unnamed-chunk-4-2.png" width="696"></p>
+<p><img src="sim_data_files/figure-html/unnamed-chunk-3-2.png" width="696" style="display: block; margin: auto;"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot Nile simulation </span>
 <span class="kw">plot</span>(nile)</code></pre></div>
-<p><img src="sim_data_files/figure-html/unnamed-chunk-4-3.png" width="696"></p>
+<p><img src="sim_data_files/figure-html/unnamed-chunk-3-3.png" width="696" style="display: block; margin: auto;"></p>
 </div>
 </div>
   </div>

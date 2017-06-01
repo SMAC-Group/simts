@@ -17,7 +17,6 @@ Imports:
     methods,
     stats,
     utils, 
-    reshape2, 
     scales, 
     grDevices, 
     graphics, 

@@ -12,24 +12,27 @@ vignette: >
 library(simts)
 ```
 
-In this section we briefly list, describe and provide the syntax for the methods available for simulation purposes within the simts package. Under some minor constraints, all these models can then be combined into a specific class of linear state-space models which can be represented as a sum of underlying models. Having stated this, some of the basic models available in the `simts` package to simulate from are the following:
+In this section, we briefly list, describe, and provide code from the `simts` package that may be useful for creating simulation methods involving time-series data. Under some minor constraints, all of these models can then be combined into a specific class of linear state-space models which can be represented as a sum of underlying models. 
 
-* WN: White Noise 
+The following list includes some of the basic models available in the `simts` package.
+
+[Syntax]: [Description]
+* WN: White Noise
 * QN: Quantization Noise
-* RW: Random Walk 
+* RW: Random Walk
 * DR: Drift
-* AR(1): First-order autoregressive  
-* AR: Create an Autoregressive P 
-* MA1: First-order Moving Average 
+* AR1: First-order Autoregressive
+* AR: Create an Autoregressive P
+* MA1: First-order Moving Average
 * MA: Moving Average Q Process
 * GM: Gauss-Markov
-* QN: Quantisation Noise
-* ARMA: Autoregressive Moving Average 
-* ARIMA: Integrated Autoregressive Moving Average  
-* SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA)  
-* SARMA: Seasonal Autoregressive Moving Average 
+* QN: Quantisation Noise*
+* ARMA: Autoregressive Moving Average
+* ARIMA: Integrated Autoregressive Moving Average
+* SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA)
+* SARMA: Seasonal Autoregressive Moving Average
 
-The expressions in brackets in the above list represent the syntax used in the simts package to specify the model. The only model which may be less known is the quantization noise which is a process that is often used in engineering fields and can be described in layperson terms as being a good approximation of a rounding error. The brackets for the syntax of each model are left to specify parameter values for simulation purposes or to specify starting values for estimation purposes. 
+Quantization Noise is a lesser known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.
 
 ## Simulations
 
@@ -69,13 +72,13 @@ sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
                         sigma2 = 1.5, s = 12))
 ```
 
-The simts package therefore allows to easily simulate from a wide variety of models, includ- ing SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to de- liver many state-space (latent) models which can be represented by the sum of basic models. 
+The simts package therefore allows users to easily simulate from a wide variety of models, including SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (i.e. latent) models which can be represented as the sum of basic models.
 
-The construction of such linear state-space models is very simple with the simts package allowing it to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is to use the “+” symbol between them and, supposing that different AR1() processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k\*AR1(). So, for example, the sum of three AR(1) models, a random walk and a white noise process can be specified as: 3\*AR1()+RW()+WN(). 
+The construction of such linear state-space models is very simple with the `simts` package allowing them to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is the “+” symbol between them and, supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k\*AR1(). So, for example, the sum of three AR1 models, a random walk and a white noise process can be specified as 3\*AR1()+RW()+WN().
 
 ## Visualizations 
 
-By applying the `plot()` function on the result of `gen_gts()`, we can observe a visualization of the data simulated. 
+By applying the `plot()` function on the result of `gen_gts()`, we can observe a visualization of the simulated data!
 
 ```{r, fig.align='center', fig.height = 5, fig.width = 7.25}
 # Plot simulation of a SARIMA Model 
@@ -90,7 +93,7 @@ arma_wn_sim = gen_gts(n = n, model  = arma_wn_model)
 plot(arma_wn_sim)
 ```
 
-In addition, the function specifically provided to generate and represent these models more specifically is the `gen_lts()` which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`.
+Finally, `simts` provides a function specifically designed to generate and represent latent time series models: `gen_lts()`. This provides users the option to plot a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`.
 
 ```{r, fig.align='center', fig.height = 7, fig.width = 7.25}
 sarma_wn_model = 

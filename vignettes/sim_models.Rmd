@@ -12,15 +12,22 @@ vignette: >
 library(simts)
 ```
 
-In this section we briefly list, describe and provide the syntax for the models available for simulation purposes within the simts package. Under some minor constraints, all these models can then be combined into a specific class of linear state-space models which can be represented as a sum of underlying models. Having stated this, some of the basic models available in the `simts` package to simulate from (and to estimate) are the following:
+In this section we briefly list, describe and provide the syntax for the methods available for simulation purposes within the simts package. Under some minor constraints, all these models can then be combined into a specific class of linear state-space models which can be represented as a sum of underlying models. Having stated this, some of the basic models available in the `simts` package to simulate from are the following:
 
-* White Noise (WN())
-* Quantization Noise (QN());
-* Random Walk (RW())
-* Drift (DR())
-* AR(1): First-order autoregressive process (AR1())
-* ARIMA: Integrated Autoregressive Moving Average process (ARIMA())
-* SARIMA: Seasonal ARIMA process (SARIMA())
+* WN: White Noise 
+* QN: Quantization Noise
+* RW: Random Walk 
+* DR: Drift
+* AR(1): First-order autoregressive  
+* AR: Create an Autoregressive P 
+* MA1: First-order Moving Average 
+* MA: Moving Average Q Process
+* GM: Gauss-Markov
+* QN: Quantisation Noise
+* ARMA: Autoregressive Moving Average 
+* ARIMA: Integrated Autoregressive Moving Average  
+* SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA)  
+* SARMA: Seasonal Autoregressive Moving Average 
 
 The expressions in brackets in the above list represent the syntax used in the simts package to specify the model. The only model which may be less known is the quantization noise which is a process that is often used in engineering fields and can be described in layperson terms as being a good approximation of a rounding error. The brackets for the syntax of each model are left to specify parameter values for simulation purposes or to specify starting values for estimation purposes. 
 

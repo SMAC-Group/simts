@@ -12,7 +12,9 @@ vignette: >
 library(simts)
 ```
 
-In this section, we breifly explain how simulations can be done using Time Series Data taking in input such as a one-column *matrix*, *data.frame*, or a numeric *vector*. Having stated this, some of the basic data available from the `simts` package to simulate from (and to estimate) are the following:
+In this section, we breifly explain how to perform simulations with time series data. We will demo `simts` functionality with data that takes the form of a one-column *matrix*, *data.frame*, and numeric *vector*.
+
+The following three datasets will be used for examples. (They are already stored in the `simts` package under "data".)
 
 * [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): Hydrology data that indicates a robust approach may be preferred to a classical approach when estimating time series. Time series with frequency 12 starting at 1907 and going to 1972 for total of 781 observations.
 * [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): Personal saving as a percentage of disposable personal income (DPI), frequently referred to as "the personal saving rate," is calculated as the ratio of personal saving to DPI. GTS time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
@@ -20,22 +22,22 @@ In this section, we breifly explain how simulations can be done using Time Serie
 
 ## Simulations
 
-The code below shows how these model specifications can be used for simulations based on the built-in function `gts()` which allows to generate samples from all the example datasets. 
+The code below shows how to setup a time series oriented object with the `gts()` function. Here we taking samples from each dataset at a rate of `freq` ticks per sample.
 
 ```{r}
-# Load hydro dataset 
+# Load hydro dataset
 data("hydro")
-# Simulate based on data 
+# Simulate based on data
 hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.", 
             name_ts = "Precipitation", data_name = "Hydrology data")
 
-# Load savingrt dataset 
+# Load savingrt dataset
 data("savingrt")
-# Simulate based on data 
+# Simulate based on data
 savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
 
-# Load Nile dataset 
+# Load Nile dataset
 niles = datasets::Nile
 nile = gts(as.vector(niles), start = 1871, end = 1970, freq = 1, unit_ts = as.expression(bquote("10^8 m^3")), # not sure how to make it correct
            name_ts = "Flow", name_time = "Years", data_name = "Annual Flow of river Nile")

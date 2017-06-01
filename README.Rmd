@@ -55,7 +55,7 @@ sudo yum install curl curl-devel libxml2 libxml2-dev
 
 **All Systems**
 
-The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the latest `simts` package.
+The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use `simts` (Developmental).
 
 ```{r, eval = F}
 # Install dependencies

@@ -58,20 +58,20 @@
     
     
 <div class="contents">
-<p>In this section, we breifly explain how to perform simulations with time series data. We will demo <code>simts</code> functionality with data that takes the form of a one-column <em>matrix</em>, <em>data.frame</em>, and numeric <em>vector</em>.</p>
-<p>The following three datasets will be used for examples. (They are already stored in the <code>simts</code> package under “data”.)</p>
+<p>In this section, we will breifly explain demo <code>simts</code> functionality by performing simulations with time series data. In the examples shown here, time series data may take the form of either a one-column <code>matrix</code>, <code>data.frame</code>, or numeric <code>vector</code>.</p>
+<p>The following three datasets stored in <code>simts</code> will be used as examples.</p>
 <ul>
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html">hydro</a>: Hydrology data that indicates a robust approach may be preferred to a classical approach when estimating time series. Time series with frequency 12 starting at 1907 and going to 1972 for total of 781 observations.</li>
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html">savingrt</a>: Personal saving as a percentage of disposable personal income (DPI), frequently referred to as “the personal saving rate,” is calculated as the ratio of personal saving to DPI. GTS time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.</li>
 <li>
-<a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html">Nile</a>: Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in 10^8 m^3, “with apparent changepoint near 1898” (Cobb(1978), Table 1, p.249).</li>
+<a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html">Nile</a>: Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span>, “with apparent changepoint near 1898” (Cobb, 1978, Table 1, p.249).</li>
 </ul>
 <div id="simulations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simulations" class="anchor"></a>Simulations</h2>
-<p>The code below shows how to setup a time series oriented object with the <code><a href="../reference/gts.html">gts()</a></code> function. Here we taking samples from each dataset at a rate of <code>freq</code> ticks per sample.</p>
+<p>The code below shows how to setup a time series oriented object with the <code><a href="../reference/gts.html">gts()</a></code> function. Here we take samples from each dataset at a rate of <code>freq</code> ticks per sample.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load hydro dataset</span>
 <span class="kw">data</span>(<span class="st">"hydro"</span>)
 <span class="co"># Simulate based on data</span>
@@ -92,7 +92,7 @@ nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">
 <div id="visualizations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizations" class="anchor"></a>Visualizations</h2>
-<p>By applying the <code>plot()</code> function on the result of <code><a href="../reference/gts.html">gts()</a></code>, we can observe a visualization of the data simulated.</p>
+<p>By applying the <code>plot()</code> on the result of a <code><a href="../reference/gts.html">gts()</a></code> simulation, we can observe a visualization of the data simulated.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot hydro simulation</span>
 <span class="kw">plot</span>(hydro)</code></pre></div>
 <p><img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" width="696" style="display: block; margin: auto;"></p>

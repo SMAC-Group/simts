@@ -36,9 +36,7 @@
 #' x = gen_gts(50, WN(sigma2 = 1))
 #' x = gts(x, freq = 100, unit_time = 'sec')
 #' plot(x)
-gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, 
-               unit_time = NULL, name_ts = NULL, name_time = NULL,
-               data_name = NULL){
+gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL){
   
   # 1. requirement for 'data'
   # Force data.frame to matrix  

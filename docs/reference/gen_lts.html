@@ -86,8 +86,8 @@
     <p>Create a <code>lts</code> object based on a supplied time series model.</p>
     
 
-    <pre class="usage"><span class='fu'>gen_lts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>process</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>gen_lts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>unit_ts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name_ts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>name_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>process</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -113,12 +113,20 @@
       <td><p>A <code>numeric</code> that provides the rate of samples. Default value is 1.</p></td>
     </tr>
     <tr>
-      <th>unit</th>
-      <td><p>A <code>string</code> that contains the unit expression of the frequency. Default value is <code>NULL</code>.</p></td>
+      <th>unit_ts</th>
+      <td><p>A <code>string</code> that contains the unit expression of the time series. Default value is <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>A <code>string</code> that provides an identifier to the data. Default value is <code>NULL</code>.</p></td>
+      <th>unit_time</th>
+      <td><p>A <code>string</code> that contains the unit expression of the time. Default value is <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>name_ts</th>
+      <td><p>A <code>string</code> that provides an identifier for the time series data. Default value is <code>NULL</code>.</p></td>
+    </tr>
+    <tr>
+      <th>name_time</th>
+      <td><p>A <code>string</code> that provides an identifier for the time. Default value is <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>process</th>
@@ -164,7 +172,7 @@
 
     <h2>Author</h2>
     
-James Balamuta and Wenchao Yang
+James Balamuta, Wenchao Yang, and Justin Lee
 
   </div>
 </div>

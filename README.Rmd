@@ -37,7 +37,7 @@ For users who are interested in having the latest developments, this option is i
 
 *The setup to obtain the development version of `simts` is platform dependent.*
 
-#### Requirements and Dependencies
+### Requirements and Dependencies
 
 **OS X**
 
@@ -71,5 +71,3 @@ install.packages(c("RcppArmadillo","devtools","knitr","rmarkdown"))
 devtools::install_github("SMAC-Group/simts")
 ```
 
-
-Please report any bugs to contact@smac-group.com

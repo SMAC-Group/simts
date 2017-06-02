@@ -98,9 +98,9 @@
 </li>
 </ul>
 <p>Quantization Noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
-<div id="simulations-and-visualizations" class="section level2">
+<div id="generate-simulations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#simulations-and-visualizations" class="anchor"></a>Simulations and Visualizations</h2>
+<a href="#generate-simulations" class="anchor"></a>Generate Simulations</h2>
 <p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from these model specifications.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set seed for reproducibility</span>
 <span class="kw">set.seed</span>(<span class="dv">1337</span>)
@@ -136,6 +136,10 @@ arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen
 <span class="co"># Plot simulation of ARMA(2,1) + WN()</span>
 <span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
 <p><img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" width="696" style="display: block; margin: auto;"></p>
+</div>
+<div id="latent-time-series" class="section level2">
+<h2 class="hasAnchor">
+<a href="#latent-time-series" class="anchor"></a>Latent Time Series</h2>
 <p><code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a SARMA() + WN(2) </span>
 sarma_wn_model =<span class="st"> </span>
@@ -154,7 +158,8 @@ sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/ge
         <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#simulations-and-visualizations">Simulations and Visualizations</a></li>
+<li><a href="#generate-simulations">Generate Simulations</a></li>
+      <li><a href="#latent-time-series">Latent Time Series</a></li>
       </ul>
 </div>
       </div>

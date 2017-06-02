@@ -25,7 +25,8 @@ Imports:
     graphics
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown
 VignetteBuilder: knitr
 URL: https://github.com/SMAC-Group/simts

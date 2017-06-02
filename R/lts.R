@@ -249,6 +249,7 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
 #' @param couleur         A \code{string} that gives a color for the line. 
 #' @param ...             additional arguments affecting the plot produced.
 #' @return A plot containing the graph of the latent time series.
+#' @author Stephane Gurrier and Justin Lee
 plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ...){
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')

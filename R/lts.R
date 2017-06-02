@@ -21,19 +21,13 @@
 #' @param start A \code{numeric} that provides the time of the first observation.
 #' @param end A \code{numeric} that provides the time of the last observation.
 #' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.
-#' @param name A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
+#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
+#' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
 #' @param process A \code{vector} that contains model names of decomposed and combined processes.
-#' @return A \code{lts} object with the following attributes:
-#' \describe{
-#'   \item{start}{The time of the first observation}
-#'   \item{end}{The time of the last observation}
-#'   \item{freq}{Numeric representation of frequency}
-#'   \item{unit}{String representation of the unit}
-#'   \item{name}{Name of the dataset}
-#'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
-#' }
-#' @author Wenchao Yang
+#' @return A \code{lts} object
+#' @author Wenchao Yang and Justin Lee
 #' @export
 #' @examples
 #' model1 = AR1(phi = .99, sigma2 = 1) 
@@ -41,9 +35,9 @@
 #' col1 = gen_gts(1000, model1)
 #' col2 = gen_gts(1000, model2)
 #' testMat = cbind(col1, col2, col1+col2)
-#' testLts = lts(testMat, unit = 'sec', process = c('AR1', 'WN', 'AR1+WN'))
+#' testLts = lts(testMat, unit_time = 'sec', process = c('AR1', 'WN', 'AR1+WN'))
 #' plot(testLts)
-lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, process = NULL){
+lts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL){
   # 1. requirment for 'data'
   if(!is(data,'matrix') && !is(data,'data.frame')){
     stop("'data' must be a matrix or data frame.")
@@ -112,8 +106,10 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
                   start = start, 
                   end = end, # start and end will not be null now
                   freq = freq,
-                  unit = unit,
-                  name = name, 
+                  unit_ts = unit_ts, 
+                  unit_time = unit_time,
+                  name_ts = name_ts,
+                  name_time = name_time,
                   process = process,
                   class = c("lts","matrix"))
   
@@ -128,8 +124,10 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #' @param start A \code{numeric} that provides the time of the first observation.
 #' @param end A \code{numeric} that provides the time of the last observation.
 #' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.
-#' @param name A \code{string} that provides an identifier to the data. Default value is \code{NULL}.
+#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
+#' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
 #' @param process A \code{vector} that contains model names of decomposed and combined processes.
 #' @return A \code{lts} object with the following attributes:
 #' \describe{
@@ -140,7 +138,7 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #'   \item{name}{Name of the dataset}
 #'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 #' }
-#' @author James Balamuta and Wenchao Yang
+#' @author James Balamuta, Wenchao Yang, and Justin Lee
 #' @export
 #' @details
 #' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
@@ -150,7 +148,7 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #' model = AR1(phi = .99, sigma2 = 1) + WN(sigma2 = 1)
 #' test = gen_lts(1000, model)
 #' plot(test)
-gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_time = NULL, name = NULL, process = NULL){
+gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL){
   
   # 1. Do we have a valid model?
   if(!(is(model, "ts.model") || is(model, "simts"))){

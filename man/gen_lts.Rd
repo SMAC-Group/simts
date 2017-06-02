@@ -4,8 +4,8 @@
 \alias{gen_lts}
 \title{Generate Latent Time Series Object Based on Model}
 \usage{
-gen_lts(n, model, start = 0, end = NULL, freq = 1, unit = NULL,
-  name = NULL, process = NULL)
+gen_lts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
+  unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL)
 }
 \arguments{
 \item{n}{An \code{interger} indicating the amount of observations generated in this function.}
@@ -18,9 +18,13 @@ gen_lts(n, model, start = 0, end = NULL, freq = 1, unit = NULL,
 
 \item{freq}{A \code{numeric} that provides the rate of samples. Default value is 1.}
 
-\item{unit}{A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.}
+\item{unit_ts}{A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.}
 
-\item{name}{A \code{string} that provides an identifier to the data. Default value is \code{NULL}.}
+\item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
+
+\item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
+
+\item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 
 \item{process}{A \code{vector} that contains model names of decomposed and combined processes.}
 }
@@ -49,5 +53,5 @@ test = gen_lts(1000, model)
 plot(test)
 }
 \author{
-James Balamuta and Wenchao Yang
+James Balamuta, Wenchao Yang, and Justin Lee
 }

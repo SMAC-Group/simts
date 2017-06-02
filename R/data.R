@@ -20,14 +20,6 @@
 #' For further details, see \url{https://fred.stlouisfed.org/series/PSAVERT}
 "savingrt"
 
-#' nile
-#' 
-#' Measurements of the annual flow of the river Nile at Aswan (formerly Assuan)
-#' 
-#' @format Time Series of length 100
-#' 
-#' For further details, see \url{https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html}
-"nile"
 
 #' @details The data sets in this package may change at a moments notice.
 "_PACKAGE"

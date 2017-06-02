@@ -5,7 +5,7 @@
 \alias{simts}
 \alias{simts-package}
 \alias{simts-package}
-\title{simts: Simulate Various Time Series}
+\title{simts: Time Series Simulation}
 \description{
 Generates various time series objects for use in other packages.
 
@@ -21,6 +21,14 @@ Version: \tab 1.0\cr
 Date: \tab 2017-05-28\cr
 License: \tab GPL\cr
 }
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/SMAC-Group/simts}
+  \item Report bugs at \url{https://github.com/SMAC-Group/simts/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Justin Lee \email{munsheet93@gmail.com}

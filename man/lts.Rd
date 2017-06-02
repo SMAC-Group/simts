@@ -4,8 +4,8 @@
 \alias{lts}
 \title{Generate Latent Time Series Object Based on Data}
 \usage{
-lts(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL,
-  process = NULL)
+lts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
+  unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL)
 }
 \arguments{
 \item{data}{A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 2 columns. The last column must equal to the sum of all previous columns.}
@@ -16,22 +16,18 @@ lts(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL,
 
 \item{freq}{A \code{numeric} that provides the rate of samples. Default value is 1.}
 
-\item{unit}{A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.}
+\item{unit_ts}{A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.}
 
-\item{name}{A \code{string} that provides an identifier to the data. Default value is \code{NULL}.}
+\item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
+
+\item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
+
+\item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 
 \item{process}{A \code{vector} that contains model names of decomposed and combined processes.}
 }
 \value{
-A \code{lts} object with the following attributes:
-\describe{
-  \item{start}{The time of the first observation}
-  \item{end}{The time of the last observation}
-  \item{freq}{Numeric representation of frequency}
-  \item{unit}{String representation of the unit}
-  \item{name}{Name of the dataset}
-  \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
-}
+A \code{lts} object
 }
 \description{
 Create a \code{lts} object based on a supplied matrix or data frame.
@@ -42,9 +38,9 @@ model2 = WN(sigma2 = 1)
 col1 = gen_gts(1000, model1)
 col2 = gen_gts(1000, model2)
 testMat = cbind(col1, col2, col1+col2)
-testLts = lts(testMat, unit = 'sec', process = c('AR1', 'WN', 'AR1+WN'))
+testLts = lts(testMat, unit_time = 'sec', process = c('AR1', 'WN', 'AR1+WN'))
 plot(testLts)
 }
 \author{
-Wenchao Yang
+Wenchao Yang and Justin Lee
 }

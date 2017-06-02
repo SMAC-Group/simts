@@ -27,7 +27,7 @@ gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 \item{data_name}{A \code{string} that contains the name of data.}
 }
 \value{
-A \code{gts} object with the following attributes:
+A \code{gts} object
 }
 \description{
 Setups a time series oriented object that works well with graphing and summary utilities

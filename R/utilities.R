@@ -41,6 +41,7 @@ conv.gm.to.ar1 = function(theta, process.desc, freq){
 
 #' @title Print simts Objects
 #' @keywords internal
+#' @method print imu
 #' @description 
 #' Pretty formatting for \code{gts}, \code{imu}, and \code{lts} objects.
 #' @param x         A \code{gts}, \code{imu}, \code{lts} object.
@@ -69,6 +70,7 @@ print.imu = function(x,
 }
 
 #' @rdname print_data
+#' @method print lts
 #' @export
 print.lts = function(x,
                      obs = 10L,
@@ -78,6 +80,7 @@ print.lts = function(x,
 }
 
 #' @rdname print_data
+#' @method print gts
 #' @export
 print.gts = function(x,
                      obs = 10L,

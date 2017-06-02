@@ -42,5 +42,4 @@
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats arima predict ts as.ts is.ts qnorm
 #' @importFrom scales trans_breaks trans_format math_format
-#' @exportPattern ^[[:alpha:]]+
 NULL

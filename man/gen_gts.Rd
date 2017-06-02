@@ -27,7 +27,7 @@ gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 \item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 }
 \value{
-A \code{gts} object with the following attributes:
+A \code{gts} object
 }
 \description{
 Create a \code{gts} object based on a supplied time series model.

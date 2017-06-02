@@ -25,7 +25,8 @@
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @return A \code{gts} object with the following attributes:
+#' @return A \code{gts} object
+#' @export
 #' @author James Balamuta and Wenchao Yang
 #' @examples
 #' m = data.frame(rnorm(50))
@@ -118,7 +119,8 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @return A \code{gts} object with the following attributes:
+#' @return A \code{gts} object
+#' @export
 #' @author James Balamuta and Wenchao Yang
 #' @details
 #' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.

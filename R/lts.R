@@ -34,6 +34,7 @@
 #'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 #' }
 #' @author Wenchao Yang
+#' @export
 #' @examples
 #' model1 = AR1(phi = .99, sigma2 = 1) 
 #' model2 = WN(sigma2 = 1)
@@ -109,7 +110,7 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
   
   out = structure(.Data = data, 
                   start = start, 
-                  end= end, # start and end will not be null now
+                  end = end, # start and end will not be null now
                   freq = freq,
                   unit = unit,
                   name = name, 
@@ -140,6 +141,7 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 #' }
 #' @author James Balamuta and Wenchao Yang
+#' @export
 #' @details
 #' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
 #' @examples
@@ -293,8 +295,10 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
     name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")
   }
   
-  
-  title_x = c(strsplit(print," [+] ")[[1]], print)
+  if (!is.null(print)){
+    title_x = c(strsplit(print," [+] ")[[1]], print)
+  }
+
   if (is.null(main)){
     main = title_x
   }else{

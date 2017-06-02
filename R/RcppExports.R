@@ -580,7 +580,6 @@ sarma_params_construct <- function(ar, ma, sar, sma) {
 #' \item{q}{Total number of theta terms}
 #' }
 #' @keywords internal
-#' @export
 sarma_components <- function(objdesc) {
     .Call('simts_sarma_components', PACKAGE = 'simts', objdesc)
 }

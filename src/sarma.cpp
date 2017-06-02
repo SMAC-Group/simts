@@ -106,7 +106,6 @@ arma::vec sarma_params_construct(const arma::vec& ar, const arma::vec& ma,
 //' \item{q}{Total number of theta terms}
 //' }
 //' @keywords internal
-//' @export
 // [[Rcpp::export]]
 arma::vec sarma_components(const arma::vec& objdesc){
   // Number of ARMA(p,q) parameters

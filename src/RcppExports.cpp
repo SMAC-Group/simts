@@ -6,44 +6,6 @@
 
 using namespace Rcpp;
 
-// sort_mat
-arma::mat sort_mat(arma::mat x, unsigned int col);
-RcppExport SEXP simts_sort_mat(SEXP xSEXP, SEXP colSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type col(colSEXP);
-    rcpp_result_gen = Rcpp::wrap(sort_mat(x, col));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rev_col_subset
-arma::mat rev_col_subset(arma::mat x, unsigned int start, unsigned int end);
-RcppExport SEXP simts_rev_col_subset(SEXP xSEXP, SEXP startSEXP, SEXP endSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type start(startSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type end(endSEXP);
-    rcpp_result_gen = Rcpp::wrap(rev_col_subset(x, start, end));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rev_row_subset
-arma::mat rev_row_subset(arma::mat x, unsigned int start, unsigned int end);
-RcppExport SEXP simts_rev_row_subset(SEXP xSEXP, SEXP startSEXP, SEXP endSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type x(xSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type start(startSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type end(endSEXP);
-    rcpp_result_gen = Rcpp::wrap(rev_row_subset(x, start, end));
-    return rcpp_result_gen;
-END_RCPP
-}
 // reverse_vec
 arma::vec reverse_vec(arma::vec x);
 RcppExport SEXP simts_reverse_vec(SEXP xSEXP) {
@@ -52,39 +14,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(reverse_vec(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// field_to_matrix
-arma::mat field_to_matrix(arma::field<arma::vec> x);
-RcppExport SEXP simts_field_to_matrix(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::field<arma::vec> >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(field_to_matrix(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// sum_field_vec
-double sum_field_vec(const arma::field<arma::vec>& x);
-RcppExport SEXP simts_sum_field_vec(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::field<arma::vec>& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(sum_field_vec(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// Mod_squared_cpp
-arma::vec Mod_squared_cpp(const arma::cx_vec& x);
-RcppExport SEXP simts_Mod_squared_cpp(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::cx_vec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(Mod_squared_cpp(x));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -333,41 +262,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// seq_cpp
-arma::vec seq_cpp(int a, int b);
-RcppExport SEXP simts_seq_cpp(SEXP aSEXP, SEXP bSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type a(aSEXP);
-    Rcpp::traits::input_parameter< int >::type b(bSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_cpp(a, b));
-    return rcpp_result_gen;
-END_RCPP
-}
-// seq_len_cpp
-arma::vec seq_len_cpp(unsigned int n);
-RcppExport SEXP simts_seq_len_cpp(SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< unsigned int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(seq_len_cpp(n));
-    return rcpp_result_gen;
-END_RCPP
-}
-// quantile_cpp
-arma::vec quantile_cpp(arma::vec x, const arma::vec& probs);
-RcppExport SEXP simts_quantile_cpp(SEXP xSEXP, SEXP probsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type probs(probsSEXP);
-    rcpp_result_gen = Rcpp::wrap(quantile_cpp(x, probs));
-    return rcpp_result_gen;
-END_RCPP
-}
 // diff_cpp
 arma::vec diff_cpp(arma::vec x, unsigned int lag, unsigned int differences);
 RcppExport SEXP simts_diff_cpp(SEXP xSEXP, SEXP lagSEXP, SEXP differencesSEXP) {
@@ -378,19 +272,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< unsigned int >::type lag(lagSEXP);
     Rcpp::traits::input_parameter< unsigned int >::type differences(differencesSEXP);
     rcpp_result_gen = Rcpp::wrap(diff_cpp(x, lag, differences));
-    return rcpp_result_gen;
-END_RCPP
-}
-// ARMAtoMA_cpp
-arma::vec ARMAtoMA_cpp(arma::vec ar, arma::vec ma, int lag_max);
-RcppExport SEXP simts_ARMAtoMA_cpp(SEXP arSEXP, SEXP maSEXP, SEXP lag_maxSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type ar(arSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type ma(maSEXP);
-    Rcpp::traits::input_parameter< int >::type lag_max(lag_maxSEXP);
-    rcpp_result_gen = Rcpp::wrap(ARMAtoMA_cpp(ar, ma, lag_max));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -429,18 +310,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(mean_diff(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// num_rep
-arma::vec num_rep(const arma::vec& x, unsigned int n);
-RcppExport SEXP simts_num_rep(SEXP xSEXP, SEXP nSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
-    Rcpp::traits::input_parameter< unsigned int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(num_rep(x, n));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -484,23 +353,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// sarma_objdesc
-arma::vec sarma_objdesc(const arma::vec& ar, const arma::vec& ma, const arma::vec& sar, const arma::vec& sma, int s, int i, int si);
-RcppExport SEXP simts_sarma_objdesc(SEXP arSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP smaSEXP, SEXP sSEXP, SEXP iSEXP, SEXP siSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type ar(arSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type ma(maSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type sar(sarSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type sma(smaSEXP);
-    Rcpp::traits::input_parameter< int >::type s(sSEXP);
-    Rcpp::traits::input_parameter< int >::type i(iSEXP);
-    Rcpp::traits::input_parameter< int >::type si(siSEXP);
-    rcpp_result_gen = Rcpp::wrap(sarma_objdesc(ar, ma, sar, sma, s, i, si));
-    return rcpp_result_gen;
-END_RCPP
-}
 // sarma_calculate_spadding
 arma::vec sarma_calculate_spadding(unsigned int np, unsigned int nq, unsigned int nsp, unsigned int nsq, unsigned int ns);
 RcppExport SEXP simts_sarma_calculate_spadding(SEXP npSEXP, SEXP nqSEXP, SEXP nspSEXP, SEXP nsqSEXP, SEXP nsSEXP) {
@@ -513,17 +365,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< unsigned int >::type nsq(nsqSEXP);
     Rcpp::traits::input_parameter< unsigned int >::type ns(nsSEXP);
     rcpp_result_gen = Rcpp::wrap(sarma_calculate_spadding(np, nq, nsp, nsq, ns));
-    return rcpp_result_gen;
-END_RCPP
-}
-// sarma_components
-arma::vec sarma_components(const arma::vec& objdesc);
-RcppExport SEXP simts_sarma_components(SEXP objdescSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type objdesc(objdescSEXP);
-    rcpp_result_gen = Rcpp::wrap(sarma_components(objdesc));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -582,17 +423,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// invert_check
-bool invert_check(const arma::vec& x);
-RcppExport SEXP simts_invert_check(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::vec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(invert_check(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // count_models
 std::map<std::string, int> count_models(const std::vector<std::string>& desc);
 RcppExport SEXP simts_count_models(SEXP descSEXP) {
@@ -601,19 +431,6 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::vector<std::string>& >::type desc(descSEXP);
     rcpp_result_gen = Rcpp::wrap(count_models(desc));
-    return rcpp_result_gen;
-END_RCPP
-}
-// order_AR1s
-arma::vec order_AR1s(arma::vec theta, const std::vector<std::string>& desc, const arma::field<arma::vec> objdesc);
-RcppExport SEXP simts_order_AR1s(SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type theta(thetaSEXP);
-    Rcpp::traits::input_parameter< const std::vector<std::string>& >::type desc(descSEXP);
-    Rcpp::traits::input_parameter< const arma::field<arma::vec> >::type objdesc(objdescSEXP);
-    rcpp_result_gen = Rcpp::wrap(order_AR1s(theta, desc, objdesc));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -676,13 +493,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"simts_sort_mat", (DL_FUNC) &simts_sort_mat, 2},
-    {"simts_rev_col_subset", (DL_FUNC) &simts_rev_col_subset, 3},
-    {"simts_rev_row_subset", (DL_FUNC) &simts_rev_row_subset, 3},
     {"simts_reverse_vec", (DL_FUNC) &simts_reverse_vec, 1},
-    {"simts_field_to_matrix", (DL_FUNC) &simts_field_to_matrix, 1},
-    {"simts_sum_field_vec", (DL_FUNC) &simts_sum_field_vec, 1},
-    {"simts_Mod_squared_cpp", (DL_FUNC) &simts_Mod_squared_cpp, 1},
     {"simts_Mod_cpp", (DL_FUNC) &simts_Mod_cpp, 1},
     {"simts_gen_wn", (DL_FUNC) &simts_gen_wn, 2},
     {"simts_gen_dr", (DL_FUNC) &simts_gen_dr, 2},
@@ -701,28 +512,19 @@ static const R_CallMethodDef CallEntries[] = {
     {"simts_do_polyroot_arma", (DL_FUNC) &simts_do_polyroot_arma, 1},
     {"simts_do_polyroot_cpp", (DL_FUNC) &simts_do_polyroot_cpp, 1},
     {"simts_read_imu", (DL_FUNC) &simts_read_imu, 2},
-    {"simts_seq_cpp", (DL_FUNC) &simts_seq_cpp, 2},
-    {"simts_seq_len_cpp", (DL_FUNC) &simts_seq_len_cpp, 1},
-    {"simts_quantile_cpp", (DL_FUNC) &simts_quantile_cpp, 2},
     {"simts_diff_cpp", (DL_FUNC) &simts_diff_cpp, 3},
-    {"simts_ARMAtoMA_cpp", (DL_FUNC) &simts_ARMAtoMA_cpp, 3},
     {"simts_cfilter", (DL_FUNC) &simts_cfilter, 4},
     {"simts_rfilter", (DL_FUNC) &simts_rfilter, 3},
     {"simts_mean_diff", (DL_FUNC) &simts_mean_diff, 1},
-    {"simts_num_rep", (DL_FUNC) &simts_num_rep, 2},
     {"simts_intgr_vec", (DL_FUNC) &simts_intgr_vec, 3},
     {"simts_diff_inv_values", (DL_FUNC) &simts_diff_inv_values, 4},
     {"simts_diff_inv", (DL_FUNC) &simts_diff_inv, 3},
-    {"simts_sarma_objdesc", (DL_FUNC) &simts_sarma_objdesc, 7},
     {"simts_sarma_calculate_spadding", (DL_FUNC) &simts_sarma_calculate_spadding, 5},
-    {"simts_sarma_components", (DL_FUNC) &simts_sarma_components, 1},
     {"simts_sarma_params_construct", (DL_FUNC) &simts_sarma_params_construct, 4},
     {"simts_sarma_expand_unguided", (DL_FUNC) &simts_sarma_expand_unguided, 8},
     {"simts_sarma_expand", (DL_FUNC) &simts_sarma_expand, 2},
     {"simts_minroot", (DL_FUNC) &simts_minroot, 1},
-    {"simts_invert_check", (DL_FUNC) &simts_invert_check, 1},
     {"simts_count_models", (DL_FUNC) &simts_count_models, 1},
-    {"simts_order_AR1s", (DL_FUNC) &simts_order_AR1s, 3},
     {"simts_ar1_to_gm", (DL_FUNC) &simts_ar1_to_gm, 2},
     {"simts_gm_to_ar1", (DL_FUNC) &simts_gm_to_ar1, 2},
     {"simts_model_objdesc", (DL_FUNC) &simts_model_objdesc, 1},

@@ -20,54 +20,6 @@
 #include <RcppArmadillo.h>
 #include "sarma.h"
 
-
-//' Create the ts.model obj.desc given split values
-//' 
-//' Computes the total phi and total theta vector length.
-//' @param ar  A \code{vec} containing the non-seasonal phi parameters.
-//' @param ma  A \code{vec} containing the non-seasonal theta parameters.
-//' @param sar A \code{vec} containing the seasonal phi parameters.
-//' @param sma A \code{vec} containing the seasonal theta parameters.
-//' @param s   An \code{unsigned integer} containing the frequency of seasonality.
-//' @param i   An \code{unsigned integer} containing the number of non-seasonal differences.
-//' @param si  An \code{unsigned integer} containing the number of seasonal differences.
-//' @return A \code{vec} with rows:
-//' \describe{
-//' \item{np}{Number of Non-Seasonal AR Terms}
-//' \item{nq}{Number of Non-Seasonal MA Terms}
-//' \item{nsp}{Number of Seasonal AR Terms}
-//' \item{nsq}{Number of Seasonal MA Terms}
-//' \item{nsigma}{Number of Variances (always 1)}
-//' \item{s}{Season Value}
-//' \item{i}{Number of non-seasonal differences}
-//' \item{si}{Number of Seasonal Differences}
-//' }
-// [[Rcpp::export]]
-arma::vec sarma_objdesc(const arma::vec& ar, const arma::vec& ma,
-                        const arma::vec& sar, const arma::vec& sma,
-                        int s, int i, int si){
-  
-  // Number of ARMA(p,q) parameters
-  unsigned int np = ar.n_elem, nq = ma.n_elem;
-  
-  // Number of Seasonal (P,Q)
-  unsigned int nsp = sar.n_elem, nsq = sma.n_elem;
-  
-  arma::vec objdesc(8);
-  
-  // p, q, P, Q, 1, s, i, si
-  objdesc(0) = np;
-  objdesc(1) = nq;
-  objdesc(2) = nsp;
-  objdesc(3) = nsq;
-  objdesc(4) = 1;
-  objdesc(5) = s;
-  objdesc(6) = i;
-  objdesc(7) = si;
-  
-  return objdesc;
-}
-
 //' Calculates Length of Seasonal Padding
 //' 
 //' Computes the total phi and total theta vector length.
@@ -94,40 +46,6 @@ arma::vec sarma_calculate_spadding(unsigned int np, unsigned int nq,
   o(0) = np + ns * nsp;
   o(1) = nq + ns * nsq;
     
-  return o;
-}
-
-//' Determine parameter expansion based upon objdesc
-//' 
-//' Calculates the necessary vec space needed to pad the vectors
-//' for seasonal terms. 
-//' @param objdesc A \code{vec} with the appropriate sarima object description
-//' @return A \code{vec} with the structure:
-//' \describe{
-//' \item{np}{Number of Non-Seasonal AR Terms}
-//' \item{nq}{Number of Non-Seasonal MA Terms}
-//' \item{nsp}{Number of Seasonal AR Terms}
-//' \item{nsq}{Number of Seasonal MA Terms}
-//' \item{ns}{Number of Seasons (e.g. 12 is year)}
-//' \item{p}{Total number of phi terms}
-//' \item{q}{Total number of theta terms}
-//' }
-//' @keywords internal
-// [[Rcpp::export]]
-arma::vec sarma_components(const arma::vec& objdesc){
-  // Number of ARMA(p,q) parameters
-  unsigned int np = objdesc(0), nq = objdesc(1);
-  
-  // Number of Seasonal (P,Q) and Number of Seasons (ns)
-  unsigned int nsp = objdesc(2), nsq = objdesc(3), ns = objdesc(5);
-  
-  // Find the total number of parameters to expand
-  arma::vec nparams = sarma_calculate_spadding(np, nq, nsp, nsq, ns);
-
-  // Create an output vector
-  arma::vec o(7);
-  o(0) = np, o(1) = nq, o(2) = nsp, o(3) = nsq, o(4) = ns, o(5) = nparams(0), o(6) = nparams(1);
-  
   return o;
 }
 

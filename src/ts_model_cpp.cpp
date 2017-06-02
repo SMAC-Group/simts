@@ -41,6 +41,7 @@
 //' @author James Balamuta
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
+//' @export
 //' @examples
 //' ar1_to_gm(c(0.3,1,0.6,.3), 2)
 // [[Rcpp::export]]
@@ -76,6 +77,7 @@ arma::vec ar1_to_gm(arma::vec theta, double freq){
 //' \eqn{{\sigma ^2} = \sigma _{gm}^2\left( {1 - \exp \left( { - 2\beta \Delta t} \right)} \right)}{sigma^2 = sigma^2[gm]*(1-exp(-2*beta*delta[t]))}
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
+//' @export
 //' @examples
 //' gm_to_ar1(c(0.3,1,0.6,.3), 2)
 // [[Rcpp::export]]
@@ -107,6 +109,7 @@ arma::vec gm_to_ar1(arma::vec theta, double freq){
 //' That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
 //' There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
 //' @keywords internal
+//' @export
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
 // [[Rcpp::export]]
@@ -142,6 +145,7 @@ arma::field<arma::vec> model_objdesc(std::vector<std::string> desc){
 //' That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
 //' There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
 //' @keywords internal
+//' @export
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
 // [[Rcpp::export]]
@@ -172,6 +176,7 @@ arma::vec model_theta(std::vector<std::string> desc){
 //' That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
 //' There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
 //' @keywords internal
+//' @export
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
 // [[Rcpp::export]]

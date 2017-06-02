@@ -34,7 +34,6 @@ reference:
     - imu
     - outf
     - read.imu
-    - sarma_objdesc
     - simplified_print_SARIMA
     - value
     - desc.to.ts.model

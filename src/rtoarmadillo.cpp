@@ -24,80 +24,6 @@
 
 
 
-
-//' @title Generate a sequence of values
-//' @description Creates a vector containing a sequence of values starting at the initial point and going to the terminal point.
-//' @param a An \code{int}, that denotes the starting point.
-//' @param b An \code{int}, that denotes the ending point.
-//' @return A \code{vector} containing values moving from a to b. There are no restrictions on A's range.
-//' @author James J Balamuta
-//' @keywords internal
-//' @examples
-//' #Call with the following data:
-//' seq_cpp(3, 5)
-//' seq_cpp(5, 3)
-// [[Rcpp::export]]
-arma::vec seq_cpp(int a, int b){
-  int d = abs(b-a)+1;
-  
-  int inc = ( a < b ? 1 : -1 );
-  arma::vec s(d);
-  
-  s.fill(inc);
-  s(0) = a;
-
-  return cumsum(s);
-}
-
-//' @title Generate a sequence of values based on supplied number
-//' @description Creates a vector containing a sequence of values starting at 1 and going to the terminal point.
-//' @param n An \code{int} that denotes the length of the vector.
-//' @return A \code{vector} containing values moving from 1 to n.
-//' @author James J Balamuta
-//' @keywords internal
-//' @examples 
-//' #Call with the following data:
-//' seq_len_cpp(5)
-// [[Rcpp::export]]
-arma::vec seq_len_cpp(unsigned int n){
-  arma::vec seq = arma::ones<arma::vec>(n);
-  return cumsum(seq);
-}
-
-
-//' @title Find Quantiles
-//' @description Attempts to find quantiles
-//' @param x A \code{vec} of data
-//' @param probs A \code{vec} of the quantiles to find.
-//' @return A \code{vector} containing the quantiles
-//' @author James J Balamuta
-//' @keywords internal
-//' @examples 
-//' #Call with the following data:
-//' quantile_cpp(c(1,2,3,4,5,6,7), c(.25,.5,.75))
-//' quantile(c(1,2,3,4,5,6,7), c(.25,.5,.75))
-// [[Rcpp::export]]
-arma::vec quantile_cpp(arma::vec x, const arma::vec& probs) {
-  
-  unsigned int n = x.n_elem;
-  
-  arma::uvec index = arma::conv_to<arma::uvec>::from( (n - 1) * probs);
-  arma::uvec lo = floor(index);
-  arma::uvec hi = ceil(index);
-  
-  // bad for sorting large data. need partial sort.
-  x = sort(x);
-  
-  arma::vec qs = x(lo);
-  arma::uvec i = index > lo;
-  arma::uvec h = (index - lo);
-  h = h.elem(i);
-  qs.elem(i) = (1 - h) % qs.elem(i) + h % x.elem(hi.elem(i));
-  
-  return qs;
-}
-
-
 //' @title Lagged Differences in Armadillo
 //' @description Returns the ith difference of a time series of rth lag.
 //' @param x A \code{vec} that is the time series
@@ -106,6 +32,7 @@ arma::vec quantile_cpp(arma::vec x, const arma::vec& probs) {
 //' @return A \code{vector} containing the differenced time series.
 //' @author James Balamuta
 //' @keywords internal
+//' @export
 //' @examples
 //' x = rnorm(10, 0, 1)
 //' diff_cpp(x,1,1)
@@ -124,45 +51,6 @@ arma::vec diff_cpp(arma::vec x, unsigned int lag, unsigned int differences){
   return x;
 }
 
-//' @title Converting an ARMA Process to an Infinite MA Process
-//' @description Takes an ARMA function and converts it to an infinite MA process.
-//' @param ar A \code{column vector} of length p
-//' @param ma A \code{column vector} of length q
-//' @param lag_max A \code{int} of the largest MA(Inf) coefficient required.
-//' @return A \code{column vector} containing coefficients
-//' @details This function is a port of the base stats package's ARMAtoMA. There is no significant speed difference between the two.
-//' @author R Core Team and James Balamuta
-//' @keywords internal
-//' @examples
-//' # ARMA(2,1)
-//' ARMAtoMA_cpp(c(1.0, -0.25), 1.0, 10)
-//' # ARMA(0,1)
-//' ARMAtoMA_cpp(numeric(0), 1.0, 10)
-// [[Rcpp::export]]
-arma::vec ARMAtoMA_cpp(arma::vec ar, arma::vec ma, int lag_max)
-{
-  int p = ar.n_elem;
-  int q = ma.n_elem;
-  int m = lag_max;
-  
-  double tmp;
-  
-  arma::vec psi(m);
-  
-  if(m <= 0 || m == NA_INTEGER){
-    Rcpp::stop("invalid value of lag.max");
-  }
-  
-  for(int i = 0; i < m; i++) {
-    tmp = (i < q) ? ma(i) : 0.0;
-    for(int j = 0; j < std::min(i+1, p); j++){
-      tmp += ar(j) * ((i-j-1 >= 0) ? psi(i-j-1) : 1.0);
-    }
-    psi(i) = tmp;
-  }
-  return psi;
-}
-
 //' @title Time Series Convolution Filters
 //' @description Applies a convolution filter to a univariate time series.
 //' @param x A \code{column vector} of length T
@@ -174,6 +62,7 @@ arma::vec ARMAtoMA_cpp(arma::vec ar, arma::vec ma, int lag_max)
 //' It is about 5-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
 //' @author R Core Team and James Balamuta
 //' @keywords internal
+//' @export
 //' @examples
 //' x = 1:15
 //' # 
@@ -252,6 +141,7 @@ arma::vec cfilter(arma::vec x, arma::vec filter, int sides, bool circular)
 //' It is about 6-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
 //' @author R Core Team and James Balamuta
 //' @keywords internal
+//' @export
 //' @examples
 //' x = 1:15
 //' # 
@@ -289,43 +179,13 @@ arma::vec rfilter(arma::vec x, arma::vec filter, arma::vec init)
   return r.rows(nf,r.n_elem-1); // returns truncated vec (discards filter)
 }
 
-// @title Expand Grid for Same Dimensional Case
-// @description Creates the different pairings possible with two different variables.
-// @usage expand_grid_red(nx)
-// @param nx An \code{integer} of length f that contains the initial values of the time series in reverse.
-// @return x A \code{matrix} listing values from 1...nx in one column and 1...1, 2...2,....,n...n, in the other
-// @author James Balamuta
-// @details This function is hidden and is not accessible from R.
-// @name expand_grid_red
-// @docType methods
-// @rdname expand_grid_red-methods
-// @keywords internal
-arma::mat expand_grid_red(int nx){
-  
-  arma::mat g(nx*nx,2);
-  int j = 1;
-  
-  for(int i = 1; i <= nx*nx; i++){
-    int mod = i%nx;
-    if(mod == 0){
-      mod = nx;
-    }
-    g(i-1,0) = mod;
-    g(i-1,1) = j;
-    if(i%nx == 0){
-      j++;
-    }
-  }
-  
-  return g;
-}
-
 
 //' @title Mean of the First Difference of the Data
 //' @description The mean of the first difference of the data
 //' @param x A \code{vec} containing the data 
 //' @return A \code{double} that contains the mean of the first difference of the data.
 //' @keywords internal
+//' @export
 //' @examples
 //' x=rnorm(10)
 //' mean_diff(x)
@@ -334,26 +194,6 @@ double mean_diff(const arma::vec& x){
   return arma::mean(diff_cpp(x, 1, 1));
 }
 
-//' Replicate a Vector of Elements \eqn{n} times
-//' 
-//' This function takes a vector and replicates all of the data \eqn{n} times
-//' @param x A \code{vec} containing the data
-//' @param n An \code{unsigned int} indicating the number of times the vector should be repeated.
-//' @return A \code{vec} with repeated elements of the initial supplied vector.
-//' @keywords internal
-// [[Rcpp::export]]
-arma::vec num_rep(const arma::vec& x, unsigned int n) {
-  
-  unsigned int nj = x.n_elem, tot = nj*n, i;
-  
-  arma::vec x_rep(tot);
-  
-  for(i = 0; i < n; i++){
-    x_rep.rows(i*nj, nj*i + nj - 1) = x;
-  }
-  
-  return x_rep;  
-}
 
 //' @rdname diff_inv
 // [[Rcpp::export]]

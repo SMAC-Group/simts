@@ -18,7 +18,7 @@
 #'
 #' @param phi A \code{double} value for the parameter \eqn{\phi}{phi} (see Note for details).
 #' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
-#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 #' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
@@ -28,7 +28,7 @@
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{"AR1"}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -66,17 +66,17 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #' 
 #' @param theta  A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).
 #' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
-#' @note We consider the following model: \deqn{X_t = \theta \varepsilon_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' @note We consider the following model: \deqn{X_t = \theta \varepsilon_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 #' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "MA1","SIGMA2"}
 #'  \item{theta}{\eqn{\theta}{theta}, \eqn{\sigma^2}{sigma^2}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{"MA1"}
-#'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj.desc}{Depth of parameters e.g. list(1,1)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -180,18 +180,17 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 #' 
 #' Setups the necessary backend for the GM process.
 #' @param beta A \code{double} value for the \eqn{\beta}{beta} of an GM process.
-#' @param sigma2_gm A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a WN process.
-#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
-#' mean normal distribution with variance \eqn{\sigma^2}.
+#' @param sigma2_gm A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process.
+#' @note We consider the following model: [Equation]
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "BETA","SIGMA2"}
 #'  \item{theta}{\eqn{\beta}{beta}, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{"GM"}
-#'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj.desc}{Depth of parameters e.g. list(1,1)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @details 
 #' When supplying values for \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma^2[gm]},
@@ -235,11 +234,11 @@ GM = function(beta = NULL, sigma2_gm = 1) {
 #' \describe{
 #'  \item{process.desc}{Used in summary: "QN"}
 #'  \item{theta}{\eqn{Q^2}{Q^2}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{y desc replicated x times}
-#'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj.desc}{Depth of parameters e.g. list(1)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -313,11 +312,11 @@ WN = function(sigma2 = NULL) {
 #' \describe{
 #'  \item{process.desc}{Used in summary: "RW"}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{y desc replicated x times}
-#'  \item{obj.desc}{Depth of Parameters e.g. list(1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj.desc}{Depth of parameters e.g. list(1)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -351,10 +350,10 @@ RW = function(gamma2 = NULL) {
 #'  \item{process.desc}{Used in summary: "DR"}
 #'  \item{theta}{slope}
 #'  \item{print}{String containing simplified model}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{obj.desc}{y desc replicated x times}
-#'  \item{obj}{Depth of Parameters e.g. list(1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj}{Depth of parameters e.g. list(1)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -383,9 +382,9 @@ DR = function(omega = NULL) {
 
 #' @title Create an Autoregressive P [AR(P)] Process
 #' @description Setups the necessary backend for the AR(P) process.
-#' @param phi A \code{vector} with double values for the \eqn{\sum_{j = 1}^q \theta_j}{phi} of an AR(P) process.
-#' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
-#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' @param phi A \code{vector} with double values for the \eqn{\phi}{phi} of an AR(P) process (see Note for details).
+#' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of an AR(P) process. (see Note for details).
+#' @note We consider the following model: \deqn{X_t = \sum_{j = 1}^p \phi_j X_{t-1} + \varepsilon_t} , where \eqn{\varepsilon_t} is iid from a zero 
 #' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
@@ -395,7 +394,7 @@ DR = function(omega = NULL) {
 #'  \item{desc}{"AR"}
 #'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{Depth of Parameters e.g. list(p,1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -417,19 +416,19 @@ AR = function(phi = NULL, sigma2 = 1) {
 #' Create an Moving Average Q [MA(Q)] Process
 #' 
 #' Setups the necessary backend for the MA(Q) process.
-#' @param theta A \code{vector} with double values for the \eqn{\sum_{j = 1}^q \theta_j}{theta} of an MA(Q) process.
-#' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
-#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+#' @param theta A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).
+#' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
+#' @note We consider the following model: \deqn{X_t = \sum_{j = 1}^q \theta_j \varepsilon_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 #' mean normal distribution with variance \eqn{\sigma^2}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "MA-1","MA-2", ..., "MA-Q", "SIGMA2"}
 #'  \item{theta}{\eqn{\theta_1}{theta[[1]]}, \eqn{\theta_2}{theta[[2]]}, ..., \eqn{\theta_q}{theta[[q]]}, \eqn{\sigma^2}{sigma^2}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{desc}{"MA"}
 #'  \item{print}{String containing simplified model}
-#'  \item{obj.desc}{Depth of Parameters e.g. list(q,1)}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj.desc}{Depth of parameters e.g. list(q,1)}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
 #' @examples
@@ -497,11 +496,11 @@ ARMA = function(ar = 1, ma = 1, sigma2 = 1.0) {
 #' \describe{
 #'  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}
 #'  \item{theta}{\eqn{\sigma}{sigma}}
-#'  \item{plength}{Number of Parameters}
+#'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{obj.desc}{y desc replicated x times}
-#'  \item{obj}{Depth of Parameters e.g. list(c(length(ar),length(ma),1) )}
-#'  \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+#'  \item{obj}{Depth of parameters e.g. list(c(length(ar),length(ma),1) )}
+#'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @details
 #' A variance is required since the model generation statements utilize 

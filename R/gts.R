@@ -369,7 +369,7 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
     end = scales[n_x]
   }
   
-  par(mar = c(5.1, 4.1, 1, 2.1))
+  par(mar = c(5.1, 5.1, 1, 2.1))
   
   # Main plot                     
   plot(NA, xlim = c(start, end), ylim = range(x), xlab = name_time, ylab = name_ts, 

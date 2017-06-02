@@ -14,11 +14,11 @@ An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "RW"}
  \item{theta}{\eqn{\sigma}{sigma}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
  \item{print}{String containing simplified model}
  \item{desc}{y desc replicated x times}
- \item{obj.desc}{Depth of Parameters e.g. list(1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{obj.desc}{Depth of parameters e.g. list(1)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
@@ -26,7 +26,7 @@ Sets up the necessary backend for the RW process.
 }
 \note{
 We consider the following model: \deqn{Y_t = \sum\nolimits_{t=0}^{T} \gamma_0*Z_t} where \eqn{Z_t} is iid 
-from a standard normal distribution.
+and follows a standard normal distribution.
 }
 \examples{
 RW()

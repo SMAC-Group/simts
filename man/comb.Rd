@@ -6,3 +6,13 @@
 \usage{
 comb(...)
 }
+\arguments{
+\item{...}{Expressions to combine.}
+}
+\value{
+A combined expression.
+}
+\author{
+Stephane Guerrier
+}
+\keyword{internal}

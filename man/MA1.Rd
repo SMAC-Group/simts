@@ -16,18 +16,18 @@ An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "MA1","SIGMA2"}
  \item{theta}{\eqn{\theta}{theta}, \eqn{\sigma^2}{sigma^2}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
  \item{print}{String containing simplified model}
  \item{desc}{"MA1"}
- \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{obj.desc}{Depth of parameters e.g. list(1,1)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
 Definition of an Moving Average Process of Order 1
 }
 \note{
-We consider the following model: \deqn{X_t = \theta \varepsilon_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+We consider the following model: \deqn{X_t = \theta \varepsilon_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{

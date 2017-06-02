@@ -9,22 +9,22 @@ GM(beta = NULL, sigma2_gm = 1)
 \arguments{
 \item{beta}{A \code{double} value for the \eqn{\beta}{beta} of an GM process.}
 
-\item{sigma2_gm}{A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a WN process.}
+\item{sigma2_gm}{A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process.}
 }
 \value{
 An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "BETA","SIGMA2"}
  \item{theta}{\eqn{\beta}{beta}, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
  \item{print}{String containing simplified model}
  \item{desc}{"GM"}
- \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{obj.desc}{Depth of parameters e.g. list(1,1)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
-Setups the necessary backend for the GM process.
+Sets up the necessary backend for the GM process.
 }
 \details{
 When supplying values for \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma^2[gm]},
@@ -38,8 +38,7 @@ or specifying a `freq` parameter in simts or simts.imu.
 The `freq` of a data object takes precedence over the `freq` set when modeling.
 }
 \note{
-We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
-mean normal distribution with variance \eqn{\sigma^2}.
+We consider the following model: [Equation]
 }
 \examples{
 GM()

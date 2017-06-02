@@ -7,27 +7,27 @@
 MA(theta = NULL, sigma2 = 1)
 }
 \arguments{
-\item{theta}{A \code{vector} with double values for the \eqn{\sum_{j = 1}^q \theta_j}{theta} of an MA(Q) process.}
+\item{theta}{A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).}
 
-\item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.}
+\item{sigma2}{A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "MA-1","MA-2", ..., "MA-Q", "SIGMA2"}
  \item{theta}{\eqn{\theta_1}{theta[[1]]}, \eqn{\theta_2}{theta[[2]]}, ..., \eqn{\theta_q}{theta[[q]]}, \eqn{\sigma^2}{sigma^2}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
  \item{desc}{"MA"}
  \item{print}{String containing simplified model}
- \item{obj.desc}{Depth of Parameters e.g. list(q,1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{obj.desc}{Depth of parameters e.g. list(q,1)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
-Setups the necessary backend for the MA(Q) process.
+Sets up the necessary backend for the MA(Q) process.
 }
 \note{
-We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+We consider the following model: \deqn{X_t = \sum_{j = 1}^q \theta_j \varepsilon_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{

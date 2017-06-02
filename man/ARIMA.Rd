@@ -20,11 +20,11 @@ An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{\eqn{AR*p}{AR x p}, \eqn{MA*q}{MA x q}}
  \item{theta}{\eqn{\sigma}{sigma}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
  \item{print}{String containing simplified model}
  \item{obj.desc}{y desc replicated x times}
- \item{obj}{Depth of Parameters e.g. list(c(length(ar),length(ma),1) )}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{obj}{Depth of parameters e.g. list(c(length(ar),length(ma),1) )}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{

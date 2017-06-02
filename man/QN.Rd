@@ -14,11 +14,11 @@ An S3 object with called ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "QN"}
  \item{theta}{\eqn{Q^2}{Q^2}}
- \item{plength}{Number of Parameters}
+ \item{plength}{Number of parameters}
  \item{print}{String containing simplified model}
  \item{desc}{y desc replicated x times}
- \item{obj.desc}{Depth of Parameters e.g. list(1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{obj.desc}{Depth of parameters e.g. list(1)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{

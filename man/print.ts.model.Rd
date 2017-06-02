@@ -2,7 +2,7 @@
 % Please edit documentation in R/ts.model.R
 \name{print.ts.model}
 \alias{print.ts.model}
-\title{Multiple a ts.model by constant}
+\title{Multiply a ts.model by constant}
 \usage{
 \method{print}{ts.model}(x, ...)
 }

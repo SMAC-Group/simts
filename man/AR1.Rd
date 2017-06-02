@@ -20,14 +20,14 @@ An S3 object with called ts.model with the following structure:
  \item{print}{String containing simplified model}
  \item{desc}{"AR1"}
  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
 Definition of an Autoregressive Process of Order 1
 }
 \note{
-We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{

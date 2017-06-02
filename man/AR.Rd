@@ -7,9 +7,9 @@
 AR(phi = NULL, sigma2 = 1)
 }
 \arguments{
-\item{phi}{A \code{vector} with double values for the \eqn{\sum_{j = 1}^q \theta_j}{phi} of an AR(P) process.}
+\item{phi}{A \code{vector} with double values for the \eqn{\phi}{phi} of an AR(P) process (see Note for details).}
 
-\item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.}
+\item{sigma2}{A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of an AR(P) process. (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
@@ -20,14 +20,14 @@ An S3 object with called ts.model with the following structure:
  \item{desc}{"AR"}
  \item{print}{String containing simplified model}
  \item{obj.desc}{Depth of Parameters e.g. list(p,1)}
- \item{starting}{Guess Starting values? TRUE or FALSE (e.g. specified value)}
+ \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
-Setups the necessary backend for the AR(P) process.
+Sets up the necessary backend for the AR(P) process.
 }
 \note{
-We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
+We consider the following model: \deqn{X_t = \sum_{j = 1}^p \phi_j X_{t-1} + \varepsilon_t} , where \eqn{\varepsilon_t} is iid from a zero 
 mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{

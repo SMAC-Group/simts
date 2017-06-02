@@ -409,8 +409,7 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
 #' @param ... Expressions to combine. 
 #' @return A combined expression. 
 #' @author Stephane Guerrier
-#' @export
-comb <- function(...) {
+comb = function(...) {
   Reduce(function(x, y) substitute(x * y, env = list(x = x, y = y)), 
          list(...))
 }

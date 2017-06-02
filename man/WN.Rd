@@ -25,8 +25,7 @@ An S3 object with called ts.model with the following structure:
 Sets up the necessary backend for the WN process.
 }
 \note{
-We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
-mean normal distribution with variance \eqn{\sigma^2}.
+In this process, \eqn{Y_t} is iid from a zero mean normal distribution with variance \eqn{\sigma^2}
 }
 \examples{
 WN()

@@ -31,7 +31,8 @@ To install the `simts` package, there is currently one option: GitHub (Developme
 For users who are interested in having the latest and greatest developments in wavelets and simts methodology, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
 
 **The setup to obtain the development version of `simts` is platform dependent.**
-####System Requirements:####
+
+## System Requirements:
 
 **OS X**
 

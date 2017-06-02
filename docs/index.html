@@ -60,7 +60,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#simts-r-package" class="anchor"></a><code>simts</code> R Package</h1></div>
 <p>This repository holds the Time Series Simulation (simts) R package. <code>simts</code> generates various time series objects for use in other packages.</p>
-<p>Please refer to the vignettes for examples of the capabilities of the <code>simts</code> package.</p>
+<p>To see what <code>simts</code> is capable of, please refer to the vignettes.</p>
 </div>
 <div id="install-instructions" class="section level1">
 <h1 class="hasAnchor">
@@ -69,10 +69,10 @@
 <div id="installing-the-package-through-github-developmental" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-the-package-through-github-developmental" class="anchor"></a>Installing the package through GitHub (Developmental)</h2>
-<p>For users who are interested in having the latest and greatest developments withing wavelets or simts methodology, this option is ideal. Though, there is considerably more work that a user must do to have a stable version of the package. <strong>The setup to obtain the development version is platform dependent.</strong> Specifically, one <strong>must</strong> have a compiler installed on your system that is compatible with R.</p>
-<p>Depending on your operating system, further requirements exist such as:</p>
+<p>For users who are interested in having the latest and greatest developments in wavelets and simts methodology, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users <strong>must</strong> have a compiler installed on their machine that is compatible with R (e.g. Clang).</p>
+<p><strong>The setup to obtain the development version of <code>simts</code> is platform dependent.</strong> ####System Requirements:####</p>
 <p><strong>OS X</strong></p>
-<p>Some user report the need to use X11 to suppress shared library errors. To install X11, visit <a href="http://www.xquartz.org/">xquartz.org</a></p>
+<p>Some users report the need to use X11 to suppress shared library errors. To install X11, visit <a href="http://www.xquartz.org/">xquartz.org</a>.</p>
 <p><strong>Linux</strong></p>
 <p>Both curl and libxml are required.</p>
 <p>For <strong>Debian</strong> systems, enter the following in terminal:</p>
@@ -80,12 +80,13 @@
 <p>For <strong>RHEL</strong> systems, enter the following in terminal:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> yum install curl curl-devel libxml2 libxml2-dev</code></pre></div>
 <p><strong>All Systems</strong></p>
-<p>With the system dependency taken care of, we continue on by installing the R specific package dependencies and finally the package itself by doing the following in an R session:</p>
+<p>The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the devlopment version of <code>simts</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install dependencies</span>
 <span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">"RcppArmadillo"</span>,<span class="st">"devtools"</span>,<span class="st">"knitr"</span>,<span class="st">"rmarkdown"</span>))
 
 <span class="co"># Install the package from GitHub without Vignettes/User Guides</span>
 devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/simts"</span>)</code></pre></div>
+<p>Please report any bugs to <a href="mailto:contact@smac-group.com">contact@smac-group.com</a></p>
 </div>
 </div>
 </div>

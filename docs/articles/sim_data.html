@@ -58,7 +58,8 @@
     
     
 <div class="contents">
-<p>In this section, we breifly explain how simulations can be done using Time Series Data taking in input such as a one-column <em>matrix</em>, <em>data.frame</em>, or a numeric <em>vector</em>. Having stated this, some of the basic data available from the <code>simts</code> package to simulate from (and to estimate) are the following:</p>
+<p>In this section, we breifly explain how to perform simulations with time series data. We will demo <code>simts</code> functionality with data that takes the form of a one-column <em>matrix</em>, <em>data.frame</em>, and numeric <em>vector</em>.</p>
+<p>The following three datasets will be used for examples. (They are already stored in the <code>simts</code> package under “data”.)</p>
 <ul>
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html">hydro</a>: Hydrology data that indicates a robust approach may be preferred to a classical approach when estimating time series. Time series with frequency 12 starting at 1907 and going to 1972 for total of 781 observations.</li>
@@ -70,20 +71,20 @@
 <div id="simulations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simulations" class="anchor"></a>Simulations</h2>
-<p>The code below shows how these model specifications can be used for simulations based on the built-in function <code><a href="../reference/gts.html">gts()</a></code> which allows to generate samples from all the example datasets.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load hydro dataset </span>
+<p>The code below shows how to setup a time series oriented object with the <code><a href="../reference/gts.html">gts()</a></code> function. Here we taking samples from each dataset at a rate of <code>freq</code> ticks per sample.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load hydro dataset</span>
 <span class="kw">data</span>(<span class="st">"hydro"</span>)
-<span class="co"># Simulate based on data </span>
+<span class="co"># Simulate based on data</span>
 hydro =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(hydro), <span class="dt">start =</span> <span class="dv">1907</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"in."</span>, 
             <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, <span class="dt">data_name =</span> <span class="st">"Hydrology data"</span>)
 
-<span class="co"># Load savingrt dataset </span>
+<span class="co"># Load savingrt dataset</span>
 <span class="kw">data</span>(<span class="st">"savingrt"</span>)
-<span class="co"># Simulate based on data </span>
+<span class="co"># Simulate based on data</span>
 savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, 
             <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>)
 
-<span class="co"># Load Nile dataset </span>
+<span class="co"># Load Nile dataset</span>
 niles =<span class="st"> </span>datasets::Nile
 nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(niles), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, <span class="dt">unit_ts =</span> <span class="kw">as.expression</span>(<span class="kw">bquote</span>(<span class="st">"10^8 m^3"</span>)), <span class="co"># not sure how to make it correct</span>
            <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, <span class="dt">name_time =</span> <span class="st">"Years"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of river Nile"</span>)</code></pre></div>

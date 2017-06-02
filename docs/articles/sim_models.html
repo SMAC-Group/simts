@@ -58,31 +58,15 @@
     
     
 <div class="contents">
-<p>In this section we briefly list, describe and provide the syntax for the methods available for simulation purposes within the simts package. Under some minor constraints, all these models can then be combined into a specific class of linear state-space models which can be represented as a sum of underlying models. Having stated this, some of the basic models available in the <code>simts</code> package to simulate from are the following:</p>
-<ul>
-<li>WN: White Noise</li>
-<li>QN: Quantization Noise</li>
-<li>RW: Random Walk</li>
-<li>DR: Drift</li>
-<li>AR(1): First-order autoregressive<br>
-</li>
-<li>AR: Create an Autoregressive P</li>
-<li>MA1: First-order Moving Average</li>
-<li>MA: Moving Average Q Process</li>
-<li>GM: Gauss-Markov</li>
-<li>QN: Quantisation Noise</li>
-<li>ARMA: Autoregressive Moving Average</li>
-<li>ARIMA: Integrated Autoregressive Moving Average<br>
-</li>
-<li>SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA)<br>
-</li>
-<li>SARMA: Seasonal Autoregressive Moving Average</li>
-</ul>
-<p>The expressions in brackets in the above list represent the syntax used in the simts package to specify the model. The only model which may be less known is the quantization noise which is a process that is often used in engineering fields and can be described in layperson terms as being a good approximation of a rounding error. The brackets for the syntax of each model are left to specify parameter values for simulation purposes or to specify starting values for estimation purposes.</p>
+<p>In this section, we briefly list, describe, and provide code from the <code>simts</code> package that may be useful for creating simulation methods involving time-series data.</p>
+<p>Furthermore, under some minor constraints, all of these models can then be combined into a specific class of linear state-space models. As such, we will desribe how to use <code>simts</code> to express this type of model as a sum of basic models.</p>
+<p>The following list includes some basic models available in the <code>simts</code> package.</p>
+<p>[Syntax]: [Description] * WN: White Noise * QN: Quantization Noise * RW: Random Walk * DR: Drift * AR1: First-order Autoregressive * AR: Create an Autoregressive P * MA1: First-order Moving Average * MA: Moving Average Q Process * GM: Gauss-Markov * QN: Quantisation Noise<em> </em> ARMA: Autoregressive Moving Average * ARIMA: Integrated Autoregressive Moving Average * SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA) * SARMA: Seasonal Autoregressive Moving Average</p>
+<p>*Quantization Noise is a lesser known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
 <div id="simulations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simulations" class="anchor"></a>Simulations</h2>
-<p>The code below shows how these model specifications can be used for simulations based on the built-in function <code><a href="../reference/gen_gts.html">gen_gts()</a></code> which allows to generate samples from all these models.</p>
+<p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from the above models.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set seed for reproducibility</span>
 <span class="kw">set.seed</span>(<span class="dv">1337</span>)
 
@@ -114,13 +98,14 @@ arma11 =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.
 sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> -<span class="fl">0.27</span>,
                         <span class="dt">sar =</span> <span class="kw">c</span>(-<span class="fl">0.12</span>, -<span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> -<span class="fl">0.9</span>,
                         <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))</code></pre></div>
-<p>The simts package therefore allows to easily simulate from a wide variety of models, includ- ing SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to de- liver many state-space (latent) models which can be represented by the sum of basic models.</p>
-<p>The construction of such linear state-space models is very simple with the simts package allowing it to be considerably user-friendly. In fact, to specify that a model is a combination of different models, all that is needed is to use the “+” symbol between them and, supposing that different AR1() processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is k*AR1(). So, for example, the sum of three AR(1) models, a random walk and a white noise process can be specified as: 3*AR1()+RW()+WN().</p>
+<p>The simts package therefore allows users to easily simulate from a wide variety of models, including SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
+<p><code>simts</code>’s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them.</p>
+<p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k\*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3\*AR1()+RW()+WN()</code>.</p>
 </div>
 <div id="visualizations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#visualizations" class="anchor"></a>Visualizations</h2>
-<p>By applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, we can observe a visualization of the data simulated.</p>
+<p>By applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, we can observe a visualization of the simulated data!</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot simulation of a SARIMA Model </span>
 <span class="kw">plot</span>(sarima)</code></pre></div>
 <p><img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" width="696" style="display: block; margin: auto;"></p>
@@ -132,7 +117,7 @@ arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen
 <span class="co"># Plot simulation </span>
 <span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
 <p><img src="sim_models_files/figure-html/unnamed-chunk-3-2.png" width="696" style="display: block; margin: auto;"></p>
-<p>In addition, the function specifically provided to generate and represent these models more specifically is the <code><a href="../reference/gen_lts.html">gen_lts()</a></code> which, while simulating from these models, also gives the option to plot a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
+<p>Finally, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to plot a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sarma_wn_model =<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>)

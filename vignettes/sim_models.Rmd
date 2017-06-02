@@ -14,11 +14,10 @@ library(simts)
 
 In this section, we briefly list, describe, and provide code from the `simts` package that may be useful for creating simulation methods involving time-series data.
 
-Furthermore, under some minor constraints, all of these models can then be combined into a specific class of linear state-space models. As such, we will desribe how to use `simts` to express this type of model as a sum of basic models.
+Furthermore, under some minor constraints, all of these models can be combined into a specific class of linear state-space models. As such, we describe how to use `simts` to express this type of model as a sum of basic models. 
 
 The following list includes some basic models available in the `simts` package.
 
-[Syntax]: [Description]
 * WN: White Noise
 * QN: Quantization Noise
 * RW: Random Walk
@@ -34,11 +33,11 @@ The following list includes some basic models available in the `simts` package.
 * SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA)
 * SARMA: Seasonal Autoregressive Moving Average
 
-*Quantization Noise is a lesser known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.
+Quantization Noise is a lesser known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.
 
 ## Simulations
 
-The code below shows how to call the function `gen_gts()`, which allows the user to generate samples from the above models.
+The code below shows how to call the function `gen_gts()`, which allows the user to generate samples from these model specifications.
 
 ```{r}
 # Set seed for reproducibility

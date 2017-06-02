@@ -1,5 +1,6 @@
 ## ---- echo = FALSE-------------------------------------------------------
 library(simts)
+library(datasets)
 
 ## ------------------------------------------------------------------------
 # Load hydro dataset
@@ -15,7 +16,7 @@ savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%",
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
 
 # Load Nile dataset
-Nile = datasets::Nile
+data("Nile")
 nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1, 
            unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Flow", 
            name_time = "Years", data_name = "Annual Flow of river Nile")

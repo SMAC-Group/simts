@@ -14,8 +14,3 @@ savingrt = gts(savingrt$PSAVERT, start = 1959, freq = 12,
                name_ts = 'US Personal Saving Rates', unit_time = "month")
 
 devtools::use_data(savingrt)
-
-################### Nile Data
-nile = datasets::Nile
-
-devtools::use_data(nile)

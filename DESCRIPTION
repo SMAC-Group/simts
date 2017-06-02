@@ -22,7 +22,6 @@ Imports:
     scales, 
     grDevices, 
     graphics, 
-    devtools, 
-    datasets
+    devtools
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000

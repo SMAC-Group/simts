@@ -46,7 +46,7 @@ nile = gts(as.vector(niles), start = 1871, end = 1970, freq = 1, unit_ts = as.ex
 
 ## Visualizations 
 
-By applying the `plot()` function on the result of `gts()`, we can observe a visualization of the data simulated. 
+By applying the `plot()` on the result of a `gts()` simulation, we can observe a visualization of the data simulated. 
 
 ```{r, fig.align='center', fig.height = 5, fig.width = 7.25}
 # Plot hydro simulation

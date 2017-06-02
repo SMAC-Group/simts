@@ -5,19 +5,19 @@
 `simts` R Package <img src="man/figures/logo.png" align="right" style="width: 17%; height: 17%"/>
 =================================================================================================
 
-This repository holds the Time Series Simulation (simts) R package. `simts` generates various time series objects for use in other packages.
+This repository holds the Time Series Simulation (`simts`) R package. `simts` generates various time series objects for use in other packages.
 
 To see what `simts` is capable of, please refer to the vignettes.
 
 Install Instructions
 ====================
 
-To install the `simts` package, there is currently one option: GitHub (Developmental).
+To install the `simts` package, there is currently one option: [GitHub](https://github.com/SMAC-Group/simts/) (Developmental).
 
-Installing the package through GitHub (Developmental)
------------------------------------------------------
+Installing the package through GitHub
+-------------------------------------
 
-For users who are interested in having the latest and greatest developments in wavelets and simts methodology, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
+For users who are interested in having the latest developments, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
 
 *The setup to obtain the development version of `simts` is platform dependent.*
 

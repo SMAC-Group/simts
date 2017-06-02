@@ -21,6 +21,8 @@
 
 arma::field<arma::vec> sarma_expand(const arma::vec& params, const arma::vec& objdesc);
 
+arma::vec sarma_components(const arma::vec& objdesc);
+
 arma::field<arma::vec> sarma_expand_unguided(const arma::vec& params,
                                              unsigned int np, unsigned int nq,
                                              unsigned int nsp, unsigned int nsq,

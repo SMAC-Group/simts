@@ -382,6 +382,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// sarma_components
+arma::vec sarma_components(const arma::vec& objdesc);
+RcppExport SEXP simts_sarma_components(SEXP objdescSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type objdesc(objdescSEXP);
+    rcpp_result_gen = Rcpp::wrap(sarma_components(objdesc));
+    return rcpp_result_gen;
+END_RCPP
+}
 // sarma_expand_unguided
 arma::field<arma::vec> sarma_expand_unguided(const arma::vec& params, unsigned int np, unsigned int nq, unsigned int nsp, unsigned int nsq, unsigned int ns, unsigned int p, unsigned int q);
 RcppExport SEXP simts_sarma_expand_unguided(SEXP paramsSEXP, SEXP npSEXP, SEXP nqSEXP, SEXP nspSEXP, SEXP nsqSEXP, SEXP nsSEXP, SEXP pSEXP, SEXP qSEXP) {
@@ -521,6 +532,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"simts_diff_inv", (DL_FUNC) &simts_diff_inv, 3},
     {"simts_sarma_calculate_spadding", (DL_FUNC) &simts_sarma_calculate_spadding, 5},
     {"simts_sarma_params_construct", (DL_FUNC) &simts_sarma_params_construct, 4},
+    {"simts_sarma_components", (DL_FUNC) &simts_sarma_components, 1},
     {"simts_sarma_expand_unguided", (DL_FUNC) &simts_sarma_expand_unguided, 8},
     {"simts_sarma_expand", (DL_FUNC) &simts_sarma_expand, 2},
     {"simts_minroot", (DL_FUNC) &simts_minroot, 1},

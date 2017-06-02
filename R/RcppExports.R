@@ -564,6 +564,27 @@ sarma_params_construct <- function(ar, ma, sar, sma) {
     .Call('simts_sarma_params_construct', PACKAGE = 'simts', ar, ma, sar, sma)
 }
 
+#' Determine parameter expansion based upon objdesc
+#' 
+#' Calculates the necessary vec space needed to pad the vectors
+#' for seasonal terms. 
+#' @param objdesc A \code{vec} with the appropriate sarima object description
+#' @return A \code{vec} with the structure:
+#' \describe{
+#' \item{np}{Number of Non-Seasonal AR Terms}
+#' \item{nq}{Number of Non-Seasonal MA Terms}
+#' \item{nsp}{Number of Seasonal AR Terms}
+#' \item{nsq}{Number of Seasonal MA Terms}
+#' \item{ns}{Number of Seasons (e.g. 12 is year)}
+#' \item{p}{Total number of phi terms}
+#' \item{q}{Total number of theta terms}
+#' }
+#' @keywords internal
+#' @export
+sarma_components <- function(objdesc) {
+    .Call('simts_sarma_components', PACKAGE = 'simts', objdesc)
+}
+
 #' (Internal) Expand the SARMA Parameters
 #' @param params  A \code{vec} containing the theta values of the parameters.
 #' @inheritParams sarma_calculate_spadding

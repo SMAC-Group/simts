@@ -90,7 +90,40 @@ arma::vec sarma_params_construct(const arma::vec& ar, const arma::vec& ma,
   return params;
 }
 
-
+//' Determine parameter expansion based upon objdesc
+//' 
+//' Calculates the necessary vec space needed to pad the vectors
+//' for seasonal terms. 
+//' @param objdesc A \code{vec} with the appropriate sarima object description
+//' @return A \code{vec} with the structure:
+//' \describe{
+//' \item{np}{Number of Non-Seasonal AR Terms}
+//' \item{nq}{Number of Non-Seasonal MA Terms}
+//' \item{nsp}{Number of Seasonal AR Terms}
+//' \item{nsq}{Number of Seasonal MA Terms}
+//' \item{ns}{Number of Seasons (e.g. 12 is year)}
+//' \item{p}{Total number of phi terms}
+//' \item{q}{Total number of theta terms}
+//' }
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+arma::vec sarma_components(const arma::vec& objdesc){
+  // Number of ARMA(p,q) parameters
+  unsigned int np = objdesc(0), nq = objdesc(1);
+  
+  // Number of Seasonal (P,Q) and Number of Seasons (ns)
+  unsigned int nsp = objdesc(2), nsq = objdesc(3), ns = objdesc(5);
+  
+  // Find the total number of parameters to expand
+  arma::vec nparams = sarma_calculate_spadding(np, nq, nsp, nsq, ns);
+  
+  // Create an output vector
+  arma::vec o(7);
+  o(0) = np, o(1) = nq, o(2) = nsp, o(3) = nsq, o(4) = ns, o(5) = nparams(0), o(6) = nparams(1);
+  
+  return o;
+}
 
 //' (Internal) Expand the SARMA Parameters
 //' @param params  A \code{vec} containing the theta values of the parameters.

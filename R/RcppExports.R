@@ -8,9 +8,6 @@
 #' @return x A \code{column vector} with its contents reversed.
 #' @details Consider a vector x=[1,2,3,4,5], the function would output x=[5,4,3,2,1].
 #' @author James Balamuta
-#' @examples
-#' x = 1:5
-#' reverse_vec(x)
 #' @keywords internal
 reverse_vec <- function(x) {
     .Call('simts_reverse_vec', PACKAGE = 'simts', x)
@@ -615,9 +612,6 @@ sarma_expand_unguided <- function(params, np, nq, nsp, nsq, ns, p, q) {
 #' \item Seasons
 #' }
 #' @keywords internal
-#' @examples
-#' # p, q, P, Q, 1, s, i, si
-#' m = sarma_expand(c(0.5,.2,0,.1,.92,.83,.42,.33,.12), c(2,2,2,3,1,12,0,0))
 sarma_expand <- function(params, objdesc) {
     .Call('simts_sarma_expand', PACKAGE = 'simts', params, objdesc)
 }

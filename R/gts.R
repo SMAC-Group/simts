@@ -240,6 +240,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
 #'  \item{x}{Data}
 #'  \item{converted}{A \code{boolean} indicating whether conversion is made}
 #' }
+#' @export
 #' @examples
 #' x = seq(60, 3600, 60)
 #' unitConversion(x, 'sec', 'min')
@@ -407,6 +408,7 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
 }
 
 #' @title Combine math expressions
+#' @description Combine math expressions
 #' @keywords internal
 #' @param ... Expressions to combine. 
 #' @return A combined expression. 

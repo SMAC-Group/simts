@@ -1,5 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$=
 ^\.travis\.yml$
+^README\.Rmd$
+^README-.*\.png$
+^data-raw$
+^_pkgdown\.yml$
+^man-roxygen$
 ^docs$
-^README\.rmd$

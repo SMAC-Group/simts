@@ -673,6 +673,7 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 }
 
 #' @title Simplify and print SARIMA model
+#' @description Simplify and print SARIMA model
 #' @param p   An \code{integer} denoting the length of \code{ar}.
 #' @param i   An \code{integer} containing the number of differences to be done.
 #' @param q   An \code{integer} denoting the length of \code{ma}.
@@ -685,7 +686,6 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 #'  \item{simplified}{Type of model (after simplification)}
 #' }
 #' @author Stephane Guerrier
-#' @export
 simplified_print_SARIMA = function(p, i, q, P, si, Q){
   # ARMA models
   if (i == 0 && P == 0 && Q == 0){

@@ -19,6 +19,7 @@
 #' @param x A \code{numeric} value to check to see if it is an integer.
 #' @return A \code{boolean} value indicating whether the value is an integer or not.
 #' @author James Balamuta
+#' @export
 #' @examples
 #' is.whole(2.3)
 #' is.whole(4)

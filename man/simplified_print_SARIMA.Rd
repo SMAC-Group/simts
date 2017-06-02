@@ -26,6 +26,9 @@ An S3 object with the following structure:
  \item{simplified}{Type of model (after simplification)}
 }
 }
+\description{
+Simplify and print SARIMA model
+}
 \author{
 Stephane Guerrier
 }

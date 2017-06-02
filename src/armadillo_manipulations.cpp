@@ -21,9 +21,6 @@
 //' @return x A \code{column vector} with its contents reversed.
 //' @details Consider a vector x=[1,2,3,4,5], the function would output x=[5,4,3,2,1].
 //' @author James Balamuta
-//' @examples
-//' x = 1:5
-//' reverse_vec(x)
 //' @keywords internal
 // [[Rcpp::export]]
 arma::vec reverse_vec(arma::vec x) {

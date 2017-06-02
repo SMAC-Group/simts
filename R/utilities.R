@@ -21,6 +21,7 @@
 #' @param process.desc A \code{character vector} containing the names of parameters.
 #' @param freq         A \code{double} indicating the frequency of the data.
 #' @keywords internal
+#' @export
 #' @author James Balamuta
 #' @rdname gm_conv
 conv.ar1.to.gm = function(theta, process.desc, freq){
@@ -31,6 +32,7 @@ conv.ar1.to.gm = function(theta, process.desc, freq){
 }
 
 #' @rdname gm_conv
+#' @export
 conv.gm.to.ar1 = function(theta, process.desc, freq){
   idx = process.desc %in% c("BETA","SIGMA2_GM")
   theta[idx] = gm_to_ar1(theta[idx],freq)

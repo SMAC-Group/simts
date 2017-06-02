@@ -12,6 +12,9 @@ comb(...)
 \value{
 A combined expression.
 }
+\description{
+Combine math expressions
+}
 \author{
 Stephane Guerrier
 }

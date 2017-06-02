@@ -3,6 +3,7 @@ Type: Package
 Title: Simulate Various Time Series 
 Version: 1.0
 Date: 2017-05-28
+LazyData: true
 Authors@R: c(
     person("Justin", "Lee", email = "munsheet93@gmail.com", role = c("aut","cre")),
     person("Stephane", "Guerrier", role = "aut"),
@@ -11,6 +12,7 @@ Authors@R: c(
     )
 Maintainer: Justin Lee <munsheet93@gmail.com>
 Description: Generates various time series objects for use in other packages.
+Depends: R (>= 3.1.0)
 License: GPL (>= 2)
 Imports: 
     Rcpp (>= 0.12.11), 

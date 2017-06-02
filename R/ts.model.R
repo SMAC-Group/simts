@@ -243,6 +243,7 @@ GM = function(beta = NULL, sigma2_gm = 1) {
 #'  \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
 #' }
 #' @author James Balamuta
+#' @export
 #' @examples
 #' QN()
 #' QN(q2=3.4)

@@ -12,9 +12,9 @@ vignette: >
 library(simts)
 ```
 
-In this section, we will breifly explain demo `simts` functionality by performing simulations with time series data. In the examples shown here, time series data will take the form of a one-column matrix, data.frame, and numeric vector.
+In this section, we will breifly explain demo `simts` functionality by performing simulations with time series data. In the examples shown here, time series data may take the form of either a one-column matrix, data.frame, or numeric vector.
 
-The following three datasets will be used for examples. (They are already stored in the `simts` package under "data".)
+The following three datasets stored in `simts` will be used as examples.
 
 * [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): Hydrology data that indicates a robust approach may be preferred to a classical approach when estimating time series. Time series with frequency 12 starting at 1907 and going to 1972 for total of 781 observations.
 * [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): Personal saving as a percentage of disposable personal income (DPI), frequently referred to as "the personal saving rate," is calculated as the ratio of personal saving to DPI. GTS time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
@@ -22,7 +22,7 @@ The following three datasets will be used for examples. (They are already stored
 
 ## Simulations
 
-The code below shows how to setup a time series oriented object with the `gts()` function. Here we are taking samples from each dataset at a rate of `freq` ticks per sample.
+The code below shows how to setup a time series oriented object with the `gts()` function. Here we take samples from each dataset at a rate of `freq` ticks per sample.
 
 ```{r}
 # Load hydro dataset

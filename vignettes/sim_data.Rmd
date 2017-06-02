@@ -1,7 +1,9 @@
 ---
 author: "Justin Lee"
 title: "Simulations from Time Series Data"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
 vignette: >
   %\VignetteIndexEntry{Simulations from Time Series Data}
   %\VignetteEngine{knitr::rmarkdown}
@@ -27,7 +29,7 @@ The code below shows how to setup a time series oriented object with the `gts()`
 
 ### Hydrology 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Plot of the Hydrology data from 1907'}
 # Load hydro dataset
 data("hydro")
 # Simulate based on data
@@ -39,7 +41,7 @@ plot(hydro)
 
 ### Personal Savings 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Plot of Personal Savings as DPI from 1959'}
 # Load savingrt dataset
 data("savingrt")
 # Simulate based on data
@@ -51,7 +53,7 @@ plot(savingrt)
 
 ### Nile River Flow 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Plot of Annual Nile river flow from 1871-1970'}
 # Load Nile dataset
 Nile = datasets::Nile
 # Simulate based on data

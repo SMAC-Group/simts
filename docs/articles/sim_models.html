@@ -123,10 +123,14 @@ sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.
                         <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))
 <span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
 <span class="kw">plot</span>(sarima)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+<div class="figure" style="text-align: center">
+<img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 1: Plot of simulated SARIMA(1,0,1)x(2,1,1)[12] process" width="696"><p class="caption">
+Figure 1: Plot of simulated SARIMA(1,0,1)x(2,1,1)[12] process
+</p>
+</div>
 <p>The <code>simts</code> package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
 <p><code>simts</code>’s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them.</p>
-<p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k\*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3\*AR1()+RW()+WN()</code>.</p>
+<p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
 arma_wn_model =
@@ -135,7 +139,11 @@ arma_wn_model =
 arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)
 <span class="co"># Plot simulation of ARMA(2,1) + WN()</span>
 <span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" width="696" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 2: Plot of simulated ARMA(2,1) + WN() process" width="696"><p class="caption">
+Figure 2: Plot of simulated ARMA(2,1) + WN() process
+</p>
+</div>
 </div>
 <div id="latent-time-series" class="section level2">
 <h2 class="hasAnchor">
@@ -149,7 +157,11 @@ sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/ge
 
 <span class="co"># Plot simulation of SARMA() + WN(2) </span>
 <span class="kw">plot</span>(sarma_wn_sim)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-5-1.png" width="696" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="sim_models_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Plot of breakdown of underlying process and resulting latent process" width="696"><p class="caption">
+Figure 3: Plot of breakdown of underlying process and resulting latent process
+</p>
+</div>
 </div>
 </div>
   </div>

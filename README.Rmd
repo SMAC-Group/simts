@@ -27,6 +27,7 @@ The Time Series Simulation (`simts`) R package generates various time series obj
 To see what `simts` is capable of, please refer to the vignettes.
 
 
+
 ## Install Instructions
 
 To install the `simts` package, there is currently one option: [GitHub](https://github.com/SMAC-Group/simts/).

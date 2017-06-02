@@ -89,7 +89,11 @@ hydro =<span class="st"> </span><span class="kw"><a href="../reference/gts.html"
             <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, <span class="dt">data_name =</span> <span class="st">"Hydrology data"</span>)
 <span class="co"># Plot hydro simulation</span>
 <span class="kw">plot</span>(hydro)</code></pre></div>
-<p><img src="sim_data_files/figure-html/unnamed-chunk-2-1.png" width="696" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-2-1.png" alt="Figure 1: Plot of the Hydrology data from 1907" width="696"><p class="caption">
+Figure 1: Plot of the Hydrology data from 1907
+</p>
+</div>
 </div>
 <div id="personal-savings" class="section level3">
 <h3 class="hasAnchor">
@@ -101,19 +105,28 @@ savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.ht
             <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>)
 <span class="co"># Plot savingrt simulation</span>
 <span class="kw">plot</span>(savingrt)</code></pre></div>
-<p><img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" width="696" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 2: Plot of Personal Savings as DPI from 1959" width="696"><p class="caption">
+Figure 2: Plot of Personal Savings as DPI from 1959
+</p>
+</div>
 </div>
 <div id="nile-river-flow" class="section level3">
 <h3 class="hasAnchor">
 <a href="#nile-river-flow" class="anchor"></a>Nile River Flow</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load Nile dataset</span>
 Nile =<span class="st"> </span>datasets::Nile
+<span class="co"># Simulate based on data</span>
 nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(Nile), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, 
            <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">8</span>,<span class="st">" "</span>,m^<span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, 
            <span class="dt">name_time =</span> <span class="st">"Years"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of river Nile"</span>)
 <span class="co"># Plot Nile simulation </span>
 <span class="kw">plot</span>(nile)</code></pre></div>
-<p><img src="sim_data_files/figure-html/unnamed-chunk-4-1.png" width="696" style="display: block; margin: auto;"></p>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 3: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
+Figure 3: Plot of Annual Nile river flow from 1871-1970
+</p>
+</div>
 </div>
 </div>
 </div>

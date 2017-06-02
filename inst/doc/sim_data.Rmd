@@ -1,7 +1,9 @@
 ---
 author: "Justin Lee"
 title: "Simulations from Time Series Data"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
 vignette: >
   %\VignetteIndexEntry{Simulations from Time Series Data}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,42 +23,43 @@ The following three datasets stored in `simts` will be used as examples.
 * [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): Personal saving as a percentage of disposable personal income (DPI), frequently referred to as "the personal saving rate," is calculated as the ratio of personal saving to DPI. GTS time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
 * [Nile](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html): Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in $10^8 m^3$, “with apparent changepoint near 1898” (Cobb, 1978, Table 1, p.249).
 
-## Simulations
+## Generate Simulations 
 
-The code below shows how to setup a time series oriented object with the `gts()` function. Here we take samples from each dataset at a rate of `freq` ticks per sample.
+The code below shows how to setup a time series oriented object with the `gts()` function. Here we take samples from each dataset at a rate of `freq` ticks per sample. By applying the `plot()` on the result of a `gts()` simulation, we can observe a visualization of the data simulated. 
 
-```{r}
+## Hydrology 
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Plot of the Hydrology data from 1907'}
 # Load hydro dataset
 data("hydro")
 # Simulate based on data
 hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.", 
             name_ts = "Precipitation", data_name = "Hydrology data")
+# Plot hydro simulation
+plot(hydro)
+```
 
+## Personal Savings 
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Plot of Personal Savings as DPI from 1959'}
 # Load savingrt dataset
 data("savingrt")
 # Simulate based on data
 savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
+# Plot savingrt simulation
+plot(savingrt)
+```
 
+## Nile River Flow 
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Plot of Annual Nile river flow from 1871-1970'}
 # Load Nile dataset
 Nile = datasets::Nile
+# Simulate based on data
 nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1, 
            unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Flow", 
            name_time = "Years", data_name = "Annual Flow of river Nile")
-```
-
-
-## Visualizations 
-
-By applying the `plot()` on the result of a `gts()` simulation, we can observe a visualization of the data simulated. 
-
-```{r, fig.align='center', fig.height = 5, fig.width = 7.25}
-# Plot hydro simulation
-plot(hydro)
-
-# Plot savingrt simulation
-plot(savingrt)
-
 # Plot Nile simulation 
 plot(nile)
 ```

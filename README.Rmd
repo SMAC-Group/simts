@@ -30,8 +30,9 @@ To install the `simts` package, there is currently one option: GitHub (Developme
 
 For users who are interested in having the latest and greatest developments in wavelets and simts methodology, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
 
-**The setup to obtain the development version of `simts` is platform dependent.**
-####System Requirements:####
+*The setup to obtain the development version of `simts` is platform dependent.*
+
+### Requirements and Dependancies
 
 **OS X**
 
@@ -64,5 +65,6 @@ install.packages(c("RcppArmadillo","devtools","knitr","rmarkdown"))
 # Install the package from GitHub without Vignettes/User Guides
 devtools::install_github("SMAC-Group/simts")
 ```
+
 
 Please report any bugs to contact@smac-group.com

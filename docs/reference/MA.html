@@ -78,7 +78,7 @@
     </div>
 
     
-    <p>Setups the necessary backend for the MA(Q) process.</p>
+    <p>Sets up the necessary backend for the MA(Q) process.</p>
     
 
     <pre class="usage"><span class='fu'>MA</span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
@@ -88,11 +88,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>theta</th>
-      <td><p>A <code>vector</code> with double values for the \(\sum_{j = 1}^q \theta_j\) of an MA(Q) process.</p></td>
+      <td><p>A <code>double</code> value for the parameter \(\theta\) (see Note for details).</p></td>
     </tr>
     <tr>
       <th>sigma2</th>
-      <td><p>A <code>double</code> value for the variance, \(\sigma ^2\), of a WN process.</p></td>
+      <td><p>A <code>double</code> value for the variance parameter \(\sigma ^2\) (see Note for details).</p></td>
     </tr>
     </table>
     
@@ -101,17 +101,17 @@
     <p>An S3 object with called ts.model with the following structure:</p><dl class='dl-horizontal'>
  <dt>process.desc</dt><dd><p>Used in summary: "MA-1","MA-2", ..., "MA-Q", "SIGMA2"</p></dd>
  <dt>theta</dt><dd><p>\(\theta_1\), \(\theta_2\), ..., \(\theta_q\), \(\sigma^2\)</p></dd>
- <dt>plength</dt><dd><p>Number of Parameters</p></dd>
+ <dt>plength</dt><dd><p>Number of parameters</p></dd>
  <dt>desc</dt><dd><p>"MA"</p></dd>
  <dt>print</dt><dd><p>String containing simplified model</p></dd>
- <dt>obj.desc</dt><dd><p>Depth of Parameters e.g. list(q,1)</p></dd>
- <dt>starting</dt><dd><p>Guess Starting values? TRUE or FALSE (e.g. specified value)</p></dd>
+ <dt>obj.desc</dt><dd><p>Depth of parameters e.g. list(q,1)</p></dd>
+ <dt>starting</dt><dd><p>Guess starting values? TRUE or FALSE (e.g. specified value)</p></dd>
 </dl>
 
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>We consider the following model: $$X_t = \phi X_{t-1} + \varepsilon_t,$$ where \(\varepsilon_t\) is iid from a zero 
+    <p>We consider the following model: $$X_t = \sum_{j = 1}^q \theta_j \varepsilon_{t-1} + \varepsilon_t$$, where \(\varepsilon_t\) is iid from a zero 
 mean normal distribution with variance \(\sigma^2\).</p>
     
 

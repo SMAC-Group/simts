@@ -78,7 +78,7 @@
     </div>
 
     
-    <p>Setups the necessary backend for the AR(P) process.</p>
+    <p>Sets up the necessary backend for the AR(P) process.</p>
     
 
     <pre class="usage"><span class='fu'>AR</span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
@@ -88,11 +88,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>phi</th>
-      <td><p>A <code>vector</code> with double values for the \(\sum_{j = 1}^q \theta_j\) of an AR(P) process.</p></td>
+      <td><p>A <code>vector</code> with double values for the \(\phi\) of an AR(P) process (see Note for details).</p></td>
     </tr>
     <tr>
       <th>sigma2</th>
-      <td><p>A <code>double</code> value for the variance, \(\sigma ^2\), of a WN process.</p></td>
+      <td><p>A <code>double</code> value for the variance, \(\sigma ^2\), of an AR(P) process. (see Note for details).</p></td>
     </tr>
     </table>
     
@@ -105,13 +105,13 @@
  <dt>desc</dt><dd><p>"AR"</p></dd>
  <dt>print</dt><dd><p>String containing simplified model</p></dd>
  <dt>obj.desc</dt><dd><p>Depth of Parameters e.g. list(p,1)</p></dd>
- <dt>starting</dt><dd><p>Guess Starting values? TRUE or FALSE (e.g. specified value)</p></dd>
+ <dt>starting</dt><dd><p>Guess starting values? TRUE or FALSE (e.g. specified value)</p></dd>
 </dl>
 
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>We consider the following model: $$X_t = \phi X_{t-1} + \varepsilon_t,$$ where \(\varepsilon_t\) is iid from a zero 
+    <p>We consider the following model: $$X_t = \sum_{j = 1}^p \phi_j X_{t-1} + \varepsilon_t$$ , where \(\varepsilon_t\) is iid from a zero 
 mean normal distribution with variance \(\sigma^2\).</p>
     
 

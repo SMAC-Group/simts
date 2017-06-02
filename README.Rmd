@@ -32,7 +32,7 @@ For users who are interested in having the latest and greatest developments in w
 
 *The setup to obtain the development version of `simts` is platform dependent.*
 
-### Requirements and Dependancies
+### Requirements and Dependencies
 
 **OS X**
 

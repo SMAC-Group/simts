@@ -176,9 +176,8 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 
 
 
-#' Create a Gauss-Markov (GM) Process
-#' 
-#' Setups the necessary backend for the GM process.
+#' @title Create a Gauss-Markov (GM) Process
+#' @description Sets up the necessary backend for the GM process.
 #' @param beta A \code{double} value for the \eqn{\beta}{beta} of an GM process.
 #' @param sigma2_gm A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process.
 #' @note We consider the following model: [Equation]
@@ -226,9 +225,8 @@ GM = function(beta = NULL, sigma2_gm = 1) {
   invisible(out)
 }
 
-#' Create an Quantisation Noise (QN) Process
-#' 
-#' Sets up the necessary backend for the QN process.
+#' @title Create an Quantisation Noise (QN) Process
+#' @description Sets up the necessary backend for the QN process.
 #' @param q2 A \code{double} value for the \eqn{Q^2}{Q^2} of a QN process.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
@@ -263,12 +261,10 @@ QN = function(q2 = NULL) {
   invisible(out)
 }
 
-#' Create an White Noise (WN) Process
-#' 
-#' Sets up the necessary backend for the WN process.
+#' @title Create an White Noise (WN) Process
+#' @description Sets up the necessary backend for the WN process.
 #' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of a WN process.
-#' @note We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t,} where \eqn{\varepsilon_t} is iid from a zero 
-#' mean normal distribution with variance \eqn{\sigma^2}.
+#' @note In this process, \eqn{Y_t} is iid from a zero mean normal distribution with variance \eqn{\sigma^2}
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "WN"}
@@ -302,12 +298,11 @@ WN = function(sigma2 = NULL) {
   invisible(out)
 }
 
-#' Create an Random Walk (RW) Process
-#' 
-#' Sets up the necessary backend for the RW process.
+#' @title Create an Random Walk (RW) Process
+#' @description Sets up the necessary backend for the RW process.
 #' @param gamma2 A \code{double} value for the variance \eqn{\gamma ^2}{gamma^2}
 #' @note We consider the following model: \deqn{Y_t = \sum\nolimits_{t=0}^{T} \gamma_0*Z_t} where \eqn{Z_t} is iid 
-#' from a standard normal distribution.
+#' and follows a standard normal distribution.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "RW"}
@@ -341,9 +336,8 @@ RW = function(gamma2 = NULL) {
   invisible(out)
 }
 
-#' Create an Drift (DR) Process
-#' 
-#' Sets up the necessary backend for the DR process.
+#' @title Create an Drift (DR) Process
+#' @description Sets up the necessary backend for the DR process.
 #' @param omega A \code{double} value for the slope of a DR process.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
@@ -381,7 +375,7 @@ DR = function(omega = NULL) {
 
 
 #' @title Create an Autoregressive P [AR(P)] Process
-#' @description Setups the necessary backend for the AR(P) process.
+#' @description Sets up the necessary backend for the AR(P) process.
 #' @param phi A \code{vector} with double values for the \eqn{\phi}{phi} of an AR(P) process (see Note for details).
 #' @param sigma2 A \code{double} value for the variance, \eqn{\sigma ^2}{sigma^2}, of an AR(P) process. (see Note for details).
 #' @note We consider the following model: \deqn{X_t = \sum_{j = 1}^p \phi_j X_{t-1} + \varepsilon_t} , where \eqn{\varepsilon_t} is iid from a zero 
@@ -408,14 +402,13 @@ AR = function(phi = NULL, sigma2 = 1) {
   }
   
   out = SARIMA(ar = phi, i = 0,  ma = 0, sar = 0, si = 0,  sma = 0, s = 0, sigma2 = sigma2)
-
+  
   invisible(out)
 }
 
 
-#' Create an Moving Average Q [MA(Q)] Process
-#' 
-#' Setups the necessary backend for the MA(Q) process.
+#' @title Create an Moving Average Q [MA(Q)] Process
+#' @description Sets up the necessary backend for the MA(Q) process.
 #' @param theta A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).
 #' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).
 #' @note We consider the following model: \deqn{X_t = \sum_{j = 1}^q \theta_j \varepsilon_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
@@ -443,7 +436,7 @@ MA = function(theta = NULL, sigma2 = 1) {
   }
   
   out = SARIMA(ar = 0, i = 0,  ma = theta, sar = 0, si = 0,  sma = 0, s = 0, sigma2 = sigma2)
-
+  
   invisible(out)
 }
 
@@ -705,15 +698,15 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
     }
   }else if (i > 0 && P == 0 && Q == 0){
     # ARIMA models
-      if (p == 0 && q == 0 && i == 1){
-        print = "RW()"
-        out = list(print = print, simplified = "RW")
-        return(out)
-      }else{
-        print = paste("ARIMA(", p, ",", i, ",", q, ")", sep = "")
-        out = list(print = print, simplified = "ARIMA")
-        return(out)
-      }
+    if (p == 0 && q == 0 && i == 1){
+      print = "RW()"
+      out = list(print = print, simplified = "RW")
+      return(out)
+    }else{
+      print = paste("ARIMA(", p, ",", i, ",", q, ")", sep = "")
+      out = list(print = print, simplified = "ARIMA")
+      return(out)
+    }
   }else if (i == 0 && si == 0 && p == 0 && q == 0){
     # Pure seasonal
     if (Q == 0){
@@ -744,7 +737,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
     return(out)
   }
 }
-  
+
 
 #' @title Multiple a ts.model by constant
 #' @description Sets up the necessary backend for creating multiple model objects.
@@ -819,7 +812,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
   invisible(out)
 }
 
-#' @title Multiple a ts.model by constant
+#' @title Multiply a ts.model by constant
 #' @description Sets up the necessary backend for creating multiple model objects.
 #' @method print ts.model
 #' @export
@@ -845,7 +838,7 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
 #' # In a similar vein, this example highlights the lack of need for specifying parameters. 
 #' AR1(.9,.1) + WN(1) + RW(.3) + DR(.5) + QN(.9) + ARMA(c(.3,.1), c(.3,.2), .99)
 print.ts.model = function(x, ...){
-
+  
   desctable = data.frame("Terms" = x$process.desc, "Initial Values" = x$theta, stringsAsFactors = FALSE);
   cat("\nGuess Starting Values:", x$starting, "\n")
   if(x$starting){

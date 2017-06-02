@@ -3,7 +3,7 @@ author: "Justin Lee"
 title: "Simulations from Time Series Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{simts}
+  %\VignetteIndexEntry{simtsd}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -38,7 +38,7 @@ savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%",
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates")
 
 # Load Nile dataset
-data("nile")
+Nile = datasets::Nile
 nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1, 
            unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Flow", 
            name_time = "Years", data_name = "Annual Flow of river Nile")

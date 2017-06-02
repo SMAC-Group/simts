@@ -60,7 +60,7 @@ The following R packages are also required. If you have made it this far, run th
 
 ```{r, eval = F}
 # Install dependencies
-install.packages(c("RcppArmadillo","devtools","knitr","rmarkdown"))
+install.packages(c("RcppArmadillo","devtools","knitr","rmarkdown", "datasets"))
 
 # Install the package from GitHub without Vignettes/User Guides
 devtools::install_github("SMAC-Group/simts")

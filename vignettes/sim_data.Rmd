@@ -3,7 +3,7 @@ author: "Justin Lee"
 title: "Simulations from Time Series Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{simtsd}
+  %\VignetteIndexEntry{Simulations from Time Series Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

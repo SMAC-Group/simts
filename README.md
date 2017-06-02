@@ -2,8 +2,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Travis-CI Build Status](https://travis-ci.org/SMAC-Group/simts.svg?branch=master)](https://travis-ci.org/SMAC-Group/simts)
 
-`simts` R Package
-=================
+`simts` R Package <img src="man/figures/logo.png" align="right" />
+==================================================================
 
 This repository holds the Time Series Simulation (simts) R package. `simts` generates various time series objects for use in other packages.
 
@@ -19,7 +19,9 @@ Installing the package through GitHub (Developmental)
 
 For users who are interested in having the latest and greatest developments in wavelets and simts methodology, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
 
-**The setup to obtain the development version of `simts` is platform dependent.** \#\#\#\#System Requirements:\#\#\#\#
+*The setup to obtain the development version of `simts` is platform dependent.*
+
+### Requirements and Dependancies
 
 **OS X**
 

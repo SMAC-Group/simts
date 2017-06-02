@@ -6,4 +6,5 @@
 ^data-raw$
 ^_pkgdown\.yml$
 ^man-roxygen$
+^figures$
 ^docs$

@@ -32,6 +32,11 @@ Authors:
   \item Wenchao Yang
 }
 
+Other contributors:
+\itemize{
+  \item Nathanael Claussen [contributor]
+}
+
 
 James Balamuta \email{balamut2@illinois.edu},
 Stephane Guerrier \email{stephane@illinois.edu},

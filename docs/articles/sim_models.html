@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simulations from Time Series Models • simts</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,16 +29,23 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../articles/sim_models.html">Time Series Models</a>
+  <a href="../articles/sim_models.html">From Models</a>
 </li>
 <li>
-  <a href="../articles/sim_data.html">Time Series Data</a>
+  <a href="../articles/sim_data.html">From TS Data</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/SMAC-Group/simts">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -71,15 +78,13 @@
 </li>
 <li>First-order Autoregressive <code><a href="../reference/AR1.html">AR1()</a></code>
 </li>
-<li>Create an Autoregressive P <code><a href="../reference/AR.html">AR()</a></code>
+<li>Autoregressive <code><a href="../reference/AR.html">AR()</a></code>
 </li>
 <li>First-order Moving Average <code><a href="../reference/MA1.html">MA1()</a></code>
 </li>
-<li>Moving Average Q Process <code><a href="../reference/MA.html">MA()</a></code>
+<li>Moving Average Process <code><a href="../reference/MA.html">MA()</a></code>
 </li>
 <li>Gauss-Markov <code><a href="../reference/GM.html">GM()</a></code>
-</li>
-<li>Quantisation Noise <code><a href="../reference/QN.html">QN()</a></code>
 </li>
 <li>Autoregressive Moving Average <code><a href="../reference/ARMA.html">ARMA()</a></code>
 </li>
@@ -89,11 +94,13 @@
 </li>
 <li>Seasonal Autoregressive Moving Average <code><a href="../reference/SARMA.html">SARMA()</a></code>
 </li>
+<li>Quantization Noise <code><a href="../reference/QN.html">QN()</a></code>
+</li>
 </ul>
-<p>Quantization Noise is a lesser known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
-<div id="simulations" class="section level2">
+<p>Quantization Noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
+<div id="simulations-and-visualizations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#simulations" class="anchor"></a>Simulations</h2>
+<a href="#simulations-and-visualizations" class="anchor"></a>Simulations and Visualizations</h2>
 <p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from these model specifications.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set seed for reproducibility</span>
 <span class="kw">set.seed</span>(<span class="dv">1337</span>)
@@ -108,64 +115,37 @@ wn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html
 qn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/QN.html">QN</a></span>(<span class="dt">q2 =</span> .<span class="dv">5</span>)) 
 
 <span class="co"># Generate a Random Walk</span>
-rw =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> .<span class="dv">75</span>)) 
-
-<span class="co"># Generate a Drift</span>
-dr =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.10</span>)) 
-
-<span class="co"># Generate an AR(1)</span>
-ar1 =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/AR1.html">AR1</a></span>(<span class="dt">phi =</span> .<span class="dv">9</span>, <span class="dt">sigma2 =</span> .<span class="dv">1</span>)) 
-
-<span class="co"># Generate an MA(1)</span>
-ma1 =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/MA1.html">MA1</a></span>(<span class="dt">theta =</span> .<span class="dv">3</span>, <span class="dt">sigma2 =</span> .<span class="dv">5</span>)) 
-
-<span class="co"># Generate an ARMA(2, 1)</span>
-arma11 =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(.<span class="dv">9</span>, -.<span class="dv">5</span>), <span class="dt">ma =</span> .<span class="dv">2</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>))
-
-<span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span>
+rw =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> .<span class="dv">75</span>)) </code></pre></div>
+<p>By applying the <code>plot()</code> on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of the data simulated.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span>
 sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> -<span class="fl">0.27</span>,
                         <span class="dt">sar =</span> <span class="kw">c</span>(-<span class="fl">0.12</span>, -<span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> -<span class="fl">0.9</span>,
-                        <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))</code></pre></div>
+                        <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))
+<span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
+<span class="kw">plot</span>(sarima)</code></pre></div>
+<p><img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
 <p>The <code>simts</code> package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
 <p><code>simts</code>’s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them.</p>
-<p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k\*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3\*AR1()+RW()+WN()</code>. <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
+<p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k\*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3\*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
 arma_wn_model =
 <span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, -<span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)
 arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)
-
-<span class="co"># Generate a SARMA() + WN(2) </span>
+<span class="co"># Plot simulation of ARMA(2,1) + WN()</span>
+<span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
+<p><img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" width="696" style="display: block; margin: auto;"></p>
+<p><code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a SARMA() + WN(2) </span>
 sarma_wn_model =<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>)
 sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> sarma_wn_model)
 
-<span class="co"># Generate a SARMA() + WN(2) + MA(2) </span>
-sarma_wn_ma_model =<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.25</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>) +
-<span class="st">  </span><span class="kw"><a href="../reference/MA.html">MA</a></span>(<span class="dt">theta =</span> <span class="kw">c</span>(<span class="fl">0.1</span>,-<span class="fl">0.8</span>), <span class="dt">sigma2 =</span> <span class="dv">2</span>)
-sarma_wn_ma_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> sarma_wn_ma_model)</code></pre></div>
-</div>
-<div id="visualizations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#visualizations" class="anchor"></a>Visualizations</h2>
-<p>By applying the <code>plot()</code> on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of the data simulated.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
-<span class="kw">plot</span>(sarima)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" width="696" style="display: block; margin: auto;"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot simulation of ARMA(2,1) + WN()</span>
-<span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-4-2.png" width="696" style="display: block; margin: auto;"></p>
-<p>As mentioned above, by applying the <code>plot()</code> on the result of a <code><a href="../reference/gen_lts.html">gen_lts()</a></code> simulation, we can visualize a breakdown of the underlying processes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot simulation of SARMA() + WN(2) </span>
+<span class="co"># Plot simulation of SARMA() + WN(2) </span>
 <span class="kw">plot</span>(sarma_wn_sim)</code></pre></div>
 <p><img src="sim_models_files/figure-html/unnamed-chunk-5-1.png" width="696" style="display: block; margin: auto;"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot simulation of SARMA() + WN(2) + MA(2) </span>
-<span class="kw">plot</span>(sarma_wn_ma_sim)</code></pre></div>
-<p><img src="sim_models_files/figure-html/unnamed-chunk-5-2.png" width="696" style="display: block; margin: auto;"></p>
 </div>
 </div>
   </div>
@@ -174,8 +154,7 @@ sarma_wn_ma_sim =<span class="st"> </span><span class="kw"><a href="../reference
         <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#simulations">Simulations</a></li>
-      <li><a href="#visualizations">Visualizations</a></li>
+<li><a href="#simulations-and-visualizations">Simulations and Visualizations</a></li>
       </ul>
 </div>
       </div>

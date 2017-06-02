@@ -1,12 +1,8 @@
 template:
   params:
-    bootswatch: cerulean
+    bootswatch: yeti
 
 reference:
-  - title: Install
-    desc:  Install necessary dataset packages.
-    contents:
-    - starts_with("install_")
   - title: Time Series Models 
     contents:
     - AR
@@ -30,19 +26,20 @@ reference:
     - lts 
   - title: Helpers
     contents:
-    - imu_time
-    - imu
     - outf
-    - read.imu
-    - simplified_print_SARIMA
     - value
     - desc.to.ts.model
+    - conv.ar1.to.gm
+    - conv.gm.to.ar1
 
 navbar:
   left:
-  - text: Time Series Models
+  - text: From Models
     href: articles/sim_models.html
-  - text: Time Series Data 
+  - text: From TS Data 
     href: articles/sim_data.html
   - text: Reference
     href: reference/index.html
+  right: 
+  - icon: fa-github
+    href: https://github.com/SMAC-Group/simts

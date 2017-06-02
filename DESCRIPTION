@@ -1,6 +1,6 @@
 Package: simts
 Type: Package
-Title: Simulate Various Time Series 
+Title: Time Series Simulation
 Version: 1.0
 Date: 2017-05-28
 LazyData: true
@@ -15,7 +15,7 @@ Maintainer: Justin Lee <munsheet93@gmail.com>
 Description: Generates various time series objects for use in other packages.
 Depends: R (>= 3.1.0)
 License: GPL (>= 2)
-Imports: 
+Imports:
     Rcpp (>= 0.12.11), 
     methods,
     stats,
@@ -25,3 +25,8 @@ Imports:
     graphics
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1.9000
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/SMAC-Group/simts
+BugReports: https://github.com/SMAC-Group/simts/issues

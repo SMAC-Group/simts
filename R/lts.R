@@ -98,9 +98,9 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
   else if ( is.null(start) ){
     start = end - (ndata - 1)/freq}
   
-  # 5. requirement for 'unit'
-  if(!is.null(unit)){
-    if(!unit %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
+  # 5. requirement for 'unit_time'
+  if(!is.null(unit_time)){
+    if(!unit_time %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
       stop('The supported units are "ns", "ms", "sec", "min", "hour", "day", "month", "year". ')
     }
   }
@@ -150,7 +150,7 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, 
 #' model = AR1(phi = .99, sigma2 = 1) + WN(sigma2 = 1)
 #' test = gen_lts(1000, model)
 #' plot(test)
-gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name = NULL, process = NULL){
+gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_time = NULL, name = NULL, process = NULL){
   
   # 1. Do we have a valid model?
   if(!(is(model, "ts.model") || is(model, "simts"))){
@@ -177,9 +177,9 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
   }else if ( is.null(start) ){
     start = end - (n - 1)/freq}
   
-  # 4. 'unit'
-  if(!is.null(unit)){
-    if(!unit %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
+  # 4. 'unit_time'
+  if(!is.null(unit_time)){
+    if(!unit_time %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
       stop('The supported units are "ns", "ms", "sec", "min", "hour", "day", "month", "year". ')
     }
   }
@@ -226,8 +226,10 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
                   start = start, 
                   end = end, # start and end will not be null now
                   freq = freq,
-                  unit = unit,
-                  name = name,
+                  unit_ts = unit_ts, 
+                  unit_time = unit_time,
+                  name_ts = name_ts,
+                  name_time = name_time,
                   print = model$print,
                   process = process,
                   class = c("lts","matrix"))
@@ -235,8 +237,6 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit = NULL, name 
   out
 
 }
-
-
 
 
 #' @title Plot Latent Time Series Data

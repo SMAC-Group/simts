@@ -11,7 +11,7 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -51,10 +51,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/sim_models.html">Time Series Models</a>
+  <a href="../articles/sim_models.html">From Models</a>
 </li>
 <li>
-  <a href="../articles/sim_data.html">Time Series Data</a>
+  <a href="../articles/sim_data.html">From TS Data</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -62,7 +62,12 @@
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/SMAC-Group/simts">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -89,26 +94,6 @@
       </colgroup>
 
       <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-install" class="hasAnchor"><a href="#section-install" class="anchor"></a>Install</h2>
-            <p class="section-desc"><p>Install necessary dataset packages.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="install_datapkg.html">install_datapkg</a></code> </p>
-          </td>
-          <td><p>Install Data Package</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="install_imudata.html">install_imudata</a></code> </p>
-          </td>
-          <td><p>Install IMU Data Package</p></td>
-        </tr>
-      </tbody><tbody>
         <tr>
           <th colspan="2">
             <h2 id="section-time-series-models" class="hasAnchor"><a href="#section-time-series-models" class="anchor"></a>Time Series Models</h2>
@@ -236,33 +221,9 @@
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="imu_time.html">imu_time</a></code> </p>
-          </td>
-          <td><p>Pulls the IMU time from the IMU object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="imu.html">imu</a></code> </p>
-          </td>
-          <td><p>Create an IMU Object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="print_data.html">print</a></code> <code><a href="print_data.html">outf</a></code> </p>
           </td>
           <td><p>Print simts Objects</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="read.imu.html">read.imu</a></code> </p>
-          </td>
-          <td><p>Read an IMU Binary File into R</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="simplified_print_SARIMA.html">simplified_print_SARIMA</a></code> </p>
-          </td>
-          <td><p>Simplify and print SARIMA model</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -275,6 +236,12 @@
             <p><code><a href="desc.to.ts.model.html">desc.to.ts.model</a></code> </p>
           </td>
           <td><p>Create a ts.model from desc string</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gm_conv.html">conv.ar1.to.gm</a></code> <code><a href="gm_conv.html">conv.gm.to.ar1</a></code> </p>
+          </td>
+          <td><p>GM Conversion</p></td>
         </tr>
       </tbody>
       </table>
@@ -284,7 +251,6 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-install">Install</a></li>
       <li><a href="#section-time-series-models">Time Series Models</a></li>
       <li><a href="#section-simulation">Simulation</a></li>
       <li><a href="#section-helpers">Helpers</a></li>

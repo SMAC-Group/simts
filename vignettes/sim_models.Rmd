@@ -12,26 +12,24 @@ vignette: >
 library(simts)
 ```
 
-In this section, we briefly list, describe, and provide code from the `simts` package that may be useful for creating simulation methods involving time-series data.
-
-Furthermore, under some minor constraints, all of these models can be combined into a specific class of linear state-space models. As such, we describe how to use `simts` to express this type of model as a sum of basic models. 
+In this section, we briefly list, describe, and provide the syntax from the `simts` package that may be useful for creating simulation methods involving time-series models. 
 
 The following list includes some basic models available in the `simts` package.
 
-* WN: White Noise
-* QN: Quantization Noise
-* RW: Random Walk
-* DR: Drift
-* AR1: First-order Autoregressive
-* AR: Create an Autoregressive P
-* MA1: First-order Moving Average
-* MA: Moving Average Q Process
-* GM: Gauss-Markov
-* QN: Quantisation Noise*
-* ARMA: Autoregressive Moving Average
-* ARIMA: Integrated Autoregressive Moving Average
-* SARIMA: Seasonal Autoregressive Integrated Moving Average (ARIMA)
-* SARMA: Seasonal Autoregressive Moving Average
+* White Noise `WN()`
+* Quantization Noise `QN()`
+* Random Walk `RW()`
+* Drift `DR()`
+* First-order Autoregressive `AR1()`
+* Create an Autoregressive P `AR()`
+* First-order Moving Average `MA1()`
+* Moving Average Q Process `MA()`
+* Gauss-Markov `GM()`
+* Quantisation Noise `QN()`
+* Autoregressive Moving Average `ARMA()`
+* Integrated Autoregressive Moving Average `ARIMA()`
+* Seasonal Autoregressive Integrated Moving Average `SARIMA()`
+* Seasonal Autoregressive Moving Average `SARMA()`
 
 Quantization Noise is a lesser known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.
 
@@ -73,7 +71,7 @@ sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
                         sigma2 = 1.5, s = 12))
 ```
 
-The simts package therefore allows users to easily simulate from a wide variety of models, including SARIMA models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
+The simts package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
 
 `simts`'s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them. 
 

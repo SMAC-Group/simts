@@ -16,7 +16,7 @@ library(simts)
 
 [![Travis-CI Build Status](https://travis-ci.org/SMAC-Group/simts.svg?branch=master)](https://travis-ci.org/SMAC-Group/simts)
 
-# `simts` R Package <img src="man/figures/logo.png" align="right" />
+# `simts` R Package <img src="man/figures/logo.png" align="right" style="width: 17%; height: 17%"/>
 
 This repository holds the Time Series Simulation (simts) R package. `simts` generates various time series objects for use in other packages.
 

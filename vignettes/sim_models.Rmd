@@ -71,7 +71,7 @@ sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
                         sigma2 = 1.5, s = 12))
 ```
 
-The simts package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
+The `simts` package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
 
 `simts`'s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them. 
 

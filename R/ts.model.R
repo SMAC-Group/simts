@@ -662,7 +662,7 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
   P = length(sar)
   Q = length(sma)
   
-  simple = simplified_print_SARIMA(p, i, q, P, si, Q)
+  simple = simplified_print_SARIMA(p, i, q, P, si, Q, s)
   out = structure(list(process.desc = c(rep("AR", p), rep("MA",q), rep("SAR", P), rep("SMA",Q), "SIGMA2"),
                        theta = c(ar, ma, sar, sma, sigma2),
                        plength = p + q + P + Q + 1,
@@ -688,7 +688,7 @@ SARIMA = function(ar = 1, i = 0,  ma = 1, sar = 1, si = 0,  sma = 1, s = 12, sig
 #'  \item{simplified}{Type of model (after simplification)}
 #' }
 #' @author Stephane Guerrier
-simplified_print_SARIMA = function(p, i, q, P, si, Q){
+simplified_print_SARIMA = function(p, i, q, P, si, Q, s){
   # ARMA models
   if (i == 0 && P == 0 && Q == 0){
     # White noise
@@ -727,28 +727,28 @@ simplified_print_SARIMA = function(p, i, q, P, si, Q){
     # Pure seasonal
     if (Q == 0){
       # SAR
-      print = paste("SAR(", P, ")", sep = "")
+      print = paste("SAR(", P, ") [", s, "]", sep = "")
       out = list(print = print, simplified = "SAR")
       return(out)
     }else if (P == 0){
       # SMA
-      print = paste("SMA(", Q, ")", sep = "")
+      print = paste("SMA(", Q, ") [", s, "]", sep = "")
       out = list(print = print, simplified = "SMA")
       return(out)
     }else{
       # SARMA
-      print = paste("SARMA(0,0) x (", P, ",", Q, ")", sep = "")
+      print = paste("SARMA(0,0) x (", P, ",", Q, ") [", s, "]", sep = "")
       out = list(print = print, simplified = "SARMA")
       return(out)
     }
   }else if (i == 0 && si == 0){
     # SARMA
-    print = paste("SARMA(", p, ",", q, ") x (", P, ",", Q, ")", sep = "")
+    print = paste("SARMA(", p, ",", q, ") x (", P, ",", Q, ") [", s, "]", sep = "")
     out = list(print = print, simplified = "SARMA")
     return(out)
   }else{
     # SARIMA
-    print = paste("SARMA(", p, ",", i, ",", q, ") x (", P, ",", si, ",", Q, ")", sep = "")
+    print = paste("SARIMA(", p, ",", i, ",", q, ") x (", P, ",", si, ",", Q, ") [", s, "]", sep = "")
     out = list(print = print, simplified = "SARIMA")
     return(out)
   }

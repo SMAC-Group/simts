@@ -1,6 +1,6 @@
 template:
   params:
-    bootswatch: yeti
+    bootswatch: flatly
 
 reference:
   - title: Time Series Models 

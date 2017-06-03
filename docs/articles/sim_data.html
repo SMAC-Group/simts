@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simulations from Time Series Data • simts</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -69,11 +69,11 @@
 <p>The following three datasets stored in <code>simts</code> will be used as examples.</p>
 <ul>
 <li>
-<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html">hydro</a>: Hydrology data that indicates a robust approach may be preferred to a classical approach when estimating time series. Time series with frequency 12 starting at 1907 and going to 1972 for total of 781 observations.</li>
+<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html">hydro</a>: Precipitation monthly data from 1907 and going to 1972 for total of 781 observations taken from <span class="citation">Hipel and McLeod (1994)</span>.</li>
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html">savingrt</a>: Personal saving as a percentage of disposable personal income (DPI), frequently referred to as “the personal saving rate,” is calculated as the ratio of personal saving to DPI. GTS time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.</li>
 <li>
-<a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html">Nile</a>: Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span>, “with apparent changepoint near 1898” (Cobb, 1978, Table 1, p.249).</li>
+<a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html">Nile</a>: Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span> taken from Table 1 of <span class="citation">Cobb (1978)</span>.</li>
 </ul>
 <div id="generate-simulations" class="section level2">
 <h2 class="hasAnchor">
@@ -90,8 +90,8 @@ hydro =<span class="st"> </span><span class="kw"><a href="../reference/gts.html"
 <span class="co"># Plot hydro simulation</span>
 <span class="kw">plot</span>(hydro)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-2-1.png" alt="Figure 1: Plot of the Hydrology data from 1907" width="696"><p class="caption">
-Figure 1: Plot of the Hydrology data from 1907
+<img src="sim_data_files/figure-html/unnamed-chunk-2-1.png" alt="Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time" width="696"><p class="caption">
+Figure 1: Monthly precipitation series from 1907 to 1972 taken from <span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
 </div>
@@ -106,8 +106,8 @@ savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.ht
 <span class="co"># Plot savingrt simulation</span>
 <span class="kw">plot</span>(savingrt)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 2: Plot of Personal Savings as DPI from 1959" width="696"><p class="caption">
-Figure 2: Plot of Personal Savings as DPI from 1959
+<img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 2: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
+Figure 2: Monthly (seasonally adjusted) Personal Saving Rates data from January 1959 to May 2015 provided by the Federal Reserve Bank of St. Louis.
 </p>
 </div>
 </div>
@@ -129,6 +129,18 @@ Figure 3: Plot of Annual Nile river flow from 1871-1970
 </div>
 </div>
 </div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references">
+<div id="ref-cobb1978problem">
+<p>Cobb, George W. 1978. “The Problem of the Nile: Conditional Solution to a Changepoint Problem.” <em>Biometrika</em>. JSTOR, 243–51.</p>
+</div>
+<div id="ref-hipel1994time">
+<p>Hipel, Keith W, and A Ian McLeod. 1994. <em>Time Series Modelling of Water Resources and Environmental Systems</em>. Vol. 45. Elsevier.</p>
+</div>
+</div>
+</div>
 </div>
   </div>
 
@@ -137,6 +149,7 @@ Figure 3: Plot of Annual Nile river flow from 1871-1970
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#generate-simulations">Generate Simulations</a></li>
+      <li><a href="#references">References</a></li>
       </ul>
 </div>
       </div>

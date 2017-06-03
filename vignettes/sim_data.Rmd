@@ -8,6 +8,7 @@ vignette: >
   %\VignetteIndexEntry{Simulations from Time Series Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: biblio.bib
 ---
 
 ```{r, echo = FALSE}
@@ -19,9 +20,9 @@ In this section, we will breifly demo `simts` functionality by performing simula
 
 The following three datasets stored in `simts` will be used as examples.
 
-* [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): Hydrology data that indicates a robust approach may be preferred to a classical approach when estimating time series. Time series with frequency 12 starting at 1907 and going to 1972 for total of 781 observations.
+* [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): Precipitation monthly data from 1907 and going to 1972 for total of 781 observations taken from @hipel1994time.
 * [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): Personal saving as a percentage of disposable personal income (DPI), frequently referred to as "the personal saving rate," is calculated as the ratio of personal saving to DPI. GTS time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
-* [Nile](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html): Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in $10^8 m^3$, “with apparent changepoint near 1898” (Cobb, 1978, Table 1, p.249).
+* [Nile](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html): Measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in $10^8 m^3$ taken from Table 1 of @cobb1978problem.
 
 ## Generate Simulations 
 
@@ -29,7 +30,7 @@ The code below shows how to setup a time series oriented object with the `gts()`
 
 ### Hydrology 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Plot of the Hydrology data from 1907'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time'}
 # Load hydro dataset
 data("hydro")
 # Simulate based on data
@@ -41,7 +42,7 @@ plot(hydro)
 
 ### Personal Savings 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Plot of Personal Savings as DPI from 1959'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis.'}
 # Load savingrt dataset
 data("savingrt")
 # Simulate based on data
@@ -63,3 +64,5 @@ nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1,
 # Plot Nile simulation 
 plot(nile)
 ```
+
+## References

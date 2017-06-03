@@ -7,7 +7,7 @@
 DR(omega = NULL)
 }
 \arguments{
-\item{omega}{A \code{double} value for the slope of a DR process.}
+\item{omega}{A \code{double} value for the slope of a DR process (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
@@ -23,6 +23,9 @@ An S3 object with called ts.model with the following structure:
 }
 \description{
 Sets up the necessary backend for the DR process.
+}
+\note{
+We consider the following model: \deqn{Y_t = \omega t}
 }
 \examples{
 DR()

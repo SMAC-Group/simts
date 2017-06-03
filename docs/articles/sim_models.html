@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Simulations from Time Series Models • simts</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -124,11 +124,11 @@ sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.
 <span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
 <span class="kw">plot</span>(sarima)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 1: Plot of simulated SARIMA(1,0,1)x(2,1,1)[12] process" width="696"><p class="caption">
-Figure 1: Plot of simulated SARIMA(1,0,1)x(2,1,1)[12] process
+<img src="sim_models_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 1: Simulated SARIMA(1,0,1)x(2,1,1)[12] process" width="696"><p class="caption">
+Figure 1: Simulated SARIMA(1,0,1)x(2,1,1)[12] process
 </p>
 </div>
-<p>The <code>simts</code> package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
+<p>The <code>simts</code> package therefore allows users to easily simulate from a wide variety of classical time series models, but does not limit itself to these models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
 <p><code>simts</code>’s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them.</p>
 <p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
@@ -140,8 +140,8 @@ arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen
 <span class="co"># Plot simulation of ARMA(2,1) + WN()</span>
 <span class="kw">plot</span>(arma_wn_sim)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 2: Plot of simulated ARMA(2,1) + WN() process" width="696"><p class="caption">
-Figure 2: Plot of simulated ARMA(2,1) + WN() process
+<img src="sim_models_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 2: Simulated ARMA(2,1) + WN() process" width="696"><p class="caption">
+Figure 2: Simulated ARMA(2,1) + WN() process
 </p>
 </div>
 </div>
@@ -149,17 +149,17 @@ Figure 2: Plot of simulated ARMA(2,1) + WN() process
 <h2 class="hasAnchor">
 <a href="#latent-time-series" class="anchor"></a>Latent Time Series</h2>
 <p><code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a SARMA() + WN(2) </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a SARMA() + WN() </span>
 sarma_wn_model =<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>)
 sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> sarma_wn_model)
 
-<span class="co"># Plot simulation of SARMA() + WN(2) </span>
+<span class="co"># Plot simulation of SARMA() + W() </span>
 <span class="kw">plot</span>(sarma_wn_sim)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_models_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Plot of breakdown of underlying process and resulting latent process" width="696"><p class="caption">
-Figure 3: Plot of breakdown of underlying process and resulting latent process
+<img src="sim_models_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
+Figure 3: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
 </p>
 </div>
 </div>

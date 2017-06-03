@@ -7,9 +7,9 @@
 GM(beta = NULL, sigma2_gm = 1)
 }
 \arguments{
-\item{beta}{A \code{double} value for the \eqn{\beta}{beta} of an GM process.}
+\item{beta}{A \code{double} value for the \eqn{\beta}{beta} of an GM process (see Note for details).}
 
-\item{sigma2_gm}{A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process.}
+\item{sigma2_gm}{A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process (see Note for details).}
 }
 \value{
 An S3 object with called ts.model with the following structure:
@@ -38,7 +38,8 @@ or specifying a `freq` parameter in simts or simts.imu.
 The `freq` of a data object takes precedence over the `freq` set when modeling.
 }
 \note{
-We consider the following model: [Equation]
+We consider the following model: \deqn{X_t = e^{(-\beta)} X_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
+mean normal distribution with variance \eqn{\sigma^2(1-e^{2\beta})}.
 }
 \examples{
 GM()

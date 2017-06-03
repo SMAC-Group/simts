@@ -93,11 +93,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>beta</th>
-      <td><p>A <code>double</code> value for the \(\beta\) of an GM process.</p></td>
+      <td><p>A <code>double</code> value for the \(\beta\) of an GM process (see Note for details).</p></td>
     </tr>
     <tr>
       <th>sigma2_gm</th>
-      <td><p>A <code>double</code> value for the variance, \(\sigma ^2_{gm}\), of a GM process.</p></td>
+      <td><p>A <code>double</code> value for the variance, \(\sigma ^2_{gm}\), of a GM process (see Note for details).</p></td>
     </tr>
     </table>
     
@@ -126,7 +126,8 @@ or specifying a `freq` parameter in simts or simts.imu.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>We consider the following model: [Equation]</p>
+    <p>We consider the following model: $$X_t = e^{(-\beta)} X_{t-1} + \varepsilon_t$$, where \(\varepsilon_t\) is iid from a zero 
+mean normal distribution with variance \(\sigma^2(1-e^{2\beta})\).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

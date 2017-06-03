@@ -98,7 +98,18 @@ Figure 1: Monthly precipitation series from 1907 to 1972 taken from <span class=
 <div id="personal-savings" class="section level3">
 <h3 class="hasAnchor">
 <a href="#personal-savings" class="anchor"></a>Personal Savings</h3>
-<p><code>{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis.'} # Load savingrt dataset data("savingrt") # Simulate based on data savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%",              name_ts = "Saving Rates", data_name = "US Personal Saving Rates") # Plot savingrt simulation plot(savingrt)</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load savingrt dataset</span>
+<span class="kw">data</span>(<span class="st">"savingrt"</span>)
+<span class="co"># Simulate based on data</span>
+savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, 
+            <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>)
+<span class="co"># Plot savingrt simulation</span>
+<span class="kw">plot</span>(savingrt)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 2: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
+Figure 2: Monthly (seasonally adjusted) Personal Saving Rates data from January 1959 to May 2015 provided by the Federal Reserve Bank of St. Louis.
+</p>
+</div>
 </div>
 <div id="nile-river-flow" class="section level3">
 <h3 class="hasAnchor">
@@ -112,7 +123,7 @@ nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">
 <span class="co"># Plot Nile simulation </span>
 <span class="kw">plot</span>(nile)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 3: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
+<img src="sim_data_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 3: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
 Figure 3: Plot of Annual Nile river flow from 1871-1970
 </p>
 </div>

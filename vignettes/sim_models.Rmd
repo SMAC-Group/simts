@@ -58,7 +58,7 @@ rw = gen_gts(n, RW(gamma2 = .75))
 
 By applying the `plot()` on the result of a `gen_gts()` simulation, we can observe a visualization of the data simulated. 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Plot of simulated SARIMA(1,0,1)x(2,1,1)[12] process'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Simulated SARIMA(1,0,1)x(2,1,1)[12] process'}
 # Generate an SARIMA(1,0,1)x(2,1,1)[12]
 sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
                         sar = c(-0.12, -0.2), si = 1, sma = -0.9,
@@ -67,7 +67,7 @@ sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
 plot(sarima)
 ```
 
-The `simts` package therefore allows users to easily simulate from a wide variety of models, but does not limit itself to these basic models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
+The `simts` package therefore allows users to easily simulate from a wide variety of classical time series models, but does not limit itself to these models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
 
 `simts`'s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them. 
 
@@ -75,7 +75,7 @@ Supposing that different AR1 processes are present in the state-space model, the
 
 Examples of simulating such models are generated below. 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Plot of simulated ARMA(2,1) + WN() process'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Simulated ARMA(2,1) + WN() process'}
 # Generate a ARMA(2,1) + WN()  
 arma_wn_model =
   ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + 
@@ -89,14 +89,14 @@ plot(arma_wn_sim)
 
 `simts` provides a function specifically designed to generate and represent latent time series models: `gen_lts()`. This provides users the option to visualize a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`. 
 
-```{r, fig.align='center', fig.height = 7, fig.width = 7.25, fig.cap = 'Figure 3: Plot of breakdown of underlying process and resulting latent process'}
-# Generate a SARMA() + WN(2) 
+```{r, fig.align='center', fig.height = 7, fig.width = 7.25, fig.cap = 'Figure 3: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes'}
+# Generate a SARMA() + WN() 
 sarma_wn_model = 
   SARMA(ar = 0, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + 
   WN(sigma2 = 2)
 sarma_wn_sim = gen_lts(n = n, model  = sarma_wn_model)
 
-# Plot simulation of SARMA() + WN(2) 
+# Plot simulation of SARMA() + W() 
 plot(sarma_wn_sim)
 ```
 

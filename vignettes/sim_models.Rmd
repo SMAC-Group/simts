@@ -37,7 +37,7 @@ Quantization Noise is a less known process that is used in engineering applicati
 
 ## Generate Simulations 
 
-The code below shows how to call the function `gen_gts()`, which allows the user to generate samples from these model specifications.
+The code below shows how to call the function `gen_gts()`, which allows the user to generate samples from the above model specifications.
 
 ```{r}
 # Set seed for reproducibility
@@ -56,7 +56,7 @@ qn = gen_gts(n, QN(q2 = .5))
 rw = gen_gts(n, RW(gamma2 = .75)) 
 ```
 
-By applying the `plot()` on the result of a `gen_gts()` simulation, we can observe a visualization of the data simulated. 
+By applying the `plot()` function on the result of a `gen_gts()` simulation, we can observe a visualization of our simulated data.
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Plot of simulated SARIMA(1,0,1)x(2,1,1)[12] process'}
 # Generate an SARIMA(1,0,1)x(2,1,1)[12]
@@ -71,9 +71,9 @@ The `simts` package therefore allows users to easily simulate from a wide variet
 
 `simts`'s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them. 
 
-Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is `k*AR1()`. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: `3*AR1()+RW()+WN()`. 
+Suppose that different AR1 processes are present in a state-space model. The syntax to insert “k” of these models into the state-space model is `k*AR1()`. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: `3*AR1()+RW()+WN()`.
 
-Examples of simulating such models are generated below. 
+Examples of simulating such models are generated below.
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Plot of simulated ARMA(2,1) + WN() process'}
 # Generate a ARMA(2,1) + WN()  
@@ -87,14 +87,14 @@ plot(arma_wn_sim)
 
 ## Latent Time Series
 
-`simts` provides a function specifically designed to generate and represent latent time series models: `gen_lts()`. This provides users the option to visualize a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`. 
+`simts` provides a function specifically designed to generate and represent latent time series models: `gen_lts()`. This provides users the option to visualize a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`.
 
 ```{r, fig.align='center', fig.height = 7, fig.width = 7.25, fig.cap = 'Figure 3: Plot of breakdown of underlying process and resulting latent process'}
 # Generate a SARMA() + WN(2) 
 sarma_wn_model = 
   SARMA(ar = 0, ma = 0, sar = 0.9, sma = 0, s = 10, sigma2 = 1) + 
   WN(sigma2 = 2)
-sarma_wn_sim = gen_lts(n = n, model  = sarma_wn_model)
+sarma_wn_sim = gen_lts(n = n, model = sarma_wn_model)
 
 # Plot simulation of SARMA() + WN(2) 
 plot(sarma_wn_sim)

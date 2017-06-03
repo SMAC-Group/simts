@@ -14,7 +14,7 @@ vignette: >
 library(simts)
 ```
 
-In this section, we briefly list, describe, and provide the syntax from the `simts` package that may be useful for creating simulation methods involving time-series models. 
+In this section, we briefly list, describe, and provide the syntax from the `simts` package that may be useful for creating simulation methods involving time-series models.  
 
 The following list includes some basic models available in the `simts` package.
 

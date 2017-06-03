@@ -181,9 +181,10 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 
 #' @title Create a Gauss-Markov (GM) Process
 #' @description Sets up the necessary backend for the GM process.
-#' @param beta A \code{double} value for the \eqn{\beta}{beta} of an GM process.
-#' @param sigma2_gm A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process.
-#' @note We consider the following model: [Equation]
+#' @param beta A \code{double} value for the \eqn{\beta}{beta} of an GM process (see Note for details).
+#' @param sigma2_gm A \code{double} value for the variance, \eqn{\sigma ^2_{gm}}{sigma^2[gm]}, of a GM process (see Note for details).
+#' @note We consider the following model: \deqn{X_t = e^{(-\beta)} X_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
+#' mean normal distribution with variance \eqn{\sigma^2(1-e^{2\beta})}.
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "BETA","SIGMA2"}
@@ -345,7 +346,8 @@ RW = function(gamma2 = NULL) {
 
 #' @title Create an Drift (DR) Process
 #' @description Sets up the necessary backend for the DR process.
-#' @param omega A \code{double} value for the slope of a DR process.
+#' @param omega A \code{double} value for the slope of a DR process (see Note for details).
+#' @note We consider the following model: \deqn{Y_t = \omega t}
 #' @return An S3 object with called ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "DR"}

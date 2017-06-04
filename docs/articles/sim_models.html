@@ -101,7 +101,7 @@
 <div id="generate-simulations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generate-simulations" class="anchor"></a>Generate Simulations</h2>
-<p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from these model specifications.</p>
+<p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from the above model specifications.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set seed for reproducibility</span>
 <span class="kw">set.seed</span>(<span class="dv">1337</span>)
 
@@ -116,7 +116,7 @@ qn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html
 
 <span class="co"># Generate a Random Walk</span>
 rw =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> .<span class="dv">75</span>)) </code></pre></div>
-<p>By applying the <code>plot()</code> on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of the data simulated.</p>
+<p>By applying the <code>plot()</code> function on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of our simulated data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span>
 sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> -<span class="fl">0.27</span>,
                         <span class="dt">sar =</span> <span class="kw">c</span>(-<span class="fl">0.12</span>, -<span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> -<span class="fl">0.9</span>,
@@ -130,7 +130,7 @@ Figure 1: Simulated SARIMA(1,0,1)x(2,1,1)[12] process
 </div>
 <p>The <code>simts</code> package therefore allows users to easily simulate from a wide variety of classical time series models, but does not limit itself to these models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
 <p><code>simts</code>’s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them.</p>
-<p>Supposing that different AR1 processes are present in the state-space model, the syntax to insert “k” of these models in a state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
+<p>Suppose that different AR1 processes are present in a state-space model. The syntax to insert “k” of these models into the state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
 arma_wn_model =
@@ -153,7 +153,7 @@ Figure 2: Simulated ARMA(2,1) + WN() process
 sarma_wn_model =<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.9</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">2</span>)
-sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> sarma_wn_model)
+sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> n, <span class="dt">model =</span> sarma_wn_model)
 
 <span class="co"># Plot simulation of SARMA() + W() </span>
 <span class="kw">plot</span>(sarma_wn_sim)</code></pre></div>

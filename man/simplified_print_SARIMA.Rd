@@ -4,7 +4,7 @@
 \alias{simplified_print_SARIMA}
 \title{Simplify and print SARIMA model}
 \usage{
-simplified_print_SARIMA(p, i, q, P, si, Q)
+simplified_print_SARIMA(p, i, q, P, si, Q, s)
 }
 \arguments{
 \item{p}{An \code{integer} denoting the length of \code{ar}.}

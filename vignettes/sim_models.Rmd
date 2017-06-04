@@ -96,7 +96,7 @@ sarma_wn_model =
   WN(sigma2 = 2)
 sarma_wn_sim = gen_lts(n = n, model = sarma_wn_model)
 
-# Plot simulation of SARMA() + W() 
+# Plot simulation of SARMA() + WN() 
 plot(sarma_wn_sim)
 ```
 

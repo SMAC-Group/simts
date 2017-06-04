@@ -18,6 +18,8 @@ simplified_print_SARIMA(p, i, q, P, si, Q, s)
 \item{si}{An \code{integer} containing the number of seasonal differences to be done.}
 
 \item{Q}{An \code{integer} denoting the length of \code{sar}.}
+
+\item{s}{An \code{integer} indicating the seasonal value of the data.}
 }
 \value{
 An S3 object with the following structure:

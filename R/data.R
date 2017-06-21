@@ -23,5 +23,21 @@
 "savingrt"
 
 
+#' Quarterly Increase in Stocks Non-Farm Total, Australia
+#' 
+#' A dataset containing the quarterly increase in stocks non-farm total in Australia, with frequency 4 
+#' starting from September 1959 to March 1991 with a total of 127 observations.
+#' 
+#' @format A data frame with 127 rows and 2 variables:
+#' \describe{
+#'   \item{Quarter}{year and quarter}
+#'   \item{Increase}{quarterly increase in stocks non-farm total}
+#' }
+#' 
+#' @source Time Series Data Library (citing: Australian Bureau of Statistics) 
+#' \url{https://datamarket.com/data/set/22t0/quarterly-increase-in-stocks-non-farm-total-australia-sep-1959-march-1991#!ds=22t0&display=line}
+"australia"
+
+
 #' @details The data sets in this package may change at a moments notice.
 "_PACKAGE"

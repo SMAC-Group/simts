@@ -8,7 +8,7 @@
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 #
-# The `wv` R package is distributed in the hope that it will be useful, but
+# The `simts` R package is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
@@ -71,7 +71,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 
 
 
-#' @title Auto-Covariance and Correlation Functions
+#' @title Plot Auto-Covariance and Correlation Functions
 #' @description The acf function computes the estimated
 #' autocovariance or autocorrelation for both univariate and multivariate cases.
 #' @author Yunxiang Zhang
@@ -125,6 +125,12 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
     y_range = range(0:1)
   }
   
+  x_ticks = seq(x_range[1], x_range[2], by = 1)
+  y_ticks = seq(y_range[1], y_range[2], by = 0.05)
+  par(mar = c(5.1, 5.1, 1, 2.1))
+  
+  
+  # Title
   if (is.null(main)){
     if (is.null(attr(object,"data_name"))){
       main = paste0("ACF of ",as.character((x2$`Signal Y`)[1]))
@@ -136,9 +142,6 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
     main = main
   }
   
-  x_ticks = seq(x_range[1], x_range[2], by = 1)
-  y_ticks = seq(y_range[1], y_range[2], by = 0.05)
-  par(mar = c(5.1, 5.1, 1, 2.1))
   
   # Main plot
   plot(NA, xlim = c(1, max(x2$Lag)), ylim = y_range, 
@@ -185,8 +188,6 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   }
   
   
-  
-  
   # Plot ACF
   segments(x0 = x_ticks, y0 = rep(0, x_range[2]), x1 = x_ticks, y1 = x2$ACF, lty = 1, lwd = 1)
   
@@ -194,6 +195,176 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
 }
 
 
+
+
+
+#' @title Partial Auto-Covariance and Correlation Functions
+#' @description The PACF function computes the estimated
+#' partial autocovariance or autocorrelation for both univariate and multivariate cases.
+#' @author Yunxiang Zhang
+#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes
+#' @param lagmax A \code{integer} indicating the max lag.
+#' @param cor    A \code{bool} indicating whether the correlation 
+#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
+#' @param demean A \code{bool} indicating whether the data should be detrended
+#'  (\code{TRUE}) or not (\code{FALSE})
+#' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+#' @details 
+#' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
+#' observations and \eqn{m} is the number of series being compared. If 
+#' \code{lagmax} supplied is greater than the number of observations, then one
+#' less than the total will be taken.
+#' @export
+#' @examples 
+#' # Get Autocorrelation
+#' m = PACF(datasets::AirPassengers)
+#' 
+#' # Get Autocovariance and do not remove trend from signal
+#' m = PACF(datasets::AirPassengers, cor = FALSE, demean = FALSE)
+PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
+  
+  # Change the data to matrix form
+  if(is.ts(x) || is.atomic(x)){
+    x2 = data.matrix(x)        
+  }
+  
+  #Get the pacf value of the data
+  pacfe = pacf(x, lagmax = lagmax , cor = cor, demean = demean, plot = FALSE)
+  pacfe = pacfe$acf
+  
+  
+  # Get the data name 
+  varName = deparse(substitute(x))
+  
+  
+  # Adjust the name for data 
+  dimnames(pacfe)  = list(seq_len(nrow(pacfe))-1, "PACF", varName)
+  
+  if (is.null(attr(x, "data_name"))){
+    pacfe = structure(pacfe, n = nrow(x2), class = c("PACF", "array"))
+  }else{
+    pacfe = structure(pacfe, n = nrow(x2), main = attr(x, "data_name"), class = c("PACF", "array"))
+  }
+  
+  pacfe
+  
+}
+
+
+#' @title Plot Partial Auto-Covariance and Correlation Functions
+#' @description Plot pacf function computes the estimated
+#' plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
+#' @author Yunxiang Zhang
+#' @param x,object  An \code{"PACF"} object from \code{\link{PACF}}.
+#' @param show.ci   A \code{bool} indicating whether to show confidence region
+#' @param ci        A \code{double} containing the 1-alpha level. Default is 0.95
+#' @param ...       Additional parameters
+#' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+#' @rdname plot.PACF
+#' @export
+#' @examples 
+#' # Plot the Partial Autocorrelation
+#' m = PACF(datasets::AirPassengers)
+#' plot.PACF(m)
+
+plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
+  # TO ADD AS INPUTS
+  xlab = "Lags"
+  ylab = "PACF"
+  col_ci = rgb(0, 0.6, 1, 0.2)
+  alpha = 0.05
+  
+  
+  # Quiet the warnings...
+  Lag = xmin = xmax = ymin = ymax = NULL 
+  
+  # Wide to long array transform
+  x2 = as.data.frame.table(object, responseName = "PACF")
+  
+  colnames(x2) = c("Lag", "Signal X", "Signal Y", "PACF")
+  
+  # Remove character cast
+  x2$Lag = as.numeric(x2$Lag)
+  
+  # Range
+  x_range = range(x2$Lag)
+  
+  if (show.ci == TRUE){
+    n = attr(object,"n")
+    mult = qnorm(1-alpha/2)
+    y_range = range(c(x2$PACF, 1/sqrt(n)*mult*c(-1,1)))
+  }else{
+    y_range = range(0:1)
+  }
+  
+  x_ticks = seq(x_range[1], x_range[2], by = 1)
+  y_ticks = seq(y_range[1], y_range[2], by = 0.05)
+  par(mar = c(5.1, 5.1, 1, 2.1))
+  
+  
+  # Title
+  if (is.null(main)){
+    if (is.null(attr(object,"data_name"))){
+      main = paste0("PACF of ",as.character((x2$`Signal Y`)[1]))
+    }else{
+      main = paste0("PACF of ", attr(object,"data_name"))
+    }
+  }
+  else {
+    main = main
+  }
+  
+  
+  # Main plot
+  plot(NA, xlim = c(1, max(x2$Lag)), ylim = y_range, 
+       xlab = xlab, ylab = ylab, xaxt = 'n', 
+       yaxt = 'n', bty = "n", ann = FALSE)
+  win_dim = par("usr")
+  
+  par(new = TRUE)
+  plot(NA, xlim = c(0, max(x2$Lag)), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  win_dim = par("usr")
+  
+  # Add grid
+  grid(NULL, NULL, lty = 1, col = "grey95")
+  
+  
+  # Add title
+  
+  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = c(win_dim[4], win_dim[4],
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]),
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+  polygon(x_vec, y_vec, col = "grey95", border = NA)
+  text(x = mean(c(win_dim[1], win_dim[2])),
+       y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), 
+       main)
+  
+  # Add axes and box
+  lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
+  box()
+  axis(1, padj = 0.3)
+  y_axis = axis(2, labels = FALSE, tick = FALSE)
+  y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+  axis(2, padj = -0.2, at = y_axis)
+  
+  abline(h = 0, lty = 1, lwd = 2)
+  # Plot CI 
+  if(show.ci){
+    
+    clim0 = 1/sqrt(n)*mult
+    rect(xleft = -2, ybottom = -clim0, xright = 2*x_range[2], 
+         ytop = clim0, col = col_ci, lwd = 0)
+    
+  }
+
+  
+  # Plot PACF
+  segments(x0 = x_ticks, y0 = rep(0, x_range[2]), x1 = x_ticks, y1 = x2$PACF, lty = 1, lwd = 1)
+  
+  
+}
 
 
 

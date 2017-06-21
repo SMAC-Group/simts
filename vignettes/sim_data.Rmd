@@ -102,9 +102,6 @@ plot(nile_acf)
 ## Missing features:
 
 - Add new dataset
-- Remove dependency to `wv` by moving acf code in `simts`.
-- Fix title in `plot.ACF()`.
-- Add the possibility of computing/plotting the `PACF`.
 - Add robust estimators
 - Add content of "Sample Analyses using exts" to the packages and the approriate vignettes
 - Add content (similarly to above) of "Experimental Time Series Features"

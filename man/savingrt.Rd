@@ -3,10 +3,12 @@
 \docType{data}
 \name{savingrt}
 \alias{savingrt}
-\title{savingrt}
-\format{gts time series with frequency 12 starting in year 1959 and going
-to 2016 for a total of 691 observations.
-For further details, see \url{https://fred.stlouisfed.org/series/PSAVERT}}
+\title{Personal Saving Rate}
+\format{A gts time series object with frequency 12 starting at 1959 and going
+to 2016 for a total of 691 observations.}
+\source{
+\url{https://fred.stlouisfed.org/series/PSAVERT}
+}
 \usage{
 savingrt
 }

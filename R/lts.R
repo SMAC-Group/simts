@@ -148,7 +148,8 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 #' model = AR1(phi = .99, sigma2 = 1) + WN(sigma2 = 1)
 #' test = gen_lts(1000, model)
 #' plot(test)
-gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL){
+gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, 
+                   unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL){
   
   # 1. Do we have a valid model?
   if(!(is(model, "ts.model") || is(model, "simts"))){
@@ -250,7 +251,7 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
 #' @param ...             additional arguments affecting the plot produced.
 #' @return A plot containing the graph of the latent time series.
 #' @author Stephane Gurrier and Justin Lee
-plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ...){
+plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, fixed_range = FALSE, ...){
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')
   unit_time = attr(x, 'unit_time')
@@ -328,9 +329,17 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, ..
   # Main plot
   par(mfrow = c(dim_x[2], 1), mar = c(0.7, 2,0,0), oma = c(4,3.2,1,1))
   #, mar = c(0.7, 2,0,0), oma = c(4,2,1,1)
+  
+  
   for (i in 1:dim_x[2]){
-    plot(NA, xlim = c(start, end), ylim = range(x[,i]), xlab = xlab,
-         xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    if (fixed_range == TRUE){
+      plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab,
+           xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }else{
+      plot(NA, xlim = c(start, end), ylim = range(x[,i]), xlab = xlab,
+           xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }
+    
     win_dim = par("usr")
     
     par(new = TRUE)

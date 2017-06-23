@@ -12,7 +12,7 @@ bibliography: biblio.bib
 
 ```{r, echo = FALSE}
 library(simts)
-library(wv)
+library(wv) # I guess we should download the package before running the vignette?
 library(datasets)
 ```
 

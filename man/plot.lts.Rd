@@ -5,7 +5,7 @@
 \title{Plot Latent Time Series Data}
 \usage{
 \method{plot}{lts}(x, xlab = NULL, ylab = NULL, main = NULL,
-  couleur = NULL, ...)
+  couleur = NULL, fixed_range = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{gts} object}

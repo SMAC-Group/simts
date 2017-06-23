@@ -10,7 +10,7 @@ vignette: >
 bibliography: biblio.bib
 ---
 
-```{r, echo = FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(simts)
 library(wv) # I guess we should download the package before running the vignette?
 library(datasets)
@@ -106,7 +106,6 @@ plot(nile_acf)
 - Add content of "Sample Analyses using exts" to the packages and the approriate vignettes
 - Add content (similarly to above) of "Experimental Time Series Features"
 - Check slides and add content to this page (see forecast function)
-- Remeber that all dependencies to ggplot2 should be removed!
 
 
 ## References

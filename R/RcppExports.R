@@ -728,7 +728,6 @@ model_process_desc <- function(desc) {
 }
 
 
-
 #' @title Generate AR(1) Blocks Process
 #' @description 
 #' This function allows us to generate a non-stationary AR(1) blocks process.
@@ -765,3 +764,4 @@ gen_ar1blocks = function(phi, sigma2, n_total, n_block, scale = 10){
 #' and non-stationary processes is proved to be able to be captured by the calculation of theoretical 
 #' allan variance raised in  "A Study of the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al., 
 #' arXiv preprint arXiv:1702.07795 (2017).
+

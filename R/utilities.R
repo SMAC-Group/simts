@@ -233,3 +233,51 @@ imu_time = function(x){
     as.numeric(rownames(x))
   }
 }
+
+#' @title Default utility function for various plots titles
+#' @description Adds title, grid, and required x- and y-axes. 
+#' @param start     A \code{numeric} that provides the time of the first observation.
+#' @param end       A \code{numeric} that provides the time of the last observation.
+#' @param main      A \code{string} that gives an overall title for the plot.
+#' @param xlab      A \code{string} that gives a title for the x axis.
+#' @param inloop    A \code{boolean} that checks if the object is plotting within a loop.  
+#' @param i         A \code{numeric} that provides an index for when inloop is TRUE. 
+#' @return Added title, grid, and axes. 
+#' @author Stephane Guerrier and Justin Lee
+make_frame = function(start, end, main, xlab, inloop = FALSE, i = 1){  
+  win_dim = par("usr")
+  
+  par(new = TRUE)
+  plot(NA, xlim = c(start, end), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+       xlab = xlab, xaxt = 'n', yaxt = 'n', bty = "n")
+  win_dim = par("usr")
+  
+  # Add grid
+  grid(NULL, NULL, lty = 1, col = "grey95")
+  
+  # Add title
+  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = c(win_dim[4], win_dim[4],
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+  polygon(x_vec, y_vec, col = "grey95", border = NA)
+  if(inloop){
+    text(x = mean(c(win_dim[1], win_dim[2])), y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main[i])
+  }else{
+    text(x = mean(c(win_dim[1], win_dim[2])), y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
+  }
+  
+  # Add axes and box
+  lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = "grey50")
+  box(col = "grey50")
+  
+  if(!inloop){
+    axis(1, padj = 0.3)
+  }
+  
+  y_axis = axis(2, labels = FALSE, tick = FALSE)  
+  y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+  axis(2, padj = -0.2, at = y_axis)  
+}
+
+

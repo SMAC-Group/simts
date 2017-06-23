@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate Autoregressive Order \(p\) - Moving Average Order \(q\) (ARMA(\(p\),\(q\))) Model — gen_arma • simts</title>
+<title>Generate Autoregressive Order \(p\) - Moving Average Order \(q\) (ARMA(\(p\),\(q\))) Model � gen_arma • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -134,6 +135,7 @@ This process is defined as:
     
     <h2 class="hasAnchor" id="generation-algorithm"><a class="anchor" href="#generation-algorithm"></a>Generation Algorithm</h2>
 
+    
     <p>The innovations are generated from a normal distribution.
 The \(\sigma^2\) parameter is indeed a variance parameter. 
 This differs from R's use of the standard deviation, \(\sigma\).</p>
@@ -141,16 +143,16 @@ This differs from R's use of the standard deviation, \(\sigma\).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>gen_arma</span>(<span class='fl'>10</span>, <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.5</span>), <span class='fu'>c</span>(<span class='fl'>.1</span>), <span class='fl'>1</span>, <span class='fl'>0</span>)</div><div class='output co'>#&gt;             [,1]
-#&gt;  [1,] -0.6860686
-#&gt;  [2,]  1.0243381
-#&gt;  [3,]  1.4550942
-#&gt;  [4,]  1.8273279
-#&gt;  [5,]  1.9068489
-#&gt;  [6,]  0.9930838
-#&gt;  [7,]  2.3070588
-#&gt;  [8,] -1.3126213
-#&gt;  [9,]  0.3428158
-#&gt; [10,] -0.1351455</div></pre>
+#&gt;  [1,] -0.3747478
+#&gt;  [2,]  0.6353676
+#&gt;  [3,]  0.4582195
+#&gt;  [4,]  0.1476140
+#&gt;  [5,]  0.7801062
+#&gt;  [6,] -0.3334377
+#&gt;  [7,]  0.3866249
+#&gt;  [8,] -0.6840601
+#&gt;  [9,] -0.4192251
+#&gt; [10,] -0.7020459</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

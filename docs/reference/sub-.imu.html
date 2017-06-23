@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Subset an IMU Object — [.imu • simts</title>
+<title>Subset an IMU Object � [.imu • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -121,30 +122,31 @@ and, then, the Accelerometers are placed.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
-  <span class='kw'>if</span>(!<span class='fu'>require</span>(<span class='st'>"imudata"</span>)){
-  <span class='fu'><a href='install_imudata.html'>install_imudata</a></span>()
-  <span class='fu'>library</span>(<span class='st'>"imudata"</span>)
-  }
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='kw'>if</span>(!<span class='fu'>require</span>(<span class='st'>"imudata"</span>)){
+<span class='fu'><a href='install_imudata.html'>install_imudata</a></span>()
+<span class='fu'>library</span>(<span class='st'>"imudata"</span>)
+}
 
-  <span class='fu'>data</span>(<span class='no'>imu6</span>)
+<span class='fu'>data</span>(<span class='no'>imu6</span>)
 
-  <span class='co'># Create an IMU Object that is full. </span>
-  <span class='no'>ex</span> <span class='kw'>=</span> <span class='fu'><a href='imu.html'>imu</a></span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='co'># Create an IMU Object that is full. </span>
+<span class='no'>ex</span> <span class='kw'>=</span> <span class='fu'><a href='imu.html'>imu</a></span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
 
-  <span class='co'># Create an IMU object that has only gyros. </span>
-  <span class='no'>ex.gyro</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fl'>1</span>:<span class='fl'>3</span>]
-  <span class='no'>ex.gyro2</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='st'>"Gyro. X"</span>,<span class='st'>"Gyro. Y"</span>,<span class='st'>"Gyro. Z"</span>)]
+<span class='co'># Create an IMU object that has only gyros. </span>
+<span class='no'>ex.gyro</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fl'>1</span>:<span class='fl'>3</span>]
+<span class='no'>ex.gyro2</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='st'>"Gyro. X"</span>,<span class='st'>"Gyro. Y"</span>,<span class='st'>"Gyro. Z"</span>)]
 
-  <span class='co'># Create an IMU object that has only accels. </span>
-  <span class='no'>ex.accel</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fl'>4</span>:<span class='fl'>6</span>]
-  <span class='no'>ex.accel2</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='st'>"Accel. X"</span>,<span class='st'>"Accel. Y"</span>,<span class='st'>"Accel. Z"</span>)]
+<span class='co'># Create an IMU object that has only accels. </span>
+<span class='no'>ex.accel</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fl'>4</span>:<span class='fl'>6</span>]
+<span class='no'>ex.accel2</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='st'>"Accel. X"</span>,<span class='st'>"Accel. Y"</span>,<span class='st'>"Accel. Z"</span>)]
 
-  <span class='co'># Create an IMU object with both gyros and accels on axis X and Y</span>
-  <span class='no'>ex.b</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span>)]
-  <span class='no'>ex.b2</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='st'>"Gyro. X"</span>,<span class='st'>"Gyro. Y"</span>,<span class='st'>"Accel. X"</span>,<span class='st'>"Accel. Y"</span>)]
+<span class='co'># Create an IMU object with both gyros and accels on axis X and Y</span>
+<span class='no'>ex.b</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>4</span>,<span class='fl'>5</span>)]
+<span class='no'>ex.b2</span> <span class='kw'>=</span> <span class='no'>ex</span>[,<span class='fu'>c</span>(<span class='st'>"Gyro. X"</span>,<span class='st'>"Gyro. Y"</span>,<span class='st'>"Accel. X"</span>,<span class='st'>"Accel. Y"</span>)]
 
-})</div></pre>
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

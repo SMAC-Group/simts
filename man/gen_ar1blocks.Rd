@@ -33,8 +33,11 @@ calculation of theoretical allan variance raised in  "A Study of the Allan Varia
 Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.07795 (2017).
 }
 \examples{
-gen_ar1blocks(phi = 0.9, sigma2 = 1, n_total = 1000, n_block = 10, scale = 100)
-gen_ar1blocks(phi = 0.5, sigma2 = 5, n_total = 800, n_block = 20, scale = 50)
+Xt = gen_ar1blocks(phi = 0.9, sigma2 = 1, 
+n_total = 1000, n_block = 10, scale = 100)
+Yt = gen_ar1blocks(phi = 0.5, sigma2 = 5, n_total = 800, 
+n_block = 20, scale = 50)
+plot(Yt)
 }
 \author{
 Yuming Zhang, Haotian Xu

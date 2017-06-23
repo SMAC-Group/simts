@@ -34,10 +34,16 @@
 #' Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.07795 (2017).
 #' @author Yuming Zhang, Haotian Xu
 #' @examples
-#' gen_ar1blocks(phi = 0.9, sigma2 = 1, n_total = 1000, n_block = 10, scale = 100)
-#' gen_ar1blocks(phi = 0.5, sigma2 = 5, n_total = 800, n_block = 20, scale = 50)
-gen_ar1blocks = function(phi, sigma2, n_total, n_block, scale = 10){
-  ar = c()    
+#' Xt = gen_ar1blocks(phi = 0.9, sigma2 = 1, 
+#' n_total = 1000, n_block = 10, scale = 100)
+#' Yt = gen_ar1blocks(phi = 0.5, sigma2 = 5, n_total = 800, 
+#' n_block = 20, scale = 50)
+#' plot(Yt)
+gen_ar1blocks = function(phi, sigma2, n_total, n_block, 
+                         scale = 10, title = NULL, seed = 1995, ...){
+  
+  set.seed(seed)
+  ar = NULL
   
   for (i in (1:(n_total / n_block))) {
     xt = gen_ar1(N = n_block * scale, phi = phi, sigma2 = sigma2)
@@ -46,6 +52,10 @@ gen_ar1blocks = function(phi, sigma2, n_total, n_block, scale = 10){
     ar = c(ar, xt)
   }
   
-  ar = as.ts(ar)
+  if (is.null(title)){
+    title = "Simulated block AR(1) process"
+  }
+  
+  ar = gts(ar, data_name = title)
   return(ar)
 }

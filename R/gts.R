@@ -349,7 +349,7 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
       name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")
     }
   }
-
+  
   
   if (is.null(main)){
     if (!is.null(simulated)){
@@ -375,31 +375,8 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
   # Main plot                     
   plot(NA, xlim = c(start, end), ylim = range(x), xlab = name_time, ylab = name_ts, 
        xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
-  win_dim = par("usr")
   
-  par(new = TRUE)
-  plot(NA, xlim = c(start, end), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-       xlab = name_time, ylab = name_ts, xaxt = 'n', yaxt = 'n', bty = "n")
-  win_dim = par("usr")
-  
-  # Add grid
-  grid(NULL, NULL, lty = 1, col = "grey95")
-  
-  # Add title
-  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
-  y_vec = c(win_dim[4], win_dim[4],
-               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
-               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
-  polygon(x_vec, y_vec, col = "grey95", border = NA)
-  text(x = mean(c(win_dim[1], win_dim[2])), y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
-  
-  # Add axes and box
-  lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
-  box()
-  axis(1, padj = 0.3)
-  y_axis = axis(2, labels = FALSE, tick = FALSE)  
-  y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
-  axis(2, padj = -0.2, at = y_axis)  
+  make_frame(start, end, main, xlab)
   
   # Add lines 
   lines(scales, x, type = "l", col = couleur, pch = 16)

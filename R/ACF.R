@@ -89,6 +89,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
+#' 
 plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   xlab = "Lags"
@@ -309,8 +310,35 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   plot(NA, xlim = c(1, max(x2$Lag)), ylim = y_range, 
        xlab = xlab, ylab = ylab, xaxt = 'n', 
        yaxt = 'n', bty = "n", ann = FALSE)
+  win_dim = par("usr")
   
-  make_frame(start = 0, end = max(x2$Lag), main, xlab)
+  par(new = TRUE)
+  plot(NA, xlim = c(0, max(x2$Lag)), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  win_dim = par("usr")
+  
+  # Add grid
+  grid(NULL, NULL, lty = 1, col = "grey95")
+  
+  
+  # Add title
+  
+  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = c(win_dim[4], win_dim[4],
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]),
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+  polygon(x_vec, y_vec, col = "grey95", border = NA)
+  text(x = mean(c(win_dim[1], win_dim[2])),
+       y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), 
+       main)
+  
+  # Add axes and box
+  lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
+  box()
+  axis(1, padj = 0.3)
+  y_axis = axis(2, labels = FALSE, tick = FALSE)
+  y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+  axis(2, padj = -0.2, at = y_axis)
   
   abline(h = 0, lty = 1, lwd = 2)
   # Plot CI 
@@ -321,12 +349,12 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
          ytop = clim0, col = col_ci, lwd = 0)
     
   }
-  
   # Plot PACF
   segments(x0 = x_ticks, y0 = rep(0, x_range[2]), x1 = x_ticks, y1 = x2$PACF, lty = 1, lwd = 1)
-  
-  
 }
+
+
+
 
 
 

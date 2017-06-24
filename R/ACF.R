@@ -65,11 +65,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   }
   
   acfe
-  
 }
-
-
-
 
 #' @title Plot Auto-Covariance and Correlation Functions
 #' @description The acf function computes the estimated
@@ -94,7 +90,6 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-
 plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   xlab = "Lags"
@@ -186,12 +181,8 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
          ytop = clim0, col = col_ci, lwd = 0)
     
   }
-  
-  
   # Plot ACF
   segments(x0 = x_ticks, y0 = rep(0, x_range[2]), x1 = x_ticks, y1 = x2$ACF, lty = 1, lwd = 1)
-  
-  
 }
 
 

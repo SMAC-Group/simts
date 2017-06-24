@@ -18,29 +18,35 @@
 #' @description 
 #' This function allows us to generate a non-stationary AR(1) blocks process.
 #' @export
-#' @usage gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10)
+#' @usage gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10, 
+#' title = NULL, seed = 135, ...)
 #' @param phi A \code{double} value for the autocorrection parameter \eqn{\phi}{phi}.
 #' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
-#' @param n_total The length of the whole AR(1) blocks process.
-#' @param n_block The length of each block of the AR(1) blocks process.
-#' @param scale A \code{integer} indicating the amount of decomposition performed at each level. 
+#' @param n_total An \code{integer} indicating the length of the whole AR(1) blocks process.
+#' @param n_block An \code{integer} indicating the length of each block of the AR(1) blocks process.
+#' @param scale An \code{integer} indicating the amount of decomposition performed at each level. 
 #' The default value is 10.
+#' @param title A \code{string} of the time series data name. 
+#' @param seed An \code{integer} set for simulation replication purpose.
 #' @return A \code{vector} containing the AR(1) blocks process.
 #' @note This function helps generate a non-stationary process example, AR(1) blocks, whose 
 #' theoretical maximum overlapping allan variance (MOAV) is different and can be distinguished 
 #' from the theoretical MOAV of a stationary AR(1) process. This difference of allan variance 
 #' between stationary and non-stationary processes is proved to be able to be captured by the 
 #' calculation of theoretical allan variance raised in  "A Study of the Allan Variance for 
-#' Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.07795 (2017).
+#' Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing Letters, 2017), 
+#' preprint available: \url{https://arxiv.org/abs/1702.07795}.
 #' @author Yuming Zhang, Haotian Xu
 #' @examples
 #' Xt = gen_ar1blocks(phi = 0.9, sigma2 = 1, 
 #' n_total = 1000, n_block = 10, scale = 100)
+#' plot(Xt)
+#' 
 #' Yt = gen_ar1blocks(phi = 0.5, sigma2 = 5, n_total = 800, 
 #' n_block = 20, scale = 50)
 #' plot(Yt)
 gen_ar1blocks = function(phi, sigma2, n_total, n_block, 
-                         scale = 10, title = NULL, seed = 1995, ...){
+                         scale = 10, title = NULL, seed = 135, ...){
   
   set.seed(seed)
   ar = NULL
@@ -53,9 +59,100 @@ gen_ar1blocks = function(phi, sigma2, n_total, n_block,
   }
   
   if (is.null(title)){
-    title = "Simulated block AR(1) process"
+    title = "Simulated AR(1) Blocks Process"
   }
   
   ar = gts(ar, data_name = title)
   return(ar)
+}
+
+
+
+#' @title Generate Non-Stationary White Noise Process
+#' @description 
+#' This function allows us to generate a non-stationary white noise process.
+#' @export
+#' @usage gen_nswn(n_total, title = NULL, seed = 135, ...)
+#' @param n_total An \code{integer} indicating the length of the whole non-stationary white noise 
+#' process.
+#' @param title A \code{string} of the time series data name. 
+#' @param seed An \code{integer} set for simulation replication purpose.
+#' @return A \code{vector} containing the non-stationary white noise process.
+#' @note This function helps generate a non-stationary process example, non-stationary white 
+#' noise, whose theoretical maximum overlapping allan variance (MOAV) corresponds to the 
+#' theoretical MOAV of the stationary white noise process. This example confirms that allan 
+#' variance is unable to distinguish between a stationary white noise process and a white noise 
+#' process whose second-order behavior is non-stationary, as pointed out in the paper "A Study of 
+#' the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing 
+#' Letters, 2017), preprint available: \url{https://arxiv.org/abs/1702.07795}.
+#' @author Yuming Zhang
+#' @examples
+#' Xt = gen_nswn(n_total = 1000)
+#' plot(Xt)
+#' 
+#' Yt = gen_nswn(n_total = 2000, title = "non-stationary 
+#' white noise process", seed = 1960)
+#' plot(Yt)
+gen_nswn = function(n_total, title = NULL, seed = 135, ...){
+  set.seed(seed)
+  wn = NULL    
+  
+  for (i in (1:n_total)){
+    y = rnorm(n = 1, mean = 0, sd = sqrt(i))
+    wn = c(wn, y)
+  }
+  
+  if (is.null(title)){
+    title = "Simulated Non-Stationary White Noise Process"
+  }
+  
+  wn = gts(wn, data_name = title)
+  return(wn)
+}
+
+
+#' @title Generate Bias-Instability Process
+#' @description 
+#' This function allows us to generate a non-stationary bias-instability process.
+#' @export
+#' @usage gen_bi(sigma2, n_total, n_block, title = NULL, seed = 135, ...)
+#' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
+#' @param n_total An \code{integer} indicating the length of the whole bias-instability process.
+#' @param n_block An \code{integer} indicating the length of each block of the bias-instability 
+#' process.
+#' @param title A \code{string} of the time series data name. 
+#' @param seed An \code{integer} set for simulation replication purpose.
+#' @return A \code{vector} containing the bias-instability process.
+#' @note This function helps generate a non-stationary process example, bias-instability,
+#' whose theoretical maximum overlapping allan variance (MOAV) is close to the theoretical
+#' MOAV of its closest stationary AR(1) process over some scales. However, this approximation 
+#' is not good enough when considering the logarithmic representation of the allan variance.
+#' Therefore, the exact form of the allan variance of this non-stationary process allows us 
+#' to better interpret the signals characterized by bias-instability, as shown in "A Study 
+#' of the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal 
+#' Processing Letters, 2017), preprint available: \url{https://arxiv.org/abs/1702.07795}.
+#' @author Yuming Zhang
+#' @examples
+#' Xt = gen_bi(sigma2 = 1, n_total = 1000, n_block = 10)
+#' plot(Xt)
+#' 
+#' Yt = gen_bi(sigma2 = 0.8, n_total = 800, n_block = 20,
+#' title = "non-stationary bias-instability process")
+#' plot(Yt)
+gen_bi = function(sigma2, n_total, n_block,
+                  title = NULL, seed = 135, ...){
+  set.seed(seed)
+  bi = NULL 
+  
+  for (i in (1:(n_total / n_block))){
+    x = rnorm(n = 1, mean = 0, sd = sqrt(sigma2))
+    bi = c(bi, rep(x, n_block))
+  }
+  
+  if (is.null(title)){
+    title = "Simulated Bias-Instability Process"
+  }
+  
+  bi = gts(bi, data_name = title)
+  return(bi)
 }

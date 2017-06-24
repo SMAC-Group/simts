@@ -1,4 +1,3 @@
-
 # Copyright (C) 2017 James Balamuta, Justin Lee, Stephane Guerrier, Roberto Molinari
 #
 # This file is part of simts R Methods Package
@@ -52,7 +51,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   
   
   # Get the data name 
-  varName = deparse(substitute(RW))
+  varName = deparse(substitute(x))
   
   
   # Adjust the name for data 
@@ -61,7 +60,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   if (is.null(attr(x, "data_name"))){
     acfe = structure(acfe, n = nrow(x2), class = c("ACF", "array"))
   }else{
-    acfe = structure(acfe, n = nrow(x2), main = attr(x, "data_name"), class = c("ACF", "array"))
+    acfe = structure(acfe, n = nrow(x2), data_name = attr(x, "data_name"), class = c("ACF", "array"))
   }
   
   acfe
@@ -128,9 +127,9 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # Title
   if (is.null(main)){
     if (is.null(attr(object,"data_name"))){
-      main = paste0("ACF of ",as.character((x2$`Signal Y`)[1]))
+      main = paste0(as.character((x2$`Signal Y`)[1]), " ACF")
     }else{
-      main = paste0("ACF of ", attr(object,"data_name"))
+      main = paste0(attr(object,"data_name"), " ACF")
     }
   }
   else {
@@ -234,7 +233,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   if (is.null(attr(x, "data_name"))){
     pacfe = structure(pacfe, n = nrow(x2), class = c("PACF", "array"))
   }else{
-    pacfe = structure(pacfe, n = nrow(x2), main = attr(x, "data_name"), class = c("PACF", "array"))
+    pacfe = structure(pacfe, n = nrow(x2), data_name = attr(x, "data_name"), class = c("PACF", "array"))
   }
   
   pacfe
@@ -296,9 +295,9 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # Title
   if (is.null(main)){
     if (is.null(attr(object,"data_name"))){
-      main = paste0("PACF of ",as.character((x2$`Signal Y`)[1]))
+      main = paste0(as.character((x2$`Signal Y`)[1]), " PACF")
     }else{
-      main = paste0("PACF of ", attr(object,"data_name"))
+      main = paste0(attr(object,"data_name"), " PACF")
     }
   }
   else {
@@ -328,7 +327,6 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   
   
 }
-
 
 
 

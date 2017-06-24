@@ -56,4 +56,7 @@ install.packages(c("RcppArmadillo","devtools","knitr","rmarkdown"))
 
 # Install the package from GitHub without Vignettes/User Guides
 devtools::install_github("SMAC-Group/simts")
+
+# Install the package with Vignettes/User Guides 
+devtools::install_github("SMAC-Group/simts", vignette = TRUE)
 ```

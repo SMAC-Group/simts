@@ -12,8 +12,11 @@ bibliography: biblio.bib
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(simts)
-library(wv) # I guess we should download the package before running the vignette?
 library(datasets)
+
+# Install Wavelet Variance Package
+devtools::install_github("SMAC-Group/wv")
+library(wv)
 ```
 
 In this section, we will breifly show some of the `simts` package functionality. In the examples shown here, time series data may take the form of either a one-column `matrix`, `data.frame`, or numeric `vector`.

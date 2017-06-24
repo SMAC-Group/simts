@@ -34,14 +34,9 @@
 #' from the theoretical MOAV of a stationary AR(1) process. This difference of allan variance 
 #' between stationary and non-stationary processes is proved to be able to be captured by the 
 #' calculation of theoretical allan variance raised in  "A Study of the Allan Variance for 
-<<<<<<< HEAD
-#' Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.07795 (2017).
-#' @author Yuming Zhang and Haotian Xu
-=======
 #' Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing Letters, 2017), 
 #' preprint available: \url{https://arxiv.org/abs/1702.07795}.
-#' @author Yuming Zhang, Haotian Xu
->>>>>>> 1218cfd43ae78c155fb9f42469ce99e4cf254917
+#' @author Yuming Zhang and Haotian Xu
 #' @examples
 #' Xt = gen_ar1blocks(phi = 0.9, sigma2 = 1, 
 #' n_total = 1000, n_block = 10, scale = 100)

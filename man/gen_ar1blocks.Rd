@@ -4,19 +4,24 @@
 \alias{gen_ar1blocks}
 \title{Generate AR(1) Blocks Process}
 \usage{
-gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10)
+gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10, 
+title = NULL, seed = 135, ...)
 }
 \arguments{
 \item{phi}{A \code{double} value for the autocorrection parameter \eqn{\phi}{phi}.}
 
 \item{sigma2}{A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.}
 
-\item{n_total}{The length of the whole AR(1) blocks process.}
+\item{n_total}{An \code{integer} indicating the length of the whole AR(1) blocks process.}
 
-\item{n_block}{The length of each block of the AR(1) blocks process.}
+\item{n_block}{An \code{integer} indicating the length of each block of the AR(1) blocks process.}
 
-\item{scale}{A \code{integer} indicating the amount of decomposition performed at each level. 
+\item{scale}{An \code{integer} indicating the amount of decomposition performed at each level. 
 The default value is 10.}
+
+\item{title}{A \code{string} of the time series data name.}
+
+\item{seed}{An \code{integer} set for simulation replication purpose.}
 }
 \value{
 A \code{vector} containing the AR(1) blocks process.
@@ -30,11 +35,14 @@ theoretical maximum overlapping allan variance (MOAV) is different and can be di
 from the theoretical MOAV of a stationary AR(1) process. This difference of allan variance 
 between stationary and non-stationary processes is proved to be able to be captured by the 
 calculation of theoretical allan variance raised in  "A Study of the Allan Variance for 
-Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.07795 (2017).
+Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing Letters, 2017), 
+preprint available: \url{https://arxiv.org/abs/1702.07795}.
 }
 \examples{
 Xt = gen_ar1blocks(phi = 0.9, sigma2 = 1, 
 n_total = 1000, n_block = 10, scale = 100)
+plot(Xt)
+
 Yt = gen_ar1blocks(phi = 0.5, sigma2 = 5, n_total = 800, 
 n_block = 20, scale = 50)
 plot(Yt)

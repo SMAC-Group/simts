@@ -357,5 +357,44 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
 
 
 
+#' @title Correlation Analysis Functions
+#' @description Correlation Analysis function computes and plots both empirical ACF and PACF
+#' or both univariate and multivariate cases.
+#' @author Yunxiang Zhang
+#' @param x,object  An \code{"ts"} object
+#' @param lagmax A \code{integer} indicating the max lag.
+#' @param cor    A \code{bool} indicating whether the correlation 
+#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
+#' @param demean A \code{bool} indicating whether the data should be detrended
+#'  (\code{TRUE}) or not (\code{FALSE})
+#' @param show.ci   A \code{bool} indicating whether to show confidence region
+#' @param ...       Additional parameters
+#' @return Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+#' @rdname corr_analysis
+#' @export
+#' @examples 
+#' # Plot the Partial Autocorrelation
+#' corr_analysis(datasets::AirPassengers)
+
+
+
+
+corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){
+  
+  # Compute ACF and PACF
+  acfe = ACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
+  pacfe = PACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
+  
+  # Plots
+  if (plot){
+    par(mfrow=c(1,2))
+    plot(acfe, show.ci = TRUE, alpha = 0.05, main = "Empirical ACF")
+    plot(pacfe, show.ci = TRUE, alpha = 0.05, main = "Empirical PACF")    
+  }
+  
+  return(list("ACF" = acfe, "PACF" = pacfe))
+
+}
+
 
 

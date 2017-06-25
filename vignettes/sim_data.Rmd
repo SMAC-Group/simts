@@ -16,7 +16,7 @@ library(datasets)
 
 ```
 
-In this section, we will breifly show some of the `simts` package functionality. In the examples shown here, time series data may take the form of either a one-column `matrix`, `data.frame`, or numeric `vector`.
+In this section, we will briefly show some of the `simts` package functionality. In the examples shown here, time series data may take the form of either a one-column `matrix`, `data.frame`, or numeric `vector`.
 
 The following three datasets stored in `simts` will be used as examples.
 
@@ -28,7 +28,7 @@ The code below shows how to setup a time series as a `gts()` object. Here, we ta
 
 ### Hydrology 
 
-Frist, we consider the `hydro` dataset. The code below shows how to construct a `gts` object and plot the resutling time series.
+Frist, we consider the `hydro` dataset. The code below shows how to construct a `gts` object and plot the resulting time series.
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time'}
 # Load hydro dataset
@@ -73,7 +73,7 @@ savingrt_acf = ACF(savingrt)
 plot(savingrt_acf)
 ```
 
-This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprizing observation as such data are often assumed to be close to a random walk model.
+This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model.
 
 
 ### Nile River Flow 
@@ -103,7 +103,7 @@ plot(nile_acf)
 
 - Add new dataset
 - Add robust estimators
-- Add content of "Sample Analyses using exts" to the packages and the approriate vignettes
+- Add content of "Sample Analyses using exts" to the packages and the appropriate vignettes
 - Add content (similarly to above) of "Experimental Time Series Features"
 - Check slides and add content to this page (see forecast function)
 

@@ -287,7 +287,7 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
   win_dim = par("usr")
   par(new = TRUE)
   
-  plot(NA, xlim = c(start, end), 
+  plot(NA, xlim = x_range, 
        ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
        xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
   win_dim = par("usr")

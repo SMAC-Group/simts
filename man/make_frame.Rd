@@ -4,16 +4,19 @@
 \alias{make_frame}
 \title{Default utility function for various plots titles}
 \usage{
-make_frame(start, end, main, xlab, inloop = FALSE, i = 1)
+make_frame(x_range, y_range, xlab, ylab, main = "", mar = c(5.1, 5.1, 1,
+  2.1), add_axis_x = TRUE, add_axis_y = TRUE, col_box = "black",
+  col_grid = "grey95", col_band = "grey95", col_title = "black",
+  add_band = TRUE, title_band_width = 0.09, grid_lty = 1)
 }
 \arguments{
-\item{start}{A \code{numeric} that provides the time of the first observation.}
-
-\item{end}{A \code{numeric} that provides the time of the last observation.}
+\item{xlab}{A \code{string} that gives a title for the x axis.}
 
 \item{main}{A \code{string} that gives an overall title for the plot.}
 
-\item{xlab}{A \code{string} that gives a title for the x axis.}
+\item{start}{A \code{numeric} that provides the time of the first observation.}
+
+\item{end}{A \code{numeric} that provides the time of the last observation.}
 
 \item{inloop}{A \code{boolean} that checks if the object is plotting within a loop.}
 
@@ -24,6 +27,24 @@ Added title, grid, and axes.
 }
 \description{
 Adds title, grid, and required x- and y-axes.
+}
+\examples{
+make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
+           ylab = "my ylab", main = "my title")
+           
+make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
+           ylab = "my ylab", add_band = FALSE)
+           
+make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
+           ylab = "my ylab", main = "my title", col_band = "blue3", 
+           col_title = "white", col_grid = "lightblue", grid_lty = 3)
+
+make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
+           ylab = "my ylab", main = "my title", col_band = "blue3", 
+           col_title = "white", col_grid = "lightblue", grid_lty = 3,
+           title_band_width = 0.18)
+           
+
 }
 \author{
 Stephane Guerrier and Justin Lee

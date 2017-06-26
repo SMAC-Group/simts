@@ -48,5 +48,5 @@ n_block = 20, scale = 50)
 plot(Yt)
 }
 \author{
-Yuming Zhang, Haotian Xu
+Yuming Zhang and Haotian Xu
 }

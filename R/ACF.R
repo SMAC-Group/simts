@@ -392,6 +392,8 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
     plot(pacfe, show.ci = TRUE, alpha = 0.05, main = "Empirical PACF")    
   }
   
+  par(mfrow = c(1,1))
+  
   return(list("ACF" = acfe, "PACF" = pacfe))
 
 }

@@ -79,7 +79,7 @@ This graph indicates that this time series is likely to present some non-station
 
 ### Retail Sales
 
-Let's consider the next dataset, the sales time series:
+Let's consider the next dataset, the `sales` time series:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Monthly Clothing Retail Sales in US for 1992-2016'}
 # Load sales dataset

@@ -64,7 +64,7 @@
     
     
 <div class="contents">
-<p>In this section, we will breifly show some of the <code>simts</code> package functionality. In the examples shown here, time series data may take the form of either a one-column <code>matrix</code>, <code>data.frame</code>, or numeric <code>vector</code>.</p>
+<p>In this section, we will briefly show some of the <code>simts</code> package functionality. In the examples shown here, time series data may take the form of either a one-column <code>matrix</code>, <code>data.frame</code>, or numeric <code>vector</code>.</p>
 <p>The following three datasets stored in <code>simts</code> will be used as examples.</p>
 <ul>
 <li>
@@ -72,13 +72,15 @@
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html">savingrt</a>: This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.</li>
 <li>
+<a href="http://r-exercises.com/wp-content/uploads/2017/04/sales.csv">sales</a>: This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations.</li>
+<li>
 <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html">Nile</a>: This time series contains the measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span> taken from Table 1 of <span class="citation">Cobb (1978)</span>.</li>
 </ul>
 <p>The code below shows how to setup a time series as a <code><a href="../reference/gts.html">gts()</a></code> object. Here, we take samples from each dataset at a rate of <code>freq</code> ticks per sample. By applying <code>plot()</code> on the result of a <code><a href="../reference/gts.html">gts()</a></code> object, we can observe a simple visualization of our data.</p>
 <div id="hydrology" class="section level3">
 <h3 class="hasAnchor">
 <a href="#hydrology" class="anchor"></a>Hydrology</h3>
-<p>Frist, we consider the <code>hydro</code> dataset. The code below shows how to construct a <code>gts</code> object and plot the resutling time series.</p>
+<p>Frist, we consider the <code>hydro</code> dataset. The code below shows how to construct a <code>gts</code> object and plot the resulting time series.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load hydro dataset</span>
 <span class="kw">data</span>(<span class="st">"hydro"</span>)
 
@@ -128,7 +130,57 @@ savingrt_acf =<span class="st"> </span><span class="kw"><a href="../reference/AC
 Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 </p>
 </div>
-<p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprizing observation as such data are often assumed to be close to a random walk model.</p>
+<p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model.</p>
+</div>
+<div id="retail-sales" class="section level3">
+<h3 class="hasAnchor">
+<a href="#retail-sales" class="anchor"></a>Retail Sales</h3>
+<p>Let’s consider the next dataset, the <code>sales</code> time series:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load sales dataset</span>
+<span class="kw">data</span>(<span class="st">"sales"</span>)
+
+<span class="co"># Simulate based on data</span>
+sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">name_time =</span> <span class="st">"Month"</span>,
+            <span class="dt">unit_ts =</span> <span class="st">"millions of dollars"</span>, <span class="dt">name_ts =</span> <span class="st">"Retail.trade.clothing"</span>, 
+            <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)
+
+
+<span class="co"># Plot sales simulation</span>
+<span class="kw">plot</span>(sales)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 1: Monthly Clothing Retail Sales in US for 1992-2016
+</p>
+</div>
+<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/ACF.html">ACF()</a></code> and <code><a href="../reference/PACF.html">PACF()</a></code> as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute ACF and plot result</span>
+sales_acf =<span class="st"> </span><span class="kw"><a href="../reference/ACF.html">ACF</a></span>(sales)
+<span class="kw">plot</span>(sales_acf)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 2: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 2: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Compute PACF and plot result</span>
+sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/PACF.html">PACF</a></span>(sales)
+<span class="kw">plot</span>(sales_pacf)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 3: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 3: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
+</p>
+</div>
+<p>You can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> function in the package to get the same results as above:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute and plot ACF and PACF</span>
+sales_corr =<span class="st"> </span>simts:::<span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 4: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 4: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
+sales_acf =<span class="st"> </span>sales_corr$ACF
+sales_pacf =<span class="st"> </span>sales_corr$PACF</code></pre></div>
+<p>The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.</p>
 </div>
 <div id="nile-river-flow" class="section level3">
 <h3 class="hasAnchor">
@@ -145,7 +197,7 @@ nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">
 <span class="co"># Plot Nile simulation </span>
 <span class="kw">plot</span>(nile)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 5: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
+<img src="sim_data_files/figure-html/unnamed-chunk-10-1.png" alt="Figure 5: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
 Figure 5: Plot of Annual Nile river flow from 1871-1970
 </p>
 </div>
@@ -153,7 +205,7 @@ Figure 5: Plot of Annual Nile river flow from 1871-1970
 nile_acf =<span class="st"> </span><span class="kw"><a href="../reference/ACF.html">ACF</a></span>(nile)
 <span class="kw">plot</span>(nile_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 6: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
+<img src="sim_data_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 6: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
 Figure 6: Empirical autocorrelation function of the Nile river flow data
 </p>
 </div>
@@ -164,10 +216,9 @@ Figure 6: Empirical autocorrelation function of the Nile river flow data
 <ul>
 <li>Add new dataset</li>
 <li>Add robust estimators</li>
-<li>Add content of “Sample Analyses using exts” to the packages and the approriate vignettes</li>
+<li>Add content of “Sample Analyses using exts” to the packages and the appropriate vignettes</li>
 <li>Add content (similarly to above) of “Experimental Time Series Features”</li>
 <li>Check slides and add content to this page (see forecast function)</li>
-<li>Remeber that all dependencies to ggplot2 should be removed!</li>
 </ul>
 </div>
 <div id="references" class="section level2 unnumbered">

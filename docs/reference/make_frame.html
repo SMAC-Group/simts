@@ -87,34 +87,73 @@
     <p>Adds title, grid, and required x- and y-axes.</p>
     
 
-    <pre class="usage"><span class='fu'>make_frame</span>(<span class='no'>start</span>, <span class='no'>end</span>, <span class='no'>main</span>, <span class='no'>xlab</span>, <span class='kw'>inloop</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>i</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>make_frame</span>(<span class='no'>x_range</span>, <span class='no'>y_range</span>, <span class='no'>xlab</span>, <span class='no'>ylab</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>mar</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>5.1</span>, <span class='fl'>5.1</span>, <span class='fl'>1</span>,
+  <span class='fl'>2.1</span>), <span class='kw'>add_axis_x</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>add_axis_y</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>col_box</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>col_grid</span> <span class='kw'>=</span> <span class='st'>"grey95"</span>, <span class='kw'>col_band</span> <span class='kw'>=</span> <span class='st'>"grey95"</span>, <span class='kw'>col_title</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>add_band</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>title_band_width</span> <span class='kw'>=</span> <span class='fl'>0.09</span>, <span class='kw'>grid_lty</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>start</th>
-      <td><p>A <code>numeric</code> that provides the time of the first observation.</p></td>
+      <th>x_range</th>
+      <td><p>A <code>numeric</code> providing the range of values for the x-axis.</p></td>
     </tr>
     <tr>
-      <th>end</th>
-      <td><p>A <code>numeric</code> that provides the time of the last observation.</p></td>
-    </tr>
-    <tr>
-      <th>main</th>
-      <td><p>A <code>string</code> that gives an overall title for the plot.</p></td>
+      <th>y_range</th>
+      <td><p>A <code>numeric</code> providing the range of values for the y-axis.</p></td>
     </tr>
     <tr>
       <th>xlab</th>
-      <td><p>A <code>string</code> that gives a title for the x axis.</p></td>
+      <td><p>A <code>string</code> that gives a title for the x-axis.</p></td>
     </tr>
     <tr>
-      <th>inloop</th>
-      <td><p>A <code>boolean</code> that checks if the object is plotting within a loop.</p></td>
+      <th>ylab</th>
+      <td><p>A <code>string</code> that gives a title for the y-axis.</p></td>
     </tr>
     <tr>
-      <th>i</th>
-      <td><p>A <code>numeric</code> that provides an index for when inloop is TRUE.</p></td>
+      <th>main</th>
+      <td><p>A <code>string</code> that gives an overall title for the plot. Default is an empty string.</p></td>
+    </tr>
+    <tr>
+      <th>mar</th>
+      <td><p>A <code>vector</code> indicating overall margin values for the plot.</p></td>
+    </tr>
+    <tr>
+      <th>add_axis_x</th>
+      <td><p>A <code>boolean</code> indicating whether a x-axis should be added.</p></td>
+    </tr>
+    <tr>
+      <th>add_axis_y</th>
+      <td><p>A <code>boolean</code> indicating whether a y-axis should be added.</p></td>
+    </tr>
+    <tr>
+      <th>col_box</th>
+      <td><p>A <code>string</code> indicating the color for the title box.</p></td>
+    </tr>
+    <tr>
+      <th>col_grid</th>
+      <td><p>A <code>string</code> indicating the color of the grid for the plot.</p></td>
+    </tr>
+    <tr>
+      <th>col_band</th>
+      <td><p>A <code>string</code> indicating the color of the band.</p></td>
+    </tr>
+    <tr>
+      <th>col_title</th>
+      <td><p>A <code>string</code> indicating the color of the plot title.</p></td>
+    </tr>
+    <tr>
+      <th>add_band</th>
+      <td><p>A <code>boolean</code> indicating whether there should be a band.</p></td>
+    </tr>
+    <tr>
+      <th>title_band_width</th>
+      <td><p>A <code>double</code> providing the value of the band width. Default is 0.09.</p></td>
+    </tr>
+    <tr>
+      <th>grid_lty</th>
+      <td><p>A <code>integer</code> indicating the line type of the grid lines.</p></td>
     </tr>
     </table>
     
@@ -123,6 +162,18 @@
     <p>Added title, grid, and axes.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>make_frame</span>(<span class='kw'>x_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>y_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"my xlab"</span>,
+           <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"my ylab"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"my title"</span>)</div><div class='img'><img src='make_frame-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>make_frame</span>(<span class='kw'>x_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>y_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"my xlab"</span>,
+           <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"my ylab"</span>, <span class='kw'>add_band</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='make_frame-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>make_frame</span>(<span class='kw'>x_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>y_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"my xlab"</span>,
+           <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"my ylab"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>col_band</span> <span class='kw'>=</span> <span class='st'>"blue3"</span>,
+           <span class='kw'>col_title</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>col_grid</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>, <span class='kw'>grid_lty</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='img'><img src='make_frame-3.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>make_frame</span>(<span class='kw'>x_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>y_range</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>1</span>), <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"my xlab"</span>,
+           <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"my ylab"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"my title"</span>, <span class='kw'>col_band</span> <span class='kw'>=</span> <span class='st'>"blue3"</span>,
+           <span class='kw'>col_title</span> <span class='kw'>=</span> <span class='st'>"white"</span>, <span class='kw'>col_grid</span> <span class='kw'>=</span> <span class='st'>"lightblue"</span>, <span class='kw'>grid_lty</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+           <span class='kw'>title_band_width</span> <span class='kw'>=</span> <span class='fl'>0.18</span>)</div><div class='img'><img src='make_frame-4.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -130,7 +181,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     

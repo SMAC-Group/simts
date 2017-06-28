@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model — gen_sarma â€¢ simts</title>
+<title>Generate Bias-Instability Process — gen_bi â€¢ simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,75 +80,66 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model</h1>
+    <h1>Generate Bias-Instability Process</h1>
     </div>
 
     
-    <p>Generate an ARMA(P,Q) process with supplied vector of Autoregressive Coefficients (\(\phi\)), Moving Average Coefficients (\(\theta\)), and \(\sigma^2\).</p>
+    <p>This function allows us to generate a non-stationary bias-instability process.</p>
     
 
-    <pre class="usage"><span class='fu'>gen_sarma</span>(<span class='no'>N</span>, <span class='no'>ar</span>, <span class='no'>ma</span>, <span class='no'>sar</span>, <span class='no'>sma</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1.5</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='fl'>12L</span>, <span class='kw'>n_start</span> <span class='kw'>=</span> <span class='fl'>0L</span>)</pre>
+    <pre class="usage"><span class='fu'>gen_bi</span>(<span class='no'>sigma2</span>, <span class='no'>n_total</span>, <span class='no'>n_block</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>135</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>N</th>
-      <td><p>An <code>integer</code> for signal length.</p></td>
-    </tr>
-    <tr>
-      <th>ar</th>
-      <td><p>A <code>vec</code> that contains the AR coefficients.</p></td>
-    </tr>
-    <tr>
-      <th>ma</th>
-      <td><p>A <code>vec</code> that contains the MA coefficients.</p></td>
-    </tr>
-    <tr>
-      <th>sar</th>
-      <td><p>A <code>vec</code> that contains the SAR coefficients.</p></td>
-    </tr>
-    <tr>
-      <th>sma</th>
-      <td><p>A <code>vec</code> that contains the SMA coefficients.</p></td>
-    </tr>
-    <tr>
       <th>sigma2</th>
-      <td><p>A <code>double</code> that contains process variance.</p></td>
+      <td><p>A <code>double</code> value for the variance parameter \(\sigma ^2\).</p></td>
     </tr>
     <tr>
-      <th>s</th>
-      <td><p>An <code>integer</code> that contains a seasonal id.</p></td>
+      <th>n_total</th>
+      <td><p>An <code>integer</code> indicating the length of the whole bias-instability process.</p></td>
     </tr>
     <tr>
-      <th>n_start</th>
-      <td><p>An <code>unsigned int</code> that indicates the amount of observations to be used for the burn in period.</p></td>
+      <th>n_block</th>
+      <td><p>An <code>integer</code> indicating the length of each block of the bias-instability process.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>A <code>string</code> of the time series data name.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>An <code>integer</code> set for simulation replication purpose.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional parameters.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>vec</code> that contains the generated observations.</p>
+    <p>A <code>vector</code> containing the bias-instability process.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The innovations are generated from a normal distribution.
-The \(\sigma^2\) parameter is indeed a variance parameter. 
-This differs from R's use of the standard deviation, \(\sigma\).</p>
+    <p>This function helps generate a non-stationary process example, bias-instability,
+whose theoretical maximum overlapping allan variance (MOAV) is close to the theoretical
+MOAV of its closest stationary AR(1) process over some scales. However, this approximation 
+is not good enough when considering the logarithmic representation of the allan variance.
+Therefore, the exact form of the allan variance of this non-stationary process allows us 
+to better interpret the signals characterized by bias-instability, as shown in "A Study 
+of the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal 
+Processing Letters, 2017), preprint available: <a href='https://arxiv.org/abs/1702.07795'>https://arxiv.org/abs/1702.07795</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>gen_sarma</span>(<span class='fl'>10</span>, <span class='fu'>c</span>(<span class='fl'>.3</span>,<span class='fl'>.5</span>), <span class='fu'>c</span>(<span class='fl'>.1</span>), <span class='fu'>c</span>(<span class='fl'>.2</span>), <span class='fu'>c</span>(<span class='fl'>.4</span>), <span class='fl'>1</span>, <span class='fl'>12</span>, <span class='fl'>0</span>)</div><div class='output co'>#&gt;             [,1]
-#&gt;  [1,] -1.3996696
-#&gt;  [2,] -5.1449963
-#&gt;  [3,] -3.0641325
-#&gt;  [4,] -2.7744071
-#&gt;  [5,] -2.6358663
-#&gt;  [6,] -2.6167277
-#&gt;  [7,] -2.4446736
-#&gt;  [8,] -0.3741852
-#&gt;  [9,] -2.8805075
-#&gt; [10,] -1.8146810</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'>gen_bi</span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n_total</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>n_block</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='fu'>plot</span>(<span class='no'>Xt</span>)</div><div class='img'><img src='gen_bi-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='no'>Yt</span> <span class='kw'>=</span> <span class='fu'>gen_bi</span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>n_total</span> <span class='kw'>=</span> <span class='fl'>800</span>, <span class='kw'>n_block</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"non-stationary bias-instability process"</span>)
+<span class='fu'>plot</span>(<span class='no'>Yt</span>)</div><div class='img'><img src='gen_bi-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -157,10 +148,14 @@ This differs from R's use of the standard deviation, \(\sigma\).</p>
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
+
+    <h2>Author</h2>
+    
+Yuming Zhang
 
   </div>
 </div>

@@ -89,26 +89,30 @@ autocovariance or autocorrelation for both univariate and multivariate cases.</p
     
 
     <pre class="usage"><span class='co'># S3 method for ACF</span>
-<span class='fu'>plot</span>(<span class='no'>object</span>, <span class='kw'>show.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>plot</span>(<span class='no'>x</span>, <span class='kw'>show.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>x</th>
+      <td><p>An <code>"ACF"</code> object from <code><a href='ACF.html'>ACF</a></code>.</p></td>
+    </tr>
+    <tr>
       <th>show.ci</th>
       <td><p>A <code>bool</code> indicating whether to show confidence region</p></td>
     </tr>
     <tr>
+      <th>alpha</th>
+      <td><p>A <code>double</code> indicating the confidence interval level. Default is 0.05.</p></td>
+    </tr>
+    <tr>
+      <th>main</th>
+      <td><p>A <code>string</code> indicating the title of the plot.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional parameters</p></td>
-    </tr>
-    <tr>
-      <th>x, object</th>
-      <td><p>An <code>"ACF"</code> object from <code><a href='ACF.html'>ACF</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>ci</th>
-      <td><p>A <code>double</code> containing the 1-alpha level. Default is 0.95</p></td>
     </tr>
     </table>
     
@@ -124,9 +128,9 @@ autocovariance or autocorrelation for both univariate and multivariate cases.</p
 <span class='co'># Plot with 95% CI</span>
 <span class='fu'>plot</span>(<span class='no'>m</span>)</div><div class='input'>
 <span class='co'># Plot with 90% CI</span>
-<span class='fu'>plot</span>(<span class='no'>m</span>, <span class='kw'>ci</span> <span class='kw'>=</span> <span class='fl'>0.90</span>)</div><div class='img'><img src='plot.ACF-3.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>m</span>, <span class='kw'>ci</span> <span class='kw'>=</span> <span class='fl'>0.90</span>)</div><div class='img'><img src='plot.ACF-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># Plot without 95% CI</span>
-<span class='fu'>plot</span>(<span class='no'>m</span>, <span class='kw'>show.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plot.ACF-4.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='fu'>plot</span>(<span class='no'>m</span>, <span class='kw'>show.ci</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plot.ACF-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

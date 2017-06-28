@@ -148,7 +148,7 @@
 <span class='co'># AR1 + WN</span>
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.5</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>)
-<span class='fu'>plot</span>(<span class='no'>x</span>)</div><div class='img'><img src='gen_gts-3.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>x</span>)</div><div class='img'><img src='gen_gts-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># Reset seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1336</span>)
 
@@ -159,7 +159,7 @@
 <span class='co'># Beta = 6.9314718, Sigma2_gm = 0.1333333</span>
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='GM.html'>GM</a></span>(<span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>1</span>], <span class='kw'>sigma2_gm</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>2</span>]) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
-<span class='fu'>plot</span>(<span class='no'>x2</span>)</div><div class='img'><img src='gen_gts-4.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>x2</span>)</div><div class='img'><img src='gen_gts-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># Same time series</span>
 <span class='fu'>all.equal</span>(<span class='no'>x</span>, <span class='no'>x2</span>, <span class='kw'>check.attributes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>

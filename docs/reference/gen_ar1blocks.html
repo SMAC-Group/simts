@@ -87,7 +87,8 @@
     <p>This function allows us to generate a non-stationary AR(1) blocks process.</p>
     
 
-    <pre class="usage"><span class='fu'>gen_ar1blocks</span>(<span class='no'>phi</span>, <span class='no'>sigma2</span>, <span class='no'>n_total</span>, <span class='no'>n_block</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
+    <pre class="usage"><span class='fu'>gen_ar1blocks</span>(<span class='no'>phi</span>, <span class='no'>sigma2</span>, <span class='no'>n_total</span>, <span class='no'>n_block</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+<span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>135</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -102,16 +103,27 @@
     </tr>
     <tr>
       <th>n_total</th>
-      <td><p>The length of the whole AR(1) blocks process.</p></td>
+      <td><p>An <code>integer</code> indicating the length of the whole AR(1) blocks process.</p></td>
     </tr>
     <tr>
       <th>n_block</th>
-      <td><p>The length of each block of the AR(1) blocks process.</p></td>
+      <td><p>An <code>integer</code> indicating the length of each block of the AR(1) blocks process.</p></td>
     </tr>
     <tr>
       <th>scale</th>
-      <td><p>A <code>integer</code> indicating the amount of decomposition performed at each level. 
-The default value is 10.</p></td>
+      <td><p>An <code>integer</code> indicating the amount of decomposition performed at each level. The default value is 10.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>A <code>string</code> of the time series data name.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>An <code>integer</code> set for simulation replication purpose.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional parameters.</p></td>
     </tr>
     </table>
     
@@ -126,12 +138,14 @@ theoretical maximum overlapping allan variance (MOAV) is different and can be di
 from the theoretical MOAV of a stationary AR(1) process. This difference of allan variance 
 between stationary and non-stationary processes is proved to be able to be captured by the 
 calculation of theoretical allan variance raised in  "A Study of the Allan Variance for 
-Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.07795 (2017).</p>
+Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing Letters, 2017), 
+preprint available: <a href='https://arxiv.org/abs/1702.07795'>https://arxiv.org/abs/1702.07795</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'>gen_ar1blocks</span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>,
 <span class='kw'>n_total</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>n_block</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+<span class='fu'>plot</span>(<span class='no'>Xt</span>)</div><div class='img'><img src='gen_ar1blocks-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='no'>Yt</span> <span class='kw'>=</span> <span class='fu'>gen_ar1blocks</span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n_total</span> <span class='kw'>=</span> <span class='fl'>800</span>,
 <span class='kw'>n_block</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>50</span>)
 <span class='fu'>plot</span>(<span class='no'>Yt</span>)</div><div class='img'><img src='gen_ar1blocks-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
@@ -150,7 +164,7 @@ Constant-Mean Non-Stationary Processes" by Xu et al., arXiv preprint arXiv:1702.
 
     <h2>Author</h2>
     
-Yuming Zhang, Haotian Xu
+Yuming Zhang and Haotian Xu
 
   </div>
 </div>

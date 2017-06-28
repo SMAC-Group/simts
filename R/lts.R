@@ -17,10 +17,10 @@
 
 #' @title Generate Latent Time Series Object Based on Data
 #' @description Create a \code{lts} object based on a supplied matrix or data frame.
-#' @param data A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 2 columns. The last column must equal to the sum of all previous columns.
-#' @param start A \code{numeric} that provides the time of the first observation.
-#' @param end A \code{numeric} that provides the time of the last observation.
-#' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
+#' @param data      A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 2 columns. The last column must equal to the sum of all previous columns.
+#' @param start     A \code{numeric} that provides the time of the first observation.
+#' @param end       A \code{numeric} that provides the time of the last observation.
+#' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
 #' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
@@ -119,16 +119,16 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 
 #' @title Generate Latent Time Series Object Based on Model
 #' @description Create a \code{lts} object based on a supplied time series model.
-#' @param n An \code{interger} indicating the amount of observations generated in this function.
-#' @param model A \code{ts.model} or \code{simts} object containing one of the allowed models.
-#' @param start A \code{numeric} that provides the time of the first observation.
-#' @param end A \code{numeric} that provides the time of the last observation.
-#' @param freq A \code{numeric} that provides the rate of samples. Default value is 1.
+#' @param n         An \code{interger} indicating the amount of observations generated in this function.
+#' @param model     A \code{ts.model} or \code{simts} object containing one of the allowed models.
+#' @param start     A \code{numeric} that provides the time of the first observation.
+#' @param end       A \code{numeric} that provides the time of the last observation.
+#' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
 #' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @param process A \code{vector} that contains model names of decomposed and combined processes.
+#' @param process   A \code{vector} that contains model names of decomposed and combined processes.
 #' @return A \code{lts} object with the following attributes:
 #' \describe{
 #'   \item{start}{The time of the first observation}
@@ -243,7 +243,7 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 #' @method plot lts
 #' @export
 #' @keywords internal
-#' @param x               A \code{gts} object
+#' @param x               A \code{lts} object
 #' @param xlab            A \code{string} that gives a title for the x axis.
 #' @param ylab            A \code{string} that gives a title for the y axis.
 #' @param main            A \code{string} that gives an overall title for the plot.
@@ -328,17 +328,47 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, fi
   
   # Main plot
   par(mfrow = c(dim_x[2], 1), mar = c(0.7, 2,0,0), oma = c(4,3.2,1,1))
-  #, mar = c(0.7, 2,0,0), oma = c(4,2,1,1)
+  
   for (i in 1:dim_x[2]){
-    plot(NA, xlim = c(start, end), ylim = range(x[,i]), xlab = xlab,
-         xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    if (fixed_range == TRUE){
+      plot(NA, xlim = c(start, end), ylim = range(x), xlab = xlab,
+           xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }else{
+      plot(NA, xlim = c(start, end), ylim = range(x[,i]), xlab = xlab,
+           xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }
+        
+    win_dim = par("usr")
+        
+    par(new = TRUE)
+    plot(NA, xlim = c(start, end), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, xaxt = 'n', yaxt = 'n', bty = "n")
     
-    make_frame(start, end, main, xlab, inloop = TRUE, i = i)
+    win_dim = par("usr")
+    
+    # Add grid
+    grid(NULL, NULL, lty = 1, col = "grey95")
+      
+    # Add title
+    x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+    y_vec = c(win_dim[4], win_dim[4],
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
+            win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+    polygon(x_vec, y_vec, col = "grey95", border = NA)
+    text(x = mean(c(win_dim[1], win_dim[2])), y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main[i])
+        
+    # Add axes and box
+    lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = "grey50")
+    box(col = "grey50")
     
     if (i == dim_x[2]){
       axis(1, padj = 0.3)
     } 
     
+    y_axis = axis(2, labels = FALSE, tick = FALSE)  
+    y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+    axis(2, padj = -0.2, at = y_axis)  
+        
     # Add lines 
     lines(scales, x[,i], type = "l", col = couleur[i], pch = 16)
   }

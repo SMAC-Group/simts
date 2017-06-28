@@ -18,6 +18,10 @@ corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE,
 
 \item{show.ci}{A \code{bool} indicating whether to show confidence region.}
 
+\item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
+
+\item{plot}{A \code{bool} indicating whether to plot.}
+
 \item{...}{Additional parameters.}
 }
 \value{

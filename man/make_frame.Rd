@@ -10,17 +10,35 @@ make_frame(x_range, y_range, xlab, ylab, main = "", mar = c(5.1, 5.1, 1,
   add_band = TRUE, title_band_width = 0.09, grid_lty = 1)
 }
 \arguments{
-\item{xlab}{A \code{string} that gives a title for the x axis.}
+\item{x_range}{A \code{numeric} providing the range of values for the x-axis.}
 
-\item{main}{A \code{string} that gives an overall title for the plot.}
+\item{y_range}{A \code{numeric} providing the range of values for the y-axis.}
 
-\item{start}{A \code{numeric} that provides the time of the first observation.}
+\item{xlab}{A \code{string} that gives a title for the x-axis.}
 
-\item{end}{A \code{numeric} that provides the time of the last observation.}
+\item{ylab}{A \code{string} that gives a title for the y-axis.}
 
-\item{inloop}{A \code{boolean} that checks if the object is plotting within a loop.}
+\item{main}{A \code{string} that gives an overall title for the plot. Default is an empty string.}
 
-\item{i}{A \code{numeric} that provides an index for when inloop is TRUE.}
+\item{mar}{A \code{vector} indicating overall margin values for the plot.}
+
+\item{add_axis_x}{A \code{boolean} indicating whether a x-axis should be added.}
+
+\item{add_axis_y}{A \code{boolean} indicating whether a y-axis should be added.}
+
+\item{col_box}{A \code{string} indicating the color for the title box.}
+
+\item{col_grid}{A \code{string} indicating the color of the grid for the plot.}
+
+\item{col_band}{A \code{string} indicating the color of the band.}
+
+\item{col_title}{A \code{string} indicating the color of the plot title.}
+
+\item{add_band}{A \code{boolean} indicating whether there should be a band.}
+
+\item{title_band_width}{A \code{double} providing the value of the band width. Default is 0.09.}
+
+\item{grid_lty}{A \code{integer} indicating the line type of the grid lines.}
 }
 \value{
 Added title, grid, and axes.
@@ -43,8 +61,6 @@ make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab",
            ylab = "my ylab", main = "my title", col_band = "blue3", 
            col_title = "white", col_grid = "lightblue", grid_lty = 3,
            title_band_width = 0.18)
-           
-
 }
 \author{
 Stephane Guerrier and Justin Lee

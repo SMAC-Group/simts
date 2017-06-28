@@ -73,7 +73,8 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @author Yunxiang Zhang
 #' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region
-#' @param ci        A \code{double} containing the 1-alpha level. Default is 0.95
+#' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
+#' @param main      A \code{string} indicating the title of the plot. 
 #' @param ...       Additional parameters
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.ACF
@@ -195,10 +196,8 @@ plot.ACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
 #' @author Yunxiang Zhang
 #' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes
 #' @param lagmax A \code{integer} indicating the max lag.
-#' @param cor    A \code{bool} indicating whether the correlation 
-#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
-#' @param demean A \code{bool} indicating whether the data should be detrended
-#'  (\code{TRUE}) or not (\code{FALSE})
+#' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
+#' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE})
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
@@ -246,10 +245,11 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @description Plot pacf function computes the estimated
 #' plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
 #' @author Yunxiang Zhang
-#' @param x         An \code{"PACF"} object from \code{\link{PACF}}.
-#' @param show.ci   A \code{bool} indicating whether to show confidence region
-#' @param ci        A \code{double} containing the 1-alpha level. Default is 0.95
-#' @param ...       Additional parameters
+#' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
+#' @param show.ci   A \code{bool} indicating whether to show confidence region.
+#' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
+#' @param main      A \code{string} indicating the title of the plot. 
+#' @param ...       Additional parameters.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.PACF
 #' @export
@@ -360,6 +360,8 @@ plot.PACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
 #' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
 #' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}).
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
+#' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
+#' @param plot      A \code{bool} indicating whether to plot. 
 #' @param ...       Additional parameters.
 #' @return Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname corr_analysis

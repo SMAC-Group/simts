@@ -11,9 +11,11 @@
 
 \item{show.ci}{A \code{bool} indicating whether to show confidence region}
 
-\item{...}{Additional parameters}
+\item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
 
-\item{ci}{A \code{double} containing the 1-alpha level. Default is 0.95}
+\item{main}{A \code{string} indicating the title of the plot.}
+
+\item{...}{Additional parameters}
 }
 \value{
 An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.

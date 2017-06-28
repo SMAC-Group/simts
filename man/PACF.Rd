@@ -11,11 +11,9 @@ PACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
 
 \item{lagmax}{A \code{integer} indicating the max lag.}
 
-\item{cor}{A \code{bool} indicating whether the correlation 
-(\code{TRUE}) or covariance (\code{FALSE}) should be computed.}
+\item{cor}{A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.}
 
-\item{demean}{A \code{bool} indicating whether the data should be detrended
-(\code{TRUE}) or not (\code{FALSE})}
+\item{demean}{A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE})}
 }
 \value{
 An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.

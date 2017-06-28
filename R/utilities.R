@@ -234,18 +234,23 @@ imu_time = function(x){
   }
 }
 
-
-
-
-
 #' @title Default utility function for various plots titles
 #' @description Adds title, grid, and required x- and y-axes. 
-#' @param start     A \code{numeric} that provides the time of the first observation.
-#' @param end       A \code{numeric} that provides the time of the last observation.
-#' @param main      A \code{string} that gives an overall title for the plot.
-#' @param xlab      A \code{string} that gives a title for the x axis.
-#' @param inloop    A \code{boolean} that checks if the object is plotting within a loop.  
-#' @param i         A \code{numeric} that provides an index for when inloop is TRUE. 
+#' @param x_range           A \code{numeric} providing the range of values for the x-axis. 
+#' @param y_range           A \code{numeric} providing the range of values for the y-axis. 
+#' @param xlab              A \code{string} that gives a title for the x-axis.
+#' @param ylab              A \code{string} that gives a title for the y-axis.
+#' @param main              A \code{string} that gives an overall title for the plot. Default is an empty string. 
+#' @param mar               A \code{vector} indicating overall margin values for the plot. 
+#' @param add_axis_x        A \code{boolean} indicating whether a x-axis should be added.  
+#' @param add_axis_y        A \code{boolean} indicating whether a y-axis should be added.
+#' @param col_box           A \code{string} indicating the color for the title box. 
+#' @param col_grid          A \code{string} indicating the color of the grid for the plot. 
+#' @param col_band          A \code{string} indicating the color of the band. 
+#' @param col_title         A \code{string} indicating the color of the plot title. 
+#' @param add_band          A \code{boolean} indicating whether there should be a band. 
+#' @param title_band_width  A \code{double} providing the value of the band width. Default is 0.09. 
+#' @param grid_lty          A \code{integer} indicating the line type of the grid lines. 
 #' @return Added title, grid, and axes. 
 #' @export
 #' @author Stephane Guerrier and Justin Lee
@@ -264,8 +269,6 @@ imu_time = function(x){
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3,
 #'            title_band_width = 0.18)
-#'            
-#'
 make_frame = function(x_range, y_range, xlab, ylab, main = "", 
                       mar = c(5.1, 5.1, 1, 2.1), add_axis_x = TRUE,
                       add_axis_y = TRUE, col_box = "black", 

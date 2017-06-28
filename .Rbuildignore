@@ -3,8 +3,8 @@
 ^\.travis\.yml$
 ^README\.Rmd$
 ^README-.*\.png$
-^data-raw$
 ^_pkgdown\.yml$
 ^man-roxygen$
 ^figures$
 ^docs$
+^inst/doc

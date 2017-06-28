@@ -8,7 +8,7 @@
   couleur = NULL, fixed_range = FALSE, ...)
 }
 \arguments{
-\item{x}{A \code{gts} object}
+\item{x}{A \code{lts} object}
 
 \item{xlab}{A \code{string} that gives a title for the x axis.}
 

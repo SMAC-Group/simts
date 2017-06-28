@@ -114,7 +114,7 @@ You can also use `corr_analysis()` function in the package to get the same resul
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 4: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016'}
 # Compute and plot ACF and PACF
-sales_corr = simts:::corr_analysis(sales)
+sales_corr = corr_analysis(sales)
 
 # Get ACF and PACF values
 sales_acf = sales_corr$ACF

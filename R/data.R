@@ -1,4 +1,4 @@
-#' Mean Monthly Precipitation, 1907 – 1972
+#' Mean Monthly Precipitation, from 1907 to 1972
 #'
 #' Hydrology data that indicates a robust approach may be preferred to a
 #' classical approach when estimating time series.

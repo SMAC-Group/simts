@@ -4,15 +4,14 @@
 \alias{plot.PACF}
 \title{Plot Partial Auto-Covariance and Correlation Functions}
 \usage{
-\method{plot}{PACF}(object, show.ci = TRUE, alpha = 0.05, main = NULL,
-  ...)
+\method{plot}{PACF}(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...)
 }
 \arguments{
+\item{x}{An \code{"PACF"} object from \code{\link{PACF}}.}
+
 \item{show.ci}{A \code{bool} indicating whether to show confidence region}
 
 \item{...}{Additional parameters}
-
-\item{x, object}{An \code{"PACF"} object from \code{\link{PACF}}.}
 
 \item{ci}{A \code{double} containing the 1-alpha level. Default is 0.95}
 }
@@ -26,7 +25,7 @@ plot partial autocovariance or autocorrelation for both univariate and multivari
 \examples{
 # Plot the Partial Autocorrelation
 m = PACF(datasets::AirPassengers)
-plot.PACF(m)
+plot(m)
 }
 \author{
 Yunxiang Zhang

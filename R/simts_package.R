@@ -35,11 +35,11 @@
 #' @name simts-package
 #' @docType package
 #' @useDynLib simts
-#' @importFrom graphics plot par grid polygon text lines box axis mtext
-#' @importFrom grDevices hcl
+#' @importFrom graphics plot par grid polygon text lines box axis mtext abline rect segments
+#' @importFrom grDevices hcl rgb 
 #' @importFrom methods is
 #' @importFrom utils install.packages tail head
 #' @importFrom Rcpp evalCpp
-#' @importFrom stats arima predict ts as.ts is.ts qnorm
+#' @importFrom stats arima predict ts as.ts is.ts qnorm rnorm
 #' @importFrom scales trans_breaks trans_format math_format
 NULL

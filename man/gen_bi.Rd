@@ -11,12 +11,13 @@ gen_bi(sigma2, n_total, n_block, title = NULL, seed = 135, ...)
 
 \item{n_total}{An \code{integer} indicating the length of the whole bias-instability process.}
 
-\item{n_block}{An \code{integer} indicating the length of each block of the bias-instability 
-process.}
+\item{n_block}{An \code{integer} indicating the length of each block of the bias-instability process.}
 
 \item{title}{A \code{string} of the time series data name.}
 
 \item{seed}{An \code{integer} set for simulation replication purpose.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 A \code{vector} containing the bias-instability process.

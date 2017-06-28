@@ -16,12 +16,13 @@ title = NULL, seed = 135, ...)
 
 \item{n_block}{An \code{integer} indicating the length of each block of the AR(1) blocks process.}
 
-\item{scale}{An \code{integer} indicating the amount of decomposition performed at each level. 
-The default value is 10.}
+\item{scale}{An \code{integer} indicating the amount of decomposition performed at each level. The default value is 10.}
 
 \item{title}{A \code{string} of the time series data name.}
 
 \item{seed}{An \code{integer} set for simulation replication purpose.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 A \code{vector} containing the AR(1) blocks process.

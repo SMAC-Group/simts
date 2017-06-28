@@ -31,6 +31,7 @@
 #' observations and \eqn{m} is the number of series being compared. If 
 #' \code{lagmax} supplied is greater than the number of observations, then one
 #' less than the total will be taken.
+#' @importFrom stats acf pacf 
 #' @export
 #' @examples 
 #' # Get Autocorrelation
@@ -70,7 +71,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @description The acf function computes the estimated
 #' autocovariance or autocorrelation for both univariate and multivariate cases.
 #' @author Yunxiang Zhang
-#' @param x,object  An \code{"ACF"} object from \code{\link{ACF}}.
+#' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region
 #' @param ci        A \code{double} containing the 1-alpha level. Default is 0.95
 #' @param ...       Additional parameters
@@ -89,8 +90,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-#' 
-plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
+plot.ACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   xlab = "Lags"
   ylab = "ACF"
@@ -102,7 +102,7 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   Lag = xmin = xmax = ymin = ymax = NULL 
   
   # Wide to long array transform
-  x2 = as.data.frame.table(object, responseName = "ACF")
+  x2 = as.data.frame.table(x, responseName = "ACF")
   
   colnames(x2) = c("Lag", "Signal X", "Signal Y", "ACF")
   
@@ -113,7 +113,7 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   x_range = range(x2$Lag)
   
   if (show.ci == TRUE){
-    n = attr(object,"n")
+    n = attr(x,"n")
     mult = qnorm(1-alpha/2)
     y_range = range(c(x2$ACF, 1/sqrt(n)*mult*c(-1,1)))
   }else{
@@ -127,10 +127,10 @@ plot.ACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   
   # Title
   if (is.null(main)){
-    if (is.null(attr(object,"data_name"))){
+    if (is.null(attr(x,"data_name"))){
       main = paste0(as.character((x2$`Signal Y`)[1]), " ACF")
     }else{
-      main = paste0(attr(object,"data_name"), " ACF")
+      main = paste0(attr(x,"data_name"), " ACF")
     }
   }
   else {
@@ -246,7 +246,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @description Plot pacf function computes the estimated
 #' plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
 #' @author Yunxiang Zhang
-#' @param x,object  An \code{"PACF"} object from \code{\link{PACF}}.
+#' @param x         An \code{"PACF"} object from \code{\link{PACF}}.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region
 #' @param ci        A \code{double} containing the 1-alpha level. Default is 0.95
 #' @param ...       Additional parameters
@@ -256,9 +256,8 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @examples 
 #' # Plot the Partial Autocorrelation
 #' m = PACF(datasets::AirPassengers)
-#' plot.PACF(m)
-
-plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
+#' plot(m)
+plot.PACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   xlab = "Lags"
   ylab = "PACF"
@@ -270,7 +269,7 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   Lag = xmin = xmax = ymin = ymax = NULL 
   
   # Wide to long array transform
-  x2 = as.data.frame.table(object, responseName = "PACF")
+  x2 = as.data.frame.table(x, responseName = "PACF")
   
   colnames(x2) = c("Lag", "Signal X", "Signal Y", "PACF")
   
@@ -281,7 +280,7 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   x_range = range(x2$Lag)
   
   if (show.ci == TRUE){
-    n = attr(object,"n")
+    n = attr(x,"n")
     mult = qnorm(1-alpha/2)
     y_range = range(c(x2$PACF, 1/sqrt(n)*mult*c(-1,1)))
   }else{
@@ -295,10 +294,10 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   
   # Title
   if (is.null(main)){
-    if (is.null(attr(object,"data_name"))){
+    if (is.null(attr(x,"data_name"))){
       main = paste0(as.character((x2$`Signal Y`)[1]), " PACF")
     }else{
-      main = paste0(attr(object,"data_name"), " PACF")
+      main = paste0(attr(x,"data_name"), " PACF")
     }
   }
   else {
@@ -320,9 +319,7 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # Add grid
   grid(NULL, NULL, lty = 1, col = "grey95")
   
-  
   # Add title
-  
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
   y_vec = c(win_dim[4], win_dim[4],
             win_dim[4] - 0.09*(win_dim[4] - win_dim[3]),
@@ -354,31 +351,22 @@ plot.PACF = function(object, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
 }
 
 
-
-
-
 #' @title Correlation Analysis Functions
 #' @description Correlation Analysis function computes and plots both empirical ACF and PACF
 #' or both univariate and multivariate cases.
 #' @author Yunxiang Zhang
-#' @param x,object  An \code{"ts"} object
-#' @param lagmax A \code{integer} indicating the max lag.
-#' @param cor    A \code{bool} indicating whether the correlation 
-#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
-#' @param demean A \code{bool} indicating whether the data should be detrended
-#'  (\code{TRUE}) or not (\code{FALSE})
-#' @param show.ci   A \code{bool} indicating whether to show confidence region
-#' @param ...       Additional parameters
+#' @param x         An \code{"ts"} object.
+#' @param lagmax    A \code{integer} indicating the max lag.
+#' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
+#' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}).
+#' @param show.ci   A \code{bool} indicating whether to show confidence region.
+#' @param ...       Additional parameters.
 #' @return Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname corr_analysis
 #' @export
 #' @examples 
 #' # Plot the Partial Autocorrelation
 #' corr_analysis(datasets::AirPassengers)
-
-
-
-
 corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){
   
   # Compute ACF and PACF
@@ -397,6 +385,3 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   return(list("ACF" = acfe, "PACF" = pacfe))
 
 }
-
-
-

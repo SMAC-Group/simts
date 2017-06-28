@@ -7,12 +7,13 @@
 gen_nswn(n_total, title = NULL, seed = 135, ...)
 }
 \arguments{
-\item{n_total}{An \code{integer} indicating the length of the whole non-stationary white noise 
-process.}
+\item{n_total}{An \code{integer} indicating the length of the whole non-stationary white noise process.}
 
 \item{title}{A \code{string} of the time series data name.}
 
 \item{seed}{An \code{integer} set for simulation replication purpose.}
+
+\item{...}{Additional parameters.}
 }
 \value{
 A \code{vector} containing the non-stationary white noise process.

@@ -8,19 +8,17 @@ corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE,
   alpha = 0.05, plot = TRUE, ...)
 }
 \arguments{
-\item{x, object}{An \code{"ts"} object}
+\item{x}{An \code{"ts"} object.}
 
 \item{lagmax}{A \code{integer} indicating the max lag.}
 
-\item{cor}{A \code{bool} indicating whether the correlation 
-(\code{TRUE}) or covariance (\code{FALSE}) should be computed.}
+\item{cor}{A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.}
 
-\item{demean}{A \code{bool} indicating whether the data should be detrended
-(\code{TRUE}) or not (\code{FALSE})}
+\item{demean}{A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}).}
 
-\item{show.ci}{A \code{bool} indicating whether to show confidence region}
+\item{show.ci}{A \code{bool} indicating whether to show confidence region.}
 
-\item{...}{Additional parameters}
+\item{...}{Additional parameters.}
 }
 \value{
 Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.

@@ -20,14 +20,14 @@
 #' @export
 #' @usage gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10, 
 #' title = NULL, seed = 135, ...)
-#' @param phi A \code{double} value for the autocorrection parameter \eqn{\phi}{phi}.
-#' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
+#' @param phi     A \code{double} value for the autocorrection parameter \eqn{\phi}{phi}.
+#' @param sigma2  A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
 #' @param n_total An \code{integer} indicating the length of the whole AR(1) blocks process.
 #' @param n_block An \code{integer} indicating the length of each block of the AR(1) blocks process.
-#' @param scale An \code{integer} indicating the amount of decomposition performed at each level. 
-#' The default value is 10.
-#' @param title A \code{string} of the time series data name. 
-#' @param seed An \code{integer} set for simulation replication purpose.
+#' @param scale   An \code{integer} indicating the amount of decomposition performed at each level. The default value is 10.
+#' @param title   A \code{string} of the time series data name. 
+#' @param seed    An \code{integer} set for simulation replication purpose.
+#' @param ...     Additional parameters. 
 #' @return A \code{vector} containing the AR(1) blocks process.
 #' @note This function helps generate a non-stationary process example, AR(1) blocks, whose 
 #' theoretical maximum overlapping allan variance (MOAV) is different and can be distinguished 
@@ -73,10 +73,10 @@ gen_ar1blocks = function(phi, sigma2, n_total, n_block,
 #' This function allows us to generate a non-stationary white noise process.
 #' @export
 #' @usage gen_nswn(n_total, title = NULL, seed = 135, ...)
-#' @param n_total An \code{integer} indicating the length of the whole non-stationary white noise 
-#' process.
-#' @param title A \code{string} of the time series data name. 
-#' @param seed An \code{integer} set for simulation replication purpose.
+#' @param n_total An \code{integer} indicating the length of the whole non-stationary white noise process.
+#' @param title   A \code{string} of the time series data name. 
+#' @param seed    An \code{integer} set for simulation replication purpose.
+#' @param ...     Additional parameters. 
 #' @return A \code{vector} containing the non-stationary white noise process.
 #' @note This function helps generate a non-stationary process example, non-stationary white 
 #' noise, whose theoretical maximum overlapping allan variance (MOAV) corresponds to the 
@@ -116,12 +116,12 @@ gen_nswn = function(n_total, title = NULL, seed = 135, ...){
 #' This function allows us to generate a non-stationary bias-instability process.
 #' @export
 #' @usage gen_bi(sigma2, n_total, n_block, title = NULL, seed = 135, ...)
-#' @param sigma2 A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
+#' @param sigma2  A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
 #' @param n_total An \code{integer} indicating the length of the whole bias-instability process.
-#' @param n_block An \code{integer} indicating the length of each block of the bias-instability 
-#' process.
-#' @param title A \code{string} of the time series data name. 
-#' @param seed An \code{integer} set for simulation replication purpose.
+#' @param n_block An \code{integer} indicating the length of each block of the bias-instability process.
+#' @param title   A \code{string} of the time series data name. 
+#' @param seed    An \code{integer} set for simulation replication purpose.
+#' @param ...     Additional parameters. 
 #' @return A \code{vector} containing the bias-instability process.
 #' @note This function helps generate a non-stationary process example, bias-instability,
 #' whose theoretical maximum overlapping allan variance (MOAV) is close to the theoretical
@@ -139,8 +139,7 @@ gen_nswn = function(n_total, title = NULL, seed = 135, ...){
 #' Yt = gen_bi(sigma2 = 0.8, n_total = 800, n_block = 20,
 #' title = "non-stationary bias-instability process")
 #' plot(Yt)
-gen_bi = function(sigma2, n_total, n_block,
-                  title = NULL, seed = 135, ...){
+gen_bi = function(sigma2, n_total, n_block, title = NULL, seed = 135, ...){
   set.seed(seed)
   bi = NULL 
   

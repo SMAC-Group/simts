@@ -38,6 +38,15 @@
 #' \url{https://datamarket.com/data/set/22t0/quarterly-increase-in-stocks-non-farm-total-australia-sep-1959-march-1991#!ds=22t0&display=line}
 "australia"
 
+#' Sales Dataset 
+#' 
+#' This dataset contains the US monthly clothing retail sales in millions of dollars taken from 
+#' 1992 to 2016 for a total of 302 observations.
+#' 
+#' @format A dataframe with 302 rows and 1 variable: 
+#' 
+#' @source \url{http://r-exercises.com/wp-content/uploads/2017/04/sales.csv}
+"sales"
 
 #' @details The data sets in this package may change at a moments notice.
 "_PACKAGE"

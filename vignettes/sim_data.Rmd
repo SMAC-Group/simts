@@ -13,7 +13,6 @@ bibliography: biblio.bib
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(simts)
 library(datasets)
-
 ```
 
 In this section, we will briefly show some of the `simts` package functionality. In the examples shown here, time series data may take the form of either a one-column `matrix`, `data.frame`, or numeric `vector`.

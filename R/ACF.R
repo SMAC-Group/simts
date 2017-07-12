@@ -111,7 +111,7 @@ plot.ACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   x2$Lag = as.numeric(x2$Lag)
   
   # Range
-  x_range = range(x2$Lag)
+  x_range = range(x2$Lag)-1
   
   if (show.ci == TRUE){
     n = attr(x,"n")
@@ -140,7 +140,7 @@ plot.ACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   
   
   # Main plot
-  plot(NA, xlim = c(1, max(x2$Lag)), ylim = y_range, 
+  plot(NA, xlim = c(0, max(x2$Lag)), ylim = y_range, 
        xlab = xlab, ylab = ylab, xaxt = 'n', 
        yaxt = 'n', bty = "n", ann = FALSE)
   win_dim = par("usr")
@@ -277,7 +277,7 @@ plot.PACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   x2$Lag = as.numeric(x2$Lag)
   
   # Range
-  x_range = range(x2$Lag)
+  x_range = range(x2$Lag)-1
   
   if (show.ci == TRUE){
     n = attr(x,"n")
@@ -306,7 +306,7 @@ plot.PACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   
   
   # Main plot
-  plot(NA, xlim = c(1, max(x2$Lag)), ylim = y_range, 
+  plot(NA, xlim = c(0, max(x2$Lag)), ylim = y_range, 
        xlab = xlab, ylab = ylab, xaxt = 'n', 
        yaxt = 'n', bty = "n", ann = FALSE)
   win_dim = par("usr")
@@ -385,5 +385,5 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   par(mfrow = c(1,1))
   
   return(list("ACF" = acfe, "PACF" = pacfe))
-
+  
 }

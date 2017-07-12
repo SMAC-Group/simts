@@ -91,10 +91,10 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-plot.ACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
+plot.ACF = function(x, show.ci = TRUE, ylab = "ACF", alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   xlab = "Lags"
-  ylab = "ACF"
+  ylab = ylab
   col_ci = rgb(0, 0.6, 1, 0.2)
   alpha = 0.05
   
@@ -172,6 +172,7 @@ plot.ACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   y_axis = axis(2, labels = FALSE, tick = FALSE)
   y_axis = y_axis[y_axis < (win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
   axis(2, padj = -0.2, at = y_axis)
+  
   
   abline(h = 0, lty = 1, lwd = 2)
   # Plot CI 
@@ -257,10 +258,10 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' # Plot the Partial Autocorrelation
 #' m = PACF(datasets::AirPassengers)
 #' plot(m)
-plot.PACF = function(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
+plot.PACF = function(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   xlab = "Lags"
-  ylab = "PACF"
+  ylab = ylab
   col_ci = rgb(0, 0.6, 1, 0.2)
   alpha = 0.05
   
@@ -378,8 +379,8 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   # Plots
   if (plot){
     par(mfrow=c(1,2))
-    plot(acfe, show.ci = TRUE, alpha = 0.05, main = "Empirical ACF")
-    plot(pacfe, show.ci = TRUE, alpha = 0.05, main = "Empirical PACF")    
+    plot(acfe, show.ci = TRUE, alpha = 0.05, ylab = '', main = "Empirical ACF")
+    plot(pacfe, show.ci = TRUE, alpha = 0.05, ylab = '', main = "Empirical PACF")
   }
   
   par(mfrow = c(1,1))

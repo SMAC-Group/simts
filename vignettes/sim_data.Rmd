@@ -15,7 +15,7 @@ library(simts)
 library(datasets)
 ```
 
-In this section, we will briefly show some of the `simts` package functionality. In the examples shown here, time series data may take the form of either a one-column `matrix`, `data.frame`, or numeric `vector`.
+In this section, we will briefly show some of the `simts` package functionalities. In the examples shown here, time series data may take the form of either a one-column `matrix`, `data.frame`, or numeric `vector`.
 
 The following three datasets stored in `simts` will be used as examples.
 
@@ -80,13 +80,13 @@ This graph indicates that this time series is likely to present some non-station
 
 Let's consider the next dataset, the `sales` time series:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Monthly Clothing Retail Sales in US for 1992-2016'}
 # Load sales dataset
 data("sales")
 
 # Simulate based on data
 sales = gts(as.vector(sales), start = 1992, freq = 12, name_time = "Month",
-            unit_ts = "millions of dollars", name_ts = "Retail.trade.clothing", 
+            unit_ts = bquote(paste(10^6,"$")), name_ts = "Retail Sales", 
             data_name = "Monthly Clothing Retail Sales in US for 1992-2016")
 
 
@@ -97,14 +97,14 @@ plot(sales)
 
 After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `ACF()` and `PACF()` as follows:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
 # Compute ACF and plot result
 sales_acf = ACF(sales)
 plot(sales_acf)
 ```
 
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
 #Compute PACF and plot result
 sales_pacf = PACF(sales)
 plot(sales_pacf)
@@ -112,7 +112,7 @@ plot(sales_pacf)
 
 You can also use `corr_analysis()` function in the package to get the same results as above:  
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 4: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016'}
 # Compute and plot ACF and PACF
 sales_corr = corr_analysis(sales)
 
@@ -128,7 +128,7 @@ The autocorrelation graph reveals that there exits some seasonal features in thi
 
 Finally, we consider the last dataset in the code below:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Plot of Annual Nile river flow from 1871-1970'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Annual Nile river flow from 1871-1970'}
 # Load Nile dataset
 Nile = datasets::Nile
 
@@ -141,11 +141,27 @@ nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1,
 plot(nile)
 ```
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of the Nile river flow data'}
+To get ACF, we can use `ACF()` and make a plot:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of the Nile river flow data'}
 # Compute ACF and plot result
 nile_acf = ACF(nile)
 plot(nile_acf)
 ```
+
+Similar to the example above, we can also use `corr_analysis()` to get the ACF and PACF at the same time:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical ACF and PACF of the Nile river flow data'}
+# Compute and plot ACF and PACF
+nile_corr = corr_analysis(nile)
+
+# Get ACF and PACF values
+nile_acf = nile_corr$ACF
+nile_pacf = nile_corr$PACF
+```
+
+
+
 
 ## Missing features:
 

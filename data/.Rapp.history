@@ -1,0 +1,11 @@
+load("/Users/yumingzhang/Documents/GitHub/simts/data/australia.RData")
+australia
+load("/Users/yumingzhang/Documents/GitHub/simts/data/hydro.rda")
+?hydro
+hydro
+type(hydro)
+class(hydro)
+load("/Users/yumingzhang/Documents/GitHub/simts/data/sales.rda")
+sales
+load("/Users/yumingzhang/Documents/GitHub/simts/data/savingrt.rda")
+savingrt

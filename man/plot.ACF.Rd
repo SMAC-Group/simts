@@ -4,12 +4,15 @@
 \alias{plot.ACF}
 \title{Plot Auto-Covariance and Correlation Functions}
 \usage{
-\method{plot}{ACF}(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...)
+\method{plot}{ACF}(x, show.ci = TRUE, ylab = "ACF", alpha = 0.05,
+  main = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{"ACF"} object from \code{\link{ACF}}.}
 
-\item{show.ci}{A \code{bool} indicating whether to show confidence region}
+\item{show.ci}{A \code{bool} indicating whether to show confidence region.}
+
+\item{ylab}{A \code{text} indicating the label of y axis.}
 
 \item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
 

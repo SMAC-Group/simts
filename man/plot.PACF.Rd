@@ -4,7 +4,8 @@
 \alias{plot.PACF}
 \title{Plot Partial Auto-Covariance and Correlation Functions}
 \usage{
-\method{plot}{PACF}(x, show.ci = TRUE, alpha = 0.05, main = NULL, ...)
+\method{plot}{PACF}(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05,
+  main = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{"ACF"} object from \code{\link{ACF}}.}

@@ -249,6 +249,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @author Yunxiang Zhang
 #' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
+#' @param ylab      A \code{string} indicating the y-axis label name. 
 #' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
 #' @param main      A \code{string} indicating the title of the plot. 
 #' @param ...       Additional parameters.

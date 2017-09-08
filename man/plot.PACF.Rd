@@ -12,6 +12,8 @@
 
 \item{show.ci}{A \code{bool} indicating whether to show confidence region.}
 
+\item{ylab}{A \code{string} indicating the y-axis label name.}
+
 \item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
 
 \item{main}{A \code{string} indicating the title of the plot.}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Partial Auto-Covariance and Correlation Functions � plot.PACF • simts</title>
+<title>Plot Partial Auto-Covariance and Correlation Functions — plot.PACF • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,8 +23,7 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -89,7 +88,8 @@ plot partial autocovariance or autocorrelation for both univariate and multivari
     
 
     <pre class="usage"><span class='co'># S3 method for PACF</span>
-<span class='fu'>plot</span>(<span class='no'>x</span>, <span class='kw'>show.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>plot</span>(<span class='no'>x</span>, <span class='kw'>show.ci</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"PACF"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -101,6 +101,10 @@ plot partial autocovariance or autocorrelation for both univariate and multivari
     <tr>
       <th>show.ci</th>
       <td><p>A <code>bool</code> indicating whether to show confidence region.</p></td>
+    </tr>
+    <tr>
+      <th>ylab</th>
+      <td><p>A <code>string</code> indicating the y-axis label name.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -123,8 +127,8 @@ plot partial autocovariance or autocorrelation for both univariate and multivari
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Plot the Partial Autocorrelation</span>
-<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='PACF.html'>PACF</a></span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/AirPassengers'>AirPassengers</a></span>)
-<span class='fu'>plot</span>(<span class='no'>m</span>)</div><div class='img'><img src='plot.PACF-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='PACF.html'>PACF</a></span>(<span class='kw'>datasets</span><span class='kw'>::</span><span class='no'>AirPassengers</span>)
+<span class='fu'>plot</span>(<span class='no'>m</span>)</div><img src='plot.PACF-2.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

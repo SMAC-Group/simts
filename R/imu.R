@@ -42,6 +42,7 @@
 #' \code{axis} will be automatically generated if there are less than or equal to 3 axises for each sensor.
 #' 
 #' @author James Balamuta and Wenchao Yang
+#' @export
 #' @examples
 #' \dontrun{
 #' if(!require("imudata")){
@@ -184,6 +185,7 @@ imu = function(data, gyros = NULL, accels = NULL, axis = NULL, freq = NULL, unit
 #' @param stype A \code{string} that describes the sensor type. Default value is \code{NULL}.
 #' @return An \code{imu} object class.
 #' @author James Balamuta
+#' @export
 #' @keywords internal
 create_imu = function(data, ngyros, nacces, axis, freq, unit = NULL, name = NULL, stype = NULL){
   

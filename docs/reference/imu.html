@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an IMU Object � imu • simts</title>
+<title>Create an IMU Object — imu • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,8 +23,7 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -145,36 +144,36 @@ In the new implementation, the length of <code>gyros</code> and <code>accels</co
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='kw'>if</span>(!<span class='fu'>require</span>(<span class='st'>"imudata"</span>)){
-   <span class='fu'><a href='install_imudata.html'>install_imudata</a></span>()
-   <span class='fu'>library</span>(<span class='st'>"imudata"</span>)
-}
+    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
+  <span class='kw'>if</span>(!<span class='fu'>require</span>(<span class='st'>"imudata"</span>)){
+     <span class='fu'><a href='install_imudata.html'>install_imudata</a></span>()
+     <span class='fu'>library</span>(<span class='st'>"imudata"</span>)
+  }
 
-<span class='fu'>data</span>(<span class='no'>imu6</span>)
+  <span class='fu'>data</span>(<span class='no'>imu6</span>)
 
-<span class='co'># Example 1 - Only gyros</span>
-<span class='no'>test1</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df1</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test1</span>)
-<span class='fu'>plot</span>(<span class='no'>df1</span>)
+  <span class='co'># Example 1 - Only gyros</span>
+  <span class='no'>test1</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+  <span class='no'>df1</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test1</span>)
+  <span class='fu'>plot</span>(<span class='no'>df1</span>)
 
-<span class='co'># Example 2 - One gyro and one accelerometer</span>
-<span class='no'>test2</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df2</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test2</span>)
-<span class='fu'>plot</span>(<span class='no'>df2</span>)
+  <span class='co'># Example 2 - One gyro and one accelerometer</span>
+  <span class='no'>test2</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+  <span class='no'>df2</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test2</span>)
+  <span class='fu'>plot</span>(<span class='no'>df2</span>)
 
-<span class='co'># Example 3 - 3 gyros and 3 accelerometers</span>
-<span class='no'>test3</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span>
-                       <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df3</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test3</span>)
-<span class='fu'>plot</span>(<span class='no'>df3</span>)
+  <span class='co'># Example 3 - 3 gyros and 3 accelerometers</span>
+  <span class='no'>test3</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span>
+                         <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+  <span class='no'>df3</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test3</span>)
+  <span class='fu'>plot</span>(<span class='no'>df3</span>)
 
-<span class='co'># Example 4 - Custom axis</span>
-<span class='no'>test4</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span>
-                       <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df4</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test4</span>)
-<span class='fu'>plot</span>(<span class='no'>df4</span>)
-<span class='co'># }</span></pre>
+  <span class='co'># Example 4 - Custom axis</span>
+  <span class='no'>test4</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span>
+                         <span class='fu'>c</span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
+  <span class='no'>df4</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test4</span>)
+  <span class='fu'>plot</span>(<span class='no'>df4</span>)
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

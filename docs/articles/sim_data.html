@@ -64,7 +64,7 @@
     
     
 <div class="contents">
-<p>In this section, we will briefly show some of the <code>simts</code> package functionality. In the examples shown here, time series data may take the form of either a one-column <code>matrix</code>, <code>data.frame</code>, or numeric <code>vector</code>.</p>
+<p>In this section, we will briefly show some of the <code>simts</code> package functionalities. In the examples shown here, time series data may take the form of either a one-column <code>matrix</code>, <code>data.frame</code>, or numeric <code>vector</code>.</p>
 <p>The following three datasets stored in <code>simts</code> will be used as examples.</p>
 <ul>
 <li>
@@ -141,15 +141,15 @@ Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 
 <span class="co"># Simulate based on data</span>
 sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">name_time =</span> <span class="st">"Month"</span>,
-            <span class="dt">unit_ts =</span> <span class="st">"millions of dollars"</span>, <span class="dt">name_ts =</span> <span class="st">"Retail.trade.clothing"</span>, 
+            <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, 
             <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)
 
 
 <span class="co"># Plot sales simulation</span>
 <span class="kw">plot</span>(sales)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 1: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
-Figure 1: Monthly Clothing Retail Sales in US for 1992-2016
+<img src="sim_data_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 5: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 5: Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/ACF.html">ACF()</a></code> and <code><a href="../reference/PACF.html">PACF()</a></code> as follows:</p>
@@ -157,24 +157,24 @@ Figure 1: Monthly Clothing Retail Sales in US for 1992-2016
 sales_acf =<span class="st"> </span><span class="kw"><a href="../reference/ACF.html">ACF</a></span>(sales)
 <span class="kw">plot</span>(sales_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 2: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
-Figure 2: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
+<img src="sim_data_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Compute PACF and plot result</span>
 sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/PACF.html">PACF</a></span>(sales)
 <span class="kw">plot</span>(sales_pacf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 3: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
-Figure 3: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
+<img src="sim_data_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <p>You can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> function in the package to get the same results as above:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute and plot ACF and PACF</span>
-sales_corr =<span class="st"> </span>simts:::<span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</code></pre></div>
+sales_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 4: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
-Figure 4: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016
+<img src="sim_data_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
@@ -197,18 +197,30 @@ nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">
 <span class="co"># Plot Nile simulation </span>
 <span class="kw">plot</span>(nile)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-10-1.png" alt="Figure 5: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
-Figure 5: Plot of Annual Nile river flow from 1871-1970
+<img src="sim_data_files/figure-html/unnamed-chunk-10-1.png" alt="Figure 9: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
+Figure 9: Plot of Annual Nile river flow from 1871-1970
 </p>
 </div>
+<p>To get ACF, we can use <code><a href="../reference/ACF.html">ACF()</a></code> and make a plot:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute ACF and plot result</span>
 nile_acf =<span class="st"> </span><span class="kw"><a href="../reference/ACF.html">ACF</a></span>(nile)
 <span class="kw">plot</span>(nile_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="sim_data_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 6: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
-Figure 6: Empirical autocorrelation function of the Nile river flow data
+<img src="sim_data_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 10: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
+Figure 10: Empirical autocorrelation function of the Nile river flow data
 </p>
 </div>
+<p>Similar to the example above, we can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> to get the ACF and PACF at the same time:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute and plot ACF and PACF</span>
+nile_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(nile)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="sim_data_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 11: Empirical ACF and PACF of the Nile river flow data" width="696"><p class="caption">
+Figure 11: Empirical ACF and PACF of the Nile river flow data
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
+nile_acf =<span class="st"> </span>nile_corr$ACF
+nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
 </div>
 <div id="missing-features" class="section level2">
 <h2 class="hasAnchor">
@@ -238,8 +250,7 @@ Figure 6: Empirical autocorrelation function of the Nile river flow data
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#missing-features">Missing features:</a></li>
       <li><a href="#references">References</a></li>

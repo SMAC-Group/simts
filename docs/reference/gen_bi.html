@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate Bias-Instability Process � gen_bi • simts</title>
+<title>Generate Bias-Instability Process — gen_bi • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,8 +23,7 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -131,15 +130,15 @@ is not good enough when considering the logarithmic representation of the allan 
 Therefore, the exact form of the allan variance of this non-stationary process allows us 
 to better interpret the signals characterized by bias-instability, as shown in "A Study 
 of the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal 
-Processing Letters, 2017), preprint available: <a href='https://arxiv.org/abs/1702.07795'>https://arxiv.org/abs/1702.07795</a>.</p>
+Processing Letters, 2017), preprint available: <a href = 'https://arxiv.org/abs/1702.07795'>https://arxiv.org/abs/1702.07795</a>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'>gen_bi</span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>n_total</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>n_block</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-<span class='fu'>plot</span>(<span class='no'>Xt</span>)</div><div class='img'><img src='gen_bi-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>Xt</span>)</div><img src='gen_bi-2.png' alt='' width='540' height='400' /><div class='input'>
 <span class='no'>Yt</span> <span class='kw'>=</span> <span class='fu'>gen_bi</span>(<span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>n_total</span> <span class='kw'>=</span> <span class='fl'>800</span>, <span class='kw'>n_block</span> <span class='kw'>=</span> <span class='fl'>20</span>,
 <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"non-stationary bias-instability process"</span>)
-<span class='fu'>plot</span>(<span class='no'>Yt</span>)</div><div class='img'><img src='gen_bi-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='fu'>plot</span>(<span class='no'>Yt</span>)</div><img src='gen_bi-4.png' alt='' width='540' height='400' /></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

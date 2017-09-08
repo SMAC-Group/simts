@@ -10,7 +10,7 @@
 #' @author James Balamuta
 #' @keywords internal
 reverse_vec <- function(x) {
-    .Call('_simts_reverse_vec', PACKAGE = 'simts', x)
+    .Call('simts_reverse_vec', PACKAGE = 'simts', x)
 }
 
 #' @title Absolute Value or Modulus of a Complex Number.
@@ -21,7 +21,7 @@ reverse_vec <- function(x) {
 #' The modulus is defined as: \eqn{r = Mod(z) = \sqrt{(x^2 + y^2)}}
 #' @keywords internal
 Mod_cpp <- function(x) {
-    .Call('_simts_Mod_cpp', PACKAGE = 'simts', x)
+    .Call('simts_Mod_cpp', PACKAGE = 'simts', x)
 }
 
 #' Generate a Gaussian White Noise Process (WN(\eqn{\sigma ^2}{sigma^2}))
@@ -42,7 +42,7 @@ Mod_cpp <- function(x) {
 #' @examples
 #' gen_wn(10, 1.5)
 gen_wn <- function(N, sigma2 = 1) {
-    .Call('_simts_gen_wn', PACKAGE = 'simts', N, sigma2)
+    .Call('simts_gen_wn', PACKAGE = 'simts', N, sigma2)
 }
 
 #' Generate a Drift Process
@@ -62,7 +62,7 @@ gen_wn <- function(N, sigma2 = 1) {
 #' @examples
 #' gen_dr(10, 8.2)
 gen_dr <- function(N, omega = 5) {
-    .Call('_simts_gen_dr', PACKAGE = 'simts', N, omega)
+    .Call('simts_gen_dr', PACKAGE = 'simts', N, omega)
 }
 
 #' Generate a Quantisation Noise (QN) or Rounding Error Sequence
@@ -97,7 +97,7 @@ gen_dr <- function(N, omega = 5) {
 #' @examples
 #' gen_qn(10, 5)
 gen_qn <- function(N, q2 = .1) {
-    .Call('_simts_gen_qn', PACKAGE = 'simts', N, q2)
+    .Call('simts_gen_qn', PACKAGE = 'simts', N, q2)
 }
 
 #' Generate an Autoregressive Order 1 ( AR(1) ) sequence
@@ -123,7 +123,7 @@ gen_qn <- function(N, q2 = .1) {
 #' @examples
 #' gen_ar1(10, 5, 1.2)
 gen_ar1 <- function(N, phi = .3, sigma2 = 1) {
-    .Call('_simts_gen_ar1', PACKAGE = 'simts', N, phi, sigma2)
+    .Call('simts_gen_ar1', PACKAGE = 'simts', N, phi, sigma2)
 }
 
 #' Generate a Random Walk without Drift
@@ -144,7 +144,7 @@ gen_ar1 <- function(N, phi = .3, sigma2 = 1) {
 #' @examples
 #' gen_rw(10, 8.2)
 gen_rw <- function(N, sigma2 = 1) {
-    .Call('_simts_gen_rw', PACKAGE = 'simts', N, sigma2)
+    .Call('simts_gen_rw', PACKAGE = 'simts', N, sigma2)
 }
 
 #' Generate an Moving Average Order 1 (MA(1)) Process
@@ -169,7 +169,7 @@ gen_rw <- function(N, sigma2 = 1) {
 #' @examples
 #' gen_ma1(10, .2, 1.2)
 gen_ma1 <- function(N, theta = .3, sigma2 = 1) {
-    .Call('_simts_gen_ma1', PACKAGE = 'simts', N, theta, sigma2)
+    .Call('simts_gen_ma1', PACKAGE = 'simts', N, theta, sigma2)
 }
 
 #' Generate an ARMA(1,1) sequence
@@ -195,7 +195,7 @@ gen_ma1 <- function(N, theta = .3, sigma2 = 1) {
 #' @examples
 #' gen_ma1(10, .2, 1.2)
 gen_arma11 <- function(N, phi = .1, theta = .3, sigma2 = 1) {
-    .Call('_simts_gen_arma11', PACKAGE = 'simts', N, phi, theta, sigma2)
+    .Call('simts_gen_arma11', PACKAGE = 'simts', N, phi, theta, sigma2)
 }
 
 #' Generate Autoregressive Order \eqn{p} - Moving Average Order \eqn{q} (ARMA(\eqn{p},\eqn{q})) Model
@@ -222,7 +222,7 @@ gen_arma11 <- function(N, phi = .1, theta = .3, sigma2 = 1) {
 #' @examples
 #' gen_arma(10, c(.3,.5), c(.1), 1, 0)
 gen_arma <- function(N, ar, ma, sigma2 = 1.5, n_start = 0L) {
-    .Call('_simts_gen_arma', PACKAGE = 'simts', N, ar, ma, sigma2, n_start)
+    .Call('simts_gen_arma', PACKAGE = 'simts', N, ar, ma, sigma2, n_start)
 }
 
 #' Generate Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model
@@ -248,7 +248,7 @@ gen_arma <- function(N, ar, ma, sigma2 = 1.5, n_start = 0L) {
 #' @examples
 #' gen_sarma(10, c(.3,.5), c(.1), c(.2), c(.4), 1, 12, 0)
 gen_sarma <- function(N, ar, ma, sar, sma, sigma2 = 1.5, s = 12L, n_start = 0L) {
-    .Call('_simts_gen_sarma', PACKAGE = 'simts', N, ar, ma, sar, sma, sigma2, s, n_start)
+    .Call('simts_gen_sarma', PACKAGE = 'simts', N, ar, ma, sar, sma, sigma2, s, n_start)
 }
 
 #' Generate Autoregressive Order p, Integrated d, Moving Average Order q (ARIMA(p,d,q)) Model
@@ -276,7 +276,7 @@ gen_sarma <- function(N, ar, ma, sar, sma, sigma2 = 1.5, s = 12L, n_start = 0L) 
 #' # Generate an ARIMA model
 #' xt = gen_arima(10, c(.3,.5), 1, c(.1), 1.5, 0)
 gen_arima <- function(N, ar, d, ma, sigma2 = 1.5, n_start = 0L) {
-    .Call('_simts_gen_arima', PACKAGE = 'simts', N, ar, d, ma, sigma2, n_start)
+    .Call('simts_gen_arima', PACKAGE = 'simts', N, ar, d, ma, sigma2, n_start)
 }
 
 #' Generate Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model
@@ -304,7 +304,7 @@ gen_arima <- function(N, ar, d, ma, sigma2 = 1.5, n_start = 0L) {
 #' @examples
 #' gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
 gen_sarima <- function(N, ar, d, ma, sar, sd, sma, sigma2 = 1.5, s = 12L, n_start = 0L) {
-    .Call('_simts_gen_sarima', PACKAGE = 'simts', N, ar, d, ma, sar, sd, sma, sigma2, s, n_start)
+    .Call('simts_gen_sarima', PACKAGE = 'simts', N, ar, d, ma, sar, sd, sma, sigma2, s, n_start)
 }
 
 #' Generate Generic Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model
@@ -328,7 +328,7 @@ gen_sarima <- function(N, ar, d, ma, sar, sd, sma, sigma2 = 1.5, s = 12L, n_star
 #' @examples
 #' gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
 gen_generic_sarima <- function(N, theta_values, objdesc, sigma2 = 1.5, n_start = 0L) {
-    .Call('_simts_gen_generic_sarima', PACKAGE = 'simts', N, theta_values, objdesc, sigma2, n_start)
+    .Call('simts_gen_generic_sarima', PACKAGE = 'simts', N, theta_values, objdesc, sigma2, n_start)
 }
 
 #' Generate Time Series based on Model (Internal)
@@ -348,7 +348,7 @@ gen_generic_sarima <- function(N, theta_values, objdesc, sigma2 = 1.5, n_start =
 #' set.seed(1336)
 #' gen_model(1000, c(.9,1), "AR1", list(c(1,1)))
 gen_model <- function(N, theta, desc, objdesc) {
-    .Call('_simts_gen_model', PACKAGE = 'simts', N, theta, desc, objdesc)
+    .Call('simts_gen_model', PACKAGE = 'simts', N, theta, desc, objdesc)
 }
 
 #' Generate Latent Time Series based on Model (Internal)
@@ -368,7 +368,7 @@ gen_model <- function(N, theta, desc, objdesc) {
 #' set.seed(1336)
 #' gen_lts_cpp(10, c(.9,1), "AR1", list(c(1,1)))
 gen_lts_cpp <- function(N, theta, desc, objdesc) {
-    .Call('_simts_gen_lts_cpp', PACKAGE = 'simts', N, theta, desc, objdesc)
+    .Call('simts_gen_lts_cpp', PACKAGE = 'simts', N, theta, desc, objdesc)
 }
 
 #' @title Root Finding C++
@@ -376,7 +376,7 @@ gen_lts_cpp <- function(N, theta, desc, objdesc) {
 #' @param z A \code{cx_vec} (complex vector) that has 1 in the beginning (e.g. c(1,3i,-3i))
 #' @keywords internal
 do_polyroot_arma <- function(z) {
-    .Call('_simts_do_polyroot_arma', PACKAGE = 'simts', z)
+    .Call('simts_do_polyroot_arma', PACKAGE = 'simts', z)
 }
 
 #' @title Root Finding C++
@@ -384,7 +384,7 @@ do_polyroot_arma <- function(z) {
 #' @param z A \code{vec<complex<double>} (complex vector) that has 1 in the beginning (e.g. c(1,3i,-3i))
 #' @keywords internal
 do_polyroot_cpp <- function(z) {
-    .Call('_simts_do_polyroot_cpp', PACKAGE = 'simts', z)
+    .Call('simts_do_polyroot_cpp', PACKAGE = 'simts', z)
 }
 
 #' @title Read an IMU Binary File into R
@@ -428,7 +428,7 @@ do_polyroot_cpp <- function(z) {
 #' }
 #' @keywords internal
 read_imu <- function(file_path, imu_type) {
-    .Call('_simts_read_imu', PACKAGE = 'simts', file_path, imu_type)
+    .Call('simts_read_imu', PACKAGE = 'simts', file_path, imu_type)
 }
 
 #' @title Lagged Differences in Armadillo
@@ -444,7 +444,7 @@ read_imu <- function(file_path, imu_type) {
 #' x = rnorm(10, 0, 1)
 #' diff_cpp(x,1,1)
 diff_cpp <- function(x, lag, differences) {
-    .Call('_simts_diff_cpp', PACKAGE = 'simts', x, lag, differences)
+    .Call('simts_diff_cpp', PACKAGE = 'simts', x, lag, differences)
 }
 
 #' @title Time Series Convolution Filters
@@ -474,7 +474,7 @@ diff_cpp <- function(x, lag, differences) {
 #' # Using R's function
 #' filter(x, rep(1, 3), sides = 1, circular = TRUE)
 cfilter <- function(x, filter, sides, circular) {
-    .Call('_simts_cfilter', PACKAGE = 'simts', x, filter, sides, circular)
+    .Call('simts_cfilter', PACKAGE = 'simts', x, filter, sides, circular)
 }
 
 #' @title Time Series Recursive Filters
@@ -497,7 +497,7 @@ cfilter <- function(x, filter, sides, circular) {
 #' # Using R's function
 #' filter(x, rep(1, 3), method="recursive", init=rep(1, 3))
 rfilter <- function(x, filter, init) {
-    .Call('_simts_rfilter', PACKAGE = 'simts', x, filter, init)
+    .Call('simts_rfilter', PACKAGE = 'simts', x, filter, init)
 }
 
 #' @title Mean of the First Difference of the Data
@@ -510,18 +510,18 @@ rfilter <- function(x, filter, init) {
 #' x=rnorm(10)
 #' mean_diff(x)
 mean_diff <- function(x) {
-    .Call('_simts_mean_diff', PACKAGE = 'simts', x)
+    .Call('simts_mean_diff', PACKAGE = 'simts', x)
 }
 
 #' @rdname diff_inv
 intgr_vec <- function(x, xi, lag) {
-    .Call('_simts_intgr_vec', PACKAGE = 'simts', x, xi, lag)
+    .Call('simts_intgr_vec', PACKAGE = 'simts', x, xi, lag)
 }
 
 #' @param xi A \code{vec} with length \eqn{lag*d} that provides initial values for the integration.
 #' @rdname diff_inv
 diff_inv_values <- function(x, lag, d, xi) {
-    .Call('_simts_diff_inv_values', PACKAGE = 'simts', x, lag, d, xi)
+    .Call('simts_diff_inv_values', PACKAGE = 'simts', x, lag, d, xi)
 }
 
 #' Discrete Intergral: Inverse Difference
@@ -532,7 +532,7 @@ diff_inv_values <- function(x, lag, d, xi) {
 #' @param d   An \code{unsigned int} which gives the number of "differences" to invert.
 #' @keywords internal
 diff_inv <- function(x, lag, d) {
-    .Call('_simts_diff_inv', PACKAGE = 'simts', x, lag, d)
+    .Call('simts_diff_inv', PACKAGE = 'simts', x, lag, d)
 }
 
 #' Calculates Length of Seasonal Padding
@@ -552,13 +552,13 @@ diff_inv <- function(x, lag, d) {
 #' 
 #' 
 sarma_calculate_spadding <- function(np, nq, nsp, nsq, ns) {
-    .Call('_simts_sarma_calculate_spadding', PACKAGE = 'simts', np, nq, nsp, nsq, ns)
+    .Call('simts_sarma_calculate_spadding', PACKAGE = 'simts', np, nq, nsp, nsq, ns)
 }
 
 #' Efficient way to merge items together
 #' @keywords internal
 sarma_params_construct <- function(ar, ma, sar, sma) {
-    .Call('_simts_sarma_params_construct', PACKAGE = 'simts', ar, ma, sar, sma)
+    .Call('simts_sarma_params_construct', PACKAGE = 'simts', ar, ma, sar, sma)
 }
 
 #' Determine parameter expansion based upon objdesc
@@ -578,7 +578,7 @@ sarma_params_construct <- function(ar, ma, sar, sma) {
 #' }
 #' @keywords internal
 sarma_components <- function(objdesc) {
-    .Call('_simts_sarma_components', PACKAGE = 'simts', objdesc)
+    .Call('simts_sarma_components', PACKAGE = 'simts', objdesc)
 }
 
 #' (Internal) Expand the SARMA Parameters
@@ -589,7 +589,7 @@ sarma_components <- function(objdesc) {
 #' @return A \code{field<vec>} that contains the expansion. 
 #' @keywords internal
 sarma_expand_unguided <- function(params, np, nq, nsp, nsq, ns, p, q) {
-    .Call('_simts_sarma_expand_unguided', PACKAGE = 'simts', params, np, nq, nsp, nsq, ns, p, q)
+    .Call('simts_sarma_expand_unguided', PACKAGE = 'simts', params, np, nq, nsp, nsq, ns, p, q)
 }
 
 #' Expand Parameters for an SARMA object
@@ -613,7 +613,7 @@ sarma_expand_unguided <- function(params, np, nq, nsp, nsq, ns, p, q) {
 #' }
 #' @keywords internal
 sarma_expand <- function(params, objdesc) {
-    .Call('_simts_sarma_expand', PACKAGE = 'simts', params, objdesc)
+    .Call('simts_sarma_expand', PACKAGE = 'simts', params, objdesc)
 }
 
 #' @title Obtain the smallest polynomial root
@@ -622,7 +622,7 @@ sarma_expand <- function(params, objdesc) {
 #' @return A \code{double} with the minimum root value.
 #' @keywords internal
 minroot <- function(x) {
-    .Call('_simts_minroot', PACKAGE = 'simts', x)
+    .Call('simts_minroot', PACKAGE = 'simts', x)
 }
 
 #' @title Count Models
@@ -632,7 +632,7 @@ minroot <- function(x) {
 #' @keywords internal
 #' @export
 count_models <- function(desc) {
-    .Call('_simts_count_models', PACKAGE = 'simts', desc)
+    .Call('simts_count_models', PACKAGE = 'simts', desc)
 }
 
 #' @title Transform AR1 to GM
@@ -655,7 +655,7 @@ count_models <- function(desc) {
 #' @examples
 #' ar1_to_gm(c(0.3,1,0.6,.3), 2)
 ar1_to_gm <- function(theta, freq) {
-    .Call('_simts_ar1_to_gm', PACKAGE = 'simts', theta, freq)
+    .Call('simts_ar1_to_gm', PACKAGE = 'simts', theta, freq)
 }
 
 #' @title Transform GM to AR1
@@ -676,7 +676,7 @@ ar1_to_gm <- function(theta, freq) {
 #' @examples
 #' gm_to_ar1(c(0.3,1,0.6,.3), 2)
 gm_to_ar1 <- function(theta, freq) {
-    .Call('_simts_gm_to_ar1', PACKAGE = 'simts', theta, freq)
+    .Call('simts_gm_to_ar1', PACKAGE = 'simts', theta, freq)
 }
 
 #' @title Generate the ts model object description
@@ -692,7 +692,7 @@ gm_to_ar1 <- function(theta, freq) {
 #' @backref src/ts_model_cpp.cpp
 #' @backref src/ts_model_cpp.h
 model_objdesc <- function(desc) {
-    .Call('_simts_model_objdesc', PACKAGE = 'simts', desc)
+    .Call('simts_model_objdesc', PACKAGE = 'simts', desc)
 }
 
 #' @title Generate the ts model object's theta vector
@@ -708,7 +708,7 @@ model_objdesc <- function(desc) {
 #' @backref src/ts_model_cpp.cpp
 #' @backref src/ts_model_cpp.h
 model_theta <- function(desc) {
-    .Call('_simts_model_theta', PACKAGE = 'simts', desc)
+    .Call('simts_model_theta', PACKAGE = 'simts', desc)
 }
 
 #' @title Generate the ts model object's process desc
@@ -724,6 +724,6 @@ model_theta <- function(desc) {
 #' @backref src/ts_model_cpp.cpp
 #' @backref src/ts_model_cpp.h
 model_process_desc <- function(desc) {
-    .Call('_simts_model_process_desc', PACKAGE = 'simts', desc)
+    .Call('simts_model_process_desc', PACKAGE = 'simts', desc)
 }
 

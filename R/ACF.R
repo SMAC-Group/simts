@@ -356,7 +356,7 @@ plot.PACF = function(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05, main = NULL
 
 #' @title Correlation Analysis Functions
 #' @description Correlation Analysis function computes and plots both empirical ACF and PACF
-#' or both univariate and multivariate cases.
+#' of both univariate and multivariate cases.
 #' @author Yunxiang Zhang
 #' @param x         An \code{"ts"} object.
 #' @param lagmax    A \code{integer} indicating the max lag.

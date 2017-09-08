@@ -9,28 +9,74 @@ reference:
     - AR1 
     - ARIMA 
     - ARMA
+    - ARMA11
+    - ARIMA
     - DR
     - GM
     - MA
     - MA1
     - QN
     - RW
-    - SARIMA
     - SARMA
+    - SARIMA
     - WN
+  - title: Time Series Models Analysis
+    contents:
+    - ACF
+    - plot.ACF
+    - PACF
+    - plot.PACF
+    - corr_analysis
+    - plot.gts
+    - plot.lts
+  - title: IMU 
+    contents:
+    - imu
+    - create_imu
   - title: Simulation 
     contents: 
+    - gen_ar1blocks
+    - gen_bi
     - gen_gts
     - gen_lts 
-    - gts 
+    - gen_nswn
+    - gts
+    - gen_gts
     - lts 
-  - title: Helpers
-    contents:
-    - outf
-    - value
+    - gen_lts
+    - gen_wn
+    - gen_dr
+    - gen_qn
+    - gen_ar1
+    - gen_rw
+    - gen_ma1
+    - gen_arma11
+    - gen_arma
+    - gen_sarma
+    - gen_arima
+    - gen_sarima
+    - gen_generic_sarima
+    - gen_model
+    - gen_lts_cpp
+
+  - title: Others
+    - is.whole
+    - unitConversion
+    - orderModel
+    - diff_cpp
+    - cfilter
+    - rfilter
+    - mean_diff
+    - count_models
+    - ar1_to_gm
+    - gm_to_ar1
+    - model_objdesc
+    - model_theta
+    - model_process_desc
     - desc.to.ts.model
-    - conv.ar1.to.gm
-    - conv.gm.to.ar1
+    - update.lts
+    - update_obj
+    
 
 navbar:
   left:

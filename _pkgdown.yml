@@ -34,10 +34,8 @@ reference:
 
 navbar:
   left:
-  - text: From Models
-    href: articles/sim_models.html
-  - text: From TS Data 
-    href: articles/sim_data.html
+  - text: Vignettes
+    href: articles/vignettes.html
   - text: Reference
     href: reference/index.html
   right: 

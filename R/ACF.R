@@ -50,10 +50,8 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   acfe = acf(x, lagmax = lagmax , cor = cor, demean = demean, plot = FALSE)
   acfe = acfe$acf
   
-  
   # Get the data name 
   varName = deparse(substitute(x))
-  
   
   # Adjust the name for data 
   dimnames(acfe)  = list(seq_len(nrow(acfe))-1, "ACF", varName)
@@ -64,13 +62,18 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
     acfe = structure(acfe, n = nrow(x2), data_name = attr(x, "data_name"), class = c("ACF", "array"))
   }
   
+  unit_time = attr(x, "unit_time")
+  if (!is.null(unit_time)){
+    attr(acfe, "unit_time") = unit_time
+  }
+  
   acfe
 }
 
 #' @title Plot Auto-Covariance and Correlation Functions
 #' @description The acf function computes the estimated
 #' autocovariance or autocorrelation for both univariate and multivariate cases.
-#' @author Yunxiang Zhang
+#' @author Yunxiang Zhang and Stéphane Guerrier
 #' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
 #' @param ylab     A \code{text} indicating the label of y axis. 
@@ -94,7 +97,13 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' plot(m, show.ci = FALSE)
 plot.ACF = function(x, show.ci = TRUE, ylab = "ACF", alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
-  xlab = "Lags"
+  lag_unit = attr(x, "unit_time")
+  if (!is.null(lag_unit)){
+    xlab = paste("Lags (", lag_unit,")", sep = "")
+  }else{
+    xlab = "Lags"
+  }
+ 
   ylab = ylab
   col_ci = rgb(0, 0.6, 1, 0.2)
   alpha = 0.05
@@ -130,9 +139,9 @@ plot.ACF = function(x, show.ci = TRUE, ylab = "ACF", alpha = 0.05, main = NULL, 
   # Title
   if (is.null(main)){
     if (is.null(attr(x,"data_name"))){
-      main = paste0(as.character((x2$`Signal Y`)[1]), " ACF")
+      main = paste0(as.character((x2$`Signal Y`)[1]), " - ACF plot")
     }else{
-      main = paste0(attr(x,"data_name"), " ACF")
+      main = paste0(attr(x,"data_name"), " - ACF plot")
     }
   }
   else {
@@ -238,6 +247,11 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
     pacfe = structure(pacfe, n = nrow(x2), data_name = attr(x, "data_name"), class = c("PACF", "array"))
   }
   
+  unit_time = attr(x, "unit_time")
+  if (!is.null(unit_time)){
+    attr(pacfe, "unit_time") = unit_time
+  }
+  
   pacfe
   
 }
@@ -262,7 +276,12 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' plot(m)
 plot.PACF = function(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
-  xlab = "Lags"
+  lag_unit = attr(x, "unit_time")
+  if (!is.null(lag_unit)){
+    xlab = paste("Lags (", lag_unit,")", sep = "")
+  }else{
+    xlab = "Lags"
+  }
   ylab = ylab
   col_ci = rgb(0, 0.6, 1, 0.2)
   alpha = 0.05
@@ -298,9 +317,9 @@ plot.PACF = function(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05, main = NULL
   # Title
   if (is.null(main)){
     if (is.null(attr(x,"data_name"))){
-      main = paste0(as.character((x2$`Signal Y`)[1]), " PACF")
+      main = paste0(as.character((x2$`Signal Y`)[1]), " - PACF plot")
     }else{
-      main = paste0(attr(x,"data_name"), " PACF")
+      main = paste0(attr(x,"data_name"), " - PACF plot")
     }
   }
   else {

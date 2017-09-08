@@ -77,6 +77,7 @@ update.imu = function(object, type, new, ...){
 #' @param new The updated value for the attribute
 #' @param keep.start A \code{boolean} value that indicates whether 'start' or 'end' should remain the same when 'freq' is updated
 #' @return An object with the updated attribute.
+#' @export
 #' @keywords internal
 update_obj = function(object, type, new, keep.start = T){
   

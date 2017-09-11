@@ -35,14 +35,17 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Stephane Guerrier
+  \item Stéphane Guerrier
+  \item Roberto Molinari
   \item James Balamuta
-  \item Wenchao Yang
+  \item Yuming Zhang
 }
 
 Other contributors:
 \itemize{
+  \item Wenchao Yang [contributor]
   \item Nathanael Claussen [contributor]
+  \item Yunxiang Zhang [contributor]
 }
 
 

@@ -29,7 +29,7 @@ Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 }
 \description{
 Correlation Analysis function computes and plots both empirical ACF and PACF
-or both univariate and multivariate cases.
+of both univariate and multivariate cases.
 }
 \examples{
 # Plot the Partial Autocorrelation

@@ -41,5 +41,5 @@ plot(m, ci = 0.90)
 plot(m, show.ci = FALSE)
 }
 \author{
-Yunxiang Zhang
+Yunxiang Zhang and Stéphane Guerrier
 }

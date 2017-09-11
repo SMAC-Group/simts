@@ -95,19 +95,38 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-plot.ACF = function(x, show.ci = TRUE, ylab = "ACF", alpha = 0.05, main = NULL, ...){
+plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
-  if (!is.null(lag_unit)){
-    xlab = paste("Lags (", lag_unit,")", sep = "")
-  }else{
-    xlab = "Lags"
-  }
- 
-  ylab = ylab
-  col_ci = rgb(0, 0.6, 1, 0.2)
-  alpha = 0.05
   
+  # add xlab
+  if (!is.null(xlab)){
+    xlab = xlab
+  }else{
+    if (!is.null(lag_unit)){
+      xlab = paste("Lags (", lag_unit,")", sep = "")
+    }else{
+      xlab = "Lags"
+    }
+  }
+  
+  # add ylab
+  if (!is.null(ylab)){
+    ylab = ylab
+  }else{
+    ylab = "ACF"
+  }
+  
+  # add color of CI
+  #col_ci = rgb(0, 0.6, 1, 0.2)
+  col_ci = "blue"
+  
+  # add alpha
+  if (!is.null(alpha)){
+    alpha = alpha
+  }else{
+    alpha = 0.05
+  }
   
   # Quiet the warnings...
   Lag = xmin = xmax = ymin = ymax = NULL 

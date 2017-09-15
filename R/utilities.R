@@ -280,13 +280,13 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
                       add_band = TRUE, title_band_width = 0.09, grid_lty = 1){  
   
   # Axes
-  if (is.null(nb_ticks_x)){
-    nb_ticks_x = 6
-  }
-  
-  if (is.null(nb_ticks_y)){
-    nb_ticks_y = 5
-  }
+  # if (is.null(nb_ticks_x)){
+  #   nb_ticks_x = 6
+  # }
+  # 
+  # if (is.null(nb_ticks_y)){
+  #   nb_ticks_y = 5
+  # }
   
   if (!add_band){
     title_band_width = 0
@@ -328,22 +328,34 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
   }  
   
   x_ticks = seq(x_low, x_high, by = 1)
-  if (length(x_ticks) > nb_ticks_x){
-    x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
-  }
+  # if (length(x_ticks) > nb_ticks_x){
+  #   x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
+  # }
   y_ticks = seq(y_low, y_high, by = 1)
-  if (length(y_ticks) > nb_ticks_y){
-    y_ticks = y_low + ceiling((y_high - y_low)/(nb_ticks_y + 1))*(0:nb_ticks_y)
-  }  
+  # if (length(y_ticks) > nb_ticks_y){
+  #   y_ticks = y_low + ceiling((y_high - y_low)/(nb_ticks_y + 1))*(0:nb_ticks_y)
+  # }  
 
   if(!is.null(transform_x)){
-    x_labels = sapply(x_ticks, function(i) as.expression(bquote(transform_x^ .(i))))
+    if(transform_x == 2){
+      x_labels = sapply(x_ticks, function(i) as.expression(bquote(2^ .(i))))
+      x_axis = 2^x_ticks
+    }else if(transform_x == 10){
+      x_labels = sapply(x_ticks, function(i) as.expression(bquote(10^ .(i))))
+      x_axis = 10^x_ticks
+    }
   }else{ # choose default labels as numbers 
     x_labels = x_ticks
   }
   
   if(!is.null(transform_y)){
-    y_labels = sapply(y_ticks, function(i) as.expression(bquote(transform_y^ .(i))))
+    if(transform_y == 2){
+      y_labels = sapply(y_ticks, function(i) as.expression(bquote(2^ .(i))))
+      y_axis = 2^y_ticks
+    }else if(transform_y == 10){
+      y_labels = sapply(y_ticks, function(i) as.expression(bquote(10^ .(i))))
+      y_axis = 10^y_ticks
+    }
   }else{ # choose default labels as numbers 
     y_labels = y_ticks
   }
@@ -368,21 +380,73 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
   
   par(mar = mar)
   
-  # Main plot                     
-  plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
-       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+  # # Main plot                     
+  # plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+  #      xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+  # 
+  # win_dim = par("usr")
+  # par(new = TRUE)
+  # 
+  # plot(NA, xlim = x_range, 
+  #      ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])), 
+  #      xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  # win_dim = par("usr")
+  
+  ## NEW STUFF ADDED 
 
+  if(!is.null(transform_x)){
+    if(!is.null(transform_y)){
+      # Main Plot                     
+      plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+           log = "xy", xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }else{
+      # Main Plot                     
+      plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+           log = "x", xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }
+  }else{
+    if(!is.null(transform_y)){
+      # Main Plot                     
+      plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+           log = "y", xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }else{
+      # Main plot                     
+      plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+           xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    }
+  }
   win_dim = par("usr")
   par(new = TRUE)
   
-  plot(NA, xlim = x_range, 
-       ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
-       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  # Add grid
+  if(transform_y == 2){
+    plot(NA, xlim = x_range, ylim = 2^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+    abline(h = 2^y_ticks, lty = 1, col = "grey95")
+  }else if(transform_y == 10){
+    plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+    abline(h = 10^y_ticks, lty = 1, col = "grey95")
+  }else{
+    plot(NA, xlim = x_range, ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+    abline(h = y_ticks, lty = 1, col = "grey95")
+  }
+  
   win_dim = par("usr")
   
-  # Add grid
-  grid(NULL, NULL, lty = grid_lty, col = col_grid)
-  
+  if(transform_x == 2){
+    abline(h = 2^x_ticks, lty = 1, col = "grey95")
+  }else if(transform_x == 10){
+    abline(h = 10^x_ticks, lty = 1, col = "grey95")
+  }else{
+    abline(h = x_ticks, lty = 1, col = "grey95")
+  }
+
+# 
+# grid(NULL, NULL, lty = grid_lty, col = col_grid)
+# 
+
   # Add title
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
   y_vec = c(win_dim[4], win_dim[4],
@@ -401,10 +465,9 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
     axis(1, padj = 0.3)
   }
   
-  if (add_axis_y){
-    y_axis = axis(2, labels = FALSE, tick = FALSE)  
-    y_axis = y_axis[y_axis < (win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))]
-    axis(2, padj = -0.2, at = y_axis)  
+  if (add_axis_y){  
+    new_y_axis = y_axis[y_axis < (win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))]
+    axis(2, padj = -0.2, at = new_y_axis)  
   }
 }
 

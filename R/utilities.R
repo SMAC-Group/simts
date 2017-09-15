@@ -252,8 +252,8 @@ imu_time = function(x){
 #' @param title_band_width  A \code{double} providing the value of the band width. Default is 0.09. 
 #' @param grid_lty          A \code{integer} indicating the line type of the grid lines. 
 #' @return Added title, grid, and axes. 
-#' @export
-#' @author Stephane Guerrier and Justin Lee
+#' @export 
+#' @author Stephane Guerrier and Justin Lee 
 #' @examples 
 #' make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
 #'            ylab = "my ylab", main = "my title")
@@ -264,21 +264,106 @@ imu_time = function(x){
 #' make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3)
-#'
+#'            
 #' make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3,
 #'            title_band_width = 0.18)
-make_frame = function(x_range, y_range, xlab, ylab, main = "", 
-                      mar = c(5.1, 5.1, 1, 2.1), add_axis_x = TRUE,
-                      add_axis_y = TRUE, col_box = "black", 
-                      col_grid = "grey95", col_band = "grey95",
-                      col_title = "black", add_band = TRUE,
-                      title_band_width = 0.09, grid_lty = 1){  
+make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = "",
+                      transform_x = NULL, transform_y = NULL,
+                      main = "", mar = c(5.1, 5.1, 1, 2.1), 
+                      add_axis_x = TRUE, add_axis_y = TRUE, 
+                      nb_ticks_x = NULL, nb_ticks_y = NULL,
+                      unit_x = NULL, unit_y = NULL, 
+                      col_box = "black", col_grid = "grey95", 
+                      col_band = "grey95", col_title = "black", 
+                      add_band = TRUE, title_band_width = 0.09, grid_lty = 1){  
+  
+  # Axes
+  if (is.null(nb_ticks_x)){
+    nb_ticks_x = 6
+  }
+  
+  if (is.null(nb_ticks_y)){
+    nb_ticks_y = 5
+  }
   
   if (!add_band){
     title_band_width = 0
     main = ""
+  }
+  
+  if (!is.null(transform_x)){
+    if (identical(transform_x, log10)){
+      x_low = floor(log10(x_range[1]))
+      x_high = ceiling(log10(x_range[2]))
+      transform_x = 10
+    }else if(identical(transform_x, log2)){
+      x_low = floor(log2(x_range[1]))
+      x_high = ceiling(log2(x_range[2]))
+      transform_x = 2
+    }else{
+      stop("You have entered an invalid transformation. Please choose between log10 or log2.") # Maybe change the way this is said...
+    }
+  }else{
+    x_low = floor(x_range[1])
+    x_high = ceiling(x_range[2])
+  }  
+  
+  if (!is.null(transform_y)){
+    if (identical(transform_y, log10)){
+      y_low = floor(log10(y_range[1]))
+      y_high = ceiling(log10(y_range[2]))
+      transform_y = 10
+    }else if(identical(transform_y, log2)){
+      y_low = floor(log2(y_range[1]))
+      y_high = ceiling(log2(y_range[2]))
+      transform_y = 2
+    }else{
+      stop("You have entered an invalid transformation. Please choose between log10 or log2.") # Maybe change the way this is said...
+    }
+  }else{
+    y_low = floor(y_range[1])
+    y_high = ceiling(y_range[2])
+  }  
+  
+  x_ticks = seq(x_low, x_high, by = 1)
+  if (length(x_ticks) > nb_ticks_x){
+    x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
+  }
+  y_ticks = seq(y_low, y_high, by = 1)
+  if (length(y_ticks) > nb_ticks_y){
+    y_ticks = y_low + ceiling((y_high - y_low)/(nb_ticks_y + 1))*(0:nb_ticks_y)
+  }  
+
+  if(!is.null(transform_x)){
+    x_labels = sapply(x_ticks, function(i) as.expression(bquote(transform_x^ .(i))))
+  }else{ # choose default labels as numbers 
+    x_labels = x_ticks
+  }
+  
+  if(!is.null(transform_y)){
+    y_labels = sapply(y_ticks, function(i) as.expression(bquote(transform_y^ .(i))))
+  }else{ # choose default labels as numbers 
+    y_labels = y_ticks
+  }
+  
+  # Concatenate x axis (unit) when needed 
+  if (!is.null(unit_x)){
+    if (class(unit_x) == "name" || class(unit_x) == "call"){
+      xlab = comb(xlab, " (", unit_x, ")")
+    }else{
+      xlab = paste(xlab, " (", unit_x, ")", sep = "")
+    }
+  }
+  
+  # Concatenate y axis (unit) when needed
+  if (!is.null(unit_y)){
+    if (class(unit_y) == "name" || class(unit_y) == "call"){
+      ylab = comb(ylab, " (", unit_y, ")")
+    }else{
+      ylab = paste(ylab, " (", unit_y, ")", sep = "")
+    }
   }
   
   par(mar = mar)

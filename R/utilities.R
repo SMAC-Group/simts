@@ -329,14 +329,8 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
   
   
   # Assuming transformation 
-  x_ticks = seq(x_low, x_high, by = 1)
-  # if (length(x_ticks) > nb_ticks_x){
-  #   x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
-  # }
-  y_ticks = seq(y_low, y_high, by = 1)
-  # if (length(y_ticks) > nb_ticks_y){
-  #   y_ticks = y_low + ceiling((y_high - y_low)/(nb_ticks_y + 1))*(0:nb_ticks_y)
-  # }  
+  x_ticks = seq(x_low, x_high, length.out = nb_ticks_x)
+  y_ticks = seq(y_low, y_high, length.out = nb_ticks_y)
 
   if(!is.null(transform_x)){
     if(transform_x == 2){
@@ -382,25 +376,11 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
   
   par(mar = mar)
   
-  # # Main plot                     
-  # plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
-  #      xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
-  # 
-  # win_dim = par("usr")
-  # par(new = TRUE)
-  # 
-  # plot(NA, xlim = x_range, 
-  #      ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])), 
-  #      xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
-  # win_dim = par("usr")
-  
-  ## NEW STUFF ADDED 
-
   if(!is.null(transform_x)){
     if(!is.null(transform_y)){
-      # Main Plot                     
+      # Main Plot                     ##############***#**##*#**#*#*#**!@)$&!@$)!@&$)&!@)$
       plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
-           log = "xy", xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+           log = "xy", xaxt = 'n', yaxt = 'n', ann = FALSE)
     }else{
       # Main Plot                     
       plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
@@ -417,37 +397,28 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
            xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
     }
   }
+  
   win_dim = par("usr")
   par(new = TRUE)
   
   # Add grid
-  if(transform_y == 2){
-    plot(NA, xlim = x_range, ylim = 2^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
-    abline(h = 2^y_ticks, lty = 1, col = "grey95")
-  }else if(transform_y == 10){
-    plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
-    abline(h = 10^y_ticks, lty = 1, col = "grey95")
-  }else{
-    plot(NA, xlim = x_range, ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
-    abline(h = y_ticks, lty = 1, col = "grey95")
-  }
-  
-  win_dim = par("usr")
-  
-  if(transform_x == 2){
-    abline(h = 2^x_ticks, lty = 1, col = "grey95")
-  }else if(transform_x == 10){
-    abline(h = 10^x_ticks, lty = 1, col = "grey95")
-  }else{
-    abline(h = x_ticks, lty = 1, col = "grey95")
+  if(!is.null(transform_y)){
+      if(transform_y == 2){
+        plot(NA, xlim = x_range, ylim = 2^c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+         log = "xy", xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n')
+      }else if(transform_y == 10){
+        plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+             xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+      }else{
+        plot(NA, xlim = x_range, ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+             xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+      }
   }
 
-# 
-# grid(NULL, NULL, lty = grid_lty, col = col_grid)
-# 
+  
+  win_dim = par("usr")
+
+#  grid(NULL, NULL, lty = grid_lty, col = col_grid)
 
   # Add title
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
@@ -464,15 +435,15 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
   box(col = col_box)
   
   if(add_axis_x){
-    axis(1, padj = 0.3)
+    axis(1, at = x_axis, labels = x_labels)
   }
   
-  if (add_axis_y){  
+  if(add_axis_y){ 
+    y_axis = axis(2, labels = FALSE, tick = FALSE)
     new_y_axis = y_axis[y_axis < (win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))]
     axis(2, padj = -0.2, at = new_y_axis)  
   }
 }
-
 
 #' @title Default utility function for various plots titles
 #' @description Adds title, grid, and required x- and y-axes. 
@@ -492,8 +463,8 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
 #' @param title_band_width  A \code{double} providing the value of the band width. Default is 0.09. 
 #' @param grid_lty          A \code{integer} indicating the line type of the grid lines. 
 #' @return Added title, grid, and axes. 
-#' @export 
-#' @author Stephane Guerrier and Justin Lee 
+#' @export
+#' @author Stephane Guerrier and Justin Lee
 #' @examples 
 #' make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
 #'            ylab = "my ylab", main = "my title")
@@ -504,112 +475,69 @@ make_frame = function(x_range = c(0, 1), y_range = c(0, 1), xlab = "", ylab = ""
 #' make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3)
-#'            
+#'
 #' make_frame(x_range = c(0, 1), y_range = c(0, 1), xlab = "my xlab", 
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3,
 #'            title_band_width = 0.18)
-make_frame = function(x_range = c(1, 100), y_range = c(1, 100), xlab = "", ylab = "",
-                      main = "", mar = c(5.1, 5.1, 1, 2.1), 
-                      add_axis_x = TRUE, add_axis_y = TRUE, 
-                      nb_ticks_x = NULL, nb_ticks_y = NULL,
-                      unit_x = NULL, unit_y = NULL, 
-                      col_box = "black", col_grid = "grey95", 
-                      col_band = "grey95", col_title = "black", 
-                      add_band = TRUE, title_band_width = 0.09, grid_lty = 1){  
-  
-  # Axes
-  if (is.null(nb_ticks_x)){
-     nb_ticks_x = 6
-  }
-   
-  if (is.null(nb_ticks_y)){
-     nb_ticks_y = 5
-  }
+make_frame = function(x_range, y_range, xlab, ylab, main = "", 
+                      loc_x = NULL, custom_label = NULL, 
+                      mar = c(5.1, 5.1, 1, 2.1), add_axis_x = TRUE,
+                      add_axis_y = TRUE, col_box = "black", 
+                      col_grid = "grey95", col_band = "grey95",
+                      col_title = "black", add_band = TRUE,
+                      title_band_width = 0.09, grid_lty = 1){  
   
   if (!add_band){
     title_band_width = 0
     main = ""
   }
-  
-  x_low = floor(x_range[1])
-  x_high = ceiling(x_range[2])
-  y_low = floor(y_range[1])
-  y_high = ceiling(y_range[2])
-    
-  # Assuming transformation 
-  x_ticks = seq(x_low, x_high, by = 1)
-  if (length(x_ticks) > nb_ticks_x){
-    x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
-  }
-  y_ticks = seq(y_low, y_high, by = 1)
-  if (length(y_ticks) > nb_ticks_y){
-    y_ticks = y_low + ceiling((y_high - y_low)/(nb_ticks_y + 1))*(0:nb_ticks_y)
-  }  
-  
-  x_labels = x_ticks
-  y_labels = y_ticks
-  
-  # Concatenate x axis (unit) when needed 
-  if (!is.null(unit_x)){
-    if (class(unit_x) == "name" || class(unit_x) == "call"){
-      xlab = comb(xlab, " (", unit_x, ")")
-    }else{
-      xlab = paste(xlab, " (", unit_x, ")", sep = "")
-    }
-  }
-  
-  # Concatenate y axis (unit) when needed
-  if (!is.null(unit_y)){
-    if (class(unit_y) == "name" || class(unit_y) == "call"){
-      ylab = comb(ylab, " (", unit_y, ")")
-    }else{
-      ylab = paste(ylab, " (", unit_y, ")", sep = "")
-    }
-  }
-  
-  par(mar = mar)
-  
-  # Main plot                     
-  plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
-      xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
-   
-  win_dim = par("usr")
-  par(new = TRUE)
-   
-  plot(NA, xlim = x_range, 
-      ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])), 
-      xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+
+  # Main plot
   win_dim = par("usr")
 
-  abline(h = x_ticks, lty = 1, col = "grey95")
-   
-  # grid(NULL, NULL, lty = grid_lty, col = col_grid)
-  # 
-  
+  plot(NA, xlim = x_range,
+       ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+
   # Add title
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
   y_vec = c(win_dim[4], win_dim[4],
-            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]), 
+            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]),
             win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))
+
+  win_dim = par("usr")
+  par(new = TRUE)
+
+  plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab,
+       xaxt = 'n', yaxt = 'n', ann = FALSE)
+
   polygon(x_vec, y_vec, col = col_band, border = NA)
-  text(x = mean(c(win_dim[1], win_dim[2])), 
-       y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])), 
-       main, col = col_title)
-  
-  # Add axes and box
   lines(x_vec[1:2], rep((win_dim[4] - title_band_width*(win_dim[4] - win_dim[3])),2), col = col_box)
+
+  text(x = mean(c(win_dim[1], win_dim[2])),
+       y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])),
+       main, col = col_title)
+  # Add axes and box
+
+  # Add grid
+  grid(NULL, NULL, lty = grid_lty, col = col_grid)
+
+
   box(col = col_box)
+###########3
   
-  if(add_axis_x){
+  if(add_axis_x && is.null(custom_label)){
     axis(1, padj = 0.3)
+  }else if(!is.null(custom_label) && !is.null(x_loc)){
+    axis(1, labels = custom_label, at = loc_x, padj = 0.3)
+  }else if(is.null(custom_label) && !is.null(x_loc)){
+    axis(1, labels = loc_x, at = loc_x)
   }
   
-  if (add_axis_y){  
+  if (add_axis_y){
+    y_axis = axis(2, labels = FALSE, tick = FALSE)  
     y_axis = y_axis[y_axis < (win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))]
     axis(2, padj = -0.2, at = y_axis)  
   }
 }
-
-
-

@@ -4,19 +4,23 @@
 \alias{plot.PACF}
 \title{Plot Partial Auto-Covariance and Correlation Functions}
 \usage{
-\method{plot}{PACF}(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05,
-  main = NULL, ...)
+\method{plot}{PACF}(x, xlab = NULL, ylab = NULL, show.ci = TRUE,
+  alpha = NULL, col_ci = NULL, main = NULL, ...)
 }
 \arguments{
-\item{x}{An \code{"ACF"} object from \code{\link{ACF}}.}
+\item{x}{An \code{"PACF"} object from \code{\link{PACF}}.}
+
+\item{xlab}{A \code{string} indicating the label of x axis, the default name is 'Lags'}
+
+\item{ylab}{A \code{string} indicating the label of y axis, the default name is 'PACF'.}
 
 \item{show.ci}{A \code{bool} indicating whether to show confidence region.}
 
-\item{ylab}{A \code{string} indicating the y-axis label name.}
-
 \item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
 
-\item{main}{A \code{string} indicating the title of the plot.}
+\item{col_ci}{A \code{string} indicating the color of the confidence interval polygon.}
+
+\item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name - PACF plot'.}
 
 \item{...}{Additional parameters.}
 }

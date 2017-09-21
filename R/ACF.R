@@ -97,7 +97,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL, ...){
+plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL, parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   
@@ -159,7 +159,14 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   
   x_ticks = seq(x_range[1], x_range[2], by = 1)
   y_ticks = seq(y_range[1], y_range[2], by = 0.05)
-  par(mar = c(5.1, 5.1, 1, 2.1))
+  
+  if (!is.null(parValue)){
+    par(mar = parValue)
+  }
+  else{
+    par(mar = c(5.1, 5.1, 1, 2.1)) 
+  }
+  
   
   
   # Title
@@ -302,7 +309,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' # Plot the Partial Autocorrelation
 #' m = PACF(datasets::AirPassengers)
 #' plot(m)
-plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL, ...){
+plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL,parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   
@@ -364,7 +371,14 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   
   x_ticks = seq(x_range[1], x_range[2], by = 1)
   y_ticks = seq(y_range[1], y_range[2], by = 0.05)
-  par(mar = c(5.1, 5.1, 1, 2.1))
+
+  
+  if (!is.null(parValue)){
+    par(mar = parValue)
+  }
+  else{
+    par(mar = c(5.1, 5.1, 1, 2.1)) 
+  }
   
   
   # Title
@@ -452,9 +466,9 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   
   # Plots
   if (plot){
-    par(mfrow=c(1,2))
-    plot(acfe, show.ci = TRUE, alpha = 0.05, ylab = '', main = "Empirical ACF")
-    plot(pacfe, show.ci = TRUE, alpha = 0.05, ylab = '', main = "Empirical PACF")
+    par(mfrow = c(1,2))
+    plot(acfe, show.ci = TRUE, alpha = 0.05, main = "Empirical ACF", parValue = c(5.1, 4.5, 1,2))
+    plot(pacfe, show.ci = TRUE, alpha = 0.05, main = "Empirical PACF", parValue = c(5.1,3.85,1,2.1))
   }
   
   par(mfrow = c(1,1))

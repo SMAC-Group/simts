@@ -75,10 +75,12 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' autocovariance or autocorrelation for both univariate and multivariate cases.
 #' @author Yunxiang Zhang and Stéphane Guerrier
 #' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
+#' @param xlab         A \code{string} indicating the label of x axis, the default name is 'Lags'
+#' @param ylab     A \code{string} indicating the label of y axis, the default name is 'ACF'.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
-#' @param ylab     A \code{text} indicating the label of y axis. 
 #' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
-#' @param main      A \code{string} indicating the title of the plot. 
+#' @param col_ci    A \code{string} that specifies the color of the confidence interval polygon.
+#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name - ACF plot'.
 #' @param ...       Additional parameters
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.ACF
@@ -95,7 +97,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = 0.05, main = NULL, ...){
+plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL, parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   
@@ -119,7 +121,12 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = 0.05, m
   
   # add color of CI
   #col_ci = rgb(0, 0.6, 1, 0.2)
-  col_ci = "blue"
+  
+  if (!is.null(col_ci)){
+    col_ci = col_ci
+  }else{
+    col_ci = hcl(h = 210, l = 65, c = 100, alpha = 0.2)
+  }
   
   # add alpha
   if (!is.null(alpha)){
@@ -152,7 +159,14 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = 0.05, m
   
   x_ticks = seq(x_range[1], x_range[2], by = 1)
   y_ticks = seq(y_range[1], y_range[2], by = 0.05)
-  par(mar = c(5.1, 5.1, 1, 2.1))
+  
+  if (!is.null(parValue)){
+    par(mar = parValue)
+  }
+  else{
+    par(mar = c(5.1, 5.1, 1, 2.1)) 
+  }
+  
   
   
   # Title
@@ -280,11 +294,13 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @description Plot pacf function computes the estimated
 #' plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
 #' @author Yunxiang Zhang
-#' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
+#' @param x         An \code{"PACF"} object from \code{\link{PACF}}.
+#' @param xlab      A \code{string} indicating the label of x axis, the default name is 'Lags'
+#' @param ylab     A \code{string} indicating the label of y axis, the default name is 'PACF'.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
-#' @param ylab      A \code{string} indicating the y-axis label name. 
 #' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
-#' @param main      A \code{string} indicating the title of the plot. 
+#' @param col_ci    A \code{string} indicating the color of the confidence interval polygon.
+#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name - PACF plot'. 
 #' @param ...       Additional parameters.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.PACF
@@ -293,17 +309,42 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' # Plot the Partial Autocorrelation
 #' m = PACF(datasets::AirPassengers)
 #' plot(m)
-plot.PACF = function(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05, main = NULL, ...){
+plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL,parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
-  if (!is.null(lag_unit)){
-    xlab = paste("Lags (", lag_unit,")", sep = "")
+  
+  
+  # add xlab
+  if (!is.null(xlab)){
+    xlab = xlab
   }else{
-    xlab = "Lags"
+    if (!is.null(lag_unit)){
+      xlab = paste("Lags (", lag_unit,")", sep = "")
+    }else{
+      xlab = "Lags"
+    }
   }
-  ylab = ylab
-  col_ci = rgb(0, 0.6, 1, 0.2)
-  alpha = 0.05
+  
+  # add ylab
+  if (!is.null(ylab)){
+    ylab = ylab
+  }else{
+    ylab = "PACF"
+  }
+  
+  
+  if (!is.null(col_ci)){
+    col_ci = col_ci
+  }else{
+    col_ci = hcl(h = 210, l = 65, c = 100, alpha = 0.2)
+  }
+  
+  # add alpha
+  if (!is.null(alpha)){
+    alpha = alpha
+  }else{
+    alpha = 0.05
+  }
   
   
   # Quiet the warnings...
@@ -330,7 +371,14 @@ plot.PACF = function(x, show.ci = TRUE, ylab = "PACF", alpha = 0.05, main = NULL
   
   x_ticks = seq(x_range[1], x_range[2], by = 1)
   y_ticks = seq(y_range[1], y_range[2], by = 0.05)
-  par(mar = c(5.1, 5.1, 1, 2.1))
+
+  
+  if (!is.null(parValue)){
+    par(mar = parValue)
+  }
+  else{
+    par(mar = c(5.1, 5.1, 1, 2.1)) 
+  }
   
   
   # Title
@@ -418,9 +466,9 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   
   # Plots
   if (plot){
-    par(mfrow=c(1,2))
-    plot(acfe, show.ci = TRUE, alpha = 0.05, ylab = '', main = "Empirical ACF")
-    plot(pacfe, show.ci = TRUE, alpha = 0.05, ylab = '', main = "Empirical PACF")
+    par(mfrow = c(1,2))
+    plot(acfe, show.ci = TRUE, alpha = 0.05, main = "Empirical ACF", parValue = c(5.1, 4.5, 1,2))
+    plot(pacfe, show.ci = TRUE, alpha = 0.05, main = "Empirical PACF", parValue = c(5.1,3.85,1,2.1))
   }
   
   par(mfrow = c(1,1))
@@ -428,3 +476,12 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   return(list("ACF" = acfe, "PACF" = pacfe))
   
 }
+
+
+
+
+
+
+
+
+

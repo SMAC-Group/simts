@@ -70,25 +70,43 @@ make_frame_transform_xy = function(x_range, y_range, xlab, ylab, main = "",
   if(identical(transform_y, log2)){
     plot(NA, xlim = x_range, ylim = 2^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
          xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+    transform_y = 2
   }else if(identical(transform_y, log10)){
     plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
          xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+    transform_y = 10
     
   }
   win_dim = par("usr")
   
-  # Add grid
-  grid(NULL, NULL, lty = grid_lty, col = col_grid)  
+  # # Add grid
+  # grid(NULL, NULL, lty = grid_lty, col = col_grid)  
   
-  # Add title
-  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
-  y_vec = c(win_dim[4], win_dim[4],
-            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]), 
-            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))
-  polygon(x_vec, y_vec, col = col_band, border = NA)
-  text(x = mean(c(win_dim[1], win_dim[2])), 
-       y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])), 
-       main, col = col_title)
+  # Add Grid
+  if(identical(transform_x, log2)){
+    abline(v = 2^x_ticks, lty = 1, col = "grey95")
+  }else if(identical(transform_x, log10)){
+    abline(v = 10^x_ticks, lty = 1, col = "grey95")
+  }
+  abline(h = transform_y^y_ticks, lty = 1, col = "grey95")
+  
+  # # Add title
+  # x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  # y_vec = c(win_dim[4], win_dim[4],
+  #           win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]), 
+  #           win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))
+  # polygon(x_vec, y_vec, col = col_band, border = NA)
+  # text(x = mean(c(win_dim[1], win_dim[2])), 
+  #      y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])), 
+  #      main, col = col_title)
+  
+  # Add Title
+  x_vec = 10^c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = 10^c(win_dim[4], win_dim[4],
+               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]), 
+               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+  polygon(x_vec, y_vec, col = "grey95", border = NA)
+  text(x = 10^mean(c(win_dim[1], win_dim[2])), y = 10^(win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
   
   # Add axes and box
   lines(x_vec[1:2], rep((win_dim[4] - title_band_width*(win_dim[4] - win_dim[3])),2), col = col_box)

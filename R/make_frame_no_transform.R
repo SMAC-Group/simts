@@ -34,7 +34,7 @@
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3,
 #'            title_band_width = 0.18)
 make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "", 
-                      loc_x = NULL, custom_label = NULL, 
+                      x_loc = NULL, custom_label = NULL, 
                       mar = c(5.1, 5.1, 1, 2.1), add_axis_x = TRUE,
                       add_axis_y = TRUE, col_box = "black", 
                       col_grid = "grey95", col_band = "grey95",

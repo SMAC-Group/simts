@@ -493,39 +493,39 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
     main = ""
   }
 
-  # Main plot
-  win_dim = par("usr")
-
-  plot(NA, xlim = x_range,
-       ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+  par(mar = mar)
+  # Main plot                     
+  plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+  
+  win_dim1 = par("usr")
+  par(new = TRUE)
+  
+  plot(NA, xlim = x_range, 
+       ylim = c(win_dim1[3], win_dim1[4] + title_band_width*(win_dim1[4] - win_dim1[3])),
        xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
-
+  win_dim = par("usr")
+  
+  # Add grid
+  grid(NULL, NULL, lty = grid_lty, col = col_grid)
+  
+  par(new = TRUE)
+  plot(NA, xlim = c(win_dim[1], win_dim[2]), ylim = c(win_dim[3], win_dim[4]), xlab = xlab, ylab = ylab, 
+       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+    
   # Add title
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
   y_vec = c(win_dim[4], win_dim[4],
-            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]),
+            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]), 
             win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))
-
-  win_dim = par("usr")
-  par(new = TRUE)
-
-  plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab,
-       xaxt = 'n', yaxt = 'n', ann = FALSE)
-
   polygon(x_vec, y_vec, col = col_band, border = NA)
-  lines(x_vec[1:2], rep((win_dim[4] - title_band_width*(win_dim[4] - win_dim[3])),2), col = col_box)
-
-  text(x = mean(c(win_dim[1], win_dim[2])),
-       y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])),
+  text(x = mean(c(win_dim[1], win_dim[2])), 
+       y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])), 
        main, col = col_title)
+  
   # Add axes and box
-
-  # Add grid
-  grid(NULL, NULL, lty = grid_lty, col = col_grid)
-
-
+  lines(x_vec[1:2], rep((win_dim[4] - title_band_width*(win_dim[4] - win_dim[3])),2), col = col_box)
   box(col = col_box)
-###########3
   
   if(add_axis_x && is.null(custom_label)){
     axis(1, padj = 0.3)

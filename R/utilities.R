@@ -297,7 +297,7 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
   
   # Add grid
   grid(NULL, NULL, lty = grid_lty, col = col_grid)
-  
+
   # Add title
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
   y_vec = c(win_dim[4], win_dim[4],
@@ -322,5 +322,3 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
     axis(2, padj = -0.2, at = y_axis)  
   }
 }
-
-

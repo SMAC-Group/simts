@@ -1,3 +1,4 @@
+
 #' @title Default utility function for various plots titles
 #' @description Adds title, grid, and required x- and y-axes. 
 #' @param x_range           A \code{numeric} providing the range of values for the x-axis. 
@@ -33,8 +34,7 @@
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3,
 #'            title_band_width = 0.18)
-make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "", 
-                      loc_x = NULL, custom_label = NULL, 
+make_frame = function(x_range, y_range, xlab, ylab, main = "", 
                       mar = c(5.1, 5.1, 1, 2.1), add_axis_x = TRUE,
                       add_axis_y = TRUE, col_box = "black", 
                       col_grid = "grey95", col_band = "grey95",
@@ -47,12 +47,11 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
   }
   
   par(mar = mar)
+  
   # Main plot                     
   plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
        xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
-  
 
-  
   win_dim = par("usr")
   par(new = TRUE)
   
@@ -62,7 +61,7 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
   win_dim = par("usr")
   
   # Add grid
-  grid(NULL, NULL, lty = grid_lty, col = col_grid)  
+  grid(NULL, NULL, lty = grid_lty, col = col_grid)
   
   # Add title
   x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
@@ -78,12 +77,8 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
   lines(x_vec[1:2], rep((win_dim[4] - title_band_width*(win_dim[4] - win_dim[3])),2), col = col_box)
   box(col = col_box)
   
-  if(add_axis_x && is.null(custom_label) && is.null(x_loc)){
+  if(add_axis_x){
     axis(1, padj = 0.3)
-  }else if(!is.null(custom_label) && !is.null(x_loc)){
-    axis(1, labels = custom_label, at = loc_x, padj = 0.3)
-  }else if(is.null(custom_label) && !is.null(x_loc)){
-    axis(1, labels = loc_x, at = loc_x)
   }
   
   if (add_axis_y){
@@ -92,3 +87,5 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
     axis(2, padj = -0.2, at = y_axis)  
   }
 }
+
+

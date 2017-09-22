@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // reverse_vec
 arma::vec reverse_vec(arma::vec x);
-RcppExport SEXP simts_reverse_vec(SEXP xSEXP) {
+RcppExport SEXP _simts_reverse_vec(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -19,7 +19,7 @@ END_RCPP
 }
 // Mod_cpp
 arma::vec Mod_cpp(const arma::cx_vec& x);
-RcppExport SEXP simts_Mod_cpp(SEXP xSEXP) {
+RcppExport SEXP _simts_Mod_cpp(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -30,7 +30,7 @@ END_RCPP
 }
 // gen_wn
 arma::vec gen_wn(const unsigned int N, const double sigma2);
-RcppExport SEXP simts_gen_wn(SEXP NSEXP, SEXP sigma2SEXP) {
+RcppExport SEXP _simts_gen_wn(SEXP NSEXP, SEXP sigma2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -42,7 +42,7 @@ END_RCPP
 }
 // gen_dr
 arma::vec gen_dr(const unsigned int N, const double omega);
-RcppExport SEXP simts_gen_dr(SEXP NSEXP, SEXP omegaSEXP) {
+RcppExport SEXP _simts_gen_dr(SEXP NSEXP, SEXP omegaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -54,7 +54,7 @@ END_RCPP
 }
 // gen_qn
 arma::vec gen_qn(const unsigned int N, double q2);
-RcppExport SEXP simts_gen_qn(SEXP NSEXP, SEXP q2SEXP) {
+RcppExport SEXP _simts_gen_qn(SEXP NSEXP, SEXP q2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -66,7 +66,7 @@ END_RCPP
 }
 // gen_ar1
 arma::vec gen_ar1(const unsigned int N, const double phi, const double sigma2);
-RcppExport SEXP simts_gen_ar1(SEXP NSEXP, SEXP phiSEXP, SEXP sigma2SEXP) {
+RcppExport SEXP _simts_gen_ar1(SEXP NSEXP, SEXP phiSEXP, SEXP sigma2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -79,7 +79,7 @@ END_RCPP
 }
 // gen_rw
 arma::vec gen_rw(const unsigned int N, const double sigma2);
-RcppExport SEXP simts_gen_rw(SEXP NSEXP, SEXP sigma2SEXP) {
+RcppExport SEXP _simts_gen_rw(SEXP NSEXP, SEXP sigma2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -91,7 +91,7 @@ END_RCPP
 }
 // gen_ma1
 arma::vec gen_ma1(const unsigned int N, const double theta, const double sigma2);
-RcppExport SEXP simts_gen_ma1(SEXP NSEXP, SEXP thetaSEXP, SEXP sigma2SEXP) {
+RcppExport SEXP _simts_gen_ma1(SEXP NSEXP, SEXP thetaSEXP, SEXP sigma2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -104,7 +104,7 @@ END_RCPP
 }
 // gen_arma11
 arma::vec gen_arma11(const unsigned int N, const double phi, const double theta, const double sigma2);
-RcppExport SEXP simts_gen_arma11(SEXP NSEXP, SEXP phiSEXP, SEXP thetaSEXP, SEXP sigma2SEXP) {
+RcppExport SEXP _simts_gen_arma11(SEXP NSEXP, SEXP phiSEXP, SEXP thetaSEXP, SEXP sigma2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -118,7 +118,7 @@ END_RCPP
 }
 // gen_arma
 arma::vec gen_arma(const unsigned int N, const arma::vec& ar, const arma::vec& ma, const double sigma2, unsigned int n_start);
-RcppExport SEXP simts_gen_arma(SEXP NSEXP, SEXP arSEXP, SEXP maSEXP, SEXP sigma2SEXP, SEXP n_startSEXP) {
+RcppExport SEXP _simts_gen_arma(SEXP NSEXP, SEXP arSEXP, SEXP maSEXP, SEXP sigma2SEXP, SEXP n_startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -133,7 +133,7 @@ END_RCPP
 }
 // gen_sarma
 arma::vec gen_sarma(const unsigned int N, const arma::vec& ar, const arma::vec& ma, const arma::vec& sar, const arma::vec& sma, const double sigma2, unsigned int s, unsigned int n_start);
-RcppExport SEXP simts_gen_sarma(SEXP NSEXP, SEXP arSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP smaSEXP, SEXP sigma2SEXP, SEXP sSEXP, SEXP n_startSEXP) {
+RcppExport SEXP _simts_gen_sarma(SEXP NSEXP, SEXP arSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP smaSEXP, SEXP sigma2SEXP, SEXP sSEXP, SEXP n_startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -151,7 +151,7 @@ END_RCPP
 }
 // gen_arima
 arma::vec gen_arima(const unsigned int N, const arma::vec& ar, const unsigned int d, const arma::vec& ma, const double sigma2, unsigned int n_start);
-RcppExport SEXP simts_gen_arima(SEXP NSEXP, SEXP arSEXP, SEXP dSEXP, SEXP maSEXP, SEXP sigma2SEXP, SEXP n_startSEXP) {
+RcppExport SEXP _simts_gen_arima(SEXP NSEXP, SEXP arSEXP, SEXP dSEXP, SEXP maSEXP, SEXP sigma2SEXP, SEXP n_startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -167,7 +167,7 @@ END_RCPP
 }
 // gen_sarima
 arma::vec gen_sarima(const unsigned int N, const arma::vec& ar, unsigned int d, const arma::vec& ma, const arma::vec& sar, unsigned int sd, const arma::vec& sma, const double sigma2, unsigned int s, unsigned int n_start);
-RcppExport SEXP simts_gen_sarima(SEXP NSEXP, SEXP arSEXP, SEXP dSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP sdSEXP, SEXP smaSEXP, SEXP sigma2SEXP, SEXP sSEXP, SEXP n_startSEXP) {
+RcppExport SEXP _simts_gen_sarima(SEXP NSEXP, SEXP arSEXP, SEXP dSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP sdSEXP, SEXP smaSEXP, SEXP sigma2SEXP, SEXP sSEXP, SEXP n_startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -187,7 +187,7 @@ END_RCPP
 }
 // gen_generic_sarima
 arma::vec gen_generic_sarima(const unsigned int N, const arma::vec& theta_values, const arma::vec& objdesc, double sigma2, unsigned int n_start);
-RcppExport SEXP simts_gen_generic_sarima(SEXP NSEXP, SEXP theta_valuesSEXP, SEXP objdescSEXP, SEXP sigma2SEXP, SEXP n_startSEXP) {
+RcppExport SEXP _simts_gen_generic_sarima(SEXP NSEXP, SEXP theta_valuesSEXP, SEXP objdescSEXP, SEXP sigma2SEXP, SEXP n_startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -202,7 +202,7 @@ END_RCPP
 }
 // gen_model
 arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
-RcppExport SEXP simts_gen_model(SEXP NSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP) {
+RcppExport SEXP _simts_gen_model(SEXP NSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -216,7 +216,7 @@ END_RCPP
 }
 // gen_lts_cpp
 arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
-RcppExport SEXP simts_gen_lts_cpp(SEXP NSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP) {
+RcppExport SEXP _simts_gen_lts_cpp(SEXP NSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -230,7 +230,7 @@ END_RCPP
 }
 // do_polyroot_arma
 arma::cx_vec do_polyroot_arma(const arma::cx_vec& z);
-RcppExport SEXP simts_do_polyroot_arma(SEXP zSEXP) {
+RcppExport SEXP _simts_do_polyroot_arma(SEXP zSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -241,7 +241,7 @@ END_RCPP
 }
 // do_polyroot_cpp
 std::vector< std::complex<double> > do_polyroot_cpp(const std::vector< std::complex<double> >& z);
-RcppExport SEXP simts_do_polyroot_cpp(SEXP zSEXP) {
+RcppExport SEXP _simts_do_polyroot_cpp(SEXP zSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -252,7 +252,7 @@ END_RCPP
 }
 // read_imu
 arma::field<arma::mat> read_imu(std::string file_path, std::string imu_type);
-RcppExport SEXP simts_read_imu(SEXP file_pathSEXP, SEXP imu_typeSEXP) {
+RcppExport SEXP _simts_read_imu(SEXP file_pathSEXP, SEXP imu_typeSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -264,7 +264,7 @@ END_RCPP
 }
 // diff_cpp
 arma::vec diff_cpp(arma::vec x, unsigned int lag, unsigned int differences);
-RcppExport SEXP simts_diff_cpp(SEXP xSEXP, SEXP lagSEXP, SEXP differencesSEXP) {
+RcppExport SEXP _simts_diff_cpp(SEXP xSEXP, SEXP lagSEXP, SEXP differencesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -277,7 +277,7 @@ END_RCPP
 }
 // cfilter
 arma::vec cfilter(arma::vec x, arma::vec filter, int sides, bool circular);
-RcppExport SEXP simts_cfilter(SEXP xSEXP, SEXP filterSEXP, SEXP sidesSEXP, SEXP circularSEXP) {
+RcppExport SEXP _simts_cfilter(SEXP xSEXP, SEXP filterSEXP, SEXP sidesSEXP, SEXP circularSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -291,7 +291,7 @@ END_RCPP
 }
 // rfilter
 arma::vec rfilter(arma::vec x, arma::vec filter, arma::vec init);
-RcppExport SEXP simts_rfilter(SEXP xSEXP, SEXP filterSEXP, SEXP initSEXP) {
+RcppExport SEXP _simts_rfilter(SEXP xSEXP, SEXP filterSEXP, SEXP initSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -304,7 +304,7 @@ END_RCPP
 }
 // mean_diff
 double mean_diff(const arma::vec& x);
-RcppExport SEXP simts_mean_diff(SEXP xSEXP) {
+RcppExport SEXP _simts_mean_diff(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -315,7 +315,7 @@ END_RCPP
 }
 // intgr_vec
 arma::vec intgr_vec(const arma::vec& x, const arma::vec& xi, unsigned int lag);
-RcppExport SEXP simts_intgr_vec(SEXP xSEXP, SEXP xiSEXP, SEXP lagSEXP) {
+RcppExport SEXP _simts_intgr_vec(SEXP xSEXP, SEXP xiSEXP, SEXP lagSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -328,7 +328,7 @@ END_RCPP
 }
 // diff_inv_values
 arma::vec diff_inv_values(const arma::vec& x, unsigned int lag, unsigned int d, const arma::vec& xi);
-RcppExport SEXP simts_diff_inv_values(SEXP xSEXP, SEXP lagSEXP, SEXP dSEXP, SEXP xiSEXP) {
+RcppExport SEXP _simts_diff_inv_values(SEXP xSEXP, SEXP lagSEXP, SEXP dSEXP, SEXP xiSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -342,7 +342,7 @@ END_RCPP
 }
 // diff_inv
 arma::vec diff_inv(const arma::vec& x, unsigned int lag, unsigned int d);
-RcppExport SEXP simts_diff_inv(SEXP xSEXP, SEXP lagSEXP, SEXP dSEXP) {
+RcppExport SEXP _simts_diff_inv(SEXP xSEXP, SEXP lagSEXP, SEXP dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -355,7 +355,7 @@ END_RCPP
 }
 // sarma_calculate_spadding
 arma::vec sarma_calculate_spadding(unsigned int np, unsigned int nq, unsigned int nsp, unsigned int nsq, unsigned int ns);
-RcppExport SEXP simts_sarma_calculate_spadding(SEXP npSEXP, SEXP nqSEXP, SEXP nspSEXP, SEXP nsqSEXP, SEXP nsSEXP) {
+RcppExport SEXP _simts_sarma_calculate_spadding(SEXP npSEXP, SEXP nqSEXP, SEXP nspSEXP, SEXP nsqSEXP, SEXP nsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -370,7 +370,7 @@ END_RCPP
 }
 // sarma_params_construct
 arma::vec sarma_params_construct(const arma::vec& ar, const arma::vec& ma, const arma::vec& sar, const arma::vec& sma);
-RcppExport SEXP simts_sarma_params_construct(SEXP arSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP smaSEXP) {
+RcppExport SEXP _simts_sarma_params_construct(SEXP arSEXP, SEXP maSEXP, SEXP sarSEXP, SEXP smaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -384,7 +384,7 @@ END_RCPP
 }
 // sarma_components
 arma::vec sarma_components(const arma::vec& objdesc);
-RcppExport SEXP simts_sarma_components(SEXP objdescSEXP) {
+RcppExport SEXP _simts_sarma_components(SEXP objdescSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -395,7 +395,7 @@ END_RCPP
 }
 // sarma_expand_unguided
 arma::field<arma::vec> sarma_expand_unguided(const arma::vec& params, unsigned int np, unsigned int nq, unsigned int nsp, unsigned int nsq, unsigned int ns, unsigned int p, unsigned int q);
-RcppExport SEXP simts_sarma_expand_unguided(SEXP paramsSEXP, SEXP npSEXP, SEXP nqSEXP, SEXP nspSEXP, SEXP nsqSEXP, SEXP nsSEXP, SEXP pSEXP, SEXP qSEXP) {
+RcppExport SEXP _simts_sarma_expand_unguided(SEXP paramsSEXP, SEXP npSEXP, SEXP nqSEXP, SEXP nspSEXP, SEXP nsqSEXP, SEXP nsSEXP, SEXP pSEXP, SEXP qSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -413,7 +413,7 @@ END_RCPP
 }
 // sarma_expand
 arma::field<arma::vec> sarma_expand(const arma::vec& params, const arma::vec& objdesc);
-RcppExport SEXP simts_sarma_expand(SEXP paramsSEXP, SEXP objdescSEXP) {
+RcppExport SEXP _simts_sarma_expand(SEXP paramsSEXP, SEXP objdescSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -425,7 +425,7 @@ END_RCPP
 }
 // minroot
 double minroot(const arma::cx_vec& x);
-RcppExport SEXP simts_minroot(SEXP xSEXP) {
+RcppExport SEXP _simts_minroot(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -436,7 +436,7 @@ END_RCPP
 }
 // count_models
 std::map<std::string, int> count_models(const std::vector<std::string>& desc);
-RcppExport SEXP simts_count_models(SEXP descSEXP) {
+RcppExport SEXP _simts_count_models(SEXP descSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -447,7 +447,7 @@ END_RCPP
 }
 // ar1_to_gm
 arma::vec ar1_to_gm(arma::vec theta, double freq);
-RcppExport SEXP simts_ar1_to_gm(SEXP thetaSEXP, SEXP freqSEXP) {
+RcppExport SEXP _simts_ar1_to_gm(SEXP thetaSEXP, SEXP freqSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -459,7 +459,7 @@ END_RCPP
 }
 // gm_to_ar1
 arma::vec gm_to_ar1(arma::vec theta, double freq);
-RcppExport SEXP simts_gm_to_ar1(SEXP thetaSEXP, SEXP freqSEXP) {
+RcppExport SEXP _simts_gm_to_ar1(SEXP thetaSEXP, SEXP freqSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -471,7 +471,7 @@ END_RCPP
 }
 // model_objdesc
 arma::field<arma::vec> model_objdesc(std::vector<std::string> desc);
-RcppExport SEXP simts_model_objdesc(SEXP descSEXP) {
+RcppExport SEXP _simts_model_objdesc(SEXP descSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -482,7 +482,7 @@ END_RCPP
 }
 // model_theta
 arma::vec model_theta(std::vector<std::string> desc);
-RcppExport SEXP simts_model_theta(SEXP descSEXP) {
+RcppExport SEXP _simts_model_theta(SEXP descSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -493,7 +493,7 @@ END_RCPP
 }
 // model_process_desc
 std::vector<std::string> model_process_desc(std::vector<std::string> desc);
-RcppExport SEXP simts_model_process_desc(SEXP descSEXP) {
+RcppExport SEXP _simts_model_process_desc(SEXP descSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -503,45 +503,122 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP simts_ar1_to_gm(SEXP, SEXP);
+RcppExport SEXP simts_cfilter(SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_count_models(SEXP);
+RcppExport SEXP simts_diff_cpp(SEXP, SEXP, SEXP);
+RcppExport SEXP simts_diff_inv(SEXP, SEXP, SEXP);
+RcppExport SEXP simts_diff_inv_values(SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_do_polyroot_arma(SEXP);
+RcppExport SEXP simts_do_polyroot_cpp(SEXP);
+RcppExport SEXP simts_gen_ar1(SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_arima(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_arma(SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_arma11(SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_dr(SEXP, SEXP);
+RcppExport SEXP simts_gen_generic_sarima(SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_lts_cpp(SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_ma1(SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_model(SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_qn(SEXP, SEXP);
+RcppExport SEXP simts_gen_rw(SEXP, SEXP);
+RcppExport SEXP simts_gen_sarima(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_sarma(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_gen_wn(SEXP, SEXP);
+RcppExport SEXP simts_gm_to_ar1(SEXP, SEXP);
+RcppExport SEXP simts_intgr_vec(SEXP, SEXP, SEXP);
+RcppExport SEXP simts_mean_diff(SEXP);
+RcppExport SEXP simts_minroot(SEXP);
+RcppExport SEXP simts_Mod_cpp(SEXP);
+RcppExport SEXP simts_model_objdesc(SEXP);
+RcppExport SEXP simts_model_process_desc(SEXP);
+RcppExport SEXP simts_model_theta(SEXP);
+RcppExport SEXP simts_read_imu(SEXP, SEXP);
+RcppExport SEXP simts_reverse_vec(SEXP);
+RcppExport SEXP simts_rfilter(SEXP, SEXP, SEXP);
+RcppExport SEXP simts_sarma_calculate_spadding(SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_sarma_components(SEXP);
+RcppExport SEXP simts_sarma_expand(SEXP, SEXP);
+RcppExport SEXP simts_sarma_expand_unguided(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+RcppExport SEXP simts_sarma_params_construct(SEXP, SEXP, SEXP, SEXP);
+
 static const R_CallMethodDef CallEntries[] = {
-    {"simts_reverse_vec", (DL_FUNC) &simts_reverse_vec, 1},
-    {"simts_Mod_cpp", (DL_FUNC) &simts_Mod_cpp, 1},
-    {"simts_gen_wn", (DL_FUNC) &simts_gen_wn, 2},
-    {"simts_gen_dr", (DL_FUNC) &simts_gen_dr, 2},
-    {"simts_gen_qn", (DL_FUNC) &simts_gen_qn, 2},
-    {"simts_gen_ar1", (DL_FUNC) &simts_gen_ar1, 3},
-    {"simts_gen_rw", (DL_FUNC) &simts_gen_rw, 2},
-    {"simts_gen_ma1", (DL_FUNC) &simts_gen_ma1, 3},
-    {"simts_gen_arma11", (DL_FUNC) &simts_gen_arma11, 4},
-    {"simts_gen_arma", (DL_FUNC) &simts_gen_arma, 5},
-    {"simts_gen_sarma", (DL_FUNC) &simts_gen_sarma, 8},
-    {"simts_gen_arima", (DL_FUNC) &simts_gen_arima, 6},
-    {"simts_gen_sarima", (DL_FUNC) &simts_gen_sarima, 10},
-    {"simts_gen_generic_sarima", (DL_FUNC) &simts_gen_generic_sarima, 5},
-    {"simts_gen_model", (DL_FUNC) &simts_gen_model, 4},
-    {"simts_gen_lts_cpp", (DL_FUNC) &simts_gen_lts_cpp, 4},
-    {"simts_do_polyroot_arma", (DL_FUNC) &simts_do_polyroot_arma, 1},
-    {"simts_do_polyroot_cpp", (DL_FUNC) &simts_do_polyroot_cpp, 1},
-    {"simts_read_imu", (DL_FUNC) &simts_read_imu, 2},
-    {"simts_diff_cpp", (DL_FUNC) &simts_diff_cpp, 3},
-    {"simts_cfilter", (DL_FUNC) &simts_cfilter, 4},
-    {"simts_rfilter", (DL_FUNC) &simts_rfilter, 3},
-    {"simts_mean_diff", (DL_FUNC) &simts_mean_diff, 1},
-    {"simts_intgr_vec", (DL_FUNC) &simts_intgr_vec, 3},
-    {"simts_diff_inv_values", (DL_FUNC) &simts_diff_inv_values, 4},
-    {"simts_diff_inv", (DL_FUNC) &simts_diff_inv, 3},
-    {"simts_sarma_calculate_spadding", (DL_FUNC) &simts_sarma_calculate_spadding, 5},
-    {"simts_sarma_params_construct", (DL_FUNC) &simts_sarma_params_construct, 4},
-    {"simts_sarma_components", (DL_FUNC) &simts_sarma_components, 1},
-    {"simts_sarma_expand_unguided", (DL_FUNC) &simts_sarma_expand_unguided, 8},
-    {"simts_sarma_expand", (DL_FUNC) &simts_sarma_expand, 2},
-    {"simts_minroot", (DL_FUNC) &simts_minroot, 1},
-    {"simts_count_models", (DL_FUNC) &simts_count_models, 1},
-    {"simts_ar1_to_gm", (DL_FUNC) &simts_ar1_to_gm, 2},
-    {"simts_gm_to_ar1", (DL_FUNC) &simts_gm_to_ar1, 2},
-    {"simts_model_objdesc", (DL_FUNC) &simts_model_objdesc, 1},
-    {"simts_model_theta", (DL_FUNC) &simts_model_theta, 1},
-    {"simts_model_process_desc", (DL_FUNC) &simts_model_process_desc, 1},
+    {"_simts_reverse_vec", (DL_FUNC) &_simts_reverse_vec, 1},
+    {"_simts_Mod_cpp", (DL_FUNC) &_simts_Mod_cpp, 1},
+    {"_simts_gen_wn", (DL_FUNC) &_simts_gen_wn, 2},
+    {"_simts_gen_dr", (DL_FUNC) &_simts_gen_dr, 2},
+    {"_simts_gen_qn", (DL_FUNC) &_simts_gen_qn, 2},
+    {"_simts_gen_ar1", (DL_FUNC) &_simts_gen_ar1, 3},
+    {"_simts_gen_rw", (DL_FUNC) &_simts_gen_rw, 2},
+    {"_simts_gen_ma1", (DL_FUNC) &_simts_gen_ma1, 3},
+    {"_simts_gen_arma11", (DL_FUNC) &_simts_gen_arma11, 4},
+    {"_simts_gen_arma", (DL_FUNC) &_simts_gen_arma, 5},
+    {"_simts_gen_sarma", (DL_FUNC) &_simts_gen_sarma, 8},
+    {"_simts_gen_arima", (DL_FUNC) &_simts_gen_arima, 6},
+    {"_simts_gen_sarima", (DL_FUNC) &_simts_gen_sarima, 10},
+    {"_simts_gen_generic_sarima", (DL_FUNC) &_simts_gen_generic_sarima, 5},
+    {"_simts_gen_model", (DL_FUNC) &_simts_gen_model, 4},
+    {"_simts_gen_lts_cpp", (DL_FUNC) &_simts_gen_lts_cpp, 4},
+    {"_simts_do_polyroot_arma", (DL_FUNC) &_simts_do_polyroot_arma, 1},
+    {"_simts_do_polyroot_cpp", (DL_FUNC) &_simts_do_polyroot_cpp, 1},
+    {"_simts_read_imu", (DL_FUNC) &_simts_read_imu, 2},
+    {"_simts_diff_cpp", (DL_FUNC) &_simts_diff_cpp, 3},
+    {"_simts_cfilter", (DL_FUNC) &_simts_cfilter, 4},
+    {"_simts_rfilter", (DL_FUNC) &_simts_rfilter, 3},
+    {"_simts_mean_diff", (DL_FUNC) &_simts_mean_diff, 1},
+    {"_simts_intgr_vec", (DL_FUNC) &_simts_intgr_vec, 3},
+    {"_simts_diff_inv_values", (DL_FUNC) &_simts_diff_inv_values, 4},
+    {"_simts_diff_inv", (DL_FUNC) &_simts_diff_inv, 3},
+    {"_simts_sarma_calculate_spadding", (DL_FUNC) &_simts_sarma_calculate_spadding, 5},
+    {"_simts_sarma_params_construct", (DL_FUNC) &_simts_sarma_params_construct, 4},
+    {"_simts_sarma_components", (DL_FUNC) &_simts_sarma_components, 1},
+    {"_simts_sarma_expand_unguided", (DL_FUNC) &_simts_sarma_expand_unguided, 8},
+    {"_simts_sarma_expand", (DL_FUNC) &_simts_sarma_expand, 2},
+    {"_simts_minroot", (DL_FUNC) &_simts_minroot, 1},
+    {"_simts_count_models", (DL_FUNC) &_simts_count_models, 1},
+    {"_simts_ar1_to_gm", (DL_FUNC) &_simts_ar1_to_gm, 2},
+    {"_simts_gm_to_ar1", (DL_FUNC) &_simts_gm_to_ar1, 2},
+    {"_simts_model_objdesc", (DL_FUNC) &_simts_model_objdesc, 1},
+    {"_simts_model_theta", (DL_FUNC) &_simts_model_theta, 1},
+    {"_simts_model_process_desc", (DL_FUNC) &_simts_model_process_desc, 1},
+    {"simts_ar1_to_gm",                (DL_FUNC) &simts_ar1_to_gm,                 2},
+    {"simts_cfilter",                  (DL_FUNC) &simts_cfilter,                   4},
+    {"simts_count_models",             (DL_FUNC) &simts_count_models,              1},
+    {"simts_diff_cpp",                 (DL_FUNC) &simts_diff_cpp,                  3},
+    {"simts_diff_inv",                 (DL_FUNC) &simts_diff_inv,                  3},
+    {"simts_diff_inv_values",          (DL_FUNC) &simts_diff_inv_values,           4},
+    {"simts_do_polyroot_arma",         (DL_FUNC) &simts_do_polyroot_arma,          1},
+    {"simts_do_polyroot_cpp",          (DL_FUNC) &simts_do_polyroot_cpp,           1},
+    {"simts_gen_ar1",                  (DL_FUNC) &simts_gen_ar1,                   3},
+    {"simts_gen_arima",                (DL_FUNC) &simts_gen_arima,                 6},
+    {"simts_gen_arma",                 (DL_FUNC) &simts_gen_arma,                  5},
+    {"simts_gen_arma11",               (DL_FUNC) &simts_gen_arma11,                4},
+    {"simts_gen_dr",                   (DL_FUNC) &simts_gen_dr,                    2},
+    {"simts_gen_generic_sarima",       (DL_FUNC) &simts_gen_generic_sarima,        5},
+    {"simts_gen_lts_cpp",              (DL_FUNC) &simts_gen_lts_cpp,               4},
+    {"simts_gen_ma1",                  (DL_FUNC) &simts_gen_ma1,                   3},
+    {"simts_gen_model",                (DL_FUNC) &simts_gen_model,                 4},
+    {"simts_gen_qn",                   (DL_FUNC) &simts_gen_qn,                    2},
+    {"simts_gen_rw",                   (DL_FUNC) &simts_gen_rw,                    2},
+    {"simts_gen_sarima",               (DL_FUNC) &simts_gen_sarima,               10},
+    {"simts_gen_sarma",                (DL_FUNC) &simts_gen_sarma,                 8},
+    {"simts_gen_wn",                   (DL_FUNC) &simts_gen_wn,                    2},
+    {"simts_gm_to_ar1",                (DL_FUNC) &simts_gm_to_ar1,                 2},
+    {"simts_intgr_vec",                (DL_FUNC) &simts_intgr_vec,                 3},
+    {"simts_mean_diff",                (DL_FUNC) &simts_mean_diff,                 1},
+    {"simts_minroot",                  (DL_FUNC) &simts_minroot,                   1},
+    {"simts_Mod_cpp",                  (DL_FUNC) &simts_Mod_cpp,                   1},
+    {"simts_model_objdesc",            (DL_FUNC) &simts_model_objdesc,             1},
+    {"simts_model_process_desc",       (DL_FUNC) &simts_model_process_desc,        1},
+    {"simts_model_theta",              (DL_FUNC) &simts_model_theta,               1},
+    {"simts_read_imu",                 (DL_FUNC) &simts_read_imu,                  2},
+    {"simts_reverse_vec",              (DL_FUNC) &simts_reverse_vec,               1},
+    {"simts_rfilter",                  (DL_FUNC) &simts_rfilter,                   3},
+    {"simts_sarma_calculate_spadding", (DL_FUNC) &simts_sarma_calculate_spadding,  5},
+    {"simts_sarma_components",         (DL_FUNC) &simts_sarma_components,          1},
+    {"simts_sarma_expand",             (DL_FUNC) &simts_sarma_expand,              2},
+    {"simts_sarma_expand_unguided",    (DL_FUNC) &simts_sarma_expand_unguided,     8},
+    {"simts_sarma_params_construct",   (DL_FUNC) &simts_sarma_params_construct,    4},
     {NULL, NULL, 0}
 };
 

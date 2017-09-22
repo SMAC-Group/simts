@@ -33,7 +33,8 @@
 #'            ylab = "my ylab", main = "my title", col_band = "blue3", 
 #'            col_title = "white", col_grid = "lightblue", grid_lty = 3,
 #'            title_band_width = 0.18)
-make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "", 
+make_frame_transform_xy = function(x_range, y_range, xlab, ylab, main = "", 
+                      transform_x = log2, transform_y = log2, 
                       loc_x = NULL, custom_label = NULL, 
                       mar = c(5.1, 5.1, 1, 2.1), add_axis_x = TRUE,
                       add_axis_y = TRUE, col_box = "black", 
@@ -46,19 +47,34 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
     main = ""
   }
   
-  par(mar = mar)
-  # Main plot                     
+  # par(mar = mar)
+  # # Main plot                     
+  # plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
+  #      xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+  # 
+  # win_dim = par("usr")
+  # par(new = TRUE)
+  # 
+  # plot(NA, xlim = x_range, 
+  #      ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+  #      xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  # win_dim = par("usr")
+  
+  # Main Plot                     
   plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
-       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
-  
-
-  
+       log = "xy", xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
   win_dim = par("usr")
+  
   par(new = TRUE)
   
-  plot(NA, xlim = x_range, 
-       ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
-       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+  if(identical(transform_y, log2)){
+    plot(NA, xlim = x_range, ylim = 2^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+  }else if(identical(transform_y, log10)){
+    plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+         xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+    
+  }
   win_dim = par("usr")
   
   # Add grid

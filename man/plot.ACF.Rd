@@ -5,7 +5,7 @@
 \title{Plot Auto-Covariance and Correlation Functions}
 \usage{
 \method{plot}{ACF}(x, xlab = NULL, ylab = NULL, show.ci = TRUE,
-  alpha = NULL, col_ci = NULL, main = NULL, ...)
+  alpha = NULL, col_ci = NULL, main = NULL, parValue = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{"ACF"} object from \code{\link{ACF}}.}

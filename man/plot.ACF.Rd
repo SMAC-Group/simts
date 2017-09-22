@@ -5,7 +5,8 @@
 \title{Plot Auto-Covariance and Correlation Functions}
 \usage{
 \method{plot}{ACF}(x, xlab = NULL, ylab = NULL, show.ci = TRUE,
-  alpha = NULL, col_ci = NULL, main = NULL, ...)
+  alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL,
+  parValue = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{"ACF"} object from \code{\link{ACF}}.}
@@ -19,6 +20,9 @@
 \item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
 
 \item{col_ci}{A \code{string} that specifies the color of the confidence interval polygon.}
+
+\item{transparency}{A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
+Default is 0.25.}
 
 \item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name - ACF plot'.}
 
@@ -43,7 +47,11 @@ plot(m, ci = 0.90)
 
 # Plot without 95\% CI
 plot(m, show.ci = FALSE)
+
+# More customized CI
+plot(m, xlab = "my xlab", ylab = "my ylab", show.ci = TRUE,
+alpha = NULL, col_ci = "grey", transparency = 0.5, main = "my main")
 }
 \author{
-Yunxiang Zhang and Stéphane Guerrier
+Yunxiang Zhang, Stéphane Guerrier and Yuming Zhang
 }

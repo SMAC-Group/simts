@@ -5,7 +5,8 @@
 \title{Plot Partial Auto-Covariance and Correlation Functions}
 \usage{
 \method{plot}{PACF}(x, xlab = NULL, ylab = NULL, show.ci = TRUE,
-  alpha = NULL, col_ci = NULL, main = NULL, ...)
+  alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL,
+  parValue = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{"PACF"} object from \code{\link{PACF}}.}
@@ -19,6 +20,9 @@
 \item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
 
 \item{col_ci}{A \code{string} indicating the color of the confidence interval polygon.}
+
+\item{transparency}{A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
+Default is 0.25.}
 
 \item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name - PACF plot'.}
 
@@ -35,7 +39,11 @@ plot partial autocovariance or autocorrelation for both univariate and multivari
 # Plot the Partial Autocorrelation
 m = PACF(datasets::AirPassengers)
 plot(m)
+
+# More customized CI
+plot(m, xlab = "my xlab", ylab = "my ylab", show.ci = TRUE, 
+alpha = NULL, col_ci = "grey", transparency = 0.5, main = "my main")
 }
 \author{
-Yunxiang Zhang
+Yunxiang Zhang and Yuming Zhang
 }

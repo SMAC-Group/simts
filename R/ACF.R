@@ -73,13 +73,15 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @title Plot Auto-Covariance and Correlation Functions
 #' @description The acf function computes the estimated
 #' autocovariance or autocorrelation for both univariate and multivariate cases.
-#' @author Yunxiang Zhang and Stéphane Guerrier
+#' @author Yunxiang Zhang, Stéphane Guerrier and Yuming Zhang
 #' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
 #' @param xlab         A \code{string} indicating the label of x axis, the default name is 'Lags'
 #' @param ylab     A \code{string} indicating the label of y axis, the default name is 'ACF'.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
 #' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
 #' @param col_ci    A \code{string} that specifies the color of the confidence interval polygon.
+#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
+#' Default is 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name - ACF plot'.
 #' @param ...       Additional parameters
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
@@ -97,7 +99,11 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
-plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL, parValue = NULL, ...){
+#' 
+#' # More customized CI
+#' plot(m, xlab = "my xlab", ylab = "my ylab", show.ci = TRUE,
+#' alpha = NULL, col_ci = "grey", transparency = 0.5, main = "my main")
+plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL, parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   
@@ -119,14 +125,6 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
     ylab = "ACF"
   }
   
-  # add color of CI
-  #col_ci = rgb(0, 0.6, 1, 0.2)
-  
-  if (!is.null(col_ci)){
-    col_ci = col_ci
-  }else{
-    col_ci = hcl(h = 210, l = 65, c = 100, alpha = 0.2)
-  }
   
   # add alpha
   if (!is.null(alpha)){
@@ -134,6 +132,23 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   }else{
     alpha = 0.05
   }
+  
+  # add transparency
+  if (!is.null(transparency)){
+    transparency = transparency
+  }else{
+    transparency = 0.25
+  }
+  
+  # add color of CI
+  #col_ci = rgb(0, 0.6, 1, 0.2)
+  if (!is.null(col_ci)){
+    col_ci = col2rgb(col_ci)
+    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
+  }else{
+    col_ci = rgb(red = 0, green = 0.6, blue = 1, transparency)
+  }
+  
   
   # Quiet the warnings...
   Lag = xmin = xmax = ymin = ymax = NULL 
@@ -162,8 +177,7 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   
   if (!is.null(parValue)){
     par(mar = parValue)
-  }
-  else{
+  }else{
     par(mar = c(5.1, 5.1, 1, 2.1)) 
   }
   
@@ -176,8 +190,7 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
     }else{
       main = paste0(attr(x,"data_name"), " - ACF plot")
     }
-  }
-  else {
+  }else {
     main = main
   }
   
@@ -222,8 +235,8 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   if(show.ci){
     
     clim0 = 1/sqrt(n)*mult
-    rect(xleft = -2, ybottom = -clim0, xright = 2*x_range[2], 
-         ytop = clim0, col = col_ci, lwd = 0)
+    rect(xleft = -2, ybottom = -clim0, xright = 2*x_range[2], ytop = clim0, 
+         col = col_ci, lwd = 0)
     
   }
   # Plot ACF
@@ -293,13 +306,15 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @title Plot Partial Auto-Covariance and Correlation Functions
 #' @description Plot pacf function computes the estimated
 #' plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
-#' @author Yunxiang Zhang
+#' @author Yunxiang Zhang and Yuming Zhang
 #' @param x         An \code{"PACF"} object from \code{\link{PACF}}.
 #' @param xlab      A \code{string} indicating the label of x axis, the default name is 'Lags'
 #' @param ylab     A \code{string} indicating the label of y axis, the default name is 'PACF'.
 #' @param show.ci   A \code{bool} indicating whether to show confidence region.
 #' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
 #' @param col_ci    A \code{string} indicating the color of the confidence interval polygon.
+#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
+#' Default is 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name - PACF plot'. 
 #' @param ...       Additional parameters.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
@@ -309,7 +324,11 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' # Plot the Partial Autocorrelation
 #' m = PACF(datasets::AirPassengers)
 #' plot(m)
-plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, main = NULL,parValue = NULL, ...){
+#' 
+#' # More customized CI
+#' plot(m, xlab = "my xlab", ylab = "my ylab", show.ci = TRUE, 
+#' alpha = NULL, col_ci = "grey", transparency = 0.5, main = "my main")
+plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL,parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   
@@ -332,18 +351,27 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
     ylab = "PACF"
   }
   
-  
-  if (!is.null(col_ci)){
-    col_ci = col_ci
-  }else{
-    col_ci = hcl(h = 210, l = 65, c = 100, alpha = 0.2)
-  }
-  
   # add alpha
   if (!is.null(alpha)){
     alpha = alpha
   }else{
     alpha = 0.05
+  }
+  
+  # add transparency
+  if (!is.null(transparency)){
+    transparency = transparency
+  }else{
+    transparency = 0.25
+  }
+  
+  # add color of CI
+  #col_ci = rgb(0, 0.6, 1, 0.2)
+  if (!is.null(col_ci)){
+    col_ci = col2rgb(col_ci)
+    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
+  }else{
+    col_ci = rgb(red = 0, green = 0.6, blue = 1, transparency)
   }
   
   

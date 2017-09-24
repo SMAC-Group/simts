@@ -35,7 +35,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Stéphane Guerrier
+  \item Stephane Guerrier
   \item Roberto Molinari
   \item James Balamuta
   \item Yuming Zhang

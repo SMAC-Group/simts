@@ -6,7 +6,7 @@ Date: 2017-05-28
 LazyData: true
 Authors@R: c(
     person("Justin", "Lee", email = "munsheet93@gmail.com", role = c("aut","cre")),
-    person("Stéphane", "Guerrier", role = "aut"),
+    person("Stephane", "Guerrier", role = "aut"),
     person("Roberto", "Molinari", role = "aut"),
     person("James", "Balamuta", role = "aut"),
     person("Yuming", "Zhang", role = "aut"),
@@ -18,16 +18,17 @@ Maintainer: Justin Lee <munsheet93@gmail.com>
 Description: Generates various time series objects for use in other packages.
 Depends: R (>= 3.1.0)
 License: CC BY-NC-SA 4.0
-Imports:
+Depends:
     Rcpp (>= 0.12.11), 
     methods,
     stats,
     utils, 
     scales, 
     grDevices, 
-    graphics
+    graphics,
+    wv
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 6.0.1
 Suggests: 
     knitr,
     rmarkdown

@@ -183,3 +183,5 @@ diag_plot = function(Xt, model, std = FALSE){
   abline(h = 0.05, col = "blue", lty = 2)
 
 }
+
+

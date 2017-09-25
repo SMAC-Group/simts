@@ -107,11 +107,18 @@ plot.diag_portmanteau = function(object, ...){
   
   maxval = max(object[,"pvalue"])
   
-  plot(object$lag, object$pvalue, pch = 16,
-       xlab = "Lag", ylab = "P-value", main = paste0(test, " Results"),
-       ylim = c(0, maxval))
+  # make frame
+  x_range = c(min(object$lag), max(object$lag))*1.05
+  y_range = c(0, max(object$pvalue))*1.05
+  make_frame(x_range, y_range, 
+             xlab = "Lag", ylab = "P-value", main = paste0(test, " Results"))
   
+  # add plotting
+  points(object$lag, object$pvalue, pch = 16)
   lines(object$lag, object$pvalue, lty = 3)
   abline(h = 0.05, col = "blue", lty = 2)
 }
+
+
+
 

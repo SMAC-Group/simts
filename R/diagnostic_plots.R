@@ -163,10 +163,28 @@ diag_plot = function(Xt, model, std = FALSE){
   plot(PACF(Xt), col_ci = "#00BBDC33")
   
   # ----- plot 7
-  plot(wvar(res), main = "Haar WVar Representation")
+  plot(wvar(res), main = "Haar WVar Representation", legend_position = NA)
+  
   sigma2 = rep(var(res), length(wvar(res)$scales))
   points(wvar(res)$scales, sigma2/as.numeric(wvar(res)$scales), col = "orange", pch=0, cex=2)
   lines(wvar(res)$scales, sigma2/as.numeric(wvar(res)$scales), col = "orange", lty = 1)
+  
+  # add legend
+  if (wvar(res)$robust == TRUE){
+    wv_title_part1 = "Empirical Robust WV "
+  }else{
+    wv_title_part1 = "Empirical WV "
+  }
+  
+  CI_conf = 1 - wvar(res)$alpha
+  
+  legend("bottomleft",
+         legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))), 
+                    as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
+                    "Haar WV"),
+         pch = c(16, 15, 0), lty = c(1, NA, 1), col = c("darkblue", hcl(h = 210, l = 65, c = 100, alpha = 0.2), "orange"), 
+         cex = 1, pt.cex = c(1.25, 3, 1.25), bty = "n")
+  
   
   # ----- plot 8
   object = diag_ljungbox(model, stop_lag = 20, stdres = std)

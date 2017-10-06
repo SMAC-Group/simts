@@ -91,29 +91,14 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not
 #' 
 #' @author James Balamuta
-#' @export
-#' @rdname select_arima
+
 #' @importFrom purrr map map_df map_dbl
 #' @importFrom dplyr group_by mutate
 #' @importFrom tidyr gather
 #' @importFrom broom glance
 #' @importFrom magrittr %>%
-select_arima = function(xt,
-                        p.min = 0L, p.max = 5L,
-                        d.min = 0L, d.max = 2L,
-                        q.min = 0L, q.max = 5L,
-                        include.mean = TRUE){
-  
-  o = select_arima_(xt,
-                    p = p.min:p.max,
-                    d = d.min:d.max,
-                    q = q.min:q.max,
-                    include.mean = include.mean)
-  
-}
 
 #' @export
-#' @rdname select_arima
 select_arma = function(xt,
                        p.min = 0L, p.max = 5L,
                        q.min = 0L, q.max = 5L,
@@ -130,7 +115,6 @@ select_arma = function(xt,
 
 
 #' @export
-#' @rdname select_arima
 select_ar = function(xt, p.min = 1L, p.max = 5L,
                      include.mean = TRUE){
   select_arima_(xt,
@@ -144,7 +128,6 @@ select_ar = function(xt, p.min = 1L, p.max = 5L,
 
 
 #' @export
-#' @rdname select_arima
 select_ma = function(xt, q.min = 1, q.max = 10,
                      include.mean = TRUE){
   select_arima_(xt,

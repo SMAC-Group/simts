@@ -181,7 +181,7 @@ diag_plot = function(Xt, model, std = FALSE){
   legend("bottomleft",
          legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))), 
                     as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
-                    "Haar WV"),
+                    "WV implied by WN"),
          pch = c(16, 15, 0), lty = c(1, NA, 1), col = c("darkblue", hcl(h = 210, l = 65, c = 100, alpha = 0.2), "orange"), 
          cex = 1, pt.cex = c(1.25, 3, 1.25), bty = "n")
   

@@ -18,7 +18,7 @@ Maintainer: Justin Lee <munsheet93@gmail.com>
 Description: Generates various time series objects for use in other packages.
 Depends: R (>= 3.1.0)
 License: CC BY-NC-SA 4.0
-Depends:
+Imports:
     Rcpp (>= 0.12.11), 
     methods,
     stats,

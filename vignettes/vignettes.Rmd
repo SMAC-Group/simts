@@ -188,7 +188,7 @@ data("savingrt")
 # Simulate based on data
 savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates",
-            unit_time = "month")
+            unit_time = "year")
 # Plot savingrt simulation
 plot(savingrt)
 ```
@@ -211,7 +211,7 @@ Let's consider the next dataset, the `sales` time series:
 data("sales")
 
 # Simulate based on data
-sales = gts(as.vector(sales), start = 1992, freq = 12, unit_time = "month",
+sales = gts(as.vector(sales), start = 1992, freq = 12, unit_time = "year",
             unit_ts = bquote(paste(10^6,"$")), name_ts = "Retail Sales", 
             data_name = "Monthly Clothing Retail Sales in US for 1992-2016")
 

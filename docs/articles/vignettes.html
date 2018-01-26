@@ -103,7 +103,7 @@
 <span class="kw">set.seed</span>(<span class="dv">1337</span>)
 
 <span class="co"># Number of observations</span>
-n =<span class="st"> </span><span class="dv">10</span>^<span class="dv">4</span>
+n =<span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span>
 
 <span class="co"># Generate a White Noise Process</span>
 wn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)) 
@@ -125,8 +125,8 @@ Figure 1: Simulated white noise process (top panel), quantiation noise (middle p
 </div>
 <p>Another example with a SARIMA model is given below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span>
-sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> -<span class="fl">0.27</span>,
-                        <span class="dt">sar =</span> <span class="kw">c</span>(-<span class="fl">0.12</span>, -<span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> -<span class="fl">0.9</span>,
+sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="op">-</span><span class="fl">0.27</span>,
+                        <span class="dt">sar =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="op">-</span><span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> <span class="op">-</span><span class="fl">0.9</span>,
                         <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))
 <span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
 <span class="kw">plot</span>(sarima)</code></pre></div>
@@ -143,8 +143,8 @@ Y_t &amp;= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 \end{aligned}\]</span></p>
 <p>it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance <span class="math inline">\(\gamma^2\)</span>), a linear drift (with slope <span class="math inline">\(\omega\)</span>) and a white noise process (with variance <span class="math inline">\(\sigma^2\)</span>). Therefore, it can easily be simulated as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
-model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) +<span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) +<span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span>^<span class="dv">3</span>)
+model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
+Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)
 <span class="kw">plot</span>(Yt)</code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Simulated state-space model (RW + WN + DR)" width="696"><p class="caption">
@@ -153,8 +153,8 @@ Figure 3: Simulated state-space model (RW + WN + DR)
 </div>
 <p>It is also possible to retrieve and visualize the three latent used to construct such state-space model using the function <code><a href="../reference/gen_lts.html">gen_lts()</a></code> instead of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
-model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) +<span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) +<span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span>^<span class="dv">3</span>)
+model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
+Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)
 <span class="kw">plot</span>(Yt)</code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes" width="696"><p class="caption">
@@ -165,7 +165,7 @@ Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
 <p>Examples of simulating such models are generated below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
 arma_wn_model =
-<span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, -<span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="op">-</span><span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)
 arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)
 
@@ -179,9 +179,9 @@ Figure 5: Simulated ARMA(2,1) + WN() process
 <p>As mentioned earlier, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a SARMA() + WN() </span>
 sarma_wn_model =<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span>^<span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)
+sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)
 
 <span class="co"># Plot simulation of SARMA() + WN() </span>
 <span class="kw">plot</span>(sarma_wn_sim)</code></pre></div>
@@ -252,7 +252,7 @@ Figure 2: Empirical autocorrelation function of monthly precipitation series fro
 <span class="co"># Simulate based on data</span>
 savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, 
             <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>,
-            <span class="dt">unit_time =</span> <span class="st">"month"</span>)
+            <span class="dt">unit_time =</span> <span class="st">"year"</span>)
 <span class="co"># Plot savingrt simulation</span>
 <span class="kw">plot</span>(savingrt)</code></pre></div>
 <div class="figure" style="text-align: center">
@@ -278,8 +278,8 @@ Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 <span class="kw">data</span>(<span class="st">"sales"</span>)
 
 <span class="co"># Simulate based on data</span>
-sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_time =</span> <span class="st">"month"</span>,
-            <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, 
+sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_time =</span> <span class="st">"year"</span>,
+            <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, 
             <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)
 
 
@@ -316,8 +316,8 @@ Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
-sales_acf =<span class="st"> </span>sales_corr$ACF
-sales_pacf =<span class="st"> </span>sales_corr$PACF</code></pre></div>
+sales_acf =<span class="st"> </span>sales_corr<span class="op">$</span>ACF
+sales_pacf =<span class="st"> </span>sales_corr<span class="op">$</span>PACF</code></pre></div>
 <p>The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.</p>
 </div>
 <div id="nile-river-flow-dataset" class="section level3">
@@ -325,11 +325,11 @@ sales_pacf =<span class="st"> </span>sales_corr$PACF</code></pre></div>
 <a href="#nile-river-flow-dataset" class="anchor"></a>Nile River Flow Dataset</h3>
 <p>Finally, we consider the last dataset in the code below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load Nile dataset</span>
-Nile =<span class="st"> </span>datasets::Nile
+Nile =<span class="st"> </span>datasets<span class="op">::</span>Nile
 
 <span class="co"># Simulate based on data</span>
 nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(Nile), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, 
-           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">8</span>,<span class="st">" "</span>,m^<span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, 
+           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, 
            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of the Nile River"</span>)
 
 <span class="co"># Plot Nile simulation </span>
@@ -357,8 +357,8 @@ Figure 11: Empirical ACF and PACF of the Nile river flow data
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
-nile_acf =<span class="st"> </span>nile_corr$ACF
-nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
+nile_acf =<span class="st"> </span>nile_corr<span class="op">$</span>ACF
+nile_pacf =<span class="st"> </span>nile_corr<span class="op">$</span>PACF</code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">
@@ -378,7 +378,8 @@ nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#simulations-from-time-series-models">Simulations from Time Series Models</a></li>
       <li><a href="#time-series-analysis-tools">Time Series Analysis Tools</a></li>
@@ -391,11 +392,11 @@ nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Justin Lee, Stéphane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
+  <p>Developed by Justin Lee, Stephane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

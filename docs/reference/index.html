@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -124,6 +125,12 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="ARMA11.html">ARMA11</a></code> </p>
+          </td>
+          <td><p>Definition of an ARMA(1,1)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="DR.html">DR</a></code> </p>
           </td>
           <td><p>Create an Drift (DR) Process</p></td>
@@ -160,15 +167,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="SARIMA.html">SARIMA</a></code> </p>
-          </td>
-          <td><p>Create a Seasonal Autoregressive Integrated Moving Average (SARIMA) Process</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="SARMA.html">SARMA</a></code> </p>
           </td>
           <td><p>Create a Seasonal Autoregressive Moving Average (SARMA) Process</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="SARIMA.html">SARIMA</a></code> </p>
+          </td>
+          <td><p>Create a Seasonal Autoregressive Integrated Moving Average (SARIMA) Process</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -179,11 +186,93 @@
       </tbody><tbody>
         <tr>
           <th colspan="2">
+            <h2 id="section-time-series-models-analysis" class="hasAnchor"><a href="#section-time-series-models-analysis" class="anchor"></a>Time Series Models Analysis</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ACF.html">ACF</a></code> </p>
+          </td>
+          <td><p>Auto-Covariance and Correlation Functions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot.ACF.html">plot</a></code> </p>
+          </td>
+          <td><p>Plot Auto-Covariance and Correlation Functions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="PACF.html">PACF</a></code> </p>
+          </td>
+          <td><p>Partial Auto-Covariance and Correlation Functions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot.PACF.html">plot</a></code> </p>
+          </td>
+          <td><p>Plot Partial Auto-Covariance and Correlation Functions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="corr_analysis.html">corr_analysis</a></code> </p>
+          </td>
+          <td><p>Correlation Analysis Functions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot.gts.html">plot</a></code> </p>
+          </td>
+          <td><p>Plot simts Time Series Data</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot.lts.html">plot</a></code> </p>
+          </td>
+          <td><p>Plot Latent Time Series Data</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-imu" class="hasAnchor"><a href="#section-imu" class="anchor"></a>IMU</h2>
+            <p class="section-desc"></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="imu.html">imu</a></code> </p>
+          </td>
+          <td><p>Create an IMU Object</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="create_imu.html">create_imu</a></code> </p>
+          </td>
+          <td><p>Internal IMU Object Construction</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
             <h2 id="section-simulation" class="hasAnchor"><a href="#section-simulation" class="anchor"></a>Simulation</h2>
             <p class="section-desc"></p>
           </th>
         </tr>
         <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_ar1blocks.html">gen_ar1blocks</a></code> </p>
+          </td>
+          <td><p>Generate AR(1) Blocks Process</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_bi.html">gen_bi</a></code> </p>
+          </td>
+          <td><p>Generate Bias-Instability Process</p></td>
+        </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="gen_gts.html">gen_gts</a></code> </p>
@@ -198,6 +287,12 @@
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="gen_nswn.html">gen_nswn</a></code> </p>
+          </td>
+          <td><p>Generate Non-Stationary White Noise Process</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="gts.html">gts</a></code> </p>
           </td>
           <td><p>Create a simts TS Object based on data</p></td>
@@ -207,26 +302,176 @@
             <p><code><a href="lts.html">lts</a></code> </p>
           </td>
           <td><p>Generate Latent Time Series Object Based on Data</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_wn.html">gen_wn</a></code> </p>
+          </td>
+          <td><p>Generate a Gaussian White Noise Process (WN(\(\sigma ^2\)))</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_dr.html">gen_dr</a></code> </p>
+          </td>
+          <td><p>Generate a Drift Process</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_qn.html">gen_qn</a></code> </p>
+          </td>
+          <td><p>Generate a Quantisation Noise (QN) or Rounding Error Sequence</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_ar1.html">gen_ar1</a></code> </p>
+          </td>
+          <td><p>Generate an Autoregressive Order 1 ( AR(1) ) sequence</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_rw.html">gen_rw</a></code> </p>
+          </td>
+          <td><p>Generate a Random Walk without Drift</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_ma1.html">gen_ma1</a></code> </p>
+          </td>
+          <td><p>Generate an Moving Average Order 1 (MA(1)) Process</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_arma11.html">gen_arma11</a></code> </p>
+          </td>
+          <td><p>Generate an ARMA(1,1) sequence</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_arma.html">gen_arma</a></code> </p>
+          </td>
+          <td><p>Generate Autoregressive Order \(p\) - Moving Average Order \(q\) (ARMA(\(p\),\(q\))) Model</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_sarma.html">gen_sarma</a></code> </p>
+          </td>
+          <td><p>Generate Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_arima.html">gen_arima</a></code> </p>
+          </td>
+          <td><p>Generate Autoregressive Order p, Integrated d, Moving Average Order q (ARIMA(p,d,q)) Model</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_sarima.html">gen_sarima</a></code> </p>
+          </td>
+          <td><p>Generate Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_generic_sarima.html">gen_generic_sarima</a></code> </p>
+          </td>
+          <td><p>Generate Generic Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_model.html">gen_model</a></code> </p>
+          </td>
+          <td><p>Generate Time Series based on Model (Internal)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gen_lts_cpp.html">gen_lts_cpp</a></code> </p>
+          </td>
+          <td><p>Generate Latent Time Series based on Model (Internal)</p></td>
         </tr>
       </tbody><tbody>
         <tr>
           <th colspan="2">
-            <h2 id="section-helpers" class="hasAnchor"><a href="#section-helpers" class="anchor"></a>Helpers</h2>
+            <h2 id="section-others" class="hasAnchor"><a href="#section-others" class="anchor"></a>Others</h2>
             <p class="section-desc"></p>
           </th>
         </tr>
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="print_data.html">print</a></code> <code><a href="print_data.html">outf</a></code> </p>
+            <p><code><a href="is.whole.html">is.whole</a></code> </p>
           </td>
-          <td><p>Print simts Objects</p></td>
+          <td><p>Integer Check</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="value.html">value</a></code> </p>
+            <p><code><a href="unitConversion.html">unitConversion</a></code> </p>
           </td>
-          <td><p>Obtain the value of an object's properties</p></td>
+          <td><p>Convert Unit of Time Series Data</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="orderModel.html">orderModel</a></code> </p>
+          </td>
+          <td><p>Order the Model</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="diff_cpp.html">diff_cpp</a></code> </p>
+          </td>
+          <td><p>Lagged Differences in Armadillo</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="cfilter.html">cfilter</a></code> </p>
+          </td>
+          <td><p>Time Series Convolution Filters</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="rfilter.html">rfilter</a></code> </p>
+          </td>
+          <td><p>Time Series Recursive Filters</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="mean_diff.html">mean_diff</a></code> </p>
+          </td>
+          <td><p>Mean of the First Difference of the Data</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="count_models.html">count_models</a></code> </p>
+          </td>
+          <td><p>Count Models</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="ar1_to_gm.html">ar1_to_gm</a></code> </p>
+          </td>
+          <td><p>Transform AR1 to GM</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="gm_to_ar1.html">gm_to_ar1</a></code> </p>
+          </td>
+          <td><p>Transform GM to AR1</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="model_objdesc.html">model_objdesc</a></code> </p>
+          </td>
+          <td><p>Generate the ts model object description</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="model_theta.html">model_theta</a></code> </p>
+          </td>
+          <td><p>Generate the ts model object's theta vector</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="model_process_desc.html">model_process_desc</a></code> </p>
+          </td>
+          <td><p>Generate the ts model object's process desc</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -236,9 +481,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="gm_conv.html">conv.ar1.to.gm</a></code> <code><a href="gm_conv.html">conv.gm.to.ar1</a></code> </p>
+            <p><code><a href="update.lts.html">update</a></code> </p>
           </td>
-          <td><p>GM Conversion</p></td>
+          <td><p>Update Object Attribute</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="update_obj.html">update_obj</a></code> </p>
+          </td>
+          <td><p>Update the Attributes of Objects</p></td>
         </tr>
       </tbody>
       </table>
@@ -249,19 +500,21 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#section-time-series-models">Time Series Models</a></li>
+      <li><a href="#section-time-series-models-analysis">Time Series Models Analysis</a></li>
+      <li><a href="#section-imu">IMU</a></li>
       <li><a href="#section-simulation">Simulation</a></li>
-      <li><a href="#section-helpers">Helpers</a></li>
+      <li><a href="#section-others">Others</a></li>
     </ul>
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Lee, Stéphane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
+  <p>Developed by Justin Lee, Stephane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

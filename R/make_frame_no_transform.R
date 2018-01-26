@@ -51,13 +51,11 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
   plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab, 
        xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
   
-
-  
-  win_dim = par("usr")
+  win_dim_init = par("usr")
   par(new = TRUE)
   
   plot(NA, xlim = x_range, 
-       ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
+       ylim = c(win_dim_init[3], win_dim_init[4] + title_band_width*(win_dim_init[4] - win_dim_init[3])),
        xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
   win_dim = par("usr")
   
@@ -91,4 +89,6 @@ make_frame_no_transform = function(x_range, y_range, xlab, ylab, main = "",
     y_axis = y_axis[y_axis < (win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))]
     axis(2, padj = -0.2, at = y_axis)  
   }
+  
+
 }

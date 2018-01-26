@@ -58,8 +58,8 @@ reference:
     - gen_generic_sarima
     - gen_model
     - gen_lts_cpp
-
   - title: Others
+    contents:
     - is.whole
     - unitConversion
     - orderModel

@@ -322,3 +322,33 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
     axis(2, padj = -0.2, at = y_axis)  
   }
 }
+
+#' @title Custom legend function 
+#' @importFrom graphics legend
+#' @keywords internal
+custom_legend = function(x, usr = par("usr"), ...){
+  lgd = legend(x = mean(c(usr[1],usr[2])), 
+               y =  mean(c(usr[3],usr[4])),
+               plot = F, ...)
+  
+  if(x == "topleft"){
+    # Plot on top right 
+    legend(x = usr[1] + lgd$rect$w, 
+           y =  usr[4] - lgd$rect$h,
+           plot = T, ...)
+  }else if(x == "top"){
+    # Plot on top right 
+    legend(x = (usr[1] + usr[2])/2 - lgd$rect$w/2, 
+           y =  usr[4] - lgd$rect$h,
+           plot = T, ...)
+  }else if(x == "topright"){
+    # Plot on top right 
+    legend(x = usr[2] - lgd$rect$w, 
+           y =  usr[4] - lgd$rect$h,
+           plot = T, ...)
+  }else{
+    legend(x = x, 
+           plot =T, ...)
+  }
+ 
+}

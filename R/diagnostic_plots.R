@@ -47,11 +47,10 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     lines(density(resid_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
-    legend("topright", 
-           legend = c("Kernel", "Normal"), 
-           text.col = c("blue", "black"),
-           bty = "n",
-           cex = 0.8)
+    custom_legend("topright", legend = c("Kernel", "Normal"), 
+                  text.col = c("blue", "black"),
+                  bty = "n",
+                  cex = 0.8)
   }
   
   if (type == "resid"){
@@ -81,7 +80,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     lines(density(resid_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
-    legend("topright", 
+    custom_legend("topright", 
            legend = c("Kernel", "Normal"), 
            text.col = c("blue", "black"),
            bty = "n",
@@ -178,7 +177,7 @@ diag_plot = function(Xt, model, std = FALSE){
   
   CI_conf = 1 - wvar(res)$alpha
   
-  legend("bottomleft",
+  custom_legend("bottomleft",
          legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))), 
                     as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
                     "WV implied by WN"),

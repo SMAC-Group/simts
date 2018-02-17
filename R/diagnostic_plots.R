@@ -40,15 +40,16 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     y_range = c(0, max(my_hist$counts/sum(my_hist$counts*diff(my_hist$breaks)[1])))*1.05
     make_frame(x_range, y_range, 
                xlab = "Standardized Residuals", ylab = "Percent",
-               main = "Residuals Histogram")
+               main = "Residuals Histogram",
+               title_band_width = 0.09, col_grid = "black")
     
     # plot histogram
     hist(resid_sd, probability = TRUE, col = "#BEBEBE7F", labels = FALSE, add = TRUE)
     lines(density(resid_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
-    legend("topright", 
-           legend = c("Kernel", "Normal"), 
+    legend("topright",
+           legend = c("Kernel", "Normal"),
            text.col = c("blue", "black"),
            bty = "n",
            cex = 0.8)
@@ -81,8 +82,8 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     lines(density(resid_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
-    legend("topright", 
-           legend = c("Kernel", "Normal"), 
+    legend("topright",
+           legend = c("Kernel", "Normal"),
            text.col = c("blue", "black"),
            bty = "n",
            cex = 0.8)

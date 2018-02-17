@@ -251,6 +251,7 @@ imu_time = function(x){
 #' @param add_band          A \code{boolean} indicating whether there should be a band. 
 #' @param title_band_width  A \code{double} providing the value of the band width. Default is 0.09. 
 #' @param grid_lty          A \code{integer} indicating the line type of the grid lines. 
+#' @param leg               A \code{object} indicating a legend object. Default is NULL. 
 #' @return Added title, grid, and axes. 
 #' @export
 #' @author Stephane Guerrier and Justin Lee
@@ -274,7 +275,8 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
                       add_axis_y = TRUE, col_box = "black", 
                       col_grid = "grey95", col_band = "grey95",
                       col_title = "black", add_band = TRUE,
-                      title_band_width = 0.09, grid_lty = 1){  
+                      title_band_width = 0.09, grid_lty = 1, 
+                      leg = NULL){  
   
   if (!add_band){
     title_band_width = 0
@@ -293,32 +295,40 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
   plot(NA, xlim = x_range, 
        ylim = c(win_dim[3], win_dim[4] + title_band_width*(win_dim[4] - win_dim[3])),
        xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
-  win_dim = par("usr")
+  win_dim2 = par("usr")
   
-  # Add grid
-  grid(NULL, NULL, lty = grid_lty, col = col_grid)
-
-  # Add title
-  x_vec = c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
-  y_vec = c(win_dim[4], win_dim[4],
-            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]), 
-            win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))
+  x_vec = c(win_dim2[1], win_dim2[2], win_dim2[2], win_dim2[1])
+  y_vec = c(win_dim2[4], win_dim2[4],
+            win_dim2[4] - title_band_width*(win_dim2[4] - win_dim2[3]), 
+            win_dim2[4] - title_band_width*(win_dim2[4] - win_dim2[3]))
   polygon(x_vec, y_vec, col = col_band, border = NA)
-  text(x = mean(c(win_dim[1], win_dim[2])), 
-       y = (win_dim[4] - title_band_width/2*(win_dim[4] - win_dim[3])), 
+
+  win_dim2 = par("usr")
+
+  text(x = mean(c(win_dim2[1], win_dim2[2])), 
+       y = (win_dim2[4] - title_band_width/2*(win_dim2[4] - win_dim2[3])), 
        main, col = col_title)
   
-  # Add axes and box
-  lines(x_vec[1:2], rep((win_dim[4] - title_band_width*(win_dim[4] - win_dim[3])),2), col = col_box)
+  lines(x_vec[1:2], rep((win_dim2[4] - title_band_width*(win_dim2[4] - win_dim2[3])),2), col = col_box)
   box(col = col_box)
+  
+  par(mar = c(mar[1], mar[2], mar[3]+title_band_width*23, mar[4]))
+  par(usr = c(win_dim2[1], win_dim2[2], win_dim2[3], y_vec[4] + title_band_width*(win_dim2[4] - win_dim2[3]))) 
+  
+  x_axis = axis(1, padj = 0.3)
+  y_axis = axis(2, padj = -0.2)
   
   if(add_axis_x){
     axis(1, padj = 0.3)
   }
   
   if (add_axis_y){
-    y_axis = axis(2, labels = FALSE, tick = FALSE)  
-    y_axis = y_axis[y_axis < (win_dim[4] - title_band_width*(win_dim[4] - win_dim[3]))]
-    axis(2, padj = -0.2, at = y_axis)  
+    axis(2, padj = -0.2)  
   }
+  
+  abline(v = x_axis, col = col_grid, lty = grid_lty)
+  abline(h = y_axis, col = col_grid, lty = grid_lty)
+  par(new = TRUE)
+  # box(col = col_box)
 }
+

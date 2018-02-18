@@ -25,9 +25,8 @@
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @param uneven    A \code{boolean} that indicates whether data is evenly spaced across time. Default value is \code{FALSE}.
-#' @param time_indices A one-column numeric or character \code{vector} that provides indices for unevenly spaced data. Default value is \code{NULL}.
-#' @param time_format A \code{string} that specifies the format of 'time_indices'. Default value is \code{NULL}.
+#' @param Time      A numeric or character \code{vector} containing the times of observations. Default value is \code{NULL}.
+#' @param time_format A \code{string} specifiying the format of 'Time'. If not provided, 'Time' is assumed to be all integers. Default value is \code{NULL}.
 #' @return A \code{gts} object
 #' @export
 #' @author James Balamuta and Wenchao Yang
@@ -39,33 +38,22 @@
 #' x = gen_gts(50, WN(sigma2 = 1))
 #' x = gts(x, freq = 100, unit_time = 'sec')
 #' plot(x)
-gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL, uneven = FALSE, time_indices = NULL, time_format = NULL){
+gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL, Time = NULL, time_format = NULL) {
   
   # Handle unevenly spaced data
-  if (uneven){
-    if (is.null(time_indices)){
-      stop("Must provide 'time_indices' for unevenly spaced data")
+  if (!is.null(Time)) {
+    if (!is.null(time_format)) {
+      Time = as.Date(Time, format = time_format)
+    } 
+    else if (!all(Time - floor(Time) == 0)) {
+      stop("'Time' must only contain integer values if 'time_format' is NULL.")
     }
-    if (!is.null(time_format)){
-      time_indices <- as.numeric(as.Date(time_indices, format = time_format))
-    }
-    if (!all(time_indices == floor(time_indices))){
-      stop("'time_indices' must be integer values.")
-    }
-    for (i in 2:length(time_indices)){
-      if (time_indices[i] <= time_indices[i-1]){
-        stop("'time_indices' must be strictly increasing")
-      }
-    }
-    time_indices = time_indices - time_indices[1] + 1 # Make sure times_indices starts at 1
-    x <-  rep('NA',time_indices[length(time_indices)])
-    for (i in 1:length(time_indices)){
-      x[time_indices[i]] <- data[i]
-    }
-    data <- as.numeric(x)
-    }
+  }
   
-  
+  if (length(data) != length(Time)){
+    stop('"data" and "Time" must have equal length.')
+  }
+
   # 1. requirement for 'data'
   # Handle NA values in 'data'
   if (is.factor(data)){
@@ -113,6 +101,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
   else if ( is.null(start) ){
     start = end - (ndata - 1)/freq}
   
+  
   # 4. requirement for 'unit_time'
   if(!is.null(unit_time)){
     if(!unit_time %in% c('ns', 'ms', 'sec', 'second', 'min', 'minute', 'hour', 'day', 'mon', 'month', 'year')){
@@ -133,6 +122,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
                   name_ts = name_ts,
                   name_time = name_time,
                   data_name = data_name,
+                  Time = Time,
                   class = c("gts","matrix"))
   
   out
@@ -344,6 +334,7 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
   freq = attr(x, 'freq')
   title_x = attr(x, 'print')
   simulated = attr(x, 'simulated')
+  Time = attr(x, 'Time')
   n_x = length(x)
   
   if (n_x == 0){stop('Time series is empty!')}
@@ -403,16 +394,34 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
     end = scales[n_x]
   }
   
-  # Make frame
-  make_frame(x_range = range(scales), y_range = range(x, na.rm = TRUE), xlab = name_time, 
-             ylab = name_ts, main = main) 
+  if (is.null(Time)){
+    # Make frame
+    make_frame(x_range = range(scales), y_range = range(x, na.rm = TRUE), xlab = name_time, 
+               ylab = name_ts, main = main) 
+    
+    # Add lines 
+    lines(scales, x, type = "l", col = couleur, pch = 16)
+  }
   
-  # Add lines 
-  lines(scales, x, type = "l", col = couleur, pch = 16)
-  
-  # Connect points between NA values
-  okay <- !is.na(x) 
-  lines(scales[okay], x[okay], type = "l", col = couleur, pch = 16)
+  else {
+    if(!is.numeric(Time)){
+      # Make frame
+      make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), add_axis_x = FALSE, xlab = name_time, 
+                 ylab = name_ts, main = main)
+      
+      # Add x axis
+      axis.Date(1, Time)
+    }
+    else {
+      # Make fram
+      make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), xlab = name_time, 
+                 ylab = name_ts, main = main) 
+      
+    }
+    # Add lines
+    lines(Time, x, type = "l", col = couleur, pch = 16)
+  }
+ 
 }
 
 #' @title Combine math expressions

@@ -25,6 +25,9 @@
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
+#' @param uneven    A \code{boolean} that indicates whether data is evenly spaced across time. Default value is \code{FALSE}.
+#' @param time_indices A one-column numeric or character \code{vector} that provides indices for unevenly spaced data. Default value is \code{NULL}.
+#' @param time_format A \code{string} that specifies the format of 'time_indices'. Default value is \code{NULL}.
 #' @return A \code{gts} object
 #' @export
 #' @author James Balamuta and Wenchao Yang
@@ -36,9 +39,39 @@
 #' x = gen_gts(50, WN(sigma2 = 1))
 #' x = gts(x, freq = 100, unit_time = 'sec')
 #' plot(x)
-gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL){
+gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL, uneven = FALSE, time_indices = NULL, time_format = NULL){
+  
+  # Handle unevenly spaced data
+  if (uneven){
+    if (is.null(time_indices)){
+      stop("Must provide 'time_indices' for unevenly spaced data")
+    }
+    if (!is.null(time_format)){
+      time_indices <- as.numeric(as.Date(time_indices, format = time_format))
+    }
+    if (!all(time_indices == floor(time_indices))){
+      stop("'time_indices' must be integer values.")
+    }
+    for (i in 2:length(time_indices)){
+      if (time_indices[i] <= time_indices[i-1]){
+        stop("'time_indices' must be strictly increasing")
+      }
+    }
+    time_indices = time_indices - time_indices[1] + 1 # Make sure times_indices starts at 1
+    x <-  rep('NA',time_indices[length(time_indices)])
+    for (i in 1:length(time_indices)){
+      x[time_indices[i]] <- data[i]
+    }
+    data <- as.numeric(x)
+    }
+  
   
   # 1. requirement for 'data'
+  # Handle NA values in 'data'
+  if (is.factor(data)){
+    data = as.numeric(as.character(data))
+  }
+  
   # Force data.frame to matrix  
   if (is.data.frame(data)){ 
     data = data.matrix(data)
@@ -371,11 +404,15 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
   }
   
   # Make frame
-  make_frame(x_range = range(scales), y_range = range(x), xlab = name_time, 
+  make_frame(x_range = range(scales), y_range = range(x, na.rm = TRUE), xlab = name_time, 
              ylab = name_ts, main = main) 
   
   # Add lines 
   lines(scales, x, type = "l", col = couleur, pch = 16)
+  
+  # Connect points between NA values
+  okay <- !is.na(x) 
+  lines(scales[okay], x[okay], type = "l", col = couleur, pch = 16)
 }
 
 #' @title Combine math expressions

@@ -48,12 +48,11 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
     else if (!all(Time - floor(Time) == 0)) {
       stop("'Time' must only contain integer values if 'time_format' is NULL.")
     }
+    if (length(data) != length(Time)){
+      stop('"data" and "Time" must have equal length.')
+    }
   }
   
-  if (length(data) != length(Time)){
-    stop('"data" and "Time" must have equal length.')
-  }
-
   # 1. requirement for 'data'
   # Handle NA values in 'data'
   if (is.factor(data)){

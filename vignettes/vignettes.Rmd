@@ -229,7 +229,6 @@ sales_acf = ACF(sales)
 plot(sales_acf)
 ```
 
-
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
 #Compute PACF and plot result
 sales_pacf = PACF(sales)
@@ -250,11 +249,74 @@ sales_pacf = sales_corr$PACF
 The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.
 
 
+### Lynx Dataset 
+
+We can look at another dataset, `lynx`, annual numbers of lynx trappings in Canada for 1821-1934 in the code below: 
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada'}
+# Load Lynx dataset 
+data(lynx)
+
+# Simulate based on data
+lynx = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1, 
+           unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
+           unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")
+
+# Plot Lynx Simulation
+plot(lynx)
+```
+
+
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `ACF()` and `PACF()` as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
+# Compute ACF and plot result
+lynx_acf = ACF(lynx)
+plot(lynx_acf)
+```
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
+#Compute PACF and plot result
+lynx_pacf = PACF(lynx)
+plot(lynx_pacf)
+```
+
+### Lynx Dataset 
+
+We can look at another dataset, `sunspot.year`, Yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below: 
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Yearly numbers of sunspots from 1700 to 1988'}
+# Load Sunspot dataset 
+sunspot = datasets::sunspot.year
+
+# Simulate based on data
+sunspot = gts(as.vector(sunspot.year), start = 1700, end = 1988, freq = 1, 
+           unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
+           unit_time = "year", data_name = "Yearly Numbers of Sunspots")
+
+# Plot Lynx Simulation
+plot(sunspot)
+```
+
+
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `ACF()` and `PACF()` as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
+# Compute ACF and plot result
+sunspot_acf = ACF(sunspot)
+plot(sunspot_acf)
+```
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
+#Compute PACF and plot result
+sunspot_pacf = PACF(sunspot)
+plot(sunspot_pacf)
+```
+
+
 ### Nile River Flow Dataset
 
-Finally, we consider the last dataset in the code below:
+Finally, we consider the last dataset, `Nile`, Annual Nile river flow from 1871-1970 in the code below:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Annual Nile river flow from 1871-1970'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 12: Plot of Annual Nile river flow from 1871-1970'}
 # Load Nile dataset
 Nile = datasets::Nile
 
@@ -285,6 +347,9 @@ nile_corr = corr_analysis(nile)
 nile_acf = nile_corr$ACF
 nile_pacf = nile_corr$PACF
 ```
+
+
+
 
 
 ## References

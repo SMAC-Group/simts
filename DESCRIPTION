@@ -26,7 +26,13 @@ Imports:
     utils,
     scales,
     grDevices,
-    graphics
+    graphics,
+    broom,
+    dplyr,
+    magrittr,
+    methods,
+    purrr,
+    tidyr
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1
 Suggests:

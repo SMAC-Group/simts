@@ -15,7 +15,7 @@
 #' @export
 #' @examples 
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = T)
+#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
 #' 
 #' resid_plot(Xt, model, type = "hist")
 #' resid_plot(Xt, model, type = "resid")
@@ -116,7 +116,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 #' @export
 #' @examples 
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = T)
+#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
 #' diag_plot(Xt, model)
 diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(2,4))

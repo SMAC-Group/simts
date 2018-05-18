@@ -4,7 +4,7 @@ search_grid = function(p, d, q){
   o
 }
 
-
+#' @importFrom stats AIC
 select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
                          include.mean = FALSE, class = NULL){
   

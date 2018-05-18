@@ -24,7 +24,7 @@ residuals, or plot the (standardized) residuals plot, or both.
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-model = arima(Xt, order = c(3,0,0), include.mean = T)
+model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
 
 resid_plot(Xt, model, type = "hist")
 resid_plot(Xt, model, type = "resid")

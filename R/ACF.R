@@ -87,6 +87,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.ACF
 #' @export
+#' @importFrom grDevices col2rgb
 #' @examples 
 #' # Calculate the Autocorrelation
 #' m = ACF(datasets::AirPassengers)
@@ -319,6 +320,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param ...       Additional parameters.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.PACF
+#' @importFrom grDevices col2rgb
 #' @export
 #' @examples 
 #' # Plot the Partial Autocorrelation

@@ -23,7 +23,7 @@ residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet Variance Representation
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-model = arima(Xt, order = c(3,0,0), include.mean = T)
+model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
 diag_plot(Xt, model)
 }
 \author{

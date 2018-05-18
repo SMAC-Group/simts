@@ -1,3 +1,5 @@
+#' @importFrom stats sd
+#' @importFrom stats Box.test 
 diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, test = "Ljung-Box"){
   
   if(is.null(order)){
@@ -99,6 +101,7 @@ diag_boxpierce.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE
 #' @param object A \code{diag_portmanteau} object from either
 #'  \code{\link{diag_boxpierce}} or \code{\link{diag_ljungbox}}
 #' @export
+#' @importFrom graphics points
 #' @rdname diag_portmanteau
 
 plot.diag_portmanteau = function(object, ...){

@@ -36,7 +36,6 @@ Useful links:
 Authors:
 \itemize{
   \item James Balamuta
-  \item Gaetan Bakalli
   \item Roberto Molinari
   \item Justin Lee
   \item Yuming Zhang

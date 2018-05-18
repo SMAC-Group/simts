@@ -13,6 +13,11 @@
 #' \code{"hist"} (standardized residual histogram), \code{"resid"} (residual plot),
 #' or \code{"both"}
 #' @export
+#' @importFrom stats sd
+#' @importFrom graphics hist
+#' @importFrom stats density
+#' @importFrom stats sd
+#' @importFrom stats dnorm
 #' @examples 
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
@@ -114,6 +119,12 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 #' @param std A \code{boolean} indicating whether we use standardized residuals for 
 #' (1) residuals plot and (8) Box test results.
 #' @export
+#' @importFrom graphics points
+#' @importFrom stats qqnorm
+#' @importFrom stats qqline
+#' @importFrom wv wvar
+#' @importFrom stats var
+#' @importFrom stats resid
 #' @examples 
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)

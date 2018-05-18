@@ -322,7 +322,8 @@ unitConversion = function(x, from.unit, to.unit){
 #' @param couleur         A \code{string} that gives a couleuror for the line. 
 #' @param ...             additional arguments affecting the plot produced.
 #' @return A plot containing the graph of the simts time series.
-#' @author Justin Lee
+#' @importFrom graphics axis.Date
+#' @author Justin Lee and Stéphane Guerrier
 plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4", ...){
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')

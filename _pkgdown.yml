@@ -29,10 +29,11 @@ reference:
     - corr_analysis
     - plot.gts
     - plot.lts
-  - title: IMU 
+  - title: Model selection of ARMA models
     contents:
-    - imu
-    - create_imu
+    - select_ar
+    - select_ma
+    - select_arma
   - title: Simulation 
     contents: 
     - gen_ar1blocks
@@ -58,6 +59,10 @@ reference:
     - gen_generic_sarima
     - gen_model
     - gen_lts_cpp
+  - title: Functions for inertial sensors 
+    contents:
+    - imu
+    - create_imu
   - title: Others
     contents:
     - is.whole

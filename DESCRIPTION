@@ -32,12 +32,14 @@ Imports:
     magrittr,
     methods,
     purrr,
-    tidyr
+    tidyr,
+    wv
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1
 Suggests:
     knitr,
     rmarkdown
+Remotes: SMAC-Group/wv
 VignetteBuilder: knitr
 URL: https://github.com/SMAC-Group/simts
 BugReports: https://github.com/SMAC-Group/simts/issues

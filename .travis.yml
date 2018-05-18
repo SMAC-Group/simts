@@ -1,5 +1,19 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: r
 
-language: R
 sudo: false
-cache: packages
+
+dist: trusty
+
+warnings_are_errors: false
+
+Imports:
+  - wv
+
+Remotes:
+  - SMAC-Group/wv
+
+cache:
+  packages: true
+
+notifications:
+  slack: smac-group:9cr5A6p7QLkgJRnBUjDG9pKk

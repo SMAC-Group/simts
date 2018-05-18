@@ -332,23 +332,24 @@ custom_legend = function(x, usr = par("usr"), ...){
                plot = F, ...)
   
   if(x == "topleft"){
-    # Plot on top right 
-    legend(x = usr[1] + lgd$rect$w, 
-           y =  usr[4] - lgd$rect$h,
+    # Plot on top right
+    legend(x = usr[1] + lgd$rect$w*1.5,
+           y =  usr[4] - lgd$rect$h*0.8,
            plot = T, ...)
   }else if(x == "top"){
-    # Plot on top right 
-    legend(x = (usr[1] + usr[2])/2 - lgd$rect$w/2, 
+    # Plot on top right
+    legend(x = (usr[1] + usr[2])/2 - lgd$rect$w/2,
            y =  usr[4] - lgd$rect$h,
            plot = T, ...)
   }else if(x == "topright"){
-    # Plot on top right 
-    legend(x = usr[2] - lgd$rect$w, 
-           y =  usr[4] - lgd$rect$h,
+    # Plot on top right
+    legend(x = usr[2] - lgd$rect$w*1.5,
+           y =  usr[4] - lgd$rect$h*0.8,
            plot = T, ...)
   }else{
-    legend(x = x, 
+    legend(x = x,
            plot =T, ...)
   }
  
 }
+

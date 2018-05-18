@@ -52,10 +52,11 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     lines(density(resid_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
+    
     custom_legend("topright", legend = c("Kernel", "Normal"), 
                   text.col = c("blue", "black"),
-                  bty = "n",
-                  cex = 0.8)
+                  bty = "n")
+    
   }
   
   if (type == "resid"){
@@ -85,11 +86,10 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     lines(density(resid_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
-    custom_legend("topright", 
-           legend = c("Kernel", "Normal"), 
-           text.col = c("blue", "black"),
-           bty = "n",
-           cex = 0.8)
+    
+    custom_legend("topright", legend = c("Kernel", "Normal"), 
+                   text.col = c("blue", "black"),
+                   bty = "n")
     
     # ----- residual plot
     # make frame
@@ -134,6 +134,7 @@ diag_plot = function(Xt, model, std = FALSE){
   
   # extract residuals 
   res = resid(model)
+  
   
   # ----- plot 1
   resid_plot(Xt, model, std = std, type = "resid")
@@ -188,11 +189,12 @@ diag_plot = function(Xt, model, std = FALSE){
   
   CI_conf = 1 - wvar(res)$alpha
   
-  custom_legend("bottomleft",
+  legend("bottomleft", 
          legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))), 
                     as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
                     "WV implied by WN"),
-         pch = c(16, 15, 0), lty = c(1, NA, 1), col = c("darkblue", hcl(h = 210, l = 65, c = 100, alpha = 0.2), "orange"), 
+         pch = c(16, 15, 0), lty = c(1, NA, 1), 
+         col = c("darkblue", hcl(h = 210, l = 65, c = 100, alpha = 0.2), "orange"), 
          cex = 1, pt.cex = c(1.25, 3, 1.25), bty = "n")
   
   

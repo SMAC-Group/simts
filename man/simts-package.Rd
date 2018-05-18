@@ -31,13 +31,14 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Justin Lee \email{munsheet93@gmail.com}
+\strong{Maintainer}: Stephane Guerrier \email{stef.guerrier@gmail.com} [copyright holder]
 
 Authors:
 \itemize{
-  \item Stephane Guerrier
-  \item Roberto Molinari
   \item James Balamuta
+  \item Gaetan Bakalli
+  \item Roberto Molinari
+  \item Justin Lee
   \item Yuming Zhang
 }
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transform GM to AR1 � gm_to_ar1 • simts</title>
+<title>Transform GM to AR1 — gm_to_ar1 • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -91,7 +91,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>theta</th>
-      <td><p>A <code>vec</code> that contains GM values.</p></td>
+      <td><p>A <code>vec</code> that contains AR1 values.</p></td>
     </tr>
     <tr>
       <th>freq</th>
@@ -101,15 +101,7 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>vec</code> containing AR1 values.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The function takes a vector of GM values \(\beta\) and \(\sigma ^2_{gm}\)
-and transforms them to AR1 values \(\phi\) and \(\sigma ^2\)
-using the formulas:
-\(\phi  = \exp \left( { - \beta \Delta t} \right)\)
-\({\sigma ^2} = \sigma _{gm}^2\left( {1 - \exp \left( { - 2\beta \Delta t} \right)} \right)\)</p>
+    <p>A <code>vec</code> containing GM values.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -125,8 +117,6 @@ using the formulas:
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -134,17 +124,22 @@ using the formulas:
     <h2>Author</h2>
     
 James Balamuta
+The function takes a vector of GM values \(\beta\) and \(\sigma ^2_{gm}\)
+and transforms them to AR1 values \(\phi\) and \(\sigma ^2\)
+using the formulas:
+\(\phi  = \exp \left( { - \beta \Delta t} \right)\)
+\({\sigma ^2} = \sigma _{gm}^2\left( {1 - \exp \left( { - 2\beta \Delta t} \right)} \right)\)
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Lee, Stephane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
+  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

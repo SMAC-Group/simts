@@ -5,16 +5,16 @@ Version: 1.0
 Date: 2017-05-28
 LazyData: true
 Authors@R: c(
-    person("Justin", "Lee", email = "munsheet93@gmail.com", role = c("aut","cre")),
-    person("Stephane", "Guerrier", role = "aut"),
-    person("Roberto", "Molinari", role = "aut"),
+    person("Stephane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
     person("James", "Balamuta", role = "aut"),
+    person("Roberto", "Molinari", role = "aut"),
+    person("Justin", "Lee", role = "aut"),
     person("Yuming", "Zhang", role = "aut"),
     person("Wenchao", "Yang", role = "ctb"), 
     person("Nathanael", "Claussen", role = "ctb"),
     person("Yunxiang", "Zhang", role = "ctb")
     )
-Maintainer: Justin Lee <munsheet93@gmail.com>
+Maintainer: Stephane Guerrier <stef.guerrier@gmail.com>
 Description: Generates various time series objects for use in other packages.
 Depends:
     R (>= 3.1.0)

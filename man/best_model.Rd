@@ -16,11 +16,12 @@ best_model(x, ic = "aic")
 Retrieves the best model
 }
 \examples{
-sunspot.year \%>\%
- gts(start = 1700, freq = 1) \%>\%
- select_ar(p.min = 1, p.max = 8) \%>\%
- best_model(ic = "bic")
+sunspot = gts(sunspot.year, start = 1700, freq = 1)
+sunspot_select = select_ar(sunspot, p.min = 1, p.max = 12)
+sunspot_bm = best_model(sunspot_select, ic = "bic")
+sunspot_bm
+
 }
 \author{
-James Balamuta
+James Balamuta and Stéphane Guerrier
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/model_selection.R
 \name{select_arma}
 \alias{select_arma}
-\title{Run Model Selection Criteria on ARIMA Models}
+\title{Run Model Selection Criteria on ARMA Models}
 \usage{
 select_arma(xt, p.min = 0L, p.max = 5L, q.min = 0L, q.max = 5L,
   include.mean = TRUE)
@@ -18,15 +18,11 @@ select_arma(xt, p.min = 0L, p.max = 5L, q.min = 0L, q.max = 5L,
 
 \item{q.max}{Highest Order MA(Q) process to search}
 
-\item{include.mean}{A \code{boolean} indicating whether to fit ARIMA with the mean or not}
-
-\item{d.min}{Lowest difference of data to take}
-
-\item{d.max}{Highest difference of data to take}
+\item{include.mean}{A \code{boolean} indicating whether to fit ARMA with the mean or not}
 }
 \description{
 Performs model fitting and calculates model selection criteria
 }
 \author{
-James Balamuta
+James Balamuta and Stéphane Guerrier
 }

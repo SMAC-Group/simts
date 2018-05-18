@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select the best model � best_model • simts</title>
+<title>Select the best model — best_model • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -92,7 +92,7 @@
     <tr>
       <th>x</th>
       <td><p>An object from either <code>select_arima</code>,
-<code><a href='select_arma.html'>select_arma</a></code>, <code>select_ar</code>, or <code>select_ma</code>.</p></td>
+<code><a href='select_arma.html'>select_arma</a></code>, <code><a href='select_ar.html'>select_ar</a></code>, or <code><a href='select_ma.html'>select_ma</a></code>.</p></td>
     </tr>
     <tr>
       <th>ic</th>
@@ -102,22 +102,21 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>sunspot.year</span> <span class='kw'>%&gt;%</span>
- <span class='fu'><a href='gts.html'>gts</a></span>(<span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>1700</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>select_ar</span>(<span class='kw'>p.min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>p.max</span> <span class='kw'>=</span> <span class='fl'>8</span>) <span class='kw'>%&gt;%</span>
- <span class='fu'>best_model</span>(<span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"bic"</span>)</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='no'>sunspot</span> <span class='kw'>=</span> <span class='fu'><a href='gts.html'>gts</a></span>(<span class='no'>sunspot.year</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>1700</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='no'>sunspot_select</span> <span class='kw'>=</span> <span class='fu'><a href='select_ar.html'>select_ar</a></span>(<span class='no'>sunspot</span>, <span class='kw'>p.min</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>p.max</span> <span class='kw'>=</span> <span class='fl'>12</span>)</div><div class='output co'>#&gt; <span class='error'>Error in select_ar(sunspot, p.min = 1, p.max = 12): could not find function "select_ar"</span></div><div class='input'><span class='no'>sunspot_bm</span> <span class='kw'>=</span> <span class='fu'>best_model</span>(<span class='no'>sunspot_select</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"bic"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in best_model(sunspot_select, ic = "bic"): could not find function "best_model"</span></div><div class='input'><span class='no'>sunspot_bm</span></div><div class='output co'>#&gt; 
 #&gt; Call:
-#&gt; arima(x = xt, order = c(8, 0, 0), include.mean = include.mean)
+#&gt; arima(x = xt, order = c(9, 0, 0), include.mean = include.mean)
 #&gt; 
 #&gt; Coefficients:
-#&gt;          ar1      ar2      ar3     ar4      ar5     ar6      ar7     ar8
-#&gt;       1.2366  -0.4393  -0.1697  0.1651  -0.1012  0.0125  -0.0940  0.2447
-#&gt; s.e.  0.0577   0.0933   0.0967  0.0969   0.0973  0.0981   0.0947  0.0586
-#&gt;       intercept
-#&gt;         49.4648
-#&gt; s.e.     5.9963
+#&gt;          ar1      ar2      ar3     ar4      ar5     ar6     ar7      ar8
+#&gt;       1.1851  -0.4197  -0.1672  0.1823  -0.1326  0.0458  0.0067  -0.0287
+#&gt; s.e.  0.0579   0.0911   0.0944  0.0948   0.0955  0.0961  0.0962   0.0925
+#&gt;          ar9  intercept
+#&gt;       0.2218    49.7655
+#&gt; s.e.  0.0588     7.7354
 #&gt; 
-#&gt; sigma^2 estimated as 233.2:  log likelihood = -1199.64,  aic = 2419.28</div></pre>
+#&gt; sigma^2 estimated as 221.9:  log likelihood = -1192.74,  aic = 2407.48</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -129,18 +128,18 @@
 
     <h2>Author</h2>
     
-James Balamuta
+James Balamuta and Stéphane Guerrier
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Lee, Stephane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
+  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

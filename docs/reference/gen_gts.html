@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a simts TS Object based on model � gen_gts • simts</title>
+<title>Create a simts TS Object based on model — gen_gts • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -145,7 +145,7 @@
 <span class='co'># AR1 + WN</span>
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR1.html'>AR1</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fl'>.5</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>.1</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>)
-<span class='fu'>plot</span>(<span class='no'>x</span>)</div><div class='img'><img src='gen_gts-1.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>x</span>)</div><div class='img'><img src='gen_gts-5.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># Reset seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>1336</span>)
 
@@ -156,7 +156,7 @@
 <span class='co'># Beta = 6.9314718, Sigma2_gm = 0.1333333</span>
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='GM.html'>GM</a></span>(<span class='kw'>beta</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>1</span>], <span class='kw'>sigma2_gm</span> <span class='kw'>=</span> <span class='no'>m</span>[<span class='fl'>2</span>]) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>1</span>)
 <span class='no'>x2</span> <span class='kw'>=</span> <span class='fu'>gen_gts</span>(<span class='no'>n</span>, <span class='no'>model</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>'sec'</span>)
-<span class='fu'>plot</span>(<span class='no'>x2</span>)</div><div class='img'><img src='gen_gts-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot</span>(<span class='no'>x2</span>)</div><div class='img'><img src='gen_gts-6.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 <span class='co'># Same time series</span>
 <span class='fu'>all.equal</span>(<span class='no'>x</span>, <span class='no'>x2</span>, <span class='kw'>check.attributes</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
@@ -181,11 +181,11 @@ James Balamuta and Wenchao Yang
 
       <footer>
       <div class="copyright">
-  <p>Developed by Justin Lee, Stephane Guerrier, Roberto Molinari, James Balamuta, Yuming Zhang.</p>
+  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

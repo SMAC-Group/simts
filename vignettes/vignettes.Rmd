@@ -185,10 +185,12 @@ Similarly to the first dataset, we now consider the `savingrt` time series:
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis.'}
 # Load savingrt dataset
 data("savingrt")
+
 # Simulate based on data
 savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
             name_ts = "Saving Rates", data_name = "US Personal Saving Rates",
             unit_time = "year")
+
 # Plot savingrt simulation
 plot(savingrt)
 ```
@@ -214,7 +216,6 @@ data("sales")
 sales = gts(as.vector(sales), start = 1992, freq = 12, unit_time = "year",
             unit_ts = bquote(paste(10^6,"$")), name_ts = "Retail Sales", 
             data_name = "Monthly Clothing Retail Sales in US for 1992-2016")
-
 
 # Plot sales simulation
 plot(sales)
@@ -347,10 +348,6 @@ nile_corr = corr_analysis(nile)
 nile_acf = nile_corr$ACF
 nile_pacf = nile_corr$PACF
 ```
-
-
-
-
 
 ## References
 

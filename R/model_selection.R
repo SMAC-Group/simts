@@ -37,67 +37,21 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 }
 
 
-##########################
-# Selection Functions
-##########################
-
-# #' Auto select
-# #'
-# #' @rdname select_arima
-# #' @export
-# select_auto = function(xt,
-#                        p.min = 1L, p.max = 6L,
-#                        d.min = 0L, d.max = 2L,
-#                        q.min = 1L, q.max = 6L,
-#                        include.mean = TRUE){
-#
-#   p = p.min:p.max
-#   d = d.min:d.max
-#   q = q.min:q.max
-#
-#   # model_info =
-#   # if(length(p) != 0L && length(q) == 0L){
-#   #   model_info = select_ar(xt, p.min:p.max = p.max, include.mean = TRUE)
-#   # } else if(length(q) != 0L && length(p) == 0L){
-#   #
-#   # } else{
-#   #    = select_arima_(xt,
-#   #                    p = p.min:p.max,
-#   #                    d = d.min:d.max,
-#   #                    q = q.min:q.max,
-#   #                    include.mean = include.mean)
-#   # }
-#
-#   # Obtain a plot of the model selection criteria
-#   model_info %>%
-#     autoplot
-#
-#   # Obtain the best model
-#   model_info %>%
-#     best_model
-#
-# }
-
-
-#' @title Run Model Selection Criteria on ARIMA Models
+#' @title Run Model Selection Criteria on ARMA Models
 #' @description Performs model fitting and calculates model selection criteria
 #' @param xt           A data set
 #' @param p.min        Lowest Order AR(P) process to search
 #' @param p.max        Highest Order AR(P) process to search
-#' @param d.min        Lowest difference of data to take
-#' @param d.max        Highest difference of data to take
 #' @param q.min        Lowest Order MA(Q) process to search
 #' @param q.max        Highest Order MA(Q) process to search
-#' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not
+#' @param include.mean A \code{boolean} indicating whether to fit ARMA with the mean or not
 #' 
-#' @author James Balamuta
-
+#' @author James Balamuta and Stéphane Guerrier
 #' @importFrom purrr map map_df map_dbl
 #' @importFrom dplyr group_by mutate
 #' @importFrom tidyr gather
 #' @importFrom broom glance
 #' @importFrom magrittr %>%
-
 #' @export
 select_arma = function(xt,
                        p.min = 0L, p.max = 5L,
@@ -114,6 +68,19 @@ select_arma = function(xt,
 }
 
 
+#' @title Run Model Selection Criteria on AR Models
+#' @description Performs model fitting and calculates model selection criteria
+#' @param xt           A data set
+#' @param p.min        Lowest Order AR(P) process to search
+#' @param p.max        Highest Order AR(P) process to search
+#' @param include.mean A \code{boolean} indicating whether to fit AR with the mean or not
+#' 
+#' @author James Balamuta and Stéphane Guerrier
+#' @importFrom purrr map map_df map_dbl
+#' @importFrom dplyr group_by mutate
+#' @importFrom tidyr gather
+#' @importFrom broom glance
+#' @importFrom magrittr %>%
 #' @export
 select_ar = function(xt, p.min = 1L, p.max = 5L,
                      include.mean = TRUE){
@@ -127,6 +94,19 @@ select_ar = function(xt, p.min = 1L, p.max = 5L,
 }
 
 
+#' @title Run Model Selection Criteria on MA Models
+#' @description Performs model fitting and calculates model selection criteria
+#' @param xt           A data set
+#' @param q.min        Lowest Order MA(Q) process to search
+#' @param q.max        Highest Order MA(Q) process to search
+#' @param include.mean A \code{boolean} indicating whether to fit MA with the mean or not
+#' 
+#' @author James Balamuta and Stéphane Guerrier
+#' @importFrom purrr map map_df map_dbl
+#' @importFrom dplyr group_by mutate
+#' @importFrom tidyr gather
+#' @importFrom broom glance
+#' @importFrom magrittr %>%
 #' @export
 select_ma = function(xt, q.min = 1, q.max = 10,
                      include.mean = TRUE){
@@ -146,13 +126,14 @@ select_ma = function(xt, q.min = 1, q.max = 10,
 #'  \code{\link{select_arma}}, \code{\link{select_ar}}, or \code{\link{select_ma}}.
 #' @param ic Type of criterion to use in selecting the best model.
 #' 
-#' @author James Balamuta
+#' @author James Balamuta and Stéphane Guerrier
 #' @export
 #' @examples
-#' sunspot.year %>%
-#'  gts(start = 1700, freq = 1) %>%
-#'  select_ar(p.min = 1, p.max = 8) %>%
-#'  best_model(ic = "bic")
+#' sunspot = gts(sunspot.year, start = 1700, freq = 1)
+#' sunspot_select = select_ar(sunspot, p.min = 1, p.max = 12)
+#' sunspot_bm = best_model(sunspot_select, ic = "bic")
+#' sunspot_bm
+#' 
 #' @importFrom dplyr filter_
 best_model = function(x, ic = "aic"){
   

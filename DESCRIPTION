@@ -33,6 +33,7 @@ Imports:
     methods,
     purrr,
     tidyr,
+    stringi,
     wv
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.0.1

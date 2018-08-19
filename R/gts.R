@@ -421,7 +421,43 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
     # Add lines
     lines(Time, x, type = "l", col = couleur, pch = 16)
   }
- 
+  
+}
+
+
+
+
+
+
+#' @title Time of a gts object
+#' @description Extracting the time of a gts object
+#' @export
+#' @keywords internal
+#' @return Time vector of a gts object.
+#' @author Stéphane Guerrier
+gts_time = function(x){
+   start =  attr(x, 'start')
+  end = attr(x, 'end')
+  freq = attr(x, 'freq')
+  Time = attr(x, 'Time')
+  n_x = length(x)
+  
+  if (n_x == 0){stop('Time series is empty!')}
+  
+  if(!is(x,"gts")){stop('object must be a gts object. Use functions gts() or gen_gts() to create it.')}
+
+  # X Scales
+  scales = seq(start, end, length = n_x)
+  if (is.null(end)){
+    scales = scales/freq
+    end = scales[n_x]
+  }
+  
+  if (is.null(Time)){
+    return(scales)
+  }else{
+    return(Time)
+  }
 }
 
 #' @title Combine math expressions

@@ -64,7 +64,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     x_range = c(1, length(resid))
     y_range = c(min(resid), max(resid))*1.05
     make_frame(x_range, y_range, xlab = "Observation Number", ylab = "Residuals",
-               main = "Residual Plot")
+               main = "Residuals Plot")
     # plotting
     lines(resid)
   }
@@ -107,6 +107,72 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 #######################
 # diag_plot function
 #######################
+#' @title Simple Version of Diagnostic Plot of Residuals
+#' @description This function will plot 3 diagnostic plots to assess the model used to 
+#' fit the data. These include: (1) residuals plot, (2) histogram of distribution of 
+#' (standardized) residuals, (3) Normal Q-Q plot of residuals.
+#' @author Yuming Zhang
+#' @param Xt The data used to construct said model.
+#' @param model The \code{arima} model used to fit the data. 
+#' @param std A \code{boolean} indicating whether we use standardized residuals for 
+#' (1) residuals plot and (2) histogram of distribution of (standardized) residuals.
+#' @export
+#' @importFrom graphics points
+#' @importFrom stats qqnorm
+#' @importFrom stats qqline
+#' @importFrom wv wvar
+#' @importFrom stats var
+#' @importFrom stats resid
+#' @examples 
+#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
+#' simple_diag_plot(Xt, model)
+simple_diag_plot = function(Xt, model, std = FALSE){
+  par(mfrow = c(1,3))
+  
+  # extract residuals 
+  res = resid(model)
+  
+  # ----- plot 1
+  resid_plot(Xt, model, std = std, type = "resid")
+  
+  # ----- plot 2
+  my_hist = hist(res, plot = FALSE)
+  # make frame
+  x_range = range(my_hist$breaks) * 1.05
+  y_range = c(0, max(my_hist$counts/sum(my_hist$counts*diff(my_hist$breaks)[1])))*1.05
+  
+  if (std==TRUE){
+    xlab = "Standardized Residuals"
+  }else{
+    xlab = "Residuals"
+  }
+  
+  make_frame(x_range, y_range, 
+             xlab = xlab, ylab = "Percent",
+             main = "Residuals Histogram")
+  
+  # plot histogram
+  hist(res, probability = TRUE, col = "#BEBEBE7F", labels = FALSE, add = TRUE)
+  
+  
+  # ----- plot 3
+  my_qqnorm = qqnorm(res, plot.it = FALSE)
+  # make frame
+  x_range = c(min(my_qqnorm$x), max(my_qqnorm$x))*1.05
+  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y))*1.05
+  make_frame(x_range, y_range, 
+             xlab = "Theoretical Quantiles", 
+             ylab = "Sample Quantiles",
+             main = "Normal Q-Q Plot")
+  
+  # add qq plots
+  points(my_qqnorm$x, my_qqnorm$y)
+  qqline(res, col = "blue",lwd = 2)
+}
+
+
+
 #' @title Diagnostic Plot of Residuals
 #' @description This function will plot 8 diagnostic plots to assess the model used to 
 #' fit the data. These include: (1) residuals plot, (2) residuals vs fitted values, 

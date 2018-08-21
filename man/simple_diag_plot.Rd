@@ -15,9 +15,9 @@ simple_diag_plot(Xt, model, std = FALSE)
 (1) residuals plot and (2) histogram of distribution of (standardized) residuals.}
 }
 \description{
-This function will plot 3 diagnostic plots to assess the model used to 
+This function will plot 4 diagnostic plots to assess the model used to 
 fit the data. These include: (1) residuals plot, (2) histogram of distribution of 
-(standardized) residuals, (3) Normal Q-Q plot of residuals.
+(standardized) residuals, (3) Normal Q-Q plot of residuals and (4) Residuals vs Fitted plot.
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))

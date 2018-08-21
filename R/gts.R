@@ -95,9 +95,9 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
     stop("end-start == (ndata-1)/freq must be TRUE.")
   }
   
+  # freq conversion (unit conversion is handled in graphical function)
   if ( is.null(end) ){
-    end = start + (ndata - 1)/freq} # freq conversion (unit conversion is handled in graphical function)
-  else if ( is.null(start) ){
+    end = start + (ndata - 1)/freq} else if ( is.null(start) ){
     start = end - (ndata - 1)/freq}
   
   
@@ -316,6 +316,7 @@ unitConversion = function(x, from.unit, to.unit){
 #' @export
 #' @keywords internal
 #' @param x               A \code{gts} object
+#' @param evenly          A \code{boolean} indicating whether the time series is evenly spaced or not.
 #' @param xlab            A \code{string} that gives a title for the x axis.
 #' @param ylab            A \code{string} that gives a title for the y axis.
 #' @param main            A \code{string} that gives an overall title for the plot.
@@ -324,7 +325,7 @@ unitConversion = function(x, from.unit, to.unit){
 #' @return A plot containing the graph of the simts time series.
 #' @importFrom graphics axis.Date
 #' @author Justin Lee and Stéphane Guerrier
-plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4", ...){
+plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4", ...){
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')
   unit_time = attr(x, 'unit_time')
@@ -338,10 +339,9 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
   n_x = length(x)
   
   if (n_x == 0){stop('Time series is empty!')}
-  
   if(!is(x,"gts")){stop('object must be a gts object. Use functions gts() or gen_gts() to create it.')}
   
-  # Labels
+  # ----- Labels
   if (!is.null(xlab)){
     name_time = xlab
   }
@@ -387,41 +387,84 @@ plot.gts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = "blue4",
     }
   }
   
-  # X Scales
-  scales = seq(start, end, length = n_x)
-  if (is.null(end)){
-    scales = scales/freq
-    end = scales[n_x]
-  }
-  
-  if (is.null(Time)){
-    # Make frame
-    make_frame(x_range = range(scales), y_range = range(x, na.rm = TRUE), xlab = name_time, 
-               ylab = name_ts, main = main) 
+  # ----- Handle unevenly spaced data
+  if (evenly == FALSE){
+    n_time = as.numeric(Time)[length(as.numeric(Time))] - as.numeric(Time)[1] + 1
+    start = as.numeric(Time)[1]
+    end = as.numeric(Time)[length(as.numeric(Time))]
+    scales = seq(start, end)
     
-    # Add lines 
-    lines(scales, x, type = "l", col = couleur, pch = 16)
+    # new_ts is the complete evenly spaced data
+    # (replace missing ts data with mean of all available data)
+    new_ts = rep(NA, n_time)
+    new_ts[as.numeric(Time) - start + 1] = as.numeric(x)
+    new_ts = ifelse(is.na(new_ts), mean(new_ts, na.rm=TRUE), new_ts)
+    
+    # ----- Plotting
+    # Make frame
+    if (is.null(Time)){
+      scales = scales - scales[1]
+      # Make frame
+      make_frame(x_range = range(scales), y_range = range(x, na.rm = TRUE), xlab = name_time, 
+                 ylab = name_ts, main = main) 
+      # Add lines
+      lines(scales + scales[1], new_ts, type = "l", col = couleur, pch = 16)
+    }else {
+      if(!is.numeric(Time)){
+        # Make frame
+        make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), add_axis_x = FALSE, xlab = name_time, 
+                   ylab = name_ts, main = main)
+        # Add x axis
+        axis.Date(1, Time)
+      }else {
+        # Make frame
+        make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), xlab = name_time, 
+                   ylab = name_ts, main = main) 
+      }
+      
+      # Add lines
+      lines(scales, new_ts, type = "l", col = couleur, pch = 16)
+      
+    }
   }
   
-  else {
-    if(!is.numeric(Time)){
-      # Make frame
-      make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), add_axis_x = FALSE, xlab = name_time, 
-                 ylab = name_ts, main = main)
-      
-      # Add x axis
-      axis.Date(1, Time)
+  else{
+    # X Scales
+    scales = seq(start, end, length = n_x)
+    if (is.null(end)){
+      scales = scales/freq
+      end = scales[n_x]
     }
-    else {
-      # Make fram
-      make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), xlab = name_time, 
+    
+    if (is.null(Time)){
+      # Make frame
+      make_frame(x_range = range(scales), y_range = range(x, na.rm = TRUE), xlab = name_time, 
                  ylab = name_ts, main = main) 
       
+      # Add lines 
+      lines(scales, x, type = "l", col = couleur, pch = 16)
     }
-    # Add lines
-    lines(Time, x, type = "l", col = couleur, pch = 16)
+    
+    # ----- Handle evenly spaced data
+    else {
+      if(!is.numeric(Time)){
+        # Make frame
+        make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), add_axis_x = FALSE, xlab = name_time, 
+                   ylab = name_ts, main = main)
+        
+        # Add x axis
+        axis.Date(1, Time)
+      }
+      else {
+        # Make fram
+        make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), xlab = name_time, 
+                   ylab = name_ts, main = main) 
+        
+      }
+      # Add lines
+      lines(Time, x, type = "l", col = couleur, pch = 16)
+    }
   }
-  
 }
 
 

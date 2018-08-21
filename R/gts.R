@@ -456,7 +456,7 @@ plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, cou
         axis.Date(1, Time)
       }
       else {
-        # Make fram
+        # Make frame
         make_frame(x_range = range(Time), y_range = range(x, na.rm = TRUE), xlab = name_time, 
                    ylab = name_ts, main = main) 
         

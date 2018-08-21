@@ -44,7 +44,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     x_range = range(my_hist$breaks) * 1.05
     y_range = c(0, max(my_hist$counts/sum(my_hist$counts*diff(my_hist$breaks)[1])))*1.05
     make_frame(x_range, y_range, 
-               xlab = "Standardized Residuals", ylab = "Percent",
+               xlab = "Standardized Residuals", ylab = "Frequency",
                main = "Residuals Histogram")
     
     # plot histogram
@@ -66,7 +66,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     make_frame(x_range, y_range, xlab = "Observation Number", ylab = "Residuals",
                main = "Residuals Plot")
     # plotting
-    lines(resid)
+    lines(resid, col = "blue4")
   }
   
   if (type == "both"){
@@ -98,7 +98,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
     make_frame(x_range, y_range, xlab = "Observation Number", ylab = "Residuals",
                main = "Residual Plot")
     # plotting
-    lines(resid)
+    lines(resid, col = "blue4")
     
   }
 }
@@ -108,9 +108,9 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 # diag_plot function
 #######################
 #' @title Simple Version of Diagnostic Plot of Residuals
-#' @description This function will plot 3 diagnostic plots to assess the model used to 
+#' @description This function will plot 4 diagnostic plots to assess the model used to 
 #' fit the data. These include: (1) residuals plot, (2) histogram of distribution of 
-#' (standardized) residuals, (3) Normal Q-Q plot of residuals.
+#' (standardized) residuals, (3) Normal Q-Q plot of residuals and (4) Residuals vs Fitted plot.
 #' @author Yuming Zhang
 #' @param Xt The data used to construct said model.
 #' @param model The \code{arima} model used to fit the data. 
@@ -128,7 +128,7 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 #' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
 #' simple_diag_plot(Xt, model)
 simple_diag_plot = function(Xt, model, std = FALSE){
-  par(mfrow = c(1,3))
+  par(mfrow = c(2,2))
   
   # extract residuals 
   res = resid(model)
@@ -149,7 +149,7 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   }
   
   make_frame(x_range, y_range, 
-             xlab = xlab, ylab = "Percent",
+             xlab = xlab, ylab = "Frequency",
              main = "Residuals Histogram")
   
   # plot histogram
@@ -160,7 +160,7 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   my_qqnorm = qqnorm(res, plot.it = FALSE)
   # make frame
   x_range = c(min(my_qqnorm$x), max(my_qqnorm$x))*1.05
-  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y))*1.05
+  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y)*1.02)*1.05
   make_frame(x_range, y_range, 
              xlab = "Theoretical Quantiles", 
              ylab = "Sample Quantiles",
@@ -169,6 +169,17 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   # add qq plots
   points(my_qqnorm$x, my_qqnorm$y)
   qqline(res, col = "blue",lwd = 2)
+  
+  # Plot 4: Residuals vs Fitted
+  xx = Xt - res
+  
+  x_range = range(xx)*1.05
+  y_range = range(res)*1.05
+  make_frame(x_range, y_range, 
+             xlab = "Fitted values", 
+             ylab = "Residuals",
+             main = "Residuals vs Fitted")
+  points(xx, res, col = "blue4")
 }
 
 

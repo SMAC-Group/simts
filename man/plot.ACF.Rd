@@ -24,7 +24,7 @@
 \item{transparency}{A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
 Default is 0.25.}
 
-\item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name - ACF plot'.}
+\item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.}
 
 \item{...}{Additional parameters}
 }

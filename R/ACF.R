@@ -15,6 +15,94 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+################################
+### Theoretical ACF / PACF
+################################
+
+# hidden casting function
+cast_acf = function(object, n, name_ = "Empirical", type = "Autocorrelation",
+                    class = "theo_arma"){
+  
+  # Force to array
+  if(is.null(nrow(object))){ dim(object) = c(length(object), 1, 1)}
+  
+  # Make pretty names
+  ids = seq_len(nrow(object))
+  if(type == "Autocorrelation" || type == "Autocovariance"){
+    ids = ids - 1
+  }
+  dimnames(object)  = list(ids, name_, name_)
+  
+  structure(object, type = type, n = n, class = c(class,"ACF","array"))
+}
+
+# Work horse of the two functions for theoretical ACF & PACF
+theo_arma_ = function(model, lagmax = 20, pacf = FALSE){
+  
+  if(!is.ts.model(model)){ stop("`model` must be a `ts.model` object.")}
+  if(model$starting){ stop("`model` must have specific parameter values.")}
+  if(length(model$desc) != 1 && model$desc != "SARIMA"){ stop("`model` must contain only 1 process.")}
+  
+  
+  objdesc = model$objdesc[[1]]
+  
+  ar = model$theta[model$process.desc == "AR"]
+  ma = model$theta[model$process.desc == "MA"]
+  
+  if(is.null(lagmax)){ lagmax = max(length(ar), length(ma) + 1) + 2}
+  
+  if(pacf == TRUE){
+    myclass = c("PACF", "array")
+  }else{
+    myclass = c("ACF", "array")
+  }
+  
+  cast_acf(ARMAacf(ar = ar, ma = ma, lag.max = lagmax, pacf = pacf),
+           n = lagmax,
+           name_ = "Theoretical",
+           type = "Autocorrelation",
+           class = myclass)
+}
+
+#' @title Theoretical Autocorrelation (ACF) of an ARMA process
+#' @description This function computes the theoretical Autocorrelation (ACF) of an ARMA process.
+#' @param ar A \code{vector} containing the AR coefficients.
+#' @param ma A \code{vector} containing the MA coefficients.
+#' @param lagmax A \code{integer} indicating the max length.
+#' @author Yuming Zhang
+#' @examples
+#' # Computes the theoretical ACF for an ARMA(1,0) or better known as an AR(1)
+#' theo_acf(ARMA(ar = -0.25, ma = NULL))
+#' # Computes the theoretical ACF for an ARMA(2, 1)
+#' theo_acf(ARMA(ar = c(.50, -0.25), ma = 0.20), lagmax = 10)
+#' @export
+theo_acf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
+  theo_arma_(model = model, lagmax = lagmax, pacf = FALSE)
+}
+
+
+#' @title Theoretical Partial Autocorrelation (PACF) of an ARMA process
+#' @description This function computes the theoretical Partial Autocorrelation (PACF) of an ARMA process.
+#' @param ar A \code{vector} containing the AR coefficients.
+#' @param ma A \code{vector} containing the MA coefficients.
+#' @param lagmax A \code{integer} indicating the max length.
+#' @author Yuming Zhang
+#' @export
+#' @examples
+#' # Computes the theoretical ACF for an ARMA(1,0) or better known as an AR(1)
+#' theo_pacf(ARMA(ar = -0.25, ma = NULL), lagmax = 7)
+#' # Computes the theoretical ACF for an ARMA(2, 1)
+#' theo_pacf(ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 10)
+theo_pacf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
+  theo_arma_(model = model, lagmax = lagmax, pacf = TRUE)
+}
+
+
+
+################################
+### Empirical ACF / PACF
+################################
+
 #' @title Auto-Covariance and Correlation Functions
 #' @description The ACF function computes the estimated
 #' autocovariance or autocorrelation for both univariate and multivariate cases.
@@ -82,7 +170,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param col_ci    A \code{string} that specifies the color of the confidence interval polygon.
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
 #' Default is 0.25. 
-#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name - ACF plot'.
+#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.
 #' @param ...       Additional parameters
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.ACF
@@ -187,9 +275,9 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   # Title
   if (is.null(main)){
     if (is.null(attr(x,"data_name"))){
-      main = paste0(as.character((x2$`Signal Y`)[1]), " - ACF plot")
+      main = paste0(as.character((x2$`Signal Y`)[1]), " ACF plot")
     }else{
-      main = paste0(attr(x,"data_name"), " - ACF plot")
+      main = paste0(attr(x,"data_name"), " ACF plot")
     }
   }else {
     main = main
@@ -316,7 +404,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param col_ci    A \code{string} indicating the color of the confidence interval polygon.
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
 #' Default is 0.25. 
-#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name - PACF plot'. 
+#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name PACF plot'. 
 #' @param ...       Additional parameters.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.PACF
@@ -414,9 +502,9 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   # Title
   if (is.null(main)){
     if (is.null(attr(x,"data_name"))){
-      main = paste0(as.character((x2$`Signal Y`)[1]), " - PACF plot")
+      main = paste0(as.character((x2$`Signal Y`)[1]), " PACF plot")
     }else{
-      main = paste0(attr(x,"data_name"), " - PACF plot")
+      main = paste0(attr(x,"data_name"), " PACF plot")
     }
   }
   else {

@@ -45,9 +45,9 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
     if (!is.null(time_format)) {
       Time = as.Date(Time, format = time_format)
     } 
-    else if (!all(Time - floor(Time) == 0)) {
-      stop("'Time' must only contain integer values if 'time_format' is NULL.")
-    }
+    # else if (!all(Time - floor(Time) == 0)) {
+    #   stop("'Time' must only contain integer values if 'time_format' is NULL.")
+    # }
     if (length(data) != length(Time)){
       stop('"data" and "Time" must have equal length.')
     }
@@ -428,7 +428,7 @@ plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, cou
     }
   }
   
-  else{
+  if (!is.null(Time)){
     # X Scales
     scales = seq(start, end, length = n_x)
     if (is.null(end)){

@@ -428,7 +428,8 @@ plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, cou
     }
   }
   
-  if (!is.null(Time)){
+  # ----- Handle evenly spaced data
+  if (evenly == TRUE){
     # X Scales
     scales = seq(start, end, length = n_x)
     if (is.null(end)){
@@ -444,8 +445,7 @@ plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, cou
       # Add lines 
       lines(scales, x, type = "l", col = couleur, pch = 16)
     }
-    
-    # ----- Handle evenly spaced data
+
     else {
       if(!is.numeric(Time)){
         # Make frame

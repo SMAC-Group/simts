@@ -33,7 +33,7 @@ cast_acf = function(object, n, name_ = "Empirical", type = "Autocorrelation",
   }
   dimnames(object)  = list(ids, name_, name_)
   
-  structure(object, type = type, n = n, class = c(class,"ACF","array"))
+  structure(object, type = type, n = n, class = class)
 }
 
 # Work horse of the two functions for theoretical ACF & PACF

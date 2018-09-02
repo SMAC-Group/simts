@@ -107,18 +107,16 @@ theo_pacf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
 #' @description The ACF function estimates the
 #' autocovariance or autocorrelation for both univariate and multivariate time series.
 #' @author Yunxiang Zhang
-#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1)
-#' @param lagmax An \code{integer} indicating the max lag.
-#' @param cor    A \code{bool} indicating whether the correlation 
-#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
-#' @param demean A \code{bool} indicating whether the data should be detrended
-#'  (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
+#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1).
+#' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.
+#' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
+#' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
 #' observations and \eqn{m} is the number of time series being compared. If 
-#' \code{lagmax} supplied is greater than the number of observations T, then one
-#' less than the total will be taken (i.e. T - 1).
+#' \code{lagmax} supplied is greater than the number of observations N, then one
+#' less than the total will be taken (i.e. N - 1).
 #' @importFrom stats acf pacf 
 #' @export
 #' @examples 
@@ -160,16 +158,17 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   }
   
   acfe
+  
 }
 
 #' @title Plot Auto-Covariance and Correlation Functions
-#' @description The function takes the output of the \code{\link{theo_acf}} and \code{\link{ACF}} functions (autocovariance or autocorrelation functions).
+#' @description The function plots the output of the \code{\link{theo_acf}} and \code{\link{ACF}} functions (autocovariance or autocorrelation functions).
 #' @author Yunxiang Zhang, Stéphane Guerrier and Yuming Zhang
-#' @param x         An \code{"ACF"} object output from \code{\link{ACF}}.
-#' @param xlab         A \code{string} indicating the label of the x axis, the default name is 'Lags'.
-#' @param ylab     A \code{string} indicating the label of the y axis, the default name is 'ACF'.
+#' @param x         An \code{"ACF"} object output from \code{\link{theo_acf}} or \code{\link{ACF}}.
+#' @param xlab         A \code{string} indicating the label of the x axis: the default name is 'Lags'.
+#' @param ylab     A \code{string} indicating the label of the y axis: the default name is 'ACF'.
 #' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.
-#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 95% confidence interval. 
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval. 
 #' @param col_ci    A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
 #' Defaults to 0.25. 
@@ -187,7 +186,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' plot(m) 
 #' 
 #' # Plot with 90% CI
-#' plot(m, ci = 0.90) 
+#' plot(m, alpha = 0.1) 
 #' 
 #' # Plot without 95% CI
 #' plot(m, show.ci = FALSE)
@@ -344,19 +343,20 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
 
 
 #' @title Partial Auto-Covariance and Correlation Functions
-#' @description The PACF function computes the estimated
-#' partial autocovariance or autocorrelation for both univariate and multivariate cases.
+#' @description The PACF function estimates the
+#' partial autocovariance or autocorrelation for both univariate and multivariate time series.
 #' @author Yunxiang Zhang
-#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes
-#' @param lagmax A \code{integer} indicating the max lag.
-#' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
-#' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE})
+#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1).
+#' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.
+#' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
+#' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
-#' observations and \eqn{m} is the number of series being compared. If 
-#' \code{lagmax} supplied is greater than the number of observations, then one
-#' less than the total will be taken.
+#' observations and \eqn{m} is the number of time series being compared. If 
+#' \code{lagmax} supplied is greater than the number of observations N, then one
+#' less than the total will be taken (i.e. N - 1).
+#' @importFrom stats acf pacf 
 #' @export
 #' @examples 
 #' # Get Autocorrelation
@@ -404,19 +404,18 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 
 
 #' @title Plot Partial Auto-Covariance and Correlation Functions
-#' @description Plot pacf function computes the estimated
-#' plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
+#' @description The function plots the output of the \code{\link{theo_pacf}} and \code{\link{PACF}} functions (partial autocovariance or autocorrelation functions).
 #' @author Yunxiang Zhang and Yuming Zhang
-#' @param x         An \code{"PACF"} object from \code{\link{PACF}}.
-#' @param xlab      A \code{string} indicating the label of x axis, the default name is 'Lags'
-#' @param ylab     A \code{string} indicating the label of y axis, the default name is 'PACF'.
-#' @param show.ci   A \code{bool} indicating whether to show confidence region.
-#' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
-#' @param col_ci    A \code{string} indicating the color of the confidence interval polygon.
-#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
-#' Default is 0.25. 
-#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name PACF plot'. 
-#' @param ...       Additional parameters.
+#' @param x         A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{PACF}}.
+#' @param xlab         A \code{string} indicating the label of the x axis: the default name is 'Lags'.
+#' @param ylab     A \code{string} indicating the label of the y axis: the default name is 'PACF'.
+#' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval. 
+#' @param col_ci    A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).
+#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
+#' Defaults to 0.25. 
+#' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name PACF plot'.
+#' @param ...       Additional parameters
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.PACF
 #' @importFrom grDevices col2rgb
@@ -429,7 +428,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' # More customized CI
 #' plot(m, xlab = "my xlab", ylab = "my ylab", show.ci = TRUE, 
 #' alpha = NULL, col_ci = "grey", transparency = 0.5, main = "my main")
-plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL,parValue = NULL, ...){
+plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL, parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   
@@ -490,12 +489,17 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   # Range
   x_range = range(x2$Lag)-1
   
+  # Remove confidence intervals for theoretical ACF
+  if (attr(x, "dimnames")[[2]] == "Theoretical"){
+    show.ci = FALSE
+  }
+  
   if (show.ci == TRUE){
     n = attr(x,"n")
     mult = qnorm(1-alpha/2)
     y_range = range(c(x2$PACF, 1/sqrt(n)*mult*c(-1,1)))
   }else{
-    y_range = range(0:1)
+    y_range = range(x2$PACF)
   }
   
   x_ticks = seq(x_range[1], x_range[2], by = 1)
@@ -571,21 +575,21 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
 
 #' @title Correlation Analysis Functions
 #' @description Correlation Analysis function computes and plots both empirical ACF and PACF
-#' of both univariate and multivariate cases.
+#' of univariate time series.
 #' @author Yunxiang Zhang
-#' @param x         An \code{"ts"} object.
-#' @param lagmax    A \code{integer} indicating the max lag.
-#' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
-#' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}).
-#' @param show.ci   A \code{bool} indicating whether to show confidence region.
-#' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
-#' @param plot      A \code{bool} indicating whether to plot. 
+#' @param x         A \code{"ts"} object.
+#' @param lagmax    A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.
+#' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
+#' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
+#' @param show.ci   A \code{bool} indicating whether to compute and show the confidence region. Defaults to \code{TRUE}.
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval. 
+#' @param plot      A \code{bool} indicating whether a plot of the computed quantities should be produced. Defaults to \code{TRUE}.
 #' @param ...       Additional parameters.
-#' @return Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+#' @return Two \code{array} objects (ACF and PACF) of dimension \eqn{N \times S \times S}{N x S x S}.
 #' @rdname corr_analysis
 #' @export
 #' @examples 
-#' # Plot the Partial Autocorrelation
+#' # Estimate both the ACF and PACF functions
 #' corr_analysis(datasets::AirPassengers)
 corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){
   

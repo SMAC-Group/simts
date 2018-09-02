@@ -2,33 +2,33 @@
 % Please edit documentation in R/ACF.R
 \name{ACF}
 \alias{ACF}
-\title{Auto-Covariance and Correlation Functions}
+\title{Estimation of Auto-Covariance and Correlation Functions}
 \usage{
 ACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
 }
 \arguments{
-\item{x}{A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes}
+\item{x}{A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1)}
 
-\item{lagmax}{A \code{integer} indicating the max lag.}
+\item{lagmax}{An \code{integer} indicating the max lag.}
 
 \item{cor}{A \code{bool} indicating whether the correlation 
-(\code{TRUE}) or covariance (\code{FALSE}) should be computed.}
+(\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.}
 
 \item{demean}{A \code{bool} indicating whether the data should be detrended
-(\code{TRUE}) or not (\code{FALSE})}
+(\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.}
 }
 \value{
 An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 }
 \description{
-The ACF function computes the estimated
-autocovariance or autocorrelation for both univariate and multivariate cases.
+The ACF function estimates the
+autocovariance or autocorrelation for both univariate and multivariate time series.
 }
 \details{
 \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
-observations and \eqn{m} is the number of series being compared. If 
-\code{lagmax} supplied is greater than the number of observations, then one
-less than the total will be taken.
+observations and \eqn{m} is the number of time series being compared. If 
+\code{lagmax} supplied is greater than the number of observations T, then one
+less than the total will be taken (i.e. T - 1).
 }
 \examples{
 # Get Autocorrelation

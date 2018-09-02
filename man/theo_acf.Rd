@@ -7,7 +7,7 @@
 theo_acf(model = ARMA(ar = c(0.5, -0.25), ma = 0.2), lagmax = 20)
 }
 \arguments{
-\item{lagmax}{A \code{integer} indicating the max length.}
+\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the theoretical ACF.}
 
 \item{ar}{A \code{vector} containing the AR coefficients.}
 
@@ -17,7 +17,7 @@ theo_acf(model = ARMA(ar = c(0.5, -0.25), ma = 0.2), lagmax = 20)
 This function computes the theoretical Autocorrelation (ACF) of an ARMA process.
 }
 \examples{
-# Computes the theoretical ACF for an ARMA(1,0) or better known as an AR(1)
+# Compute the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
 theo_acf(ARMA(ar = -0.25, ma = NULL))
 # Computes the theoretical ACF for an ARMA(2, 1)
 theo_acf(ARMA(ar = c(.50, -0.25), ma = 0.20), lagmax = 10)

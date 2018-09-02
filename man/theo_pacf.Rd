@@ -7,7 +7,7 @@
 theo_pacf(model = ARMA(ar = c(0.5, -0.25), ma = 0.2), lagmax = 20)
 }
 \arguments{
-\item{lagmax}{A \code{integer} indicating the max length.}
+\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the theoretical PACF.}
 
 \item{ar}{A \code{vector} containing the AR coefficients.}
 
@@ -17,7 +17,7 @@ theo_pacf(model = ARMA(ar = c(0.5, -0.25), ma = 0.2), lagmax = 20)
 This function computes the theoretical Partial Autocorrelation (PACF) of an ARMA process.
 }
 \examples{
-# Computes the theoretical ACF for an ARMA(1,0) or better known as an AR(1)
+# Computes the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
 theo_pacf(ARMA(ar = -0.25, ma = NULL), lagmax = 7)
 # Computes the theoretical ACF for an ARMA(2, 1)
 theo_pacf(ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 10)

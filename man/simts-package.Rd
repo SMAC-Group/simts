@@ -4,12 +4,11 @@
 \name{simts-package}
 \alias{simts}
 \alias{simts-package}
-\alias{simts-package}
 \title{simts: Time Series Simulation}
 \description{
-Generates various time series objects for use in other packages.
+\if{html}{\figure{logo.png}{options: align='right'}}
 
-Simulated Time Series (simts) Package
+Generates various time series objects for use in other packages.
 }
 \details{
 The data sets in this package may change at a moments notice.

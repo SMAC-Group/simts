@@ -2,7 +2,7 @@
 #
 # This file is part of simts R Methods Package
 #
-# The `wv` R package is free software: you can redistribute it and/or modify
+# The `simts` R package is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
@@ -68,10 +68,10 @@ theo_arma_ = function(model, lagmax = 20, pacf = FALSE){
 #' @description This function computes the theoretical Autocorrelation (ACF) of an ARMA process.
 #' @param ar A \code{vector} containing the AR coefficients.
 #' @param ma A \code{vector} containing the MA coefficients.
-#' @param lagmax A \code{integer} indicating the max length.
+#' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the theoretical ACF.
 #' @author Yuming Zhang
 #' @examples
-#' # Computes the theoretical ACF for an ARMA(1,0) or better known as an AR(1)
+#' # Compute the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
 #' theo_acf(ARMA(ar = -0.25, ma = NULL))
 #' # Computes the theoretical ACF for an ARMA(2, 1)
 #' theo_acf(ARMA(ar = c(.50, -0.25), ma = 0.20), lagmax = 10)
@@ -85,11 +85,11 @@ theo_acf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
 #' @description This function computes the theoretical Partial Autocorrelation (PACF) of an ARMA process.
 #' @param ar A \code{vector} containing the AR coefficients.
 #' @param ma A \code{vector} containing the MA coefficients.
-#' @param lagmax A \code{integer} indicating the max length.
+#' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the theoretical PACF.
 #' @author Yuming Zhang
 #' @export
 #' @examples
-#' # Computes the theoretical ACF for an ARMA(1,0) or better known as an AR(1)
+#' # Computes the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
 #' theo_pacf(ARMA(ar = -0.25, ma = NULL), lagmax = 7)
 #' # Computes the theoretical ACF for an ARMA(2, 1)
 #' theo_pacf(ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 10)
@@ -103,22 +103,22 @@ theo_pacf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
 ### Empirical ACF / PACF
 ################################
 
-#' @title Auto-Covariance and Correlation Functions
-#' @description The ACF function computes the estimated
-#' autocovariance or autocorrelation for both univariate and multivariate cases.
+#' @title Estimation of Auto-Covariance and Correlation Functions
+#' @description The ACF function estimates the
+#' autocovariance or autocorrelation for both univariate and multivariate time series.
 #' @author Yunxiang Zhang
-#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes
-#' @param lagmax A \code{integer} indicating the max lag.
+#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1)
+#' @param lagmax An \code{integer} indicating the max lag.
 #' @param cor    A \code{bool} indicating whether the correlation 
-#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed.
+#' (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
 #' @param demean A \code{bool} indicating whether the data should be detrended
-#'  (\code{TRUE}) or not (\code{FALSE})
+#'  (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
-#' observations and \eqn{m} is the number of series being compared. If 
-#' \code{lagmax} supplied is greater than the number of observations, then one
-#' less than the total will be taken.
+#' observations and \eqn{m} is the number of time series being compared. If 
+#' \code{lagmax} supplied is greater than the number of observations T, then one
+#' less than the total will be taken (i.e. T - 1).
 #' @importFrom stats acf pacf 
 #' @export
 #' @examples 
@@ -158,17 +158,16 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   acfe
 }
 
-#' @title Plot Auto-Covariance and Correlation Functions
-#' @description The acf function computes the estimated
-#' autocovariance or autocorrelation for both univariate and multivariate cases.
+#' @title Plot Estimated Auto-Covariance and Correlation Functions
+#' @description The function takes the output of the \code{\link{ACF}} function (empirical autocovariance or autocorrelation functions).
 #' @author Yunxiang Zhang, Stéphane Guerrier and Yuming Zhang
-#' @param x         An \code{"ACF"} object from \code{\link{ACF}}.
-#' @param xlab         A \code{string} indicating the label of x axis, the default name is 'Lags'
-#' @param ylab     A \code{string} indicating the label of y axis, the default name is 'ACF'.
-#' @param show.ci   A \code{bool} indicating whether to show confidence region.
-#' @param alpha     A \code{double} indicating the confidence interval level. Default is 0.05. 
-#' @param col_ci    A \code{string} that specifies the color of the confidence interval polygon.
-#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
+#' @param x         An \code{"ACF"} object output from \code{\link{ACF}}.
+#' @param xlab         A \code{string} indicating the label of the x axis, the default name is 'Lags'.
+#' @param ylab     A \code{string} indicating the label of the y axis, the default name is 'ACF'.
+#' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 95% confidence interval. 
+#' @param col_ci    A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).
+#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci} confidence region.
 #' Default is 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.
 #' @param ...       Additional parameters

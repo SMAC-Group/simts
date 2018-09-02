@@ -155,6 +155,10 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
     attr(acfe, "unit_time") = unit_time
   }
   
+  if(!is.null(names(x))){
+    attr(acfe, "data_name") = names(x)
+  }
+  
   acfe
 }
 
@@ -276,7 +280,7 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
     if (is.null(attr(x,"data_name"))){
       main = paste0(as.character((x2$`Signal Y`)[1]), " ACF plot")
     }else{
-      main = paste0(attr(x,"data_name"), " ACF plot")
+      main = paste0(attr(x,"data_name")[1], " ACF plot")
     }
   }else {
     main = main
@@ -384,6 +388,10 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   unit_time = attr(x, "unit_time")
   if (!is.null(unit_time)){
     attr(pacfe, "unit_time") = unit_time
+  }
+  
+  if(!is.null(names(x))){
+    attr(pacfe, "data_name") = names(x)
   }
   
   pacfe
@@ -503,7 +511,7 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
     if (is.null(attr(x,"data_name"))){
       main = paste0(as.character((x2$`Signal Y`)[1]), " PACF plot")
     }else{
-      main = paste0(attr(x,"data_name"), " PACF plot")
+      main = paste0(attr(x,"data_name")[1], " PACF plot")
     }
   }
   else {

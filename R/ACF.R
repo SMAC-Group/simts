@@ -1,4 +1,4 @@
-# Copyright (C) 2017 James Balamuta, Justin Lee, Stephane Guerrier, Roberto Molinari
+# Copyright (C) 2018 Stephane Guerrier, Yuming Zhang, Roberto Molinari
 #
 # This file is part of simts R Methods Package
 #
@@ -162,8 +162,8 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   acfe
 }
 
-#' @title Plot Estimated Auto-Covariance and Correlation Functions
-#' @description The function takes the output of the \code{\link{ACF}} function (empirical autocovariance or autocorrelation functions).
+#' @title Plot Auto-Covariance and Correlation Functions
+#' @description The function takes the output of the \code{\link{theo_acf}} and \code{\link{ACF}} functions (autocovariance or autocorrelation functions).
 #' @author Yunxiang Zhang, Stéphane Guerrier and Yuming Zhang
 #' @param x         An \code{"ACF"} object output from \code{\link{ACF}}.
 #' @param xlab         A \code{string} indicating the label of the x axis, the default name is 'Lags'.
@@ -171,8 +171,8 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.
 #' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 95% confidence interval. 
 #' @param col_ci    A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).
-#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci} confidence region.
-#' Default is 0.25. 
+#' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
+#' Defaults to 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.
 #' @param ...       Additional parameters
 #' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
@@ -233,7 +233,6 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   }
   
   # add color of CI
-  #col_ci = rgb(0, 0.6, 1, 0.2)
   if (!is.null(col_ci)){
     col_ci = col2rgb(col_ci)
     col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
@@ -256,14 +255,19 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   # Range
   x_range = range(x2$Lag)-1
   
-  if (show.ci == TRUE){
-    n = attr(x,"n")
-    mult = qnorm(1-alpha/2)
-    y_range = range(c(x2$ACF, 1/sqrt(n)*mult*c(-1,1)))
-  }else{
-    y_range = range(0:1)
+  # Remove confidence intervals for theoretical ACF
+  if (attr(x, "dimnames")[[2]] == "Theoretical"){
+    show.ci = FALSE
   }
   
+  if (show.ci == TRUE){
+      n = attr(x,"n")
+      mult = qnorm(1-alpha/2)
+      y_range = range(c(x2$ACF, 1/sqrt(n)*mult*c(-1,1)))
+    }else{
+      y_range = range(x2$ACF)
+    }
+
   x_ticks = seq(x_range[1], x_range[2], by = 1)
   y_ticks = seq(y_range[1], y_range[2], by = 0.05)
   

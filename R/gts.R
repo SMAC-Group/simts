@@ -509,6 +509,7 @@ gts_time = function(x){
 #' @param ... Expressions to combine. 
 #' @return A combined expression. 
 #' @author Stephane Guerrier
+#' @export
 comb = function(...) {
   Reduce(function(x, y) substitute(x * y, env = list(x = x, y = y)), 
          list(...))

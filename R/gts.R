@@ -14,19 +14,19 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title Create a simts TS Object based on data
-#' @description Setups a time series oriented object that works well with graphing and summary utilities
+#' @title Create a simts TS object using time series data
+#' @description Takes a time series and turns it into a time series oriented object that can be used for summary and graphing functions in the \code{simts} package.
 #' @param data      A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.
 #' @param start     A \code{numeric} that provides the time of the first observation.
 #' @param end       A \code{numeric} that provides the time of the last observation.
-#' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param data_name A \code{string} that contains the name of data.
-#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
-#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param freq      A \code{numeric} that provides the rate/frequency at which the time series is sampled. The default value is 1.
+#' @param data_name A \code{string} that contains the name of the time series data.
+#' @param unit_ts   A \code{string} that contains the unit of measure of the time series. The default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit of measure of the time. The default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @param Time      A numeric or character \code{vector} containing the times of observations. Default value is \code{NULL}.
-#' @param time_format A \code{string} specifiying the format of 'Time'. If not provided, 'Time' is assumed to be all integers. Default value is \code{NULL}.
+#' @param Time      A numeric or character \code{vector} containing the times of observations. Default value is \code{NULL}. See \code{x} object in \code{as.Date} function.
+#' @param time_format A \code{string} specifiying the format of 'Time'. If not provided, 'Time' is assumed to be all integers. Default value is \code{NULL}. See \code{format} argument in \code{as.Date} function.
 #' @return A \code{gts} object
 #' @export
 #' @author James Balamuta and Wenchao Yang
@@ -128,10 +128,10 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 }
 
 
-#' @title Create a simts TS Object based on model
-#' @description Create a \code{gts} object based on a supplied time series model.
-#' @param n          An \code{interger} containing the amount of observations for the time series.
-#' @param model      A \code{ts.model} or \code{simts} object containing one of the allowed models.
+#' @title Simulate a simts TS object using a theoretical model
+#' @description Create a \code{gts} object based on a time series model.
+#' @param n          An \code{integer} containing the length of the time series.
+#' @param model      A \code{ts.model} or \code{simts} object containing the available models in the simts package.
 #' @param start      A \code{numeric} that provides the time of the first observation.
 #' @param end        A \code{numeric} that provides the time of the last observation.
 #' @param freq       A \code{numeric} that provides the rate of samples. Default value is 1.

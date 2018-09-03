@@ -105,13 +105,13 @@ theo_pacf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
 
 #' @title Estimation of Auto-Covariance and Correlation Functions
 #' @description The ACF function estimates the
-#' autocovariance or autocorrelation for both univariate and multivariate time series.
+#' autocovariance or autocorrelation for univariate time series.
 #' @author Yunxiang Zhang
-#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1).
+#' @param x      A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
 #' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.
 #' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
 #' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
-#' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+#' @return An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
 #' observations and \eqn{m} is the number of time series being compared. If 
@@ -174,7 +174,6 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' Defaults to 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.
 #' @param ...       Additional parameters
-#' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.ACF
 #' @export
 #' @importFrom grDevices col2rgb
@@ -344,13 +343,13 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
 
 #' @title Partial Auto-Covariance and Correlation Functions
 #' @description The PACF function estimates the
-#' partial autocovariance or autocorrelation for both univariate and multivariate time series.
+#' partial autocovariance or autocorrelation for both univariate time series.
 #' @author Yunxiang Zhang
-#' @param x      A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1).
+#' @param x      A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
 #' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.
 #' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
 #' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
-#' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+#' @return An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
 #' observations and \eqn{m} is the number of time series being compared. If 
@@ -416,7 +415,6 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' Defaults to 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name PACF plot'.
 #' @param ...       Additional parameters
-#' @return An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 #' @rdname plot.PACF
 #' @importFrom grDevices col2rgb
 #' @export
@@ -577,7 +575,7 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
 #' @description Correlation Analysis function computes and plots both empirical ACF and PACF
 #' of univariate time series.
 #' @author Yunxiang Zhang
-#' @param x         A \code{"ts"} object.
+#' @param x         A \code{vector} or \code{"ts"} object (of length \eqn{N > 1}).
 #' @param lagmax    A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.
 #' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
 #' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.

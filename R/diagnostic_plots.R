@@ -2,15 +2,15 @@
 # resid_plot function
 #######################
 #' @title Plot the Distribution of (Standardized) Residuals
-#' @description This function can plot a histogram of the distribution of standardized
-#' residuals, or plot the (standardized) residuals plot, or both.
+#' @description This function plots a histogram (with kernel density function and normal distribution) of the standardized
+#' residuals or a basic plot the (standardized) residuals, or both.
 #' @author Yuming Zhang
-#' @param Xt The data used to construct said model.
-#' @param model The \code{arima} model used to fit the data. 
+#' @param Xt The original time series data.
+#' @param model The \code{arima} model fit to the data. 
 #' @param std A \code{boolean} indicating whether the residuals plot is for standardized
 #' residuals or original residuals.
 #' @param type     A \code{string} indicating either:
-#' \code{"hist"} (standardized residual histogram), \code{"resid"} (residual plot),
+#' \code{"hist"} (standardized residual histogram with superimposed kernel density estimator and normal distribution), \code{"resid"} (standard residual plot),
 #' or \code{"both"}
 #' @export
 #' @importFrom stats sd
@@ -104,18 +104,16 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 }
 
 
-#######################
-# diag_plot function
-#######################
-#' @title Simple Version of Diagnostic Plot of Residuals
-#' @description This function will plot 4 diagnostic plots to assess the model used to 
-#' fit the data. These include: (1) residuals plot, (2) histogram of distribution of 
-#' (standardized) residuals, (3) Normal Q-Q plot of residuals and (4) Residuals vs Fitted plot.
+
+#' @title Basic Diagnostic Plot of Residuals
+#' @description This function will plot four diagnostic plots to assess how well the model fits 
+#' the data. These plots are: (1) residuals plot, (2) histogram of 
+#' (standardized) residuals, (3) normal Q-Q plot of residuals and (4) residuals vs fitted values plot.
 #' @author Yuming Zhang
-#' @param Xt The data used to construct said model.
-#' @param model The \code{arima} model used to fit the data. 
-#' @param std A \code{boolean} indicating whether we use standardized residuals for 
-#' (1) residuals plot and (2) histogram of distribution of (standardized) residuals.
+#' @param Xt The original time series data.
+#' @param model The \code{arima} model fit to the data.
+#' @param std A \code{boolean} indicating whether we use standardized residuals for the 
+#' (1) residuals plot and the (2) histogram of (standardized) residuals.
 #' @export
 #' @importFrom graphics points
 #' @importFrom stats qqnorm
@@ -180,21 +178,24 @@ simple_diag_plot = function(Xt, model, std = FALSE){
              ylab = "Residuals",
              main = "Residuals vs Fitted")
   points(xx, res, col = "blue4")
+  
+  par(mfrow = c(1,1))
+  
 }
 
 
 
 #' @title Diagnostic Plot of Residuals
-#' @description This function will plot 8 diagnostic plots to assess the model used to 
-#' fit the data. These include: (1) residuals plot, (2) residuals vs fitted values, 
-#' (3) histogram of distribution of standardized residuals, (4) Normal Q-Q plot of 
-#' residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet Variance Representation,
-#' (8) Box test results.
+#' @description This function will plot eight diagnostic plots to assess how well the model fits  
+#' the data. These include: (1) residuals plot, (2) residuals vs fitted values, 
+#' (3) histogram of standardized residuals, (4) normal Q-Q plot of 
+#' residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet variance representation,
+#' (8) Ljung-Box test results.
 #' @author Yuming Zhang
-#' @param Xt The data used to construct said model.
-#' @param model The \code{arima} model used to fit the data. 
+#' @param Xt The original time series data.
+#' @param model The \code{arima} model fit to the data.
 #' @param std A \code{boolean} indicating whether we use standardized residuals for 
-#' (1) residuals plot and (8) Box test results.
+#' the (1) residuals plot and the (8) Ljung-Box test results.
 #' @export
 #' @importFrom graphics points
 #' @importFrom stats qqnorm
@@ -288,6 +289,8 @@ diag_plot = function(Xt, model, std = FALSE){
   points(object$lag, object$pvalue, pch = 16)
   lines(object$lag, object$pvalue, lty = 3)
   abline(h = 0.05, col = "blue", lty = 2)
+  
+  par(mfrow = c(1,1))
 
 }
 

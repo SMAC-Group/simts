@@ -7,19 +7,19 @@
 diag_plot(Xt, model, std = FALSE)
 }
 \arguments{
-\item{Xt}{The data used to construct said model.}
+\item{Xt}{The original time series data.}
 
-\item{model}{The \code{arima} model used to fit the data.}
+\item{model}{The \code{arima} model fit to the data.}
 
 \item{std}{A \code{boolean} indicating whether we use standardized residuals for 
-(1) residuals plot and (8) Box test results.}
+the (1) residuals plot and the (8) Ljung-Box test results.}
 }
 \description{
-This function will plot 8 diagnostic plots to assess the model used to 
-fit the data. These include: (1) residuals plot, (2) residuals vs fitted values, 
-(3) histogram of distribution of standardized residuals, (4) Normal Q-Q plot of 
-residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet Variance Representation,
-(8) Box test results.
+This function will plot eight diagnostic plots to assess how well the model fits  
+the data. These include: (1) residuals plot, (2) residuals vs fitted values, 
+(3) histogram of standardized residuals, (4) normal Q-Q plot of 
+residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet variance representation,
+(8) Ljung-Box test results.
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))

@@ -28,9 +28,6 @@ Defaults to 0.25.}
 
 \item{...}{Additional parameters}
 }
-\value{
-An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
-}
 \description{
 The function plots the output of the \code{\link{theo_pacf}} and \code{\link{PACF}} functions (partial autocovariance or autocorrelation functions).
 }

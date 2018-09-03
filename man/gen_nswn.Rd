@@ -7,11 +7,11 @@
 gen_nswn(n_total, title = NULL, seed = 135, ...)
 }
 \arguments{
-\item{n_total}{An \code{integer} indicating the length of the whole non-stationary white noise process.}
+\item{n_total}{An \code{integer} indicating the length of the simulated non-stationary white noise process.}
 
-\item{title}{A \code{string} of the time series data name.}
+\item{title}{A \code{string} defining the name of the time series data.}
 
-\item{seed}{An \code{integer} set for simulation replication purpose.}
+\item{seed}{An \code{integer} defined for simulation replication purposes.}
 
 \item{...}{Additional parameters.}
 }
@@ -19,12 +19,11 @@ gen_nswn(n_total, title = NULL, seed = 135, ...)
 A \code{vector} containing the non-stationary white noise process.
 }
 \description{
-This function allows us to generate a non-stationary white noise process.
+This function allows to generate a non-stationary white noise process.
 }
 \note{
-This function helps generate a non-stationary process example, non-stationary white 
-noise, whose theoretical maximum overlapping allan variance (MOAV) corresponds to the 
-theoretical MOAV of the stationary white noise process. This example confirms that allan 
+This function generates a non-stationary white noise process whose theoretical maximum overlapping allan variance (MOAV) corresponds to the 
+theoretical MOAV of the stationary white noise process. This example confirms that the allan 
 variance is unable to distinguish between a stationary white noise process and a white noise 
 process whose second-order behavior is non-stationary, as pointed out in the paper "A Study of 
 the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing 

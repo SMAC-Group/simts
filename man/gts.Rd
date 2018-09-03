@@ -2,7 +2,7 @@
 % Please edit documentation in R/gts.R
 \name{gts}
 \alias{gts}
-\title{Create a simts TS Object based on data}
+\title{Create a simts TS object using time series data}
 \usage{
 gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL,
@@ -15,27 +15,27 @@ gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 
 \item{end}{A \code{numeric} that provides the time of the last observation.}
 
-\item{freq}{A \code{numeric} that provides the rate of samples. Default value is 1.}
+\item{freq}{A \code{numeric} that provides the rate/frequency at which the time series is sampled. The default value is 1.}
 
-\item{unit_ts}{A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.}
+\item{unit_ts}{A \code{string} that contains the unit of measure of the time series. The default value is \code{NULL}.}
 
-\item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
+\item{unit_time}{A \code{string} that contains the unit of measure of the time. The default value is \code{NULL}.}
 
 \item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
 
 \item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 
-\item{data_name}{A \code{string} that contains the name of data.}
+\item{data_name}{A \code{string} that contains the name of the time series data.}
 
-\item{Time}{A numeric or character \code{vector} containing the times of observations. Default value is \code{NULL}.}
+\item{Time}{A numeric or character \code{vector} containing the times of observations. Default value is \code{NULL}. See \code{x} object in \code{as.Date} function.}
 
-\item{time_format}{A \code{string} specifiying the format of 'Time'. If not provided, 'Time' is assumed to be all integers. Default value is \code{NULL}.}
+\item{time_format}{A \code{string} specifiying the format of 'Time'. If not provided, 'Time' is assumed to be all integers. Default value is \code{NULL}. See \code{format} argument in \code{as.Date} function.}
 }
 \value{
 A \code{gts} object
 }
 \description{
-Setups a time series oriented object that works well with graphing and summary utilities
+Takes a time series and turns it into a time series oriented object that can be used for summary and graphing functions in the \code{simts} package.
 }
 \examples{
 m = data.frame(rnorm(50))

@@ -7,20 +7,20 @@
 resid_plot(Xt, model, std = FALSE, type = "hist", ...)
 }
 \arguments{
-\item{Xt}{The data used to construct said model.}
+\item{Xt}{The original time series data.}
 
-\item{model}{The \code{arima} model used to fit the data.}
+\item{model}{The \code{arima} model fit to the data.}
 
 \item{std}{A \code{boolean} indicating whether the residuals plot is for standardized
 residuals or original residuals.}
 
 \item{type}{A \code{string} indicating either:
-\code{"hist"} (standardized residual histogram), \code{"resid"} (residual plot),
+\code{"hist"} (standardized residual histogram with superimposed kernel density estimator and normal distribution), \code{"resid"} (standard residual plot),
 or \code{"both"}}
 }
 \description{
-This function can plot a histogram of the distribution of standardized
-residuals, or plot the (standardized) residuals plot, or both.
+This function plots a histogram (with kernel density function and normal distribution) of the standardized
+residuals or a basic plot the (standardized) residuals, or both.
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))

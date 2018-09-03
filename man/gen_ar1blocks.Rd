@@ -2,7 +2,7 @@
 % Please edit documentation in R/avns.R
 \name{gen_ar1blocks}
 \alias{gen_ar1blocks}
-\title{Generate AR(1) Blocks Process}
+\title{Generate AR(1) Block Process}
 \usage{
 gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10, 
 title = NULL, seed = 135, ...)
@@ -12,30 +12,30 @@ title = NULL, seed = 135, ...)
 
 \item{sigma2}{A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.}
 
-\item{n_total}{An \code{integer} indicating the length of the whole AR(1) blocks process.}
+\item{n_total}{An \code{integer} indicating the length of the simulated AR(1) block process.}
 
-\item{n_block}{An \code{integer} indicating the length of each block of the AR(1) blocks process.}
+\item{n_block}{An \code{integer} indicating the length of each block of the AR(1) block process.}
 
-\item{scale}{An \code{integer} indicating the amount of decomposition performed at each level. The default value is 10.}
+\item{scale}{An \code{integer} indicating the number of levels of decomposition. The default value is 10.}
 
-\item{title}{A \code{string} of the time series data name.}
+\item{title}{A \code{string} indicating the name of the time series data.}
 
-\item{seed}{An \code{integer} set for simulation replication purpose.}
+\item{seed}{An \code{integer} defined for simulation replication purposes.}
 
 \item{...}{Additional parameters.}
 }
 \value{
-A \code{vector} containing the AR(1) blocks process.
+A \code{vector} containing the AR(1) block process.
 }
 \description{
-This function allows us to generate a non-stationary AR(1) blocks process.
+This function allows us to generate a non-stationary AR(1) block process.
 }
 \note{
-This function helps generate a non-stationary process example, AR(1) blocks, whose 
-theoretical maximum overlapping allan variance (MOAV) is different and can be distinguished 
-from the theoretical MOAV of a stationary AR(1) process. This difference of allan variance 
-between stationary and non-stationary processes is proved to be able to be captured by the 
-calculation of theoretical allan variance raised in  "A Study of the Allan Variance for 
+This function generates a non-stationary AR(1) block process whose 
+theoretical maximum overlapping allan variance (MOAV) is different 
+from the theoretical MOAV of a stationary AR(1) process. This difference in the value of the allan variance 
+between stationary and non-stationary processes has been shown through the 
+calculation of the theoretical allan variance given in  "A Study of the Allan Variance for 
 Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing Letters, 2017), 
 preprint available: \url{https://arxiv.org/abs/1702.07795}.
 }

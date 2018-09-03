@@ -9,13 +9,13 @@ gen_bi(sigma2, n_total, n_block, title = NULL, seed = 135, ...)
 \arguments{
 \item{sigma2}{A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.}
 
-\item{n_total}{An \code{integer} indicating the length of the whole bias-instability process.}
+\item{n_total}{An \code{integer} indicating the length of the simulated bias-instability process.}
 
 \item{n_block}{An \code{integer} indicating the length of each block of the bias-instability process.}
 
-\item{title}{A \code{string} of the time series data name.}
+\item{title}{A \code{string} defining the name of the time series data.}
 
-\item{seed}{An \code{integer} set for simulation replication purpose.}
+\item{seed}{An \code{integer} defined for simulation replication purposes.}
 
 \item{...}{Additional parameters.}
 }
@@ -23,12 +23,12 @@ gen_bi(sigma2, n_total, n_block, title = NULL, seed = 135, ...)
 A \code{vector} containing the bias-instability process.
 }
 \description{
-This function allows us to generate a non-stationary bias-instability process.
+This function allows to generate a non-stationary bias-instability process.
 }
 \note{
-This function helps generate a non-stationary process example, bias-instability,
+This function generates a non-stationary bias-instability process
 whose theoretical maximum overlapping allan variance (MOAV) is close to the theoretical
-MOAV of its closest stationary AR(1) process over some scales. However, this approximation 
+MOAV of the best approximation of this process through a stationary AR(1) process over some scales. However, this approximation 
 is not good enough when considering the logarithmic representation of the allan variance.
 Therefore, the exact form of the allan variance of this non-stationary process allows us 
 to better interpret the signals characterized by bias-instability, as shown in "A Study 

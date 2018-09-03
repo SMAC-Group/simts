@@ -8,7 +8,7 @@ corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE,
   alpha = 0.05, plot = TRUE, ...)
 }
 \arguments{
-\item{x}{A \code{"ts"} object.}
+\item{x}{A \code{vector} or \code{"ts"} object (of length \eqn{N > 1}).}
 
 \item{lagmax}{A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.}
 

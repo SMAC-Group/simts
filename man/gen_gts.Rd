@@ -2,15 +2,15 @@
 % Please edit documentation in R/gts.R
 \name{gen_gts}
 \alias{gen_gts}
-\title{Create a simts TS Object based on model}
+\title{Simulate a simts TS object using a theoretical model}
 \usage{
 gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   unit_time = NULL, name_ts = NULL, name_time = NULL)
 }
 \arguments{
-\item{n}{An \code{interger} containing the amount of observations for the time series.}
+\item{n}{An \code{integer} containing the length of the time series.}
 
-\item{model}{A \code{ts.model} or \code{simts} object containing one of the allowed models.}
+\item{model}{A \code{ts.model} or \code{simts} object containing the available models in the simts package.}
 
 \item{start}{A \code{numeric} that provides the time of the first observation.}
 
@@ -30,7 +30,7 @@ gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 A \code{gts} object
 }
 \description{
-Create a \code{gts} object based on a supplied time series model.
+Create a \code{gts} object based on a time series model.
 }
 \details{
 This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.

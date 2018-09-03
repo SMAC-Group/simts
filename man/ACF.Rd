@@ -7,7 +7,7 @@
 ACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
 }
 \arguments{
-\item{x}{A \code{matrix} with dimensions \eqn{N \times S}{N x S} or N observations and S processes (S can be equal to 1).}
+\item{x}{A \code{vector} or \code{ts} object (of length \eqn{N > 1}).}
 
 \item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.}
 
@@ -16,11 +16,11 @@ ACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
 \item{demean}{A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.}
 }
 \value{
-An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 }
 \description{
 The ACF function estimates the
-autocovariance or autocorrelation for both univariate and multivariate time series.
+autocovariance or autocorrelation for univariate time series.
 }
 \details{
 \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of

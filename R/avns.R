@@ -1,4 +1,4 @@
-# Copyright (C) 2017 James Balamuta, Stephane Guerrier, Roberto Molinari, Justin Lee
+# Copyright (C) 2018 James Balamuta, Stephane Guerrier, Roberto Molinari, Justin Lee
 #
 # This file is part of simts R Methods Package
 #
@@ -14,26 +14,26 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title Generate AR(1) Blocks Process
+#' @title Generate AR(1) Block Process
 #' @description 
-#' This function allows us to generate a non-stationary AR(1) blocks process.
+#' This function allows us to generate a non-stationary AR(1) block process.
 #' @export
 #' @usage gen_ar1blocks(phi, sigma2, n_total, n_block, scale = 10, 
 #' title = NULL, seed = 135, ...)
 #' @param phi     A \code{double} value for the autocorrection parameter \eqn{\phi}{phi}.
 #' @param sigma2  A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
-#' @param n_total An \code{integer} indicating the length of the whole AR(1) blocks process.
-#' @param n_block An \code{integer} indicating the length of each block of the AR(1) blocks process.
-#' @param scale   An \code{integer} indicating the amount of decomposition performed at each level. The default value is 10.
-#' @param title   A \code{string} of the time series data name. 
-#' @param seed    An \code{integer} set for simulation replication purpose.
+#' @param n_total An \code{integer} indicating the length of the simulated AR(1) block process.
+#' @param n_block An \code{integer} indicating the length of each block of the AR(1) block process.
+#' @param scale   An \code{integer} indicating the number of levels of decomposition. The default value is 10.
+#' @param title   A \code{string} indicating the name of the time series data. 
+#' @param seed    An \code{integer} defined for simulation replication purposes.
 #' @param ...     Additional parameters. 
-#' @return A \code{vector} containing the AR(1) blocks process.
-#' @note This function helps generate a non-stationary process example, AR(1) blocks, whose 
-#' theoretical maximum overlapping allan variance (MOAV) is different and can be distinguished 
-#' from the theoretical MOAV of a stationary AR(1) process. This difference of allan variance 
-#' between stationary and non-stationary processes is proved to be able to be captured by the 
-#' calculation of theoretical allan variance raised in  "A Study of the Allan Variance for 
+#' @return A \code{vector} containing the AR(1) block process.
+#' @note This function generates a non-stationary AR(1) block process whose 
+#' theoretical maximum overlapping allan variance (MOAV) is different 
+#' from the theoretical MOAV of a stationary AR(1) process. This difference in the value of the allan variance 
+#' between stationary and non-stationary processes has been shown through the 
+#' calculation of the theoretical allan variance given in  "A Study of the Allan Variance for 
 #' Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing Letters, 2017), 
 #' preprint available: \url{https://arxiv.org/abs/1702.07795}.
 #' @author Yuming Zhang and Haotian Xu
@@ -70,17 +70,16 @@ gen_ar1blocks = function(phi, sigma2, n_total, n_block,
 
 #' @title Generate Non-Stationary White Noise Process
 #' @description 
-#' This function allows us to generate a non-stationary white noise process.
+#' This function allows to generate a non-stationary white noise process.
 #' @export
 #' @usage gen_nswn(n_total, title = NULL, seed = 135, ...)
-#' @param n_total An \code{integer} indicating the length of the whole non-stationary white noise process.
-#' @param title   A \code{string} of the time series data name. 
-#' @param seed    An \code{integer} set for simulation replication purpose.
+#' @param n_total An \code{integer} indicating the length of the simulated non-stationary white noise process.
+#' @param title   A \code{string} defining the name of the time series data. 
+#' @param seed    An \code{integer} defined for simulation replication purposes.
 #' @param ...     Additional parameters. 
 #' @return A \code{vector} containing the non-stationary white noise process.
-#' @note This function helps generate a non-stationary process example, non-stationary white 
-#' noise, whose theoretical maximum overlapping allan variance (MOAV) corresponds to the 
-#' theoretical MOAV of the stationary white noise process. This example confirms that allan 
+#' @note This function generates a non-stationary white noise process whose theoretical maximum overlapping allan variance (MOAV) corresponds to the 
+#' theoretical MOAV of the stationary white noise process. This example confirms that the allan 
 #' variance is unable to distinguish between a stationary white noise process and a white noise 
 #' process whose second-order behavior is non-stationary, as pointed out in the paper "A Study of 
 #' the Allan Variance for Constant-Mean Non-Stationary Processes" by Xu et al. (IEEE Signal Processing 
@@ -113,19 +112,19 @@ gen_nswn = function(n_total, title = NULL, seed = 135, ...){
 
 #' @title Generate Bias-Instability Process
 #' @description 
-#' This function allows us to generate a non-stationary bias-instability process.
+#' This function allows to generate a non-stationary bias-instability process.
 #' @export
 #' @usage gen_bi(sigma2, n_total, n_block, title = NULL, seed = 135, ...)
 #' @param sigma2  A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2}.
-#' @param n_total An \code{integer} indicating the length of the whole bias-instability process.
+#' @param n_total An \code{integer} indicating the length of the simulated bias-instability process.
 #' @param n_block An \code{integer} indicating the length of each block of the bias-instability process.
-#' @param title   A \code{string} of the time series data name. 
-#' @param seed    An \code{integer} set for simulation replication purpose.
+#' @param title   A \code{string} defining the name of the time series data.
+#' @param seed    An \code{integer} defined for simulation replication purposes.
 #' @param ...     Additional parameters. 
 #' @return A \code{vector} containing the bias-instability process.
-#' @note This function helps generate a non-stationary process example, bias-instability,
+#' @note This function generates a non-stationary bias-instability process
 #' whose theoretical maximum overlapping allan variance (MOAV) is close to the theoretical
-#' MOAV of its closest stationary AR(1) process over some scales. However, this approximation 
+#' MOAV of the best approximation of this process through a stationary AR(1) process over some scales. However, this approximation 
 #' is not good enough when considering the logarithmic representation of the allan variance.
 #' Therefore, the exact form of the allan variance of this non-stationary process allows us 
 #' to better interpret the signals characterized by bias-instability, as shown in "A Study 

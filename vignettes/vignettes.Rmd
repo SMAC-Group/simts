@@ -254,7 +254,7 @@ The autocorrelation graph reveals that there exits some seasonal features in thi
 
 We can look at another dataset, `lynx`, annual numbers of lynx trappings in Canada for 1821-1934 in the code below: 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada'}
-# Load Lynx dataset 
+# Load lynx dataset 
 data(lynx)
 
 # Simulate based on data
@@ -262,7 +262,7 @@ lynx = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1,
            unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
            unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")
 
-# Plot Lynx Simulation
+# Plot lynx simulation
 plot(lynx)
 ```
 
@@ -276,16 +276,16 @@ plot(lynx_acf)
 ```
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
-#Compute PACF and plot result
+# Compute PACF and plot result
 lynx_pacf = PACF(lynx)
 plot(lynx_pacf)
 ```
 
-### Lynx Dataset 
+### Sunspot Dataset 
 
-We can look at another dataset, `sunspot.year`, Yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below: 
+We can look at another dataset, `sunspot.year`, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below: 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Yearly numbers of sunspots from 1700 to 1988'}
-# Load Sunspot dataset 
+# Load sunspot dataset 
 sunspot = datasets::sunspot.year
 
 # Simulate based on data
@@ -293,7 +293,7 @@ sunspot = gts(as.vector(sunspot.year), start = 1700, end = 1988, freq = 1,
            unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
            unit_time = "year", data_name = "Yearly Numbers of Sunspots")
 
-# Plot Lynx Simulation
+# Plot sunspot simulation
 plot(sunspot)
 ```
 

@@ -9,31 +9,30 @@
   parValue = NULL, ...)
 }
 \arguments{
-\item{x}{An \code{"PACF"} object from \code{\link{PACF}}.}
+\item{x}{A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{PACF}}.}
 
-\item{xlab}{A \code{string} indicating the label of x axis, the default name is 'Lags'}
+\item{xlab}{A \code{string} indicating the label of the x axis: the default name is 'Lags'.}
 
-\item{ylab}{A \code{string} indicating the label of y axis, the default name is 'PACF'.}
+\item{ylab}{A \code{string} indicating the label of the y axis: the default name is 'PACF'.}
 
-\item{show.ci}{A \code{bool} indicating whether to show confidence region.}
+\item{show.ci}{A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.}
 
-\item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
+\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval.}
 
-\item{col_ci}{A \code{string} indicating the color of the confidence interval polygon.}
+\item{col_ci}{A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).}
 
-\item{transparency}{A \code{double} between 0 and 1 indicating the transparency level of the confidence region.
-Default is 0.25.}
+\item{transparency}{A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
+Defaults to 0.25.}
 
 \item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name PACF plot'.}
 
-\item{...}{Additional parameters.}
+\item{...}{Additional parameters}
 }
 \value{
 An \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
 }
 \description{
-Plot pacf function computes the estimated
-plot partial autocovariance or autocorrelation for both univariate and multivariate cases.
+The function plots the output of the \code{\link{theo_pacf}} and \code{\link{PACF}} functions (partial autocovariance or autocorrelation functions).
 }
 \examples{
 # Plot the Partial Autocorrelation

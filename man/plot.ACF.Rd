@@ -9,15 +9,15 @@
   parValue = NULL, ...)
 }
 \arguments{
-\item{x}{An \code{"ACF"} object output from \code{\link{ACF}}.}
+\item{x}{An \code{"ACF"} object output from \code{\link{theo_acf}} or \code{\link{ACF}}.}
 
-\item{xlab}{A \code{string} indicating the label of the x axis, the default name is 'Lags'.}
+\item{xlab}{A \code{string} indicating the label of the x axis: the default name is 'Lags'.}
 
-\item{ylab}{A \code{string} indicating the label of the y axis, the default name is 'ACF'.}
+\item{ylab}{A \code{string} indicating the label of the y axis: the default name is 'ACF'.}
 
 \item{show.ci}{A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.}
 
-\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 95% confidence interval.}
+\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval.}
 
 \item{col_ci}{A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).}
 
@@ -42,7 +42,7 @@ m = ACF(datasets::AirPassengers)
 plot(m) 
 
 # Plot with 90\% CI
-plot(m, ci = 0.90) 
+plot(m, alpha = 0.1) 
 
 # Plot without 95\% CI
 plot(m, show.ci = FALSE)

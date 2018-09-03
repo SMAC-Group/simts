@@ -4,10 +4,9 @@
 \alias{RW2dimension}
 \title{Function to Compute Direction Random Walk Moves}
 \usage{
-RW2dimension(steps = 100, probs = c(0.25, 0.5, 0.75),
-  couleur = "blue4", xlab = "X-position", ylab = "Y-position",
-  main = NULL, pt_col = NULL, pt_pch = 16, pt.cex = 2,
-  leg_pos = NULL)
+RW2dimension(steps = 100, probs = c(0.25, 0.5, 0.75), couleur = "blue4",
+  xlab = "X-position", ylab = "Y-position", main = NULL, pt_col = NULL,
+  pt_pch = 16, pt.cex = 2, leg_pos = NULL)
 }
 \arguments{
 \item{steps}{An \code{integer} that counts the number of steps of the random walk.}

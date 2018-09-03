@@ -4,35 +4,35 @@
 \alias{corr_analysis}
 \title{Correlation Analysis Functions}
 \usage{
-corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE,
-  show.ci = TRUE, alpha = 0.05, plot = TRUE, ...)
+corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE,
+  alpha = 0.05, plot = TRUE, ...)
 }
 \arguments{
-\item{x}{An \code{"ts"} object.}
+\item{x}{A \code{"ts"} object.}
 
-\item{lagmax}{A \code{integer} indicating the max lag.}
+\item{lagmax}{A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.}
 
-\item{cor}{A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed.}
+\item{cor}{A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.}
 
-\item{demean}{A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}).}
+\item{demean}{A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.}
 
-\item{show.ci}{A \code{bool} indicating whether to show confidence region.}
+\item{show.ci}{A \code{bool} indicating whether to compute and show the confidence region. Defaults to \code{TRUE}.}
 
-\item{alpha}{A \code{double} indicating the confidence interval level. Default is 0.05.}
+\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval.}
 
-\item{plot}{A \code{bool} indicating whether to plot.}
+\item{plot}{A \code{bool} indicating whether a plot of the computed quantities should be produced. Defaults to \code{TRUE}.}
 
 \item{...}{Additional parameters.}
 }
 \value{
-Two \code{array} of dimensions \eqn{N \times S \times S}{N x S x S}.
+Two \code{array} objects (ACF and PACF) of dimension \eqn{N \times S \times S}{N x S x S}.
 }
 \description{
 Correlation Analysis function computes and plots both empirical ACF and PACF
-of both univariate and multivariate cases.
+of univariate time series.
 }
 \examples{
-# Plot the Partial Autocorrelation
+# Estimate both the ACF and PACF functions
 corr_analysis(datasets::AirPassengers)
 }
 \author{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/model_selection.R
 \name{best_model}
 \alias{best_model}
-\title{Select the best model}
+\title{Select the Best Model}
 \usage{
 best_model(x, ic = "aic")
 }
@@ -10,18 +10,9 @@ best_model(x, ic = "aic")
 \item{x}{An object from either \code{\link{select_arima}},
 \code{\link{select_arma}}, \code{\link{select_ar}}, or \code{\link{select_ma}}.}
 
-\item{ic}{Type of criterion to use in selecting the best model.}
+\item{ic}{A \code{string} indicating the type of criterion to use in selecting the best model. 
+Supported criteria include "AIC", "BIC" and "HQ".}
 }
 \description{
-Retrieves the best model
-}
-\examples{
-sunspot = gts(sunspot.year, start = 1700, freq = 1)
-sunspot_select = select_ar(sunspot, p.min = 1, p.max = 12)
-sunspot_bm = best_model(sunspot_select, ic = "bic")
-sunspot_bm
-
-}
-\author{
-James Balamuta and Stéphane Guerrier
+This function retrieves the best model.
 }

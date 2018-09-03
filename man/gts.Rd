@@ -5,8 +5,8 @@
 \title{Create a simts TS Object based on data}
 \usage{
 gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
-  unit_time = NULL, name_ts = NULL, name_time = NULL,
-  data_name = NULL, Time = NULL, time_format = NULL)
+  unit_time = NULL, name_ts = NULL, name_time = NULL, data_name = NULL,
+  Time = NULL, time_format = NULL)
 }
 \arguments{
 \item{data}{A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.}

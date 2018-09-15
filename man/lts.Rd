@@ -2,35 +2,36 @@
 % Please edit documentation in R/lts.R
 \name{lts}
 \alias{lts}
-\title{Generate Latent Time Series Object Based on Data}
+\title{Generate a Latent Time Series Object from Data}
 \usage{
 lts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
-  unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL)
+  unit_time = NULL, name_ts = NULL, name_time = NULL,
+  process = NULL)
 }
 \arguments{
-\item{data}{A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 2 columns. The last column must equal to the sum of all previous columns.}
+\item{data}{A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 3 columns of which the last represents the latent time series obtained through the sum of the previous columns.}
 
 \item{start}{A \code{numeric} that provides the time of the first observation.}
 
 \item{end}{A \code{numeric} that provides the time of the last observation.}
 
-\item{freq}{A \code{numeric} that provides the rate of samples. Default value is 1.}
+\item{freq}{A \code{numeric} that provides the rate/frequency at which the time series is sampled. The default value is 1.}
 
-\item{unit_ts}{A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.}
+\item{unit_ts}{A \code{string} that contains the unit of measure of the time series. The default value is \code{NULL}.}
 
-\item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
+\item{unit_time}{A \code{string} that contains the unit of measure of the time. The default value is \code{NULL}.}
 
 \item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
 
 \item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 
-\item{process}{A \code{vector} that contains model names of decomposed and combined processes.}
+\item{process}{A \code{vector} that contains model names of each column in the \code{data} object where the last name is the sum of the previous names.}
 }
 \value{
 A \code{lts} object
 }
 \description{
-Create a \code{lts} object based on a supplied matrix or data frame.
+Create a \code{lts} object based on a supplied matrix or data frame. The latent time series is obtained by the sum of underlying time series.
 }
 \examples{
 model1 = AR1(phi = .99, sigma2 = 1) 

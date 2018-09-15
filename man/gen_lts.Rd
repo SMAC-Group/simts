@@ -2,10 +2,11 @@
 % Please edit documentation in R/lts.R
 \name{gen_lts}
 \alias{gen_lts}
-\title{Generate Latent Time Series Object Based on Model}
+\title{Generate a Latent Time Series Object Based on a Model}
 \usage{
 gen_lts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
-  unit_time = NULL, name_ts = NULL, name_time = NULL, process = NULL)
+  unit_time = NULL, name_ts = NULL, name_time = NULL,
+  process = NULL)
 }
 \arguments{
 \item{n}{An \code{interger} indicating the amount of observations generated in this function.}
@@ -16,31 +17,31 @@ gen_lts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 
 \item{end}{A \code{numeric} that provides the time of the last observation.}
 
-\item{freq}{A \code{numeric} that provides the rate of samples. Default value is 1.}
+\item{freq}{A \code{numeric} that provides the rate/frequency at which the time series is sampled. The default value is 1.}
 
-\item{unit_ts}{A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.}
+\item{unit_ts}{A \code{string} that contains the unit of measure of the time series. The default value is \code{NULL}.}
 
-\item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
+\item{unit_time}{A \code{string} that contains the unit of measure of the time. The default value is \code{NULL}.}
 
 \item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
 
 \item{name_time}{A \code{string} that provides an identifier for the time. Default value is \code{NULL}.}
 
-\item{process}{A \code{vector} that contains model names of decomposed and combined processes.}
+\item{process}{A \code{vector} that contains model names of each column in the \code{data} object where the last name is the sum of the previous names.}
 }
 \value{
 A \code{lts} object with the following attributes:
 \describe{
-  \item{start}{The time of the first observation}
-  \item{end}{The time of the last observation}
-  \item{freq}{Numeric representation of frequency}
-  \item{unit}{String representation of the unit}
-  \item{name}{Name of the dataset}
+  \item{start}{The time of the first observation.}
+  \item{end}{The time of the last observation.}
+  \item{freq}{Numeric representation of the sampling frequency/rate.}
+  \item{unit}{A string reporting the unit of measurement.}
+  \item{name}{Name of the generated dataset.}
   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 }
 }
 \description{
-Create a \code{lts} object based on a supplied time series model.
+Simulate a \code{lts} object based on a supplied time series model.
 }
 \details{
 This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.

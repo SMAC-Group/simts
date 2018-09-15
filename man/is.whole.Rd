@@ -7,7 +7,7 @@
 is.whole(x)
 }
 \arguments{
-\item{x}{A \code{numeric} value to check to see if it is an integer.}
+\item{x}{A \code{numeric} value.}
 }
 \value{
 A \code{boolean} value indicating whether the value is an integer or not.

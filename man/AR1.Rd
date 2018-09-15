@@ -12,22 +12,22 @@ AR1(phi = NULL, sigma2 = 1)
 \item{sigma2}{A \code{double} value for the variance parameter \eqn{\sigma ^2}{sigma^2} (see Note for details).}
 }
 \value{
-An S3 object with called ts.model with the following structure:
+An S3 object containing the specified ts.model with the following structure:
 \describe{
  \item{process.desc}{Used in summary: "AR1","SIGMA2"}
- \item{theta}{\eqn{\phi}{phi}, \eqn{\sigma^2}{sigma^2}}
- \item{plength}{Number of Parameters}
+ \item{theta}{Parameter vector including \eqn{\phi}{phi}, \eqn{\sigma^2}{sigma^2}}
+ \item{plength}{Number of parameters}
  \item{print}{String containing simplified model}
  \item{desc}{"AR1"}
  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
- \item{starting}{Guess starting values? TRUE or FALSE (e.g. specified value)}
+ \item{starting}{Find starting values? TRUE or FALSE (e.g. specified value)}
 }
 }
 \description{
 Definition of an Autoregressive Process of Order 1
 }
 \note{
-We consider the following model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
+We consider the following AR(1) model: \deqn{X_t = \phi X_{t-1} + \varepsilon_t}, where \eqn{\varepsilon_t} is iid from a zero 
 mean normal distribution with variance \eqn{\sigma^2}.
 }
 \examples{

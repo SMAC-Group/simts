@@ -37,3 +37,17 @@ select_ma(xt, q.min = 1L, q.max = 5L, include.mean = TRUE)
 \description{
 This function performs model fitting and calculates the model selection criteria.
 }
+\examples{
+xt = gen_ar1(100, 0.3, 1)
+x = select_arima(xt)
+plot(x)
+
+xt = gen_ma1(100, 0.3, 1)
+x = select_ma(xt, q.min=2L, q.max=5L)
+plot(x)
+
+xt = gen_arma(10, c(.3,.5), c(.1), 1, 0)  
+x = select_arma(xt, p.min = 1L, p.max = 4L,
+                q.min = 1L, q.max = 3L)
+plot(x)
+}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/prediction_plot.R
 \name{plot_pred}
 \alias{plot_pred}
-\title{Plot Time Series Prediction Function}
+\title{Plot Time Series Forecast Function}
 \usage{
 plot_pred(x, model, n.ahead, time.pred, xlab = NULL, ylab = NULL,
   main = NULL, ...)
@@ -12,12 +12,12 @@ plot_pred(x, model, n.ahead, time.pred, xlab = NULL, ylab = NULL,
 
 \item{model}{A \code{ts} model}
 
-\item{n.ahead}{An \code{integer} indicating number of predictions needed}
+\item{n.ahead}{An \code{integer} indicating number of units of time ahead for which to make forecasts}
 
-\item{time.pred}{A \code{vector} indicating the time of predictions}
+\item{time.pred}{A \code{vector} indicating the time points for which the forecasts are made (\code{lenght(vector)} must be equal to \code{n.ahead})}
 }
 \description{
-This function plots the time series predictions.
+This function plots the time series output from a forecast method with approximate 68% and 95% confidence intervals.
 }
 \examples{
 x = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1, 

@@ -4,8 +4,8 @@
 \alias{corr_analysis}
 \title{Correlation Analysis Functions}
 \usage{
-corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE,
-  alpha = 0.05, plot = TRUE, ...)
+corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE,
+  show.ci = TRUE, alpha = 0.05, plot = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{vector} or \code{"ts"} object (of length \eqn{N > 1}).}

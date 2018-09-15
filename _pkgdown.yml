@@ -59,11 +59,7 @@ reference:
     - gen_generic_sarima
     - gen_model
     - gen_lts_cpp
-  - title: Functions for inertial sensors 
-    contents:
-    - imu
-    - create_imu
-  - title: Others
+  - title: Miscellanea
     contents:
     - is.whole
     - unitConversion

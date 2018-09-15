@@ -16,14 +16,14 @@
 
 
 ######################
-### Prediction Plot
+### Forecast Plot
 ######################
-#' @title Plot Time Series Prediction Function
-#' @description This function plots the time series predictions.
+#' @title Plot Time Series Forecast Function
+#' @description This function plots the time series output from a forecast method with approximate 68% and 95% confidence intervals.
 #' @param x A \code{gts} object
 #' @param model A \code{ts} model
-#' @param n.ahead An \code{integer} indicating number of predictions needed
-#' @param time.pred A \code{vector} indicating the time of predictions
+#' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts
+#' @param time.pred A \code{vector} indicating the time points for which the forecasts are made (\code{lenght(vector)} must be equal to \code{n.ahead})
 #' @author Yuming Zhang
 #' @export
 #' @examples
@@ -56,13 +56,14 @@ plot_pred = function(x, model, n.ahead, time.pred,
   # Warning 
   if (n_x == 0){stop('Time series is empty!')}
   if(!is(x,"gts")){stop('Object must be a gts object. Use functions gts() or gen_gts() to create it.')}
+  if (length(time.pred) != n.ahead){stop('Number of required forecasts (n.ahead) do not correspond to given time points (time.pred)')}
   
   # Prediction 
   prediction = predict(model, n.ahead = n.ahead)
   pred = prediction$pred
   se = prediction$se
   
-  # ----- Labels
+  # Labels
   if (!is.null(xlab)){
     name_time = xlab
   }
@@ -108,7 +109,7 @@ plot_pred = function(x, model, n.ahead, time.pred,
   }
   
   
-  # ----- Plotting
+  # Plotting
   # X Scales
   scales = seq(start, end, length = n_x)
   if (is.null(end)){

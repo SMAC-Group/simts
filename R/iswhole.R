@@ -16,7 +16,7 @@
 #' @title Integer Check
 #' @description Checks whether the submitted value is an integer
 #' @keywords internal
-#' @param x A \code{numeric} value to check to see if it is an integer.
+#' @param x A \code{numeric} value.
 #' @return A \code{boolean} value indicating whether the value is an integer or not.
 #' @author James Balamuta
 #' @export

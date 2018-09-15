@@ -15,17 +15,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-#' @title Generate Latent Time Series Object Based on Data
-#' @description Create a \code{lts} object based on a supplied matrix or data frame.
-#' @param data      A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 2 columns. The last column must equal to the sum of all previous columns.
+#' @title Generate a Latent Time Series Object from Data
+#' @description Create a \code{lts} object based on a supplied matrix or data frame. The latent time series is obtained by the sum of underlying time series.
+#' @param data      A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 3 columns of which the last represents the latent time series obtained through the sum of the previous columns.
 #' @param start     A \code{numeric} that provides the time of the first observation.
 #' @param end       A \code{numeric} that provides the time of the last observation.
-#' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
-#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param freq      A \code{numeric} that provides the rate/frequency at which the time series is sampled. The default value is 1.
+#' @param unit_ts   A \code{string} that contains the unit of measure of the time series. The default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit of measure of the time. The default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @param process A \code{vector} that contains model names of decomposed and combined processes.
+#' @param process A \code{vector} that contains model names of each column in the \code{data} object where the last name is the sum of the previous names.
 #' @return A \code{lts} object
 #' @author Wenchao Yang and Justin Lee
 #' @export
@@ -56,20 +56,20 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
   
   #check ndata
   ndata = nrow(data)
-  if(ndata == 0 ){stop("'data' contains 0 observation.")}
+  if(ndata == 0 ){stop("'data' contains 0 observations.")}
   
   #check: the last column must equal to the sum of all previous columns
   tolerance = 1E-2
   sumAllPreviousColumns = apply(data[,1:(ncolumn-1),drop = F], MARGIN = 1, sum)
   checkVec = sumAllPreviousColumns - data[,ncolumn]
   if(any(checkVec>tolerance)){
-    stop(paste0('The last column of data must equal to the sum of all previous columns. The tolerance is ', tolerance,'.' ))
+    stop(paste0('The last column of data must be equal to the sum of all previous columns. The tolerance (for the difference) is ', tolerance,'.' ))
   }
   
   # 2. check process
   if(!is.null(process)){
     if(length(process) != ncolumn ){
-      stop(paste0('data has ', ncolumn, ' processes (including the combined one). You must specify the name of each process in parameter "process".') )
+      stop(paste0('data has ', ncolumn, ' processes (including the latent process). You must specify the name of each process in parameter "process".') )
     }
   }else{
     process = c(paste(rep('Process', times = ncolumn-1), 1:(ncolumn-1), sep = ''), 'Sum')
@@ -117,25 +117,25 @@ lts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 }
 
 
-#' @title Generate Latent Time Series Object Based on Model
-#' @description Create a \code{lts} object based on a supplied time series model.
+#' @title Generate a Latent Time Series Object Based on a Model
+#' @description Simulate a \code{lts} object based on a supplied time series model.
 #' @param n         An \code{interger} indicating the amount of observations generated in this function.
 #' @param model     A \code{ts.model} or \code{simts} object containing one of the allowed models.
 #' @param start     A \code{numeric} that provides the time of the first observation.
 #' @param end       A \code{numeric} that provides the time of the last observation.
-#' @param freq      A \code{numeric} that provides the rate of samples. Default value is 1.
-#' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
-#' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param freq      A \code{numeric} that provides the rate/frequency at which the time series is sampled. The default value is 1.
+#' @param unit_ts   A \code{string} that contains the unit of measure of the time series. The default value is \code{NULL}.
+#' @param unit_time A \code{string} that contains the unit of measure of the time. The default value is \code{NULL}.
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
-#' @param process   A \code{vector} that contains model names of decomposed and combined processes.
+#' @param process A \code{vector} that contains model names of each column in the \code{data} object where the last name is the sum of the previous names.
 #' @return A \code{lts} object with the following attributes:
 #' \describe{
-#'   \item{start}{The time of the first observation}
-#'   \item{end}{The time of the last observation}
-#'   \item{freq}{Numeric representation of frequency}
-#'   \item{unit}{String representation of the unit}
-#'   \item{name}{Name of the dataset}
+#'   \item{start}{The time of the first observation.}
+#'   \item{end}{The time of the last observation.}
+#'   \item{freq}{Numeric representation of the sampling frequency/rate.}
+#'   \item{unit}{A string reporting the unit of measurement.}
+#'   \item{name}{Name of the generated dataset.}
 #'   \item{process}{A \code{vector} that contains model names of decomposed and combined processes}
 #' }
 #' @author James Balamuta, Wenchao Yang, and Justin Lee
@@ -160,7 +160,7 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   }
   
   # 2. freq
-  if(!is(freq,"numeric") || length(freq) != 1){ stop("'freq' must be one numeric number.") }
+  if(!is(freq,"numeric") || length(freq) != 1){ stop("'freq' must be numeric.") }
   if(freq <= 0) { stop("'freq' must be larger than 0.") }
   
   # 3. requirements for 'start' and 'end'
@@ -191,13 +191,13 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
   # 5. check process
   if(!is.null(process)){
     if(length(process) != (p+1) ){
-      stop(paste0('data has ', (p+1), ' processes (including the combined one). You must specify the name of each process in parameter "process".') )
+      stop(paste0('data has ', (p+1), ' processes (including the latent process). You must specify the name of each process in parameter "process".') )
     }
   }
   
   # Identifiability issues
   if(any( count_models(desc)[c("DR","QN","RW","WN")] >1)){
-    stop("Two instances of either: DR, QN, RW, or WN has been detected. As a result, the model will have identifiability issues. Please submit a new model.")
+    stop("Two instances of either DR, QN, RW, or WN have been detected. As a result, the model will have identifiability issues. Please submit a new latent model where each of these models can only be included once.")
   }
   
   if(!model$starting){
@@ -238,8 +238,8 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 }
 
 
-#' @title Plot Latent Time Series Data
-#' @description Plot Latent Time Series Data generated by lts or gen_lts. 
+#' @title Plot Latent Time Series Object
+#' @description Plot Latent Time Series Data included in an \code{lts} object. 
 #' @method plot lts
 #' @export
 #' @keywords internal
@@ -247,11 +247,11 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 #' @param xlab            A \code{string} that gives a title for the x axis.
 #' @param ylab            A \code{string} that gives a title for the y axis.
 #' @param main            A \code{string} that gives an overall title for the plot.
-#' @param couleur         A \code{string} that gives a color for the line. 
+#' @param color         A \code{string} that gives a color for the line. 
 #' @param ...             additional arguments affecting the plot produced.
 #' @return A plot containing the graph of the latent time series.
 #' @author Stephane Gurrier and Justin Lee
-plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, fixed_range = FALSE, ...){
+plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, color = NULL, fixed_range = FALSE, ...){
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')
   unit_time = attr(x, 'unit_time')
@@ -303,19 +303,19 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, fi
     main = title_x
   }else{
     if (length(main) != dim_x[2]){
-      warning('"main" is not of the same dimension as lts object, using
+      warning('"main" is not of the same dimension as the lts object, using
               default names instead.')
       main = title_x
     }
   }
   
   # Couleur
-  if (is.null(couleur)){
+  if (is.null(color)){
     hues = seq(15, 375, length = dim_x[2] + 1)
-    couleur = hcl(h = hues, l = 65, c = 100, alpha = 1)[seq_len(dim_x[2])]
+    color = hcl(h = hues, l = 65, c = 100, alpha = 1)[seq_len(dim_x[2])]
   }else{
-    if (length(couleur) == 1 || length(couleur) != dim_x[2]){
-      couleur = rep(couleur[1],dim_x[2])
+    if (length(color) == 1 || length(color) != dim_x[2]){
+      color = rep(color[1],dim_x[2])
     }
   }
   
@@ -370,9 +370,11 @@ plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, couleur = NULL, fi
     axis(2, padj = -0.2, at = y_axis)  
         
     # Add lines 
-    lines(scales, x[,i], type = "l", col = couleur[i], pch = 16)
+    lines(scales, x[,i], type = "l", col = color[i], pch = 16)
   }
   
   mtext(name_time, side = 1, outer = TRUE, line = 2)
   mtext(name_ts, side = 2, outer = TRUE, line = 2)
+  
+  par(mfrow = c(1, 1))
 }

@@ -63,7 +63,7 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' xt = gen_ma1(100, 0.3, 1)
 #' x = select_ma(xt, q.min=2L, q.max=5L)
 #' 
-#' xt = gen_arma(10, c(.3,.5), c(.1), 1, 0)  
+#' xt = gen_arma(10, c(.4,.5), c(.1), 1, 0)  
 #' x = select_arma(xt, p.min = 1L, p.max = 4L,
 #'                 q.min = 1L, q.max = 3L)
 #' @rdname select_arima
@@ -357,14 +357,24 @@ plot_select_arma = function(x){
   col_aic = "#F8766DFF"; col_bic = "#00BA38FF"; col_hq = "#619CFFFF"
   
   # Store values of best model
-  best_index = which.min(x$value)
-  best_value= min(x$value)
-  best_p = x$p[best_index]
-  best_q = x$q[best_index]
-  if(best_index %in% 1:(p_length*q_length)){best_criteria = "aic"; best_col = col_aic}
-  if(best_index %in% (p_length*q_length+1):(p_length*q_length*2)){best_criteria = "bic"; best_col = col_bic}
-  if(best_index %in% (p_length*q_length*2+1):(p_length*q_length*3)){best_criteria = "hq"; best_col = col_hq}
-
+  aic_region = 1:(p_length*q_length)
+  bic_region = (p_length*q_length+1):(p_length*q_length*2)
+  hq_region = (p_length*q_length*2+1):(p_length*q_length*3)
+  
+  best_index_aic = which.min(x$value[aic_region])
+  best_value_aic = min(x$value[aic_region])
+  best_p_aic = (x$p[aic_region])[best_index_aic]
+  best_q_aic = (x$q[aic_region])[best_index_aic]
+  
+  best_index_bic = which.min(x$value[bic_region])
+  best_value_bic = min(x$value[bic_region])
+  best_p_bic = (x$p[bic_region])[best_index_bic]
+  best_q_bic = (x$q[bic_region])[best_index_bic]
+  
+  best_index_hq = which.min(x$value[hq_region])
+  best_value_hq = min(x$value[hq_region])
+  best_p_hq = (x$p[hq_region])[best_index_hq]
+  best_q_hq = (x$q[hq_region])[best_index_hq]
   
   # Main plot
   par(mfrow = c(ceiling(q_length / 2), 2))
@@ -378,7 +388,7 @@ plot_select_arma = function(x){
     
     par(new = TRUE)
     plot(NA, xlim = c(p_min, p_max), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-         xlab = NA, ylab = NA, xaxt = 'n', yaxt = 'n', bty = "n")
+         xlab = "Autoregressive Order (p)", ylab = NA, xaxt = 'n', yaxt = 'n', bty = "n")
     win_dim = par("usr")
     
     # Add grid
@@ -411,10 +421,10 @@ plot_select_arma = function(x){
           col = col_hq, lwd = 2)
     
     # Add best model
-    if (i == best_q){
-      points(best_p, best_value,
-             col = best_col, pch = 16, cex = 2)
-    }
+    if (i == best_q_aic){points(best_p_aic, best_value_aic,col = col_aic, pch = 16, cex = 2)}
+    if (i == best_q_bic){points(best_p_bic, best_value_bic,col = col_bic, pch = 16, cex = 2)}
+    if (i == best_q_hq){points(best_p_hq, best_value_hq,col = col_hq, pch = 16, cex = 2)}
+    
     
     # Add legend
     if(i==1){
@@ -437,8 +447,8 @@ plot_select_arma = function(x){
   }
   
   # Add overall x,y labels
-  mtext(xlab, side = 1, outer = TRUE, line = -2)
-  mtext(ylab, side = 2, outer = TRUE, line = -2)
+  mtext(xlab, side = 1, outer = TRUE, line = -1)
+  mtext(ylab, side = 2, outer = TRUE, line = -1)
   
 }
 
@@ -457,7 +467,7 @@ plot_select_arma = function(x){
 #' x = select_ma(xt, q.min=2L, q.max=5L)
 #' plot(x)
 #' 
-#' xt = gen_arma(10, c(.3,.5), c(.1), 1, 0)  
+#' xt = gen_arma(10, c(.4,.5), c(.1), 1, 0)  
 #' x = select_arma(xt, p.min = 1L, p.max = 4L,
 #'                 q.min = 1L, q.max = 3L)
 #' plot(x)

@@ -7,15 +7,17 @@
 \alias{select_ma}
 \title{Run Model Selection Criteria on ARIMA Models}
 \usage{
-select_arima(xt, p.min = 0L, p.max = 5L, d.min = 0L, d.max = 2L,
-  q.min = 0L, q.max = 5L, include.mean = TRUE)
+select_arima(xt, p.min = 0L, p.max = 3L, d = 0L, q.min = 0L,
+  q.max = 3L, include.mean = TRUE, plot = TRUE)
 
-select_arma(xt, p.min = 1L, p.max = 5L, q.min = 1L, q.max = 5L,
-  include.mean = TRUE)
+select_arma(xt, p.min = 0L, p.max = 3L, q.min = 0L, q.max = 3L,
+  include.mean = TRUE, plot = TRUE)
 
-select_ar(xt, p.min = 1L, p.max = 5L, include.mean = TRUE)
+select_ar(xt, p.min = 0L, p.max = 3L, include.mean = TRUE,
+  plot = TRUE)
 
-select_ma(xt, q.min = 1L, q.max = 5L, include.mean = TRUE)
+select_ma(xt, q.min = 0L, q.max = 3L, include.mean = TRUE,
+  plot = TRUE)
 }
 \arguments{
 \item{xt}{A \code{vector} of univariate time series.}
@@ -24,27 +26,27 @@ select_ma(xt, q.min = 1L, q.max = 5L, include.mean = TRUE)
 
 \item{p.max}{An \code{integer} indicating the highest order of AR(p) process to search.}
 
-\item{d.min}{An \code{integer} indicating the lowest difference of data to take.}
-
-\item{d.max}{An \code{integer} indicating the highest difference of data to take.}
+\item{d}{An \code{integer} indicating the differencing order for the data.}
 
 \item{q.min}{An \code{integer} indicating the lowest order of MA(q) process to search.}
 
 \item{q.max}{An \code{integer} indicating the highest order of MA(q) process to search.}
 
 \item{include.mean}{A \code{bool} indicating whether to fit ARIMA with the mean or not.}
+
+\item{plot}{A \code{logical}. If \code{TRUE} (the default) a plot should be produced.}
 }
 \description{
 This function performs model fitting and calculates the model selection criteria.
 }
 \examples{
 xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
-x = select_arima(xt)
+x = select_arima(xt, d=1L)
 
 xt = gen_ma1(100, 0.3, 1)
 x = select_ma(xt, q.min=2L, q.max=5L)
 
-xt = gen_arma(10, c(.3,.5), c(.1), 1, 0)  
+xt = gen_arma(10, c(.4,.5), c(.1), 1, 0)  
 x = select_arma(xt, p.min = 1L, p.max = 4L,
                 q.min = 1L, q.max = 3L)
 }

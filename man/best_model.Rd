@@ -7,12 +7,31 @@
 best_model(x, ic = "aic")
 }
 \arguments{
-\item{x}{An object from either \code{\link{select_arima}},
-\code{\link{select_arma}}, \code{\link{select_ar}}, or \code{\link{select_ma}}.}
+\item{x}{An object of class
+\code{\link{select_arma}}, \code{\link{select_ar}} or \code{\link{select_ma}}.}
 
 \item{ic}{A \code{string} indicating the type of criterion to use in selecting the best model. 
-Supported criteria include "AIC", "BIC" and "HQ".}
+Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).}
 }
 \description{
-This function retrieves the best model.
+This function retrieves the best model from a selection procedure.
+}
+\examples{
+ 
+set.seed(18)
+xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
+x = select_arima(xt, d=1L)
+best_model(x, ic = "aic")
+
+set.seed(19)
+xt = gen_ma1(100, 0.3, 1)
+x = select_ma(xt, q.min=2L, q.max=5L)
+best_model(x, ic = "bic")
+
+set.seed(20)
+xt = gen_arma(100, c(.3,.5), c(.1), 1, 0)  
+x = select_arma(xt, p.min = 1L, p.max = 4L,
+                q.min = 1L, q.max = 3L)
+best_model(x, ic = "hq")
+
 }

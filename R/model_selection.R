@@ -56,11 +56,11 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' @param q.min        An \code{integer} indicating the lowest order of MA(q) process to search.
 #' @param q.max        An \code{integer} indicating the highest order of MA(q) process to search.
 #' @param include.mean A \code{bool} indicating whether to fit ARIMA with the mean or not.
+#' @param plot         A \code{logical}. If \code{TRUE} (the default) a plot should be produced.
 #' @export
 #' @examples 
 #' xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
 #' x = select_arima(xt, d=1L)
-#' plot(x)
 #' 
 #' xt = gen_ma1(100, 0.3, 1)
 #' x = select_ma(xt, q.min=2L, q.max=5L)
@@ -79,14 +79,18 @@ select_arima = function(xt,
                         p.min = 0L, p.max = 3L,
                         d = 0L,
                         q.min = 0L, q.max = 3L,
-                        include.mean = TRUE){
+                        include.mean = TRUE, plot = TRUE){
   
-  o = select_arima_(xt,
+  out = select_arima_(xt,
                     p = p.min:p.max,
                     d = d,
                     q = q.min:q.max,
                     include.mean = include.mean)
   
+  if (plot == TRUE){
+      plot_select_arma(x=out)
+  }
+  invisible(out)
 }
 
 #' @export
@@ -94,63 +98,80 @@ select_arima = function(xt,
 select_arma = function(xt,
                        p.min = 0L, p.max = 3L,
                        q.min = 0L, q.max = 3L,
-                       include.mean = TRUE){
+                       include.mean = TRUE,
+                       plot = TRUE){
   
-  o = select_arima_(xt,
+  out = select_arima_(xt,
                     p = p.min:p.max,
                     d = 0L,
                     q = q.min:q.max,
                     include.mean = include.mean,
                     class = "select_arma")
+  if (plot == TRUE){
+    plot_select_arma(x=out)
+  }
   
+  invisible(out)
 }
 
 
 #' @export
 #' @rdname select_arima
 select_ar = function(xt, p.min = 0L, p.max = 3L,
-                     include.mean = TRUE){
-  select_arima_(xt,
+                     include.mean = TRUE, plot = TRUE){
+  out = select_arima_(xt,
                 p = p.min:p.max,
                 d = 0L,
                 q = 0L,
                 include.mean = include.mean,
                 class = "select_ar")
   
+  if (plot == TRUE){
+    plot_select_ar(x=out)
+  }
+  invisible(out)
 }
 
 
 #' @export
 #' @rdname select_arima
 select_ma = function(xt, q.min = 0L, q.max = 3L,
-                     include.mean = TRUE){
-  select_arima_(xt,
+                     include.mean = TRUE, plot = TRUE){
+  out = select_arima_(xt,
                 p = 0L,
                 d = 0L,
                 q = q.min:q.max,
                 include.mean = include.mean,
                 class = "select_ma")
+  
+  if (plot == TRUE){
+    plot_select_ma(x=out)
+  }
+  invisible(out)
 }
 
 
 #' @title Select the Best Model
-#'
 #' @description This function retrieves the best model from a selection procedure.
 #' @param x  An object of class
 #'  \code{\link{select_arma}}, \code{\link{select_ar}} or \code{\link{select_ma}}.
 #' @param ic A \code{string} indicating the type of criterion to use in selecting the best model. 
-#' Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ). 
+#' Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).
+#'  
 #' @export
-#' @examples 
+#' @examples  
+#' set.seed(18)
 #' xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
 #' x = select_arima(xt, d=1L)
 #' best_model(x, ic = "aic")
 #' 
+#' set.seed(19)
 #' xt = gen_ma1(100, 0.3, 1)
 #' x = select_ma(xt, q.min=2L, q.max=5L)
-#' best_model(x, ic = "bic)
+#' best_model(x, ic = "bic")
 #' 
-#' xt = gen_arma(10, c(.3,.5), c(.1), 1, 0)  
+#' set.seed(20)
+#' xt = gen_arma(100, c(.3,.5), c(.1), 1, 0)  
 #' x = select_arma(xt, p.min = 1L, p.max = 4L,
 #'                 q.min = 1L, q.max = 3L)
 #' best_model(x, ic = "hq")
@@ -466,48 +487,5 @@ plot_select_arma = function(x){
   mtext(ylab, side = 2, outer = TRUE, line = -1)
   
 }
-
-#' @title Visualization of Model Selection 
-#' @description This function visualize the model comparison based on different model selection criteria. 
-#' @param x An object that is either of type \code{\link{select_ar}},
-#' \code{\link{select_ma}} or \code{\link{select_arma}}.
-#' @export
-#' @author Yuming Zhang
-#' @examples 
-#' xt = gen_ar1(100, 0.3, 1)
-#' x = select_ar(xt)
-#' plot(x)
-#' 
-#' xt = gen_ma1(100, 0.3, 1)
-#' x = select_ma(xt, q.min=2L, q.max=5L)
-#' plot(x)
-#' 
-#' xt = gen_arma(10, c(.4,.5), c(.1), 1, 0)  
-#' x = select_arma(xt, p.min = 1L, p.max = 4L,
-#'                 q.min = 1L, q.max = 3L)
-#' plot(x)
-#' 
-plot.select_arima = function(x){
-  
-  if (!"select_ar" %in% class(x) & !"select_ma" %in% class(x) & !"select_arma" %in% class(x)){
-    stop("This function can only visualize either `select_ar`, `select_ma` or `select_arma`.")
-  }
-  
-  # ----- for select_ar
-  if ("select_ar" %in% class(x)){
-    plot_select_ar(x=x)
-  }
-  
-  # ----- for select_ma
-  if ("select_ma" %in% class(x)){
-    plot_select_ma(x=x)
-  }
-  
-  if ("select_arma" %in% class(x)){
-    plot_select_arma(x=x)
-  }
-  
-}
-
 
 

@@ -1,6 +1,6 @@
 #' @importFrom stats sd
 #' @importFrom stats Box.test 
-diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, test = "Ljung-Box"){
+diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, test = "Ljung-Box", plot = TRUE){
   
   if(is.null(order)){
     stop("Need to fill in the order of ARMA")
@@ -24,19 +24,36 @@ diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, tes
     mat[i,] = c(active$p.value, active$statistic)
   }
   
-  structure(data.frame(lag = diag_lags, pvalue = mat[diag_lags, 1],
-                       statistic = mat[diag_lags, 2]),
-            class = c("diag_portmanteau", kind, "data.frame"))
+  out = data.frame(lag = diag_lags, pvalue = mat[diag_lags, 1],
+                       statistic = mat[diag_lags, 2],
+                        kind = kind)
+  class(out) = "dp"
+  
+  if (plot == TRUE){
+      object = out
+      maxval = max(object[,"pvalue"])
+      
+      # make frame
+      x_range = c(min(object$lag), max(object$lag))*1.05
+      y_range = c(0, max(object$pvalue))*1.05
+      make_frame(x_range, y_range, 
+                 xlab = "Lag", ylab = "P-value", main = paste0(object$kind, " Results"))
+      
+      # add plotting
+      points(object$lag, object$pvalue, pch = 16)
+      lines(object$lag, object$pvalue, lty = 3)
+      abline(h = 0.05, col = "blue", lty = 2)
+  }
+  out
 }
 
 ############################################
 # Test Ljung-Box Wrapper
 ############################################
-
 #' @title Ljung-Box
 #' @description Performs the Ljung-Box test to assess the Null Hypothesis of Independence
 #'  in a Time Series
-#' @author James Balamuta
+#' @author James Balamuta, Stéphane Guerrier, Yuming Zhang
 #' @param x        An \code{arima} or data set.
 #' @param order    An \code{integer} indicating the degrees of freedom. If `x` is
 #' not a series of residuals, then set equal to 0.
@@ -44,23 +61,15 @@ diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, tes
 #' be calculated.
 #' @param stdres   A \code{boolean} indicating whether to standardize the
 #' residualizes (e.g. \eqn{res/sd(res)}) or not.
-#' @param ...      Additional parameters
+#' @param plot     A logical. If \code{TRUE} (the default) a plot should be produced.
 #' @export
 #' @rdname diag_ljungbox
-diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE,  ...){
-  UseMethod("diag_ljungbox")
-}
-
-#' @export
-#' @rdname diag_ljungbox
-diag_ljungbox.Arima = function(x, stop_lag = 20, stdres = FALSE, ...){
-  diag_ljungbox.default(x$residuals, order = length(x$coef), stop_lag = stop_lag, stdres = stdres, ...)
-}
-
-#' @export
-#' @rdname diag_ljungbox
-diag_ljungbox.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE, ...){
-  diag_portmanteau_(x, order = order, stop_lag = stop_lag, stdres = stdres, test = "Ljung-Box")
+diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE){
+  if (class(x) == "Arima"){
+    diag_ljungbox(x$residuals, order = length(x$coef), stop_lag = stop_lag, stdres = stdres, plot = plot)
+  }else{
+    diag_portmanteau_(x, order = order, stop_lag = stop_lag, stdres = stdres, test = "Ljung-Box", plot = plot)
+  }
 }
 
 
@@ -71,7 +80,7 @@ diag_ljungbox.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE,
 #' @title Box-Pierce
 #' @description Performs the Box-Pierce test to assess the Null Hypothesis of Independence
 #'  in a Time Series
-#' @author James Balamuta
+#' @author James Balamuta, Stéphane Guerrier, Yuming Zhang
 #' @param x        An \code{arima} or data set.
 #' @param order    An \code{integer} indicating the degrees of freedom. If `x` is
 #' not a series of residuals, then set equal to 0.
@@ -79,58 +88,13 @@ diag_ljungbox.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE,
 #' be calculated.
 #' @param stdres   A \code{boolean} indicating whether to standardize the
 #' residualizes (e.g. \eqn{res/sd(res)}) or not.
-#' @param ...      Additional parameters
+#' @param plot     A logical. If \code{TRUE} (the default) a plot should be produced.
 #' @export
 #' @rdname diag_boxpierce
-diag_boxpierce = function(x, order = NULL, stop_lag = 20, stdres = FALSE, ...){
-  UseMethod("diag_boxpierce")
+diag_boxpierce = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE){
+  if (class(x) == "Arima"){
+    diag_boxpierce(x$residuals, order = length(x$coef), stop_lag = stop_lag, stdres = stdres, plot = plot)
+  }else{
+    diag_portmanteau_(x, order = order, stop_lag = stop_lag, stdres = stdres, test = "Box-Pierce", plot = plot)
+  }
 }
-
-#' @export
-#' @rdname diag_boxpierce
-diag_boxpierce.Arima = function(x, stop_lag = 20, stdres = FALSE, ...){
-  diag_boxpierce.default(x$residuals, order = length(x$coef), stop_lag = stop_lag, stdres = stdres, ...)
-}
-
-#' @export
-#' @rdname diag_boxpierce
-diag_boxpierce.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE, ...){
-  diag_portmanteau_(x, order = order, stop_lag = stop_lag, stdres = stdres, test = "Box-Pierce", ...)
-}
-
-
-############################################
-# Graph Portmanteau Test Results
-############################################
-
-#' @title Graph Portmanteau Test Results
-#' @description Plots the portmanteau test results
-#' @author Yuming Zhang
-#' @param object A \code{diag_portmanteau} object from either
-#'  \code{\link{diag_boxpierce}} or \code{\link{diag_ljungbox}}
-#' @param ...      Additional parameters
-#' @export
-#' @importFrom graphics points
-#' @rdname diag_portmanteau
-
-plot.diag_portmanteau = function(object, ...){
-  
-  test = if(inherits(object, "diag_ljungbox")) {"Ljung-Box"} else {"Box-Pierce"}
-  
-  maxval = max(object[,"pvalue"])
-  
-  # make frame
-  x_range = c(min(object$lag), max(object$lag))*1.05
-  y_range = c(0, max(object$pvalue))*1.05
-  make_frame(x_range, y_range, 
-             xlab = "Lag", ylab = "P-value", main = paste0(test, " Results"))
-  
-  # add plotting
-  points(object$lag, object$pvalue, pch = 16)
-  lines(object$lag, object$pvalue, lty = 3)
-  abline(h = 0.05, col = "blue", lty = 2)
-}
-
-
-
-

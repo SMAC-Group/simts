@@ -2,16 +2,10 @@
 % Please edit documentation in R/portmanteau_tests.R
 \name{diag_ljungbox}
 \alias{diag_ljungbox}
-\alias{diag_ljungbox.Arima}
-\alias{diag_ljungbox.default}
 \title{Ljung-Box}
 \usage{
-diag_ljungbox(x, order = NULL, stop_lag = 20, stdres = FALSE, ...)
-
-\method{diag_ljungbox}{Arima}(x, stop_lag = 20, stdres = FALSE, ...)
-
-\method{diag_ljungbox}{default}(x, order = NULL, stop_lag = 20,
-  stdres = FALSE, ...)
+diag_ljungbox(x, order = NULL, stop_lag = 20, stdres = FALSE,
+  plot = TRUE)
 }
 \arguments{
 \item{x}{An \code{arima} or data set.}
@@ -25,12 +19,12 @@ be calculated.}
 \item{stdres}{A \code{boolean} indicating whether to standardize the
 residualizes (e.g. \eqn{res/sd(res)}) or not.}
 
-\item{...}{Additional parameters}
+\item{plot}{A logical. If \code{TRUE} (the default) a plot should be produced.}
 }
 \description{
 Performs the Ljung-Box test to assess the Null Hypothesis of Independence
  in a Time Series
 }
 \author{
-James Balamuta
+James Balamuta, Stéphane Guerrier, Yuming Zhang
 }

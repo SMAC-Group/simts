@@ -70,6 +70,7 @@ theo_arma_ = function(model, lagmax = 20, pacf = FALSE){
 #' @param ma A \code{vector} containing the MA coefficients.
 #' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the theoretical ACF.
 #' @author Yuming Zhang
+#' @importFrom stats ARMAacf
 #' @examples
 #' # Compute the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
 #' theo_acf(ar = -0.25, ma = NULL)

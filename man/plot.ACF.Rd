@@ -26,6 +26,8 @@ Defaults to 0.25.}
 
 \item{main}{A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.}
 
+\item{parValue}{A \code{vector} defining the margins for the plot.}
+
 \item{...}{Additional parameters}
 }
 \description{

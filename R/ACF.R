@@ -175,6 +175,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
 #' Defaults to 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.
+#' @param parValue  A \code{vector} defining the margins for the plot.
 #' @param ...       Additional parameters
 #' @rdname plot.ACF
 #' @export
@@ -416,6 +417,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
 #' Defaults to 0.25. 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name PACF plot'.
+#' @param parValue  A \code{vector} defining the margins for the plot.
 #' @param ...       Additional parameters
 #' @rdname plot.PACF
 #' @importFrom grDevices col2rgb

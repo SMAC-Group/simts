@@ -71,6 +71,7 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' @importFrom dplyr group_by mutate
 #' @importFrom tidyr gather
 #' @importFrom broom glance
+#' @importFrom stats AIC
 #' @importFrom magrittr %>%
 select_arima = function(xt,
                         p.min = 0L, p.max = 5L,
@@ -163,7 +164,7 @@ best_model = function(x, ic = "aic"){
 # Plotting Functions
 ##########################
 
-# ----- For select_ar
+# For select_ar
 
 plot_select_ar = function(x){
   # Labs and title

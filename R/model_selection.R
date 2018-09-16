@@ -38,7 +38,7 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
   
   structure(model_select,
             n = n,
-            class = c(class,"select_arma","data.frame"))
+            class = c(class, "select_arima","data.frame"))
 }
 
 
@@ -48,7 +48,7 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 ##########################
 
 #' @title Run Model Selection Criteria on ARIMA Models
-#' @description This function performs model fitting and calculates the model selection criteria.
+#' @description This function performs model fitting and calculates the model selection criteria to be plotted or used in \code{best_model} function.
 #' @param xt           A \code{vector} of univariate time series. 
 #' @param p.min        An \code{integer} indicating the lowest order of AR(p) process to search.
 #' @param p.max        An \code{integer} indicating the highest order of AR(p) process to search.
@@ -64,6 +64,7 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' 
 #' xt = gen_ma1(100, 0.3, 1)
 #' x = select_ma(xt, q.min=2L, q.max=5L)
+#' best_model(x)
 #' 
 #' xt = gen_arma(10, c(.4,.5), c(.1), 1, 0)  
 #' x = select_arma(xt, p.min = 1L, p.max = 4L,
@@ -85,7 +86,8 @@ select_arima = function(xt,
                     p = p.min:p.max,
                     d = d,
                     q = q.min:q.max,
-                    include.mean = include.mean)
+                    include.mean = include.mean,
+                    class = "select_arma")
   
 }
 
@@ -105,6 +107,11 @@ select_arma = function(xt,
   
 }
 
+print.select_arma = function(x) {
+  
+  cat("Use plot() to see the model criteria or best_model() to select which model you want")
+  
+}
 
 #' @export
 #' @rdname select_arima
@@ -468,7 +475,7 @@ plot_select_arma = function(x){
 }
 
 #' @title Visualization of Model Selection 
-#' @description This function visualize the model comparison based on different model selection criteria. 
+#' @description This function visually compares model selection criteria for the defined candidate models. 
 #' @param x An object that is either of type \code{\link{select_ar}},
 #' \code{\link{select_ma}} or \code{\link{select_arma}}.
 #' @export

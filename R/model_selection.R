@@ -11,6 +11,8 @@ search_grid = function(p, d, q){
 select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
                          include.mean = FALSE, class = NULL){
   
+  ic = NULL
+  
   # Compute sample size
   n = length(xt)
   
@@ -36,7 +38,7 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
   
   structure(model_select,
             n = n,
-            class = c(class,"select_arima","data.frame"))
+            class = c(class,"select_arma","data.frame"))
 }
 
 
@@ -50,15 +52,15 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' @param xt           A \code{vector} of univariate time series. 
 #' @param p.min        An \code{integer} indicating the lowest order of AR(p) process to search.
 #' @param p.max        An \code{integer} indicating the highest order of AR(p) process to search.
-#' @param d.min        An \code{integer} indicating the lowest difference of data to take.
-#' @param d.max        An \code{integer} indicating the highest difference of data to take.
+#' @param d            An \code{integer} indicating the differencing order for the data.
 #' @param q.min        An \code{integer} indicating the lowest order of MA(q) process to search.
 #' @param q.max        An \code{integer} indicating the highest order of MA(q) process to search.
 #' @param include.mean A \code{bool} indicating whether to fit ARIMA with the mean or not.
 #' @export
 #' @examples 
 #' xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
-#' x = select_arima(xt)
+#' x = select_arima(xt, d=1L)
+#' plot(x)
 #' 
 #' xt = gen_ma1(100, 0.3, 1)
 #' x = select_ma(xt, q.min=2L, q.max=5L)
@@ -74,14 +76,14 @@ select_arima_ = function(xt, p = 0L, d = 0L, q = 0L,
 #' @importFrom stats AIC
 #' @importFrom magrittr %>%
 select_arima = function(xt,
-                        p.min = 0L, p.max = 5L,
-                        d.min = 0L, d.max = 2L,
-                        q.min = 0L, q.max = 5L,
+                        p.min = 0L, p.max = 3L,
+                        d = 0L,
+                        q.min = 0L, q.max = 3L,
                         include.mean = TRUE){
   
   o = select_arima_(xt,
                     p = p.min:p.max,
-                    d = d.min:d.max,
+                    d = d,
                     q = q.min:q.max,
                     include.mean = include.mean)
   
@@ -90,8 +92,8 @@ select_arima = function(xt,
 #' @export
 #' @rdname select_arima
 select_arma = function(xt,
-                       p.min = 1L, p.max = 5L,
-                       q.min = 1L, q.max = 5L,
+                       p.min = 0L, p.max = 3L,
+                       q.min = 0L, q.max = 3L,
                        include.mean = TRUE){
   
   o = select_arima_(xt,
@@ -106,7 +108,7 @@ select_arma = function(xt,
 
 #' @export
 #' @rdname select_arima
-select_ar = function(xt, p.min = 1L, p.max = 5L,
+select_ar = function(xt, p.min = 0L, p.max = 3L,
                      include.mean = TRUE){
   select_arima_(xt,
                 p = p.min:p.max,
@@ -120,7 +122,7 @@ select_ar = function(xt, p.min = 1L, p.max = 5L,
 
 #' @export
 #' @rdname select_arima
-select_ma = function(xt, q.min = 1L, q.max = 5L,
+select_ma = function(xt, q.min = 0L, q.max = 3L,
                      include.mean = TRUE){
   select_arima_(xt,
                 p = 0L,
@@ -133,12 +135,26 @@ select_ma = function(xt, q.min = 1L, q.max = 5L,
 
 #' @title Select the Best Model
 #'
-#' @description This function retrieves the best model.
-#' @param x  An object from either \code{\link{select_arima}},
-#'  \code{\link{select_arma}}, \code{\link{select_ar}}, or \code{\link{select_ma}}.
+#' @description This function retrieves the best model from a selection procedure.
+#' @param x  An object of class
+#'  \code{\link{select_arma}}, \code{\link{select_ar}} or \code{\link{select_ma}}.
 #' @param ic A \code{string} indicating the type of criterion to use in selecting the best model. 
-#' Supported criteria include "AIC", "BIC" and "HQ". 
+#' Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ). 
 #' @export
+#' @examples 
+#' xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
+#' x = select_arima(xt, d=1L)
+#' best_model(x, ic = "aic")
+#' 
+#' xt = gen_ma1(100, 0.3, 1)
+#' x = select_ma(xt, q.min=2L, q.max=5L)
+#' best_model(x, ic = "bic)
+#' 
+#' xt = gen_arma(10, c(.3,.5), c(.1), 1, 0)  
+#' x = select_arma(xt, p.min = 1L, p.max = 4L,
+#'                 q.min = 1L, q.max = 3L)
+#' best_model(x, ic = "hq")
+#' 
 #' @importFrom dplyr filter_
 best_model = function(x, ic = "aic"){
   
@@ -153,7 +169,6 @@ best_model = function(x, ic = "aic"){
   x %>%
     filter_(crt) -> o
   
-  # Figure this out in the future...
   o$models[[1]]$call$order = eval(parse(text=paste0("c(",o$p,",",o$d,",",o$q,")")))
   
   o$models[[1]]

@@ -4,23 +4,23 @@
 \alias{theo_acf}
 \title{Theoretical Autocorrelation (ACF) of an ARMA process}
 \usage{
-theo_acf(model = ARMA(ar = c(0.5, -0.25), ma = 0.2), lagmax = 20)
+theo_acf(ar, ma = NULL, lagmax = 20)
 }
 \arguments{
-\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the theoretical ACF.}
-
 \item{ar}{A \code{vector} containing the AR coefficients.}
 
 \item{ma}{A \code{vector} containing the MA coefficients.}
+
+\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the theoretical ACF.}
 }
 \description{
 This function computes the theoretical Autocorrelation (ACF) of an ARMA process.
 }
 \examples{
 # Compute the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
-theo_acf(ARMA(ar = -0.25, ma = NULL))
+theo_acf(ar = -0.25, ma = NULL)
 # Computes the theoretical ACF for an ARMA(2, 1)
-theo_acf(ARMA(ar = c(.50, -0.25), ma = 0.20), lagmax = 10)
+theo_acf(ar = c(.50, -0.25), ma = 0.20, lagmax = 10)
 }
 \author{
 Yuming Zhang

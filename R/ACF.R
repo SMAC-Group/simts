@@ -235,7 +235,7 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   # add color of CI
   if (!is.null(col_ci)){
     col_ci = col2rgb(col_ci)
-    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
+    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, maxColorValue = 255)
   }else{
     col_ci = rgb(red = 0, green = 0.6, blue = 1, transparency)
   }
@@ -469,7 +469,7 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   #col_ci = rgb(0, 0.6, 1, 0.2)
   if (!is.null(col_ci)){
     col_ci = col2rgb(col_ci)
-    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
+    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, maxColorValue = 255)
   }else{
     col_ci = rgb(red = 0, green = 0.6, blue = 1, transparency)
   }

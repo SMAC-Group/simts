@@ -17,6 +17,8 @@ residuals or original residuals.}
 \item{type}{A \code{string} indicating either:
 \code{"hist"} (standardized residual histogram with superimposed kernel density estimator and normal distribution), \code{"resid"} (standard residual plot),
 or \code{"both"}}
+
+\item{...}{Additional parameters}
 }
 \description{
 This function plots a histogram (with kernel density function and normal distribution) of the standardized

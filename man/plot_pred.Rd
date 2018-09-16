@@ -15,6 +15,14 @@ plot_pred(x, model, n.ahead, time.pred, xlab = NULL, ylab = NULL,
 \item{n.ahead}{An \code{integer} indicating number of units of time ahead for which to make forecasts}
 
 \item{time.pred}{A \code{vector} indicating the time points for which the forecasts are made (\code{lenght(vector)} must be equal to \code{n.ahead})}
+
+\item{xlab}{A \code{string} for the title of x axis}
+
+\item{ylab}{A \code{string} for the title of y axis}
+
+\item{main}{A \code{string} for the over all title of the plot}
+
+\item{...}{Additional parameters}
 }
 \description{
 This function plots the time series output from a forecast method with approximate 68% and 95% confidence intervals.

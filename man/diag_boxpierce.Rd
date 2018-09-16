@@ -24,6 +24,8 @@ be calculated.}
 
 \item{stdres}{A \code{boolean} indicating whether to standardize the
 residualizes (e.g. \eqn{res/sd(res)}) or not.}
+
+\item{...}{Additional parameters}
 }
 \description{
 Performs the Box-Pierce test to assess the Null Hypothesis of Independence

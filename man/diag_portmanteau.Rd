@@ -9,6 +9,8 @@
 \arguments{
 \item{object}{A \code{diag_portmanteau} object from either
 \code{\link{diag_boxpierce}} or \code{\link{diag_ljungbox}}}
+
+\item{...}{Additional parameters}
 }
 \description{
 Plots the portmanteau test results

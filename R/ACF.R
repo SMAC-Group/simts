@@ -72,11 +72,12 @@ theo_arma_ = function(model, lagmax = 20, pacf = FALSE){
 #' @author Yuming Zhang
 #' @examples
 #' # Compute the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
-#' theo_acf(ARMA(ar = -0.25, ma = NULL))
+#' theo_acf(ar = -0.25, ma = NULL)
 #' # Computes the theoretical ACF for an ARMA(2, 1)
-#' theo_acf(ARMA(ar = c(.50, -0.25), ma = 0.20), lagmax = 10)
+#' theo_acf(ar = c(.50, -0.25), ma = 0.20, lagmax = 10)
 #' @export
-theo_acf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
+theo_acf = function(ar, ma = NULL, lagmax = 20){
+  model = ARMA(ar=ar, ma=ma)
   theo_arma_(model = model, lagmax = lagmax, pacf = FALSE)
 }
 
@@ -90,10 +91,11 @@ theo_acf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
 #' @export
 #' @examples
 #' # Computes the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
-#' theo_pacf(ARMA(ar = -0.25, ma = NULL), lagmax = 7)
+#' theo_pacf(ar = -0.25, ma = NULL, lagmax = 7)
 #' # Computes the theoretical ACF for an ARMA(2, 1)
-#' theo_pacf(ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 10)
-theo_pacf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
+#' theo_pacf(ar = c(.50, -0.25), ma = .20, lagmax = 10)
+theo_pacf = function(ar, ma = NULL, lagmax = 20){
+  model = ARMA(ar=ar, ma=ma)
   theo_arma_(model = model, lagmax = lagmax, pacf = TRUE)
 }
 

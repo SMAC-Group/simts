@@ -2,16 +2,10 @@
 % Please edit documentation in R/portmanteau_tests.R
 \name{diag_boxpierce}
 \alias{diag_boxpierce}
-\alias{diag_boxpierce.Arima}
-\alias{diag_boxpierce.default}
 \title{Box-Pierce}
 \usage{
-diag_boxpierce(x, order = NULL, stop_lag = 20, stdres = FALSE, ...)
-
-\method{diag_boxpierce}{Arima}(x, stop_lag = 20, stdres = FALSE, ...)
-
-\method{diag_boxpierce}{default}(x, order = NULL, stop_lag = 20,
-  stdres = FALSE, ...)
+diag_boxpierce(x, order = NULL, stop_lag = 20, stdres = FALSE,
+  plot = TRUE)
 }
 \arguments{
 \item{x}{An \code{arima} or data set.}
@@ -25,12 +19,12 @@ be calculated.}
 \item{stdres}{A \code{boolean} indicating whether to standardize the
 residualizes (e.g. \eqn{res/sd(res)}) or not.}
 
-\item{...}{Additional parameters}
+\item{plot}{A logical. If \code{TRUE} (the default) a plot should be produced.}
 }
 \description{
 Performs the Box-Pierce test to assess the Null Hypothesis of Independence
  in a Time Series
 }
 \author{
-James Balamuta
+James Balamuta, Stéphane Guerrier, Yuming Zhang
 }

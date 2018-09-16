@@ -182,9 +182,3 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(1,1))
   
 }
-
-
-
-
-
-

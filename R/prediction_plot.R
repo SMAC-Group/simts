@@ -24,6 +24,10 @@
 #' @param model A \code{ts} model
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts
 #' @param time.pred A \code{vector} indicating the time points for which the forecasts are made (\code{lenght(vector)} must be equal to \code{n.ahead})
+#' @param xlab A \code{string} for the title of x axis
+#' @param ylab A \code{string} for the title of y axis
+#' @param main A \code{string} for the over all title of the plot
+#' @param ...      Additional parameters
 #' @author Yuming Zhang
 #' @export
 #' @examples

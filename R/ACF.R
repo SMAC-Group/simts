@@ -72,11 +72,12 @@ theo_arma_ = function(model, lagmax = 20, pacf = FALSE){
 #' @author Yuming Zhang
 #' @examples
 #' # Compute the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
-#' theo_acf(ARMA(ar = -0.25, ma = NULL))
+#' theo_acf(ar = -0.25, ma = NULL)
 #' # Computes the theoretical ACF for an ARMA(2, 1)
-#' theo_acf(ARMA(ar = c(.50, -0.25), ma = 0.20), lagmax = 10)
+#' theo_acf(ar = c(.50, -0.25), ma = 0.20, lagmax = 10)
 #' @export
-theo_acf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
+theo_acf = function(ar, ma = NULL, lagmax = 20){
+  model = ARMA(ar=ar, ma=ma)
   theo_arma_(model = model, lagmax = lagmax, pacf = FALSE)
 }
 
@@ -90,10 +91,11 @@ theo_acf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
 #' @export
 #' @examples
 #' # Computes the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
-#' theo_pacf(ARMA(ar = -0.25, ma = NULL), lagmax = 7)
+#' theo_pacf(ar = -0.25, ma = NULL, lagmax = 7)
 #' # Computes the theoretical ACF for an ARMA(2, 1)
-#' theo_pacf(ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 10)
-theo_pacf = function(model = ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 20){
+#' theo_pacf(ar = c(.50, -0.25), ma = .20, lagmax = 10)
+theo_pacf = function(ar, ma = NULL, lagmax = 20){
+  model = ARMA(ar=ar, ma=ma)
   theo_arma_(model = model, lagmax = lagmax, pacf = TRUE)
 }
 
@@ -168,7 +170,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param xlab         A \code{string} indicating the label of the x axis: the default name is 'Lags'.
 #' @param ylab     A \code{string} indicating the label of the y axis: the default name is 'ACF'.
 #' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.
-#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval. 
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval. 
 #' @param col_ci    A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
 #' Defaults to 0.25. 
@@ -233,7 +235,7 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
   # add color of CI
   if (!is.null(col_ci)){
     col_ci = col2rgb(col_ci)
-    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
+    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, maxColorValue = 255)
   }else{
     col_ci = rgb(red = 0, green = 0.6, blue = 1, transparency)
   }
@@ -409,7 +411,7 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 #' @param xlab         A \code{string} indicating the label of the x axis: the default name is 'Lags'.
 #' @param ylab     A \code{string} indicating the label of the y axis: the default name is 'PACF'.
 #' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.
-#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval. 
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval. 
 #' @param col_ci    A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).
 #' @param transparency A \code{double} between 0 and 1 indicating the transparency level of the color defined in \code{col_ci}.
 #' Defaults to 0.25. 
@@ -467,7 +469,7 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   #col_ci = rgb(0, 0.6, 1, 0.2)
   if (!is.null(col_ci)){
     col_ci = col2rgb(col_ci)
-    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, max = 255)
+    col_ci = rgb(col_ci[1], col_ci[2], col_ci[3], transparency*255, maxColorValue = 255)
   }else{
     col_ci = rgb(red = 0, green = 0.6, blue = 1, transparency)
   }
@@ -580,13 +582,13 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
 #' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
 #' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @param show.ci   A \code{bool} indicating whether to compute and show the confidence region. Defaults to \code{TRUE}.
-#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval. 
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval. 
 #' @param plot      A \code{bool} indicating whether a plot of the computed quantities should be produced. Defaults to \code{TRUE}.
 #' @param ...       Additional parameters.
 #' @return Two \code{array} objects (ACF and PACF) of dimension \eqn{N \times S \times S}{N x S x S}.
 #' @rdname corr_analysis
 #' @export
-#' @examples 
+#' @examples
 #' # Estimate both the ACF and PACF functions
 #' corr_analysis(datasets::AirPassengers)
 corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){

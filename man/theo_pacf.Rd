@@ -4,23 +4,23 @@
 \alias{theo_pacf}
 \title{Theoretical Partial Autocorrelation (PACF) of an ARMA process}
 \usage{
-theo_pacf(model = ARMA(ar = c(0.5, -0.25), ma = 0.2), lagmax = 20)
+theo_pacf(ar, ma = NULL, lagmax = 20)
 }
 \arguments{
-\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the theoretical PACF.}
-
 \item{ar}{A \code{vector} containing the AR coefficients.}
 
 \item{ma}{A \code{vector} containing the MA coefficients.}
+
+\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the theoretical PACF.}
 }
 \description{
 This function computes the theoretical Partial Autocorrelation (PACF) of an ARMA process.
 }
 \examples{
 # Computes the theoretical ACF for an ARMA(1,0) (i.e. a first-order autoregressive model: AR(1))
-theo_pacf(ARMA(ar = -0.25, ma = NULL), lagmax = 7)
+theo_pacf(ar = -0.25, ma = NULL, lagmax = 7)
 # Computes the theoretical ACF for an ARMA(2, 1)
-theo_pacf(ARMA(ar = c(.50, -0.25), ma = .20), lagmax = 10)
+theo_pacf(ar = c(.50, -0.25), ma = .20, lagmax = 10)
 }
 \author{
 Yuming Zhang

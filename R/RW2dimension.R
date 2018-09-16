@@ -19,16 +19,23 @@
 #' @description The RW2dimension function computes direction random walk moves.
 #' @author Stéphane Guerrier
 #' @param steps An \code{integer} that counts the number of steps of the random walk.
-#' @param probs A \code{vector} of \code{double} that specifies the probabilities to choose each direction. 
+#' @param probs A \code{vector} of \code{double} that specifies the probabilities to choose each direction.
+#' @importFrom stats runif
 #' @export
 #' @examples
 #' RW2dimension(steps = 50, probs = c(0.2, 0.5, 0.6))
 
 # Function computes direction random walk moves
-RW2dimension = function(steps = 100, probs = c(0.25, 0.5, 0.75),
-                        couleur = "blue4", xlab = "X-position",
-                        ylab = "Y-position", main = NULL, pt_col = NULL,
-                        pt_pch = 16, pt.cex = 2, leg_pos = NULL){
+RW2dimension = function(steps = 100, probs = c(0.25, 0.5, 0.75)){
+  
+  couleur = "blue4"
+  xlab = "X-position"
+  ylab = "Y-position"
+  main = NULL
+  pt_col = NULL
+  pt_pch = 16
+  pt.cex = 2
+  leg_pos = NULL
   
   # Title
   if (is.null(main)){

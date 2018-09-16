@@ -18,7 +18,7 @@ corr_analysis(x, lagmax = 0, cor = TRUE, demean = TRUE,
 
 \item{show.ci}{A \code{bool} indicating whether to compute and show the confidence region. Defaults to \code{TRUE}.}
 
-\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval.}
+\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval.}
 
 \item{plot}{A \code{bool} indicating whether a plot of the computed quantities should be produced. Defaults to \code{TRUE}.}
 

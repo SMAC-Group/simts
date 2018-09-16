@@ -12,6 +12,7 @@
 #' @param type     A \code{string} indicating either:
 #' \code{"hist"} (standardized residual histogram with superimposed kernel density estimator and normal distribution), \code{"resid"} (standard residual plot),
 #' or \code{"both"}
+#' @param ...      Additional parameters
 #' @export
 #' @importFrom stats sd
 #' @importFrom graphics hist

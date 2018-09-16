@@ -44,6 +44,7 @@ diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, tes
 #' be calculated.
 #' @param stdres   A \code{boolean} indicating whether to standardize the
 #' residualizes (e.g. \eqn{res/sd(res)}) or not.
+#' @param ...      Additional parameters
 #' @export
 #' @rdname diag_ljungbox
 diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE,  ...){
@@ -71,7 +72,14 @@ diag_ljungbox.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE,
 #' @description Performs the Box-Pierce test to assess the Null Hypothesis of Independence
 #'  in a Time Series
 #' @author James Balamuta
-#' @inheritParams diag_ljungbox
+#' @param x        An \code{arima} or data set.
+#' @param order    An \code{integer} indicating the degrees of freedom. If `x` is
+#' not a series of residuals, then set equal to 0.
+#' @param stop_lag An \code{integer} indicating the length of lags that should
+#' be calculated.
+#' @param stdres   A \code{boolean} indicating whether to standardize the
+#' residualizes (e.g. \eqn{res/sd(res)}) or not.
+#' @param ...      Additional parameters
 #' @export
 #' @rdname diag_boxpierce
 diag_boxpierce = function(x, order = NULL, stop_lag = 20, stdres = FALSE, ...){
@@ -100,6 +108,7 @@ diag_boxpierce.default = function(x, order = NULL, stop_lag = 20, stdres = FALSE
 #' @author Yuming Zhang
 #' @param object A \code{diag_portmanteau} object from either
 #'  \code{\link{diag_boxpierce}} or \code{\link{diag_ljungbox}}
+#' @param ...      Additional parameters
 #' @export
 #' @importFrom graphics points
 #' @rdname diag_portmanteau

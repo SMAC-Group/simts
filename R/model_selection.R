@@ -356,6 +356,16 @@ plot_select_arma = function(x){
   hq_value = x$value[(p_length*q_length*2+1):(p_length*q_length*3)]
   col_aic = "#F8766DFF"; col_bic = "#00BA38FF"; col_hq = "#619CFFFF"
   
+  # Store values of best model
+  best_index = which.min(x$value)
+  best_value= min(x$value)
+  best_p = x$p[best_index]
+  best_q = x$q[best_index]
+  if(best_index %in% 1:(p_length*q_length)){best_criteria = "aic"; best_col = col_aic}
+  if(best_index %in% (p_length*q_length+1):(p_length*q_length*2)){best_criteria = "bic"; best_col = col_bic}
+  if(best_index %in% (p_length*q_length*2+1):(p_length*q_length*3)){best_criteria = "hq"; best_col = col_hq}
+
+  
   # Main plot
   par(mfrow = c(ceiling(q_length / 2), 2))
   
@@ -400,33 +410,30 @@ plot_select_arma = function(x){
     lines(seq(p_min, p_max), hq_value[((i-1)*p_length+1): (i*p_length)],
           col = col_hq, lwd = 2)
     
-    # Add best models
-    points(seq(p_min, p_max)[which.min(aic_value[((i-1)*p_length+1): (i*p_length)])], 
-           aic_value[((i-1)*p_length+1): (i*p_length)][which.min(aic_value[((i-1)*p_length+1): (i*p_length)])], 
-           col = col_aic, pch = 16, cex = 2)
-    points(seq(p_min, p_max)[which.min(bic_value[((i-1)*p_length+1): (i*p_length)])], 
-           bic_value[((i-1)*p_length+1): (i*p_length)][which.min(bic_value[((i-1)*p_length+1): (i*p_length)])], 
-           col = col_bic, pch = 16, cex = 2)
-    points(seq(p_min, p_max)[which.min(hq_value[((i-1)*p_length+1): (i*p_length)])], 
-           hq_value[((i-1)*p_length+1): (i*p_length)][which.min(hq_value[((i-1)*p_length+1): (i*p_length)])], 
-           col = col_hq, pch = 16, cex = 2)
+    # Add best model
+    if (i == best_q){
+      points(best_p, best_value,
+             col = best_col, pch = 16, cex = 2)
+    }
     
     # Add legend
-    usr = par("usr")
-    lgd = legend(x = mean(c(usr[1],usr[2])), 
-                 y =  mean(c(usr[3],usr[4])),
-                 plot = F,
-                 legend = c("AIC", "BIC", "HQ"))
-    legend(x = usr[1] + lgd$rect$w*0.1,
-           y =  usr[4] + lgd$rect$h*0,
-           legend = c("AIC", "BIC", "HQ"), 
-           text.col = rep("black", 3),
-           lty = rep(1,3),
-           pch = rep(16,3),
-           col = c(col_aic, col_bic, col_hq),
-           bty = "n",
-           x.intersp = 0.3,
-           y.intersp = 0.3)
+    if(i==1){
+      usr = par("usr")
+      lgd = legend(x = mean(c(usr[1],usr[2])), 
+                   y =  mean(c(usr[3],usr[4])),
+                   plot = F,
+                   legend = c("AIC", "BIC", "HQ"))
+      legend(x = usr[1] + lgd$rect$w*0.1,
+             y =  usr[4] + lgd$rect$h*0,
+             legend = c("AIC", "BIC", "HQ"), 
+             text.col = rep("black", 3),
+             lty = rep(1,3),
+             pch = rep(16,3),
+             col = c(col_aic, col_bic, col_hq),
+             bty = "n",
+             x.intersp = 0.3,
+             y.intersp = 0.3)
+    }
   }
   
   # Add overall x,y labels

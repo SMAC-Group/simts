@@ -17,7 +17,7 @@
 
 \item{show.ci}{A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.}
 
-\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 95% confidence interval.}
+\item{alpha}{A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval.}
 
 \item{col_ci}{A \code{string} that specifies the color of the region covered by the confidence intervals (confidence region).}
 

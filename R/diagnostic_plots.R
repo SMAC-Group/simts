@@ -118,7 +118,6 @@ resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
 #' @importFrom graphics points
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
-#' @importFrom wv wvar
 #' @importFrom stats var
 #' @importFrom stats resid
 #' @examples 
@@ -185,113 +184,6 @@ simple_diag_plot = function(Xt, model, std = FALSE){
 
 
 
-#' @title Diagnostic Plot of Residuals
-#' @description This function will plot eight diagnostic plots to assess how well the model fits  
-#' the data. These include: (1) residuals plot, (2) residuals vs fitted values, 
-#' (3) histogram of standardized residuals, (4) normal Q-Q plot of 
-#' residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet variance representation,
-#' (8) Ljung-Box test results.
-#' @author Yuming Zhang
-#' @param Xt The original time series data.
-#' @param model The \code{arima} model fit to the data.
-#' @param std A \code{boolean} indicating whether we use standardized residuals for 
-#' the (1) residuals plot and the (8) Ljung-Box test results.
-#' @export
-#' @importFrom graphics points
-#' @importFrom stats qqnorm
-#' @importFrom stats qqline
-#' @importFrom wv wvar
-#' @importFrom stats var
-#' @importFrom stats resid
-#' @examples 
-#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
-#' diag_plot(Xt, model)
-diag_plot = function(Xt, model, std = FALSE){
-  par(mfrow = c(2,4))
-  
-  # extract residuals 
-  res = resid(model)
-  
-  
-  # ----- plot 1
-  resid_plot(Xt, model, std = std, type = "resid")
-  
-  # ----- plot 2
-  fitted = as.numeric(Xt - res)
-  # make frame
-  x_range = c(min(fitted), max(fitted)) * 1.05
-  y_range = c(min(res), max(res)) * 1.05
-  make_frame(x_range, y_range, 
-             xlab = "Fitted Values", ylab = "Residuals",
-             main = "Residuals vs Fitted Values")
-  # add points
-  points(fitted, res, pch=16, col = "black")
-  
-  # ----- plot 3
-  resid_plot(Xt, model, std = TRUE, type = "hist")
-  
-  # ----- plot 4
-  my_qqnorm = qqnorm(res, plot.it = FALSE)
-  # make frame
-  x_range = c(min(my_qqnorm$x), max(my_qqnorm$x))*1.05
-  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y))*1.05
-  make_frame(x_range, y_range, 
-             xlab = "Theoretical Quantiles", 
-             ylab = "Sample Quantiles",
-             main = "Normal Q-Q Plot")
-  
-  # add qq plots
-  points(my_qqnorm$x, my_qqnorm$y)
-  qqline(res, col = "blue",lwd = 2)
-  
-  # ----- plot 5
-  plot(ACF(Xt), col_ci = "#00BBDC33")
-  
-  # ----- plot 6
-  plot(PACF(Xt), col_ci = "#00BBDC33")
-  
-  # ----- plot 7
-  plot(wvar(res), main = "Haar WVar Representation", legend_position = NA)
-  
-  sigma2 = rep(var(res), length(wvar(res)$scales))
-  points(wvar(res)$scales, sigma2/as.numeric(wvar(res)$scales), col = "orange", pch=0, cex=2)
-  lines(wvar(res)$scales, sigma2/as.numeric(wvar(res)$scales), col = "orange", lty = 1)
-  
-  # add legend
-  if (wvar(res)$robust == TRUE){
-    wv_title_part1 = "Empirical Robust WV "
-  }else{
-    wv_title_part1 = "Empirical WV "
-  }
-  
-  CI_conf = 1 - wvar(res)$alpha
-  
-  legend("bottomleft", 
-         legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))), 
-                    as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
-                    "WV implied by WN"),
-         pch = c(16, 15, 0), lty = c(1, NA, 1), 
-         col = c("darkblue", hcl(h = 210, l = 65, c = 100, alpha = 0.2), "orange"), 
-         cex = 1, pt.cex = c(1.25, 3, 1.25), bty = "n")
-  
-  
-  # ----- plot 8
-  object = diag_ljungbox(model, stop_lag = 20, stdres = std)
-  
-  # make frame
-  x_range = c(min(object$lag), max(object$lag))*1.05
-  y_range = c(0, max(object$pvalue))*1.05
-  make_frame(x_range, y_range, 
-             xlab = "Lag", ylab = "P-value", main = "Ljung-Box Results")
-  
-  # add plotting
-  points(object$lag, object$pvalue, pch = 16)
-  lines(object$lag, object$pvalue, lty = 3)
-  abline(h = 0.05, col = "blue", lty = 2)
-  
-  par(mfrow = c(1,1))
 
-}
 
 

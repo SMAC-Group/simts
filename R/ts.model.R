@@ -201,7 +201,7 @@ ARMA11 = function(phi = NULL, theta = NULL, sigma2 = 1.0) {
 #' do not supply AR1 parameters such as \eqn{\phi}{phi}, \eqn{\sigma^2}{sigma^2}.
 #' 
 #' Internally, GM parameters are converted to AR1 using the `freq` 
-#' supplied when creating data objects (\link{imu}, \link{gts})
+#' supplied when creating data objects (\link{gts})
 #' or specifying a `freq` parameter in simts or simts.imu.
 #' 
 #' The `freq` of a data object takes precedence over the `freq` set when modeling.

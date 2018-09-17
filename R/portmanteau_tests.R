@@ -1,3 +1,17 @@
+#' @title Portmanteau Tests
+#' @description Performs the Portmanteau test to assess the Null Hypothesis of Independence
+#'  in a Time Series
+#' @author James Balamuta, Stéphane Guerrier, Yuming Zhang
+#' @param x        An \code{arima} or data set.
+#' @param order    An \code{integer} indicating the degrees of freedom. If `x` is
+#' not a series of residuals, then set equal to 0.
+#' @param stop_lag An \code{integer} indicating the length of lags that should
+#' be calculated.
+#' @param stdres   A \code{boolean} indicating whether to standardize the
+#' residualizes (e.g. \eqn{res/sd(res)}) or not.
+#' @param test     A \code{string} indicating whether to perform Ljung-Box test or 
+#' Box-Pierce test.
+#' @param plot     A logical. If \code{TRUE} (the default) a plot should be produced.
 #' @importFrom stats sd
 #' @importFrom stats Box.test 
 diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, test = "Ljung-Box", plot = TRUE){

@@ -24,13 +24,13 @@ library(simts)
 
 # `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
-The Time Series Simulation (`simts`) R package generates various time series objects for use in other packages, in which includes: 
+The Time Series Simulation (`simts`) R package provides a series of tools to simulate and plot different time series models (including latent models) based on the basic summary statistics for time series analysis. More specifically, it provides the following features:
 
-* Simulation of time series simulations from SARIMA models and various state-space models that can be expressed as latent time series processes.
-* Visualize time series data with user specifications.
-* Visualize latent time series processes.
+* Simulation of time series from SARIMA models to various state-space models that can be expressed as latent time series processes.
+* Visualization of time series data with user specifications.
+* Specific simulation and visualization tools for latent time series models.
 
-To see what `simts` is capable of, please refer to the "Vignettes" tabs above.
+To understand the usage of the `simts` package, please refer to the "Vignettes" tabs above.
 
 ## Install Instructions
 

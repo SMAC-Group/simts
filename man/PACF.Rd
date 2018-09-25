@@ -4,14 +4,14 @@
 \alias{PACF}
 \title{Partial Auto-Covariance and Correlation Functions}
 \usage{
-PACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
+PACF(x, lag.max = NULL, type = "correlation", demean = TRUE)
 }
 \arguments{
 \item{x}{A \code{vector} or \code{ts} object (of length \eqn{N > 1}).}
 
-\item{lagmax}{An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.}
+\item{lag.max}{An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.}
 
-\item{cor}{A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.}
+\item{type}{A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".}
 
 \item{demean}{A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.}
 }
@@ -21,12 +21,6 @@ An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 \description{
 The PACF function estimates the
 partial autocovariance or autocorrelation for both univariate time series.
-}
-\details{
-\code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
-observations and \eqn{m} is the number of time series being compared. If 
-\code{lagmax} supplied is greater than the number of observations N, then one
-less than the total will be taken (i.e. N - 1).
 }
 \examples{
 # Get Autocorrelation

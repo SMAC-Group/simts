@@ -111,9 +111,10 @@ theo_pacf = function(ar, ma = NULL, lagmax = 20){
 #' autocovariance or autocorrelation for univariate time series.
 #' @author Yunxiang Zhang
 #' @param x      A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
-#' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.
-#' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
-#' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
+#' @param lag.max An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.
+#' @param type   A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".
+#' @param demean A \code{boolean} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
+#' @param robust A \code{boolean} indicating whether a robust estimator should be used (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{FALSE}.
 #' @return An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
@@ -121,22 +122,37 @@ theo_pacf = function(ar, ma = NULL, lagmax = 20){
 #' \code{lagmax} supplied is greater than the number of observations N, then one
 #' less than the total will be taken (i.e. N - 1).
 #' @importFrom stats acf pacf 
+#' @importFrom robcor robacf 
 #' @export
 #' @examples 
 #' # Get Autocorrelation
-#' m = ACF(datasets::AirPassengers)
+#' m = auto_corr(datasets::AirPassengers)
 #' 
 #' # Get Autocovariance and do not remove trend from signal
-#' m = ACF(datasets::AirPassengers, cor = FALSE, demean = FALSE)
-ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
+#' m = auto_corr(datasets::AirPassengers, cor = FALSE, demean = FALSE)
+auto_corr = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = FALSE){
   
   # Change the data to matrix form
   if(is.ts(x) || is.atomic(x)){
     x2 = data.matrix(x)        
   }
   
-  #Get the acf value of the data
-  acfe = acf(x, lagmax = lagmax , cor = cor, demean = demean, plot = FALSE)
+  if (type != "correlation" && type != "covariance"){
+    stop("Type not authorized. Allowed values correlation and covariance.")
+  }
+  
+  if (demean){
+    x3 = as.matrix(x)
+    x3 = sweep(x3, 2, colMeans(x3, na.rm = TRUE), check.margin = FALSE)
+  }
+  
+  # Get the acf value of the data
+  if (robust == FALSE){
+    acfe = acf(x3, lag.max = lag.max, type = type, plot = FALSE)
+  }else{
+    acfe = robacf(x3, lag.max = lag.max, type = type, plot = FALSE)
+  }
+  
   acfe = acfe$acf
   
   # Get the data name 
@@ -159,9 +175,7 @@ ACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
   if(!is.null(names(x))){
     attr(acfe, "data_name") = names(x)
   }
-  
   acfe
-  
 }
 
 #' @title Plot Auto-Covariance and Correlation Functions
@@ -350,15 +364,10 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
 #' partial autocovariance or autocorrelation for both univariate time series.
 #' @author Yunxiang Zhang
 #' @param x      A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
-#' @param lagmax An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.
-#' @param cor    A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
+#' @param lag.max An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.
+#' @param type   A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".
 #' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @return An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
-#' @details 
-#' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
-#' observations and \eqn{m} is the number of time series being compared. If 
-#' \code{lagmax} supplied is greater than the number of observations N, then one
-#' less than the total will be taken (i.e. N - 1).
 #' @importFrom stats acf pacf 
 #' @export
 #' @examples 
@@ -367,17 +376,25 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
 #' 
 #' # Get Autocovariance and do not remove trend from signal
 #' m = PACF(datasets::AirPassengers, cor = FALSE, demean = FALSE)
-PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
+PACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE){
+  
+  if (type != "correlation" && type != "covariance"){
+    stop("Type not authorized. Allowed values correlation and covariance.")
+  }
   
   # Change the data to matrix form
   if(is.ts(x) || is.atomic(x)){
     x2 = data.matrix(x)        
   }
   
+  if (demean){
+    x3 = as.matrix(x)
+    x3 = sweep(x3, 2, colMeans(x3, na.rm = TRUE), check.margin = FALSE)
+  }
+
   #Get the pacf value of the data
-  pacfe = pacf(x, lagmax = lagmax , cor = cor, demean = demean, plot = FALSE)
+  pacfe = pacf(x3, lagmax = lagmax, cor = cor, plot = FALSE)
   pacfe = pacfe$acf
-  
   
   # Get the data name 
   varName = deparse(substitute(x))
@@ -434,7 +451,6 @@ PACF = function(x, lagmax = 0, cor = TRUE, demean = TRUE){
 plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL, parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
-  
   
   # add xlab
   if (!is.null(xlab)){
@@ -581,8 +597,8 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
 #' of univariate time series.
 #' @author Yunxiang Zhang
 #' @param x         A \code{vector} or \code{"ts"} object (of length \eqn{N > 1}).
-#' @param lagmax    A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.
-#' @param cor       A \code{bool} indicating whether the correlation (\code{TRUE}) or covariance (\code{FALSE}) should be computed. Defaults to \code{TRUE}.
+#' @param lag.max    A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.
+#' @param type   A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".
 #' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @param show.ci   A \code{bool} indicating whether to compute and show the confidence region. Defaults to \code{TRUE}.
 #' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval. 
@@ -594,11 +610,15 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
 #' @examples
 #' # Estimate both the ACF and PACF functions
 #' corr_analysis(datasets::AirPassengers)
-corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){
+corr_analysis = function(x, lag.max = NULL, type = "correlation", demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){
+  
+  if (type != "correlation" && type != "covariance"){
+    stop("Type not authorized. Allowed values correlation and covariance.")
+  }
   
   # Compute ACF and PACF
-  acfe = ACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
-  pacfe = PACF(x, lagmax = 0, cor = TRUE, demean = TRUE)
+  acfe = auto_corr(x, lag.max = lag.max, type = type, demean = demean)
+  pacfe = PACF(x, lag.max = lag.max, type = type, demean = demean)
   
   # Plots
   if (plot){
@@ -608,9 +628,40 @@ corr_analysis = function(x, lagmax = 0, cor = TRUE, demean = TRUE, show.ci = TRU
   }
   
   par(mfrow = c(1,1))
-  
   return(list("ACF" = acfe, "PACF" = pacfe))
+}
+
+
+
+#' @title Comparison of Classical and Robust Correlation Analysis Functions
+#' @description Compare classical and robust ACF
+#' of univariate time series.
+#' @author Yunxiang Zhang
+#' @param x         A \code{vector} or \code{"ts"} object (of length \eqn{N > 1}).
+#' @param lag.max    A \code{integer} indicating the maximum lag up to which to compute the ACF and PACF functions.
+#' @param demean    A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
+#' @param show.ci   A \code{bool} indicating whether to compute and show the confidence region. Defaults to \code{TRUE}.
+#' @param alpha     A \code{double} indicating the level of significance for the confidence interval. By default \code{alpha = 0.05} which gives a 1 - \code{alpha} = 0.95 confidence interval. 
+#' @param plot      A \code{bool} indicating whether a plot of the computed quantities should be produced. Defaults to \code{TRUE}.
+#' @param ...       Additional parameters.
+#' @rdname compare_acf
+#' @export
+#' @examples
+#' # Estimate both the ACF and PACF functions
+#' compare_acf(datasets::AirPassengers)
+compare_acf = function(x, lag.max = NULL, demean = TRUE, show.ci = TRUE, alpha = 0.05, plot = TRUE,  ...){
   
+  # Compute ACF and PACF
+  acfe = auto_corr(x, lag.max = lag.max, demean = demean)
+  pacfe = auto_corr(x, lag.max = lag.max, demean = demean, robust = TRUE)
+  
+  # Plots
+  if (plot){
+    par(mfrow = c(1,2))
+    plot(acfe, show.ci = TRUE, alpha = 0.05, main = "Empirical Classical ACF", parValue = c(5.1, 4.5, 1,2))
+    plot(pacfe, show.ci = TRUE, alpha = 0.05, main = "Empirical Robust ACF", parValue = c(5.1, 4.5, 1,2))
+  }
+  par(mfrow = c(1,1))
 }
 
 

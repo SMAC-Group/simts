@@ -37,7 +37,7 @@ select_ma(xt, q.min = 0L, q.max = 3L, include.mean = TRUE,
 \item{plot}{A \code{logical}. If \code{TRUE} (the default) a plot should be produced.}
 }
 \description{
-This function performs model fitting and calculates the model selection criteria.
+This function performs model fitting and calculates the model selection criteria to be plotted or used in \code{best_model} function.
 }
 \examples{
 xt = gen_arima(N=100, ar=0.3, d=1, ma=0.3)
@@ -45,6 +45,7 @@ x = select_arima(xt, d=1L)
 
 xt = gen_ma1(100, 0.3, 1)
 x = select_ma(xt, q.min=2L, q.max=5L)
+best_model(x)
 
 xt = gen_arma(10, c(.4,.5), c(.1), 1, 0)  
 x = select_arma(xt, p.min = 1L, p.max = 4L,

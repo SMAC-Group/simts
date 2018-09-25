@@ -6,6 +6,8 @@
 \alias{simts-package}
 \title{simts: Time Series Simulation}
 \description{
+\if{html}{\figure{logo.png}{options: align='right'}}
+
 Generates various time series objects for use in other packages.
 }
 \details{

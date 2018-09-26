@@ -32,6 +32,7 @@ Imports:
     methods,
     purrr,
     tidyr,
+    robcor,
     stringi
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.0

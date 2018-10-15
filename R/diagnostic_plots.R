@@ -182,3 +182,60 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(1,1))
   
 }
+
+
+#######################
+# diag_plot function
+#######################
+#' @title Diagnostic Plot of Residuals
+#' @description This function will plot 8 diagnostic plots to assess the model used to 
+#' fit the data. These include: (1) residuals plot, (2) residuals vs fitted values, 
+#' (3) histogram of distribution of standardized residuals, (4) Normal Q-Q plot of 
+#' residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet Variance Representation,
+#' (8) Box test results.
+#' @author Yuming Zhang
+#' @param Xt The data used to construct said model.
+#' @param model The \code{arima} model used to fit the data. 
+#' @param std A \code{boolean} indicating whether we use standardized residuals for 
+#' (1) residuals plot and (8) Box test results.
+#' @export
+#' @examples 
+#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' model = arima(Xt, order = c(3,0,0), include.mean = T)
+#' diag_plot(Xt, model)
+diag_plot = function(Xt, model, std = FALSE){
+  par(mfrow = c(2,3))
+  
+  # extract residuals 
+  res = resid(model)
+  
+  # plot 1
+  resid_plot(Xt, model, std = std, type = "resid")
+  
+  # plot 2
+  resid_plot(Xt, model, std = TRUE, type = "hist")
+  
+  # plot 3
+  qqnorm(res)
+  qqline(res, col = "blue",lwd = 2)
+  
+  # plot 4
+  plot(auto_corr(Xt))
+  
+  # plot 5
+  plot(PACF(Xt))
+  
+  # plot 6
+  object = diag_ljungbox(model, stop_lag = 20, stdres = std, plot = FALSE)
+  maxval = max(object$pvalue)
+  
+  x_range = c(min(object$lag), max(object$lag))*1.05
+  y_range = c(0, max(object$pvalue))*1.05
+  make_frame(x_range, y_range, 
+             xlab = "Lag", ylab = "P-value", main = "Ljung-Box Test Result")
+  
+  points(object$lag, object$pvalue, pch = 16)
+  lines(object$lag, object$pvalue, lty = 3)
+  abline(h = 0.05, col = "blue", lty = 2)
+  
+}

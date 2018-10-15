@@ -45,7 +45,7 @@ diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, tes
   
   if (plot == TRUE){
       object = out
-      maxval = max(object[,"pvalue"])
+      maxval = max(object$pvalue)
       
       # make frame
       x_range = c(min(object$lag), max(object$lag))*1.05
@@ -80,7 +80,8 @@ diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, tes
 #' @rdname diag_ljungbox
 diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE){
   if (class(x) == "Arima"){
-    diag_ljungbox(x$residuals, order = length(x$coef), stop_lag = stop_lag, stdres = stdres, plot = plot)
+    diag_portmanteau_(x$residuals, order = length(x$coef), 
+                      stop_lag = stop_lag, stdres = stdres, test = "Ljung-Box", plot = plot)
   }else{
     diag_portmanteau_(x, order = order, stop_lag = stop_lag, stdres = stdres, test = "Ljung-Box", plot = plot)
   }
@@ -107,7 +108,8 @@ diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = 
 #' @rdname diag_boxpierce
 diag_boxpierce = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE){
   if (class(x) == "Arima"){
-    diag_boxpierce(x$residuals, order = length(x$coef), stop_lag = stop_lag, stdres = stdres, plot = plot)
+    diag_portmanteau_(x$residuals, order = length(x$coef), 
+                      stop_lag = stop_lag, stdres = stdres, test = "Box-Pierce", plot = plot)
   }else{
     diag_portmanteau_(x, order = order, stop_lag = stop_lag, stdres = stdres, test = "Box-Pierce", plot = plot)
   }

@@ -158,7 +158,7 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   my_qqnorm = qqnorm(res, plot.it = FALSE)
   # make frame
   x_range = c(min(my_qqnorm$x), max(my_qqnorm$x))*1.05
-  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y)*1.02)*1.05
+  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y)*1.02)*1.2
   make_frame(x_range, y_range, 
              xlab = "Theoretical Quantiles", 
              ylab = "Sample Quantiles",
@@ -216,7 +216,17 @@ diag_plot = function(Xt, model, std = FALSE){
   resid_plot(Xt, model, std = TRUE, type = "hist")
   
   # plot 3
-  qqnorm(res)
+  my_qqnorm = qqnorm(res, plot.it = FALSE)
+  # make frame
+  x_range = c(min(my_qqnorm$x), max(my_qqnorm$x))*1.05
+  y_range = c(min(my_qqnorm$y), max(my_qqnorm$y)*1.02)*1.2
+  make_frame(x_range, y_range, 
+             xlab = "Theoretical Quantiles", 
+             ylab = "Sample Quantiles",
+             main = "Normal Q-Q Plot")
+  
+  # add qq plots
+  points(my_qqnorm$x, my_qqnorm$y)
   qqline(res, col = "blue",lwd = 2)
   
   # plot 4

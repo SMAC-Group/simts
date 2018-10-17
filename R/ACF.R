@@ -121,8 +121,8 @@ theo_pacf = function(ar, ma = NULL, lagmax = 20){
 #' observations and \eqn{m} is the number of time series being compared. If 
 #' \code{lagmax} supplied is greater than the number of observations N, then one
 #' less than the total will be taken (i.e. N - 1).
-#' @importFrom stats acf pacf 
-#' @importFrom robcor robacf 
+#' @importFrom stats acf pacf mad
+#' @importFrom robcor robacf
 #' @export
 #' @examples 
 #' # Get Autocorrelation
@@ -150,7 +150,12 @@ auto_corr = function(x, lag.max = NULL, type = "correlation", demean = TRUE, rob
   if (robust == FALSE){
     acfe = acf(x3, lag.max = lag.max, type = type, plot = FALSE)
   }else{
-    acfe = robacf(x3, lag.max = lag.max, type = type, plot = FALSE)
+    if (type == "correlation"){
+      acfe = robacf(x3, lag.max = lag.max, plot = FALSE)
+    }else{
+      sig2 = mean(abs(x3 - mean(x3)))*sqrt(pi/2)
+      acfe = sig2*robacf(x3, lag.max = lag.max, plot = FALSE)
+    }
   }
   
   acfe = acfe$acf

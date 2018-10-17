@@ -26,11 +26,9 @@
 #' resid_plot(Xt, model, type = "hist")
 #' resid_plot(Xt, model, type = "resid")
 #' resid_plot(Xt, model, std = TRUE, type = "both")
-resid_plot = function(Xt, model, std = FALSE, type = "hist", ...){
-  # obtain residuals
-  resid = resid(model)
-  resid_sd = resid / sd(resid)
+resid_plot = function(resid, std = FALSE, type = "hist", ...){
   
+  resid_sd = resid / sd(resid)
   # standardize residuals or not
   if(std){
     resid = resid / sd(resid)
@@ -129,10 +127,22 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(2,2))
   
   # extract residuals 
-  res = resid(model)
+  if (class(model) == "fitsimts"){
+    if (model$model_type == "AR"){
+      res = model$mod$resid
+      xx = na.omit(Xt - res)
+      res = na.omit(res)
+    }else{
+      stop("Only AR models are currently supported when estimate function is used.")
+    }
+  }else{
+    res = resid(model)
+    xx = na.omit(Xt - res)
+  }
+  
   
   # ----- plot 1
-  resid_plot(Xt, model, std = std, type = "resid")
+  resid_plot(res, std = std, type = "resid")
   
   # ----- plot 2
   my_hist = hist(res, plot = FALSE)
@@ -165,12 +175,10 @@ simple_diag_plot = function(Xt, model, std = FALSE){
              main = "Normal Q-Q Plot")
   
   # add qq plots
-  points(my_qqnorm$x, my_qqnorm$y)
-  qqline(res, col = "blue",lwd = 2)
+  points(my_qqnorm$x, my_qqnorm$y, pch = 16, col = "#00000030")
+  qqline(res, col = "blue2",lwd = 2)
   
   # Plot 4: Residuals vs Fitted
-  xx = Xt - res
-  
   x_range = range(xx)*1.05
   y_range = range(res)*1.05
   make_frame(x_range, y_range, 
@@ -180,7 +188,6 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   points(xx, res, col = "blue4")
   
   par(mfrow = c(1,1))
-  
 }
 
 
@@ -207,13 +214,24 @@ diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(2,3))
   
   # extract residuals 
-  res = resid(model)
+  if (class(model) == "fitsimts"){
+    if (model$model_type == "AR"){
+      res = model$mod$resid
+      xx = na.omit(Xt - res)
+      res = na.omit(res)
+    }else{
+      stop("Only AR models are currently supported when estimate function is used.")
+    }
+  }else{
+    res = resid(model)
+    xx = na.omit(Xt - res)
+  }
   
   # plot 1
-  resid_plot(Xt, model, std = std, type = "resid")
+  resid_plot(res, std = std, type = "resid")
   
   # plot 2
-  resid_plot(Xt, model, std = TRUE, type = "hist")
+  resid_plot(res, std = TRUE, type = "hist")
   
   # plot 3
   my_qqnorm = qqnorm(res, plot.it = FALSE)
@@ -226,17 +244,17 @@ diag_plot = function(Xt, model, std = FALSE){
              main = "Normal Q-Q Plot")
   
   # add qq plots
-  points(my_qqnorm$x, my_qqnorm$y)
-  qqline(res, col = "blue",lwd = 2)
+  points(my_qqnorm$x, my_qqnorm$y, pch = 16, col = "#00000030")
+  qqline(res, col = "blue2",lwd = 2)
   
   # plot 4
-  plot(auto_corr(Xt))
+  plot(auto_corr(res))
   
   # plot 5
-  plot(PACF(Xt))
+  plot(PACF(res))
   
   # plot 6
-  object = diag_ljungbox(model, stop_lag = 20, stdres = std, plot = FALSE)
+  object = diag_ljungbox(as.numeric(res), order = 0, stop_lag = 20, stdres = std, plot = FALSE)
   maxval = max(object$pvalue)
   
   x_range = c(min(object$lag), max(object$lag))*1.05
@@ -244,8 +262,8 @@ diag_plot = function(Xt, model, std = FALSE){
   make_frame(x_range, y_range, 
              xlab = "Lag", ylab = "P-value", main = "Ljung-Box Test Result")
   
-  points(object$lag, object$pvalue, pch = 16)
-  lines(object$lag, object$pvalue, lty = 3)
-  abline(h = 0.05, col = "blue", lty = 2)
-  
+  points(object$lag, object$pvalue, pch = 16, cex = 1.25, col = "blue4")
+  lines(object$lag, object$pvalue, lty = 3, col = "blue4")
+  abline(h = 0.05, col = "blue2", lty = 2)
+  par(mfrow = c(1,1))
 }

@@ -31,6 +31,9 @@ cast_acf = function(object, n, name_ = "Empirical", type = "Autocorrelation",
   if(type == "Autocorrelation" || type == "Autocovariance"){
     ids = ids - 1
   }
+  
+  if("PACF" %in% class){ ids = seq_len(nrow(object)) }
+  
   dimnames(object)  = list(ids, name_, name_)
   
   structure(object, type = type, n = n, class = class)
@@ -511,7 +514,7 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   x2$Lag = as.numeric(x2$Lag)
   
   # Range
-  x_range = range(x2$Lag)-1
+  x_range = range(x2$Lag)
   
   # Remove confidence intervals for theoretical ACF
   if (attr(x, "dimnames")[[2]] == "Theoretical"){
@@ -532,8 +535,7 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
   
   if (!is.null(parValue)){
     par(mar = parValue)
-  }
-  else{
+  }else{
     par(mar = c(5.1, 5.1, 1, 2.1)) 
   }
   
@@ -545,20 +547,19 @@ plot.PACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, 
     }else{
       main = paste0(attr(x,"data_name")[1], " PACF plot")
     }
-  }
-  else {
+  }else {
     main = main
   }
   
   
   # Main plot
-  plot(NA, xlim = c(0, max(x2$Lag)), ylim = y_range, 
+  plot(NA, xlim = x_range, ylim = y_range, 
        xlab = xlab, ylab = ylab, xaxt = 'n', 
        yaxt = 'n', bty = "n", ann = FALSE)
   win_dim = par("usr")
   
   par(new = TRUE)
-  plot(NA, xlim = c(0, max(x2$Lag)), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+  plot(NA, xlim = x_range, ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
        xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
   win_dim = par("usr")
   

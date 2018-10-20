@@ -76,4 +76,39 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
              model_type =  model_type)
   class(out) = "fitsimts"
   out
+}
+
+#' @export
+print.fitsimts = function(out){
+  print(out$mod)
+}
+
+
+################################
+### fitsimts: check
+################################
+
+#' @title Diagnostics on Fitted Time Series Model 
+#' @description This function can perform (simple) diagnostics on the fitted time series model.
+#' It can output 6 diagnostic plots to assess the model, including (1) residuals plot,
+#' (2) histogram of distribution of standardized residuals, (3) Normal Q-Q plot of residuals,
+#' (4) ACF plot, (5) PACF plot, (6) Box test results. 
+#' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
+#' @param simple A \code{boolean} indicating whether to return simple diagnostic plots or not. 
+#' @author Stéphane Guerrier
+#' @examples
+#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' model = estimate(AR(3), Xt)
+#' check(model)
+#' check(model, simple = TRUE)
+#' @export
+
+check = function(model, simple = FALSE){
+  if (simple){
+    simple_diag_plot(model$Xt, model)
+  }else{
+    diag_plot(model$Xt, model)
   }
+}
+
+

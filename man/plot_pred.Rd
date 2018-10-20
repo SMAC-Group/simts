@@ -14,7 +14,7 @@ plot_pred(x, model, n.ahead, level = 0.95, xlab = NULL, ylab = NULL,
 
 \item{n.ahead}{An \code{integer} indicating number of units of time ahead for which to make forecasts}
 
-\item{level}{A \code{double} indicating confidence level of prediction interval.}
+\item{level}{A \code{double} indicating confidence level of prediction interval}
 
 \item{xlab}{A \code{string} for the title of x axis}
 
@@ -28,7 +28,7 @@ plot_pred(x, model, n.ahead, level = 0.95, xlab = NULL, ylab = NULL,
 This function plots the time series output from a forecast method with approximate 68% and 95% confidence intervals.
 }
 \examples{
-# Example where Time is Null
+# Example where Time is null
 x = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1, 
 unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
 unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")

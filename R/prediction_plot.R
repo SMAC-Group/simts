@@ -23,7 +23,7 @@
 #' @param x A \code{gts} object
 #' @param model A \code{ts} model
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts
-#' @param level A \code{double} indicating confidence level of prediction interval. 
+#' @param level A \code{double} indicating confidence level of prediction interval
 #' @param xlab A \code{string} for the title of x axis
 #' @param ylab A \code{string} for the title of y axis
 #' @param main A \code{string} for the over all title of the plot

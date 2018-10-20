@@ -116,7 +116,70 @@ check = function(model, simple = FALSE){
 ### fitsimts: predict
 ################################
 
+#' @title Time Series Prediction
+#' @description This function plots the time series forecast.
+#' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
+#' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts.
+#' @param show_last A \code{integer} indicating the number of last observations to show in the forecast plot.
+#' @param level A \code{double} indicating confidence level of prediction interval.
+#' @param xlab A \code{string} for the title of x axis.
+#' @param ylab A \code{string} for the title of y axis.
+#' @param main A \code{string} for the over all title of the plot.
+#' @author Stéphane Guerrier, Yuming Zhang
+#' @examples
+#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' model = estimate(AR(3), Xt)
+#' predict(model)
+#' @export
+#' 
+predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = 0.95, 
+                            xlab = NULL, ylab = NULL, main = NULL){
+  Xt = model$Xt
+  freq = attr(Xt, 'freq')
+  end_time =  attr(Xt, 'end')
+  if (length(Xt) > show_last){
+    Xt2 = Xt[((freq*end_time-show_last):(freq*end_time)) - attr(Xt, 'start') + 1]
 
+    start = end_time-show_last/freq
+    end = attr(Xt, 'end')
+    freq = attr(Xt, 'freq')
+    unit_ts = attr(Xt, 'unit_ts')
+    name_ts = attr(Xt, 'name_ts')
+    unit_time = attr(Xt, 'unit_time')
+    name_time = attr(Xt, 'name_time')
+    Time = attr(Xt, 'Time')
+    data_name = attr(Xt, 'data_name')
+    title_x = attr(Xt, 'print')
+    simulated = attr(Xt, 'simulated')
+    
+    Xt = structure(Xt2, start=start, end=end, freq=freq, 
+                   unit_ts=unit_ts, unit_time=unit_time, name_ts=name_ts,
+                   name_time=name_time, data_name=data_name, Time=Time,
+                   print=title_x, simulated=simulated,
+                   class = c("gts","matrix"))
+  }
+  
+  # plotting
+  # Labels
+  if (!is.null(xlab)){ name_time = xlab }
+  
+  if (!is.null(ylab)){ name_ts = ylab }
+  
+  if (is.null(main)){
+    if (!is.null(simulated)){
+      main = title_x
+    }else{
+      if (is.null(data_name)){
+        main = "Time series"
+      }else{
+        main = data_name
+      }
+    }
+  }
+  
+  plot_pred(Xt, model$mod, n.ahead = n.ahead, level = level, 
+            xlab = xlab, ylab = ylab, main = main)
+}
 
 
 

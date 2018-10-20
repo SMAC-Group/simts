@@ -184,6 +184,64 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = 0.95,
 
 
 
+################################
+### fitsimts: select
+################################
+
+#' @title Time Series Model Selection 
+#' @description This function performs model fitting and calculates the model selection criteria to be plotted.
+#' @param model A time series model.
+#' @param Xt A \code{vector} of time series data. 
+#' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
+#' @author Stéphane Guerrier, Yuming Zhang
+#' @examples
+#' set.seed(463)
+#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' select(AR(5), Xt)
+#' @export
+#' 
+
+select = function(model, Xt, include.mean = TRUE){
+  # Check model
+  if (!is.ts.model(model)){
+    stop("The model provided is not a valid model.")
+  }
+  
+  # Determine model
+  model_code = model$obj.desc[[1]]
+  
+  if (sum(model_code[3:4]) > 0){
+    stop("SARIMA are currently not supported.")
+  }
+  
+  # Order of AR
+  p = model_code[1]
+  
+  # Order of MA 
+  q = model_code[2]
+  if (q > 0){
+    stop("MA are currently not supported.")
+  }
+  
+  
+  # model selection 
+  out = select_arima_(xt,
+                      p = 0:p,
+                      d = 0L,
+                      q = 0L,
+                      include.mean = include.mean)
+  
+  plot_select_ar(x=out)
+}
+
+
+
+
+
+
+
+
+
 
 
 

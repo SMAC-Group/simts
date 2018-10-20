@@ -333,7 +333,7 @@ custom_legend = function(x, usr = par("usr"), ...){
   
   if(x == "topleft"){
     # Plot on top right
-    legend(x = usr[1] + lgd$rect$w*1.5,
+    legend(x = usr[1] + lgd$rect$w*1,
            y =  usr[4] - lgd$rect$h*0.8,
            plot = T, ...)
   }else if(x == "top"){

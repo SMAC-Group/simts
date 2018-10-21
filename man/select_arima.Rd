@@ -13,9 +13,11 @@ select_arima(xt, p.min = 0L, p.max = 3L, d = 0L, q.min = 0L,
 select_arma(xt, p.min = 0L, p.max = 3L, q.min = 0L, q.max = 3L,
   include.mean = TRUE, plot = TRUE)
 
-select_ar(xt, p.min = 0L, p.max = 3L, include.mean = TRUE, plot = TRUE)
+select_ar(xt, p.min = 0L, p.max = 3L, include.mean = TRUE,
+  plot = TRUE)
 
-select_ma(xt, q.min = 0L, q.max = 3L, include.mean = TRUE, plot = TRUE)
+select_ma(xt, q.min = 0L, q.max = 3L, include.mean = TRUE,
+  plot = TRUE)
 }
 \arguments{
 \item{xt}{A \code{vector} of univariate time series.}

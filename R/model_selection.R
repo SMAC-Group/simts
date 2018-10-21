@@ -285,8 +285,10 @@ plot_select_ar = function(x){
                y =  mean(c(usr[3],usr[4])),
                plot = F,
                legend = c("AIC", "BIC", "HQ"))
-  legend(x = usr[1] + lgd$rect$w*0.08,
-         y =  usr[4] - lgd$rect$h*0.3,
+  
+  #x = usr[1] + lgd$rect$w*0.08,
+  #     y =  usr[4] - lgd$rect$h*0.3,
+  legend("bottomleft",
          legend = c("AIC", "BIC", "HQ"), 
          text.col = rep("black", 3),
          lty = rep(1,3),

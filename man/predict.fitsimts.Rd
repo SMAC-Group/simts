@@ -31,5 +31,5 @@ model = estimate(AR(3), Xt)
 predict(model)
 }
 \author{
-Stéphane Guerrier, Yuming Zhang
+Stéphane Guerrier and Yuming Zhang
 }

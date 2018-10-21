@@ -11,13 +11,12 @@
 #' @param demean A \code{boolean} indicating whether the model includes a mean / intercept term or not.
 #' @note If you are going to use \code{rgmwm} as your model fitting method, please be sure that 
 #' the R package \code{gmwm2} is loaded. \code{gmwm2} can be downloaded using R command: devtools::install_github("smac-group/gmwm2"). 
-#' @author Stéphane Guerrier
+#' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)
 #' model = estimate(AR(3), Xt, method = "rgmwm")
 #' @export
-
 estimate = function(model, Xt, method = "mle", demean = TRUE){
   all_method = c("mle", "yule-walker", "rgmwm")
   if (!(method %in% all_method)){
@@ -95,14 +94,13 @@ print.fitsimts = function(out){
 #' (4) ACF plot, (5) PACF plot, (6) Box test results. 
 #' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
 #' @param simple A \code{boolean} indicating whether to return simple diagnostic plots or not. 
-#' @author Stéphane Guerrier
+#' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)
 #' check(model)
 #' check(model, simple = TRUE)
 #' @export
-
 check = function(model, simple = FALSE){
   if (simple){
     simple_diag_plot(model$Xt, model)
@@ -125,7 +123,7 @@ check = function(model, simple = FALSE){
 #' @param xlab A \code{string} for the title of x axis.
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.
-#' @author Stéphane Guerrier, Yuming Zhang
+#' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)
@@ -193,14 +191,13 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = 0.95,
 #' @param model A time series model.
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
-#' @author Stéphane Guerrier, Yuming Zhang
+#' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' set.seed(463)
-#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' Xt = gen_gts(100, AR(phi = c(0.2, -0.5, 0.4), sigma2 = 1))
 #' select(AR(5), Xt)
 #' @export
 #' 
-
 select = function(model, Xt, include.mean = TRUE){
   # Check model
   if (!is.ts.model(model)){
@@ -225,7 +222,7 @@ select = function(model, Xt, include.mean = TRUE){
   
   
   # model selection 
-  out = select_arima_(xt,
+  out = select_arima_(Xt,
                       p = 0:p,
                       d = 0L,
                       q = 0L,

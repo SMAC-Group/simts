@@ -24,5 +24,5 @@ check(model)
 check(model, simple = TRUE)
 }
 \author{
-Stéphane Guerrier
+Stéphane Guerrier and Yuming Zhang
 }

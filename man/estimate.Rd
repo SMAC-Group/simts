@@ -29,5 +29,5 @@ model = estimate(AR(3), Xt)
 model = estimate(AR(3), Xt, method = "rgmwm")
 }
 \author{
-Stéphane Guerrier
+Stéphane Guerrier and Yuming Zhang
 }

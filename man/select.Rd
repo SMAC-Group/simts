@@ -18,9 +18,9 @@ This function performs model fitting and calculates the model selection criteria
 }
 \examples{
 set.seed(463)
-Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+Xt = gen_gts(100, AR(phi = c(0.2, -0.5, 0.4), sigma2 = 1))
 select(AR(5), Xt)
 }
 \author{
-Stéphane Guerrier, Yuming Zhang
+Stéphane Guerrier and Yuming Zhang
 }

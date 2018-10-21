@@ -167,11 +167,11 @@ hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.",
 plot(hydro)
 ```
 
-Using the object we created we can now compute its autocorrelation function using the `ACF()` function as follows:
+Using the object we created we can now compute its autocorrelation function using the `auto_corr()` function as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Empirical autocorrelation function of monthly  precipitation  series  from @hipel1994time'}
 # Compute ACF and plot result
-hydro_acf = ACF(hydro)
+hydro_acf = auto_corr(hydro)
 plot(hydro_acf)
 ```
 
@@ -197,7 +197,7 @@ plot(savingrt)
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 4: Empirical autocorrelation function of Personal Saving  Rates data'}
 # Compute ACF and plot result
-savingrt_acf = ACF(savingrt)
+savingrt_acf = auto_corr(savingrt)
 plot(savingrt_acf)
 ```
 
@@ -222,11 +222,11 @@ plot(sales)
 ```
 
 
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `ACF()` and `PACF()` as follows:
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` and `PACF()` as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
 # Compute ACF and plot result
-sales_acf = ACF(sales)
+sales_acf = auto_corr(sales)
 plot(sales_acf)
 ```
 
@@ -267,11 +267,11 @@ plot(lynx)
 ```
 
 
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `ACF()` and `PACF()` as follows:
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` and `PACF()` as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
 # Compute ACF and plot result
-lynx_acf = ACF(lynx)
+lynx_acf = auto_corr(lynx)
 plot(lynx_acf)
 ```
 
@@ -298,11 +298,11 @@ plot(sunspot)
 ```
 
 
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `ACF()` and `PACF()` as follows:
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` and `PACF()` as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
 # Compute ACF and plot result
-sunspot_acf = ACF(sunspot)
+sunspot_acf = auto_corr(sunspot)
 plot(sunspot_acf)
 ```
 
@@ -330,11 +330,11 @@ nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1,
 plot(nile)
 ```
 
-To get ACF, we can use `ACF()` and make a plot:
+To get ACF, we can use `auto_corr()` and make a plot:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of the Nile river flow data'}
 # Compute ACF and plot result
-nile_acf = ACF(nile)
+nile_acf = auto_corr(nile)
 plot(nile_acf)
 ```
 

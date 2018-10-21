@@ -1,52 +1,34 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Travis-CI Build Status](https://travis-ci.org/SMAC-Group/simts.svg?branch=master)](https://travis-ci.org/SMAC-Group/simts) [![Project Status: Active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![Licence](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/) [![CRAN](http://www.r-pkg.org/badges/version/simts)](https://cran.r-project.org/package=simts) [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--10--21-yellowgreen.svg)](/commits/master)
 
-[![Travis-CI Build
-Status](https://travis-ci.org/SMAC-Group/simts.svg?branch=master)](https://travis-ci.org/SMAC-Group/simts)
-[![Project Status:
-Active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Licence](https://img.shields.io/badge/licence-CC%20BY--NC--SA%204.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R
-version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
-[![CRAN](http://www.r-pkg.org/badges/version/simts)](https://cran.r-project.org/package=simts)
-[![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](commits/develop)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--05--18-yellowgreen.svg)](/commits/master)
+`simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
+======================================================================================================================================
 
-# `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
+The Time Series Simulation (`simts`) R package provides a series of tools to simulate and plot different time series models (including latent models) based on the basic summary statistics for time series analysis. More specifically, it provides the following features:
 
-The Time Series Simulation (`simts`) R package generates various time
-series objects for use in other packages, in which includes:
+-   Simulation of time series from SARIMA models to various state-space models that can be expressed as latent time series processes.
+-   Visualization of time series data with user specifications.
+-   Specific simulation and visualization tools for latent time series models.
 
-  - Simulation of time series simulations from SARIMA models and various
-    state-space models that can be expressed as latent time series
-    processes.
-  - Visualize time series data with user specifications.
-  - Visualize latent time series processes.
+To understand the usage of the `simts` package, please refer to the "Vignettes" tabs above.
 
-To see what `simts` is capable of, please refer to the “Vignettes” tabs
-above.
+Install Instructions
+--------------------
 
-## Install Instructions
-
-To install the `simts` package, there is currently one option:
-[GitHub](https://github.com/SMAC-Group/simts/).
+To install the `simts` package, there is currently one option: [GitHub](https://github.com/SMAC-Group/simts/).
 
 ### Installing the package through GitHub
 
-For users who are interested in having the latest developments, this
-option is ideal. Though, more dependancies are required to run a stable
-version of the package. Most importantly, users **must** have a compiler
-installed on their machine that is compatible with R (e.g. Clang).
+For users who are interested in having the latest developments, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
 
-*The setup to obtain the development version of `simts` is platform
-dependent.*
+*The setup to obtain the development version of `simts` is platform dependent.*
 
 ### Requirements and Dependencies
 
 **OS X**
 
-Some users report the need to use X11 to suppress shared library errors.
-To install X11, visit [xquartz.org](http://www.xquartz.org/).
+Some users report the need to use X11 to suppress shared library errors. To install X11, visit [xquartz.org](http://www.xquartz.org/).
 
 **Linux**
 
@@ -66,9 +48,7 @@ sudo yum install curl curl-devel libxml2 libxml2-dev
 
 **All Systems**
 
-The following R packages are also required. If you have made it this
-far, run the following code in an R session and you will be ready to use
-the devlopment version of `simts`.
+The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the devlopment version of `simts`.
 
 ``` r
 # Install dependencies

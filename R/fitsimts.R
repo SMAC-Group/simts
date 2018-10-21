@@ -119,7 +119,8 @@ check = function(model, simple = FALSE){
 #' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts.
 #' @param show_last A \code{integer} indicating the number of last observations to show in the forecast plot.
-#' @param level A \code{double} indicating confidence level of prediction interval.
+#' @param level A \code{double} or \code{vector} indicating confidence level of prediction interval.
+#' By default, it uses the levels of 0.90 and 0.95.
 #' @param xlab A \code{string} for the title of x axis.
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.
@@ -128,9 +129,18 @@ check = function(model, simple = FALSE){
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)
 #' predict(model)
+#' predict(model, level = 0.95)
+#' 
+#' x = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1, 
+#' unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
+#' unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")
+#' model = estimate(AR(1), x)
+#' predict(model, n.ahead = 20)
+#' predict(model, n.ahead = 20, level = 0.95)
+#' 
 #' @export
 #' 
-predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = 0.95, 
+predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL, 
                             xlab = NULL, ylab = NULL, main = NULL){
   Xt = model$Xt
   freq = attr(Xt, 'freq')

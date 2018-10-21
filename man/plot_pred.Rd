@@ -4,7 +4,7 @@
 \alias{plot_pred}
 \title{Plot Time Series Forecast Function}
 \usage{
-plot_pred(x, model, n.ahead, level = 0.95, xlab = NULL, ylab = NULL,
+plot_pred(x, model, n.ahead, level = NULL, xlab = NULL, ylab = NULL,
   main = NULL, ...)
 }
 \arguments{
@@ -14,7 +14,8 @@ plot_pred(x, model, n.ahead, level = 0.95, xlab = NULL, ylab = NULL,
 
 \item{n.ahead}{An \code{integer} indicating number of units of time ahead for which to make forecasts}
 
-\item{level}{A \code{double} indicating confidence level of prediction interval}
+\item{level}{A \code{double} or \code{vector} indicating confidence level of prediction interval.
+By default, it uses the levels of 0.90 and 0.95.}
 
 \item{xlab}{A \code{string} for the title of x axis}
 
@@ -35,7 +36,7 @@ unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")
 
 model = arima(x, c(2,0,0))
 n.ahead = 20
-plot_pred(x, model, n.ahead)
+plot_pred(x, model, n.ahead)  
 plot_pred(x, model, n.ahead, level = 0.90)
 
 # Example where Time is not numeric

@@ -23,7 +23,8 @@
 #' @param x A \code{gts} object
 #' @param model A \code{ts} model
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts
-#' @param level A \code{double} indicating confidence level of prediction interval
+#' @param level A \code{double} or \code{vector} indicating confidence level of prediction interval.
+#' By default, it uses the levels of 0.90 and 0.95.
 #' @param xlab A \code{string} for the title of x axis
 #' @param ylab A \code{string} for the title of y axis
 #' @param main A \code{string} for the over all title of the plot
@@ -38,7 +39,7 @@
 #' 
 #' model = arima(x, c(2,0,0))
 #' n.ahead = 20
-#' plot_pred(x, model, n.ahead)
+#' plot_pred(x, model, n.ahead)  
 #' plot_pred(x, model, n.ahead, level = 0.90)
 #' 
 #' # Example where Time is not numeric
@@ -51,7 +52,7 @@
 #' plot_pred(x, model, n.ahead)
 
 
-plot_pred = function(x, model, n.ahead, level = 0.95, 
+plot_pred = function(x, model, n.ahead, level = NULL, 
                      xlab = NULL, ylab = NULL, main = NULL, ...){
   
   # Extract values
@@ -77,8 +78,33 @@ plot_pred = function(x, model, n.ahead, level = 0.95,
   prediction = predict(model, n.ahead = n.ahead)
   pred = prediction$pred
   se = prediction$se
-  ci.up = pred+qnorm(level)*se
-  ci.low = pred-qnorm(level)*se
+  
+  if(!is.null(level)){
+    if(length(level) == 1){
+      ci.up = pred+qnorm(level)*se
+      ci.low = pred-qnorm(level)*se
+    }
+    if(length(level) == 2){
+      ci.up1 = pred+qnorm(level[1])*se
+      ci.up2 = pred+qnorm(level[2])*se
+      ci.low1 = pred-qnorm(level[1])*se
+      ci.low2 = pred-qnorm(level[2])*se
+      ci.up = c(ci.up1, ci.up2)
+      ci.low = c(ci.low1, ci.low2)
+    }
+    if(length(level) > 2){
+      stop('This function can support up to 2 confidence levels of prediction.')
+    }
+  }else{
+    level = c(0.90, 0.95)
+    ci.up1 = pred+qnorm(level[1])*se
+    ci.up2 = pred+qnorm(level[2])*se
+    ci.low1 = pred-qnorm(level[1])*se
+    ci.low2 = pred-qnorm(level[2])*se
+    ci.up = c(ci.up1, ci.up2)
+    ci.low = c(ci.low1, ci.low2)
+  }
+  
   
   # Labels
   if (!is.null(xlab)){ name_time = xlab }
@@ -145,9 +171,19 @@ plot_pred = function(x, model, n.ahead, level = 0.95,
     lines(scale.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
     
     # Add CI
-    polygon(x = c(scale.pred, rev(scale.pred)), 
-            y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-            col = rgb(0,0.1,1,0.1), border = NA)
+    if (length(level) == 1){
+      polygon(x = c(scale.pred, rev(scale.pred)), 
+              y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
+              col = rgb(0,0.1,1,0.1), border = NA)
+    }else{
+      polygon(x = c(scale.pred, rev(scale.pred)), 
+              y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
+              col = rgb(0,0.1,1,0.1), border = NA)
+      polygon(x = c(scale.pred, rev(scale.pred)), 
+              y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
+              col = rgb(0,0.1,1,0.1), border = NA)
+    }
+    
   }
   
   else {
@@ -175,9 +211,18 @@ plot_pred = function(x, model, n.ahead, level = 0.95,
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI
-      polygon(x = c(scales.pred, rev(scales.pred)), 
-              y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-              col = rgb(0,0.1,1,0.1), border = NA)
+      if(length(level) == 1){
+        polygon(x = c(scales.pred, rev(scales.pred)), 
+                y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
+                col = rgb(0,0.1,1,0.1), border = NA)
+      }else{
+        polygon(x = c(scales.pred, rev(scales.pred)), 
+                y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
+                col = rgb(0,0.1,1,0.1), border = NA)
+        polygon(x = c(scales.pred, rev(scales.pred)), 
+                y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
+                col = rgb(0,0.1,1,0.1), border = NA)
+      }
     }
     else {
       # time.pred
@@ -196,9 +241,18 @@ plot_pred = function(x, model, n.ahead, level = 0.95,
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI
-      polygon(x = c(scales.pred, rev(scales.pred)), 
-              y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-              col = rgb(0,0.1,1,0.1), border = NA)
+      if(length(level) == 1){
+        polygon(x = c(scales.pred, rev(scales.pred)), 
+                y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
+                col = rgb(0,0.1,1,0.1), border = NA)
+      }else{
+        polygon(x = c(scales.pred, rev(scales.pred)), 
+                y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
+                col = rgb(0,0.1,1,0.1), border = NA)
+        polygon(x = c(scales.pred, rev(scales.pred)), 
+                y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
+                col = rgb(0,0.1,1,0.1), border = NA)
+      }
       
     }
     

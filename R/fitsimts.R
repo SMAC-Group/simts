@@ -168,24 +168,7 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
   }
   
   # plotting
-  # Labels
-  if (!is.null(xlab)){ name_time = xlab }
-  
-  if (!is.null(ylab)){ name_ts = ylab }
-  
-  if (is.null(main)){
-    if (!is.null(simulated)){
-      main = title_x
-    }else{
-      if (is.null(data_name)){
-        main = "Time series"
-      }else{
-        main = data_name
-      }
-    }
-  }
-  
-  plot_pred(Xt, model$mod, n.ahead = n.ahead, level = level, 
+  plot_pred(x = Xt, model = model$mod, n.ahead = n.ahead, level = level, 
             xlab = xlab, ylab = ylab, main = main)
 }
 

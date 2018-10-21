@@ -155,7 +155,7 @@ plot_pred = function(x, model, n.ahead, level = NULL,
   
   if (is.null(Time)){
     # time pred
-    time.pred = seq(end+1, end + floor(n.ahead / freq))
+    time.pred = end + (1:n.ahead)/freq
     scale.pred = c(end, time.pred)
     
     # Make frame
@@ -192,7 +192,7 @@ plot_pred = function(x, model, n.ahead, level = NULL,
       Time_int = as.integer(as.Date(Time, origin="1970-01-01")) # 1970-01-01 is default origin
       start = Time_int[1]
       end = Time_int[length(Time)]
-      time.pred = end + seq(1, floor(n.ahead / freq))
+      time.pred = end + (1:n.ahead)/freq
 
       # Make frame
       make_frame(x_range = range(c(Time_int, time.pred)), 
@@ -226,7 +226,8 @@ plot_pred = function(x, model, n.ahead, level = NULL,
     }
     else {
       # time.pred
-      time.pred = end + seq(1, floor(n.ahead / freq))
+      time.pred = end + (1:n.ahead)/freq
+      scales.pred = c(end, time.pred)
       
       # Make frame
       make_frame(x_range = range(c(Time, time.pred)), 
@@ -237,7 +238,6 @@ plot_pred = function(x, model, n.ahead, level = NULL,
       couleur = "blue4"
       lines(Time, x, type = "l", col = couleur, lty = 1)
       
-      scales.pred = c(end, time.pred)
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI

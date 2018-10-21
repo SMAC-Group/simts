@@ -24,7 +24,7 @@
 #' @param model A \code{ts} model
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts
 #' @param level A \code{double} or \code{vector} indicating confidence level of prediction interval.
-#' By default, it uses the levels of 0.90 and 0.95.
+#' By default, it uses the levels of 0.50 and 0.95.
 #' @param xlab A \code{string} for the title of x axis
 #' @param ylab A \code{string} for the title of y axis
 #' @param main A \code{string} for the over all title of the plot
@@ -81,14 +81,14 @@ plot_pred = function(x, model, n.ahead, level = NULL,
   
   if(!is.null(level)){
     if(length(level) == 1){
-      ci.up = pred+qnorm(level)*se
-      ci.low = pred-qnorm(level)*se
+      ci.up = pred+qnorm(1- (1-level)/2)*se
+      ci.low = pred-qnorm(1- (1-level)/2)*se
     }
     if(length(level) == 2){
-      ci.up1 = pred+qnorm(level[1])*se
-      ci.up2 = pred+qnorm(level[2])*se
-      ci.low1 = pred-qnorm(level[1])*se
-      ci.low2 = pred-qnorm(level[2])*se
+      ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
+      ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
+      ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
+      ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
       ci.up = c(ci.up1, ci.up2)
       ci.low = c(ci.low1, ci.low2)
     }
@@ -96,11 +96,11 @@ plot_pred = function(x, model, n.ahead, level = NULL,
       stop('This function can support up to 2 confidence levels of prediction.')
     }
   }else{
-    level = c(0.90, 0.95)
-    ci.up1 = pred+qnorm(level[1])*se
-    ci.up2 = pred+qnorm(level[2])*se
-    ci.low1 = pred-qnorm(level[1])*se
-    ci.low2 = pred-qnorm(level[2])*se
+    level = c(0.50, 0.95)
+    ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
+    ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
+    ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
+    ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
     ci.up = c(ci.up1, ci.up2)
     ci.low = c(ci.low1, ci.low2)
   }

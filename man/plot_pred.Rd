@@ -15,7 +15,7 @@ plot_pred(x, model, n.ahead, level = NULL, xlab = NULL, ylab = NULL,
 \item{n.ahead}{An \code{integer} indicating number of units of time ahead for which to make forecasts}
 
 \item{level}{A \code{double} or \code{vector} indicating confidence level of prediction interval.
-By default, it uses the levels of 0.90 and 0.95.}
+By default, it uses the levels of 0.50 and 0.95.}
 
 \item{xlab}{A \code{string} for the title of x axis}
 

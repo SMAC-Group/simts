@@ -120,7 +120,7 @@ check = function(model, simple = FALSE){
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts.
 #' @param show_last A \code{integer} indicating the number of last observations to show in the forecast plot.
 #' @param level A \code{double} or \code{vector} indicating confidence level of prediction interval.
-#' By default, it uses the levels of 0.90 and 0.95.
+#' By default, it uses the levels of 0.50 and 0.95.
 #' @param xlab A \code{string} for the title of x axis.
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.

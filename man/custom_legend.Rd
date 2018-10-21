@@ -6,4 +6,7 @@
 \usage{
 custom_legend(x, usr = par("usr"), ...)
 }
+\description{
+Custom legend function
+}
 \keyword{internal}

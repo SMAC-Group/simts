@@ -109,15 +109,21 @@ theo_pacf = function(ar, ma = NULL, lagmax = 20){
 ### Empirical ACF / PACF
 ################################
 
-#' @title Estimation of Auto-Covariance and Correlation Functions
-#' @description The ACF function estimates the
-#' autocovariance or autocorrelation for univariate time series.
-#' @author Yunxiang Zhang
-#' @param x      A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
-#' @param lag.max An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.
+# ----- wrapper function
+
+#' @title Empirical ACF and PACF
+#' @description This function can estimate either the autocovariance / autocorrelation for univariate time series,
+#' or the partial autocovariance / autocorrelation for univariate time series.
+#' @author Yuming Zhang
+#' @param x       A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
+#' @param lag.max An \code{integer} indicating the maximum lag up to which to compute the empirical ACF / PACF.
+#' @param pacf    A \code{boolean} indicating whether to output the PACF. 
+#' If it's \code{TRUE}, then the function will only estimate the empirical PACF. If it's \code{FALSE} (the default),
+#' then the function will only estimate the empirical ACF. 
 #' @param type   A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".
 #' @param demean A \code{boolean} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
 #' @param robust A \code{boolean} indicating whether a robust estimator should be used (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{FALSE}.
+#' This only works when the function is estimating ACF.
 #' @return An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 #' @details 
 #' \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
@@ -127,13 +133,22 @@ theo_pacf = function(ar, ma = NULL, lagmax = 20){
 #' @importFrom stats acf pacf mad
 #' @importFrom robcor robacf
 #' @export
-#' @examples 
-#' # Get Autocorrelation
-#' m = auto_corr(datasets::AirPassengers)
 #' 
-#' # Get Autocovariance and do not remove trend from signal
-#' m = auto_corr(datasets::AirPassengers, cor = FALSE, demean = FALSE)
-auto_corr = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = FALSE){
+#' @examples 
+#' m = auto_corr(datasets::AirPassengers)
+#' m = auto_corr(datasets::AirPassengers, pacf = TRUE)
+
+auto_corr = function(x, lag.max = NULL, pacf = FALSE, type = "correlation", demean = TRUE, robust = FALSE){
+  if(pacf == FALSE){
+    ACF(x, lag.max = lag.max, type = type, demean = demean, robust = robust)
+  }else{
+    PACF(x, lag.max = lag.max, type = type, demean = demean)
+  }
+}
+
+
+# ------ empirical ACF
+ACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = FALSE){
   
   # Change the data to matrix form
   if(is.ts(x) || is.atomic(x)){
@@ -205,7 +220,7 @@ auto_corr = function(x, lag.max = NULL, type = "correlation", demean = TRUE, rob
 #' @importFrom grDevices col2rgb
 #' @examples 
 #' # Calculate the Autocorrelation
-#' m = ACF(datasets::AirPassengers)
+#' m = auto_corr(datasets::AirPassengers)
 #' 
 #' # Plot with 95% CI
 #' plot(m) 
@@ -365,25 +380,7 @@ plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, c
 
 
 
-
-
-#' @title Partial Auto-Covariance and Correlation Functions
-#' @description The PACF function estimates the
-#' partial autocovariance or autocorrelation for both univariate time series.
-#' @author Yunxiang Zhang
-#' @param x      A \code{vector} or \code{ts} object (of length \eqn{N > 1}).
-#' @param lag.max An \code{integer} indicating the maximum lag up to which to compute the empirical PACF.
-#' @param type   A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".
-#' @param demean A \code{bool} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.
-#' @return An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
-#' @importFrom stats acf pacf 
-#' @export
-#' @examples 
-#' # Get Autocorrelation
-#' m = PACF(datasets::AirPassengers)
-#' 
-#' # Get Autocovariance and do not remove trend from signal
-#' m = PACF(datasets::AirPassengers, cor = FALSE, demean = FALSE)
+# ----- empirical PACF
 PACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE){
   
   if (type != "correlation" && type != "covariance"){
@@ -450,7 +447,7 @@ PACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE){
 #' @export
 #' @examples 
 #' # Plot the Partial Autocorrelation
-#' m = PACF(datasets::AirPassengers)
+#' m = auto_corr(datasets::AirPassengers, pacf = TRUE)
 #' plot(m)
 #' 
 #' # More customized CI

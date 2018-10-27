@@ -35,7 +35,7 @@ The function plots the output of the \code{\link{theo_pacf}} and \code{\link{PAC
 }
 \examples{
 # Plot the Partial Autocorrelation
-m = PACF(datasets::AirPassengers)
+m = auto_corr(datasets::AirPassengers, pacf = TRUE)
 plot(m)
 
 # More customized CI

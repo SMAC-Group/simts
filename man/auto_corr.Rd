@@ -2,28 +2,33 @@
 % Please edit documentation in R/ACF.R
 \name{auto_corr}
 \alias{auto_corr}
-\title{Estimation of Auto-Covariance and Correlation Functions}
+\title{Empirical ACF and PACF}
 \usage{
-auto_corr(x, lag.max = NULL, type = "correlation", demean = TRUE,
-  robust = FALSE)
+auto_corr(x, lag.max = NULL, pacf = FALSE, type = "correlation",
+  demean = TRUE, robust = FALSE)
 }
 \arguments{
 \item{x}{A \code{vector} or \code{ts} object (of length \eqn{N > 1}).}
 
-\item{lag.max}{An \code{integer} indicating the maximum lag up to which to compute the empirical ACF.}
+\item{lag.max}{An \code{integer} indicating the maximum lag up to which to compute the empirical ACF / PACF.}
+
+\item{pacf}{A \code{boolean} indicating whether to output the PACF. 
+If it's \code{TRUE}, then the function will only estimate the empirical PACF. If it's \code{FALSE} (the default),
+then the function will only estimate the empirical ACF.}
 
 \item{type}{A \code{character} string giving the type of acf to be computed. Allowed values are "correlation" (the default) and "covariance".}
 
 \item{demean}{A \code{boolean} indicating whether the data should be detrended (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{TRUE}.}
 
-\item{robust}{A \code{boolean} indicating whether a robust estimator should be used (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{FALSE}.}
+\item{robust}{A \code{boolean} indicating whether a robust estimator should be used (\code{TRUE}) or not (\code{FALSE}). Defaults to \code{FALSE}.
+This only works when the function is estimating ACF.}
 }
 \value{
 An \code{array} of dimensions \eqn{N \times 1 \times 1}{N x 1 x 1}.
 }
 \description{
-The ACF function estimates the
-autocovariance or autocorrelation for univariate time series.
+This function can estimate either the autocovariance / autocorrelation for univariate time series,
+or the partial autocovariance / autocorrelation for univariate time series.
 }
 \details{
 \code{lagmax} default is \eqn{10*log10(N/m)} where \eqn{N} is the number of
@@ -32,12 +37,9 @@ observations and \eqn{m} is the number of time series being compared. If
 less than the total will be taken (i.e. N - 1).
 }
 \examples{
-# Get Autocorrelation
 m = auto_corr(datasets::AirPassengers)
-
-# Get Autocovariance and do not remove trend from signal
-m = auto_corr(datasets::AirPassengers, cor = FALSE, demean = FALSE)
+m = auto_corr(datasets::AirPassengers, pacf = TRUE)
 }
 \author{
-Yunxiang Zhang
+Yuming Zhang
 }

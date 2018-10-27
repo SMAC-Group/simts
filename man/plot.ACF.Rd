@@ -35,7 +35,7 @@ The function plots the output of the \code{\link{theo_acf}} and \code{\link{ACF}
 }
 \examples{
 # Calculate the Autocorrelation
-m = ACF(datasets::AirPassengers)
+m = auto_corr(datasets::AirPassengers)
 
 # Plot with 95\% CI
 plot(m) 

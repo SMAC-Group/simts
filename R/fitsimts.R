@@ -234,6 +234,8 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' @param model A time series model.
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
+#' @param criterion A \code{string} indicating the type of criterion to use in selecting the best model. 
+#' Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' set.seed(463)
@@ -241,7 +243,7 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' select(AR(5), Xt)
 #' @export
 #' 
-select = function(model, Xt, include.mean = TRUE){
+select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -270,8 +272,12 @@ select = function(model, Xt, include.mean = TRUE){
                       d = 0L,
                       q = 0L,
                       include.mean = include.mean)
-  
+
   plot_select_ar(x=out)
+  
+  # return best model
+  best_model(out, ic = criterion)
+  
 }
 
 

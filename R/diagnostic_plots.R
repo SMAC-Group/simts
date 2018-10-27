@@ -217,7 +217,7 @@ diag_plot = function(Xt, model, std = FALSE){
   if (class(model) == "fitsimts"){
     if (model$model_type == "AR"){
       res = model$mod$resid
-      xx = na.omit(Xt - res)
+      xx = na.omit(as.numeric(Xt) - res)
       res = na.omit(res)
     }else{
       stop("Only AR models are currently supported when estimate function is used.")

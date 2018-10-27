@@ -170,6 +170,56 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
   # plotting
   plot_pred(x = Xt, model = model$mod, n.ahead = n.ahead, level = level, 
             xlab = xlab, ylab = ylab, main = main)
+  
+  # Prediction 
+  prediction = predict(model$mod, n.ahead = n.ahead)
+  pred = prediction$pred
+  se = prediction$se
+  
+  if(!is.null(level)){
+    if(length(level) == 1){
+      ci.up = pred+qnorm(1- (1-level)/2)*se
+      ci.low = pred-qnorm(1- (1-level)/2)*se
+      
+      CI = matrix(c(ci.low, ci.up), nrow = length(ci.low), ncol = 2)
+      attr(CI, "level") = level
+      return(list(pred=pred, se=se, CI=CI))
+    }
+    if(length(level) == 2){
+      ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
+      ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
+      ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
+      ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
+      ci.up = c(ci.up1, ci.up2)
+      ci.low = c(ci.low1, ci.low2)
+      
+      CI1 = matrix(c(ci.low1, ci.up1), nrow = length(ci.low1), ncol = 2)
+      CI2 = matrix(c(ci.low2, ci.up2), nrow = length(ci.low2), ncol = 2)
+      attr(CI1, "level") = level[1]
+      attr(CI2, "level") = level[2]
+      return(list(pred=pred, se=se, CI1=CI1, CI2=CI2))
+      
+    }
+    if(length(level) > 2){
+      stop('This function can support up to 2 confidence levels of prediction.')
+    }
+  }else{
+    level = c(0.50, 0.95)
+    ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
+    ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
+    ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
+    ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
+    ci.up = c(ci.up1, ci.up2)
+    ci.low = c(ci.low1, ci.low2)
+    
+    CI1 = matrix(c(ci.low1, ci.up1), nrow = length(ci.low1), ncol = 2)
+    CI2 = matrix(c(ci.low2, ci.up2), nrow = length(ci.low2), ncol = 2)
+    attr(CI1, "level") = level[1]
+    attr(CI2, "level") = level[2]
+    return(list(pred=pred, se=se, CI1=CI1, CI2=CI2))
+  }
+  
+  
 }
 
 

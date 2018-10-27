@@ -12,16 +12,12 @@ estimate(model, Xt, method = "mle", demean = TRUE)
 \item{Xt}{A \code{vector} of time series data.}
 
 \item{method}{A \code{string} indicating the method used for model fitting. 
-Supported methods include \code{mle}, \code{yule-walker}, and \code{rgmwm}.}
+Supported methods include \code{mle}, \code{yule-walker}, \code{gmwm}  and \code{rgmwm}.}
 
 \item{demean}{A \code{boolean} indicating whether the model includes a mean / intercept term or not.}
 }
 \description{
 This function can fit a time series model to data using different methods.
-}
-\note{
-If you are going to use \code{rgmwm} as your model fitting method, please be sure that 
-the R package \code{gmwm2} is loaded. \code{gmwm2} can be downloaded using R command: devtools::install_github("smac-group/gmwm2").
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))

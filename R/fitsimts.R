@@ -7,10 +7,8 @@
 #' @param model A time series model.
 #' @param Xt A \code{vector} of time series data. 
 #' @param method A \code{string} indicating the method used for model fitting. 
-#' Supported methods include \code{mle}, \code{yule-walker}, and \code{rgmwm}. 
+#' Supported methods include \code{mle}, \code{yule-walker}, \code{gmwm}  and \code{rgmwm}. 
 #' @param demean A \code{boolean} indicating whether the model includes a mean / intercept term or not.
-#' @note If you are going to use \code{rgmwm} as your model fitting method, please be sure that 
-#' the R package \code{gmwm2} is loaded. \code{gmwm2} can be downloaded using R command: devtools::install_github("smac-group/gmwm2"). 
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
@@ -18,7 +16,7 @@
 #' model = estimate(AR(3), Xt, method = "rgmwm")
 #' @export
 estimate = function(model, Xt, method = "mle", demean = TRUE){
-  all_method = c("mle", "yule-walker", "rgmwm")
+  all_method = c("mle", "yule-walker", "rgmwm", "gmwm")
   if (!(method %in% all_method)){
     stop("Only the following method are currently supported: 
          mle, yule-walker and rgmwm.")
@@ -60,7 +58,12 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
       mod = arima(as.numeric(Xt), c(p, 0, 0), method = meth, include.mean = demean)
       sample_mean = NULL
     }else{
-      mod = gmwm(model, Xt, robust = TRUE)
+      if (method == "gmwm"){
+        mod = gmwm(model, Xt)
+      }else{
+        mod = gmwm(model, Xt, robust = TRUE)
+      }
+      
       if (demean){
         sample_mean = mean(Xt)
       }else{

@@ -18,7 +18,11 @@ Reverses the order of an Armadillo Vector
 \details{
 Consider a vector x=[1,2,3,4,5], the function would output x=[5,4,3,2,1].
 }
+\examples{
+x = 1:5
+reverse_vec(x)
+}
 \author{
-James Balamuta
+JJB
 }
 \keyword{internal}

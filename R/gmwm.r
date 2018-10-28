@@ -117,38 +117,6 @@
 #' }
 #' If only an ARMA() term is supplied, then the function takes conditional least squares as starting values
 #' If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.
-#' @examples
-#' # AR
-#' set.seed(1336)
-#' n = 200
-#' data = gen_gts(n, AR1(phi = .99, sigma2 = 0.01) + WN(sigma2 = 1))
-#'
-#' # Models can contain specific parameters e.g.
-#' adv.model = gmwm(AR1(phi = .99, sigma2 = 0.01) + WN(sigma2 = 0.01),
-#'                             data)
-#'
-#' # Or we can guess the parameters:
-#' guided.model = gmwm(AR1() + WN(), data)
-#'
-#' # Want to try different models?
-#' guided.ar1 = gmwm(AR1(), data)
-#'
-#' # Faster:
-#' guided.ar1.wn.prev = update(guided.ar1, AR1()+WN())
-#'
-#' # OR
-#'
-#' # Create new GMWM object.
-#' # Note this is SLOWER since the Covariance Matrix is recalculated.
-#' guided.ar1.wn.new = gmwm(AR1()+WN(), data)
-#'
-#' # ARMA case
-#' set.seed(1336)
-#' data = gen_gts(n, ARMA(ar = c(0.8897, -0.4858), ma = c(-0.2279, 0.2488),
-#'               sigma2 = 0.1796))
-#' #guided.arma = gmwm(ARMA(2,2), data, model.type="ssm")
-#' adv.arma = gmwm(ARMA(ar=c(0.8897, -0.4858), ma = c(-0.2279, 0.2488), sigma2=0.1796),
-#'                 data, model.type="ssm")
 gmwm = function(model, data, model.type="ssm", compute.v="auto",
                 robust=FALSE, eff=0.6, alpha = 0.05, seed = 1337, G = NULL, K = 1, H = 100,
                 freq = 1){
@@ -367,21 +335,6 @@ gmwm = function(model, data, model.type="ssm", compute.v="auto",
 #' working with large time series objects. Alternatively, one can also use this
 #' function to supply a custom diagonal weighting matrix by modifying the
 #' \code{\link{gmwm}} object.
-#' @examples
-#' # AR
-#' set.seed(1336)
-#' n = 200
-#' exact.model = AR1(phi=.99, sigma2 = 0.01) + WN(sigma2=1)
-#' data = gen_gts(n, exact.model)
-#'
-#' # Create an initial model that is not accurate
-#' bad.model = gmwm(AR1(), data = data)
-#'
-#' # Models can contain specific parameters e.g.
-#' updated.model = update(bad.model, exact.model)
-#'
-#' # Or...
-#' updated.model.guided = update(bad.model, AR1()+AR1())
 update.gmwm = function(object, model, ...){
   # Do we have a valid model?
   if(!is.ts.model(model)){
@@ -528,13 +481,6 @@ update.gmwm = function(object, model, ...){
 #'  \item{seed}{Randomization seed used to generate the guessing values}
 #'  \item{freq}{Frequency of data}
 #' }
-#' @examples
-#' \dontrun{
-#' # Example data generation
-#' data = gen_gts(10000, GM(beta = 0.25, sigma2_gm = 1), freq = 5)
-#' results = gmwm_imu(GM(),data)
-#' inference = summary(results)
-#' }
 gmwm_imu = function(model, data, compute.v = "fast", robust = F, eff = 0.6, ...){
 
   x = gmwm(model = model,
@@ -563,11 +509,6 @@ gmwm_imu = function(model, data, compute.v = "fast", robust = F, eff = 0.6, ...)
 #' By default, the \code{rgmwm} function will fit a classical \code{\link{gmwm}}
 #' object. From there, the user has the ability to specify any \code{eff} that is
 #' less than or equal to 0.99.
-#' @examples
-#' set.seed(8836)
-#' x = gen_gts(1000, AR1(phi = .1, sigma2 = 1) + AR1(phi = 0.95, sigma2 = .1))
-#' obj = rgmwm(2*AR1()+WN(), data = x)
-#' compare_eff(obj)
 rgmwm = function(model, data, eff = c(0.9, 0.8, 0.6), ...){
 
   len = length(eff) + 1
@@ -596,15 +537,6 @@ rgmwm = function(model, data, eff = c(0.9, 0.8, 0.6), ...){
 #' @param ... Other arguments passed to specific methods
 #' @return Text output via print
 #' @author JJB
-#' @examples
-#' \dontrun{
-#' # AR
-#' set.seed(1336)
-#' n = 200
-#' xt = gen_gts(n, AR1(phi=.1, sigma2 = 1) + AR1(phi=0.95, sigma2 = .1))
-#' mod = gmwm(AR1()+AR1(), data=xt, model.type="imu")
-#' print(mod)
-#' }
 print.gmwm = function(x, ...){
   cat("Model Information: \n")
   print(x$estimate)
@@ -641,15 +573,6 @@ print.gmwm = function(x, ...){
 #'  \item{N}{Length of Time Series}
 #' }
 #' @author JJB
-#' @examples
-#' \dontrun{
-#' # AR
-#' set.seed(1336)
-#' n = 200
-#' xt = gen_gts(n, AR1(phi=.1, sigma2 = 1) + AR1(phi=0.95, sigma2 = .1))
-#' mod = gmwm(AR1()+AR1(), data = xt, model.type = "imu")
-#' summary(mod)
-#' }
 summary.gmwm = function(object, inference = NULL,
                         bs.gof = NULL,  bs.gof.p.ci = NULL,
                         bs.theta.est = NULL, bs.ci = NULL,
@@ -755,15 +678,6 @@ summary.gmwm = function(object, inference = NULL,
 #' @param ... Other arguments passed to specific methods
 #' @return Text output via print
 #' @author JJB
-#' @examples
-#' \dontrun{
-#' # AR
-#' set.seed(1336)
-#' n = 200
-#' xt = gen_gts(n, AR1(phi = .1, sigma2 = 1) + AR1(phi = 0.95, sigma2 = .1))
-#' mod = gmwm(AR1() + AR1(), data = xt, model.type = "imu")
-#' summary(mod)
-#' }
 print.summary.gmwm = function(x, ...){
 
   cat("Model Information: \n")
@@ -814,13 +728,6 @@ print.summary.gmwm = function(x, ...){
 #' }
 #' @seealso \code{\link{gmwm}}, \code{\link{ARMA}}
 #' @export
-#' @examples
-#' # Simulate an ARMA Process
-#' xt = gen_gts(1000, ARMA(ar=0.3, ma=0.6, sigma2=1))
-#' model = gmwm(ARMA(1,1), xt)
-#'
-#' # Make prediction
-#' predict(model, xt, n.ahead = 1)
 predict.gmwm = function(object, data.in.gmwm, n.ahead = 1, ...){
 
   ts.mod = object$model

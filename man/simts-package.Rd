@@ -5,9 +5,9 @@
 \alias{simts}
 \alias{simts-package}
 \alias{simts-package}
-\title{simts: Time Series Simulation}
+\title{simts: Time Series Analysis Tools}
 \description{
-Generates various time series objects for use in other packages.
+This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
 
 Simulation and Plotting Tools Time Series (simts) Package
 }

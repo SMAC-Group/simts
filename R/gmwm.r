@@ -813,6 +813,7 @@ print.summary.gmwm = function(x, ...){
 #' \item{resid}{Residuals from ARIMA ML Fit}
 #' }
 #' @seealso \code{\link{gmwm}}, \code{\link{ARMA}}
+#' @export
 #' @examples
 #' # Simulate an ARMA Process
 #' xt = gen_gts(1000, ARMA(ar=0.3, ma=0.6, sigma2=1))

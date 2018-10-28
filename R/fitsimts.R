@@ -209,6 +209,10 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' predict(model, n.ahead = 20)
 #' predict(model, n.ahead = 20, level = 0.95)
 #' 
+#' Xt = gen_gts(300, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
+#' model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
+#' predict(model, n.ahead=10)
+#' 
 #' @export
 #' 
 predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL, 
@@ -238,14 +242,27 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
                    class = c("gts","matrix"))
   }
   
-  # plotting
-  plot_pred(x = Xt, model = model$mod, n.ahead = n.ahead, level = level, 
-            xlab = xlab, ylab = ylab, main = main)
   
   # Prediction 
-  prediction = predict(model$mod, n.ahead = n.ahead)
-  pred = prediction$pred
-  se = prediction$se
+  if(model$method == "gmwm" | model$method == "rgmwm"){
+    if(model$demean==TRUE){
+      a = predict(model$mod, model$Xt - model$sample_mean, n.ahead = n.ahead) 
+      pred = a$pred+model$sample_mean
+      se = a$se
+    }else{
+      a = predict(model$mod, model$Xt, n.ahead=10) 
+      pred = a$pred
+      se = a$se
+    }
+   plot_pred_gmwm(x = Xt, model=model, n.ahead = n.ahead, level = level, 
+                  xlab = xlab, ylab = ylab, main = main) 
+  }else{
+    a = predict(model$mod, n.ahead = n.ahead)
+    pred = a$pred
+    se = a$se
+    plot_pred(x = Xt, model = model$mod, n.ahead = n.ahead, level = level, 
+              xlab = xlab, ylab = ylab, main = main)
+  }
   
   if(!is.null(level)){
     if(length(level) == 1){
@@ -289,8 +306,6 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
     attr(CI2, "level") = level[2]
     return(list(pred=pred, se=se, CI1=CI1, CI2=CI2))
   }
-  
-  
 }
 
 

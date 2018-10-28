@@ -1952,11 +1952,6 @@ diff_cpp <- function(x, lag, differences) {
 #' @details This function is a port of the base stats package's ARMAtoMA. There is no significant speed difference between the two.
 #' @author R Core Team and JJB
 #' @keywords internal
-#' @examples
-#' # ARMA(2,1)
-#' ARMAtoMA_cpp(c(1.0, -0.25), 1.0, 10)
-#' # ARMA(0,1)
-#' ARMAtoMA_cpp(numeric(0), 1.0, 10)
 ARMAtoMA_cpp <- function(ar, ma, lag_max) {
     .Call('_simts_ARMAtoMA_cpp', PACKAGE = 'simts', ar, ma, lag_max)
 }
@@ -2022,11 +2017,6 @@ rfilter <- function(x, filter, init) {
 #' @details This is an implementaiton of the ARMAacf function in R. It is approximately 40x times faster. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
 #' @author R Core Team and JJB
 #' @keywords internal
-#' @examples
-#' # ARMA(2,1)
-#' ARMAacf_cpp(c(1.0, -0.25), 1.0, lag_max = 10)
-#' # ARMA(0,1)
-#' ARMAacf_cpp(numeric(0), .35, lag_max = 10)
 ARMAacf_cpp <- function(ar, ma, lag_max) {
     .Call('_simts_ARMAacf_cpp', PACKAGE = 'simts', ar, ma, lag_max)
 }

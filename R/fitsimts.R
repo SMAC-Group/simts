@@ -208,10 +208,12 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' model = estimate(AR(1), x)
 #' predict(model, n.ahead = 20)
 #' predict(model, n.ahead = 20, level = 0.95)
+#' predict(model, n.ahead = 20, level = c(0.50, 0.80, 0.95))
 #' 
 #' Xt = gen_gts(300, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
 #' model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
-#' predict(model, n.ahead=10)
+#' predict(model, n.ahead = 10)
+#' predict(model, n.ahead = 10, level = c(0.50, 0.80, 0.95))
 #' 
 #' @export
 #' 
@@ -264,48 +266,21 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
               xlab = xlab, ylab = ylab, main = main)
   }
   
-  if(!is.null(level)){
-    if(length(level) == 1){
-      ci.up = pred+qnorm(1- (1-level)/2)*se
-      ci.low = pred-qnorm(1- (1-level)/2)*se
-      
-      CI = matrix(c(ci.low, ci.up), nrow = length(ci.low), ncol = 2)
-      attr(CI, "level") = level
-      return(list(pred=pred, se=se, CI=CI))
-    }
-    if(length(level) == 2){
-      ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
-      ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
-      ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
-      ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
-      ci.up = c(ci.up1, ci.up2)
-      ci.low = c(ci.low1, ci.low2)
-      
-      CI1 = matrix(c(ci.low1, ci.up1), nrow = length(ci.low1), ncol = 2)
-      CI2 = matrix(c(ci.low2, ci.up2), nrow = length(ci.low2), ncol = 2)
-      attr(CI1, "level") = level[1]
-      attr(CI2, "level") = level[2]
-      return(list(pred=pred, se=se, CI1=CI1, CI2=CI2))
-      
-    }
-    if(length(level) > 2){
-      stop('This function can support up to 2 confidence levels of prediction.')
-    }
-  }else{
-    level = c(0.50, 0.8, 0.95)
-    out = list(pred=pred, se=se)
-    m = length(level)
-    for (i in 1:m){
-      ci.up = pred+qnorm(1- (1-level[i])/2)*se
-      ci.low = pred-qnorm(1- (1-level[i])/2)*se
-      CI = matrix(c(ci.low, ci.up), nrow = length(ci.low), ncol = 2)
-      attr(CI, "level") = level[i]
-      out[[(i + 2)]] = CI
-    }
-    
-    names(out) = c("pred", "se", paste("CI", 1:m, sep = ""))
-    return(out)
+  if(is.null(level)){
+    level = c(0.5, 0.95)
   }
+  
+  out = list(pred=pred, se=se)
+  m = length(level)
+  for (i in 1:m){
+    ci.up = pred+qnorm(1- (1-level[i])/2)*se
+    ci.low = pred-qnorm(1- (1-level[i])/2)*se
+    CI = matrix(c(ci.low, ci.up), nrow = length(ci.low), ncol = 2)
+    out[[(i + 2)]] = CI
+  }
+  
+  names(out) = c("pred", "se", paste("CI", level, sep = ""))
+  return(out)
 }
 
 

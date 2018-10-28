@@ -78,30 +78,16 @@ plot_pred = function(x, model, n.ahead, level = NULL,
   pred = prediction$pred
   se = prediction$se
   
-  if(!is.null(level)){
-    if(length(level) == 1){
-      ci.up = pred+qnorm(1- (1-level)/2)*se
-      ci.low = pred-qnorm(1- (1-level)/2)*se
-    }
-    if(length(level) == 2){
-      ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
-      ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
-      ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
-      ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
-      ci.up = c(ci.up1, ci.up2)
-      ci.low = c(ci.low1, ci.low2)
-    }
-    if(length(level) > 2){
-      stop('This function can support up to 2 confidence levels of prediction.')
-    }
-  }else{
+  if(is.null(level)){
     level = c(0.50, 0.95)
-    ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
-    ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
-    ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
-    ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
-    ci.up = c(ci.up1, ci.up2)
-    ci.low = c(ci.low1, ci.low2)
+  }
+  n.level = length(level)
+  out = list()   # stores all CI of all levels
+  for (i in 1:n.level){
+    ci.up = pred+qnorm(1- (1-level[i])/2)*se
+    ci.low = pred-qnorm(1- (1-level[i])/2)*se
+    CI = matrix(c(ci.low, ci.up), nrow = length(ci.low), ncol = 2)
+    out[[i]] = CI
   }
   
   
@@ -170,16 +156,11 @@ plot_pred = function(x, model, n.ahead, level = NULL,
     lines(scale.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
     
     # Add CI
-    if (length(level) == 1){
+    for(i in 1:n.level){
+      ci.low = out[[i]][,1]
+      ci.up = out[[i]][,2]
       polygon(x = c(scale.pred, rev(scale.pred)), 
               y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-              col = rgb(0,0.1,1,0.1), border = NA)
-    }else{
-      polygon(x = c(scale.pred, rev(scale.pred)), 
-              y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
-              col = rgb(0,0.1,1,0.1), border = NA)
-      polygon(x = c(scale.pred, rev(scale.pred)), 
-              y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
               col = rgb(0,0.1,1,0.1), border = NA)
     }
     
@@ -210,16 +191,11 @@ plot_pred = function(x, model, n.ahead, level = NULL,
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI
-      if(length(level) == 1){
-        polygon(x = c(scales.pred, rev(scales.pred)), 
+      for(i in 1:n.level){
+        ci.low = out[[i]][,1]
+        ci.up = out[[i]][,2]
+        polygon(x = c(scale.pred, rev(scale.pred)), 
                 y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-      }else{
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
                 col = rgb(0,0.1,1,0.1), border = NA)
       }
     }
@@ -240,16 +216,11 @@ plot_pred = function(x, model, n.ahead, level = NULL,
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI
-      if(length(level) == 1){
-        polygon(x = c(scales.pred, rev(scales.pred)), 
+      for(i in 1:n.level){
+        ci.low = out[[i]][,1]
+        ci.up = out[[i]][,2]
+        polygon(x = c(scale.pred, rev(scale.pred)), 
                 y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-      }else{
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
                 col = rgb(0,0.1,1,0.1), border = NA)
       }
       
@@ -294,30 +265,16 @@ plot_pred_gmwm = function(x, model, n.ahead, level = NULL,
     se = a$se
   }
   
-  if(!is.null(level)){
-    if(length(level) == 1){
-      ci.up = pred+qnorm(1- (1-level)/2)*se
-      ci.low = pred-qnorm(1- (1-level)/2)*se
-    }
-    if(length(level) == 2){
-      ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
-      ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
-      ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
-      ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
-      ci.up = c(ci.up1, ci.up2)
-      ci.low = c(ci.low1, ci.low2)
-    }
-    if(length(level) > 2){
-      stop('This function can support up to 2 confidence levels of prediction.')
-    }
-  }else{
+  if(is.null(level)){
     level = c(0.50, 0.95)
-    ci.up1 = pred+qnorm(1- (1-level[1])/2)*se
-    ci.up2 = pred+qnorm(1- (1-level[2])/2)*se
-    ci.low1 = pred-qnorm(1- (1-level[1])/2)*se
-    ci.low2 = pred-qnorm(1- (1-level[2])/2)*se
-    ci.up = c(ci.up1, ci.up2)
-    ci.low = c(ci.low1, ci.low2)
+  }
+  n.level = length(level)
+  out = list()   # stores all CI of all levels
+  for (i in 1:n.level){
+    ci.up = pred+qnorm(1- (1-level[i])/2)*se
+    ci.low = pred-qnorm(1- (1-level[i])/2)*se
+    CI = matrix(c(ci.low, ci.up), nrow = length(ci.low), ncol = 2)
+    out[[i]] = CI
   }
   
   
@@ -386,16 +343,11 @@ plot_pred_gmwm = function(x, model, n.ahead, level = NULL,
     lines(scale.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
     
     # Add CI
-    if (length(level) == 1){
+    for(i in 1:n.level){
+      ci.low = out[[i]][,1]
+      ci.up = out[[i]][,2]
       polygon(x = c(scale.pred, rev(scale.pred)), 
               y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-              col = rgb(0,0.1,1,0.1), border = NA)
-    }else{
-      polygon(x = c(scale.pred, rev(scale.pred)), 
-              y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
-              col = rgb(0,0.1,1,0.1), border = NA)
-      polygon(x = c(scale.pred, rev(scale.pred)), 
-              y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
               col = rgb(0,0.1,1,0.1), border = NA)
     }
     
@@ -426,16 +378,11 @@ plot_pred_gmwm = function(x, model, n.ahead, level = NULL,
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI
-      if(length(level) == 1){
-        polygon(x = c(scales.pred, rev(scales.pred)), 
+      for(i in 1:n.level){
+        ci.low = out[[i]][,1]
+        ci.up = out[[i]][,2]
+        polygon(x = c(scale.pred, rev(scale.pred)), 
                 y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-      }else{
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
                 col = rgb(0,0.1,1,0.1), border = NA)
       }
     }
@@ -456,16 +403,11 @@ plot_pred_gmwm = function(x, model, n.ahead, level = NULL,
       lines(scales.pred, c(x[n_x], pred), type = "l", col = couleur, lty = 2)
       
       # Add CI
-      if(length(level) == 1){
-        polygon(x = c(scales.pred, rev(scales.pred)), 
+      for(i in 1:n.level){
+        ci.low = out[[i]][,1]
+        ci.up = out[[i]][,2]
+        polygon(x = c(scale.pred, rev(scale.pred)), 
                 y = c(x[n_x], ci.low, rev(c(x[n_x], ci.up))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-      }else{
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low1, rev(c(x[n_x], ci.up1))), 
-                col = rgb(0,0.1,1,0.1), border = NA)
-        polygon(x = c(scales.pred, rev(scales.pred)), 
-                y = c(x[n_x], ci.low2, rev(c(x[n_x], ci.up2))), 
                 col = rgb(0,0.1,1,0.1), border = NA)
       }
       

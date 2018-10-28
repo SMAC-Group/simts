@@ -107,6 +107,13 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
   out
 }
 
+#' @title Print fitsimts object
+#' @description This function displays the information of a fitsimts object.
+#' @method print fitsimts
+#' @keywords internal
+#' @param out   A \code{fitsimts} object
+#' @return Text output via print
+#' @author Stéphane Guerrier and Yuming Zhang
 #' @export
 print.fitsimts = function(out, ...){
   cat("Fitted model: ")
@@ -197,6 +204,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @param main A \code{string} for the over all title of the plot.
 #' @param ... Additional arguments.
 #' @author Stéphane Guerrier and Yuming Zhang
+#' @method predict fitsimts
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)

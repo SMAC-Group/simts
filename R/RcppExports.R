@@ -309,9 +309,6 @@ rev_col_subset <- function(x, start, end) {
 #' @details Consider a vector x=[[1,2],[3,4]], the function would output x=[[3,4],[1,2]].
 #' Start and end must be valid C++ matrix locations. (e.g. matrix rows start at 0 and not 1)
 #' @author JJB
-#' @examples
-#' x = matrix(c(1,2,3,4), nrow=2,byrow=TRUE)
-#' rev_row_subset(x, 1, 0)
 #' @keywords internal
 rev_row_subset <- function(x, start, end) {
     .Call('_simts_rev_row_subset', PACKAGE = 'simts', x, start, end)
@@ -2863,8 +2860,6 @@ mb24_filter <- function() {
 #' The package is oriented toward using only the haar filter. If the package extends at a later time, then the supporting infrastructure is there.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' select_filter("haar")
 select_filter <- function(filter_name = "haar") {
     .Call('_simts_select_filter', PACKAGE = 'simts', filter_name)
 }

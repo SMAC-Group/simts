@@ -23,9 +23,6 @@ Constructs the wavelet filter to be used.
 \details{
 The package is oriented toward using only the haar filter. If the package extends at a later time, then the supporting infrastructure is there.
 }
-\examples{
-select_filter("haar")
-}
 \author{
 JJB
 }

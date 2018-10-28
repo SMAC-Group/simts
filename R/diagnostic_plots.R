@@ -127,13 +127,9 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   # extract residuals 
   if(!is.null(model)){
     if (class(model) == "fitsimts"){
-      if (model$model_type == "AR"){
-        res = model$mod$resid
-        xx = na.omit(Xt - res)
-        res = na.omit(res)
-      }else{
-        stop("Only AR models are currently supported when estimate function is used.")
-      }
+      res = model$mod$resid
+      xx = na.omit(Xt - res)
+      res = na.omit(res)
     }else{
       res = resid(model)
       xx = na.omit(Xt - res)
@@ -215,13 +211,9 @@ diag_plot = function(Xt = NULL, model = NULL, resids = NULL, std = FALSE){
   # extract residuals 
   if(!is.null(model)){
     if (class(model) == "fitsimts"){
-      if (model$model_type == "AR"){
-        res = model$mod$resid
-        xx = na.omit(Xt - res)
-        res = na.omit(res)
-      }else{
-        stop("Only AR models are currently supported when estimate function is used.")
-      }
+      res = model$mod$resid
+      xx = na.omit(Xt - res)
+      res = na.omit(res)
     }else{
       res = resid(model)
       xx = na.omit(Xt - res)

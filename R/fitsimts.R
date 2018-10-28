@@ -96,19 +96,44 @@ print.fitsimts = function(out){
 #' (2) histogram of distribution of standardized residuals, (3) Normal Q-Q plot of residuals,
 #' (4) ACF plot, (5) PACF plot, (6) Box test results. 
 #' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
+#' @param resids A \code{vector} of residuals for diagnostics. 
 #' @param simple A \code{boolean} indicating whether to return simple diagnostic plots or not. 
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)
-#' check(model)
-#' check(model, simple = TRUE)
+#' check(model = model)
+#' check(model = model, simple = TRUE)
+#' 
+#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
+#' residuals = resid(model)
+#' check(resids = residuals)
+#' 
 #' @export
-check = function(model, simple = FALSE){
-  if (simple){
-    simple_diag_plot(model$Xt, model)
-  }else{
-    diag_plot(model$Xt, model)
+#' 
+
+check = function(model = NULL, resids = NULL, simple = FALSE){
+  if(!is.null(model) & !is.null(resids)){
+    warnings("Both model and residuals are provided. The function will only use 'model' for diagnostics. ")
+    if (simple){
+      simple_diag_plot(Xt = model$Xt, model = model)
+    }else{
+      diag_plot(Xt = model$Xt, model = model)
+    }
+  }
+  
+  if(!is.null(model) & is.null(resids)){
+    if (simple){
+      simple_diag_plot(Xt = model$Xt, model = model)
+    }else{
+      diag_plot(Xt = model$Xt, model = model)
+    }
+  }
+  
+  if(is.null(model) & !is.null(resids)){
+    if (simple){warnings("If only residuals are provided, only the full diagnostic plots can be provided, not the simple version.")}
+    diag_plot(resids = resids)
   }
 }
 

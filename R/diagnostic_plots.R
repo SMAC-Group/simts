@@ -13,7 +13,6 @@
 #' \code{"hist"} (standardized residual histogram with superimposed kernel density estimator and normal distribution), \code{"resid"} (standard residual plot),
 #' or \code{"both"}
 #' @param ...      Additional parameters
-#' @export
 #' @importFrom stats sd
 #' @importFrom graphics hist
 #' @importFrom stats density
@@ -26,19 +25,19 @@
 #' resid_plot(Xt, model, type = "hist")
 #' resid_plot(Xt, model, type = "resid")
 #' resid_plot(Xt, model, std = TRUE, type = "both")
-resid_plot = function(resid, std = FALSE, type = "hist", ...){
+resid_plot = function(res, std = FALSE, type = "hist", ...){
   
-  resid_sd = resid / sd(resid)
+  res_sd = res / sd(res)
   # standardize residuals or not
   if(std){
-    resid = resid / sd(resid)
+    res = res / sd(res)
   }
   
   # standard normal for comparison
   x_normal = seq(-5, 5, by=0.01)
   
   if (type == "hist"){
-    my_hist = hist(resid_sd, plot = FALSE)
+    my_hist = hist(res_sd, plot = FALSE)
     # make frame
     x_range = range(my_hist$breaks) * 1.05
     y_range = c(0, max(my_hist$counts/sum(my_hist$counts*diff(my_hist$breaks)[1])))*1.05
@@ -47,8 +46,8 @@ resid_plot = function(resid, std = FALSE, type = "hist", ...){
                main = "Residuals Histogram")
     
     # plot histogram
-    hist(resid_sd, probability = TRUE, col = "#BEBEBE7F", labels = FALSE, add = TRUE)
-    lines(density(resid_sd, kernel="gaussian"), col = "blue")
+    hist(res_sd, probability = TRUE, col = "#BEBEBE7F", labels = FALSE, add = TRUE)
+    lines(density(res_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
     
@@ -60,19 +59,19 @@ resid_plot = function(resid, std = FALSE, type = "hist", ...){
   
   if (type == "resid"){
     # make frame
-    x_range = c(1, length(resid))
-    y_range = c(min(resid), max(resid))*1.05
+    x_range = c(1, length(res))
+    y_range = c(min(res), max(res))*1.05
     make_frame(x_range, y_range, xlab = "Observation Number", ylab = "Residuals",
                main = "Residuals Plot")
     # plotting
-    lines(resid, col = "blue4")
+    lines(res, col = "blue4")
   }
   
   if (type == "both"){
     par(mfrow=c(1,2))
     
     # ----- plot histogram
-    my_hist = hist(resid_sd, plot = FALSE)
+    my_hist = hist(res_sd, plot = FALSE)
     # make frame
     x_range = range(my_hist$breaks) * 1.05
     y_range = c(0, max(my_hist$counts/sum(my_hist$counts*diff(my_hist$breaks)[1])))*1.05
@@ -81,8 +80,8 @@ resid_plot = function(resid, std = FALSE, type = "hist", ...){
                main = "Residuals Histogram")
     
     # plot histogram
-    hist(resid_sd, probability = TRUE, col = "#BEBEBE7F", labels = FALSE, add = TRUE)
-    lines(density(resid_sd, kernel="gaussian"), col = "blue")
+    hist(res_sd, probability = TRUE, col = "#BEBEBE7F", labels = FALSE, add = TRUE)
+    lines(density(res_sd, kernel="gaussian"), col = "blue")
     lines(x_normal, dnorm(x_normal,0,1))
     
     
@@ -92,12 +91,12 @@ resid_plot = function(resid, std = FALSE, type = "hist", ...){
     
     # ----- residual plot
     # make frame
-    x_range = c(1, length(resid))
-    y_range = c(min(resid), max(resid))*1.05
+    x_range = c(1, length(res))
+    y_range = c(min(res), max(res))*1.05
     make_frame(x_range, y_range, xlab = "Observation Number", ylab = "Residuals",
                main = "Residual Plot")
     # plotting
-    lines(resid, col = "blue4")
+    lines(res, col = "blue4")
     
   }
 }
@@ -113,7 +112,6 @@ resid_plot = function(resid, std = FALSE, type = "hist", ...){
 #' @param model The \code{arima} model fit to the data.
 #' @param std A \code{boolean} indicating whether we use standardized residuals for the 
 #' (1) residuals plot and the (2) histogram of (standardized) residuals.
-#' @export
 #' @importFrom graphics points
 #' @importFrom stats qqnorm
 #' @importFrom stats qqline
@@ -127,17 +125,19 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(2,2))
   
   # extract residuals 
-  if (class(model) == "fitsimts"){
-    if (model$model_type == "AR"){
-      res = model$mod$resid
-      xx = na.omit(Xt - res)
-      res = na.omit(res)
+  if(!is.null(model)){
+    if (class(model) == "fitsimts"){
+      if (model$model_type == "AR"){
+        res = model$mod$resid
+        xx = na.omit(Xt - res)
+        res = na.omit(res)
+      }else{
+        stop("Only AR models are currently supported when estimate function is used.")
+      }
     }else{
-      stop("Only AR models are currently supported when estimate function is used.")
+      res = resid(model)
+      xx = na.omit(Xt - res)
     }
-  }else{
-    res = resid(model)
-    xx = na.omit(Xt - res)
   }
   
   
@@ -175,7 +175,7 @@ simple_diag_plot = function(Xt, model, std = FALSE){
              main = "Normal Q-Q Plot")
   
   # add qq plots
-  points(my_qqnorm$x, my_qqnorm$y, pch = 16, col = "#00000030")
+  points(my_qqnorm$x, my_qqnorm$y, pch = 16, col = "grey50")
   qqline(res, col = "blue2",lwd = 2)
   
   # Plot 4: Residuals vs Fitted
@@ -205,27 +205,33 @@ simple_diag_plot = function(Xt, model, std = FALSE){
 #' @param model The \code{arima} model used to fit the data. 
 #' @param std A \code{boolean} indicating whether we use standardized residuals for 
 #' (1) residuals plot and (8) Box test results.
-#' @export
 #' @examples 
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = arima(Xt, order = c(3,0,0), include.mean = T)
 #' diag_plot(Xt, model)
-diag_plot = function(Xt, model, std = FALSE){
+diag_plot = function(Xt = NULL, model = NULL, resids = NULL, std = FALSE){
   par(mfrow = c(2,3))
   
   # extract residuals 
-  if (class(model) == "fitsimts"){
-    if (model$model_type == "AR"){
-      res = model$mod$resid
-      xx = na.omit(as.numeric(Xt) - res)
-      res = na.omit(res)
+  if(!is.null(model)){
+    if (class(model) == "fitsimts"){
+      if (model$model_type == "AR"){
+        res = model$mod$resid
+        xx = na.omit(Xt - res)
+        res = na.omit(res)
+      }else{
+        stop("Only AR models are currently supported when estimate function is used.")
+      }
     }else{
-      stop("Only AR models are currently supported when estimate function is used.")
+      res = resid(model)
+      xx = na.omit(Xt - res)
     }
-  }else{
-    res = resid(model)
-    xx = na.omit(Xt - res)
   }
+  
+  if(!is.null(resids)){
+    res = resids
+  }
+  
   
   # plot 1
   resid_plot(res, std = std, type = "resid")
@@ -244,14 +250,14 @@ diag_plot = function(Xt, model, std = FALSE){
              main = "Normal Q-Q Plot")
   
   # add qq plots
-  points(my_qqnorm$x, my_qqnorm$y, pch = 16, col = "#00000030")
+  points(my_qqnorm$x, my_qqnorm$y, pch = 16, col = "grey50")
   qqline(res, col = "blue2",lwd = 2)
   
   # plot 4
   plot(auto_corr(res))
   
   # plot 5
-  plot(PACF(res))
+  plot(auto_corr(res, pacf = TRUE))
   
   # plot 6
   object = diag_ljungbox(as.numeric(res), order = 0, stop_lag = 20, stdres = std, plot = FALSE)

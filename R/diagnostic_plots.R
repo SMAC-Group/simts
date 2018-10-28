@@ -127,7 +127,11 @@ simple_diag_plot = function(Xt, model, std = FALSE){
   # extract residuals 
   if(!is.null(model)){
     if (class(model) == "fitsimts"){
-      res = model$mod$resid
+      if (model$method == "gmwm" | model$method == "rgmwm"){
+        res = predict(model$mod, model$Xt)$resid
+      }else{
+        res = model$mod$resid
+      }
       xx = na.omit(Xt - res)
       res = na.omit(res)
     }else{
@@ -211,7 +215,11 @@ diag_plot = function(Xt = NULL, model = NULL, resids = NULL, std = FALSE){
   # extract residuals 
   if(!is.null(model)){
     if (class(model) == "fitsimts"){
-      res = model$mod$resid
+      if (model$method == "gmwm" | model$method == "rgmwm"){
+        res = predict(model$mod, model$Xt)$resid
+      }else{
+        res = model$mod$resid
+      }
       xx = na.omit(Xt - res)
       res = na.omit(res)
     }else{

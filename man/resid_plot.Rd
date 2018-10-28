@@ -4,7 +4,7 @@
 \alias{resid_plot}
 \title{Plot the Distribution of (Standardized) Residuals}
 \usage{
-resid_plot(resid, std = FALSE, type = "hist", ...)
+resid_plot(res, std = FALSE, type = "hist", ...)
 }
 \arguments{
 \item{std}{A \code{boolean} indicating whether the residuals plot is for standardized

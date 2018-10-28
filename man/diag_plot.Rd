@@ -4,7 +4,7 @@
 \alias{diag_plot}
 \title{Diagnostic Plot of Residuals}
 \usage{
-diag_plot(Xt, model, std = FALSE)
+diag_plot(Xt = NULL, model = NULL, resids = NULL, std = FALSE)
 }
 \arguments{
 \item{Xt}{The data used to construct said model.}

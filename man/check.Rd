@@ -4,10 +4,12 @@
 \alias{check}
 \title{Diagnostics on Fitted Time Series Model}
 \usage{
-check(model, simple = FALSE)
+check(model = NULL, resids = NULL, simple = FALSE)
 }
 \arguments{
 \item{model}{A \code{fitsimts} object obtained from \code{estimate} function.}
+
+\item{resids}{A \code{vector} of residuals for diagnostics.}
 
 \item{simple}{A \code{boolean} indicating whether to return simple diagnostic plots or not.}
 }
@@ -20,8 +22,14 @@ It can output 6 diagnostic plots to assess the model, including (1) residuals pl
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 model = estimate(AR(3), Xt)
-check(model)
-check(model, simple = TRUE)
+check(model = model)
+check(model = model, simple = TRUE)
+
+Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
+residuals = resid(model)
+check(resids = residuals)
+
 }
 \author{
 Stéphane Guerrier and Yuming Zhang

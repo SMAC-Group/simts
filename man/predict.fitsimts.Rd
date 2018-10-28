@@ -42,11 +42,6 @@ predict(model, n.ahead = 20)
 predict(model, n.ahead = 20, level = 0.95)
 predict(model, n.ahead = 20, level = c(0.50, 0.80, 0.95))
 
-Xt = gen_gts(300, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
-predict(model, n.ahead = 10)
-predict(model, n.ahead = 10, level = c(0.50, 0.80, 0.95))
-
 }
 \author{
 Stéphane Guerrier and Yuming Zhang

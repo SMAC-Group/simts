@@ -12,19 +12,12 @@
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' plot(Xt)
 #' estimate(AR(3), Xt)
 #' 
-#' Xt = gen_gts(300, ARMA(ar = c(0.8, -0.5), ma = 0.5, sigma2 = 1))
-#' plot(Xt)
-#' estimate(ARMA(2,1), Xt, method = "rgmwm")
-#' 
 #' Xt = gen_gts(300, ARIMA(ar = c(0.8, -0.5), i = 1, ma = 0.5, sigma2 = 1))
-#' plot(Xt)
 #' estimate(ARIMA(2,1,1), Xt, method = "mle")
 #' 
 #' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-#' plot(Xt)
 #' estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
 #' @export
 estimate = function(model, Xt, method = "mle", demean = TRUE){
@@ -134,13 +127,9 @@ print.fitsimts = function(out, ...){
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' model = estimate(AR(3), Xt)
-#' check(model = model)
-#' check(model = model, simple = TRUE)
+#' check(model)
 #' 
-#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
-#' residuals = resid(model)
-#' check(resids = residuals)
+#' check(resids = rnorm(100))
 #' 
 #' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
 #' model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
@@ -209,11 +198,6 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' predict(model, n.ahead = 20)
 #' predict(model, n.ahead = 20, level = 0.95)
 #' predict(model, n.ahead = 20, level = c(0.50, 0.80, 0.95))
-#' 
-#' Xt = gen_gts(300, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-#' model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
-#' predict(model, n.ahead = 10)
-#' predict(model, n.ahead = 10, level = c(0.50, 0.80, 0.95))
 #' 
 #' @export
 #' 

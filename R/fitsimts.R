@@ -312,7 +312,7 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' select(AR(5), Xt)
 #' @export
 #' 
-select = function(model, Xt, include.mean = TRUE){
+select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -331,11 +331,14 @@ select = function(model, Xt, include.mean = TRUE){
   # Order of MA 
   q = model_code[2]
   
+  # Non-seasonal integration
+  intergrated = model_code[7]
+  
   # model selection 
   if (q == 0){
     out = select_arima_(Xt,
                         p = 0:p,
-                        d = 0L,
+                        d = intergrated,
                         q = 0L,
                         include.mean = include.mean)
     
@@ -343,12 +346,22 @@ select = function(model, Xt, include.mean = TRUE){
   }else if (p == 0){
     out = select_arima_(Xt,
                         p = 0L,
-                        d = 0L,
+                        d = intergrated,
                         q = 0:q,
                         include.mean = include.mean)
     
     plot_select_ma(x=out)
+  }else{
+    out = select_arima_(Xt,
+                        p = 0:p,
+                        d = intergrated,
+                        q = 0:q,
+                        include.mean = include.mean)
+    
+    plot_select_arma(x=out)
   }
+  
+  best_model(out, ic = criterion)
 }
 
 

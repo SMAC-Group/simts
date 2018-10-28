@@ -148,24 +148,29 @@ print.fitsimts = function(out){
 
 check = function(model = NULL, resids = NULL, simple = FALSE){
   if(!is.null(model) & !is.null(resids)){
-    warnings("Both model and residuals are provided. The function will only use 'model' for diagnostics. ")
-    if (simple){
-      simple_diag_plot(Xt = model$Xt, model = model)
-    }else{
-      diag_plot(Xt = model$Xt, model = model)
-    }
+    warning("Both model and residuals are provided. The function will only use 'model' for diagnostics. ")
+    resids = NULL
   }
   
   if(!is.null(model) & is.null(resids)){
-    if (simple){
-      simple_diag_plot(Xt = model$Xt, model = model)
-    }else{
-      diag_plot(Xt = model$Xt, model = model)
+    if(class(model) == "fitsimts"){
+      if (simple){
+        simple_diag_plot(Xt = model$Xt, model = model)
+      }else{
+        diag_plot(Xt = model$Xt, model = model)
+      }
     }
+    
+    if("lm" %in% model){
+      if(simple){warning("If 'lm' model is considered, only the full diagnostic plots can be provided, not the simple version.")}
+      resids = resid(model)
+      diag_plot(resids = resids)
+    }
+    
   }
   
   if(is.null(model) & !is.null(resids)){
-    if (simple){warnings("If only residuals are provided, only the full diagnostic plots can be provided, not the simple version.")}
+    if (simple){warning("If only residuals are provided, only the full diagnostic plots can be provided, not the simple version.")}
     diag_plot(resids = resids)
   }
 }

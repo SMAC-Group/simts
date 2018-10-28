@@ -10,11 +10,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-## Simulations from Time Series Models
+## Time Series Simulation
 
 ```{r, echo = FALSE}
 library(simts)
 ```
+
 
 In this section, we briefly list, describe, and provide the syntax used to simulate time series data using the `simts` package. The following list includes some basic models available in this package:
 
@@ -141,7 +142,7 @@ plot(sarma_wn_sim, fixed_range = TRUE)
 library(datasets)
 ```
 
-In this section, we will briefly show some of the `simts` package functionalities that can be applied to basic time sereis analysis. These functionalities are illustrated through example on the following four datasets (stored in `simts`):
+In this section, we will briefly show some of the `simts` package functionalities that can be applied to basic time series analysis. These functionalities are illustrated through example on the following four datasets (stored in `simts`):
 
 * [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): This time series contains the monthly precipitation from 1907 and going to 1972 for total of 781 observations taken from @hipel1994time.
 * [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
@@ -222,7 +223,7 @@ plot(sales)
 ```
 
 
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` and `PACF()` as follows:
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
 # Compute ACF and plot result
@@ -232,7 +233,7 @@ plot(sales_acf)
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
 #Compute PACF and plot result
-sales_pacf = PACF(sales)
+sales_pacf = auto_corr(sales, pacf = TRUE)
 plot(sales_pacf)
 ```
 
@@ -267,7 +268,7 @@ plot(lynx)
 ```
 
 
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` and `PACF()` as follows:
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
 # Compute ACF and plot result
@@ -277,7 +278,7 @@ plot(lynx_acf)
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
 # Compute PACF and plot result
-lynx_pacf = PACF(lynx)
+lynx_pacf = auto_corr(lynx, pacf = TRUE)
 plot(lynx_pacf)
 ```
 
@@ -298,7 +299,7 @@ plot(sunspot)
 ```
 
 
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` and `PACF()` as follows:
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
 # Compute ACF and plot result
@@ -308,7 +309,7 @@ plot(sunspot_acf)
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
 #Compute PACF and plot result
-sunspot_pacf = PACF(sunspot)
+sunspot_pacf = auto_corr(sunspot, pacf = TRUE)
 plot(sunspot_pacf)
 ```
 
@@ -351,3 +352,4 @@ nile_pacf = nile_corr$PACF
 
 ## References
 
+This package is developed mainly as a support to the online book ["Applied Time Series Analysis with R"](https://smac-group.github.io/ts/).

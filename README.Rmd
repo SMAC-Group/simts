@@ -37,39 +37,13 @@ To understand the usage of the `simts` package, please refer to the "Vignettes" 
 
 ## Install Instructions
 
-To install the `simts` package, there is currently one option: [GitHub](https://github.com/SMAC-Group/simts/).
-
-### Installing the package through GitHub
-
-For users who are interested in having the latest developments, this option is ideal although more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
+To install the `simts` package, there is currently one option: [GitHub](https://github.com/SMAC-Group/simts/). For users who are interested in having the latest developments, this option is ideal although more dependancies are required to run a stable version of the package. Most importantly, users **must** have a (C++) compiler installed on their machine that is compatible with R (e.g. Clang).
 
 *The setup to obtain the development version of `simts` is platform dependent.*
 
-### Requirements and Dependencies
-
-**OS X**
-
-Some users report the need to use X11 to suppress shared library errors. To install X11, visit [xquartz.org](http://www.xquartz.org/).
-
-**Linux**
-
-Both curl and libxml are required.
-
-For **Debian** systems, enter the following in terminal:
-
-```{r, eval = F, engine='bash'}
-sudo apt-get install curl libcurl3 libcurl3-dev libxml2 libxml2-dev
-```
-
-For **RHEL** systems, enter the following in terminal:
-
-```{r, eval = F, engine='bash'}
-sudo yum install curl curl-devel libxml2 libxml2-dev
-```
-
 **All Systems**
 
-The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the devlopment version of `simts`.
+The following R packages are also required. Once you've made sure that you have a compatible C++ compiler, run the following code in an R session and you will be ready to use the devlopment version of `simts`.
 
 ```{r, eval = F}
 # Install dependencies
@@ -82,3 +56,26 @@ devtools::install_github("SMAC-Group/simts")
 devtools::install_github("SMAC-Group/simts", build_vignettes = TRUE)
 ```
 
+
+
+<!-- ### Requirements and Dependencies -->
+
+<!-- **OS X** -->
+
+<!-- Some users report the need to use X11 to suppress shared library errors. To install X11, visit [xquartz.org](http://www.xquartz.org/). -->
+
+<!-- **Linux** -->
+
+<!-- Both curl and libxml are required. -->
+
+<!-- For **Debian** systems, enter the following in terminal: -->
+
+<!-- ```{r, eval = F, engine='bash'} -->
+<!-- sudo apt-get install curl libcurl3 libcurl3-dev libxml2 libxml2-dev -->
+<!-- ``` -->
+
+<!-- For **RHEL** systems, enter the following in terminal: -->
+
+<!-- ```{r, eval = F, engine='bash'} -->
+<!-- sudo yum install curl curl-devel libxml2 libxml2-dev -->
+<!-- ``` -->

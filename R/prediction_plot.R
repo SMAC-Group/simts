@@ -30,26 +30,6 @@
 #' @param main A \code{string} for the over all title of the plot
 #' @param ...      Additional parameters
 #' @author Yuming Zhang
-#' @examples
-#' # Example where Time is null
-#' x = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1, 
-#' unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
-#' unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")
-#' 
-#' model = arima(x, c(2,0,0))
-#' n.ahead = 20
-#' plot_pred(x, model, n.ahead)  
-#' plot_pred(x, model, n.ahead, level = 0.90)
-#' 
-#' # Example where Time is not numeric
-#' Time = c("2018-08-30", "2018-08-31", "2018-09-01", "2018-09-02", "2018-09-03", 
-#' "2018-09-04", "2018-09-05", "2018-09-06", "2018-09-07", "2018-09-08")
-#' x = gen_ar1(10, 0.3, 1)
-#' x = gts(x, freq = 1, Time = Time)
-#' model= arima(x, c(1,0,0))
-#' n.ahead = 4
-#' plot_pred(x, model, n.ahead)
-
 
 plot_pred = function(x, model, n.ahead, level = NULL, 
                      xlab = NULL, ylab = NULL, main = NULL, ...){

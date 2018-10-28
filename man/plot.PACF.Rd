@@ -9,7 +9,7 @@
   parValue = NULL, ...)
 }
 \arguments{
-\item{x}{A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{PACF}}.}
+\item{x}{A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{auto_corr}}.}
 
 \item{xlab}{A \code{string} indicating the label of the x axis: the default name is 'Lags'.}
 
@@ -31,7 +31,7 @@ Defaults to 0.25.}
 \item{...}{Additional parameters}
 }
 \description{
-The function plots the output of the \code{\link{theo_pacf}} and \code{\link{PACF}} functions (partial autocovariance or autocorrelation functions).
+The function plots the output of the \code{\link{theo_pacf}} and \code{\link{auto_corr}} functions (partial autocovariance or autocorrelation functions).
 }
 \examples{
 # Plot the Partial Autocorrelation

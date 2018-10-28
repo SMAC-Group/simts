@@ -429,9 +429,9 @@ PACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE){
 
 
 #' @title Plot Partial Auto-Covariance and Correlation Functions
-#' @description The function plots the output of the \code{\link{theo_pacf}} and \code{\link{PACF}} functions (partial autocovariance or autocorrelation functions).
+#' @description The function plots the output of the \code{\link{theo_pacf}} and \code{\link{auto_corr}} functions (partial autocovariance or autocorrelation functions).
 #' @author Yunxiang Zhang and Yuming Zhang
-#' @param x         A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{PACF}}.
+#' @param x         A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{auto_corr}}.
 #' @param xlab         A \code{string} indicating the label of the x axis: the default name is 'Lags'.
 #' @param ylab     A \code{string} indicating the label of the y axis: the default name is 'PACF'.
 #' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.

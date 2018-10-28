@@ -16,8 +16,6 @@ vignette: >
 library(simts)
 ```
 
-<<<<<<< HEAD
-
 In this section, we briefly list, describe, and provide the syntax used to simulate time series data using the `simts` package. The following list includes some basic models available in this package:
 
 * White Noise `WN()`
@@ -342,8 +340,8 @@ select(AR(15), sunspot)
 The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988'}
-model_sunspots = estimate(AR(9), sunspots)
-simts::predict(model_sunspots, n.ahead = 10, level = c(0.60, 0.90, 0.95))
+model_sunspots = estimate(AR(9), sunspot)
+predict(model_sunspots, n.ahead = 10, level = c(0.60, 0.90, 0.95))
 ```
 
 ### Nile River Flow Dataset
@@ -385,5 +383,4 @@ nile_pacf = nile_corr$PACF
 ## References
 
 This package is developed mainly as a support to the online book ["Applied Time Series Analysis with R"](https://smac-group.github.io/ts/).
-=======
->>>>>>> ecdbed410d548f818378c6048323920d6bfc4eb9
+

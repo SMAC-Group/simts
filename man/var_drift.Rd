@@ -17,7 +17,4 @@ A \code{vec} containing the variance of the drift.
 \description{
 This function computes the variance of a drift process.
 }
-\examples{
-var_drift(1, 200)
-}
 \keyword{internal}

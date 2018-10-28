@@ -42,28 +42,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// avar_to_cpp
-arma::mat avar_to_cpp(arma::vec x);
-RcppExport SEXP _simts_avar_to_cpp(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(avar_to_cpp(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// avar_mo_cpp
-arma::mat avar_mo_cpp(arma::vec x);
-RcppExport SEXP _simts_avar_mo_cpp(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(avar_mo_cpp(x));
-    return rcpp_result_gen;
-END_RCPP
-}
 // arma_adapter
 arma::vec arma_adapter(const arma::vec& theta, unsigned int p, unsigned int q, const arma::vec& tau);
 RcppExport SEXP _simts_arma_adapter(SEXP thetaSEXP, SEXP pSEXP, SEXP qSEXP, SEXP tauSEXP) {
@@ -985,28 +963,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< const arma::vec& >::type tau(tauSEXP);
     Rcpp::traits::input_parameter< unsigned int >::type B(BSEXP);
     rcpp_result_gen = Rcpp::wrap(guess_initial_old(desc, objdesc, model_type, num_param, expect_diff, N, wv_empir, tau, B));
-    return rcpp_result_gen;
-END_RCPP
-}
-// hadam_to_cpp
-arma::mat hadam_to_cpp(arma::vec x);
-RcppExport SEXP _simts_hadam_to_cpp(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(hadam_to_cpp(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// hadam_mo_cpp
-arma::mat hadam_mo_cpp(arma::vec x);
-RcppExport SEXP _simts_hadam_mo_cpp(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(hadam_mo_cpp(x));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -2264,8 +2220,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_e_drift", (DL_FUNC) &_simts_e_drift, 2},
     {"_simts_m2_drift", (DL_FUNC) &_simts_m2_drift, 2},
     {"_simts_var_drift", (DL_FUNC) &_simts_var_drift, 2},
-    {"_simts_avar_to_cpp", (DL_FUNC) &_simts_avar_to_cpp, 1},
-    {"_simts_avar_mo_cpp", (DL_FUNC) &_simts_avar_mo_cpp, 1},
     {"_simts_arma_adapter", (DL_FUNC) &_simts_arma_adapter, 4},
     {"_simts_jacobian_arma", (DL_FUNC) &_simts_jacobian_arma, 4},
     {"_simts_deriv_arma11", (DL_FUNC) &_simts_deriv_arma11, 4},
@@ -2329,8 +2283,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_ar1_draw", (DL_FUNC) &_simts_ar1_draw, 4},
     {"_simts_arma_draws", (DL_FUNC) &_simts_arma_draws, 3},
     {"_simts_guess_initial_old", (DL_FUNC) &_simts_guess_initial_old, 9},
-    {"_simts_hadam_to_cpp", (DL_FUNC) &_simts_hadam_to_cpp, 1},
-    {"_simts_hadam_mo_cpp", (DL_FUNC) &_simts_hadam_mo_cpp, 1},
     {"_simts_idf_arma", (DL_FUNC) &_simts_idf_arma, 7},
     {"_simts_idf_arma_total", (DL_FUNC) &_simts_idf_arma_total, 7},
     {"_simts_calculate_psi_matrix", (DL_FUNC) &_simts_calculate_psi_matrix, 3},

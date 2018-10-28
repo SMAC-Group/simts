@@ -41,10 +41,6 @@ Furthermore, this assumes that stationarity has been achieved as it directly
 For more information, please see: \href{http://smac-group.com/computing/process-to-haar-wavelet-variance-formulae}{Supported Haar Wavelet Formulae} (Internet Connection Required).
 }
 
-\examples{
-# Performs an approximation of the Haar WV for an ARMA(2,3).
-wv.theo = arma_to_wv_app(c(.23,.43), c(.34,.41,.59), 3, 2^(1:9), .9)
-}
 \seealso{
 \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, \code{\link{acf_sum}} and \code{\link{arma_to_wv}}
 }

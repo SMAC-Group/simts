@@ -7,8 +7,6 @@
 #' @param n_ts An \code{int} indicating the length of the time series.
 #' @return A \code{vec} containing the expected value of the drift.
 #' @keywords internal
-#' @examples
-#' e_drift(1,200)
 e_drift <- function(omega, n_ts) {
     .Call('_simts_e_drift', PACKAGE = 'simts', omega, n_ts)
 }
@@ -19,8 +17,6 @@ e_drift <- function(omega, n_ts) {
 #' @param n_ts An \code{int} indicating the length of the time series.
 #' @return A \code{vec} containing the second moment of the drift.
 #' @keywords internal
-#' @examples
-#' m2_drift(1, 200)
 m2_drift <- function(omega, n_ts) {
     .Call('_simts_m2_drift', PACKAGE = 'simts', omega, n_ts)
 }
@@ -31,82 +27,8 @@ m2_drift <- function(omega, n_ts) {
 #' @param n_ts An \code{int} indicating the length of the time series.
 #' @return A \code{vec} containing the variance of the drift.
 #' @keywords internal
-#' @examples
-#' var_drift(1, 200)
 var_drift <- function(omega, n_ts) {
     .Call('_simts_var_drift', PACKAGE = 'simts', omega, n_ts)
-}
-
-#' @title Compute Tau-Overlap Allan Variance
-#' @description Computation of Tau-Overlap Allan Variance
-#' @usage avar_to_cpp(x)
-#' @param x A \code{vector} with dimensions N x 1. 
-#' @return av A \code{matrix} that contains:
-#' \itemize{
-#'  \item{Col 1}{The size of the cluster}
-#'  \item{Col 2}{The Allan variance}
-#'  \item{Col 3}{The error associated with the variance estimation.}
-#' }
-#' @details
-#' Given \eqn{N} equally spaced samples with averaging time \eqn{\tau = n\tau _0}{tau = n*tau_0},
-#' where \eqn{n} is an integer such that \eqn{ 1 \le n \le \frac{N}{2}}{1<= n <= N/2}.
-#' Therefore, \eqn{n} is able to be selected from \eqn{\left\{ {n|n < \left\lfloor {{{\log }_2}\left( N \right)} \right\rfloor } \right\}}{{n|n< floor(log2(N))}}
-#' Then, a sampling of \eqn{m = \left\lfloor {\frac{{N - 1}}{n}} \right\rfloor  - 1} samples exist. 
-#' The tau-overlap estimator is given by:
-#' 
-#' where \eqn{ {{\bar y}_t}\left( \tau  \right) = \frac{1}{\tau }\sum\limits_{i = 0}^{\tau  - 1} {{{\bar y}_{t - i}}} }.
-#' 
-#' @author JJB
-#' @references Long-Memory Processes, the Allan Variance and Wavelets, D. B. Percival and P. Guttorp
-#' @examples
-#' set.seed(999)
-#' # Simulate white noise (P 1) with sigma^2 = 4
-#' N = 100000
-#' white.noise = rnorm(N, 0, 2)
-#' #plot(white.noise,ylab="Simulated white noise process",xlab="Time",type="o")
-#' #Simulate random walk (P 4)
-#' random.walk = cumsum(0.1*rnorm(N, 0, 2))
-#' combined.ts = white.noise+random.walk
-#' av_mat = avar_to_cpp(combined.ts)
-#' @keywords internal
-avar_to_cpp <- function(x) {
-    .Call('_simts_avar_to_cpp', PACKAGE = 'simts', x)
-}
-
-#' @title Compute Maximal-Overlap Allan Variance using Means
-#' @description Computation of Maximal-Overlap Allan Variance
-#' @usage avar_mo_cpp(x)
-#' @param x A \code{vector} with dimensions N x 1. 
-#' @return av A \code{list} that contains:
-#' \itemize{
-#'  \item{"clusters"}{The size of the cluster}
-#'  \item{"allan"}{The Allan variance}
-#'  \item{"errors"}{The error associated with the variance estimation.}
-#' }
-#' @details
-#' Given \eqn{N} equally spaced samples with averaging time \eqn{\tau = n\tau _0}{tau = n*tau_0},
-#' where \eqn{n} is an integer such that \eqn{ 1 \le n \le \frac{N}{2}}{1<= n <= N/2}.
-#' Therefore, \eqn{n} is able to be selected from \eqn{\left\{ {n|n < \left\lfloor {{{\log }_2}\left( N \right)} \right\rfloor } \right\}}{{n|n< floor(log2(N))}}
-#' Then, \eqn{M = N - 2n} samples exist. 
-#' The Maximal-overlap estimator is given by:
-#' \eqn{\frac{1}{{2\left( {N - 2k + 1} \right)}}\sum\limits_{t = 2k}^N {{{\left[ {{{\bar Y}_t}\left( k \right) - {{\bar Y}_{t - k}}\left( k \right)} \right]}^2}} }
-#' 
-#' where \eqn{ {{\bar y}_t}\left( \tau  \right) = \frac{1}{\tau }\sum\limits_{i = 0}^{\tau  - 1} {{{\bar y}_{t - i}}} }.
-#' @author JJB
-#' @references Long-Memory Processes, the Allan Variance and Wavelets, D. B. Percival and P. Guttorp
-#' @examples
-#' set.seed(999)
-#' # Simulate white noise (P 1) with sigma^2 = 4
-#' N = 100000
-#' white.noise = rnorm(N, 0, 2)
-#' #plot(white.noise,ylab="Simulated white noise process",xlab="Time",type="o")
-#' #Simulate random walk (P 4)
-#' random.walk = cumsum(0.1*rnorm(N, 0, 2))
-#' combined.ts = white.noise+random.walk
-#' av_mat = avar_mo_cpp(combined.ts)
-#' @keywords internal
-avar_mo_cpp <- function(x) {
-    .Call('_simts_avar_mo_cpp', PACKAGE = 'simts', x)
 }
 
 #' ARMA Adapter to ARMA to WV Process function
@@ -155,8 +77,6 @@ jacobian_arma <- function(theta, p, q, tau) {
 #' }
 #' @template deriv_wv/1st/deriv1_arma11
 #' @template author/jjb
-#' @examples
-#' deriv_arma11(.3, .4, 1, 2^(1:5))
 deriv_arma11 <- function(phi, theta, sigma2, tau) {
     .Call('_simts_deriv_arma11', PACKAGE = 'simts', phi, theta, sigma2, tau)
 }
@@ -179,8 +99,6 @@ deriv_arma11 <- function(phi, theta, sigma2, tau) {
 #' }
 #' @template deriv_wv/2nd/deriv2_arma11
 #' @template author/jjb
-#' @examples
-#' deriv_2nd_arma11(.3, .4, 1, 2^(1:5))
 deriv_2nd_arma11 <- function(phi, theta, sigma2, tau) {
     .Call('_simts_deriv_2nd_arma11', PACKAGE = 'simts', phi, theta, sigma2, tau)
 }
@@ -195,8 +113,6 @@ deriv_2nd_arma11 <- function(phi, theta, sigma2, tau) {
 #' and the second column contains the partial derivative with respect to \eqn{\sigma ^2}{sigma^2}
 #' @template deriv_wv/1st/deriv1_ar1
 #' @template author/jjb
-#' @examples
-#' deriv_ar1(.3, 1, 2^(1:5))
 deriv_ar1 <- function(phi, sigma2, tau) {
     .Call('_simts_deriv_ar1', PACKAGE = 'simts', phi, sigma2, tau)
 }
@@ -214,8 +130,6 @@ deriv_ar1 <- function(phi, sigma2, tau) {
 #'   respect to \eqn{\sigma ^2}{sigma^2}
 #' @template deriv_wv/2nd/deriv2_ar1
 #' @template author/jjb
-#' @examples
-#' deriv_2nd_ar1(.3, 1, 2^(1:5))
 deriv_2nd_ar1 <- function(phi, sigma2, tau) {
     .Call('_simts_deriv_2nd_ar1', PACKAGE = 'simts', phi, sigma2, tau)
 }
@@ -230,8 +144,6 @@ deriv_2nd_ar1 <- function(phi, sigma2, tau) {
 #'  and the second column contains the partial derivative with respect to \eqn{\sigma ^2}{sigma^2}
 #' @template deriv_wv/1st/deriv1_ma1
 #' @template author/jjb
-#' @examples
-#' deriv_ma1(.3, 1, 2^(1:5))
 deriv_ma1 <- function(theta, sigma2, tau) {
     .Call('_simts_deriv_ma1', PACKAGE = 'simts', theta, sigma2, tau)
 }
@@ -247,8 +159,6 @@ deriv_ma1 <- function(theta, sigma2, tau) {
 #'  and lastly we have the second partial derivative with respect to \eqn{\sigma ^2}{sigma^2}.
 #' @template deriv_wv/2nd/deriv2_ma1
 #' @template author/jjb
-#' @examples
-#' deriv_2nd_ma1(.3, 1, 2^(1:5))
 deriv_2nd_ma1 <- function(theta, sigma2, tau) {
     .Call('_simts_deriv_2nd_ma1', PACKAGE = 'simts', theta, sigma2, tau)
 }
@@ -262,8 +172,6 @@ deriv_2nd_ma1 <- function(theta, sigma2, tau) {
 #' with respect to \eqn{\omega}{omega}.
 #' @template deriv_wv/1st/deriv1_dr
 #' @template author/jjb
-#' @examples
-#' deriv_dr(5.3, 2^(1:5))
 deriv_dr <- function(omega, tau) {
     .Call('_simts_deriv_dr', PACKAGE = 'simts', omega, tau)
 }
@@ -275,8 +183,6 @@ deriv_dr <- function(omega, tau) {
 #' @return A \code{matrix} with the first column containing 
 #' the second partial derivative with respect to \eqn{\omega}{omega}.
 #' @template author/jjb
-#' @examples
-#' deriv_2nd_dr(2^(1:5))
 deriv_2nd_dr <- function(tau) {
     .Call('_simts_deriv_2nd_dr', PACKAGE = 'simts', tau)
 }
@@ -289,8 +195,6 @@ deriv_2nd_dr <- function(tau) {
 #' the partial derivative with respect to \eqn{Q^2}{Q^2}.
 #' @template deriv_wv/1st/deriv1_qn
 #' @template author/jjb
-#' @examples
-#' deriv_qn(2^(1:5))
 deriv_qn <- function(tau) {
     .Call('_simts_deriv_qn', PACKAGE = 'simts', tau)
 }
@@ -303,8 +207,6 @@ deriv_qn <- function(tau) {
 #'  the partial derivative with respect to \eqn{\gamma^2}{gamma^2}.
 #' @template deriv_wv/1st/deriv1_rw
 #' @template author/jjb
-#' @examples
-#' deriv_rw(2^(1:5))
 deriv_rw <- function(tau) {
     .Call('_simts_deriv_rw', PACKAGE = 'simts', tau)
 }
@@ -317,8 +219,6 @@ deriv_rw <- function(tau) {
 #' the partial derivative with respect to \eqn{\sigma^2}{sigma^2}.
 #' @template deriv_wv/1st/deriv1_wn
 #' @template author/jjb
-#' @examples
-#' deriv_wn(2^(1:5))
 deriv_wn <- function(tau) {
     .Call('_simts_deriv_wn', PACKAGE = 'simts', tau)
 }
@@ -334,9 +234,6 @@ deriv_wn <- function(tau) {
 #' @details
 #' Function returns the matrix effectively known as "D"
 #' @template author/jjb
-#' @examples
-#' mod = AR1(.4,1) + WN(.2) + DR(.005)
-#' derivative_first_matrix(mod$theta, mod$desc, mod$obj.desc, 2^(1:9))
 derivative_first_matrix <- function(theta, desc, objdesc, tau) {
     .Call('_simts_derivative_first_matrix', PACKAGE = 'simts', theta, desc, objdesc, tau)
 }
@@ -353,8 +250,6 @@ derivative_first_matrix <- function(theta, desc, objdesc, tau) {
 #' @details
 #' Function returns the matrix effectively known as "D"
 #' @template author/jjb
-#' @examples
-#' # TBA
 #' @keywords internal
 D_matrix <- function(theta, desc, objdesc, tau, omegadiff) {
     .Call('_simts_D_matrix', PACKAGE = 'simts', theta, desc, objdesc, tau, omegadiff)
@@ -1271,78 +1166,6 @@ guess_initial_old <- function(desc, objdesc, model_type, num_param, expect_diff,
     .Call('_simts_guess_initial_old', PACKAGE = 'simts', desc, objdesc, model_type, num_param, expect_diff, N, wv_empir, tau, B)
 }
 
-#' @title Compute Tau-Overlap Hadamard Variance
-#' @description Computation of  Hadamard Variance
-#' @usage hadam_to_cpp(x)
-#' @param x A \code{vector} with dimensions M x 1. 
-#' @return  A \code{matrix} that contains:
-#' \itemize{
-#'  \item{Col 1}{The size of the cluster}
-#'  \item{Col 2}{The Hadamard variance}
-#'  \item{Col 3}{The error associated with the variance estimation.}
-#' }
-#' @details
-#' Given \eqn{N} equally spaced samples with averaging time \eqn{\tau = n\tau _0}{tau = n*tau_0},
-#' where \eqn{n} is an integer such that \eqn{ 1 \le n \le \frac{N}{2}}{1<= n <= N/2}.
-#' Therefore, \eqn{n} is able to be selected from \eqn{\left\{ {n|n < \left\lfloor {{{\log }_2}\left( N \right)} \right\rfloor } \right\}}{{n|n< floor(log2(N))}}
-#' Then, a sampling of \eqn{m = \left\lfloor {\frac{{N - 1}}{n}} \right\rfloor  - 1} samples exist. 
-#' The tau-overlap estimator is given by:
-#' 
-#' where \eqn{ {{\bar y}_t}\left( \tau  \right) = \frac{1}{\tau }\sum\limits_{i = 0}^{\tau  - 1} {{{\bar y}_{t - i}}} }.
-#' 
-#' @author JJB
-#' @references Long-Memory Processes, the Allan Variance and Wavelets, D. B. Percival and P. Guttorp
-#' @examples
-#' set.seed(999)
-#' # Simulate white noise (P 1) with sigma^2 = 4
-#' N = 100000
-#' white.noise = rnorm(N, 0, 2)
-#' #plot(white.noise,ylab="Simulated white noise process",xlab="Time",type="o")
-#' #Simulate random walk (P 4)
-#' random.walk = cumsum(0.1*rnorm(N, 0, 2))
-#' combined.ts = white.noise+random.walk
-#' av_mat = avar_to_cpp(combined.ts)
-#' @keywords internal
-hadam_to_cpp <- function(x) {
-    .Call('_simts_hadam_to_cpp', PACKAGE = 'simts', x)
-}
-
-#' @title Compute Maximal-Overlap Hadamard Variance using Means
-#' @description Computation of Maximal-Overlap Hadamard Variance
-#' @usage avar_mo_cpp(x)
-#' @param x A \code{vector} with dimensions N x 1. 
-#' @return av A \code{list} that contains:
-#' \itemize{
-#'  \item{"clusters"}{The size of the cluster}
-#'  \item{"hadamard"}{The Hadamard variance}
-#'  \item{"errors"}{The error associated with the variance estimation.}
-#' }
-#' @details
-#' Given \eqn{N} equally spaced samples with averaging time \eqn{\tau = n\tau _0}{tau = n*tau_0},
-#' where \eqn{n} is an integer such that \eqn{ 1 \le n \le \frac{N}{2}}{1<= n <= N/2}.
-#' Therefore, \eqn{n} is able to be selected from \eqn{\left\{ {n|n < \left\lfloor {{{\log }_2}\left( N \right)} \right\rfloor } \right\}}{{n|n< floor(log2(N))}}
-#' Then, \eqn{M = N - 2n} samples exist. 
-#' The Maximal-overlap estimator is given by:
-#' \eqn{\frac{1}{{2\left( {N - 2k + 1} \right)}}\sum\limits_{t = 2k}^N {{{\left[ {{{\bar Y}_t}\left( k \right) - {{\bar Y}_{t - k}}\left( k \right)} \right]}^2}} }
-#' 
-#' where \eqn{ {{\bar y}_t}\left( \tau  \right) = \frac{1}{\tau }\sum\limits_{i = 0}^{\tau  - 1} {{{\bar y}_{t - i}}} }.
-#' @author JJB
-#' @references Long-Memory Processes, the Allan Variance and Wavelets, D. B. Percival and P. Guttorp
-#' @examples
-#' set.seed(999)
-#' # Simulate white noise (P 1) with sigma^2 = 4
-#' N = 100000
-#' white.noise = rnorm(N, 0, 2)
-#' #plot(white.noise,ylab="Simulated white noise process",xlab="Time",type="o")
-#' #Simulate random walk (P 4)
-#' random.walk = cumsum(0.1*rnorm(N, 0, 2))
-#' combined.ts = white.noise+random.walk
-#' av_mat = avar_mo_cpp(combined.ts)
-#' @keywords internal
-hadam_mo_cpp <- function(x) {
-    .Call('_simts_hadam_mo_cpp', PACKAGE = 'simts', x)
-}
-
 #' @title Indirect Inference for ARMA
 #' @description Option for indirect inference
 #' @param ar A \code{vec} that contains the coefficients of the AR process.
@@ -1603,9 +1426,6 @@ do_polyroot_cpp <- function(z) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @examples
-#' # Calculates the Haar WV for an ARMA(2,3).
-#' wv.theo = arma_to_wv(c(.23,.43), c(.34,.41,.59), 3, 2^(1:9))
 #' @seealso \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, and \code{\link{arma11_to_wv}}
 arma_to_wv <- function(ar, ma, sigma2, tau) {
     .Call('_simts_arma_to_wv', PACKAGE = 'simts', ar, ma, sigma2, tau)
@@ -1642,9 +1462,6 @@ acf_sum <- function(ar, ma, last_tau, alpha = 0.99) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @examples
-#' # Performs an approximation of the Haar WV for an ARMA(2,3).
-#' wv.theo = arma_to_wv_app(c(.23,.43), c(.34,.41,.59), 3, 2^(1:9), .9)
 #' @seealso \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, \code{\link{acf_sum}} and \code{\link{arma_to_wv}}
 arma_to_wv_app <- function(ar, ma, sigma2, tau, alpha = 0.9999) {
     .Call('_simts_arma_to_wv_app', PACKAGE = 'simts', ar, ma, sigma2, tau, alpha)
@@ -1667,10 +1484,6 @@ arma_to_wv_app <- function(ar, ma, sigma2, tau, alpha = 0.9999) {
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 #' @seealso \code{\link{arma_to_wv}}
-#' @examples
-#' ntau = 7
-#' tau = 2^(1:ntau)
-#' wv.theo = arma11_to_wv(0.3, 0.1, 1, tau)
 arma11_to_wv <- function(phi, theta, sigma2, tau) {
     .Call('_simts_arma11_to_wv', PACKAGE = 'simts', phi, theta, sigma2, tau)
 }
@@ -1691,10 +1504,6 @@ arma11_to_wv <- function(phi, theta, sigma2, tau) {
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 #' @seealso \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
-#' @examples
-#' ntau = 7
-#' tau = 2^(1:ntau)
-#' wv.theo = ar1_to_wv(.63, 1, tau)
 ar1_to_wv <- function(phi, sigma2, tau) {
     .Call('_simts_ar1_to_wv', PACKAGE = 'simts', phi, sigma2, tau)
 }
@@ -1715,10 +1524,6 @@ ar1_to_wv <- function(phi, sigma2, tau) {
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 #' @seealso \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
-#' @examples
-#' ntau = 7
-#' tau = 2^(1:ntau)
-#' wv.theo = ma1_to_wv(.3, 1, tau)
 ma1_to_wv <- function(theta, sigma2, tau) {
     .Call('_simts_ma1_to_wv', PACKAGE = 'simts', theta, sigma2, tau)
 }
@@ -1733,10 +1538,6 @@ ma1_to_wv <- function(theta, sigma2, tau) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @examples
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = qn_to_wv(.42, tau)
 qn_to_wv <- function(q2, tau) {
     .Call('_simts_qn_to_wv', PACKAGE = 'simts', q2, tau)
 }
@@ -1748,10 +1549,6 @@ qn_to_wv <- function(q2, tau) {
 #' @return A \code{vec} containing the wavelet variance of the white noise.
 #' @template to_wv/haar_wn
 #' @template misc/haar_wv_formulae_link
-#' @examples
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = wn_to_wv(1, tau)
 wn_to_wv <- function(sigma2, tau) {
     .Call('_simts_wn_to_wv', PACKAGE = 'simts', sigma2, tau)
 }
@@ -1763,10 +1560,6 @@ wn_to_wv <- function(sigma2, tau) {
 #' @return A \code{vec} containing the wavelet variance of the random walk.
 #' @template to_wv/haar_rw
 #' @template misc/haar_wv_formulae_link
-#' @examples
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = rw_to_wv(.37, tau)
 rw_to_wv <- function(gamma2, tau) {
     .Call('_simts_rw_to_wv', PACKAGE = 'simts', gamma2, tau)
 }
@@ -1778,10 +1571,6 @@ rw_to_wv <- function(gamma2, tau) {
 #' @return A \code{vec} containing the wavelet variance of the drift.
 #' @template to_wv/haar_dr
 #' @template misc/haar_wv_formulae_link
-#' @examples
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = dr_to_wv(-2.3, tau)
 dr_to_wv <- function(omega, tau) {
     .Call('_simts_dr_to_wv', PACKAGE = 'simts', omega, tau)
 }
@@ -1795,11 +1584,6 @@ dr_to_wv <- function(omega, tau) {
 #' @template misc/tau
 #' @return A \code{vec} containing the wavelet variance of the model.
 #' @template misc/haar_wv_formulae_link
-#' @examples
-#' model = AR1(.3,2) + RW(.21) + DR(.001)
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = theoretical_wv(model$theta, model$desc, model$objdesc, tau)
 #' @keywords internal
 theoretical_wv <- function(theta, desc, objdesc, tau) {
     .Call('_simts_theoretical_wv', PACKAGE = 'simts', theta, desc, objdesc, tau)
@@ -1814,11 +1598,6 @@ theoretical_wv <- function(theta, desc, objdesc, tau) {
 #' @template misc/tau
 #' @return A \code{mat} containing the wavelet variance of each process in the model
 #' @template misc/haar_wv_formulae_link
-#' @examples
-#' model = AR1(.3,2) + DR(.001)
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = decomp_theoretical_wv(model$theta, model$desc, model$objdesc, tau)
 #' @keywords internal
 decomp_theoretical_wv <- function(theta, desc, objdesc, tau) {
     .Call('_simts_decomp_theoretical_wv', PACKAGE = 'simts', theta, desc, objdesc, tau)
@@ -1830,12 +1609,6 @@ decomp_theoretical_wv <- function(theta, desc, objdesc, tau) {
 #' @param decomp A \code{mat} with scales as rows and processes as columns
 #' @return A \code{vec} containing the wavelet variance of the process for the overall model
 #' @template misc/haar_wv_formulae_link
-#' @examples
-#' model = AR1(.3,2) + DR(.001)
-#' ntau = 8
-#' tau = 2^(1:ntau)
-#' wv.theo = decomp_theoretical_wv(model$theta, model$desc, model$objdesc, tau)
-#' wv.total = decomp_to_theo_wv(wv.theo)
 #' @keywords internal
 decomp_to_theo_wv <- function(decomp) {
     .Call('_simts_decomp_to_theo_wv', PACKAGE = 'simts', decomp)

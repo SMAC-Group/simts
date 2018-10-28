@@ -17,7 +17,4 @@ A \code{vec} containing the second moment of the drift.
 \description{
 This function computes the second moment of a drift process.
 }
-\examples{
-m2_drift(1, 200)
-}
 \keyword{internal}

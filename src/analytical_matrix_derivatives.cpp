@@ -143,8 +143,6 @@ arma::mat jacobian_arma(const arma::vec& theta,
 //' }
 //' @template deriv_wv/1st/deriv1_arma11
 //' @template author/jjb
-//' @examples
-//' deriv_arma11(.3, .4, 1, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_arma11(double phi, double theta, double sigma2, const arma::vec& tau){
   unsigned int ntau = tau.n_elem;
@@ -205,8 +203,6 @@ arma::mat deriv_arma11(double phi, double theta, double sigma2, const arma::vec&
 //' }
 //' @template deriv_wv/2nd/deriv2_arma11
 //' @template author/jjb
-//' @examples
-//' deriv_2nd_arma11(.3, .4, 1, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_2nd_arma11(double phi, double theta, double sigma2, const arma::vec& tau){
   unsigned int ntau = tau.n_elem;
@@ -277,8 +273,6 @@ arma::mat deriv_2nd_arma11(double phi, double theta, double sigma2, const arma::
 //' and the second column contains the partial derivative with respect to \eqn{\sigma ^2}{sigma^2}
 //' @template deriv_wv/1st/deriv1_ar1
 //' @template author/jjb
-//' @examples
-//' deriv_ar1(.3, 1, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_ar1(double phi, double sigma2, const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -321,8 +315,6 @@ arma::mat deriv_ar1(double phi, double sigma2, const arma::vec& tau){
 //'   respect to \eqn{\sigma ^2}{sigma^2}
 //' @template deriv_wv/2nd/deriv2_ar1
 //' @template author/jjb
-//' @examples
-//' deriv_2nd_ar1(.3, 1, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_2nd_ar1(double phi, double sigma2, const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -370,8 +362,6 @@ arma::mat deriv_2nd_ar1(double phi, double sigma2, const arma::vec& tau){
 //'  and the second column contains the partial derivative with respect to \eqn{\sigma ^2}{sigma^2}
 //' @template deriv_wv/1st/deriv1_ma1
 //' @template author/jjb
-//' @examples
-//' deriv_ma1(.3, 1, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_ma1(double theta, double sigma2, const arma::vec& tau){
   unsigned int ntau = tau.n_elem;
@@ -402,8 +392,6 @@ arma::mat deriv_ma1(double theta, double sigma2, const arma::vec& tau){
 //'  and lastly we have the second partial derivative with respect to \eqn{\sigma ^2}{sigma^2}.
 //' @template deriv_wv/2nd/deriv2_ma1
 //' @template author/jjb
-//' @examples
-//' deriv_2nd_ma1(.3, 1, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_2nd_ma1(double theta, double sigma2, const arma::vec& tau){
   unsigned int ntau = tau.n_elem;
@@ -430,8 +418,6 @@ arma::mat deriv_2nd_ma1(double theta, double sigma2, const arma::vec& tau){
 //' with respect to \eqn{\omega}{omega}.
 //' @template deriv_wv/1st/deriv1_dr
 //' @template author/jjb
-//' @examples
-//' deriv_dr(5.3, 2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_dr(double omega, const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -447,8 +433,6 @@ arma::mat deriv_dr(double omega, const arma::vec& tau){
 //' @return A \code{matrix} with the first column containing 
 //' the second partial derivative with respect to \eqn{\omega}{omega}.
 //' @template author/jjb
-//' @examples
-//' deriv_2nd_dr(2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_2nd_dr(const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -465,8 +449,6 @@ arma::mat deriv_2nd_dr(const arma::vec& tau){
 //' the partial derivative with respect to \eqn{Q^2}{Q^2}.
 //' @template deriv_wv/1st/deriv1_qn
 //' @template author/jjb
-//' @examples
-//' deriv_qn(2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_qn(const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -483,8 +465,6 @@ arma::mat deriv_qn(const arma::vec& tau){
 //'  the partial derivative with respect to \eqn{\gamma^2}{gamma^2}.
 //' @template deriv_wv/1st/deriv1_rw
 //' @template author/jjb
-//' @examples
-//' deriv_rw(2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_rw(const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -501,8 +481,6 @@ arma::mat deriv_rw(const arma::vec& tau){
 //' the partial derivative with respect to \eqn{\sigma^2}{sigma^2}.
 //' @template deriv_wv/1st/deriv1_wn
 //' @template author/jjb
-//' @examples
-//' deriv_wn(2^(1:5))
 // [[Rcpp::export]]
 arma::mat deriv_wn(const arma::vec& tau){
      unsigned int ntau = tau.n_elem;
@@ -522,9 +500,6 @@ arma::mat deriv_wn(const arma::vec& tau){
 //' @details
 //' Function returns the matrix effectively known as "D"
 //' @template author/jjb
-//' @examples
-//' mod = AR1(.4,1) + WN(.2) + DR(.005)
-//' derivative_first_matrix(mod$theta, mod$desc, mod$obj.desc, 2^(1:9))
 // [[Rcpp::export]]
 arma::mat derivative_first_matrix(const arma::vec& theta, 
                                   const std::vector<std::string>& desc,
@@ -621,8 +596,6 @@ arma::mat derivative_first_matrix(const arma::vec& theta,
 //' @details
 //' Function returns the matrix effectively known as "D"
 //' @template author/jjb
-//' @examples
-//' # TBA
 //' @keywords internal
 // [[Rcpp::export]]
 arma::mat D_matrix(const arma::vec& theta, 

@@ -34,11 +34,6 @@ The Autoregressive Order \eqn{1} (AR(\eqn{1})) process has a Haar Wavelet Varian
 For more information, please see: \href{http://smac-group.com/computing/process-to-haar-wavelet-variance-formulae}{Supported Haar Wavelet Formulae} (Internet Connection Required).
 }
 
-\examples{
-ntau = 7
-tau = 2^(1:ntau)
-wv.theo = ar1_to_wv(.63, 1, tau)
-}
 \seealso{
 \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
 }

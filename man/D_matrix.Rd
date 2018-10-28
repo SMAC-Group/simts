@@ -26,9 +26,6 @@ This function computes each process to WV (haar) in a given model.
 \details{
 Function returns the matrix effectively known as "D"
 }
-\examples{
-# TBA
-}
 \author{
 James Joseph Balamuta (JJB)
 }

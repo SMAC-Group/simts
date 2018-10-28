@@ -16,9 +16,6 @@ the second partial derivative with respect to \eqn{\omega}{omega}.
 \description{
 To ease a later calculation, we place the result into a matrix structure.
 }
-\examples{
-deriv_2nd_dr(2^(1:5))
-}
 \author{
 James Joseph Balamuta (JJB)
 }

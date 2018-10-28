@@ -17,7 +17,4 @@ A \code{vec} containing the expected value of the drift.
 \description{
 This function computes the expected value of a drift process.
 }
-\examples{
-e_drift(1,200)
-}
 \keyword{internal}

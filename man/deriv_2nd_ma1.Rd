@@ -33,9 +33,6 @@ Taking the first derivative with respect to \eqn{\theta}{theta} and \eqn{\sigma^
 \deqn{\frac{\partial }{{\partial \theta }}\frac{\partial }{{\partial {\sigma ^2}}}\nu _j^2\left( {\theta ,{\sigma ^2}} \right) = \frac{{2(\theta  + 1){\tau _j} - 6}}{{\tau _j^2}}}{d/dtheta * d/dsigma2 nu[j]^2 (theta, sigma2) = (-6 + 2*(1 + theta)*tau[j])/tau[j]^2}
 }
 
-\examples{
-deriv_2nd_ma1(.3, 1, 2^(1:5))
-}
 \author{
 James Joseph Balamuta (JJB)
 }

@@ -108,7 +108,7 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
 }
 
 #' @export
-print.fitsimts = function(out){
+print.fitsimts = function(out, ...){
   cat("Fitted model: ")
   cat(out$model_name)
   cat("\n")
@@ -195,6 +195,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @param xlab A \code{string} for the title of x axis.
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.
+#' @param ... Additional arguments.
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
@@ -218,7 +219,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @export
 #' 
 predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL, 
-                            xlab = NULL, ylab = NULL, main = NULL){
+                            xlab = NULL, ylab = NULL, main = NULL, ...){
   Xt = model$Xt
   freq = attr(Xt, 'freq')
   end_time =  attr(Xt, 'end')

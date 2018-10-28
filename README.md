@@ -43,7 +43,7 @@ License
 
 You can redistribute it and/or modify this book under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA) 4.0 License.
 
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="/images/licence.png" align="left" width="200"/></a> <br><br><br>
+<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="/man/figures/licence.png" align="left" width="200"/></a> <br><br><br>
 
 <!-- ### Requirements and Dependencies -->
 <!-- **OS X** -->

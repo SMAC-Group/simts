@@ -17,9 +17,6 @@ A \code{vec} containing GM values.
 \description{
 Takes GM values and transforms them to AR1
 }
-\examples{
-gm_to_ar1(c(0.3,1,0.6,.3), 2)
-}
 \author{
 James Balamuta
 The function takes a vector of GM values \eqn{\beta}{beta} and \eqn{\sigma ^2_{gm}}{sigma ^2[gm]}

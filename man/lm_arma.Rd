@@ -22,12 +22,4 @@ A \code{field<vec>} with:
 \description{
 Perform Multiple Linear Regression using armadillo in C++
 }
-\examples{
-x = cbind(1,1:10)
-y = cumsum(rep(.45,10))
-
-lm_arma(y, x)[[1]]
-
-coef(lm(y~x-1))
-}
 \keyword{internal}

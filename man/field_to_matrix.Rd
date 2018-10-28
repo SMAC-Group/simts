@@ -15,9 +15,6 @@ A \code{mat} containing the field elements within a column.
 \description{
 Unlists vectors in a field and places them into a matrix
 }
-\examples{
-x=rnorm(100)
-}
 \author{
 JJB
 }

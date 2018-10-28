@@ -20,13 +20,4 @@ A \code{field<vec>} with:
 \description{
 Perform a linear regression with drift.
 }
-\examples{
-x = 1:10
-y = cumsum(rep(.7,10))
-
-lm_dr(y)[[1]]
-
-coef(lm(y~x-1))
-
-}
 \keyword{internal}

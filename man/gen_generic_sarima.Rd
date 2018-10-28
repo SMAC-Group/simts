@@ -30,7 +30,4 @@ The innovations are generated from a normal distribution.
 The \eqn{\sigma^2} parameter is indeed a variance parameter. 
 This differs from R's use of the standard deviation, \eqn{\sigma}.
 }
-\examples{
-gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
-}
 \keyword{internal}

@@ -19,11 +19,6 @@ This function will plot four diagnostic plots to assess how well the model fits
 the data. These plots are: (1) residuals plot, (2) histogram of 
 (standardized) residuals, (3) normal Q-Q plot of residuals and (4) residuals vs fitted values plot.
 }
-\examples{
-Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
-simple_diag_plot(Xt, model)
-}
 \author{
 Yuming Zhang
 }

@@ -22,14 +22,6 @@ or \code{"both"}}
 This function plots a histogram (with kernel density function and normal distribution) of the standardized
 residuals or a basic plot the (standardized) residuals, or both.
 }
-\examples{
-Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
-
-resid_plot(Xt, model, type = "hist")
-resid_plot(Xt, model, type = "resid")
-resid_plot(Xt, model, std = TRUE, type = "both")
-}
 \author{
 Yuming Zhang
 }

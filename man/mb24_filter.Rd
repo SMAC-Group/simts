@@ -20,9 +20,6 @@ Creates the mb24 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-mb24_filter()
-}
 \author{
 JJB
 }

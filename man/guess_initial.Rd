@@ -34,7 +34,4 @@ A \code{vec} containing smart parameter starting guesses to be iterated over.
 \description{
 Sets starting parameters for each of the given parameters.
 }
-\examples{
-#TBA
-}
 \keyword{internal}

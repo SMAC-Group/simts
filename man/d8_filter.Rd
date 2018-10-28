@@ -20,9 +20,6 @@ Creates the d8 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-d8_filter()
-}
 \author{
 JJB
 }

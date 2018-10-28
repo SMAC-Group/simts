@@ -24,10 +24,6 @@ Consider a vector x=[[1,2],[3,4]].
 By setting \code{start=1} and \code{end=0}, the function would output x=[[2,1],[4,1]].
 Start and end must be valid C++ matrix locations. (e.g. matrix cols start at 0 and not 1)
 }
-\examples{
-x = matrix(c(1,2,3,4), nrow = 2,byrow = TRUE)
-rev_col_subset(x, 1, 0)
-}
 \author{
 JJB
 }

@@ -31,7 +31,4 @@ sample \eqn{N} times from a \eqn{N(0,\sigma^2)}{N(0,sigma^2)} distribution. Last
 cumulative sum over the vector.
 }
 
-\examples{
-gen_rw(10, 8.2)
-}
 \keyword{internal}

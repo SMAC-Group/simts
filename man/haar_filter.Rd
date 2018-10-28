@@ -20,9 +20,6 @@ Creates the haar filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-haar_filter()
-}
 \author{
 JJB
 }

@@ -24,9 +24,6 @@ using the formulas:
 \eqn{\beta  =  - \frac{{\ln \left( \phi  \right)}}{{\Delta t}}}{beta = -ln(phi)/delta_t}
 \eqn{\sigma _{gm}^2 = \frac{{{\sigma ^2}}}{{1 - {\phi ^2}}} }{sigma^2[gm] = sigma^2/(1-phi^2)}
 }
-\examples{
-ar1_to_gm(c(0.3,1,0.6,.3), 2)
-}
 \author{
 James Balamuta
 }

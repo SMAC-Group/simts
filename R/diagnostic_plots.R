@@ -17,13 +17,6 @@
 #' @importFrom stats density
 #' @importFrom stats sd
 #' @importFrom stats dnorm
-#' @examples 
-#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
-#' 
-#' resid_plot(Xt, model, type = "hist")
-#' resid_plot(Xt, model, type = "resid")
-#' resid_plot(Xt, model, std = TRUE, type = "both")
 resid_plot = function(res, std = FALSE, type = "hist", ...){
   
   res_sd = res / sd(res)
@@ -117,10 +110,6 @@ resid_plot = function(res, std = FALSE, type = "hist", ...){
 #' @importFrom stats var
 #' @importFrom stats resid
 #' @importFrom stats na.omit
-#' @examples 
-#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = TRUE)
-#' simple_diag_plot(Xt, model)
 simple_diag_plot = function(Xt, model, std = FALSE){
   par(mfrow = c(2,2))
   
@@ -207,10 +196,6 @@ simple_diag_plot = function(Xt, model, std = FALSE){
 #' @param std A \code{boolean} indicating whether we use standardized residuals for 
 #' (1) residuals plot and (8) Box test results.
 #' @importFrom stats na.omit
-#' @examples 
-#' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = arima(Xt, order = c(3,0,0), include.mean = T)
-#' diag_plot(Xt, model)
 diag_plot = function(Xt = NULL, model = NULL, resids = NULL, std = FALSE){
   par(mfrow = c(2,3))
   

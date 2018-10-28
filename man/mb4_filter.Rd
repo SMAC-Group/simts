@@ -20,9 +20,6 @@ Creates the mb4 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-mb4_filter()
-}
 \author{
 JJB
 }

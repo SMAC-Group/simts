@@ -15,22 +15,6 @@ A \code{vec} containing logit probabilities.
 \description{
 This function computes the inverse of a logit transformation of the parameters.
 }
-\examples{
-# Set seed for reproducibility
-set.seed(1412)
-
-# Simulate data
-x.sim = runif(10, -1, 1)
-
-# Transform
-x.sim.transformed = logit(x.sim)
-
-# Untransform
-x.sim.untransformed = logit_inv(x.sim.transformed)
-
-# Compare results
-results = cbind(x.sim, x.sim.untransformed)
-}
 \seealso{
 \code{\link{logit}}
 }

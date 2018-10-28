@@ -292,9 +292,6 @@ sort_mat <- function(x, col) {
 #' By setting \code{start=1} and \code{end=0}, the function would output x=[[2,1],[4,1]].
 #' Start and end must be valid C++ matrix locations. (e.g. matrix cols start at 0 and not 1)
 #' @author JJB
-#' @examples
-#' x = matrix(c(1,2,3,4), nrow = 2,byrow = TRUE)
-#' rev_col_subset(x, 1, 0)
 #' @keywords internal
 rev_col_subset <- function(x, start, end) {
     .Call('_simts_rev_col_subset', PACKAGE = 'simts', x, start, end)
@@ -321,9 +318,6 @@ rev_row_subset <- function(x, start, end) {
 #' @return x A \code{column vector} with its contents reversed.
 #' @details Consider a vector x=[1,2,3,4,5], the function would output x=[5,4,3,2,1].
 #' @author JJB
-#' @examples
-#' x = 1:5
-#' reverse_vec(x)
 #' @keywords internal
 reverse_vec <- function(x) {
     .Call('_simts_reverse_vec', PACKAGE = 'simts', x)
@@ -334,8 +328,6 @@ reverse_vec <- function(x) {
 #' @param x A \code{field<vec>}.
 #' @return A \code{mat} containing the field elements within a column.
 #' @author JJB
-#' @examples
-#' x=rnorm(100)
 #' @keywords internal
 field_to_matrix <- function(x) {
     .Call('_simts_field_to_matrix', PACKAGE = 'simts', x)
@@ -346,8 +338,6 @@ field_to_matrix <- function(x) {
 #' @param x A \code{field<vec>}.
 #' @return An \code{mat} containing the field elements within a column.
 #' @author JJB
-#' @examples
-#' x=rnorm(100)
 #' @keywords internal
 sum_field_vec <- function(x) {
     .Call('_simts_sum_field_vec', PACKAGE = 'simts', x)
@@ -370,12 +360,6 @@ build_model_set <- function(combs, x) {
 #' @param seed A \code{unsigned int} that is the seed one wishes to use. 
 #' @return A set RNG scope.
 #' @keywords internal
-#' @examples
-#' set.seed(10)
-#' x = rnorm(5,0,1)
-#' set_seed(10)
-#' y = rnorm(5,0,1)
-#' all.equal(x,y, check.attributes = FALSE)
 set_seed <- function(seed) {
     invisible(.Call('_simts_set_seed', PACKAGE = 'simts', seed))
 }
@@ -450,8 +434,6 @@ auto_imu_cpp <- function(data, combs, full_model, alpha, compute_v, model_type, 
 #' Expand in detail...  
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Coming soon
 cov_bootstrapper <- function(theta, desc, objdesc, N, robust, eff, H, diagonal_matrix) {
     .Call('_simts_cov_bootstrapper', PACKAGE = 'simts', theta, desc, objdesc, N, robust, eff, H, diagonal_matrix)
 }
@@ -466,8 +448,6 @@ cov_bootstrapper <- function(theta, desc, objdesc, N, robust, eff, H, diagonal_m
 #' Expand in detail...  
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Coming soon
 optimism_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H) {
     .Call('_simts_optimism_bootstrapper', PACKAGE = 'simts', theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H)
 }
@@ -488,8 +468,6 @@ optimism_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, r
 #' Expand in detail...  
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Coming soon
 opt_n_gof_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H) {
     .Call('_simts_opt_n_gof_bootstrapper', PACKAGE = 'simts', theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H)
 }
@@ -504,8 +482,6 @@ opt_n_gof_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, 
 #' Expand in detail...  
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Coming soon
 gmwm_sd_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H) {
     .Call('_simts_gmwm_sd_bootstrapper', PACKAGE = 'simts', theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H)
 }
@@ -532,8 +508,6 @@ boot_pval_gof <- function(obj, obj_boot, B = 1000L, alpha = 0.05) {
 #' Expand in detail...  
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Coming soon
 gmwm_param_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H) {
     .Call('_simts_gmwm_param_bootstrapper', PACKAGE = 'simts', theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H)
 }
@@ -548,8 +522,6 @@ gmwm_param_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N,
 #' Expand in detail...  
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Coming soon
 all_bootstrapper <- function(theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H) {
     .Call('_simts_all_bootstrapper', PACKAGE = 'simts', theta, desc, objdesc, scales, model_type, N, robust, eff, alpha, H)
 }
@@ -574,12 +546,6 @@ Mod_cpp <- function(x) {
 #' @param eff A \code{double} that indicates the efficiency as it relates to an MLE.
 #' @return A \code{field<mat>} containing the covariance matrix.
 #' @keywords internal
-#' @examples
-#' \dontrun{
-#' x=rnorm(100)
-#' decomp = modwt(x)
-#' V = compute_cov_cpp(decomp$data, decomp$nlevels, compute_v="diag", robust = TRUE, eff=0.6)
-#' }
 compute_cov_cpp <- function(signal_modwt, nb_level, compute_v = "diag", robust = TRUE, eff = 0.6) {
     .Call('_simts_compute_cov_cpp', PACKAGE = 'simts', signal_modwt, nb_level, compute_v, robust, eff)
 }
@@ -590,12 +556,6 @@ compute_cov_cpp <- function(signal_modwt, nb_level, compute_v = "diag", robust =
 #' @param ci_lo A \code{vec} that contains the lower confidence interval points.
 #' @return A diagonal matrix.
 #' @keywords internal
-#' @examples
-#' \dontrun{
-#' x=runif(100)
-#' y=x+3
-#' fast_cov_cpp(y,x)
-#' }
 fast_cov_cpp <- function(ci_hi, ci_lo) {
     .Call('_simts_fast_cov_cpp', PACKAGE = 'simts', ci_hi, ci_lo)
 }
@@ -612,10 +572,6 @@ fast_cov_cpp <- function(ci_hi, ci_lo) {
 #' Performs a level J decomposition of the time series using the pyramid algorithm
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' set.seed(999)
-#' x = rnorm(2^8)
-#' dwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
 dwt_cpp <- function(x, filter_name, nlevels, boundary, brickwall) {
     .Call('_simts_dwt_cpp', PACKAGE = 'simts', x, filter_name, nlevels, boundary, brickwall)
 }
@@ -632,10 +588,6 @@ dwt_cpp <- function(x, filter_name, nlevels, boundary, brickwall) {
 #' which serves as a wrapper function.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' set.seed(999)
-#' x = rnorm(100)
-#' modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
 modwt_cpp <- function(x, filter_name, nlevels, boundary, brickwall) {
     .Call('_simts_modwt_cpp', PACKAGE = 'simts', x, filter_name, nlevels, boundary, brickwall)
 }
@@ -651,10 +603,6 @@ modwt_cpp <- function(x, filter_name, nlevels, boundary, brickwall) {
 #' The vectors are truncated by removing the first n wavelet coefficients. 
 #' These vectors are then stored into the field that is returned.
 #' Note: As a result, there are no NA's introduced and hence the na.omit is not needed.
-#' @examples
-#' x = rnorm(100)
-#' me = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = FALSE)
-#' brick_wall(me, select_filter("haar"), "modwt")
 brick_wall <- function(x, wave_filter, method) {
     .Call('_simts_brick_wall', PACKAGE = 'simts', x, wave_filter, method)
 }
@@ -674,8 +622,6 @@ brick_wall <- function(x, wave_filter, method) {
 #' sample \eqn{N} times from a \eqn{N(0,\sigma ^2)}{N(0,sigma^2)} distribution.
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_wn(10, 1.5)
 gen_wn <- function(N, sigma2 = 1) {
     .Call('_simts_gen_wn', PACKAGE = 'simts', N, sigma2)
 }
@@ -694,8 +640,6 @@ gen_wn <- function(N, sigma2 = 1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_dr(10, 8.2)
 gen_dr <- function(N, omega = 5) {
     .Call('_simts_gen_dr', PACKAGE = 'simts', N, omega)
 }
@@ -729,8 +673,6 @@ gen_dr <- function(N, omega = 5) {
 #' @backref src/gen_process.cpp
 #' @backref src/gen_process.h
 #' @export
-#' @examples
-#' gen_qn(10, 5)
 gen_qn <- function(N, q2 = .1) {
     .Call('_simts_gen_qn', PACKAGE = 'simts', N, q2)
 }
@@ -755,8 +697,6 @@ gen_qn <- function(N, q2 = .1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_ar1(10, 5, 1.2)
 gen_ar1 <- function(N, phi = .3, sigma2 = 1) {
     .Call('_simts_gen_ar1', PACKAGE = 'simts', N, phi, sigma2)
 }
@@ -776,8 +716,6 @@ gen_ar1 <- function(N, phi = .3, sigma2 = 1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_rw(10, 8.2)
 gen_rw <- function(N, sigma2 = 1) {
     .Call('_simts_gen_rw', PACKAGE = 'simts', N, sigma2)
 }
@@ -801,8 +739,6 @@ gen_rw <- function(N, sigma2 = 1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_ma1(10, .2, 1.2)
 gen_ma1 <- function(N, theta = .3, sigma2 = 1) {
     .Call('_simts_gen_ma1', PACKAGE = 'simts', N, theta, sigma2)
 }
@@ -827,8 +763,6 @@ gen_ma1 <- function(N, theta = .3, sigma2 = 1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_ma1(10, .2, 1.2)
 gen_arma11 <- function(N, phi = .1, theta = .3, sigma2 = 1) {
     .Call('_simts_gen_arma11', PACKAGE = 'simts', N, phi, theta, sigma2)
 }
@@ -854,8 +788,6 @@ gen_arma11 <- function(N, phi = .1, theta = .3, sigma2 = 1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_arma(10, c(.3,.5), c(.1), 1, 0)
 gen_arma <- function(N, ar, ma, sigma2 = 1.5, n_start = 0L) {
     .Call('_simts_gen_arma', PACKAGE = 'simts', N, ar, ma, sigma2, n_start)
 }
@@ -880,8 +812,6 @@ gen_arma <- function(N, ar, ma, sigma2 = 1.5, n_start = 0L) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_sarma(10, c(.3,.5), c(.1), c(.2), c(.4), 1, 12, 0)
 gen_sarma <- function(N, ar, ma, sar, sma, sigma2 = 1.5, s = 12L, n_start = 0L) {
     .Call('_simts_gen_sarma', PACKAGE = 'simts', N, ar, ma, sar, sma, sigma2, s, n_start)
 }
@@ -907,9 +837,6 @@ gen_sarma <- function(N, ar, ma, sar, sma, sigma2 = 1.5, s = 12L, n_start = 0L) 
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' # Generate an ARIMA model
-#' xt = gen_arima(10, c(.3,.5), 1, c(.1), 1.5, 0)
 gen_arima <- function(N, ar, d, ma, sigma2 = 1.5, n_start = 0L) {
     .Call('_simts_gen_arima', PACKAGE = 'simts', N, ar, d, ma, sigma2, n_start)
 }
@@ -936,8 +863,6 @@ gen_arima <- function(N, ar, d, ma, sigma2 = 1.5, n_start = 0L) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
 gen_sarima <- function(N, ar, d, ma, sar, sd, sma, sigma2 = 1.5, s = 12L, n_start = 0L) {
     .Call('_simts_gen_sarima', PACKAGE = 'simts', N, ar, d, ma, sar, sd, sma, sigma2, s, n_start)
 }
@@ -960,8 +885,6 @@ gen_sarima <- function(N, ar, d, ma, sar, sd, sma, sigma2 = 1.5, s = 12L, n_star
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
 gen_generic_sarima <- function(N, theta_values, objdesc, sigma2 = 1.5, n_start = 0L) {
     .Call('_simts_gen_generic_sarima', PACKAGE = 'simts', N, theta_values, objdesc, sigma2, n_start)
 }
@@ -978,10 +901,6 @@ gen_generic_sarima <- function(N, theta_values, objdesc, sigma2 = 1.5, n_start =
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' # AR
-#' set.seed(1336)
-#' gen_model(1000, c(.9,1), "AR1", list(c(1,1)))
 gen_model <- function(N, theta, desc, objdesc) {
     .Call('_simts_gen_model', PACKAGE = 'simts', N, theta, desc, objdesc)
 }
@@ -998,10 +917,6 @@ gen_model <- function(N, theta, desc, objdesc) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-#' @examples
-#' # AR
-#' set.seed(1336)
-#' gen_lts_cpp(10, c(.9,1), "AR1", list(c(1,1)))
 gen_lts_cpp <- function(N, theta, desc, objdesc) {
     .Call('_simts_gen_lts_cpp', PACKAGE = 'simts', N, theta, desc, objdesc)
 }
@@ -1111,8 +1026,6 @@ gmwm_master_cpp <- function(data, theta, desc, objdesc, model_type, starting, al
 #' @param G A \code{integer} that indicates how many random draws that should be performed.
 #' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 #' @keywords internal
-#' @examples
-#' #TBA
 guess_initial <- function(desc, objdesc, model_type, num_param, expect_diff, N, wv, tau, ranged, G) {
     .Call('_simts_guess_initial', PACKAGE = 'simts', desc, objdesc, model_type, num_param, expect_diff, N, wv, tau, ranged, G)
 }
@@ -1125,8 +1038,6 @@ guess_initial <- function(desc, objdesc, model_type, num_param, expect_diff, N, 
 #' @param model_type A \code{string} that describes the model transformation.
 #' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 #' @keywords internal
-#' @examples
-#' #TBA
 ar1_draw <- function(draw_id, last_phi, sigma2_total, model_type) {
     .Call('_simts_ar1_draw', PACKAGE = 'simts', draw_id, last_phi, sigma2_total, model_type)
 }
@@ -1138,8 +1049,6 @@ ar1_draw <- function(draw_id, last_phi, sigma2_total, model_type) {
 #' @param sigma2_total A \code{double} that contains the sum of all WVs. 
 #' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 #' @keywords internal
-#' @examples
-#' #TBA
 arma_draws <- function(p, q, sigma2_total) {
     .Call('_simts_arma_draws', PACKAGE = 'simts', p, q, sigma2_total)
 }
@@ -1157,8 +1066,6 @@ arma_draws <- function(p, q, sigma2_total) {
 #' @param B A \code{integer} that indicates how many random draws that should be performed.
 #' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 #' @keywords internal
-#' @examples
-#' #TBA
 guess_initial_old <- function(desc, objdesc, model_type, num_param, expect_diff, N, wv_empir, tau, B) {
     .Call('_simts_guess_initial_old', PACKAGE = 'simts', desc, objdesc, model_type, num_param, expect_diff, N, wv_empir, tau, B)
 }
@@ -1291,13 +1198,6 @@ bootstrap_gof_test <- function(obj_value, bs_obj_values, alpha, bs_gof_p_ci) {
 #'   \item{sigma2}{Sigma^2}
 #' }
 #' @keywords internal
-#' @examples
-#' x = cbind(1,1:10)
-#' y = cumsum(rep(.45,10))
-#' 
-#' lm_arma(y, x)[[1]]
-#' 
-#' coef(lm(y~x-1))
 lm_arma <- function(y, X) {
     .Call('_simts_lm_arma', PACKAGE = 'simts', y, X)
 }
@@ -1314,14 +1214,6 @@ lm_arma <- function(y, X) {
 #'   \item{sigma2}{Sigma^2}
 #' }
 #' @keywords internal
-#' @examples
-#' x = 1:10
-#' y = cumsum(rep(.7,10))
-#' 
-#' lm_dr(y)[[1]]
-#' 
-#' coef(lm(y~x-1))
-#' 
 lm_dr <- function(x) {
     .Call('_simts_lm_dr', PACKAGE = 'simts', x)
 }
@@ -1646,10 +1538,6 @@ decomp_to_theo_wv <- function(decomp) {
 #' for providing a matlab function that reads in IMUs.
 #' The function below is a heavily modified port of MATLAB code into Armadillo/C++. 
 #' 
-#' @examples
-#' \dontrun{
-#' read_imu(file_path = "F:/Desktop/short_test_data.imu", imu_type = "IXSEA")
-#' }
 #' @keywords internal
 read_imu <- function(file_path, imu_type) {
     .Call('_simts_read_imu', PACKAGE = 'simts', file_path, imu_type)
@@ -1662,10 +1550,6 @@ read_imu <- function(file_path, imu_type) {
 #' @return A \code{vector} containing values moving from a to b. There are no restrictions on A's range.
 #' @author James J Balamuta
 #' @keywords internal
-#' @examples
-#' #Call with the following data:
-#' seq_cpp(3, 5)
-#' seq_cpp(5, 3)
 seq_cpp <- function(a, b) {
     .Call('_simts_seq_cpp', PACKAGE = 'simts', a, b)
 }
@@ -1676,9 +1560,6 @@ seq_cpp <- function(a, b) {
 #' @return A \code{vector} containing values moving from 1 to n.
 #' @author James J Balamuta
 #' @keywords internal
-#' @examples 
-#' #Call with the following data:
-#' seq_len_cpp(5)
 seq_len_cpp <- function(n) {
     .Call('_simts_seq_len_cpp', PACKAGE = 'simts', n)
 }
@@ -1690,10 +1571,6 @@ seq_len_cpp <- function(n) {
 #' @return A \code{vector} containing the quantiles
 #' @author James J Balamuta
 #' @keywords internal
-#' @examples 
-#' #Call with the following data:
-#' quantile_cpp(c(1,2,3,4,5,6,7), c(.25,.5,.75))
-#' quantile(c(1,2,3,4,5,6,7), c(.25,.5,.75))
 quantile_cpp <- function(x, probs) {
     .Call('_simts_quantile_cpp', PACKAGE = 'simts', x, probs)
 }
@@ -1706,9 +1583,6 @@ quantile_cpp <- function(x, probs) {
 #' @return A \code{vector} containing the differenced time series.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' x = rnorm(10, 0, 1)
-#' diff_cpp(x,1,1)
 diff_cpp <- function(x, lag, differences) {
     .Call('_simts_diff_cpp', PACKAGE = 'simts', x, lag, differences)
 }
@@ -1737,20 +1611,6 @@ ARMAtoMA_cpp <- function(ar, ma, lag_max) {
 #' It is about 5-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
 #' @author R Core Team and JJB
 #' @keywords internal
-#' @examples
-#' x = 1:15
-#' # 
-#' cfilter(x, rep(1, 3), sides = 2, circular = FALSE)
-#' # Using R's function
-#' filter(x, rep(1, 3))
-#' #
-#' cfilter(x, rep(1, 3), sides = 1, circular = FALSE)
-#' # Using R's function
-#' filter(x, rep(1, 3), sides = 1)
-#' #
-#' cfilter(x, rep(1, 3), sides = 1, circular = TRUE)
-#' # Using R's function
-#' filter(x, rep(1, 3), sides = 1, circular = TRUE)
 cfilter <- function(x, filter, sides, circular) {
     .Call('_simts_cfilter', PACKAGE = 'simts', x, filter, sides, circular)
 }
@@ -1767,12 +1627,6 @@ cfilter <- function(x, filter, sides, circular) {
 #' It is about 6-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
 #' @author R Core Team and JJB
 #' @keywords internal
-#' @examples
-#' x = 1:15
-#' # 
-#' rfilter(x, rep(1, 3), rep(1, 3))
-#' # Using R's function
-#' filter(x, rep(1, 3), method="recursive", init=rep(1, 3))
 rfilter <- function(x, filter, init) {
     .Call('_simts_rfilter', PACKAGE = 'simts', x, filter, init)
 }
@@ -1800,9 +1654,6 @@ ARMAacf_cpp <- function(ar, ma, lag_max) {
 #' Two issues: 1. memory resize and 2. unoptimized fft algorithm in arma.
 #' Consider piping back into R and rewrapping the object. (Decrease of about 10 microseconds.)
 #' @keywords internal
-#' @examples
-#' x=rnorm(10)
-#' dft_acf(x)
 dft_acf <- function(x) {
     .Call('_simts_dft_acf', PACKAGE = 'simts', x)
 }
@@ -1812,9 +1663,6 @@ dft_acf <- function(x) {
 #' @param x A \code{vec} containing the data 
 #' @return A \code{double} that contains the mean of the first difference of the data.
 #' @keywords internal
-#' @examples
-#' x=rnorm(10)
-#' mean_diff(x)
 mean_diff <- function(x) {
     .Call('_simts_mean_diff', PACKAGE = 'simts', x)
 }
@@ -1874,8 +1722,6 @@ diff_inv <- function(x, lag, d) {
 #' @param sigma  A \code{double} indicating the standard deviation of the normal.
 #' @param a      A \code{double} that is the lower bound of the truncated normal.
 #' @param b      A \code{double} that is the upper bound of the truncated normal.
-#' @examples
-#' rtruncated_normal(10, 1, 1, -2, 2)
 rtruncated_normal <- function(n, mu, sigma, a, b) {
     .Call('_simts_rtruncated_normal', PACKAGE = 'simts', n, mu, sigma, a, b)
 }
@@ -1997,21 +1843,6 @@ get_summary <- function(theta, desc, objdesc, model_type, wv_empir, theo, scales
 #' @keywords internal
 #' @seealso \code{\link{pseudo_logit}}
 #' @template author/jjb
-#' @examples
-#' # Set seed for reproducibility
-#' set.seed(1222)
-#' 
-#' # Simulate data
-#' x.sim = runif(10, -1, 1)
-#' 
-#' # Transform
-#' x.sim.transformed = pseudo_logit(x.sim)
-#' 
-#' # Untransform
-#' x.sim.untransformed = pseudo_logit_inv(x.sim.transformed)
-#' 
-#' # Compare results
-#' results = cbind(x.sim, x.sim.untransformed)
 pseudo_logit_inv <- function(x) {
     .Call('_simts_pseudo_logit_inv', PACKAGE = 'simts', x)
 }
@@ -2024,21 +1855,6 @@ pseudo_logit_inv <- function(x) {
 #' @keywords internal
 #' @seealso \code{\link{logit}}
 #' @template author/jjb
-#' @examples
-#' # Set seed for reproducibility
-#' set.seed(1412)
-#' 
-#' # Simulate data
-#' x.sim = runif(10, -1, 1)
-#' 
-#' # Transform
-#' x.sim.transformed = logit(x.sim)
-#' 
-#' # Untransform
-#' x.sim.untransformed = logit_inv(x.sim.transformed)
-#' 
-#' # Compare results
-#' results = cbind(x.sim, x.sim.untransformed)
 logit_inv <- function(x) {
     .Call('_simts_logit_inv', PACKAGE = 'simts', x)
 }
@@ -2051,15 +1867,6 @@ logit_inv <- function(x) {
 #' @seealso \code{\link{pseudo_logit_inv}}
 #' @keywords internal
 #' @template author/jjb
-#' @examples
-#' # Set seed for reproducibility
-#' set.seed(1412)
-#' 
-#' # Simulate data
-#' x.sim = runif(10, -1, 1)
-#' 
-#' # Transform
-#' x.sim.transformed = pseudo_logit(x.sim)
 pseudo_logit <- function(x) {
     .Call('_simts_pseudo_logit', PACKAGE = 'simts', x)
 }
@@ -2072,15 +1879,6 @@ pseudo_logit <- function(x) {
 #' @keywords internal
 #' @seealso \code{\link{logit_inv}}
 #' @template author/jjb
-#' @examples
-#' # Set seed for reproducibility
-#' set.seed(1142)
-#' 
-#' # Simulate data
-#' x.sim = runif(10)
-#' 
-#' # Transform
-#' x.sim.transformed = logit(x.sim)
 logit <- function(x) {
     .Call('_simts_logit', PACKAGE = 'simts', x)
 }
@@ -2093,15 +1891,6 @@ logit <- function(x) {
 #' @keywords internal
 #' @seealso \code{\link{logit2_inv}}
 #' @template author/jjb
-#' @examples
-#' # Set seed for reproducibility
-#' set.seed(1142)
-#' 
-#' # Simulate data
-#' x.sim = runif(10, -2, 2)
-#' 
-#' # Transform
-#' x.sim.transformed = logit2(x.sim)
 logit2 <- function(x) {
     .Call('_simts_logit2', PACKAGE = 'simts', x)
 }
@@ -2114,21 +1903,6 @@ logit2 <- function(x) {
 #' @keywords internal
 #' @seealso \code{\link{logit2}}
 #' @template author/jjb
-#' @examples
-#' # Set seed for reproducibility
-#' set.seed(2234)
-#' 
-#' # Simulate data
-#' x.sim = runif(10, -2, 2)
-#' 
-#' # Transform
-#' x.sim.transformed = logit2(x.sim)
-#' 
-#' # Untransform
-#' x.sim.untransformed = logit2_inv(x.sim.transformed)
-#' 
-#' # Compare results
-#' results = cbind(x.sim, x.sim.untransformed)
 logit2_inv <- function(x) {
     .Call('_simts_logit2_inv', PACKAGE = 'simts', x)
 }
@@ -2210,8 +1984,6 @@ order_AR1s <- function(theta, desc, objdesc) {
 #' @backref src/ts_model_cpp.cpp
 #' @backref src/ts_model_cpp.h
 #' @export
-#' @examples
-#' ar1_to_gm(c(0.3,1,0.6,.3), 2)
 ar1_to_gm <- function(theta, freq) {
     .Call('_simts_ar1_to_gm', PACKAGE = 'simts', theta, freq)
 }
@@ -2231,8 +2003,6 @@ ar1_to_gm <- function(theta, freq) {
 #' @backref src/ts_model_cpp.cpp
 #' @backref src/ts_model_cpp.h
 #' @export
-#' @examples
-#' gm_to_ar1(c(0.3,1,0.6,.3), 2)
 gm_to_ar1 <- function(theta, freq) {
     .Call('_simts_gm_to_ar1', PACKAGE = 'simts', theta, freq)
 }
@@ -2297,12 +2067,6 @@ model_process_desc <- function(desc) {
 #'  \item{Column 3}{Chi-squared Upper Bounds}
 #' }
 #' @keywords internal
-#' @examples
-#' x = rnorm(100)
-#' # Uses the internal MODWT function not associated with an S3 class.
-#' decomp = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
-#' y = wave_variance(decomp)
-#' ci_wave_variance(decomp, y, type = "eta3", alpha_ov_2 = 0.025)
 ci_eta3 <- function(y, dims, alpha_ov_2) {
     .Call('_simts_ci_eta3', PACKAGE = 'simts', y, dims, alpha_ov_2)
 }
@@ -2322,12 +2086,6 @@ ci_eta3 <- function(y, dims, alpha_ov_2) {
 #' @details
 #' Within this function we are scaling the classical 
 #' @keywords internal
-#' @examples
-#' x = rnorm(100)
-#' # Uses the internal MODWT function not associated with an S3 class.
-#' decomp = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
-#' y = wave_variance(decomp, robust = TRUE,  eff = 0.6)
-#' ci_wave_variance(decomp, y, type = "eta3", alpha_ov_2 = 0.025, robust = TRUE, eff = 0.6)
 ci_eta3_robust <- function(wv_robust, wv_ci_class, alpha_ov_2, eff) {
     .Call('_simts_ci_eta3_robust', PACKAGE = 'simts', wv_robust, wv_ci_class, alpha_ov_2, eff)
 }
@@ -2349,13 +2107,6 @@ ci_eta3_robust <- function(wv_robust, wv_ci_class, alpha_ov_2, eff) {
 #' @keywords internal
 #' @details 
 #' This function can be expanded to allow for other confidence interval calculations.
-#' @examples
-#' set.seed(1337)
-#' x = rnorm(100)
-#' # Uses the internal MODWT function not associated with an S3 class.
-#' decomp = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
-#' y = wave_variance(decomp)
-#' ci_wave_variance(decomp, y, type = "eta3", alpha_ov_2 = 0.025)
 ci_wave_variance <- function(signal_modwt_bw, wv, type = "eta3", alpha_ov_2 = 0.025, robust = FALSE, eff = 0.6) {
     .Call('_simts_ci_wave_variance', PACKAGE = 'simts', signal_modwt_bw, wv, type, alpha_ov_2, robust, eff)
 }
@@ -2367,13 +2118,6 @@ ci_wave_variance <- function(signal_modwt_bw, wv, type = "eta3", alpha_ov_2 = 0.
 #' @param eff             A \code{double} that indicates the efficiency.
 #' @return A \code{vec} that contains the wave variance.
 #' @keywords internal
-#' @examples
-#' set.seed(1337)
-#' x = rnorm(100)
-#' decomp = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
-#' wave_variance(decomp)
-#' 
-#' wave_variance(decomp, robust = TRUE, eff = 0.6)
 wave_variance <- function(signal_modwt_bw, robust = FALSE, eff = 0.6) {
     .Call('_simts_wave_variance', PACKAGE = 'simts', signal_modwt_bw, robust, eff)
 }
@@ -2394,10 +2138,6 @@ wave_variance <- function(signal_modwt_bw, robust = FALSE, eff = 0.6) {
 #' @keywords internal
 #' @details 
 #' This function does the heavy lifting with the signal_modwt_bw
-#' @examples
-#' x = rnorm(100)
-#' decomp = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
-#' wvar_cpp(decomp, robust=FALSE, eff=0.6, alpha = 0.05, ci_type="eta3")
 wvar_cpp <- function(signal_modwt_bw, robust, eff, alpha, ci_type) {
     .Call('_simts_wvar_cpp', PACKAGE = 'simts', signal_modwt_bw, robust, eff, alpha, ci_type)
 }
@@ -2420,10 +2160,6 @@ wvar_cpp <- function(signal_modwt_bw, robust, eff, alpha, ci_type) {
 #' @keywords internal
 #' @details 
 #' This function powers the wvar object. It is also extendable...
-#' @examples
-#' x=rnorm(100)
-#' modwt_wvar_cpp(x, nlevels=4, robust=FALSE, eff=0.6, alpha = 0.05,
-#'                ci_type="eta3", strWavelet="haar", decomp="modwt")
 modwt_wvar_cpp <- function(signal, nlevels, robust, eff, alpha, ci_type, strWavelet, decomp) {
     .Call('_simts_modwt_wvar_cpp', PACKAGE = 'simts', signal, nlevels, robust, eff, alpha, ci_type, strWavelet, decomp)
 }
@@ -2446,11 +2182,6 @@ modwt_wvar_cpp <- function(signal, nlevels, robust, eff, alpha, ci_type, strWave
 #' @keywords internal
 #' @details 
 #' This function processes the decomposition of multiple signals quickly
-#' @examples
-#' x = cbind(rnorm(100),rnorm(100))
-#' batch_modwt_wvar_cpp(x, nlevels=4, robust=FALSE, eff=0.6, 
-#'                      alpha = 0.05, ci_type="eta3", strWavelet="haar", 
-#'                      decomp="modwt")
 batch_modwt_wvar_cpp <- function(signal, nlevels, robust, eff, alpha, ci_type, strWavelet, decomp) {
     .Call('_simts_batch_modwt_wvar_cpp', PACKAGE = 'simts', signal, nlevels, robust, eff, alpha, ci_type, strWavelet, decomp)
 }
@@ -2462,8 +2193,6 @@ batch_modwt_wvar_cpp <- function(signal, nlevels, robust, eff, alpha, ci_type, s
 #' @keywords internal
 #' @details 
 #' Used in wvar object.
-#' @examples
-#' scales_cpp(5)
 scales_cpp <- function(nb_level) {
     .Call('_simts_scales_cpp', PACKAGE = 'simts', nb_level)
 }
@@ -2477,10 +2206,6 @@ scales_cpp <- function(nb_level) {
 #' @return A \code{vector} that contains either the forward QMF (evalute in order) or the inverse QMF (reverse order). 
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' # Haar values
-#' g = rep(1/sqrt(2),2)
-#' qmf(g)
 qmf <- function(g, inverse = TRUE) {
     .Call('_simts_qmf', PACKAGE = 'simts', g, inverse)
 }
@@ -2498,8 +2223,6 @@ qmf <- function(g, inverse = TRUE) {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' haar_filter()
 haar_filter <- function() {
     .Call('_simts_haar_filter', PACKAGE = 'simts')
 }
@@ -2516,8 +2239,6 @@ haar_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' d4_filter()
 d4_filter <- function() {
     .Call('_simts_d4_filter', PACKAGE = 'simts')
 }
@@ -2534,8 +2255,6 @@ d4_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' mb4_filter()
 mb4_filter <- function() {
     .Call('_simts_mb4_filter', PACKAGE = 'simts')
 }
@@ -2552,8 +2271,6 @@ mb4_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' w4_filter()
 w4_filter <- function() {
     .Call('_simts_w4_filter', PACKAGE = 'simts')
 }
@@ -2570,8 +2287,6 @@ w4_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' fk4_filter()
 fk4_filter <- function() {
     .Call('_simts_fk4_filter', PACKAGE = 'simts')
 }
@@ -2588,8 +2303,6 @@ fk4_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' d6_filter()
 d6_filter <- function() {
     .Call('_simts_d6_filter', PACKAGE = 'simts')
 }
@@ -2606,8 +2319,6 @@ d6_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' fk6_filter()
 fk6_filter <- function() {
     .Call('_simts_fk6_filter', PACKAGE = 'simts')
 }
@@ -2624,8 +2335,6 @@ fk6_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' d8_filter()
 d8_filter <- function() {
     .Call('_simts_d8_filter', PACKAGE = 'simts')
 }
@@ -2642,8 +2351,6 @@ d8_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' fk8_filter()
 fk8_filter <- function() {
     .Call('_simts_fk8_filter', PACKAGE = 'simts')
 }
@@ -2660,8 +2367,6 @@ fk8_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' la8_filter()
 la8_filter <- function() {
     .Call('_simts_la8_filter', PACKAGE = 'simts')
 }
@@ -2678,8 +2383,6 @@ la8_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' mb8_filter()
 mb8_filter <- function() {
     .Call('_simts_mb8_filter', PACKAGE = 'simts')
 }
@@ -2696,8 +2399,6 @@ mb8_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' bl14_filter()
 bl14_filter <- function() {
     .Call('_simts_bl14_filter', PACKAGE = 'simts')
 }
@@ -2714,8 +2415,6 @@ bl14_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' fk14_filter()
 fk14_filter <- function() {
     .Call('_simts_fk14_filter', PACKAGE = 'simts')
 }
@@ -2732,8 +2431,6 @@ fk14_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' d16_filter()
 d16_filter <- function() {
     .Call('_simts_d16_filter', PACKAGE = 'simts')
 }
@@ -2750,8 +2447,6 @@ d16_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' la16_filter()
 la16_filter <- function() {
     .Call('_simts_la16_filter', PACKAGE = 'simts')
 }
@@ -2768,8 +2463,6 @@ la16_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' mb16_filter()
 mb16_filter <- function() {
     .Call('_simts_mb16_filter', PACKAGE = 'simts')
 }
@@ -2786,8 +2479,6 @@ mb16_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' la20_filter()
 la20_filter <- function() {
     .Call('_simts_la20_filter', PACKAGE = 'simts')
 }
@@ -2804,8 +2495,6 @@ la20_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' bl20_filter()
 bl20_filter <- function() {
     .Call('_simts_bl20_filter', PACKAGE = 'simts')
 }
@@ -2822,8 +2511,6 @@ bl20_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' fk22_filter()
 fk22_filter <- function() {
     .Call('_simts_fk22_filter', PACKAGE = 'simts')
 }
@@ -2840,8 +2527,6 @@ fk22_filter <- function() {
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
 #' @keywords internal
-#' @examples
-#' mb24_filter()
 mb24_filter <- function() {
     .Call('_simts_mb24_filter', PACKAGE = 'simts')
 }

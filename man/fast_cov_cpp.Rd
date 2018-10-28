@@ -17,11 +17,4 @@ A diagonal matrix.
 \description{
 Calculates the (MODWT) wavelet covariance matrix using Chi-square confidence interval bounds
 }
-\examples{
-\dontrun{
-x=runif(100)
-y=x+3
-fast_cov_cpp(y,x)
-}
-}
 \keyword{internal}

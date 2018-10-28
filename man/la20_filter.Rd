@@ -20,9 +20,6 @@ Creates the la20 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-la20_filter()
-}
 \author{
 JJB
 }

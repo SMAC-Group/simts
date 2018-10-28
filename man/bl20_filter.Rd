@@ -20,9 +20,6 @@ Creates the bl20 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-bl20_filter()
-}
 \author{
 JJB
 }

@@ -30,7 +30,4 @@ To generate the Drift process, we first fill a \code{vector} with the \eqn{\omeg
 After, we take the cumulative sum along the vector.
 }
 
-\examples{
-gen_dr(10, 8.2)
-}
 \keyword{internal}

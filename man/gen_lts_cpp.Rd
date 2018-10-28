@@ -21,9 +21,4 @@ A \code{mat} containing data for each decomposed and combined time series.
 \description{
 Create a latent time series based on a supplied time series model.
 }
-\examples{
-# AR
-set.seed(1336)
-gen_lts_cpp(10, c(.9,1), "AR1", list(c(1,1)))
-}
 \keyword{internal}

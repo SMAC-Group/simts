@@ -16,11 +16,4 @@ A set RNG scope.
 Within Rcpp, one can set the R session seed without triggering
 the CRAN rng modifier check.
 }
-\examples{
-set.seed(10)
-x = rnorm(5,0,1)
-set_seed(10)
-y = rnorm(5,0,1)
-all.equal(x,y, check.attributes = FALSE)
-}
 \keyword{internal}

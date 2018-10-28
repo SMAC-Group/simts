@@ -20,9 +20,6 @@ Creates the mb16 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-mb16_filter()
-}
 \author{
 JJB
 }

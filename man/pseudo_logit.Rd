@@ -15,16 +15,6 @@ A \code{vec} containing logit terms.
 \description{
 This function compute the link function to constrain parameters to a positive domain.
 }
-\examples{
-# Set seed for reproducibility
-set.seed(1412)
-
-# Simulate data
-x.sim = runif(10, -1, 1)
-
-# Transform
-x.sim.transformed = pseudo_logit(x.sim)
-}
 \seealso{
 \code{\link{pseudo_logit_inv}}
 }

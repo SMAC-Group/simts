@@ -40,11 +40,6 @@ Currently supports the following IMUs:
 
 We hope to soon be able to support delimited files.
 }
-\examples{
-\dontrun{
-read_imu(file_path = "F:/Desktop/short_test_data.imu", imu_type = "IXSEA")
-}
-}
 \references{
 Thanks goes to Philipp Clausen of Labo TOPO, EPFL, Switzerland, topo.epfl.ch, Tel:+41(0)21 693 27 55
 for providing a matlab function that reads in IMUs.

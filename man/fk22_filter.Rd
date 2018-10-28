@@ -20,9 +20,6 @@ Creates the fk22 filter
 \details{
 This template can be used to increase the amount of filters available for selection.
 }
-\examples{
-fk22_filter()
-}
 \author{
 JJB
 }

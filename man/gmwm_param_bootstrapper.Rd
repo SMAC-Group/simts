@@ -23,9 +23,6 @@ Using the bootstrap approach, we simulate a model based on user supplied paramet
 \details{
 Expand in detail...
 }
-\examples{
-# Coming soon
-}
 \author{
 JJB
 }

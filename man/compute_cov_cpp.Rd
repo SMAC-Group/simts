@@ -24,11 +24,4 @@ A \code{field<mat>} containing the covariance matrix.
 \description{
 Calculates the (MODWT) wavelet covariance matrix
 }
-\examples{
-\dontrun{
-x=rnorm(100)
-decomp = modwt(x)
-V = compute_cov_cpp(decomp$data, decomp$nlevels, compute_v="diag", robust = TRUE, eff=0.6)
-}
-}
 \keyword{internal}

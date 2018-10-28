@@ -23,11 +23,6 @@ fit the data. These include: (1) residuals plot, (2) residuals vs fitted values,
 residuals, (5) ACF plot, (6) PACF plot, (7) Haar Wavelet Variance Representation,
 (8) Box test results.
 }
-\examples{
-Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-model = arima(Xt, order = c(3,0,0), include.mean = T)
-diag_plot(Xt, model)
-}
 \author{
 Yuming Zhang
 }

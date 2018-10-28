@@ -21,9 +21,4 @@ A \code{vec} that contains combined time series.
 \description{
 Create a time series process based on a supplied \code{ts.model}.
 }
-\examples{
-# AR
-set.seed(1336)
-gen_model(1000, c(.9,1), "AR1", list(c(1,1)))
-}
 \keyword{internal}

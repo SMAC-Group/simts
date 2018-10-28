@@ -15,16 +15,6 @@ A \code{vec} containing logit terms.
 \description{
 This function computes the logit2 link function.
 }
-\examples{
-# Set seed for reproducibility
-set.seed(1142)
-
-# Simulate data
-x.sim = runif(10, -2, 2)
-
-# Transform
-x.sim.transformed = logit2(x.sim)
-}
 \seealso{
 \code{\link{logit2_inv}}
 }

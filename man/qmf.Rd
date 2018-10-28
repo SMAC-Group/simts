@@ -18,11 +18,6 @@ A \code{vector} that contains either the forward QMF (evalute in order) or the i
 \description{
 Calculate the series quadrature mirror filter (QMF). Requires a series of an even length.
 }
-\examples{
-# Haar values
-g = rep(1/sqrt(2),2)
-qmf(g)
-}
 \author{
 JJB
 }

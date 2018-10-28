@@ -7,6 +7,8 @@
 resid_plot(res, std = FALSE, type = "hist", ...)
 }
 \arguments{
+\item{res}{A \code{vector} of residuals.}
+
 \item{std}{A \code{boolean} indicating whether the residuals plot is for standardized
 residuals or original residuals.}
 
@@ -15,10 +17,6 @@ residuals or original residuals.}
 or \code{"both"}}
 
 \item{...}{Additional parameters}
-
-\item{Xt}{The original time series data.}
-
-\item{model}{The \code{arima} model fit to the data.}
 }
 \description{
 This function plots a histogram (with kernel density function and normal distribution) of the standardized

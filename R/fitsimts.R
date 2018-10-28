@@ -108,7 +108,7 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
 }
 
 #' @export
-print.fitsimts = function(out){
+print.fitsimts = function(out, ...){
   cat("Fitted model: ")
   cat(out$model_name)
   cat("\n")
@@ -128,7 +128,7 @@ print.fitsimts = function(out){
 #' It can output 6 diagnostic plots to assess the model, including (1) residuals plot,
 #' (2) histogram of distribution of standardized residuals, (3) Normal Q-Q plot of residuals,
 #' (4) ACF plot, (5) PACF plot, (6) Box test results. 
-#' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
+#' @param model A \code{fitsimts}, \code{lm} or \code{gam} object. 
 #' @param resids A \code{vector} of residuals for diagnostics. 
 #' @param simple A \code{boolean} indicating whether to return simple diagnostic plots or not. 
 #' @author Stéphane Guerrier and Yuming Zhang
@@ -195,6 +195,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @param xlab A \code{string} for the title of x axis.
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.
+#' @param ... Additional arguments.
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
@@ -218,7 +219,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @export
 #' 
 predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL, 
-                            xlab = NULL, ylab = NULL, main = NULL){
+                            xlab = NULL, ylab = NULL, main = NULL, ...){
   Xt = model$Xt
   freq = attr(Xt, 'freq')
   end_time =  attr(Xt, 'end')
@@ -295,7 +296,9 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' @param model A time series model (only ARIMA are currently supported).
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
+#' @param criterion A \code{string} indicating which model selection criterion should be used (possible values: \code{"aic"} (default), \code{"bic"}, \code{"hq"}).
 #' @author Stéphane Guerrier and Yuming Zhang
+#' @export
 #' @examples
 #' set.seed(763)
 #' Xt = gen_gts(100, AR(phi = c(0.2, -0.5, 0.4), sigma2 = 1))
@@ -306,7 +309,6 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' 
 #' Xt = gen_gts(500, ARMA(ar = 0.5, ma = c(0.5, -0.5, 0.4), sigma2 = 1))
 #' select(ARMA(5,3), Xt, criterion = "hq", include.mean = FALSE)
-#' @export
 #' 
 select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
   # Check model

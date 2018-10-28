@@ -12,6 +12,8 @@ select(model, Xt, include.mean = TRUE, criterion = "aic")
 \item{Xt}{A \code{vector} of time series data.}
 
 \item{include.mean}{A \code{boolean} indicating whether to fit ARIMA with the mean or not.}
+
+\item{criterion}{A \code{string} indicating which model selection criterion should be used (possible values: \code{"aic"} (default), \code{"bic"}, \code{"hq"}).}
 }
 \description{
 This function performs model fitting and calculates the model selection criteria to be plotted.
@@ -26,6 +28,7 @@ select(MA(5), Xt, include.mean = FALSE)
 
 Xt = gen_gts(500, ARMA(ar = 0.5, ma = c(0.5, -0.5, 0.4), sigma2 = 1))
 select(ARMA(5,3), Xt, criterion = "hq", include.mean = FALSE)
+
 }
 \author{
 Stéphane Guerrier and Yuming Zhang

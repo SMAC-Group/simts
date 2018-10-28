@@ -16,6 +16,7 @@ vignette: >
 library(simts)
 ```
 
+<<<<<<< HEAD
 
 In this section, we briefly list, describe, and provide the syntax used to simulate time series data using the `simts` package. The following list includes some basic models available in this package:
 
@@ -384,3 +385,5 @@ nile_pacf = nile_corr$PACF
 ## References
 
 This package is developed mainly as a support to the online book ["Applied Time Series Analysis with R"](https://smac-group.github.io/ts/).
+=======
+>>>>>>> ecdbed410d548f818378c6048323920d6bfc4eb9

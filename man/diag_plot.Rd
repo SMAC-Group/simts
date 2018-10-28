@@ -9,7 +9,9 @@ diag_plot(Xt = NULL, model = NULL, resids = NULL, std = FALSE)
 \arguments{
 \item{Xt}{The data used to construct said model.}
 
-\item{model}{The \code{arima} model used to fit the data.}
+\item{model}{A \code{fitsimts}, \code{lm} or \code{gam} object.}
+
+\item{resids}{A \code{vector} of residuals for diagnostics.}
 
 \item{std}{A \code{boolean} indicating whether we use standardized residuals for 
 (1) residuals plot and (8) Box test results.}

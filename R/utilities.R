@@ -324,6 +324,7 @@ make_frame = function(x_range, y_range, xlab, ylab, main = "",
 }
 
 #' @title Custom legend function 
+#' @description Legend placement function
 #' @importFrom graphics legend
 #' @keywords internal
 custom_legend = function(x, usr = par("usr"), ...){

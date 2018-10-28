@@ -7,7 +7,7 @@
 check(model = NULL, resids = NULL, simple = FALSE)
 }
 \arguments{
-\item{model}{A \code{fitsimts} object obtained from \code{estimate} function.}
+\item{model}{A \code{fitsimts}, \code{lm} or \code{gam} object.}
 
 \item{resids}{A \code{vector} of residuals for diagnostics.}
 

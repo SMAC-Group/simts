@@ -12,16 +12,28 @@
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' plot(Xt)
 #' estimate(AR(3), Xt)
 #' 
 #' Xt = gen_gts(300, MA(theta = 0.5, sigma2 = 1))
+#' plot(Xt)
 #' estimate(MA(1), Xt, method = "gmwm")
 #' 
 #' Xt = gen_gts(300, ARMA(ar = c(0.8, -0.5), ma = 0.5, sigma2 = 1))
+#' plot(Xt)
 #' estimate(ARMA(2,1), Xt, method = "rgmwm")
 #' 
 #' Xt = gen_gts(300, ARIMA(ar = c(0.8, -0.5), i = 1, ma = 0.5, sigma2 = 1))
+#' plot(Xt)
 #' estimate(ARIMA(2,1,1), Xt, method = "mle")
+#' 
+#' Xt = gen_gts(500, SARMA(ar = c(0.5, -0.25), ma = 0, sar = -0.8, sma = 0.25, s = 24, sigma2 = 1))
+#' plot(Xt)
+#' estimate(SARMA(ar = 2, ma = 0, sar = 1, sma = 1, s = 24), Xt, method = "gmwm")
+#' 
+#' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
+#' plot(Xt)
+#' estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
 #' @export
 estimate = function(model, Xt, method = "mle", demean = TRUE){
   all_method = c("mle", "yule-walker", "rgmwm", "gmwm")
@@ -258,8 +270,6 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' @param model A time series model.
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
-#' @param criterion A \code{string} indicating the type of criterion to use in selecting the best model. 
-#' Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' set.seed(463)
@@ -267,7 +277,7 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 #' select(AR(5), Xt)
 #' @export
 #' 
-select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
+select = function(model, Xt, include.mean = TRUE){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -296,12 +306,8 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                       d = 0L,
                       q = 0L,
                       include.mean = include.mean)
-
+  
   plot_select_ar(x=out)
-  
-  # return best model
-  best_model(out, ic = criterion)
-  
 }
 
 

@@ -107,6 +107,13 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
   out
 }
 
+#' @title Print fitsimts object
+#' @description This function displays the information of a fitsimts object.
+#' @method print fitsimts
+#' @keywords internal
+#' @param out   A \code{fitsimts} object
+#' @return Text output via print
+#' @author Stéphane Guerrier and Yuming Zhang
 #' @export
 print.fitsimts = function(out, ...){
   cat("Fitted model: ")
@@ -150,7 +157,6 @@ print.fitsimts = function(out, ...){
 #' 
 #' @export
 #' 
-
 check = function(model = NULL, resids = NULL, simple = FALSE){
   if(!is.null(model) & !is.null(resids)){
     warning("Both model and residuals are provided. The function will only use 'model' for diagnostics. ")
@@ -196,6 +202,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.
 #' @param ... Additional arguments.
+#' @method predict fitsimts
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))

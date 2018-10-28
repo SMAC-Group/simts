@@ -1014,8 +1014,6 @@ arma::field<arma::vec> mb24_filter() {
 //' The package is oriented toward using only the haar filter. If the package extends at a later time, then the supporting infrastructure is there.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' select_filter("haar")
 // [[Rcpp::export]]
 arma::field<arma::vec> select_filter(std::string filter_name = "haar")
 {

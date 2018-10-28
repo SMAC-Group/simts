@@ -337,7 +337,7 @@ Let us estimate an AR(p) model and for this reason let us select the order:
 select(AR(15), sunspot)
 ```
 
-The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals
+The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988'}
 model_sunspots = estimate(AR(9), sunspot)
@@ -348,7 +348,7 @@ predict(model_sunspots, n.ahead = 10, level = c(0.60, 0.90, 0.95))
 
 Finally, we consider the last dataset, `Nile`, Annual Nile river flow from 1871-1970 in the code below:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 16: Plot of Annual Nile river flow from 1871-1970'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 18: Plot of Annual Nile river flow from 1871-1970'}
 # Load Nile dataset
 Nile = datasets::Nile
 
@@ -363,7 +363,7 @@ plot(nile)
 
 To get ACF, we can use `auto_corr()` and make a plot:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: Empirical autocorrelation function of the Nile river flow data'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 19: Empirical autocorrelation function of the Nile river flow data'}
 # Compute ACF and plot result
 nile_acf = auto_corr(nile)
 plot(nile_acf)
@@ -371,7 +371,7 @@ plot(nile_acf)
 
 Similar to the example above, we can also use `corr_analysis()` to get the ACF and PACF at the same time:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 18: Empirical ACF and PACF of the Nile river flow data'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 20: Empirical ACF and PACF of the Nile river flow data'}
 # Compute and plot ACF and PACF
 nile_corr = corr_analysis(nile)
 

@@ -325,19 +325,25 @@ select = function(model, Xt, include.mean = TRUE){
   
   # Order of MA 
   q = model_code[2]
-  if (q > 0){
-    stop("MA are currently not supported.")
-  }
-  
   
   # model selection 
-  out = select_arima_(Xt,
-                      p = 0:p,
-                      d = 0L,
-                      q = 0L,
-                      include.mean = include.mean)
-  
-  plot_select_ar(x=out)
+  if (q == 0){
+    out = select_arima_(Xt,
+                        p = 0:p,
+                        d = 0L,
+                        q = 0L,
+                        include.mean = include.mean)
+    
+    plot_select_ar(x=out)
+  }else if (p == 0){
+    out = select_arima_(Xt,
+                        p = 0L,
+                        d = 0L,
+                        q = 0:q,
+                        include.mean = include.mean)
+    
+    plot_select_ma(x=out)
+  }
 }
 
 

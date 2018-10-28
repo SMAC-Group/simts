@@ -166,7 +166,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
       }
     }
     
-    if("lm" %in% model){
+    if("lm" %in% class(model)){
       if(simple){warning("If 'lm' model is considered, only the full diagnostic plots can be provided, not the simple version.")}
       resids = resid(model)
       diag_plot(resids = resids)

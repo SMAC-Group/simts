@@ -1,11 +1,11 @@
 Package: simts
 Type: Package
 Title: Time Series Analysis Tools
-Version: 2.0
+Version: 0.1.0
 Date: 2018-10-28
 LazyData: true
 Authors@R: c(
-    person("Stephane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
+    person("Stéphane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
     person("James", "Balamuta", role = "aut"),
     person("Roberto", "Molinari", role = "aut"),
     person("Justin", "Lee", role = "aut"),
@@ -14,10 +14,10 @@ Authors@R: c(
     person("Nathanael", "Claussen", role = "ctb"),
     person("Yunxiang", "Zhang", role = "ctb")
     )
-Maintainer: Stephane Guerrier <stef.guerrier@gmail.com>
+Maintainer: Stéphane Guerrier <stef.guerrier@gmail.com>
 Description: This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.4.0)
 License: CC BY-NC-SA 4.0
 Imports:
     Rcpp,

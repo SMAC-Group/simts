@@ -24,11 +24,14 @@ library(simts)
 
 # `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
-The Time Series Tools (`simts`) R package provides a series of tools to simulate, plot, estimate, select and forecast different time series models based on the basic summary statistics for time series analysis. More specifically, it provides the following features:
+The Time Series Tools (`simts`) R package provides a series of tools to simulate, plot, estimate, select and forecast different time series models. More specifically, it provides the following features:
 
 * Simulation of time series from SARIMA models to various state-space models that can be expressed as latent time series processes.
 * Visualization of time series data with user specifications.
 * Specific simulation and visualization tools for latent time series models.
+* Easy-to-use functions to estimate and infer on the parameters of time series models through different methods
+* Diagnostic and statistical tools to assess goodness of fit and select the best model for the data
+* Estimating and plotting tools to deliver point forecasts and confidence intervals
 
 To understand the usage of the `simts` package, please refer to the "Vignettes" tabs above.
 
@@ -38,7 +41,7 @@ To install the `simts` package, there is currently one option: [GitHub](https://
 
 ### Installing the package through GitHub
 
-For users who are interested in having the latest developments, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
+For users who are interested in having the latest developments, this option is ideal although more dependancies are required to run a stable version of the package. Most importantly, users **must** have a compiler installed on their machine that is compatible with R (e.g. Clang).
 
 *The setup to obtain the development version of `simts` is platform dependent.*
 

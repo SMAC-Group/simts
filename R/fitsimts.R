@@ -12,8 +12,16 @@
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' model = estimate(AR(3), Xt)
-#' model = estimate(AR(3), Xt, method = "rgmwm")
+#' estimate(AR(3), Xt)
+#' 
+#' Xt = gen_gts(300, MA(theta = 0.5, sigma2 = 1))
+#' estimate(MA(1), Xt, method = "gmwm")
+#' 
+#' Xt = gen_gts(300, ARMA(ar = c(0.8, -0.5), ma = 0.5, sigma2 = 1))
+#' estimate(ARMA(2,1), Xt, method = "rgmwm")
+#' 
+#' Xt = gen_gts(300, ARIMA(ar = c(0.8, -0.5), i = 1, ma = 0.5, sigma2 = 1))
+#' estimate(ARIMA(2,1,1), Xt, method = "mle")
 #' @export
 estimate = function(model, Xt, method = "mle", demean = TRUE){
   all_method = c("mle", "yule-walker", "rgmwm", "gmwm")
@@ -30,34 +38,41 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
   # Determine model
   model_code = model$obj.desc[[1]]
   
-  if (sum(model_code[3:4]) > 0){
-    stop("SARIMA are currently not supported.")
-  }
-  
   # Order of AR
   p = model_code[1]
   
   # Order of MA 
   q = model_code[2]
-  if (q > 0){
-    stop("MA are currently not supported.")
-  }
   
-  if (q == 0){
-    model_type = "AR"
-    model_name = paste("AR(",p,")", sep = "")
-  }
+  # Order of SAR
+  P = model_code[3]
   
-  if (model_type == "AR"){
-    if (method == "mle" || method == "yule-walker"){
+  # Order of SMA
+  Q = model_code[4]
+  
+  # Seasonal period
+  s = model_code[6]
+  
+  # Non-seasonal integration
+  intergrated = model_code[7]
+  
+  # Seasonal integration
+  seasonal_intergrated = model_code[8]
+  
+  # Get model
+  model_name = simplified_print_SARIMA(p = p, i = intergrated, q = q, P = P, si = seasonal_intergrated, Q = Q, s = s)
+  
+  if (method == "mle" || method == "yule-walker"){
       if (method == "mle"){
         meth = "ML"
       }else{
         meth = "CSS"
       }
-      mod = arima(as.numeric(Xt), c(p, 0, 0), method = meth, include.mean = demean)
+      mod = arima(as.numeric(Xt), c(p, intergrated, q), 
+                  seasonal = list(order = c(P, seasonal_intergrated, Q), period = s),
+                  method = meth, include.mean = demean)
       sample_mean = NULL
-    }else{
+  }else{
       if (method == "gmwm"){
         mod = gmwm(model, Xt)
       }else{
@@ -69,19 +84,25 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
       }else{
         sample_mean = NULL
       }
-    }
   }
+  
   
   out = list(mod = mod, method = method, 
              demean = demean, Xt = Xt, 
-             sample_mean = sample_mean, model_name = model_name,
-             model_type =  model_type)
+             sample_mean = sample_mean, model_name = model_name$print,
+             model_type =  model_name$simplified)
   class(out) = "fitsimts"
   out
 }
 
 #' @export
 print.fitsimts = function(out){
+  cat("Fitted model: ")
+  cat(out$model_name)
+  cat("\n")
+  cat("\n")
+  cat("Estimated parameters:")
+  cat("\n")
   print(out$mod)
 }
 

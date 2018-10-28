@@ -31,7 +31,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Stephane Guerrier \email{stef.guerrier@gmail.com} [copyright holder]
+\strong{Maintainer}: Stéphane Guerrier \email{stef.guerrier@gmail.com} [copyright holder]
 
 Authors:
 \itemize{

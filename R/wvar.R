@@ -122,11 +122,11 @@ wvar.default = function(x, decomp = "modwt", filter = "haar", nlevels = NULL, al
     }
   }
 
-  obj =  .Call('_gmwm2_modwt_wvar_cpp', PACKAGE = 'gmwm2',
+  obj =  .Call('_simts_modwt_wvar_cpp', PACKAGE = 'simts',
                signal=x, nlevels=nlevels, robust=robust, eff=eff, alpha=alpha,
                ci_type="eta3", strWavelet=filter, decomp = decomp)
 
-  scales = .Call('_gmwm2_scales_cpp', PACKAGE = 'gmwm2', nlevels)/freq
+  scales = .Call('_simts_scales_cpp', PACKAGE = 'simts', nlevels)/freq
 
   # NO unit conversion
   if( is.null(from.unit) && is.null(to.unit)==F ){

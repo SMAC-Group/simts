@@ -5,14 +5,13 @@
 #' @description This function plots a histogram (with kernel density function and normal distribution) of the standardized
 #' residuals or a basic plot the (standardized) residuals, or both.
 #' @author Yuming Zhang
-#' @param Xt The original time series data.
-#' @param model The \code{arima} model fit to the data. 
+#' @param res A \code{vector} of residuals.
 #' @param std A \code{boolean} indicating whether the residuals plot is for standardized
 #' residuals or original residuals.
-#' @param type     A \code{string} indicating either:
+#' @param type  A \code{string} indicating either:
 #' \code{"hist"} (standardized residual histogram with superimposed kernel density estimator and normal distribution), \code{"resid"} (standard residual plot),
 #' or \code{"both"}
-#' @param ...      Additional parameters
+#' @param ...  Additional parameters
 #' @importFrom stats sd
 #' @importFrom graphics hist
 #' @importFrom stats density
@@ -202,7 +201,8 @@ simple_diag_plot = function(Xt, model, std = FALSE){
 #' (8) Box test results.
 #' @author Yuming Zhang
 #' @param Xt The data used to construct said model.
-#' @param model The \code{arima} model used to fit the data. 
+#' @param model A \code{fitsimts}, \code{lm} or \code{gam} object. 
+#' @param resids A \code{vector} of residuals for diagnostics. 
 #' @param std A \code{boolean} indicating whether we use standardized residuals for 
 #' (1) residuals plot and (8) Box test results.
 #' @examples 

@@ -452,7 +452,7 @@ plot_select_arma = function(x){
     polygon(x_vec, y_vec, col = "grey95", border = NA)
     text(x = mean(c(win_dim[1], win_dim[2])),
          y = (win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), 
-         toString(seq(q_min, q_max)[i]))
+         paste("q = ",toString(seq(q_min, q_max)[i]), sep = ""))
     
     # Add axes and box
     lines(x_vec[1:2], rep((win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
@@ -471,9 +471,9 @@ plot_select_arma = function(x){
           col = col_hq, lwd = 2)
     
     # Add best model
-    if (i == best_q_aic){points(best_p_aic, best_value_aic,col = col_aic, pch = 16, cex = 2)}
-    if (i == best_q_bic){points(best_p_bic, best_value_bic,col = col_bic, pch = 16, cex = 2)}
-    if (i == best_q_hq){points(best_p_hq, best_value_hq,col = col_hq, pch = 16, cex = 2)}
+    if ((i-1) == best_q_aic){points(best_p_aic, best_value_aic, col = col_aic, pch = 16, cex = 2)}
+    if ((i-1) == best_q_bic){points(best_p_bic, best_value_bic, col = col_bic, pch = 16, cex = 2)}
+    if ((i-1) == best_q_hq){points(best_p_hq, best_value_hq, col = col_hq, pch = 16, cex = 2)}
     
     
     # Add legend
@@ -483,21 +483,20 @@ plot_select_arma = function(x){
                    y =  mean(c(usr[3],usr[4])),
                    plot = F,
                    legend = c("AIC", "BIC", "HQ"))
-      legend(x = usr[1] + lgd$rect$w*1.5,
-             y =  usr[4] - lgd$rect$h*0.08,
+      legend("bottomleft",
              legend = c("AIC", "BIC", "HQ"), 
              text.col = rep("black", 3),
              lty = rep(1,3),
              pch = rep(16,3),
+             pt.cex = 1.5,
+             lwd = 1.5,
              col = c(col_aic, col_bic, col_hq),
-             bty = "n",
-             x.intersp = 0.3,
-             y.intersp = 0.3)
+             bty = "n", cex = 1.25)
     }
   }
   
   # Add overall x,y labels
   mtext(xlab, side = 1, outer = TRUE, line = -1)
   mtext(ylab, side = 2, outer = TRUE, line = -1)
-  
+  par(mfrow = c(1,1))
 }

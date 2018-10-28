@@ -260,7 +260,10 @@ diag_plot = function(Xt = NULL, model = NULL, resids = NULL, std = FALSE){
   plot(auto_corr(res, pacf = TRUE))
   
   # plot 6
-  object = diag_ljungbox(as.numeric(res), order = 0, stop_lag = 20, stdres = std, plot = FALSE)
+  stop_lag = 20
+  if (stop_lag >= 0.6*length(res)){ stop_lag = round(0.6*length(res)) }
+  
+  object = diag_ljungbox(as.numeric(res), order = 0, stop_lag = stop_lag, stdres = std, plot = FALSE)
   maxval = max(object$pvalue)
   
   x_range = c(min(object$lag), max(object$lag))*1.05

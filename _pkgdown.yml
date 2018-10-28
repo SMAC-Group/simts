@@ -5,79 +5,53 @@ template:
 reference:
   - title: Time Series Models 
     contents:
-    - AR
-    - AR1 
-    - ARIMA 
-    - ARMA
-    - ARMA11
-    - ARIMA
+    - WN
     - DR
-    - GM
-    - MA
-    - MA1
     - QN
     - RW
-    - RW2dimension
+    - GM
+    - AR
+    - MA
+    - ARMA
+    - ARIMA 
     - SARMA
     - SARIMA
-    - WN
-  - title: Time Series Models Analysis
-    contents:
-    - ACF
-    - plot.ACF
-    - PACF
-    - plot.PACF
-    - corr_analysis
-    - plot.gts
-    - plot.lts
-  - title: Model selection of ARMA models
-    contents:
-    - select_ar
-    - select_ma
-    - select_arma
-  - title: Simulation 
+  - title: Time Series Simulation 
     contents: 
-    - gen_ar1blocks
-    - gen_bi
-    - gen_gts
-    - gen_lts 
-    - gen_nswn
     - gts
     - gen_gts
     - lts 
     - gen_lts
-    - gen_wn
-    - gen_dr
-    - gen_qn
-    - gen_ar1
-    - gen_rw
-    - gen_ma1
-    - gen_arma11
-    - gen_arma
-    - gen_sarma
-    - gen_arima
-    - gen_sarima
-    - gen_generic_sarima
-    - gen_model
-    - gen_lts_cpp
+    - gen_ar1blocks
+    - gen_bi
+    - gen_nswn
+  - title: Time Series Descriptive Analysis
+    contents:
+    - plot.gts
+    - plot.lts
+    - auto_corr
+    - plot.ACF
+    - plot.PACF
+    - corr_analysis
+    - compare_acf
+  - title: Time Series Model Estimation
+    contents:
+    - estimate
+  - title: Time Series Diagnostic Tools
+    contents:
+    - check
+  - title: Model selection of SARIMA models
+    contents:
+    - select
+  - title: Forecast SARIMA models
+    contents:
+    - predict
   - title: Miscellanea
     contents:
-    - is.whole
-    - unitConversion
-    - orderModel
-    - diff_cpp
-    - cfilter
-    - rfilter
-    - mean_diff
-    - count_models
+    - RW2dimension
     - ar1_to_gm
     - gm_to_ar1
-    - model_objdesc
-    - model_theta
-    - model_process_desc
-    - desc.to.ts.model
-    - update.lts
-    - update_obj
+
     
 
 navbar:
@@ -89,3 +63,4 @@ navbar:
   right: 
   - icon: fa-github
     href: https://github.com/SMAC-Group/simts
+

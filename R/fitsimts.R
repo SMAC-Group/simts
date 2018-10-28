@@ -317,14 +317,20 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
 
 #' @title Time Series Model Selection 
 #' @description This function performs model fitting and calculates the model selection criteria to be plotted.
-#' @param model A time series model.
+#' @param model A time series model (only ARIMA are currently supported).
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
-#' set.seed(463)
+#' set.seed(763)
 #' Xt = gen_gts(100, AR(phi = c(0.2, -0.5, 0.4), sigma2 = 1))
-#' select(AR(5), Xt)
+#' select(AR(5), Xt, include.mean = FALSE)
+#' 
+#' Xt = gen_gts(100, MA(theta = c(0.2, -0.5, 0.4), sigma2 = 1))
+#' select(MA(5), Xt, include.mean = FALSE)
+#' 
+#' Xt = gen_gts(500, ARMA(ar = 0.5, ma = c(0.5, -0.5, 0.4), sigma2 = 1))
+#' select(ARMA(5,3), Xt, criterion = "hq", include.mean = FALSE)
 #' @export
 #' 
 select = function(model, Xt, include.mean = TRUE, criterion = "aic"){

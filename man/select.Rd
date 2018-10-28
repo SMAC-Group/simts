@@ -4,10 +4,10 @@
 \alias{select}
 \title{Time Series Model Selection}
 \usage{
-select(model, Xt, include.mean = TRUE)
+select(model, Xt, include.mean = TRUE, criterion = "aic")
 }
 \arguments{
-\item{model}{A time series model.}
+\item{model}{A time series model (only ARIMA are currently supported).}
 
 \item{Xt}{A \code{vector} of time series data.}
 
@@ -17,9 +17,15 @@ select(model, Xt, include.mean = TRUE)
 This function performs model fitting and calculates the model selection criteria to be plotted.
 }
 \examples{
-set.seed(463)
+set.seed(763)
 Xt = gen_gts(100, AR(phi = c(0.2, -0.5, 0.4), sigma2 = 1))
-select(AR(5), Xt)
+select(AR(5), Xt, include.mean = FALSE)
+
+Xt = gen_gts(100, MA(theta = c(0.2, -0.5, 0.4), sigma2 = 1))
+select(MA(5), Xt, include.mean = FALSE)
+
+Xt = gen_gts(500, ARMA(ar = 0.5, ma = c(0.5, -0.5, 0.4), sigma2 = 1))
+select(ARMA(5,3), Xt, criterion = "hq", include.mean = FALSE)
 }
 \author{
 Stéphane Guerrier and Yuming Zhang

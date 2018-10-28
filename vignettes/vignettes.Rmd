@@ -170,14 +170,19 @@ plot(hydro)
 
 Using the object we created we can now compute its autocorrelation function using the `auto_corr()` function as follows:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Empirical autocorrelation function of monthly  precipitation  series  from @hipel1994time'}
-# Compute ACF and plot result
-hydro_acf = auto_corr(hydro)
-plot(hydro_acf)
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Standard and Robust Empirical autocorrelation functions of monthly  precipitation  series  from @hipel1994time'}
+# Compare the standard and robust ACF
+compare_acf(hydro)
 ```
 
-This graph reveals that this time series does not appear to present any form of autocorrelation. A different visual analysis might be given by a robust estimator of the autocorrelation function.
+This plot shows that no apparent autocorrelation exists when using the standard estimator of the ACF (left) but the picture changes compeltely when using the robust estimator (right). There therefore appears to be some possible contamination in the data and, if we wanted to estimate a model for the data, we would probably opt for a robust estimator. For this we can use the RGMWM to estimate an AR(1) model which could be a possible candidate to explain the robust ACF pattern.
 
+```{r}
+model_hydro = estimate(AR(2), hydro, method = "rgmwm")
+model_hydro$mod$estimate
+```
+
+The estimated value of the autoregressive parameter appears to confirm that there exists some autocorrelation in the data.
 
 ### Personal Savings dataset
 
@@ -202,7 +207,12 @@ savingrt_acf = auto_corr(savingrt)
 plot(savingrt_acf)
 ```
 
-This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model.
+This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.
+
+```{r}
+# Estimate the latent model ARMA(2,1) + RW()
+model_savings = estimate(ARMA(2,1) + RW(), savingrt, method = "gmwm")
+```
 
 
 ### Retail Sales Dataset
@@ -282,10 +292,19 @@ lynx_pacf = auto_corr(lynx, pacf = TRUE)
 plot(lynx_pacf)
 ```
 
+The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
+test = estimate(SARMA(2,2,1), lynx)
+check(test)
+```
+
+The residuals don't appear to follow a Gaussian distribution (first row of the plot) but there doesn't appear to be significant dependence in them as shown in the second row of the plot showing respectively the ACF, PACF and Ljung-Box test p-values for the residuals.
+
 ### Sunspot Dataset 
 
 We can look at another dataset, `sunspot.year`, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below: 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Yearly numbers of sunspots from 1700 to 1988'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988'}
 # Load sunspot dataset 
 sunspot = datasets::sunspot.year
 
@@ -301,24 +320,36 @@ plot(sunspot)
 
 After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
 # Compute ACF and plot result
 sunspot_acf = auto_corr(sunspot)
 plot(sunspot_acf)
 ```
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
 #Compute PACF and plot result
 sunspot_pacf = auto_corr(sunspot, pacf = TRUE)
 plot(sunspot_pacf)
 ```
 
+Let us estimate an AR(p) model and for this reason let us select the order:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988'}
+select(AR(15), sunspot)
+```
+
+The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988'}
+model_sunspots = estimate(AR(9), sunspots)
+simts::predict(model_sunspots, n.ahead = 10, level = c(0.60, 0.90, 0.95))
+```
 
 ### Nile River Flow Dataset
 
 Finally, we consider the last dataset, `Nile`, Annual Nile river flow from 1871-1970 in the code below:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 12: Plot of Annual Nile river flow from 1871-1970'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 16: Plot of Annual Nile river flow from 1871-1970'}
 # Load Nile dataset
 Nile = datasets::Nile
 
@@ -333,7 +364,7 @@ plot(nile)
 
 To get ACF, we can use `auto_corr()` and make a plot:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of the Nile river flow data'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: Empirical autocorrelation function of the Nile river flow data'}
 # Compute ACF and plot result
 nile_acf = auto_corr(nile)
 plot(nile_acf)
@@ -341,7 +372,7 @@ plot(nile_acf)
 
 Similar to the example above, we can also use `corr_analysis()` to get the ACF and PACF at the same time:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical ACF and PACF of the Nile river flow data'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 18: Empirical ACF and PACF of the Nile river flow data'}
 # Compute and plot ACF and PACF
 nile_corr = corr_analysis(nile)
 

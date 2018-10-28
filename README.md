@@ -41,9 +41,7 @@ devtools::install_github("SMAC-Group/simts", build_vignettes = TRUE)
 License
 -------
 
-You can redistribute it and/or modify this book under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA) 4.0 License.
-
-<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="/man/figures/licence.png" align="left" width="200"/></a> <br><br><br>
+The license this source code is released under is the GNU AFFERO GENERAL PUBLIC LICENSE (AGPL) v3.0. Please see the LICENSE file for full text. Otherwise, please consult [TLDR Legal](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)) or [GNU](https://www.gnu.org/licenses/agpl-3.0.en.html) which will provide a synopsis of the restrictions placed upon the code.
 
 <!-- ### Requirements and Dependencies -->
 <!-- **OS X** -->

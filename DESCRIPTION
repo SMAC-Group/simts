@@ -1,8 +1,8 @@
 Package: simts
 Type: Package
-Title: Time Series Simulation
-Version: 1.0
-Date: 2017-05-28
+Title: Time Series Analysis Tools
+Version: 2.0
+Date: 2018-10-28
 LazyData: true
 Authors@R: c(
     person("Stephane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
@@ -15,7 +15,7 @@ Authors@R: c(
     person("Yunxiang", "Zhang", role = "ctb")
     )
 Maintainer: Stephane Guerrier <stef.guerrier@gmail.com>
-Description: Generates various time series objects for use in other packages.
+Description: This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
 Depends:
     R (>= 3.1.0)
 License: CC BY-NC-SA 4.0

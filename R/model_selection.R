@@ -233,12 +233,12 @@ plot_select_ar = function(x){
   # Main plot
   plot(NA, xlim = c(p_min, p_max), ylim = range(x$value), 
        xlab = xlab, ylab = ylab, 
-       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+       xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE, cex.lab = 1.5)
   win_dim = par("usr")
   
   par(new = TRUE)
   plot(NA, xlim = c(p_min, p_max), ylim = c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
-       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n")
+       xlab = xlab, ylab = ylab, xaxt = 'n', yaxt = 'n', bty = "n", cex.lab = 1.15)
   win_dim = par("usr")
   
   # Add grid
@@ -293,10 +293,13 @@ plot_select_ar = function(x){
          text.col = rep("black", 3),
          lty = rep(1,3),
          pch = rep(16,3),
+         pt.cex = 1.5,
+         lwd = 1.5,
          col = c(col_aic, col_bic, col_hq),
-         bty = "n",
-         x.intersp = 0.5,
-         y.intersp = 0.5)
+         bty = "n", cex = 1.25)
+    #,
+    # x.intersp = 0.5,
+    # y.intersp = 0.5)
 }
 
 

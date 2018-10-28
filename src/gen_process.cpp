@@ -46,8 +46,6 @@
 //' sample \eqn{N} times from a \eqn{N(0,\sigma ^2)}{N(0,sigma^2)} distribution.
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_wn(10, 1.5)
 // [[Rcpp::export]]
 arma::vec gen_wn(const unsigned int N, const double sigma2 = 1)
 {
@@ -74,8 +72,6 @@ arma::vec gen_wn(const unsigned int N, const double sigma2 = 1)
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_dr(10, 8.2)
 // [[Rcpp::export]]
 arma::vec gen_dr(const unsigned int N, const double omega = 5)
 {
@@ -113,8 +109,6 @@ arma::vec gen_dr(const unsigned int N, const double omega = 5)
 //' @backref src/gen_process.cpp
 //' @backref src/gen_process.h
 //' @export
-//' @examples
-//' gen_qn(10, 5)
 // [[Rcpp::export]]
 arma::vec gen_qn(const unsigned int N, double q2 = .1)
 {
@@ -151,8 +145,6 @@ arma::vec gen_qn(const unsigned int N, double q2 = .1)
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_ar1(10, 5, 1.2)
 // [[Rcpp::export]]
 arma::vec gen_ar1(const unsigned int N, const double phi = .3, const double sigma2 = 1)
 {
@@ -182,8 +174,6 @@ arma::vec gen_ar1(const unsigned int N, const double phi = .3, const double sigm
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_rw(10, 8.2)
 // [[Rcpp::export]]
 arma::vec gen_rw(const unsigned int N, const double sigma2 = 1)
 {
@@ -215,8 +205,6 @@ arma::vec gen_rw(const unsigned int N, const double sigma2 = 1)
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_ma1(10, .2, 1.2)
 // [[Rcpp::export]]
 arma::vec gen_ma1(const unsigned int N, const double theta = .3, const double sigma2 = 1)
 {
@@ -251,8 +239,6 @@ arma::vec gen_ma1(const unsigned int N, const double theta = .3, const double si
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_ma1(10, .2, 1.2)
 // [[Rcpp::export]]
 arma::vec gen_arma11(const unsigned int N, const double phi = .1, const double theta = .3, const double sigma2 = 1)
 {
@@ -288,8 +274,6 @@ arma::vec gen_arma11(const unsigned int N, const double phi = .1, const double t
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_arma(10, c(.3,.5), c(.1), 1, 0)
 // [[Rcpp::export]]
 arma::vec gen_arma(const unsigned int N,
                    const arma::vec& ar, const arma::vec& ma,
@@ -407,8 +391,6 @@ arma::vec gen_arma(const unsigned int N,
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_sarma(10, c(.3,.5), c(.1), c(.2), c(.4), 1, 12, 0)
 // [[Rcpp::export]]
 arma::vec gen_sarma(const unsigned int N,
                     const arma::vec& ar, const arma::vec& ma,
@@ -462,9 +444,6 @@ arma::vec gen_sarma(const unsigned int N,
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' # Generate an ARIMA model
-//' xt = gen_arima(10, c(.3,.5), 1, c(.1), 1.5, 0)
 // [[Rcpp::export]]
 arma::vec gen_arima(const unsigned int N,
                     const arma::vec& ar,
@@ -506,8 +485,6 @@ arma::vec gen_arima(const unsigned int N,
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
 // [[Rcpp::export]]
 arma::vec gen_sarima(const unsigned int N,
                     const arma::vec& ar,
@@ -569,8 +546,6 @@ arma::vec gen_sarima(const unsigned int N,
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' gen_sarima(10, c(.3,.5), 1, c(.1), c(.2), 0, c(.4), 1, 12, 0)
 // [[Rcpp::export]]
 arma::vec gen_generic_sarima(const unsigned int N,
                              const arma::vec& theta_values, 
@@ -620,10 +595,6 @@ arma::vec gen_generic_sarima(const unsigned int N,
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' # AR
-//' set.seed(1336)
-//' gen_model(1000, c(.9,1), "AR1", list(c(1,1)))
 // [[Rcpp::export]]
 arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc){
     arma::vec x  = arma::zeros<arma::vec>(N);
@@ -733,10 +704,6 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
 //' @backref src/gen_process.h
 //' @keywords internal
 //' @export
-//' @examples
-//' # AR
-//' set.seed(1336)
-//' gen_lts_cpp(10, c(.9,1), "AR1", list(c(1,1)))
 // [[Rcpp::export]]
 arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc){
   unsigned int i_theta = 0;

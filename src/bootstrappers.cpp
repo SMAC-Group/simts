@@ -70,8 +70,6 @@
 //' Expand in detail...  
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Coming soon
 // [[Rcpp::export]]
 arma::mat cov_bootstrapper(const arma::vec&  theta,
                            const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
@@ -116,8 +114,6 @@ arma::mat cov_bootstrapper(const arma::vec&  theta,
 //' Expand in detail...  
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Coming soon
 // [[Rcpp::export]]
 arma::mat optimism_bootstrapper(const arma::vec&  theta,
                                 const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
@@ -173,8 +169,6 @@ arma::mat optimism_bootstrapper(const arma::vec&  theta,
 //' Expand in detail...  
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Coming soon
 // [[Rcpp::export]]
 arma::field<arma::mat> opt_n_gof_bootstrapper(const arma::vec&  theta,
                                               const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
@@ -258,8 +252,6 @@ arma::field<arma::mat> opt_n_gof_bootstrapper(const arma::vec&  theta,
 //' Expand in detail...  
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Coming soon
 // [[Rcpp::export]]
 arma::vec gmwm_sd_bootstrapper(const arma::vec&  theta,
                                const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
@@ -341,8 +333,6 @@ arma::vec boot_pval_gof(double obj, const arma::vec& obj_boot, unsigned int B = 
 //' Expand in detail...  
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Coming soon
 // [[Rcpp::export]]
 arma::field<arma::mat> gmwm_param_bootstrapper(const arma::vec&  theta,
                                                const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
@@ -401,8 +391,6 @@ arma::field<arma::mat> gmwm_param_bootstrapper(const arma::vec&  theta,
 //' Expand in detail...  
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Coming soon
 // [[Rcpp::export]]
 arma::field<arma::mat> all_bootstrapper(const arma::vec&  theta,
                                         const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,

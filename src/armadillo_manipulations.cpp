@@ -50,9 +50,6 @@ arma::mat sort_mat(arma::mat x, unsigned int col){
 //' By setting \code{start=1} and \code{end=0}, the function would output x=[[2,1],[4,1]].
 //' Start and end must be valid C++ matrix locations. (e.g. matrix cols start at 0 and not 1)
 //' @author JJB
-//' @examples
-//' x = matrix(c(1,2,3,4), nrow = 2,byrow = TRUE)
-//' rev_col_subset(x, 1, 0)
 //' @keywords internal
 // [[Rcpp::export]]
 arma::mat rev_col_subset(arma::mat x, unsigned int start, unsigned int end){
@@ -89,9 +86,6 @@ arma::mat rev_row_subset(arma::mat x, unsigned int start, unsigned int end){
 //' @return x A \code{column vector} with its contents reversed.
 //' @details Consider a vector x=[1,2,3,4,5], the function would output x=[5,4,3,2,1].
 //' @author JJB
-//' @examples
-//' x = 1:5
-//' reverse_vec(x)
 //' @keywords internal
 // [[Rcpp::export]]
 arma::vec reverse_vec(arma::vec x) {
@@ -104,8 +98,6 @@ arma::vec reverse_vec(arma::vec x) {
 //' @param x A \code{field<vec>}.
 //' @return A \code{mat} containing the field elements within a column.
 //' @author JJB
-//' @examples
-//' x=rnorm(100)
 //' @keywords internal
 // [[Rcpp::export]]
 arma::mat field_to_matrix(arma::field<arma::vec> x){
@@ -128,8 +120,6 @@ arma::mat field_to_matrix(arma::field<arma::vec> x){
 //' @param x A \code{field<vec>}.
 //' @return An \code{mat} containing the field elements within a column.
 //' @author JJB
-//' @examples
-//' x=rnorm(100)
 //' @keywords internal
 // [[Rcpp::export]]
 double sum_field_vec(const arma::field<arma::vec>& x){

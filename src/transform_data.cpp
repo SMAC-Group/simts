@@ -28,21 +28,6 @@
 //' @keywords internal
 //' @seealso \code{\link{pseudo_logit}}
 //' @template author/jjb
-//' @examples
-//' # Set seed for reproducibility
-//' set.seed(1222)
-//' 
-//' # Simulate data
-//' x.sim = runif(10, -1, 1)
-//' 
-//' # Transform
-//' x.sim.transformed = pseudo_logit(x.sim)
-//' 
-//' # Untransform
-//' x.sim.untransformed = pseudo_logit_inv(x.sim.transformed)
-//' 
-//' # Compare results
-//' results = cbind(x.sim, x.sim.untransformed)
 // [[Rcpp::export]]
 arma::vec pseudo_logit_inv(const arma::vec& x){
   return 2.0/(1.0 + exp(-x)) - 1.0;
@@ -62,21 +47,6 @@ double pseudo_logit_inv(double x){
 //' @keywords internal
 //' @seealso \code{\link{logit}}
 //' @template author/jjb
-//' @examples
-//' # Set seed for reproducibility
-//' set.seed(1412)
-//' 
-//' # Simulate data
-//' x.sim = runif(10, -1, 1)
-//' 
-//' # Transform
-//' x.sim.transformed = logit(x.sim)
-//' 
-//' # Untransform
-//' x.sim.untransformed = logit_inv(x.sim.transformed)
-//' 
-//' # Compare results
-//' results = cbind(x.sim, x.sim.untransformed)
 // [[Rcpp::export]]
 arma::vec logit_inv(const arma::vec& x){
   return 1.0/(1.0 + exp(-x));
@@ -94,15 +64,6 @@ double logit_inv(double x){
 //' @seealso \code{\link{pseudo_logit_inv}}
 //' @keywords internal
 //' @template author/jjb
-//' @examples
-//' # Set seed for reproducibility
-//' set.seed(1412)
-//' 
-//' # Simulate data
-//' x.sim = runif(10, -1, 1)
-//' 
-//' # Transform
-//' x.sim.transformed = pseudo_logit(x.sim)
 // [[Rcpp::export]]
 arma::vec pseudo_logit(const arma::vec& x){
   arma::vec p = (x+1.0)/2.0;
@@ -122,15 +83,6 @@ double pseudo_logit(double x){
 //' @keywords internal
 //' @seealso \code{\link{logit_inv}}
 //' @template author/jjb
-//' @examples
-//' # Set seed for reproducibility
-//' set.seed(1142)
-//' 
-//' # Simulate data
-//' x.sim = runif(10)
-//' 
-//' # Transform
-//' x.sim.transformed = logit(x.sim)
 // [[Rcpp::export]]
 arma::vec logit(const arma::vec& x){
   return log(x/(1.0 - x));
@@ -150,15 +102,6 @@ double logit(double x){
 //' @keywords internal
 //' @seealso \code{\link{logit2_inv}}
 //' @template author/jjb
-//' @examples
-//' # Set seed for reproducibility
-//' set.seed(1142)
-//' 
-//' # Simulate data
-//' x.sim = runif(10, -2, 2)
-//' 
-//' # Transform
-//' x.sim.transformed = logit2(x.sim)
 // [[Rcpp::export]]
 arma::vec logit2(const arma::vec& x){
   double b = 2.0;
@@ -182,21 +125,6 @@ double logit2(double x){
 //' @keywords internal
 //' @seealso \code{\link{logit2}}
 //' @template author/jjb
-//' @examples
-//' # Set seed for reproducibility
-//' set.seed(2234)
-//' 
-//' # Simulate data
-//' x.sim = runif(10, -2, 2)
-//' 
-//' # Transform
-//' x.sim.transformed = logit2(x.sim)
-//' 
-//' # Untransform
-//' x.sim.untransformed = logit2_inv(x.sim.transformed)
-//' 
-//' # Compare results
-//' results = cbind(x.sim, x.sim.untransformed)
 // [[Rcpp::export]]
 arma::vec logit2_inv(const arma::vec& x){
   return 4.0/(1.0 + exp(-x)) - 2.0;

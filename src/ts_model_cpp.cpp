@@ -42,8 +42,6 @@
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
 //' @export
-//' @examples
-//' ar1_to_gm(c(0.3,1,0.6,.3), 2)
 // [[Rcpp::export]]
 arma::vec ar1_to_gm(arma::vec theta, double freq){
   unsigned int n = theta.n_elem;
@@ -78,8 +76,6 @@ arma::vec ar1_to_gm(arma::vec theta, double freq){
 //' @backref src/ts_model_cpp.cpp
 //' @backref src/ts_model_cpp.h
 //' @export
-//' @examples
-//' gm_to_ar1(c(0.3,1,0.6,.3), 2)
 // [[Rcpp::export]]
 arma::vec gm_to_ar1(arma::vec theta, double freq){
   unsigned int n = theta.n_elem;

@@ -40,10 +40,6 @@
 //' Performs a level J decomposition of the time series using the pyramid algorithm
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' set.seed(999)
-//' x = rnorm(2^8)
-//' dwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
 // [[Rcpp::export]]
 arma::field<arma::vec> dwt_cpp(arma::vec x, std::string filter_name, 
                                    unsigned int nlevels, std::string boundary, bool brickwall) {
@@ -135,10 +131,6 @@ arma::field<arma::vec> dwt_cpp(arma::vec x, std::string filter_name,
 //' which serves as a wrapper function.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' set.seed(999)
-//' x = rnorm(100)
-//' modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = TRUE)
 // [[Rcpp::export]]
 arma::field<arma::vec> modwt_cpp(arma::vec x, std::string filter_name, 
                                    unsigned int nlevels, std::string boundary, bool brickwall){
@@ -223,10 +215,6 @@ arma::field<arma::vec> modwt_cpp(arma::vec x, std::string filter_name,
 //' The vectors are truncated by removing the first n wavelet coefficients. 
 //' These vectors are then stored into the field that is returned.
 //' Note: As a result, there are no NA's introduced and hence the na.omit is not needed.
-//' @examples
-//' x = rnorm(100)
-//' me = modwt_cpp(x, filter_name = "haar", nlevels = 4, boundary = "periodic", brickwall = FALSE)
-//' brick_wall(me, select_filter("haar"), "modwt")
 // [[Rcpp::export]]
 arma::field<arma::vec> brick_wall(arma::field<arma::vec> x,  
                                   arma::field<arma::vec> wave_filter, 

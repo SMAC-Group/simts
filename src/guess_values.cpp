@@ -186,8 +186,6 @@ arma::vec draw_ar1_memory_large(double sigma2_total, double last_phi){
 //' @param G A \code{integer} that indicates how many random draws that should be performed.
 //' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 //' @keywords internal
-//' @examples
-//' #TBA
 // [[Rcpp::export]]
 arma::vec guess_initial(const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
                         std::string model_type, unsigned int num_param, double expect_diff, unsigned int N,
@@ -354,8 +352,6 @@ arma::vec guess_initial(const std::vector<std::string>& desc, const arma::field<
 //' @param model_type A \code{string} that describes the model transformation.
 //' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 //' @keywords internal
-//' @examples
-//' #TBA
 // [[Rcpp::export]]
 arma::vec ar1_draw(unsigned int draw_id, double last_phi, double sigma2_total, std::string model_type){
   arma::vec temp(2);
@@ -403,8 +399,6 @@ arma::vec ar1_draw(unsigned int draw_id, double last_phi, double sigma2_total, s
 //' @param sigma2_total A \code{double} that contains the sum of all WVs. 
 //' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 //' @keywords internal
-//' @examples
-//' #TBA
 // [[Rcpp::export]]
 arma::vec arma_draws(unsigned int p, unsigned int q, double sigma2_total){
   // Loop index
@@ -501,8 +495,6 @@ arma::vec arma_draws(unsigned int p, unsigned int q, double sigma2_total){
 //' @param B A \code{integer} that indicates how many random draws that should be performed.
 //' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 //' @keywords internal
-//' @examples
-//' #TBA
 // [[Rcpp::export]]
 arma::vec guess_initial_old(const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
                         std::string model_type, unsigned int num_param, double expect_diff, unsigned int N,

@@ -468,9 +468,6 @@ arma::field<arma::mat> gmwm_master_cpp(arma::vec& data,
 
 //' @title Simulate GMWM
 //' 
-//' @examples
-//' x=rnorm(100)
-//' wavelet_variance_cpp(x, "haar", "diag")
 // [[Rcpp::export]]
 arma::field<arma::mat> simGMWM(const arma::vec& theta, const arma::mat& omega,
                                const std::vector<std::string>& desc, const arma::vec& wv_empir,

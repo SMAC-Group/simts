@@ -15,13 +15,6 @@
 //'   \item{sigma2}{Sigma^2}
 //' }
 //' @keywords internal
-//' @examples
-//' x = cbind(1,1:10)
-//' y = cumsum(rep(.45,10))
-//' 
-//' lm_arma(y, x)[[1]]
-//' 
-//' coef(lm(y~x-1))
 // [[Rcpp::export]]
 arma::field<arma::vec> lm_arma(const arma::vec & y, const arma::mat & X) {
   
@@ -54,14 +47,6 @@ arma::field<arma::vec> lm_arma(const arma::vec & y, const arma::mat & X) {
 //'   \item{sigma2}{Sigma^2}
 //' }
 //' @keywords internal
-//' @examples
-//' x = 1:10
-//' y = cumsum(rep(.7,10))
-//' 
-//' lm_dr(y)[[1]]
-//' 
-//' coef(lm(y~x-1))
-//' 
 // [[Rcpp::export]]
 arma::field<arma::vec> lm_dr(const arma::vec & x) {
   

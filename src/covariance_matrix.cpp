@@ -29,12 +29,6 @@
 //' @param eff A \code{double} that indicates the efficiency as it relates to an MLE.
 //' @return A \code{field<mat>} containing the covariance matrix.
 //' @keywords internal
-//' @examples
-//' \dontrun{
-//' x=rnorm(100)
-//' decomp = modwt(x)
-//' V = compute_cov_cpp(decomp$data, decomp$nlevels, compute_v="diag", robust = TRUE, eff=0.6)
-//' }
 // [[Rcpp::export]]
 arma::field<arma::mat> compute_cov_cpp(arma::field<arma::vec> signal_modwt, unsigned int nb_level, 
                                         std::string compute_v="diag",
@@ -82,12 +76,6 @@ arma::field<arma::mat> compute_cov_cpp(arma::field<arma::vec> signal_modwt, unsi
 //' @param ci_lo A \code{vec} that contains the lower confidence interval points.
 //' @return A diagonal matrix.
 //' @keywords internal
-//' @examples
-//' \dontrun{
-//' x=runif(100)
-//' y=x+3
-//' fast_cov_cpp(y,x)
-//' }
 // [[Rcpp::export]]
 arma::mat fast_cov_cpp(const arma::vec& ci_hi, const arma::vec& ci_lo){
   return arma::diagmat(arma::square(ci_hi-ci_lo));

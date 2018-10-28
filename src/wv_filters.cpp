@@ -74,10 +74,6 @@ const std::map<std::string, arma::field<arma::vec> (*)()> A::filterMap =  A::cre
 //' @return A \code{vector} that contains either the forward QMF (evalute in order) or the inverse QMF (reverse order). 
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' # Haar values
-//' g = rep(1/sqrt(2),2)
-//' qmf(g)
 // [[Rcpp::export]]
 arma::vec qmf(arma::vec g, bool inverse = true) {
   
@@ -109,8 +105,6 @@ arma::vec qmf(arma::vec g, bool inverse = true) {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' haar_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> haar_filter() {
   
@@ -144,8 +138,6 @@ arma::field<arma::vec> haar_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' d4_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> d4_filter() {
   
@@ -183,8 +175,6 @@ arma::field<arma::vec> d4_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' mb4_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> mb4_filter() {
   
@@ -220,8 +210,6 @@ arma::field<arma::vec> mb4_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' w4_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> w4_filter() {
   
@@ -261,8 +249,6 @@ arma::field<arma::vec> w4_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' fk4_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> fk4_filter() {
   
@@ -298,8 +284,6 @@ arma::field<arma::vec> fk4_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' d6_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> d6_filter() {
   
@@ -338,8 +322,6 @@ arma::field<arma::vec> d6_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' fk6_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> fk6_filter() {
   
@@ -377,8 +359,6 @@ arma::field<arma::vec> fk6_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' d8_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> d8_filter() {
   
@@ -419,8 +399,6 @@ arma::field<arma::vec> d8_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' fk8_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> fk8_filter() {
   
@@ -460,8 +438,6 @@ arma::field<arma::vec> fk8_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' la8_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> la8_filter() {
   
@@ -501,8 +477,6 @@ arma::field<arma::vec> la8_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' mb8_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> mb8_filter() {
   
@@ -542,8 +516,6 @@ arma::field<arma::vec> mb8_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' bl14_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> bl14_filter() {
   
@@ -589,8 +561,6 @@ arma::field<arma::vec> bl14_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' fk14_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> fk14_filter() {
   
@@ -636,8 +606,6 @@ arma::field<arma::vec> fk14_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' d16_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> d16_filter() {
   
@@ -686,8 +654,6 @@ arma::field<arma::vec> d16_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' la16_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> la16_filter() {
   
@@ -736,8 +702,6 @@ arma::field<arma::vec> la16_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' mb16_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> mb16_filter() {
   
@@ -786,8 +750,6 @@ arma::field<arma::vec> mb16_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' la20_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> la20_filter() {
   
@@ -840,8 +802,6 @@ arma::field<arma::vec> la20_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' bl20_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> bl20_filter() {
   
@@ -895,8 +855,6 @@ arma::field<arma::vec> bl20_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' fk22_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> fk22_filter() {
   
@@ -951,8 +909,6 @@ arma::field<arma::vec> fk22_filter() {
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
 //' @keywords internal
-//' @examples
-//' mb24_filter()
 // [[Rcpp::export]]
 arma::field<arma::vec> mb24_filter() {
   

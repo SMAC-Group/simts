@@ -26,9 +26,3 @@ By default, the \code{rgmwm} function will fit a classical \code{\link{gmwm}}
 object. From there, the user has the ability to specify any \code{eff} that is
 less than or equal to 0.99.
 }
-\examples{
-set.seed(8836)
-x = gen_gts(1000, AR1(phi = .1, sigma2 = 1) + AR1(phi = 0.95, sigma2 = .1))
-obj = rgmwm(2*AR1()+WN(), data = x)
-compare_eff(obj)
-}

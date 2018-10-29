@@ -26,8 +26,10 @@ check(model)
 
 check(resids = rnorm(100))
 
-Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
+Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, 
+si = 1, sma = 0.25, s = 24, sigma2 = 1))
+model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), 
+Xt, method = "rgmwm")
 check(model)
 check(model, simple=TRUE)
 

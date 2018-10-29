@@ -4,11 +4,11 @@
 \alias{predict.fitsimts}
 \title{Time Series Prediction}
 \usage{
-\method{predict}{fitsimts}(model, n.ahead = 10, show_last = 100,
+\method{predict}{fitsimts}(object, n.ahead = 10, show_last = 100,
   level = NULL, xlab = NULL, ylab = NULL, main = NULL, ...)
 }
 \arguments{
-\item{model}{A \code{fitsimts} object obtained from \code{estimate} function.}
+\item{object}{A \code{fitsimts} object obtained from \code{estimate} function.}
 
 \item{n.ahead}{An \code{integer} indicating number of units of time ahead for which to make forecasts.}
 

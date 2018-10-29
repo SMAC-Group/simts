@@ -59,19 +59,3 @@ working with large time series objects. Alternatively, one can also use this
 function to supply a custom diagonal weighting matrix by modifying the
 \code{\link{gmwm}} object.
 }
-\examples{
-# AR
-set.seed(1336)
-n = 200
-exact.model = AR1(phi=.99, sigma2 = 0.01) + WN(sigma2=1)
-data = gen_gts(n, exact.model)
-
-# Create an initial model that is not accurate
-bad.model = gmwm(AR1(), data = data)
-
-# Models can contain specific parameters e.g.
-updated.model = update(bad.model, exact.model)
-
-# Or...
-updated.model.guided = update(bad.model, AR1()+AR1())
-}

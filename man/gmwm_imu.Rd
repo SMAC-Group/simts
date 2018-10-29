@@ -65,11 +65,3 @@ Markov, \code{\link[gmwm]{GM}}, object. Please note results depend on the
 ability to interpret with respect to \code{freq}, then use
 \code{\link[gmwm]{AR1}} terms.
 }
-\examples{
-\dontrun{
-# Example data generation
-data = gen_gts(10000, GM(beta = 0.25, sigma2_gm = 1), freq = 5)
-results = gmwm_imu(GM(),data)
-inference = summary(results)
-}
-}

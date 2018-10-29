@@ -4,10 +4,12 @@
 \alias{print.fitsimts}
 \title{Print fitsimts object}
 \usage{
-\method{print}{fitsimts}(out, ...)
+\method{print}{fitsimts}(x, ...)
 }
 \arguments{
-\item{out}{A \code{fitsimts} object}
+\item{x}{A \code{fitsimts} object}
+
+\item{...}{Other arguments passed to specific methods}
 }
 \value{
 Text output via print

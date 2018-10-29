@@ -127,36 +127,3 @@ options are:
 If only an ARMA() term is supplied, then the function takes conditional least squares as starting values
 If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.
 }
-\examples{
-# AR
-set.seed(1336)
-n = 200
-data = gen_gts(n, AR1(phi = .99, sigma2 = 0.01) + WN(sigma2 = 1))
-
-# Models can contain specific parameters e.g.
-adv.model = gmwm(AR1(phi = .99, sigma2 = 0.01) + WN(sigma2 = 0.01),
-                            data)
-
-# Or we can guess the parameters:
-guided.model = gmwm(AR1() + WN(), data)
-
-# Want to try different models?
-guided.ar1 = gmwm(AR1(), data)
-
-# Faster:
-guided.ar1.wn.prev = update(guided.ar1, AR1()+WN())
-
-# OR
-
-# Create new GMWM object.
-# Note this is SLOWER since the Covariance Matrix is recalculated.
-guided.ar1.wn.new = gmwm(AR1()+WN(), data)
-
-# ARMA case
-set.seed(1336)
-data = gen_gts(n, ARMA(ar = c(0.8897, -0.4858), ma = c(-0.2279, 0.2488),
-              sigma2 = 0.1796))
-#guided.arma = gmwm(ARMA(2,2), data, model.type="ssm")
-adv.arma = gmwm(ARMA(ar=c(0.8897, -0.4858), ma = c(-0.2279, 0.2488), sigma2=0.1796),
-                data, model.type="ssm")
-}

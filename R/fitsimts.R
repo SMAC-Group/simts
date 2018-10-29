@@ -12,13 +12,26 @@
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @examples
 #' Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-#' estimate(AR(3), Xt)
+#' plot(Xt)
+#' estimate(AR(3), Xt)\
+#' 
+#' Xt = gen_gts(300, MA(theta = 0.5, sigma2 = 1))
+#' plot(Xt)
+#' estimate(MA(1), Xt, method = "gmwm")
+#' 
+#' Xt = gen_gts(300, ARMA(ar = c(0.8, -0.5), ma = 0.5, sigma2 = 1))
+#' plot(Xt)
+#' estimate(ARMA(2,1), Xt, method = "rgmwm")
 #' 
 #' Xt = gen_gts(300, ARIMA(ar = c(0.8, -0.5), i = 1, ma = 0.5, sigma2 = 1))
+#' plot(Xt)
 #' estimate(ARIMA(2,1,1), Xt, method = "mle")
 #' 
-#' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-#' estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
+#' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, 
+#' si = 1, sma = 0.25, s = 24, sigma2 = 1))
+#' plot(Xt)
+#' estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, 
+#' method = "rgmwm")
 #' @export
 estimate = function(model, Xt, method = "mle", demean = TRUE){
   all_method = c("mle", "yule-walker", "rgmwm", "gmwm")
@@ -92,22 +105,24 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
   out
 }
 
-#' @title Print fitsimts object
-#' @description This function displays the information of a fitsimts object.
+#' Print fitsimts object
+#' 
+#' This function displays the information of a fitsimts object.
 #' @method print fitsimts
 #' @keywords internal
-#' @param out   A \code{fitsimts} object
+#' @param x   A \code{fitsimts} object
+#' @param ... Other arguments passed to specific methods
 #' @return Text output via print
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @export
-print.fitsimts = function(out, ...){
+print.fitsimts = function(x, ...){
   cat("Fitted model: ")
-  cat(out$model_name)
+  cat(x$model_name)
   cat("\n")
   cat("\n")
   cat("Estimated parameters:")
   cat("\n")
-  print(out$mod)
+  print(x$mod)
 }
 
 
@@ -131,8 +146,10 @@ print.fitsimts = function(out, ...){
 #' 
 #' check(resids = rnorm(100))
 #' 
-#' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-#' model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
+#' Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, 
+#' si = 1, sma = 0.25, s = 24, sigma2 = 1))
+#' model = estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), 
+#' Xt, method = "rgmwm")
 #' check(model)
 #' check(model, simple=TRUE)
 #' 
@@ -174,7 +191,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 
 #' @title Time Series Prediction
 #' @description This function plots the time series forecast.
-#' @param model A \code{fitsimts} object obtained from \code{estimate} function. 
+#' @param object A \code{fitsimts} object obtained from \code{estimate} function. 
 #' @param n.ahead An \code{integer} indicating number of units of time ahead for which to make forecasts.
 #' @param show_last A \code{integer} indicating the number of last observations to show in the forecast plot.
 #' @param level A \code{double} or \code{vector} indicating confidence level of prediction interval.
@@ -201,9 +218,9 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' 
 #' @export
 #' 
-predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL, 
+predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL, 
                             xlab = NULL, ylab = NULL, main = NULL, ...){
-  Xt = model$Xt
+  Xt = object$Xt
   freq = attr(Xt, 'freq')
   end_time =  attr(Xt, 'end')
   if (length(Xt) > show_last){
@@ -230,23 +247,23 @@ predict.fitsimts = function(model, n.ahead = 10, show_last = 100, level = NULL,
   
   
   # Prediction 
-  if(model$method == "gmwm" | model$method == "rgmwm"){
-    if(model$demean==TRUE){
-      a = predict(model$mod, model$Xt - model$sample_mean, n.ahead = n.ahead) 
-      pred = a$pred+model$sample_mean
+  if(object$method == "gmwm" | object$method == "rgmwm"){
+    if(object$demean==TRUE){
+      a = predict(object$mod, object$Xt - object$sample_mean, n.ahead = n.ahead) 
+      pred = a$pred+object$sample_mean
       se = a$se
     }else{
-      a = predict(model$mod, model$Xt, n.ahead=10) 
+      a = predict(object$mod, object$Xt, n.ahead=10) 
       pred = a$pred
       se = a$se
     }
-   plot_pred_gmwm(x = Xt, model=model, n.ahead = n.ahead, level = level, 
+   plot_pred_gmwm(x = Xt, model=object, n.ahead = n.ahead, level = level, 
                   xlab = xlab, ylab = ylab, main = main) 
   }else{
-    a = predict(model$mod, n.ahead = n.ahead)
+    a = predict(object$mod, n.ahead = n.ahead)
     pred = a$pred
     se = a$se
-    plot_pred(x = Xt, model = model$mod, n.ahead = n.ahead, level = level, 
+    plot_pred(x = Xt, model = object$mod, n.ahead = n.ahead, level = level, 
               xlab = xlab, ylab = ylab, main = main)
   }
   

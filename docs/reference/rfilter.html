@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -137,31 +137,6 @@ This is a port of the rfilter function harnessed by the filter function in stats
 It is about 6-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>15</span>
-<span class='co'># </span>
-<span class='fu'>rfilter</span>(<span class='no'>x</span>, <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='fl'>3</span>), <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt;        [,1]
-#&gt;  [1,]     4
-#&gt;  [2,]     8
-#&gt;  [3,]    16
-#&gt;  [4,]    32
-#&gt;  [5,]    61
-#&gt;  [6,]   115
-#&gt;  [7,]   215
-#&gt;  [8,]   399
-#&gt;  [9,]   738
-#&gt; [10,]  1362
-#&gt; [11,]  2510
-#&gt; [12,]  4622
-#&gt; [13,]  8507
-#&gt; [14,] 15653
-#&gt; [15,] 28797</div><div class='input'><span class='co'># Using R's function</span>
-<span class='fu'>filter</span>(<span class='no'>x</span>, <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='fl'>3</span>), <span class='kw'>method</span><span class='kw'>=</span><span class='st'>"recursive"</span>, <span class='kw'>init</span><span class='kw'>=</span><span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='fl'>3</span>))</div><div class='output co'>#&gt; Time Series:
-#&gt; Start = 1 
-#&gt; End = 15 
-#&gt; Frequency = 1 
-#&gt;  [1]     4     8    16    32    61   115   215   399   738  1362  2510  4622
-#&gt; [13]  8507 15653 28797</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -171,20 +146,18 @@ It is about 6-7 times faster than R's base function. The benchmark was done on i
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
     <h2>Author</h2>
     
-R Core Team and James Balamuta
+R Core Team and JJB
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
+  <p>Developed by Stéphane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">

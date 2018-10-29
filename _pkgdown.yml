@@ -44,16 +44,11 @@ reference:
   - title: Model selection of SARIMA models
     contents:
     - select
-  - title: Forecast SARIMA models
-    contents:
-    - predict
   - title: Miscellanea
     contents:
     - RW2dimension
     - ar1_to_gm
     - gm_to_ar1
-
-    
 
 navbar:
   left:
@@ -64,4 +59,3 @@ navbar:
   right: 
   - icon: fa-github
     href: https://github.com/SMAC-Group/simts
-

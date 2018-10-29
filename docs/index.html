@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Time Series Simulation • simts</title>
+<title>Time Series Analysis Tools • simts</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Time Series Simulation">
-<meta property="og:description" content="Generates various time series objects for use in other packages.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Time Series Analysis Tools">
+<meta property="og:description" content="This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">simts</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -71,45 +71,49 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#simts-overview" class="anchor"></a><code>simts</code> Overview <a href="https://smac-group.com/"><img src="reference/figures/logo.png" align="right" style="width: 20%; height: 20%"></a>
 </h1></div>
-<p>The Time Series Simulation (<code>simts</code>) R package provides a series of tools to simulate and plot different time series models (including latent models) based on the basic summary statistics for time series analysis. More specifically, it provides the following features:</p>
+<p>The Time Series Tools (<code>simts</code>) R package provides a series of tools to simulate, plot, estimate, select and forecast different time series models. It is originally conceived as a support to the online textbook <a href="https://smac-group.github.io/ts/">“Applied Time Series Analysis with R”</a> and, more specifically, provides tools with the following features:</p>
 <ul>
 <li>Simulation of time series from SARIMA models to various state-space models that can be expressed as latent time series processes.</li>
 <li>Visualization of time series data with user specifications.</li>
 <li>Specific simulation and visualization tools for latent time series models.</li>
+<li>Easy-to-use functions to estimate and infer on the parameters of time series models through different methods (standard and robust).</li>
+<li>Diagnostic and statistical tools to assess goodness of fit and select the best model for the data.</li>
+<li>Estimating and plotting tools to deliver point forecasts and confidence intervals.</li>
 </ul>
-<p>To understand the usage of the <code>simts</code> package, please refer to the “Vignettes” tabs above.</p>
+<p>To understand the usage of the <code>simts</code> package, please refer to the “Vignettes” tab above.</p>
 <div id="install-instructions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-instructions" class="anchor"></a>Install Instructions</h2>
-<p>To install the <code>simts</code> package, there is currently one option: <a href="https://github.com/SMAC-Group/simts/">GitHub</a>.</p>
-<div id="installing-the-package-through-github" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installing-the-package-through-github" class="anchor"></a>Installing the package through GitHub</h3>
-<p>For users who are interested in having the latest developments, this option is ideal. Though, more dependancies are required to run a stable version of the package. Most importantly, users <strong>must</strong> have a compiler installed on their machine that is compatible with R (e.g. Clang).</p>
+<p>To install the <code>simts</code> package, there is currently one option: <a href="https://github.com/SMAC-Group/simts/">GitHub</a>. For users who are interested in having the latest developments, this option is ideal although more dependencies are required to run a stable version of the package. Most importantly, users <strong>must</strong> have a (C++) compiler installed on their machine that is compatible with R (e.g. Clang).</p>
 <p><em>The setup to obtain the development version of <code>simts</code> is platform dependent.</em></p>
-</div>
-<div id="requirements-and-dependencies" class="section level3">
-<h3 class="hasAnchor">
-<a href="#requirements-and-dependencies" class="anchor"></a>Requirements and Dependencies</h3>
-<p><strong>OS X</strong></p>
-<p>Some users report the need to use X11 to suppress shared library errors. To install X11, visit <a href="http://www.xquartz.org/">xquartz.org</a>.</p>
-<p><strong>Linux</strong></p>
-<p>Both curl and libxml are required.</p>
-<p>For <strong>Debian</strong> systems, enter the following in terminal:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get install curl libcurl3 libcurl3-dev libxml2 libxml2-dev</code></pre></div>
-<p>For <strong>RHEL</strong> systems, enter the following in terminal:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> yum install curl curl-devel libxml2 libxml2-dev</code></pre></div>
 <p><strong>All Systems</strong></p>
-<p>The following R packages are also required. If you have made it this far, run the following code in an R session and you will be ready to use the devlopment version of <code>simts</code>.</p>
+<p>The following R packages are also required. Once you’ve made sure that you have a compatible C++ compiler installed on your computer, run the following code in an R session and you will be ready to use the devlopment version of <code>simts</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install dependencies</span>
 <span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">"RcppArmadillo"</span>,<span class="st">"devtools"</span>,<span class="st">"knitr"</span>,<span class="st">"rmarkdown"</span>))
 
 <span class="co"># Install the package from GitHub without Vignettes/User Guides</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/simts"</span>)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"SMAC-Group/simts"</span>)
 
 <span class="co"># Install the package with Vignettes/User Guides </span>
-devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/simts"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"SMAC-Group/simts"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
+<div id="license" class="section level2">
+<h2 class="hasAnchor">
+<a href="#license" class="anchor"></a>License</h2>
+<p>The license this source code is released under is the GNU AFFERO GENERAL PUBLIC LICENSE (AGPL) v3.0. Please see the LICENSE file for full text. Otherwise, please consult <a href="https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)">TLDR Legal</a> or <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">GNU</a> which will provide a synopsis of the restrictions placed upon the code.</p>
+<!-- ### Requirements and Dependencies -->
+<!-- **OS X** -->
+<!-- Some users report the need to use X11 to suppress shared library errors. To install X11, visit [xquartz.org](http://www.xquartz.org/). -->
+<!-- **Linux** -->
+<!-- Both curl and libxml are required. -->
+<!-- For **Debian** systems, enter the following in terminal: -->
+<!-- ```{r, eval = F, engine='bash'} -->
+<!-- sudo apt-get install curl libcurl3 libcurl3-dev libxml2 libxml2-dev -->
+<!-- ``` -->
+<!-- For **RHEL** systems, enter the following in terminal: -->
+<!-- ```{r, eval = F, engine='bash'} -->
+<!-- sudo yum install curl curl-devel libxml2 libxml2-dev -->
+<!-- ``` -->
 </div>
 </div>
   </div>
@@ -127,7 +131,9 @@ devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/si
 <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a></li>
+<li>
+<a href="https://www.r-project.org/Licenses/AGPL-3">AGPL-3</a> | file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
 <div class="citation">
@@ -139,7 +145,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/si
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Stephane Guerrier <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
+<li>Stéphane Guerrier <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
 <li>James Balamuta <br><small class="roles"> Author </small>  </li>
 <li>Roberto Molinari <br><small class="roles"> Author </small>  </li>
 <li>Justin Lee <br><small class="roles"> Author </small>  </li>
@@ -157,7 +163,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/si
 <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg" alt="minimal R version"></a></li>
 <li><a href="https://cran.r-project.org/package=simts"><img src="http://www.r-pkg.org/badges/version/simts" alt="CRAN"></a></li>
 <li><a href="commits/develop"><img src="https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square" alt="packageversion"></a></li>
-<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--10--21-yellowgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="/commits/master"><img src="https://img.shields.io/badge/last%20change-2018--10--28-yellowgreen.svg" alt="Last-changedate"></a></li>
 </ul>
 </div>
 </div>
@@ -166,7 +172,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"SMAC-Group/si
 
 
       <footer><div class="copyright">
-  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
+  <p>Developed by Stéphane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">

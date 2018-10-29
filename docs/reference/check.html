@@ -66,7 +66,7 @@ It can output 6 diagnostic plots to assess the model, including (1) residuals pl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -113,14 +113,18 @@ It can output 6 diagnostic plots to assess the model, including (1) residuals pl
     
     </div>
 
-    <pre class="usage"><span class='fu'>check</span>(<span class='no'>model</span>, <span class='kw'>simple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>check</span>(<span class='kw'>model</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>resids</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>simple</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>model</th>
-      <td><p>A <code>fitsimts</code> object obtained from <code>estimate</code> function.</p></td>
+      <td><p>A <code>fitsimts</code>, <code>lm</code> or <code>gam</code> object.</p></td>
+    </tr>
+    <tr>
+      <th>resids</th>
+      <td><p>A <code>vector</code> of residuals for diagnostics.</p></td>
     </tr>
     <tr>
       <th>simple</th>
@@ -132,7 +136,14 @@ It can output 6 diagnostic plots to assess the model, including (1) residuals pl
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>300</span>, <span class='fu'><a href='AR.html'>AR</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0.8</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='estimate.html'>estimate</a></span>(<span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>3</span>), <span class='no'>Xt</span>)
-<span class='fu'>check</span>(<span class='no'>model</span>)</div><div class='img'><img src='check-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>check</span>(<span class='no'>model</span>, <span class='kw'>simple</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='check-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'>check</span>(<span class='no'>model</span>)</div><div class='img'><img src='check-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>check</span>(<span class='kw'>resids</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>100</span>))</div><div class='img'><img src='check-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>1000</span>, <span class='fu'><a href='SARIMA.html'>SARIMA</a></span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, -<span class='fl'>0.25</span>), <span class='kw'>i</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>sar</span> <span class='kw'>=</span> -<span class='fl'>0.8</span>,
+<span class='kw'>si</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sma</span> <span class='kw'>=</span> <span class='fl'>0.25</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='fl'>24</span>, <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
+<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='estimate.html'>estimate</a></span>(<span class='fu'><a href='SARIMA.html'>SARIMA</a></span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>i</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sar</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>si</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sma</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>s</span> <span class='kw'>=</span> <span class='fl'>24</span>),
+<span class='no'>Xt</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"rgmwm"</span>)
+<span class='fu'>check</span>(<span class='no'>model</span>)</div><div class='img'><img src='check-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>check</span>(<span class='no'>model</span>, <span class='kw'>simple</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='img'><img src='check-4.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -151,7 +162,7 @@ Stéphane Guerrier and Yuming Zhang
 
       <footer>
       <div class="copyright">
-  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
+  <p>Developed by Stéphane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">

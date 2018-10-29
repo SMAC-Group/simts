@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -74,9 +74,9 @@
 
     
     
-<div id="simulations-from-time-series-models" class="section level2">
+<div id="time-series-simulation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#simulations-from-time-series-models" class="anchor"></a>Simulations from Time Series Models</h2>
+<a href="#time-series-simulation" class="anchor"></a>Time Series Simulation</h2>
 <p>In this section, we briefly list, describe, and provide the syntax used to simulate time series data using the <code>simts</code> package. The following list includes some basic models available in this package:</p>
 <ul>
 <li>White Noise <code><a href="../reference/WN.html">WN()</a></code>
@@ -114,7 +114,7 @@
 <span class="kw">set.seed</span>(<span class="dv">1337</span>)
 
 <span class="co"># Number of observations</span>
-n =<span class="st"> </span><span class="dv">10</span>^<span class="dv">4</span>
+n =<span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span>
 
 <span class="co"># Generate a White Noise Process</span>
 wn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)) 
@@ -136,8 +136,8 @@ Figure 1: Simulated white noise process (top panel), quantiation noise (middle p
 </div>
 <p>Another example with a SARIMA model is given below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span>
-sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> -<span class="fl">0.27</span>,
-                        <span class="dt">sar =</span> <span class="kw">c</span>(-<span class="fl">0.12</span>, -<span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> -<span class="fl">0.9</span>,
+sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="op">-</span><span class="fl">0.27</span>,
+                        <span class="dt">sar =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="op">-</span><span class="fl">0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> <span class="op">-</span><span class="fl">0.9</span>,
                         <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))
 <span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
 <span class="kw">plot</span>(sarima)</code></pre></div>
@@ -154,8 +154,8 @@ Y_t &amp;= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 \end{aligned}\]</span></p>
 <p>it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance <span class="math inline">\(\gamma^2\)</span>), a linear drift (with slope <span class="math inline">\(\omega\)</span>) and a white noise process (with variance <span class="math inline">\(\sigma^2\)</span>). Therefore, it can easily be simulated as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
-model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) +<span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) +<span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span>^<span class="dv">3</span>)
+model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
+Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)
 <span class="kw">plot</span>(Yt)</code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Simulated state-space model (RW + WN + DR)" width="696"><p class="caption">
@@ -164,8 +164,8 @@ Figure 3: Simulated state-space model (RW + WN + DR)
 </div>
 <p>It is also possible to retrieve and visualize the three latent used to construct such state-space model using the function <code><a href="../reference/gen_lts.html">gen_lts()</a></code> instead of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">1</span>)
-model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) +<span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) +<span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span>^<span class="dv">3</span>)
+model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
+Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)
 <span class="kw">plot</span>(Yt)</code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes" width="696"><p class="caption">
@@ -176,7 +176,7 @@ Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
 <p>Examples of simulating such models are generated below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
 arma_wn_model =
-<span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, -<span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw">c</span>(<span class="fl">0.9</span>, <span class="op">-</span><span class="fl">0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)
 arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)
 
@@ -190,9 +190,9 @@ Figure 5: Simulated ARMA(2,1) + WN() process
 <p>As mentioned earlier, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code>plot()</code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate a SARMA() + WN() </span>
 sarma_wn_model =<span class="st"> </span>
-<span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)
-sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span>^<span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)
+sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)
 
 <span class="co"># Plot simulation of SARMA() + WN() </span>
 <span class="kw">plot</span>(sarma_wn_sim)</code></pre></div>
@@ -212,7 +212,7 @@ Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the u
 <div id="time-series-analysis-tools" class="section level2">
 <h2 class="hasAnchor">
 <a href="#time-series-analysis-tools" class="anchor"></a>Time Series Analysis Tools</h2>
-<p>In this section, we will briefly show some of the <code>simts</code> package functionalities that can be applied to basic time sereis analysis. These functionalities are illustrated through example on the following four datasets (stored in <code>simts</code>):</p>
+<p>In this section, we will briefly show some of the <code>simts</code> package functionalities that can be applied to basic time series analysis. These functionalities are illustrated through example on the following four datasets (stored in <code>simts</code>):</p>
 <ul>
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html">hydro</a>: This time series contains the monthly precipitation from 1907 and going to 1972 for total of 781 observations taken from <span class="citation">Hipel and McLeod (1994)</span>.</li>
@@ -244,15 +244,21 @@ Figure 1: Monthly precipitation series from 1907 to 1972 taken from <span class=
 </p>
 </div>
 <p>Using the object we created we can now compute its autocorrelation function using the <code><a href="../reference/auto_corr.html">auto_corr()</a></code> function as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute ACF and plot result</span>
-hydro_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(hydro)
-<span class="kw">plot</span>(hydro_acf)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compare the standard and robust ACF</span>
+<span class="kw"><a href="../reference/compare_acf.html">compare_acf</a></span>(hydro)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 2: Empirical autocorrelation function of monthly  precipitation  series  from @hipel1994time" width="696"><p class="caption">
-Figure 2: Empirical autocorrelation function of monthly precipitation series from <span class="citation">Hipel and McLeod (1994)</span>
+<img src="vignettes_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 2: Standard and Robust Empirical autocorrelation functions of monthly  precipitation  series  from @hipel1994time" width="696"><p class="caption">
+Figure 2: Standard and Robust Empirical autocorrelation functions of monthly precipitation series from <span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
-<p>This graph reveals that this time series does not appear to present any form of autocorrelation. A different visual analysis might be given by a robust estimator of the autocorrelation function.</p>
+<p>This plot shows that no apparent autocorrelation exists when using the standard estimator of the ACF (left) but the picture changes compeltely when using the robust estimator (right). There therefore appears to be some possible contamination in the data and, if we wanted to estimate a model for the data, we would probably opt for a robust estimator. For this we can use the RGMWM to estimate an AR(1) model which could be a possible candidate to explain the robust ACF pattern.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_hydro =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">2</span>), hydro, <span class="dt">method =</span> <span class="st">"rgmwm"</span>)
+model_hydro<span class="op">$</span>mod<span class="op">$</span>estimate</code></pre></div>
+<pre><code>##          Estimates
+## AR      0.42983779
+## AR     -0.04681182
+## SIGMA2  0.10528150</code></pre>
+<p>The estimated value of the autoregressive parameter appears to confirm that there exists some autocorrelation in the data.</p>
 </div>
 <div id="personal-savings-dataset" class="section level3">
 <h3 class="hasAnchor">
@@ -269,7 +275,7 @@ savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.ht
 <span class="co"># Plot savingrt simulation</span>
 <span class="kw">plot</span>(savingrt)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-13-1.png" alt="Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
 Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from January 1959 to May 2015 provided by the Federal Reserve Bank of St. Louis.
 </p>
 </div>
@@ -277,11 +283,13 @@ Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from January 
 savingrt_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(savingrt)
 <span class="kw">plot</span>(savingrt_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 4: Empirical autocorrelation function of Personal Saving  Rates data" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 4: Empirical autocorrelation function of Personal Saving  Rates data" width="696"><p class="caption">
 Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 </p>
 </div>
-<p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model.</p>
+<p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Estimate the latent model ARMA(2,1) + RW()</span>
+model_savings =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dv">2</span>,<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(), savingrt, <span class="dt">method =</span> <span class="st">"gmwm"</span>)</code></pre></div>
 </div>
 <div id="retail-sales-dataset" class="section level3">
 <h3 class="hasAnchor">
@@ -292,30 +300,30 @@ Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 
 <span class="co"># Simulate based on data</span>
 sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_time =</span> <span class="st">"year"</span>,
-            <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, 
+            <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, 
             <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)
 
 <span class="co"># Plot sales simulation</span>
 <span class="kw">plot</span>(sales)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 5: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-17-1.png" alt="Figure 5: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 5: Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
-<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> and <code><a href="../reference/PACF.html">PACF()</a></code> as follows:</p>
+<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute ACF and plot result</span>
 sales_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales)
 <span class="kw">plot</span>(sales_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-16-1.png" alt="Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-18-1.png" alt="Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Compute PACF and plot result</span>
-sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/PACF.html">PACF</a></span>(sales)
+sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)
 <span class="kw">plot</span>(sales_pacf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-17-1.png" alt="Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-19-1.png" alt="Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
@@ -323,13 +331,13 @@ Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute and plot ACF and PACF</span>
 sales_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-18-1.png" alt="Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-20-1.png" alt="Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
-sales_acf =<span class="st"> </span>sales_corr$ACF
-sales_pacf =<span class="st"> </span>sales_corr$PACF</code></pre></div>
+sales_acf =<span class="st"> </span>sales_corr<span class="op">$</span>ACF
+sales_pacf =<span class="st"> </span>sales_corr<span class="op">$</span>PACF</code></pre></div>
 <p>The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.</p>
 </div>
 <div id="lynx-dataset" class="section level3">
@@ -341,88 +349,180 @@ sales_pacf =<span class="st"> </span>sales_corr$PACF</code></pre></div>
 
 <span class="co"># Simulate based on data</span>
 lynx =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(lynx), <span class="dt">start =</span> <span class="dv">1821</span>, <span class="dt">end =</span> <span class="dv">1934</span>, <span class="dt">freq =</span> <span class="dv">1</span>, 
-           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">8</span>,<span class="st">" "</span>,m^<span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, 
+           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, 
            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Numbers of Lynx Trappings"</span>)
 
 <span class="co"># Plot lynx simulation</span>
 <span class="kw">plot</span>(lynx)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-19-1.png" alt="Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-21-1.png" alt="Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada" width="696"><p class="caption">
 Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada
 </p>
 </div>
-<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> and <code><a href="../reference/PACF.html">PACF()</a></code> as follows:</p>
+<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute ACF and plot result</span>
 lynx_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx)
 <span class="kw">plot</span>(lynx_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-20-1.png" alt="Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-22-1.png" alt="Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute PACF and plot result</span>
-lynx_pacf =<span class="st"> </span><span class="kw"><a href="../reference/PACF.html">PACF</a></span>(lynx)
+lynx_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)
 <span class="kw">plot</span>(lynx_pacf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-21-1.png" alt="Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
+<img src="vignettes_files/figure-html/unnamed-chunk-23-1.png" alt="Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
 </p>
 </div>
+<p>The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>), lynx)
+<span class="kw"><a href="../reference/check.html">check</a></span>(test)</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="vignettes_files/figure-html/unnamed-chunk-24-1.png" alt="Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
+Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
+</p>
+</div>
+<p>The residuals don’t appear to follow a Gaussian distribution (first row of the plot) but there doesn’t appear to be significant dependence in them as shown in the second row of the plot showing respectively the ACF, PACF and Ljung-Box test p-values for the residuals.</p>
 </div>
 <div id="sunspot-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sunspot-dataset" class="anchor"></a>Sunspot Dataset</h3>
 <p>We can look at another dataset, <code>sunspot.year</code>, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load sunspot dataset </span>
-sunspot =<span class="st"> </span>datasets::sunspot.year
+sunspot =<span class="st"> </span>datasets<span class="op">::</span>sunspot.year
 
 <span class="co"># Simulate based on data</span>
 sunspot =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(sunspot.year), <span class="dt">start =</span> <span class="dv">1700</span>, <span class="dt">end =</span> <span class="dv">1988</span>, <span class="dt">freq =</span> <span class="dv">1</span>, 
-           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">8</span>,<span class="st">" "</span>,m^<span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, 
+           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, 
            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Yearly Numbers of Sunspots"</span>)
 
 <span class="co"># Plot sunspot simulation</span>
 <span class="kw">plot</span>(sunspot)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-22-1.png" alt="Figure 9: Plot of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 9: Plot of Yearly numbers of sunspots from 1700 to 1988
+<img src="vignettes_files/figure-html/unnamed-chunk-25-1.png" alt="Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
+Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> and <code><a href="../reference/PACF.html">PACF()</a></code> as follows:</p>
+<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute ACF and plot result</span>
 sunspot_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot)
 <span class="kw">plot</span>(sunspot_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-23-1.png" alt="Figure 10: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 10: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
+<img src="vignettes_files/figure-html/unnamed-chunk-26-1.png" alt="Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
+Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Compute PACF and plot result</span>
-sunspot_pacf =<span class="st"> </span><span class="kw"><a href="../reference/PACF.html">PACF</a></span>(sunspot)
+sunspot_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)
 <span class="kw">plot</span>(sunspot_pacf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-24-1.png" alt="Figure 11: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 11: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
+<img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" alt="Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
+Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
+<p>Let us estimate an AR(p) model and for this reason let us select the order:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/select.html">select</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">15</span>), sunspot)</code></pre></div>
+<pre><code>## Warning: package 'bindrcpp' was built under R version 3.4.4</code></pre>
+<div class="figure" style="text-align: center">
+<img src="vignettes_files/figure-html/unnamed-chunk-28-1.png" alt="Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
+Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988
+</p>
+</div>
+<pre><code>## 
+## Call:
+## arima(x = xt, order = c(9, 0, 0), include.mean = include.mean)
+## 
+## Coefficients:
+##          ar1      ar2      ar3     ar4      ar5     ar6     ar7      ar8
+##       1.1851  -0.4197  -0.1672  0.1823  -0.1326  0.0458  0.0067  -0.0287
+## s.e.  0.0579   0.0911   0.0944  0.0948   0.0955  0.0961  0.0962   0.0925
+##          ar9  intercept
+##       0.2218    49.7655
+## s.e.  0.0588     7.7354
+## 
+## sigma^2 estimated as 221.9:  log likelihood = -1192.74,  aic = 2407.48</code></pre>
+<p>The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_sunspots =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">9</span>), sunspot)
+<span class="kw">predict</span>(model_sunspots, <span class="dt">n.ahead =</span> <span class="dv">10</span>, <span class="dt">level =</span> <span class="kw">c</span>(<span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>))</code></pre></div>
+<div class="figure" style="text-align: center">
+<img src="vignettes_files/figure-html/unnamed-chunk-29-1.png" alt="Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
+Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988
+</p>
+</div>
+<pre><code>## $pred
+## Time Series:
+## Start = 290 
+## End = 299 
+## Frequency = 1 
+##  [1] 140.83139 155.70969 142.43144 113.76724  77.77908  43.97843  20.30640
+##  [8]  11.40728  27.76252  60.63753
+## 
+## $se
+## Time Series:
+## Start = 290 
+## End = 299 
+## Frequency = 1 
+##  [1] 14.89583 23.10014 27.36581 28.37124 28.47902 28.51438 28.66743
+##  [8] 28.82373 28.91176 28.96351
+## 
+## $CI0.6
+##             [,1]      [,2]
+##  [1,] 128.294746 153.36803
+##  [2,] 136.268124 175.15126
+##  [3,] 119.399799 165.46309
+##  [4,]  89.889397 137.64508
+##  [5,]  53.810530 101.74763
+##  [6,]  19.980124  67.97674
+##  [7,]  -3.820712  44.43352
+##  [8,] -12.851383  35.66595
+##  [9,]   3.429764  52.09527
+## [10,]  36.261224  85.01384
+## 
+## $CI0.9
+##             [,1]      [,2]
+##  [1,] 116.329936 165.33285
+##  [2,] 117.713343 193.70604
+##  [3,]  97.418697 187.44419
+##  [4,]  67.100696 160.43378
+##  [5,]  30.935254 124.62291
+##  [6,]  -2.923549  90.88041
+##  [7,] -26.847319  67.46013
+##  [8,] -36.003539  58.81810
+##  [9,] -19.793102  75.31814
+## [10,]  12.996791 108.27827
+## 
+## $CI0.95
+##             [,1]      [,2]
+##  [1,] 111.636107 170.02667
+##  [2,] 110.434250 200.98514
+##  [3,]  88.795448 196.06744
+##  [4,]  58.160624 169.37385
+##  [5,]  21.961219 133.59694
+##  [6,] -11.908725  99.86559
+##  [7,] -35.880722  76.49353
+##  [8,] -45.086196  67.90076
+##  [9,] -28.903498  84.42854
+## [10,]   3.870087 117.40498</code></pre>
 </div>
 <div id="nile-river-flow-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#nile-river-flow-dataset" class="anchor"></a>Nile River Flow Dataset</h3>
 <p>Finally, we consider the last dataset, <code>Nile</code>, Annual Nile river flow from 1871-1970 in the code below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load Nile dataset</span>
-Nile =<span class="st"> </span>datasets::Nile
+Nile =<span class="st"> </span>datasets<span class="op">::</span>Nile
 
 <span class="co"># Simulate based on data</span>
 nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw">as.vector</span>(Nile), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, 
-           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span>^<span class="dv">8</span>,<span class="st">" "</span>,m^<span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, 
+           <span class="dt">unit_ts =</span> <span class="kw">bquote</span>(<span class="kw">paste</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, 
            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of the Nile River"</span>)
 
 <span class="co"># Plot Nile simulation </span>
 <span class="kw">plot</span>(nile)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-25-1.png" alt="Figure 12: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
-Figure 12: Plot of Annual Nile river flow from 1871-1970
+<img src="vignettes_files/figure-html/unnamed-chunk-30-1.png" alt="Figure 18: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
+Figure 18: Plot of Annual Nile river flow from 1871-1970
 </p>
 </div>
 <p>To get ACF, we can use <code><a href="../reference/auto_corr.html">auto_corr()</a></code> and make a plot:</p>
@@ -430,26 +530,27 @@ Figure 12: Plot of Annual Nile river flow from 1871-1970
 nile_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(nile)
 <span class="kw">plot</span>(nile_acf)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-26-1.png" alt="Figure 10: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
-Figure 10: Empirical autocorrelation function of the Nile river flow data
+<img src="vignettes_files/figure-html/unnamed-chunk-31-1.png" alt="Figure 19: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
+Figure 19: Empirical autocorrelation function of the Nile river flow data
 </p>
 </div>
 <p>Similar to the example above, we can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> to get the ACF and PACF at the same time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Compute and plot ACF and PACF</span>
 nile_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(nile)</code></pre></div>
 <div class="figure" style="text-align: center">
-<img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" alt="Figure 11: Empirical ACF and PACF of the Nile river flow data" width="696"><p class="caption">
-Figure 11: Empirical ACF and PACF of the Nile river flow data
+<img src="vignettes_files/figure-html/unnamed-chunk-32-1.png" alt="Figure 20: Empirical ACF and PACF of the Nile river flow data" width="696"><p class="caption">
+Figure 20: Empirical ACF and PACF of the Nile river flow data
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get ACF and PACF values</span>
-nile_acf =<span class="st"> </span>nile_corr$ACF
-nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
+nile_acf =<span class="st"> </span>nile_corr<span class="op">$</span>ACF
+nile_pacf =<span class="st"> </span>nile_corr<span class="op">$</span>PACF</code></pre></div>
 </div>
 </div>
-<div id="references" class="section level2 unnumbered">
+<div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
+<p>This package is developed mainly as a support to the online book <a href="https://smac-group.github.io/ts/">“Applied Time Series Analysis with R”</a>.</p>
 <div id="refs" class="references">
 <div id="ref-cobb1978problem">
 <p>Cobb, George W. 1978. “The Problem of the Nile: Conditional Solution to a Changepoint Problem.” <em>Biometrika</em>. JSTOR, 243–51.</p>
@@ -466,7 +567,7 @@ nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#simulations-from-time-series-models">Simulations from Time Series Models</a></li>
+<li><a href="#time-series-simulation">Time Series Simulation</a></li>
       <li><a href="#time-series-analysis-tools">Time Series Analysis Tools</a></li>
       <li><a href="#references">References</a></li>
       </ul>
@@ -477,7 +578,7 @@ nile_pacf =<span class="st"> </span>nile_corr$PACF</code></pre></div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
+  <p>Developed by Stéphane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">

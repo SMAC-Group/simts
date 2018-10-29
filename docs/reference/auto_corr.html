@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Estimation of Auto-Covariance and Correlation Functions — auto_corr • simts</title>
+<title>Empirical ACF and PACF — auto_corr • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Estimation of Auto-Covariance and Correlation Functions — auto_corr" />
+<meta property="og:title" content="Empirical ACF and PACF — auto_corr" />
 
-<meta property="og:description" content="The ACF function estimates the
-autocovariance or autocorrelation for univariate time series." />
+<meta property="og:description" content="This function can estimate either the autocovariance / autocorrelation for univariate time series,
+or the partial autocovariance / autocorrelation for univariate time series." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -64,7 +64,7 @@ autocovariance or autocorrelation for univariate time series." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -97,20 +97,20 @@ autocovariance or autocorrelation for univariate time series." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Estimation of Auto-Covariance and Correlation Functions</h1>
+    <h1>Empirical ACF and PACF</h1>
     <small class="dont-index">Source: <a href='https://github.com/SMAC-Group/simts/blob/master/R/ACF.R'><code>R/ACF.R</code></a></small>
     <div class="hidden name"><code>auto_corr.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>The ACF function estimates the
-autocovariance or autocorrelation for univariate time series.</p>
+    <p>This function can estimate either the autocovariance / autocorrelation for univariate time series,
+or the partial autocovariance / autocorrelation for univariate time series.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>auto_corr</span>(<span class='no'>x</span>, <span class='kw'>lag.max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"correlation"</span>, <span class='kw'>demean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>robust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>auto_corr</span>(<span class='no'>x</span>, <span class='kw'>lag.max</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pacf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"correlation"</span>,
+  <span class='kw'>demean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>robust</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -121,7 +121,13 @@ autocovariance or autocorrelation for univariate time series.</p>
     </tr>
     <tr>
       <th>lag.max</th>
-      <td><p>An <code>integer</code> indicating the maximum lag up to which to compute the empirical ACF.</p></td>
+      <td><p>An <code>integer</code> indicating the maximum lag up to which to compute the empirical ACF / PACF.</p></td>
+    </tr>
+    <tr>
+      <th>pacf</th>
+      <td><p>A <code>boolean</code> indicating whether to output the PACF. 
+If it's <code>TRUE</code>, then the function will only estimate the empirical PACF. If it's <code>FALSE</code> (the default),
+then the function will only estimate the empirical ACF.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -133,7 +139,8 @@ autocovariance or autocorrelation for univariate time series.</p>
     </tr>
     <tr>
       <th>robust</th>
-      <td><p>A <code>boolean</code> indicating whether a robust estimator should be used (<code>TRUE</code>) or not (<code>FALSE</code>). Defaults to <code>FALSE</code>.</p></td>
+      <td><p>A <code>boolean</code> indicating whether a robust estimator should be used (<code>TRUE</code>) or not (<code>FALSE</code>). Defaults to <code>FALSE</code>.
+This only works when the function is estimating ACF.</p></td>
     </tr>
     </table>
     
@@ -150,11 +157,8 @@ less than the total will be taken (i.e. N - 1).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Get Autocorrelation</span>
-<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'>auto_corr</span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/AirPassengers'>AirPassengers</a></span>)
-
-<span class='co'># Get Autocovariance and do not remove trend from signal</span>
-<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'>auto_corr</span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/AirPassengers'>AirPassengers</a></span>, <span class='kw'>cor</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>demean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in auto_corr(datasets::AirPassengers, cor = FALSE, demean = FALSE): unused argument (cor = FALSE)</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>m</span> <span class='kw'>=</span> <span class='fu'>auto_corr</span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/AirPassengers'>AirPassengers</a></span>)
+<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'>auto_corr</span>(<span class='kw pkg'>datasets</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/datasets/topics/AirPassengers'>AirPassengers</a></span>, <span class='kw'>pacf</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -170,14 +174,14 @@ less than the total will be taken (i.e. N - 1).</p>
 
     <h2>Author</h2>
     
-Yunxiang Zhang
+Yuming Zhang
 
   </div>
 </div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
+  <p>Developed by Stéphane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">

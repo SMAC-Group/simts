@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.0</span>
       </span>
     </div>
 
@@ -159,20 +159,19 @@
     <pre class="examples"><div class='input'><span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_arima.html'>gen_arima</a></span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>ar</span><span class='kw'>=</span><span class='fl'>0.3</span>, <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ma</span><span class='kw'>=</span><span class='fl'>0.3</span>)
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>select_arima</span>(<span class='no'>xt</span>, <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1L</span>)</div><div class='img'><img src='select_arima-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_ma1.html'>gen_ma1</a></span>(<span class='fl'>100</span>, <span class='fl'>0.3</span>, <span class='fl'>1</span>)
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>select_ma</span>(<span class='no'>xt</span>, <span class='kw'>q.min</span><span class='kw'>=</span><span class='fl'>2L</span>, <span class='kw'>q.max</span><span class='kw'>=</span><span class='fl'>5L</span>)
-<span class='fu'><a href='best_model.html'>best_model</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>select_ma</span>(<span class='no'>xt</span>, <span class='kw'>q.min</span><span class='kw'>=</span><span class='fl'>2L</span>, <span class='kw'>q.max</span><span class='kw'>=</span><span class='fl'>5L</span>)</div><div class='img'><img src='select_arima-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='best_model.html'>best_model</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
-#&gt; arima(x = xt, order = c(0, 0, 2), include.mean = include.mean)
+#&gt; arima(x = xt, order = c(0, 0, 4), include.mean = include.mean)
 #&gt; 
 #&gt; Coefficients:
-#&gt;          ma1      ma2  intercept
-#&gt;       0.2792  -0.0344     0.1358
-#&gt; s.e.  0.1016   0.1264     0.1103
+#&gt;          ma1      ma2      ma3      ma4  intercept
+#&gt;       0.1942  -0.2309  -0.0796  -0.2268     0.1585
+#&gt; s.e.  0.1014   0.1074   0.1038   0.1094     0.0649
 #&gt; 
-#&gt; sigma^2 estimated as 0.7868:  log likelihood = -129.95,  aic = 267.9</div><div class='input'>
+#&gt; sigma^2 estimated as 0.9247:  log likelihood = -138.21,  aic = 288.41</div><div class='input'>
 <span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_arma.html'>gen_arma</a></span>(<span class='fl'>10</span>, <span class='fu'>c</span>(<span class='fl'>.4</span>,<span class='fl'>.5</span>), <span class='fu'>c</span>(<span class='fl'>.1</span>), <span class='fl'>1</span>, <span class='fl'>0</span>)
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>select_arma</span>(<span class='no'>xt</span>, <span class='kw'>p.min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>p.max</span> <span class='kw'>=</span> <span class='fl'>4L</span>,
-                <span class='kw'>q.min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>q.max</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: possible convergence problem: optim gave code = 1</span></div><div class='output co'>#&gt; <span class='warning'>Warning: possible convergence problem: optim gave code = 1</span></div><div class='img'><img src='select_arima-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='select_arima-3.png' alt='' width='700' height='433' /></div></pre>
+                <span class='kw'>q.min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>q.max</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</div><div class='img'><img src='select_arima-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -187,7 +186,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Stephane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
+  <p>Developed by Stéphane Guerrier, James Balamuta, Roberto Molinari, Justin Lee, Yuming Zhang.</p>
 </div>
 
 <div class="pkgdown">

@@ -8,7 +8,7 @@ Generalized Method of Wavelet Moments}
 \method{predict}{gmwm}(object, data.in.gmwm, n.ahead = 1, ...)
 }
 \arguments{
-\item{object}{A \code{\link{gmwm}} object}
+\item{object}{A \code{gmwm} object}
 
 \item{data.in.gmwm}{The data SAME EXACT DATA used in the GMWM estimation}
 
@@ -29,5 +29,5 @@ Creates a prediction using the estimated values of GMWM through the
 ARIMA function within R.
 }
 \seealso{
-\code{\link{gmwm}}, \code{\link{ARMA}}
+\code{gmwm}, \code{\link{ARMA}}
 }

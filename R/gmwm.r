@@ -495,10 +495,10 @@ gmwm_imu = function(model, data, compute.v = "fast", robust = F, eff = 0.6, ...)
 #' @param model A \code{ts.model} object containing one of the allowed models.
 #' @param data  A \code{matrix} or \code{data.frame} object with only one column (e.g. \eqn{N \times 1}{ N x 1 }), or a \code{lts} object, or a \code{gts} object.
 #' @param eff   A \code{double vector} between 0 and 1 that indicates the efficiency.
-#' @param ...   Other arguments passed to the main \code{\link{gmwm}} function.
+#' @param ...   Other arguments passed to the main \code{gmwm} function.
 #' @return A \code{rgmwm} object
 #' @details
-#' By default, the \code{rgmwm} function will fit a classical \code{\link{gmwm}}
+#' By default, the \code{rgmwm} function will fit a classical \code{gmwm}
 #' object. From there, the user has the ability to specify any \code{eff} that is
 #' less than or equal to 0.99.
 rgmwm = function(model, data, eff = c(0.9, 0.8, 0.6), ...){
@@ -708,7 +708,7 @@ print.summary.gmwm = function(x, ...){
 #'
 #' Creates a prediction using the estimated values of GMWM through the
 #' ARIMA function within R.
-#' @param object       A \code{\link{gmwm}} object
+#' @param object       A \code{gmwm} object
 #' @param data.in.gmwm The data SAME EXACT DATA used in the GMWM estimation
 #' @param n.ahead      Number of observations to forecast
 #' @param ...          Additional parameters passed to ARIMA Predict
@@ -718,7 +718,7 @@ print.summary.gmwm = function(x, ...){
 #' \item{se}{Standard Errors}
 #' \item{resid}{Residuals from ARIMA ML Fit}
 #' }
-#' @seealso \code{\link{gmwm}}, \code{\link{ARMA}}
+#' @seealso \code{gmwm}, \code{\link{ARMA}}
 #' @export
 predict.gmwm = function(object, data.in.gmwm, n.ahead = 1, ...){
 

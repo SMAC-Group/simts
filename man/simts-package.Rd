@@ -4,12 +4,11 @@
 \name{simts-package}
 \alias{simts}
 \alias{simts-package}
-\alias{simts-package}
 \title{simts: Time Series Analysis Tools}
 \description{
-This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
+\if{html}{\figure{logo.png}{options: align='right'}}
 
-Simulation and Plotting Tools Time Series (simts) Package
+This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
 }
 \details{
 The data sets in this package may change at a moments notice.

@@ -22,7 +22,7 @@ This function can fit a time series model to data using different methods.
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 plot(Xt)
-estimate(AR(3), Xt)\\
+estimate(AR(3), Xt)
 
 Xt = gen_gts(300, MA(theta = 0.5, sigma2 = 1))
 plot(Xt)

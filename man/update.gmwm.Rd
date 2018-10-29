@@ -50,12 +50,3 @@ A \code{gmwm} object with the structure:
 Provides a way to estimate different models over the previously estimated
 wavelet variance values and covariance matrix.
 }
-\details{
-The motive behind this function is to allow for reuse of the \code{\link{gmwm}}
-object's computation of the wavelet variance and covariance matrix. The
-function permits this by allowing for the underlying time series model to
-be changed at will. As a result, the function is particular useful for
-working with large time series objects. Alternatively, one can also use this
-function to supply a custom diagonal weighting matrix by modifying the
-\code{\link{gmwm}} object.
-}

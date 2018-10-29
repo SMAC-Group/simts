@@ -327,14 +327,6 @@ gmwm = function(model, data, model.type="ssm", compute.v="auto",
 #'  \item{seed}{Randomization seed used to generate the guessing values}
 #'  \item{freq}{Frequency of data}
 #' }
-#' @details
-#' The motive behind this function is to allow for reuse of the \code{\link{gmwm}}
-#' object's computation of the wavelet variance and covariance matrix. The
-#' function permits this by allowing for the underlying time series model to
-#' be changed at will. As a result, the function is particular useful for
-#' working with large time series objects. Alternatively, one can also use this
-#' function to supply a custom diagonal weighting matrix by modifying the
-#' \code{\link{gmwm}} object.
 update.gmwm = function(object, model, ...){
   # Do we have a valid model?
   if(!is.ts.model(model)){

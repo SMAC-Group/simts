@@ -40,7 +40,6 @@ Encoding: UTF-8
 Suggests:
     knitr,
     rmarkdown
-Remotes: SMAC-Group/wv
 VignetteBuilder: knitr
 URL: https://github.com/SMAC-Group/simts
 BugReports: https://github.com/SMAC-Group/simts/issues

@@ -4,13 +4,7 @@ sudo: false
 
 dist: trusty
 
-warnings_are_errors: false
-
-Imports:
-  - wv
-
-Remotes:
-  - SMAC-Group/wv
+warnings_are_errors: true
 
 cache:
   packages: true

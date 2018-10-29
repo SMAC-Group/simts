@@ -57,7 +57,7 @@ theo_arma_ = function(model, lagmax = 20, pacf = FALSE){
   if(pacf == TRUE){
     myclass = c("PACF", "array")
   }else{
-    myclass = c("ACF", "array")
+    myclass = c("simtsACF", "array")
   }
   
   cast_acf(ARMAacf(ar = ar, ma = ma, lag.max = lagmax, pacf = pacf),
@@ -137,7 +137,6 @@ theo_pacf = function(ar, ma = NULL, lagmax = 20){
 #' @examples 
 #' m = auto_corr(datasets::AirPassengers)
 #' m = auto_corr(datasets::AirPassengers, pacf = TRUE)
-
 auto_corr = function(x, lag.max = NULL, pacf = FALSE, type = "correlation", demean = TRUE, robust = FALSE){
   if(pacf == FALSE){
     ACF(x, lag.max = lag.max, type = type, demean = demean, robust = robust)
@@ -185,9 +184,9 @@ ACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = 
   dimnames(acfe)  = list(seq_len(nrow(acfe))-1, "ACF", varName)
   
   if (is.null(attr(x, "data_name"))){
-    acfe = structure(acfe, n = nrow(x2), class = c("ACF", "array"))
+    acfe = structure(acfe, n = nrow(x2), class = c("simtsACF", "array"))
   }else{
-    acfe = structure(acfe, n = nrow(x2), data_name = attr(x, "data_name"), class = c("ACF", "array"))
+    acfe = structure(acfe, n = nrow(x2), data_name = attr(x, "data_name"), class = c("simtsACF", "array"))
   }
   
   unit_time = attr(x, "unit_time")
@@ -215,7 +214,7 @@ ACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = 
 #' @param main      A \code{string} indicating the title of the plot. Default name is "Variable name ACF plot'.
 #' @param parValue  A \code{vector} defining the margins for the plot.
 #' @param ...       Additional parameters
-#' @rdname plot.ACF
+#' @rdname plot.simtsACF
 #' @export
 #' @importFrom grDevices col2rgb
 #' @examples 
@@ -234,7 +233,7 @@ ACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = 
 #' # More customized CI
 #' plot(m, xlab = "my xlab", ylab = "my ylab", show.ci = TRUE,
 #' alpha = NULL, col_ci = "grey", transparency = 0.5, main = "my main")
-plot.ACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL, parValue = NULL, ...){
+plot.simtsACF = function(x, xlab = NULL, ylab = NULL, show.ci = TRUE, alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL, parValue = NULL, ...){
   # TO ADD AS INPUTS
   lag_unit = attr(x, "unit_time")
   

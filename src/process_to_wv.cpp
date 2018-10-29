@@ -45,7 +45,6 @@
 //' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
-//' @seealso \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, and \code{\link{arma11_to_wv}}
 // [[Rcpp::export]]
 arma::vec arma_to_wv(arma::vec ar, arma::vec ma, double sigma2, arma::vec tau) {
   
@@ -88,7 +87,6 @@ arma::vec arma_to_wv(arma::vec ar, arma::vec ma, double sigma2, arma::vec tau) {
 //' @param alpha A \code{double} indicating the cutoff.
 //' @return A \code{vec} containing the wavelet variance of the ARMA process.
 //' @keywords internal
-//' @seealso \code{\link{arma_to_wv_app}}
 // [[Rcpp::export]]
 double acf_sum(arma::vec ar, arma::vec ma, unsigned int last_tau, double alpha = 0.99){
   arma::vec obj = abs(ARMAacf_cpp(ar,ma,last_tau -1));
@@ -115,7 +113,6 @@ double acf_sum(arma::vec ar, arma::vec ma, unsigned int last_tau, double alpha =
 //' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
-//' @seealso \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, \code{\link{acf_sum}} and \code{\link{arma_to_wv}}
 // [[Rcpp::export]]
 arma::vec arma_to_wv_app(arma::vec ar, arma::vec ma, double sigma2, arma::vec tau, double alpha = 0.9999) {
   
@@ -194,7 +191,6 @@ arma::vec arma_to_wv_app(arma::vec ar, arma::vec ma, double sigma2, arma::vec ta
 //' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
-//' @seealso \code{\link{arma_to_wv}}
 // [[Rcpp::export]]
 arma::vec arma11_to_wv(double phi, double theta, double sigma2, const arma::vec& tau){
   
@@ -227,7 +223,6 @@ arma::vec arma11_to_wv(double phi, double theta, double sigma2, const arma::vec&
 //' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
-//' @seealso \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
 // [[Rcpp::export]]
 arma::vec ar1_to_wv(double phi, double sigma2, const arma::vec& tau){
   unsigned int size_tau = tau.n_elem;
@@ -256,7 +251,6 @@ arma::vec ar1_to_wv(double phi, double sigma2, const arma::vec& tau){
 //' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
-//' @seealso \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
 // [[Rcpp::export]]
 arma::vec ma1_to_wv(double theta, double sigma2, const arma::vec& tau){
   return sigma2 * (square(theta + 1.0) * tau - 6.0 * theta)/arma::square(tau);

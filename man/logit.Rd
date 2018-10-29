@@ -15,9 +15,6 @@ A \code{vec} containing logit terms.
 \description{
 This function computes the logit link function.
 }
-\seealso{
-\code{\link{logit_inv}}
-}
 \author{
 James Joseph Balamuta (JJB)
 }

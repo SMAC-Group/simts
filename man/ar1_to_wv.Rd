@@ -34,6 +34,3 @@ The Autoregressive Order \eqn{1} (AR(\eqn{1})) process has a Haar Wavelet Varian
 For more information, please see: \href{http://smac-group.com/computing/process-to-haar-wavelet-variance-formulae}{Supported Haar Wavelet Formulae} (Internet Connection Required).
 }
 
-\seealso{
-\code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
-}

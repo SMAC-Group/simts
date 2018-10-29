@@ -15,9 +15,6 @@ A \code{vec} containing logit probabilities.
 \description{
 This function computes the pseudo inverse of a logit transformation of the parameters in order to constrain them to a positive domain
 }
-\seealso{
-\code{\link{pseudo_logit}}
-}
 \author{
 James Joseph Balamuta (JJB)
 }

@@ -1315,7 +1315,6 @@ do_polyroot_cpp <- function(z) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @seealso \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, and \code{\link{arma11_to_wv}}
 arma_to_wv <- function(ar, ma, sigma2, tau) {
     .Call('_simts_arma_to_wv', PACKAGE = 'simts', ar, ma, sigma2, tau)
 }
@@ -1328,7 +1327,6 @@ arma_to_wv <- function(ar, ma, sigma2, tau) {
 #' @param alpha A \code{double} indicating the cutoff.
 #' @return A \code{vec} containing the wavelet variance of the ARMA process.
 #' @keywords internal
-#' @seealso \code{\link{arma_to_wv_app}}
 acf_sum <- function(ar, ma, last_tau, alpha = 0.99) {
     .Call('_simts_acf_sum', PACKAGE = 'simts', ar, ma, last_tau, alpha)
 }
@@ -1351,7 +1349,6 @@ acf_sum <- function(ar, ma, last_tau, alpha = 0.99) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @seealso \code{\link{ARMAtoMA_cpp}}, \code{\link{ARMAacf_cpp}}, \code{\link{acf_sum}} and \code{\link{arma_to_wv}}
 arma_to_wv_app <- function(ar, ma, sigma2, tau, alpha = 0.9999) {
     .Call('_simts_arma_to_wv_app', PACKAGE = 'simts', ar, ma, sigma2, tau, alpha)
 }
@@ -1372,7 +1369,6 @@ arma_to_wv_app <- function(ar, ma, sigma2, tau, alpha = 0.9999) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @seealso \code{\link{arma_to_wv}}
 arma11_to_wv <- function(phi, theta, sigma2, tau) {
     .Call('_simts_arma11_to_wv', PACKAGE = 'simts', phi, theta, sigma2, tau)
 }
@@ -1392,7 +1388,6 @@ arma11_to_wv <- function(phi, theta, sigma2, tau) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @seealso \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
 ar1_to_wv <- function(phi, sigma2, tau) {
     .Call('_simts_ar1_to_wv', PACKAGE = 'simts', phi, sigma2, tau)
 }
@@ -1412,7 +1407,6 @@ ar1_to_wv <- function(phi, sigma2, tau) {
 #' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
-#' @seealso \code{\link{arma_to_wv}}, \code{\link{arma11_to_wv}}
 ma1_to_wv <- function(theta, sigma2, tau) {
     .Call('_simts_ma1_to_wv', PACKAGE = 'simts', theta, sigma2, tau)
 }
@@ -1733,7 +1727,6 @@ rtruncated_normal <- function(n, mu, sigma, a, b) {
 #' @param nq  An \code{unsigned int} containing the number of non-seasonal theta parameters.
 #' @param nsp An \code{unsigned int} containing the number of seasonal phi parameters.
 #' @param nsq An \code{unsigned int} containing the number of seasonal theta parameters.
-#' @seealso \code{\link{sarma_components}}
 #' @return A \code{vec} with rows:
 #' \describe{
 #'  \item{p}{Number of phi parameters}
@@ -1841,7 +1834,6 @@ get_summary <- function(theta, desc, objdesc, model_type, wv_empir, theo, scales
 #' @param x A \code{vec} containing real numbers.
 #' @return A \code{vec} containing logit probabilities.
 #' @keywords internal
-#' @seealso \code{\link{pseudo_logit}}
 #' @template author/jjb
 pseudo_logit_inv <- function(x) {
     .Call('_simts_pseudo_logit_inv', PACKAGE = 'simts', x)
@@ -1853,7 +1845,6 @@ pseudo_logit_inv <- function(x) {
 #' @param x A \code{vec} containing real numbers.
 #' @return A \code{vec} containing logit probabilities.
 #' @keywords internal
-#' @seealso \code{\link{logit}}
 #' @template author/jjb
 logit_inv <- function(x) {
     .Call('_simts_logit_inv', PACKAGE = 'simts', x)
@@ -1864,7 +1855,6 @@ logit_inv <- function(x) {
 #' This function compute the link function to constrain parameters to a positive domain.
 #' @param x A \code{vec} containing probabilities (e.g. 0 <= x <= 1)
 #' @return A \code{vec} containing logit terms.
-#' @seealso \code{\link{pseudo_logit_inv}}
 #' @keywords internal
 #' @template author/jjb
 pseudo_logit <- function(x) {
@@ -1877,7 +1867,6 @@ pseudo_logit <- function(x) {
 #' @param x A \code{vec} containing probabilities (e.g. -1 <= x <= 1)
 #' @return A \code{vec} containing logit terms.
 #' @keywords internal
-#' @seealso \code{\link{logit_inv}}
 #' @template author/jjb
 logit <- function(x) {
     .Call('_simts_logit', PACKAGE = 'simts', x)
@@ -1889,7 +1878,6 @@ logit <- function(x) {
 #' @param x A \code{vec} containing probabilities (e.g. -2 <= x <= 2)
 #' @return A \code{vec} containing logit terms.
 #' @keywords internal
-#' @seealso \code{\link{logit2_inv}}
 #' @template author/jjb
 logit2 <- function(x) {
     .Call('_simts_logit2', PACKAGE = 'simts', x)
@@ -1901,7 +1889,6 @@ logit2 <- function(x) {
 #' @param x A \code{vec} containing real numbers.
 #' @return A \code{vec} containing logit probabilities.
 #' @keywords internal
-#' @seealso \code{\link{logit2}}
 #' @template author/jjb
 logit2_inv <- function(x) {
     .Call('_simts_logit2_inv', PACKAGE = 'simts', x)

@@ -15,9 +15,6 @@ A \code{vec} containing logit terms.
 \description{
 This function compute the link function to constrain parameters to a positive domain.
 }
-\seealso{
-\code{\link{pseudo_logit_inv}}
-}
 \author{
 James Joseph Balamuta (JJB)
 }

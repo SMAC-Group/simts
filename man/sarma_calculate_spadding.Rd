@@ -25,7 +25,4 @@ A \code{vec} with rows:
 \description{
 Computes the total phi and total theta vector length.
 }
-\seealso{
-\code{\link{sarma_components}}
-}
 \keyword{internal}

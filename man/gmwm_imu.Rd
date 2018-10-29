@@ -17,7 +17,7 @@ gmwm_imu(model, data, compute.v = "fast", robust = F, eff = 0.6, ...)
 
 \item{eff}{A \code{double} between 0 and 1 that indicates the efficiency.}
 
-\item{...}{Other arguments passed to the main \code{\link[gmwm]{gmwm}} function}
+\item{...}{Other arguments passed to the main gmwm function}
 }
 \value{
 A \code{gmwm} object with the structure:
@@ -57,11 +57,11 @@ Performs the GMWM estimation procedure using a parameter transform and sampling
 scheme specific to IMUs.
 }
 \details{
-This version of the \code{\link[gmwm]{gmwm}} function has customized settings
+This version of the gmwm function has customized settings
 ideal for modeling with an IMU object. If you seek to model with an Gauss
-Markov, \code{\link[gmwm]{GM}}, object. Please note results depend on the
+Markov, \code{GM}, object. Please note results depend on the
 \code{freq} specified in the data construction step within the
-\code{\link[gmwm]{imu}}. If you wish for results to be stable but lose the
+\code{imu}. If you wish for results to be stable but lose the
 ability to interpret with respect to \code{freq}, then use
-\code{\link[gmwm]{AR1}} terms.
+\code{AR1} terms.
 }

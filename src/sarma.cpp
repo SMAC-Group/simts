@@ -27,7 +27,6 @@
 //' @param nq  An \code{unsigned int} containing the number of non-seasonal theta parameters.
 //' @param nsp An \code{unsigned int} containing the number of seasonal phi parameters.
 //' @param nsq An \code{unsigned int} containing the number of seasonal theta parameters.
-//' @seealso \code{\link{sarma_components}}
 //' @return A \code{vec} with rows:
 //' \describe{
 //'  \item{p}{Number of phi parameters}

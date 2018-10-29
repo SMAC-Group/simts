@@ -26,7 +26,6 @@
 //' @param x A \code{vec} containing real numbers.
 //' @return A \code{vec} containing logit probabilities.
 //' @keywords internal
-//' @seealso \code{\link{pseudo_logit}}
 //' @template author/jjb
 // [[Rcpp::export]]
 arma::vec pseudo_logit_inv(const arma::vec& x){
@@ -45,7 +44,6 @@ double pseudo_logit_inv(double x){
 //' @param x A \code{vec} containing real numbers.
 //' @return A \code{vec} containing logit probabilities.
 //' @keywords internal
-//' @seealso \code{\link{logit}}
 //' @template author/jjb
 // [[Rcpp::export]]
 arma::vec logit_inv(const arma::vec& x){
@@ -61,7 +59,6 @@ double logit_inv(double x){
 //' This function compute the link function to constrain parameters to a positive domain.
 //' @param x A \code{vec} containing probabilities (e.g. 0 <= x <= 1)
 //' @return A \code{vec} containing logit terms.
-//' @seealso \code{\link{pseudo_logit_inv}}
 //' @keywords internal
 //' @template author/jjb
 // [[Rcpp::export]]
@@ -81,7 +78,6 @@ double pseudo_logit(double x){
 //' @param x A \code{vec} containing probabilities (e.g. -1 <= x <= 1)
 //' @return A \code{vec} containing logit terms.
 //' @keywords internal
-//' @seealso \code{\link{logit_inv}}
 //' @template author/jjb
 // [[Rcpp::export]]
 arma::vec logit(const arma::vec& x){
@@ -100,7 +96,6 @@ double logit(double x){
 //' @param x A \code{vec} containing probabilities (e.g. -2 <= x <= 2)
 //' @return A \code{vec} containing logit terms.
 //' @keywords internal
-//' @seealso \code{\link{logit2_inv}}
 //' @template author/jjb
 // [[Rcpp::export]]
 arma::vec logit2(const arma::vec& x){
@@ -123,7 +118,6 @@ double logit2(double x){
 //' @param x A \code{vec} containing real numbers.
 //' @return A \code{vec} containing logit probabilities.
 //' @keywords internal
-//' @seealso \code{\link{logit2}}
 //' @template author/jjb
 // [[Rcpp::export]]
 arma::vec logit2_inv(const arma::vec& x){

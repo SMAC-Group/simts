@@ -36,6 +36,3 @@ The Autoregressive Order \eqn{1} and Moving Average Order \eqn{1} (ARMA(\eqn{1},
 For more information, please see: \href{http://smac-group.com/computing/process-to-haar-wavelet-variance-formulae}{Supported Haar Wavelet Formulae} (Internet Connection Required).
 }
 
-\seealso{
-\code{\link{arma_to_wv}}
-}

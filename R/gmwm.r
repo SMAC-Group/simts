@@ -1,19 +1,3 @@
-# Copyright (C) 2014 - 2017  James Balamuta, Stephane Guerrier, Roberto Molinari
-#
-# This file is part of GMWM R Methods Package
-#
-# The `gmwm` R package is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# The `gmwm` R package is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 #' Generalized Method of Wavelet Moments (GMWM) for IMUs, ARMA, SSM, and Robust
 #'
 #' Performs estimation of time series models by using the GMWM estimator.
@@ -433,15 +417,15 @@ update.gmwm = function(object, model, ...){
 #' @param compute.v A \code{string} indicating the type of covariance matrix solver. "fast", "bootstrap", "asymp.diag", "asymp.comp", "fft"
 #' @param robust    A \code{boolean} indicating whether to use the robust computation (TRUE) or not (FALSE).
 #' @param eff       A \code{double} between 0 and 1 that indicates the efficiency.
-#' @param ...       Other arguments passed to the main \code{\link[gmwm]{gmwm}} function
+#' @param ...       Other arguments passed to the main gmwm function
 #' @details
-#' This version of the \code{\link[gmwm]{gmwm}} function has customized settings
+#' This version of the gmwm function has customized settings
 #' ideal for modeling with an IMU object. If you seek to model with an Gauss
-#' Markov, \code{\link[gmwm]{GM}}, object. Please note results depend on the
+#' Markov, \code{GM}, object. Please note results depend on the
 #' \code{freq} specified in the data construction step within the
-#' \code{\link[gmwm]{imu}}. If you wish for results to be stable but lose the
+#' \code{imu}. If you wish for results to be stable but lose the
 #' ability to interpret with respect to \code{freq}, then use
-#' \code{\link[gmwm]{AR1}} terms.
+#' \code{AR1} terms.
 #' @return A \code{gmwm} object with the structure:
 #' \describe{
 #'  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
@@ -718,7 +702,6 @@ print.summary.gmwm = function(x, ...){
 #' \item{se}{Standard Errors}
 #' \item{resid}{Residuals from ARIMA ML Fit}
 #' }
-#' @seealso \code{gmwm}, \code{\link{ARMA}}
 #' @export
 predict.gmwm = function(object, data.in.gmwm, n.ahead = 1, ...){
 

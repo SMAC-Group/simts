@@ -21,7 +21,4 @@ A \code{vec} containing the wavelet variance of the ARMA process.
 \description{
 Indicates where the minimum ARMAacf value is and returns that as an index.
 }
-\seealso{
-\code{\link{arma_to_wv_app}}
-}
 \keyword{internal}

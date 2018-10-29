@@ -28,6 +28,3 @@ A \code{predict.gmwm} object with:
 Creates a prediction using the estimated values of GMWM through the
 ARIMA function within R.
 }
-\seealso{
-\code{gmwm}, \code{\link{ARMA}}
-}

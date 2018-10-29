@@ -15,9 +15,6 @@ A \code{vec} containing logit probabilities.
 \description{
 This function computes the inverse of a logit transformation of the parameters.
 }
-\seealso{
-\code{\link{logit2}}
-}
 \author{
 James Joseph Balamuta (JJB)
 }

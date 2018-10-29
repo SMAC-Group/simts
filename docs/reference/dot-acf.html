@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Routing function for summary info — get_summary • simts</title>
+<title>Auto-Covariance and Correlation Functions — .acf • simts</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,10 @@
 
 
 
-<meta property="og:title" content="Routing function for summary info — get_summary" />
+<meta property="og:title" content="Auto-Covariance and Correlation Functions — .acf" />
 
-<meta property="og:description" content="Gets all the data for the summary.gmwm function." />
+<meta property="og:description" content="The acf function computes the estimated
+autocovariance or autocorrelation for both univariate and multivariate cases." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -96,109 +97,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Routing function for summary info</h1>
+    <h1>Auto-Covariance and Correlation Functions</h1>
     <small class="dont-index">Source: <a href='https://github.com/SMAC-Group/simts/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>get_summary.Rd</code></div>
+    <div class="hidden name"><code>dot-acf.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Gets all the data for the summary.gmwm function.</p>
+    <p>The acf function computes the estimated
+autocovariance or autocorrelation for both univariate and multivariate cases.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_summary</span>(<span class='no'>theta</span>, <span class='no'>desc</span>, <span class='no'>objdesc</span>, <span class='no'>model_type</span>, <span class='no'>wv_empir</span>, <span class='no'>theo</span>, <span class='no'>scales</span>, <span class='no'>V</span>,
-  <span class='no'>omega</span>, <span class='no'>obj_value</span>, <span class='no'>N</span>, <span class='no'>alpha</span>, <span class='no'>robust</span>, <span class='no'>eff</span>, <span class='no'>inference</span>, <span class='no'>fullV</span>, <span class='no'>bs_gof</span>,
-  <span class='no'>bs_gof_p_ci</span>, <span class='no'>bs_theta_est</span>, <span class='no'>bs_ci</span>, <span class='no'>B</span>)</pre>
+    <pre class="usage"><span class='fu'>.acf</span>(<span class='no'>x</span>, <span class='kw'>lagmax</span> <span class='kw'>=</span> <span class='fl'>0L</span>, <span class='kw'>cor</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>demean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>theta</th>
-      <td><p>A <code>vec</code> with dimensions N x 1 that contains user-supplied initial values for parameters</p></td>
+      <th>x</th>
+      <td><p>A <code>matrix</code> with dimensions \(N \times S\) or N observations and S processes</p></td>
     </tr>
     <tr>
-      <th>desc</th>
-      <td><p>A <code>vector&lt;string&gt;</code> indicating the models that should be considered.</p></td>
+      <th>lagmax</th>
+      <td><p>A <code>integer</code></p></td>
     </tr>
     <tr>
-      <th>objdesc</th>
-      <td><p>A <code>field&lt;vec&gt;</code> containing a list of parameters (e.g. AR(1) = c(1,1), ARMA(p,q) = c(p,q,1))</p></td>
+      <th>cor</th>
+      <td><p>A <code>bool</code> indicating whether the correlation 
+(<code>TRUE</code>) or covariance (<code>FALSE</code>) should be computed.</p></td>
     </tr>
     <tr>
-      <th>model_type</th>
-      <td><p>A <code>string</code> that represents the model transformation</p></td>
-    </tr>
-    <tr>
-      <th>wv_empir</th>
-      <td><p>A <code>vec</code> that</p></td>
-    </tr>
-    <tr>
-      <th>theo</th>
-      <td><p>A <code>vec</code> that</p></td>
-    </tr>
-    <tr>
-      <th>scales</th>
-      <td><p>A <code>vec</code> that</p></td>
-    </tr>
-    <tr>
-      <th>V</th>
-      <td><p>A <code>mat</code> that contains the V matrix used to obtain the GMWM.</p></td>
-    </tr>
-    <tr>
-      <th>omega</th>
-      <td><p>A <code>mat</code> that</p></td>
-    </tr>
-    <tr>
-      <th>obj_value</th>
-      <td><p>A <code>double</code> that contains the objective function value at the optimized solution.</p></td>
-    </tr>
-    <tr>
-      <th>N</th>
-      <td><p>A <code>int</code> that indicates how long the time series is.</p></td>
-    </tr>
-    <tr>
-      <th>alpha</th>
-      <td><p>A <code>double</code> that handles the alpha level of the confidence interval (1-alpha)*100</p></td>
-    </tr>
-    <tr>
-      <th>robust</th>
-      <td><p>A <code>bool</code> that indicates whether the estimation should be robust or not.</p></td>
-    </tr>
-    <tr>
-      <th>eff</th>
-      <td><p>A <code>double</code> that specifies the amount of efficiency required by the robust estimator.</p></td>
-    </tr>
-    <tr>
-      <th>inference</th>
-      <td><p>A <code>bool</code> that indicates whether inference (e.g. GoF) should be run.</p></td>
-    </tr>
-    <tr>
-      <th>fullV</th>
-      <td><p>A <code>bool</code> that indicates whether the matrix has been fully bootstrapped.</p></td>
-    </tr>
-    <tr>
-      <th>bs_gof</th>
-      <td><p>A <code>bool</code> indicating whether the GoF should be bootstrapped or done asymptotically.</p></td>
-    </tr>
-    <tr>
-      <th>bs_gof_p_ci</th>
-      <td><p>A <code>bool</code> indicating whether a bootstrapped p-value should be generated during the bootstrapped GoF</p></td>
-    </tr>
-    <tr>
-      <th>bs_ci</th>
-      <td><p>A <code>bool</code> that indicates whether a bootstrapped CI should be obtained or to use analytical derivatives.</p></td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td><p>A <code>int</code> that indicates how many iterations should take place.</p></td>
+      <th>demean</th>
+      <td><p>A <code>bool</code> indicating whether the data should be detrended
+(<code>TRUE</code>) or not (<code>FALSE</code>)</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>field&lt;mat&gt;</code> that contains bootstrapped / asymptotic GoF results as well as CIs.</p>
     
 
   </div>
@@ -206,9 +140,7 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

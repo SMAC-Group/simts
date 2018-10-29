@@ -28,14 +28,6 @@ A \code{predict.gmwm} object with:
 Creates a prediction using the estimated values of GMWM through the
 ARIMA function within R.
 }
-\examples{
-# Simulate an ARMA Process
-xt = gen_gts(1000, ARMA(ar=0.3, ma=0.6, sigma2=1))
-model = gmwm(ARMA(1,1), xt)
-
-# Make prediction
-predict(model, xt, n.ahead = 1)
-}
 \seealso{
 \code{\link{gmwm}}, \code{\link{ARMA}}
 }

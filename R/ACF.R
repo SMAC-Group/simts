@@ -398,7 +398,7 @@ PACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE){
   }
 
   #Get the pacf value of the data
-  pacfe = pacf(x3, lagmax = lagmax, cor = cor, plot = FALSE)
+  pacfe = pacf(x3, lag.max = lag.max, type = type, plot = FALSE)
   pacfe = pacfe$acf
   
   # Get the data name 

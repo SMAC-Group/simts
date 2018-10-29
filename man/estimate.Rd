@@ -21,13 +21,26 @@ This function can fit a time series model to data using different methods.
 }
 \examples{
 Xt = gen_gts(300, AR(phi = c(0, 0, 0.8), sigma2 = 1))
-estimate(AR(3), Xt)
+plot(Xt)
+estimate(AR(3), Xt)\\
+
+Xt = gen_gts(300, MA(theta = 0.5, sigma2 = 1))
+plot(Xt)
+estimate(MA(1), Xt, method = "gmwm")
+
+Xt = gen_gts(300, ARMA(ar = c(0.8, -0.5), ma = 0.5, sigma2 = 1))
+plot(Xt)
+estimate(ARMA(2,1), Xt, method = "rgmwm")
 
 Xt = gen_gts(300, ARIMA(ar = c(0.8, -0.5), i = 1, ma = 0.5, sigma2 = 1))
+plot(Xt)
 estimate(ARIMA(2,1,1), Xt, method = "mle")
 
-Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, si = 1, sma = 0.25, s = 24, sigma2 = 1))
-estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, method = "rgmwm")
+Xt = gen_gts(1000, SARIMA(ar = c(0.5, -0.25), i = 0, ma = 0.5, sar = -0.8, 
+si = 1, sma = 0.25, s = 24, sigma2 = 1))
+plot(Xt)
+estimate(SARIMA(ar = 2, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 24), Xt, 
+method = "rgmwm")
 }
 \author{
 Stéphane Guerrier and Yuming Zhang

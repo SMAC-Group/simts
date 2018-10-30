@@ -9,7 +9,7 @@
   parValue = NULL, ...)
 }
 \arguments{
-\item{x}{An \code{"ACF"} object output from \code{\link{theo_acf}} or \code{\link{ACF}}.}
+\item{x}{An \code{"ACF"} object output from \code{theo_acf} and \code{auto_corr}.}
 
 \item{xlab}{A \code{string} indicating the label of the x axis: the default name is 'Lags'.}
 
@@ -31,7 +31,7 @@ Defaults to 0.25.}
 \item{...}{Additional parameters}
 }
 \description{
-The function plots the output of the \code{\link{theo_acf}} and \code{\link{ACF}} functions (autocovariance or autocorrelation functions).
+The function plots the output of the \code{theo_acf} and \code{auto_corr} functions (autocovariance or autocorrelation functions).
 }
 \examples{
 # Calculate the Autocorrelation

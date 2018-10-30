@@ -201,9 +201,9 @@ ACF = function(x, lag.max = NULL, type = "correlation", demean = TRUE, robust = 
 }
 
 #' @title Plot Auto-Covariance and Correlation Functions
-#' @description The function plots the output of the \code{\link{theo_acf}} and \code{\link{ACF}} functions (autocovariance or autocorrelation functions).
+#' @description The function plots the output of the \code{theo_acf} and \code{auto_corr} functions (autocovariance or autocorrelation functions).
 #' @author Yunxiang Zhang, Stéphane Guerrier and Yuming Zhang
-#' @param x         An \code{"ACF"} object output from \code{\link{theo_acf}} or \code{\link{ACF}}.
+#' @param x         An \code{"ACF"} object output from \code{theo_acf} and \code{auto_corr}.
 #' @param xlab         A \code{string} indicating the label of the x axis: the default name is 'Lags'.
 #' @param ylab     A \code{string} indicating the label of the y axis: the default name is 'ACF'.
 #' @param show.ci   A \code{bool} indicating whether to show the confidence region. Defaults to \code{TRUE}.

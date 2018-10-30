@@ -16,7 +16,7 @@ There was 2 NOTEs:
 
   This is a new submission, which is the reason for the first note.
   
-  It seems that on Windows architectures, the CHECK returns one NOTE because  the libs subdirectory is then above the 1MB threshold. However, it seems    that this NOTE only appears under Windows, but not under Linux or OSX. My   understanding is that this inflation of the libs subdirectory is due to the use of Rcpp. Indeed, some functions of the simts package have been       written in C++ using Rcpp. Without the speed up gained from those C++ functions, this package would become impractical.
+  It appears that within the Windows architecture, the CHECK procedure returns only one NOTE regarding the fact that the libs subdirectory is beyond the 1MB threshold. However, this NOTE only occurs for Windows systems while it isn't the case for Linux or OSX. My understanding is that this size inflation of the libs subdirectory is due to the use of the Rcpp package. Indeed, some functions of the simts package have been written in C++ using Rcpp without which various functions would lose a considerable amount of computational efficiency leading to major parts of the package becoming impractical to use.
 
 
 ## Downstream dependencies

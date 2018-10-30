@@ -15,7 +15,7 @@ Authors@R: c(
     person("Yunxiang", "Zhang", role = "ctb")
     )
 Maintainer: Stéphane Guerrier <stef.guerrier@gmail.com>
-Description: This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
+Description: A system contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
 Depends:
     R (>= 3.4.0)
 License: AGPL-3 | file LICENSE

@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
-This package contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
+A system contains easy-to-use tools as a support for time series analysis courses. The functions are either new or are wrappers to already existing functions to ensure a user-friendly and general usage.
 }
 \details{
 The data sets in this package may change at a moments notice.

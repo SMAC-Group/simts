@@ -36,9 +36,4 @@ The Autoregressive Order \eqn{p} and Moving Average Order \eqn{q} (ARMA(\eqn{p},
 Furthermore, this assumes that stationarity has been achieved as it directly
 }
 
-\section{Haar Wavelet Derivation Information}{
-
-For more information, please see: \href{http://smac-group.com/computing/process-to-haar-wavelet-variance-formulae}{Supported Haar Wavelet Formulae} (Internet Connection Required).
-}
-
 \keyword{internal}

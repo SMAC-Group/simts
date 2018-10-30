@@ -1312,7 +1312,6 @@ do_polyroot_cpp <- function(z) {
 #' The function is a generic implementation that requires a stationary theoretical autocorrelation function (ACF)
 #' and the ability to transform an ARMA(\eqn{p},\eqn{q}) process into an MA(\eqn{\infty}{infinity}) (e.g. infinite MA process).
 #' @template to_wv/haar_arma
-#' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 arma_to_wv <- function(ar, ma, sigma2, tau) {
@@ -1346,7 +1345,6 @@ acf_sum <- function(ar, ma, last_tau, alpha = 0.99) {
 #' were previously a concern. However, this is no longer the case and, thus, this has been left
 #' in for the curious soul to discover... 
 #' @template to_wv/haar_arma
-#' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 arma_to_wv_app <- function(ar, ma, sigma2, tau, alpha = 0.9999) {
@@ -1366,7 +1364,6 @@ arma_to_wv_app <- function(ar, ma, sigma2, tau, alpha = 0.9999) {
 #' \code{\link{arma_to_wv}}
 #' 
 #' @template to_wv/haar_arma11
-#' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 arma11_to_wv <- function(phi, theta, sigma2, tau) {
@@ -1385,7 +1382,6 @@ arma11_to_wv <- function(phi, theta, sigma2, tau) {
 #' \code{\link{arma_to_wv}}.
 #' 
 #' @template to_wv/haar_ar1
-#' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 ar1_to_wv <- function(phi, sigma2, tau) {
@@ -1404,7 +1400,6 @@ ar1_to_wv <- function(phi, sigma2, tau) {
 #' \code{\link{arma_to_wv}}.
 #' 
 #' @template to_wv/haar_ma1
-#' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 ma1_to_wv <- function(theta, sigma2, tau) {
@@ -1418,7 +1413,6 @@ ma1_to_wv <- function(theta, sigma2, tau) {
 #' @template misc/tau
 #' @return A \code{vec} containing the wavelet variance of the QN.
 #' @template to_wv/haar_qn
-#' @template misc/haar_wv_formulae_link
 #' @backref src/process_to_wv.cpp
 #' @backref src/process_to_wv.h
 qn_to_wv <- function(q2, tau) {
@@ -1431,7 +1425,6 @@ qn_to_wv <- function(q2, tau) {
 #' @template misc/tau
 #' @return A \code{vec} containing the wavelet variance of the white noise.
 #' @template to_wv/haar_wn
-#' @template misc/haar_wv_formulae_link
 wn_to_wv <- function(sigma2, tau) {
     .Call('_simts_wn_to_wv', PACKAGE = 'simts', sigma2, tau)
 }
@@ -1442,7 +1435,6 @@ wn_to_wv <- function(sigma2, tau) {
 #' @template misc/tau
 #' @return A \code{vec} containing the wavelet variance of the random walk.
 #' @template to_wv/haar_rw
-#' @template misc/haar_wv_formulae_link
 rw_to_wv <- function(gamma2, tau) {
     .Call('_simts_rw_to_wv', PACKAGE = 'simts', gamma2, tau)
 }
@@ -1453,7 +1445,6 @@ rw_to_wv <- function(gamma2, tau) {
 #' @template misc/tau
 #' @return A \code{vec} containing the wavelet variance of the drift.
 #' @template to_wv/haar_dr
-#' @template misc/haar_wv_formulae_link
 dr_to_wv <- function(omega, tau) {
     .Call('_simts_dr_to_wv', PACKAGE = 'simts', omega, tau)
 }
@@ -1466,7 +1457,6 @@ dr_to_wv <- function(omega, tau) {
 #' @param objdesc A \code{field<vec>} containing a list of object descriptors.
 #' @template misc/tau
 #' @return A \code{vec} containing the wavelet variance of the model.
-#' @template misc/haar_wv_formulae_link
 #' @keywords internal
 theoretical_wv <- function(theta, desc, objdesc, tau) {
     .Call('_simts_theoretical_wv', PACKAGE = 'simts', theta, desc, objdesc, tau)
@@ -1480,7 +1470,6 @@ theoretical_wv <- function(theta, desc, objdesc, tau) {
 #' @param objdesc A \code{field<vec>} containing a list of object descriptors.
 #' @template misc/tau
 #' @return A \code{mat} containing the wavelet variance of each process in the model
-#' @template misc/haar_wv_formulae_link
 #' @keywords internal
 decomp_theoretical_wv <- function(theta, desc, objdesc, tau) {
     .Call('_simts_decomp_theoretical_wv', PACKAGE = 'simts', theta, desc, objdesc, tau)
@@ -1491,7 +1480,6 @@ decomp_theoretical_wv <- function(theta, desc, objdesc, tau) {
 #' This function computes the combined processes to WV (haar) in a given model.
 #' @param decomp A \code{mat} with scales as rows and processes as columns
 #' @return A \code{vec} containing the wavelet variance of the process for the overall model
-#' @template misc/haar_wv_formulae_link
 #' @keywords internal
 decomp_to_theo_wv <- function(decomp) {
     .Call('_simts_decomp_to_theo_wv', PACKAGE = 'simts', decomp)

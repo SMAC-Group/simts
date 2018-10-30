@@ -21,9 +21,4 @@ A \code{vec} containing the wavelet variance of the model.
 \description{
 This function computes the summation of all Processes to WV (haar) in a given model
 }
-\section{Haar Wavelet Derivation Information}{
-
-For more information, please see: \href{http://smac-group.com/computing/process-to-haar-wavelet-variance-formulae}{Supported Haar Wavelet Formulae} (Internet Connection Required).
-}
-
 \keyword{internal}

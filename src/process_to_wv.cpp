@@ -42,7 +42,6 @@
 //' The function is a generic implementation that requires a stationary theoretical autocorrelation function (ACF)
 //' and the ability to transform an ARMA(\eqn{p},\eqn{q}) process into an MA(\eqn{\infty}{infinity}) (e.g. infinite MA process).
 //' @template to_wv/haar_arma
-//' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
 // [[Rcpp::export]]
@@ -110,7 +109,6 @@ double acf_sum(arma::vec ar, arma::vec ma, unsigned int last_tau, double alpha =
 //' were previously a concern. However, this is no longer the case and, thus, this has been left
 //' in for the curious soul to discover... 
 //' @template to_wv/haar_arma
-//' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
 // [[Rcpp::export]]
@@ -188,7 +186,6 @@ arma::vec arma_to_wv_app(arma::vec ar, arma::vec ma, double sigma2, arma::vec ta
 //' \code{\link{arma_to_wv}}
 //' 
 //' @template to_wv/haar_arma11
-//' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
 // [[Rcpp::export]]
@@ -220,7 +217,6 @@ arma::vec arma11_to_wv(double phi, double theta, double sigma2, const arma::vec&
 //' \code{\link{arma_to_wv}}.
 //' 
 //' @template to_wv/haar_ar1
-//' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
 // [[Rcpp::export]]
@@ -248,7 +244,6 @@ arma::vec ar1_to_wv(double phi, double sigma2, const arma::vec& tau){
 //' \code{\link{arma_to_wv}}.
 //' 
 //' @template to_wv/haar_ma1
-//' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
 // [[Rcpp::export]]
@@ -263,7 +258,6 @@ arma::vec ma1_to_wv(double theta, double sigma2, const arma::vec& tau){
 //' @template misc/tau
 //' @return A \code{vec} containing the wavelet variance of the QN.
 //' @template to_wv/haar_qn
-//' @template misc/haar_wv_formulae_link
 //' @backref src/process_to_wv.cpp
 //' @backref src/process_to_wv.h
 // [[Rcpp::export]]
@@ -277,7 +271,6 @@ arma::vec qn_to_wv(double q2, const arma::vec& tau){
 //' @template misc/tau
 //' @return A \code{vec} containing the wavelet variance of the white noise.
 //' @template to_wv/haar_wn
-//' @template misc/haar_wv_formulae_link
 // [[Rcpp::export]]
 arma::vec wn_to_wv(double sigma2, arma::vec tau){
   return sigma2/tau;
@@ -290,7 +283,6 @@ arma::vec wn_to_wv(double sigma2, arma::vec tau){
 //' @template misc/tau
 //' @return A \code{vec} containing the wavelet variance of the random walk.
 //' @template to_wv/haar_rw
-//' @template misc/haar_wv_formulae_link
 // [[Rcpp::export]]
 arma::vec rw_to_wv(double gamma2, const arma::vec& tau){
   return gamma2*((arma::square(tau) + 2.0)/(12.0*tau));
@@ -303,7 +295,6 @@ arma::vec rw_to_wv(double gamma2, const arma::vec& tau){
 //' @template misc/tau
 //' @return A \code{vec} containing the wavelet variance of the drift.
 //' @template to_wv/haar_dr
-//' @template misc/haar_wv_formulae_link
 // [[Rcpp::export]]
 arma::vec dr_to_wv(double omega, const arma::vec& tau){
 	return square(omega)*arma::square(tau)/16.0;
@@ -317,7 +308,6 @@ arma::vec dr_to_wv(double omega, const arma::vec& tau){
 //' @param objdesc A \code{field<vec>} containing a list of object descriptors.
 //' @template misc/tau
 //' @return A \code{vec} containing the wavelet variance of the model.
-//' @template misc/haar_wv_formulae_link
 //' @keywords internal
 // [[Rcpp::export]]
 arma::vec theoretical_wv(const arma::vec& theta, 
@@ -414,7 +404,6 @@ arma::vec theoretical_wv(const arma::vec& theta,
 //' @param objdesc A \code{field<vec>} containing a list of object descriptors.
 //' @template misc/tau
 //' @return A \code{mat} containing the wavelet variance of each process in the model
-//' @template misc/haar_wv_formulae_link
 //' @keywords internal
 // [[Rcpp::export]]
 arma::mat decomp_theoretical_wv(const arma::vec& theta, 
@@ -507,7 +496,6 @@ arma::mat decomp_theoretical_wv(const arma::vec& theta,
 //' This function computes the combined processes to WV (haar) in a given model.
 //' @param decomp A \code{mat} with scales as rows and processes as columns
 //' @return A \code{vec} containing the wavelet variance of the process for the overall model
-//' @template misc/haar_wv_formulae_link
 //' @keywords internal
 // [[Rcpp::export]]
 arma::vec decomp_to_theo_wv(const arma::mat& decomp){

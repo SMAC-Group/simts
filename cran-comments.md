@@ -2,9 +2,10 @@
 
 * local OS X install, R 3.5.1
 * local Windows install, R 3.5.1
-* ubuntu 14.04 (on travis-ci), R 3.1.2
+* ubuntu 14.04 (on travis-ci), R 3.5.1
 * win-builder
 * appveyor
+* rhub
 
 
 ## R CMD check results

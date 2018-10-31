@@ -62,6 +62,7 @@
 #'  \item{seed}{Randomization seed used to generate the guessing values}
 #'  \item{freq}{Frequency of data}
 #' }
+#' @export
 #' @details
 #' This function is under work. Some of the features are active. Others... Not so much.
 #'
@@ -512,6 +513,7 @@ rgmwm = function(model, data, eff = c(0.9, 0.8, 0.6), ...){
 #' @param x   A \code{GMWM} object
 #' @param ... Other arguments passed to specific methods
 #' @return Text output via print
+#' @export
 #' @author JJB
 print.gmwm = function(x, ...){
   cat("Model Information: \n")
@@ -548,6 +550,7 @@ print.gmwm = function(x, ...){
 #'  \item{obj.fun}{Value of obj.fun at minimized theta}
 #'  \item{N}{Length of Time Series}
 #' }
+#' @export
 #' @author JJB
 summary.gmwm = function(object, inference = NULL,
                         bs.gof = NULL,  bs.gof.p.ci = NULL,

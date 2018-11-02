@@ -371,7 +371,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
 #' @return Estimated parameters values with confidence intervals and standard errors.
 #' @export
 #' @author Stéphane Guerrier
-summary.fitsimts = function(object){
+summary.fitsimts = function(object, ...){
   if (class(object$mod) == "Arima"){
     print(object)
   }else{

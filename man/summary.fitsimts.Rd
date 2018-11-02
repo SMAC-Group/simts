@@ -4,7 +4,7 @@
 \alias{summary.fitsimts}
 \title{Summary of fitsimts object}
 \usage{
-\method{summary}{fitsimts}(object)
+\method{summary}{fitsimts}(object, ...)
 }
 \arguments{
 \item{object}{A \code{fitsimts} object}

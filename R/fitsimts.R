@@ -362,7 +362,33 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
   best_model(out, ic = criterion)
 }
 
-
+#' Summary of fitsimts object
+#'
+#' Displays summary information about fitsimts object
+#' @method summary fitsimts
+#' @param object       A \code{fitsimts} object
+#' @param ...          Other arguments passed to specific methods
+#' @return Estimated parameters values with confidence intervals and standard errors.
+#' @export
+#' @author Stéphane Guerrier
+summary.fitsimts = function(object){
+  if (class(object$mod) == "Arima"){
+    print(object)
+  }else{
+    cat("Fitted model: ")
+    cat(object$model_name)
+    cat("\n")
+    cat("\n")
+    cat("Estimated parameters:")
+    cat("\n")
+    print(object$mod)
+    cat("95 % confidence intervals:")
+    cat("\n")
+    inter = summary(object$mod)$estimate
+    print(inter)
+    return(invisible(inter))
+  }
+}
 
 
 

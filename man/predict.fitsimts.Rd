@@ -5,7 +5,8 @@
 \title{Time Series Prediction}
 \usage{
 \method{predict}{fitsimts}(object, n.ahead = 10, show_last = 100,
-  level = NULL, xlab = NULL, ylab = NULL, main = NULL, ...)
+  level = NULL, xlab = NULL, ylab = NULL, main = NULL,
+  plot = TRUE, ...)
 }
 \arguments{
 \item{object}{A \code{fitsimts} object obtained from \code{estimate} function.}
@@ -22,6 +23,8 @@ By default, it uses the levels of 0.50 and 0.95.}
 \item{ylab}{A \code{string} for the title of y axis.}
 
 \item{main}{A \code{string} for the over all title of the plot.}
+
+\item{plot}{A \code{logical} value. logical. If \code{TRUE}(the default) the predictions are plotted.}
 
 \item{...}{Additional arguments.}
 }

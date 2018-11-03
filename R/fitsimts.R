@@ -100,7 +100,8 @@ estimate = function(model, Xt, method = "mle", demean = TRUE){
   out = list(mod = mod, method = method, 
              demean = demean, Xt = Xt, 
              sample_mean = sample_mean, model_name = model_name$print,
-             model_type =  model_name$simplified)
+             model_type =  model_name$simplified,
+             model = model)
   class(out) = "fitsimts"
   out
 }
@@ -199,6 +200,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @param xlab A \code{string} for the title of x axis.
 #' @param ylab A \code{string} for the title of y axis.
 #' @param main A \code{string} for the over all title of the plot.
+#' @param plot A \code{logical} value. logical. If \code{TRUE}(the default) the predictions are plotted.
 #' @param ... Additional arguments.
 #' @method predict fitsimts
 #' @author Stéphane Guerrier and Yuming Zhang
@@ -219,7 +221,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
 #' @export
 #' 
 predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL, 
-                            xlab = NULL, ylab = NULL, main = NULL, ...){
+                            xlab = NULL, ylab = NULL, main = NULL, plot = TRUE, ...){
   Xt = object$Xt
   freq = attr(Xt, 'freq')
   end_time =  attr(Xt, 'end')
@@ -257,14 +259,20 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
       pred = a$pred
       se = a$se
     }
-   plot_pred_gmwm(x = Xt, model=object, n.ahead = n.ahead, level = level, 
-                  xlab = xlab, ylab = ylab, main = main) 
+  
+    if (plot){
+      plot_pred_gmwm(x = Xt, model=object, n.ahead = n.ahead, level = level, 
+                     xlab = xlab, ylab = ylab, main = main) 
+    }  
+   
   }else{
     a = predict(object$mod, n.ahead = n.ahead)
     pred = a$pred
     se = a$se
-    plot_pred(x = Xt, model = object$mod, n.ahead = n.ahead, level = level, 
-              xlab = xlab, ylab = ylab, main = main)
+    if (plot){
+      plot_pred(x = Xt, model = object$mod, n.ahead = n.ahead, level = level, 
+                xlab = xlab, ylab = ylab, main = main)
+    }
   }
   
   if(is.null(level)){
@@ -281,7 +289,7 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
   }
   
   names(out) = c("pred", "se", paste("CI", level, sep = ""))
-  return(out)
+  return(invisible(out))
 }
 
 
@@ -389,9 +397,6 @@ summary.fitsimts = function(object, ...){
     return(invisible(inter))
   }
 }
-
-
-
 
 
 

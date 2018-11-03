@@ -1,18 +1,3 @@
-# Copyright (C) 2014 - 2017 James Balamuta, Stephane Guerrier, Roberto Molinari
-#
-# This file is part of simts R Methods Package
-#
-# The `simts` R package is free software: you can redistribute it and/or modify it
-# under the terms of the Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
-# included within the packages source as the LICENSE file.
-#
-# The `simts` R package is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#
-# You should have received a copy of the Attribution-NonCommercial-ShareAlike 4.0 International 
-# (CC BY-NC-SA 4.0) along with `simts`.  If not, see <http://www.smac-group.com/licensing/>.
-
 #' @title Integer Check
 #' @description Checks whether the submitted value is an integer
 #' @keywords internal

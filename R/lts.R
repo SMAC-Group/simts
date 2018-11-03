@@ -1,20 +1,3 @@
-# Copyright (C) 2017 James Balamuta, Stephane Guerrier, Roberto Molinari, Justin Lee
-#
-# This file is part of simts R Methods Package
-#
-# The `simts` R package is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as
-# published by the Free Software Foundation, either version 3 of the
-# License, or (at your option) any later version.
-#
-# The `simts` R package is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#
-# You should have received a copy of the GNU Affero General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 #' @title Generate a Latent Time Series Object from Data
 #' @description Create a \code{lts} object based on a supplied matrix or data frame. The latent time series is obtained by the sum of underlying time series.
 #' @param data      A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 3 columns of which the last represents the latent time series obtained through the sum of the previous columns.

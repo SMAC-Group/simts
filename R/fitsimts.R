@@ -399,8 +399,83 @@ summary.fitsimts = function(object, ...){
 }
 
 
+#' TO DO
+#'
+#' TO DO
+#' @param model      TO DO
+#' @param Xt         TO DO 
+#' @param start      TO DO
+#' @return TO DO
+#' @export
+#' @author Stéphane Guerrier and Yuming Zhang
+MAPE = function(model, Xt, start = 0.25){
+  # Check model
+  if (!is.ts.model(model)){
+    stop("The model provided is not a valid model.")
+  }
+  
+  # Determine model
+  model_code = model$obj.desc[[1]]
+  
+  if (sum(model_code[3:4]) > 0){
+    stop("SARIMA are currently not supported.")
+  }
+  
+  # Order of AR
+  p = model_code[1]
+  
+  # Order of MA 
+  q = model_code[2]
+  
+  if (q > 0){
+    stop("MA are currently not supported.")
+  }
+  
+  # Non-seasonal integration
+  intergrated = model_code[7]
+  
+  if (intergrated  > 0){
+    stop("ARIMA are currently not supported.")
+  }
+  
+  n = length(Xt)
+  index_start = floor(start*n)
+  m = n - index_start 
+  pred = matrix(NA, m, p)
+  mape = mape_sd = rep(NA, p)
 
+  for (i in 1:p){
+    for (j in 1:m){
+      pred[j,i] = as.numeric(predict(arima(Xt[1:(index_start+j-1)], c(i,0,0)), se.fit = FALSE))
+    }
+    diff_pred = abs(pred[,i] - Xt[(index_start+1):n])
+    mape[i] = median(diff_pred)
+    mape_sd[i] = np_boot_sd_med(diff_pred)
+  }
+  
+  make_frame(x_range = c(1, p), y_range = c(0.95*min(mape - mape_sd), 1.05*max(mape + mape_sd)), 
+             xlab = "Order of AR process", ylab = "MAPE",
+             main = "Model Accuracy (MAPE)")
+  
+  lines(1:p, mape, type = "b", pch = 16, cex = 1.5, col = "darkblue")
+  polygon(c(1:p, rev(1:p)), c(mape - mape_sd, rev(mape + mape_sd)), 
+          col = rgb(red = 0, green = 0.6, blue = 1, 0.15), border = NA)
+  
+  return(invisible(list(mape = mape, sd = mape_sd)))
+}
 
+#' internal function
+np_boot_sd_med = function(x, B = 5000){
+  set.seed(1982)
+  res = rep(NA, B)
+  n = length(x)
+  
+  for (i in 1:B){
+    x_star = sample(x,replace = TRUE)
+    res[i] = median(x_star)
+  }
+  sd(res)
+}
 
 
 

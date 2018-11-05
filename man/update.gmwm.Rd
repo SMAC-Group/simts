@@ -4,7 +4,7 @@
 \alias{update.gmwm}
 \title{Update (Robust) GMWM object for IMU or SSM}
 \usage{
-\method{update}{gmwm}(object, model, ...)
+update.gmwm(object, model, ...)
 }
 \arguments{
 \item{object}{A \code{gmwm} object.}

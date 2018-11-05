@@ -6,11 +6,11 @@
 \alias{update.imu}
 \title{Update Object Attribute}
 \usage{
-\method{update}{lts}(object, type, new, keep.start = T, ...)
+update.lts(object, type, new, keep.start = T, ...)
 
-\method{update}{gts}(object, type, new, keep.start = T, ...)
+update.gts(object, type, new, keep.start = T, ...)
 
-\method{update}{imu}(object, type, new, ...)
+update.imu(object, type, new, ...)
 }
 \arguments{
 \item{object}{A \code{lts}, \code{gts} or \code{imu} object}

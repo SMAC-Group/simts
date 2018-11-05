@@ -5,8 +5,8 @@
 \title{Time Series Prediction}
 \usage{
 \method{predict}{fitsimts}(object, n.ahead = 10, show_last = 100,
-  level = NULL, xlab = NULL, ylab = NULL, main = NULL, plot = TRUE,
-  ...)
+  level = NULL, xlab = NULL, ylab = NULL, main = NULL,
+  plot = TRUE, ...)
 }
 \arguments{
 \item{object}{A \code{fitsimts} object obtained from \code{estimate} function.}

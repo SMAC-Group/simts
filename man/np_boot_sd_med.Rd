@@ -2,10 +2,19 @@
 % Please edit documentation in R/fitsimts.R
 \name{np_boot_sd_med}
 \alias{np_boot_sd_med}
-\title{internal function}
+\title{Bootstrap standard error for the median}
 \usage{
 np_boot_sd_med(x, B = 5000)
 }
+\arguments{
+\item{x}{A \code{vector} of data.}
+
+\item{B}{A \code{numeric}. Number of simulations.}
+}
+\value{
+Bootstrap standard error for the median
+}
 \description{
-internal function
+Non-parametric bootstrap to obtain the standard of the median of
+iid data.
 }

@@ -477,7 +477,14 @@ MAPE = function(model, Xt, start = 0.25, plot = TRUE){
   return(invisible(list(mape = mape, sd = mape_sd)))
 }
 
-#' internal function
+#' @title Bootstrap standard error for the median 
+#'
+#' @description Non-parametric bootstrap to obtain the standard of the median of
+#' iid data. 
+#' @param \code{x}  A \code{vector} of data. 
+#' @param \code{B}  A \code{numeric}. Number of simulations.
+#' @return Bootstrap standard error for the median
+#' @importFrom stats median
 np_boot_sd_med = function(x, B = 5000){
   set.seed(1982)
   res = rep(NA, B)
@@ -489,8 +496,3 @@ np_boot_sd_med = function(x, B = 5000){
   }
   sd(res)
 }
-
-
-
-
-

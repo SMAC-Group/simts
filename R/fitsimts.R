@@ -400,16 +400,23 @@ summary.fitsimts = function(object, ...){
 }
 
 
-#' TO DO
+#' Median Absolute Prediction Error
 #'
-#' TO DO
-#' @param model      TO DO
-#' @param Xt         TO DO 
-#' @param start      TO DO
-#' @return TO DO
+#' This function calculates Median Absolute Prediction Error (MAPE), which assesses 
+#' the prediction performance with respect to point forecasts of a given model. 
+#' It is calculated based on one-step ahead prediction and reforecasting. 
+#' @param model  A time series model.
+#' @param Xt     A \code{vector} of time series data. 
+#' @param start  A \code{numeric} indicating the starting proportion of the data
+#' that is used for prediction. 
+#' @param plot   A \code{boolean} indicating whether a model accuracy plot based
+#' on MAPE is returned or not. 
+#' @return The MAPE calculated based on one-step ahead prediction and reforecasting
+#' is returned along with its standard deviation. 
+#' @importFrom stats median
 #' @export
 #' @author Stéphane Guerrier and Yuming Zhang
-MAPE = function(model, Xt, start = 0.25){
+MAPE = function(model, Xt, start = 0.25, plot = TRUE){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -454,6 +461,7 @@ MAPE = function(model, Xt, start = 0.25){
     mape_sd[i] = np_boot_sd_med(diff_pred)
   }
   
+  if(plot){
   make_frame(x_range = c(1, p), y_range = c(0.95*min(mape - mape_sd), 1.05*max(mape + mape_sd)), 
              xlab = "Order of AR process", ylab = "MAPE",
              main = "Model Accuracy (MAPE)")
@@ -461,6 +469,7 @@ MAPE = function(model, Xt, start = 0.25){
   lines(1:p, mape, type = "b", pch = 16, cex = 1.5, col = "darkblue")
   polygon(c(1:p, rev(1:p)), c(mape - mape_sd, rev(mape + mape_sd)), 
           col = rgb(red = 0, green = 0.6, blue = 1, 0.15), border = NA)
+  }
   
   return(invisible(list(mape = mape, sd = mape_sd)))
 }

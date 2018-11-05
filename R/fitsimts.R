@@ -305,6 +305,7 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
 #' @param criterion A \code{string} indicating which model selection criterion should be used (possible values: \code{"aic"} (default), \code{"bic"}, \code{"hq"}).
+#' @param plot A \code{boolean} indicating whether a model selection plot is returned or not.
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @export
 #' @examples
@@ -318,7 +319,7 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
 #' Xt = gen_gts(500, ARMA(ar = 0.5, ma = c(0.5, -0.5, 0.4), sigma2 = 1))
 #' select(ARMA(5,3), Xt, criterion = "hq", include.mean = FALSE)
 #' 
-select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
+select = function(model, Xt, include.mean = TRUE, criterion = "aic", plot = TRUE){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -348,7 +349,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                         q = 0L,
                         include.mean = include.mean)
     
-    plot_select_ar(x=out)
+    if(plot == TRUE){plot_select_ar(x=out)}
   }else if (p == 0){
     out = select_arima_(Xt,
                         p = 0L,
@@ -356,7 +357,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                         q = 0:q,
                         include.mean = include.mean)
     
-    plot_select_ma(x=out)
+    if(plot == TRUE){plot_select_ma(x=out)}
   }else{
     out = select_arima_(Xt,
                         p = 0:p,
@@ -364,7 +365,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                         q = 0:q,
                         include.mean = include.mean)
     
-    plot_select_arma(x=out)
+    if(plot == TRUE){plot_select_arma(x=out)}
   }
   
   best_model(out, ic = criterion)

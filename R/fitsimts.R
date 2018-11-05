@@ -457,10 +457,13 @@ MAPE = function(model, Xt, start = 0.25){
              xlab = "Order of AR process", ylab = "MAPE",
              main = "Model Accuracy (MAPE)")
   
-  lines(1:p, mape, type = "b", pch = 16, cex = 1.5, col = "darkblue")
   polygon(c(1:p, rev(1:p)), c(mape - mape_sd, rev(mape + mape_sd)), 
           col = rgb(red = 0, green = 0.6, blue = 1, 0.15), border = NA)
   
+  lines(1:p, mape, type = "b", pch = 16, cex = 1.5, col = "darkblue")
+  
+  min_mape = which.min(mape)
+  points(min_mape, mape[min_mape], pch = 16, col = "red2", cex = 2)
   return(invisible(list(mape = mape, sd = mape_sd)))
 }
 

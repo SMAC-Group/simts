@@ -4,7 +4,7 @@
 \alias{select}
 \title{Time Series Model Selection}
 \usage{
-select(model, Xt, include.mean = TRUE, criterion = "aic")
+select(model, Xt, include.mean = TRUE, criterion = "aic", plot = TRUE)
 }
 \arguments{
 \item{model}{A time series model (only ARIMA are currently supported).}
@@ -14,6 +14,8 @@ select(model, Xt, include.mean = TRUE, criterion = "aic")
 \item{include.mean}{A \code{boolean} indicating whether to fit ARIMA with the mean or not.}
 
 \item{criterion}{A \code{string} indicating which model selection criterion should be used (possible values: \code{"aic"} (default), \code{"bic"}, \code{"hq"}).}
+
+\item{plot}{A \code{boolean} indicating whether a model selection plot is returned or not.}
 }
 \description{
 This function performs model fitting and calculates the model selection criteria to be plotted.

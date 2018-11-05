@@ -305,6 +305,7 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
 #' @param Xt A \code{vector} of time series data. 
 #' @param include.mean A \code{boolean} indicating whether to fit ARIMA with the mean or not.
 #' @param criterion A \code{string} indicating which model selection criterion should be used (possible values: \code{"aic"} (default), \code{"bic"}, \code{"hq"}).
+#' @param plot A \code{boolean} indicating whether a model selection plot is returned or not.
 #' @author Stéphane Guerrier and Yuming Zhang
 #' @export
 #' @examples
@@ -318,7 +319,7 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
 #' Xt = gen_gts(500, ARMA(ar = 0.5, ma = c(0.5, -0.5, 0.4), sigma2 = 1))
 #' select(ARMA(5,3), Xt, criterion = "hq", include.mean = FALSE)
 #' 
-select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
+select = function(model, Xt, include.mean = TRUE, criterion = "aic", plot = TRUE){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -348,7 +349,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                         q = 0L,
                         include.mean = include.mean)
     
-    plot_select_ar(x=out)
+    if(plot == TRUE){plot_select_ar(x=out)}
   }else if (p == 0){
     out = select_arima_(Xt,
                         p = 0L,
@@ -356,7 +357,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                         q = 0:q,
                         include.mean = include.mean)
     
-    plot_select_ma(x=out)
+    if(plot == TRUE){plot_select_ma(x=out)}
   }else{
     out = select_arima_(Xt,
                         p = 0:p,
@@ -364,7 +365,7 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic"){
                         q = 0:q,
                         include.mean = include.mean)
     
-    plot_select_arma(x=out)
+    if(plot == TRUE){plot_select_arma(x=out)}
   }
   
   best_model(out, ic = criterion)
@@ -399,16 +400,23 @@ summary.fitsimts = function(object, ...){
 }
 
 
-#' TO DO
+#' Median Absolute Prediction Error
 #'
-#' TO DO
-#' @param model      TO DO
-#' @param Xt         TO DO 
-#' @param start      TO DO
-#' @return TO DO
+#' This function calculates Median Absolute Prediction Error (MAPE), which assesses 
+#' the prediction performance with respect to point forecasts of a given model. 
+#' It is calculated based on one-step ahead prediction and reforecasting. 
+#' @param model  A time series model.
+#' @param Xt     A \code{vector} of time series data. 
+#' @param start  A \code{numeric} indicating the starting proportion of the data
+#' that is used for prediction. 
+#' @param plot   A \code{boolean} indicating whether a model accuracy plot based
+#' on MAPE is returned or not. 
+#' @return The MAPE calculated based on one-step ahead prediction and reforecasting
+#' is returned along with its standard deviation. 
+#' @importFrom stats median
 #' @export
 #' @author Stéphane Guerrier and Yuming Zhang
-MAPE = function(model, Xt, start = 0.25){
+MAPE = function(model, Xt, start = 0.25, plot = TRUE){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -453,12 +461,14 @@ MAPE = function(model, Xt, start = 0.25){
     mape_sd[i] = np_boot_sd_med(diff_pred)
   }
   
+  if(plot){
   make_frame(x_range = c(1, p), y_range = c(0.95*min(mape - mape_sd), 1.05*max(mape + mape_sd)), 
              xlab = "Order of AR process", ylab = "MAPE",
              main = "Model Accuracy (MAPE)")
   
   polygon(c(1:p, rev(1:p)), c(mape - mape_sd, rev(mape + mape_sd)), 
           col = rgb(red = 0, green = 0.6, blue = 1, 0.15), border = NA)
+  }
   
   lines(1:p, mape, type = "b", pch = 16, cex = 1.5, col = "darkblue")
   

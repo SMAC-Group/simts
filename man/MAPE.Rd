@@ -2,22 +2,29 @@
 % Please edit documentation in R/fitsimts.R
 \name{MAPE}
 \alias{MAPE}
-\title{TO DO}
+\title{Median Absolute Prediction Error}
 \usage{
-MAPE(model, Xt, start = 0.25)
+MAPE(model, Xt, start = 0.25, plot = TRUE)
 }
 \arguments{
-\item{model}{TO DO}
+\item{model}{A time series model.}
 
-\item{Xt}{TO DO}
+\item{Xt}{A \code{vector} of time series data.}
 
-\item{start}{TO DO}
+\item{start}{A \code{numeric} indicating the starting proportion of the data
+that is used for prediction.}
+
+\item{plot}{A \code{boolean} indicating whether a model accuracy plot based
+on MAPE is returned or not.}
 }
 \value{
-TO DO
+The MAPE calculated based on one-step ahead prediction and reforecasting
+is returned along with its standard deviation.
 }
 \description{
-TO DO
+This function calculates Median Absolute Prediction Error (MAPE), which assesses 
+the prediction performance with respect to point forecasts of a given model. 
+It is calculated based on one-step ahead prediction and reforecasting.
 }
 \author{
 Stéphane Guerrier and Yuming Zhang

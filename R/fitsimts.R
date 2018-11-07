@@ -476,14 +476,17 @@ MAPE = function(model, Xt, start = 0.8, plot = TRUE){
   min_upper =  mape[min_mape] + mape_sd[min_mape]
   min_one_sd_rule = which.max((mape < min_upper)*(p:1))
   points(min_mape, mape[min_mape], pch = 16, col = "red2", cex = 2)
+  abline(h = min_upper, lty = 2, col = "darkblue")
   if (min_mape != min_one_sd_rule){
-    abline(h = min_upper, lty = 2, col = "darkblue")
     points(min_one_sd_rule, mape[min_one_sd_rule], pch = 16, col = "green3", cex = 2)
+    legend("topright", c("MAPE", "Min MAPE", "One SD rule"), 
+           lwd = c(1, NA, NA), pch = c(16, 16, 16), pt.cex = c(1.25, 1.5, 1.5),
+           col = c("darkblue", "red2", "green3"), inset = c(0,0.10), bty = "n")
+  }else{
+    legend("topright", c("MAPE", "Min MAPE", "One SD rule"), 
+           lwd = c(1, NA, NA), pch = c(16, 16, 16), pt.cex = c(1.25, 1.5, 1.5),
+           col = c("darkblue", "red2", "red2"), inset = c(0,0.10), bty = "n")
   }
-  
-  legend("topright", c("MAPE", "Min MAPE", "One SD rule"), 
-         lwd = c(1, NA, NA), pch = c(16, 16, 16), pt.cex = c(1.25, 1.5, 1.5),
-         col = c("darkblue", "red2", "green3"), inset = 0.12)
   
   return(invisible(list(mape = mape, sd = mape_sd)))
 }

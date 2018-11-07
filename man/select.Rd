@@ -4,8 +4,7 @@
 \alias{select}
 \title{Time Series Model Selection}
 \usage{
-select(model, Xt, include.mean = TRUE, criterion = "aic",
-  plot = TRUE)
+select(model, Xt, include.mean = TRUE, criterion = "aic", plot = TRUE)
 }
 \arguments{
 \item{model}{A time series model (only ARIMA are currently supported).}

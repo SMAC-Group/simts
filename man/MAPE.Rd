@@ -4,7 +4,7 @@
 \alias{MAPE}
 \title{Median Absolute Prediction Error}
 \usage{
-MAPE(model, Xt, start = 0.25, plot = TRUE)
+MAPE(model, Xt, start = 0.8, plot = TRUE)
 }
 \arguments{
 \item{model}{A time series model.}

@@ -7,9 +7,9 @@
 np_boot_sd_med(x, B = 5000)
 }
 \arguments{
-\item{x}{A \code{vector} of data.}
+\item{\code{x}}{A \code{vector} of data.}
 
-\item{B}{A \code{numeric}. Number of simulations.}
+\item{\code{B}}{A \code{numeric}. Number of simulations.}
 }
 \value{
 Bootstrap standard error for the median

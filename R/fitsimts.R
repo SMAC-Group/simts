@@ -495,8 +495,8 @@ MAPE = function(model, Xt, start = 0.8, plot = TRUE){
 #'
 #' @description Non-parametric bootstrap to obtain the standard of the median of
 #' iid data. 
-#' @param \code{x}  A \code{vector} of data. 
-#' @param \code{B}  A \code{numeric}. Number of simulations.
+#' @param x  A \code{vector} of data. 
+#' @param B  A \code{numeric} indicating the number of simulations.
 #' @return Bootstrap standard error for the median
 #' @importFrom stats median
 np_boot_sd_med = function(x, B = 5000){

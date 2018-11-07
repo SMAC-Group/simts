@@ -278,27 +278,38 @@ plot_select_ar = function(x){
   points(x$p[which.min(hq_value)], hq_value[which.min(hq_value)], 
          col = col_hq, pch = 16, cex = 2)
   
-  # Add legend
-  usr = par("usr")
-  lgd = legend(x = mean(c(usr[1],usr[2])), 
-               y =  mean(c(usr[3],usr[4])),
-               plot = F,
-               legend = c("AIC", "BIC", "HQ"))
+  # # Add legend
+  # usr = par("usr")
+  # lgd = legend(x = mean(c(usr[1],usr[2])), 
+  #              y =  mean(c(usr[3],usr[4])),
+  #              plot = F,
+  #              legend = c("AIC", "BIC", "HQ"))
+  # 
+  # #x = usr[1] + lgd$rect$w*0.08,
+  # #     y =  usr[4] - lgd$rect$h*0.3,
+  # legend("bottomleft",
+  #        legend = c("AIC", "BIC", "HQ"), 
+  #        text.col = rep("black", 3),
+  #        lty = rep(1,3),
+  #        pch = rep(16,3),
+  #        pt.cex = 1.5,
+  #        lwd = 1.5,
+  #        col = c(col_aic, col_bic, col_hq),
+  #        bty = "n", cex = 1.25)
+  #   #,
+  #   # x.intersp = 0.5,
+  #   # y.intersp = 0.5)
   
-  #x = usr[1] + lgd$rect$w*0.08,
-  #     y =  usr[4] - lgd$rect$h*0.3,
-  legend("bottomleft",
-         legend = c("AIC", "BIC", "HQ"), 
+  legend("topright",
+         legend = c("AIC", "BIC", "HQ"),
          text.col = rep("black", 3),
          lty = rep(1,3),
          pch = rep(16,3),
          pt.cex = 1.5,
          lwd = 1.5,
          col = c(col_aic, col_bic, col_hq),
-         bty = "n", cex = 1.25)
-    #,
-    # x.intersp = 0.5,
-    # y.intersp = 0.5)
+         bty = "n", cex = 1.25,
+         inset = c(0, 0.05))
 }
 
 
@@ -374,21 +385,32 @@ plot_select_ma = function(x){
   points(x$q[which.min(hq_value)], hq_value[which.min(hq_value)], 
          col = col_hq, pch = 16, cex = 2)
   
-  # Add legend
-  usr = par("usr")
-  lgd = legend(x = mean(c(usr[1],usr[2])), 
-               y =  mean(c(usr[3],usr[4])),
-               plot = F,
-               legend = c("AIC", "BIC", "HQ"))
-  legend("bottomleft",
-         legend = c("AIC", "BIC", "HQ"), 
+  # # Add legend
+  # usr = par("usr")
+  # lgd = legend(x = mean(c(usr[1],usr[2])), 
+  #              y =  mean(c(usr[3],usr[4])),
+  #              plot = F,
+  #              legend = c("AIC", "BIC", "HQ"))
+  # legend("bottomleft",
+  #        legend = c("AIC", "BIC", "HQ"), 
+  #        text.col = rep("black", 3),
+  #        lty = rep(1,3),
+  #        pch = rep(16,3),
+  #        pt.cex = 1.5,
+  #        lwd = 1.5,
+  #        col = c(col_aic, col_bic, col_hq),
+  #        bty = "n", cex = 1.25)
+  
+  legend("topright",
+         legend = c("AIC", "BIC", "HQ"),
          text.col = rep("black", 3),
          lty = rep(1,3),
          pch = rep(16,3),
          pt.cex = 1.5,
          lwd = 1.5,
          col = c(col_aic, col_bic, col_hq),
-         bty = "n", cex = 1.25)
+         bty = "n", cex = 1.25,
+         inset = c(0, 0.05))
 }
 
 
@@ -478,20 +500,33 @@ plot_select_arma = function(x){
     
     # Add legend
     if(i==1){
-      usr = par("usr")
-      lgd = legend(x = mean(c(usr[1],usr[2])), 
-                   y =  mean(c(usr[3],usr[4])),
-                   plot = F,
-                   legend = c("AIC", "BIC", "HQ"))
-      legend("bottomleft",
-             legend = c("AIC", "BIC", "HQ"), 
+      # usr = par("usr")
+      # lgd = legend(x = mean(c(usr[1],usr[2])), 
+      #              y =  mean(c(usr[3],usr[4])),
+      #              plot = F,
+      #              legend = c("AIC", "BIC", "HQ"))
+      # legend("bottomleft",
+      #        legend = c("AIC", "BIC", "HQ"), 
+      #        text.col = rep("black", 3),
+      #        lty = rep(1,3),
+      #        pch = rep(16,3),
+      #        pt.cex = 1.5,
+      #        lwd = 1.5,
+      #        col = c(col_aic, col_bic, col_hq),
+      #        bty = "n", cex = 1.25)
+      
+      legend("topright",
+             legend = c("AIC", "BIC", "HQ"),
              text.col = rep("black", 3),
              lty = rep(1,3),
              pch = rep(16,3),
              pt.cex = 1.5,
              lwd = 1.5,
              col = c(col_aic, col_bic, col_hq),
-             bty = "n", cex = 1.25)
+             bty = "n", cex = 1.25,
+             inset = c(-0.15, -0.08),
+             y.intersp = 0.5)
+      
     }
   }
   

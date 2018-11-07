@@ -416,7 +416,7 @@ summary.fitsimts = function(object, ...){
 #' @importFrom stats median
 #' @export
 #' @author Stéphane Guerrier and Yuming Zhang
-MAPE = function(model, Xt, start = 0.25, plot = TRUE){
+MAPE = function(model, Xt, start = 0.8, plot = TRUE){
   # Check model
   if (!is.ts.model(model)){
     stop("The model provided is not a valid model.")
@@ -470,10 +470,21 @@ MAPE = function(model, Xt, start = 0.25, plot = TRUE){
           col = rgb(red = 0, green = 0.6, blue = 1, 0.15), border = NA)
   }
   
-  lines(1:p, mape, type = "b", pch = 16, cex = 1.5, col = "darkblue")
+  lines(1:p, mape, type = "b", pch = 16, cex = 1.25, col = "darkblue")
   
   min_mape = which.min(mape)
+  min_upper =  mape[min_mape] + mape_sd[min_mape]
+  min_one_sd_rule = which.max((mape < min_upper)*(p:1))
   points(min_mape, mape[min_mape], pch = 16, col = "red2", cex = 2)
+  if (min_mape != min_one_sd_rule){
+    abline(h = min_upper, lty = 2, col = "darkblue")
+    points(min_one_sd_rule, mape[min_one_sd_rule], pch = 16, col = "green3", cex = 2)
+  }
+  
+  legend("topright", c("MAPE", "Min MAPE", "One SD rule"), 
+         lwd = c(1, NA, NA), pch = c(16, 16, 16), pt.cex = c(1.25, 1.5, 1.5),
+         col = c("darkblue", "red2", "green3"), inset = 0.12)
+  
   return(invisible(list(mape = mape, sd = mape_sd)))
 }
 

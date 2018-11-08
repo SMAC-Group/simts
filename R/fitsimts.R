@@ -425,36 +425,42 @@ MAPE = function(model, Xt, start = 0.8, plot = TRUE){
   # Determine model
   model_code = model$obj.desc[[1]]
   
-  if (sum(model_code[3:4]) > 0){
-    stop("SARIMA are currently not supported.")
-  }
-  
   # Order of AR
   p = model_code[1]
   
   # Order of MA 
   q = model_code[2]
   
-  if (q > 0){
-    stop("MA are currently not supported.")
-  }
-  
   # Non-seasonal integration
   intergrated = model_code[7]
+  
+  # Non-supported models
+  if (sum(model_code[3:4]) > 0){
+    stop("SARIMA are currently not supported.")
+  }
   
   if (intergrated  > 0){
     stop("ARIMA are currently not supported.")
   }
   
+  if (q > 0 && p > 0){
+    stop("ARMA are currently not supported.")
+  }
+  
   n = length(Xt)
   index_start = floor(start*n)
-  m = n - index_start 
-  pred = matrix(NA, m, p)
-  mape = mape_sd = rep(NA, p)
+  m = n - index_start
+  ord = max(p, q)
+  pred = matrix(NA, m, ord)
+  mape = mape_sd = rep(NA, ord)
 
-  for (i in 1:p){
+  for (i in 1:ord){
     for (j in 1:m){
-      pred[j,i] = as.numeric(predict(arima(Xt[1:(index_start+j-1)], c(i,0,0)), se.fit = FALSE))
+      if (q == 0){
+        pred[j,i] = as.numeric(predict(arima(Xt[1:(index_start+j-1)], c(i,0,0)), se.fit = FALSE))
+      }else{
+        pred[j,i] = as.numeric(predict(arima(Xt[1:(index_start+j-1)], c(0,0,i)), se.fit = FALSE))
+      }
     }
     diff_pred = abs(pred[,i] - Xt[(index_start+1):n])
     mape[i] = median(diff_pred)
@@ -462,19 +468,25 @@ MAPE = function(model, Xt, start = 0.8, plot = TRUE){
   }
   
   if(plot){
-  make_frame(x_range = c(1, p), y_range = c(0.95*min(mape - mape_sd), 1.05*max(mape + mape_sd)), 
-             xlab = "Order of AR process", ylab = "MAPE",
+  if (q == 0){
+    myxlab = "Order of AR process"
+  }else{
+    myxlab = "Order of MA process"  
+  }
+    
+  make_frame(x_range = c(1, ord), y_range = c(0.95*min(mape - mape_sd), 1.05*max(mape + mape_sd)), 
+             xlab = myxlab, ylab = "MAPE",
              main = "Model Accuracy (MAPE)")
   
-  polygon(c(1:p, rev(1:p)), c(mape - mape_sd, rev(mape + mape_sd)), 
+  polygon(c(1:ord, rev(1:ord)), c(mape - mape_sd, rev(mape + mape_sd)), 
           col = rgb(red = 0, green = 0.6, blue = 1, 0.15), border = NA)
   }
   
-  lines(1:p, mape, type = "b", pch = 16, cex = 1.25, col = "darkblue")
+  lines(1:ord, mape, type = "b", pch = 16, cex = 1.25, col = "darkblue")
   
   min_mape = which.min(mape)
   min_upper =  mape[min_mape] + mape_sd[min_mape]
-  min_one_sd_rule = which.max((mape < min_upper)*(p:1))
+  min_one_sd_rule = which.max((mape < min_upper)*(ord:1))
   points(min_mape, mape[min_mape], pch = 16, col = "red2", cex = 2)
   abline(h = min_upper, lty = 2, col = "darkblue")
   if (min_mape != min_one_sd_rule){

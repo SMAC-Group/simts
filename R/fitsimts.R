@@ -522,3 +522,144 @@ np_boot_sd_med = function(x, B = 5000){
   }
   sd(res)
 }
+
+#' Evalute a time series or a list of time series models
+#'
+#' This function calculates AIC, BIC and HQ or the MAPE for a list of time series
+#' models. This function currently only supports models estimated by the MLE. 
+#' @param models       A time series model or a list of time series models.
+#' @param Xt           A time series (i.e gts object).
+#' @param criterion    Either "IC" for AIC, BIC and HQ or "MAPE" for MAPE.
+#' @param start        A \code{numeric} indicating the starting proportion of the data that 
+#' is used for prediction (assuming criterion = "MAPE").
+#' @param demean       A \code{boolean} indicating whether the model includes a mean / intercept term or not.
+#' @param print         logical. If \code{TRUE} (the default) results are printed.
+#' @return AIC, BIC and HQ or MAPE
+#' @importFrom stats AIC median
+#' @export
+#' @author Stéphane Guerrier
+#' @examples 
+#' n = 300
+#' Xt = gen_gts(n, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' evaluate(AR(1), Xt)
+#' evaluate(list(AR(1), AR(3), MA(3), ARMA(1,2), 
+#' SARIMA(ar = 1, i = 0, ma = 1, sar = 1, si = 1, sma = 1, s = 12)), Xt)
+#' evaluate(list(AR(1), AR(3)), Xt, criterion = "MAPE")
+evaluate = function(models, Xt, criterion = "IC", start = 0.8, demean = TRUE, print = TRUE){
+  # Make Xt an gts obj
+  if (!("gts" %in% class(Xt))){
+    Xt = gts(Xt)
+  }
+  
+  if (class(models) == "ts.model"){
+    nb_models = 1
+    models = list(models)
+  }else if (class(models) == "list"){
+    nb_models = length(models)
+    if (sum(sapply(models, class) != "ts.model") > 0){
+      stop("This funciton only supports list of time series models.")
+    }
+  }else{
+    stop("This funciton only supports list of time series models or directley a time series model.")
+  }
+  
+  if (criterion == "IC"){
+    output = matrix(NA, nb_models, 3)
+    dimnames(output)[[2]] = c("AIC", "BIC", "HQ")
+  }else if(criterion == "MAPE"){
+    output = matrix(NA, nb_models, 2)
+    dimnames(output)[[2]] = c("MAPE", "SD")
+  }else{
+    stop("This funciton only supports the option criterion = 'IC' (information criteria) or 'MAPE'.")
+  }
+  
+  model_names = rep("NA", nb_models)
+  
+  # Sample size
+  n = length(Xt)
+  
+  if (criterion == "IC"){
+    for (i in 1:nb_models){
+      fit_current = estimate(models[[i]], Xt, demean = demean)
+      model_names[i] = fit_current$model_name
+      output[i, ] = c(AIC(fit_current$mod), AIC(fit_current$mod, k = log(n)), AIC(fit_current$mod, k = 2*log(log(n))))
+    }
+    dimnames(output)[[1]] = model_names
+  }else{
+    index_start = floor(start*n)
+    m = n - index_start
+    pred = matrix(NA, m, nb_models)
+    
+    for (i in 1:nb_models){
+      for (j in 1:m){
+        fit_current = estimate(models[[i]], gts(Xt[1:(index_start+j-1)]), demean = demean)
+        pred[j,i] = as.numeric(predict(fit_current)$pred[1])
+      }
+      model_names[i] = fit_current$model_name
+      diff_pred = abs(pred[,i] - Xt[(index_start+1):n])
+      output[i,] = c(median(diff_pred), np_boot_sd_med(diff_pred))
+    }
+  }
+  dimnames(output)[[1]] = model_names
+  
+  if (print == TRUE){
+    print(output)
+    cat("\n")
+    k = ncol(output)
+    
+    if (nb_models > 1){
+      if (criterion == "MAPE"){
+        cat("MAPE suggets: ")
+        cat(model_names[which.min(output[,1])])
+      }else{
+        cat("AIC suggets: ")
+        cat(model_names[which.min(output[,1])])
+        cat("\n")
+        cat("BIC suggets: ")
+        cat(model_names[which.min(output[,2])])
+        cat("\n")
+        cat("HQ suggets : ")
+        cat(model_names[which.min(output[,3])])
+      }
+      cat("\n")
+    }
+  }
+  
+  invisible(output)
+}
+
+
+#' Akaike's Information Criterion
+#'
+#' This function calculates AIC, BIC and HQ for a fitsimts object. This function currently
+#' only supports models estimated by the MLE. 
+#' @param object  A fitsimts object.
+#' @param k	      The penalty per parameter to be used; the default k = 2 is the classical AIC.
+#' @param ...     Optionally more fitted model objects.
+#' @return AIC, BIC or HQ
+#' @importFrom stats AIC
+#' @export
+#' @author Stéphane Guerrier
+#' @examples 
+#' n = 300
+#' Xt = gen_gts(n, AR(phi = c(0, 0, 0.8), sigma2 = 1))
+#' mod = estimate(AR(3), Xt)
+#' 
+#' # AIC
+#' AIC(mod)
+#' 
+#' # BIC
+#' AIC(mod, k = log(n))
+#' 
+#' # HQ
+#' AIC(mod, k = 2*log(log(n)))
+AIC.fitsimts = function(object, k = 2, ...){
+  if(object$method == "mle"){
+    AIC(object$mod, k = k)
+  }else{
+    stop("This function is currently only implemented with ML estimates.")
+  }
+}
+
+
+

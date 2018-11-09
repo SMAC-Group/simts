@@ -539,6 +539,7 @@ np_boot_sd_med = function(x, B = 5000){
 #' @export
 #' @author Stéphane Guerrier
 #' @examples 
+#' set.seed(18)
 #' n = 300
 #' Xt = gen_gts(n, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' evaluate(AR(1), Xt)
@@ -641,6 +642,7 @@ evaluate = function(models, Xt, criterion = "IC", start = 0.8, demean = TRUE, pr
 #' @export
 #' @author Stéphane Guerrier
 #' @examples 
+#' set.seed(1)
 #' n = 300
 #' Xt = gen_gts(n, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 #' mod = estimate(AR(3), Xt)

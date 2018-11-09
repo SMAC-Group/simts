@@ -17,10 +17,11 @@
 AIC, BIC or HQ
 }
 \description{
-This function calculates AIC, BIC and HQ for a fitsimts object. This function currently
+This function calculates AIC, BIC or HQ for a fitsimts object. This function currently
 only supports models estimated by the MLE.
 }
 \examples{
+set.seed(1)
 n = 300
 Xt = gen_gts(n, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 mod = estimate(AR(3), Xt)

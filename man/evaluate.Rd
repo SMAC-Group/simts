@@ -29,6 +29,7 @@ This function calculates AIC, BIC and HQ or the MAPE for a list of time series
 models. This function currently only supports models estimated by the MLE.
 }
 \examples{
+set.seed(18)
 n = 300
 Xt = gen_gts(n, AR(phi = c(0, 0, 0.8), sigma2 = 1))
 evaluate(AR(1), Xt)

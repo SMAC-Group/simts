@@ -609,16 +609,16 @@ evaluate = function(models, Xt, criterion = "IC", start = 0.8, demean = TRUE, pr
     
     if (nb_models > 1){
       if (criterion == "MAPE"){
-        cat("MAPE suggets: ")
+        cat("MAPE suggests: ")
         cat(model_names[which.min(output[,1])])
       }else{
-        cat("AIC suggets: ")
+        cat("AIC suggests: ")
         cat(model_names[which.min(output[,1])])
         cat("\n")
-        cat("BIC suggets: ")
+        cat("BIC suggests: ")
         cat(model_names[which.min(output[,2])])
         cat("\n")
-        cat("HQ suggets : ")
+        cat("HQ suggests : ")
         cat(model_names[which.min(output[,3])])
       }
       cat("\n")
@@ -631,7 +631,7 @@ evaluate = function(models, Xt, criterion = "IC", start = 0.8, demean = TRUE, pr
 
 #' Akaike's Information Criterion
 #'
-#' This function calculates AIC, BIC and HQ for a fitsimts object. This function currently
+#' This function calculates AIC, BIC or HQ for a fitsimts object. This function currently
 #' only supports models estimated by the MLE. 
 #' @param object  A fitsimts object.
 #' @param k	      The penalty per parameter to be used; the default k = 2 is the classical AIC.

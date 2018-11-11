@@ -613,7 +613,7 @@ corr_analysis = function(x, lag.max = NULL, type = "correlation", demean = TRUE,
   }
   
   par(mfrow = c(1,1))
-  return(list("ACF" = acfe, "PACF" = pacfe))
+  invisible(list("ACF" = acfe, "PACF" = pacfe))
 }
 
 

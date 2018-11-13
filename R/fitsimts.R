@@ -226,7 +226,8 @@ predict.fitsimts = function(object, n.ahead = 10, show_last = 100, level = NULL,
   freq = attr(Xt, 'freq')
   end_time =  attr(Xt, 'end')
   if (length(Xt) > show_last){
-    Xt2 = Xt[((freq*end_time-show_last):(freq*end_time)) - attr(Xt, 'start') + 1]
+    # Xt2 = Xt[((freq*end_time-show_last):(freq*end_time)) - attr(Xt, 'start') + 1]
+    Xt2 = Xt[(length(Xt)-show_last+1):length(Xt)]
 
     start = end_time-show_last/freq
     end = attr(Xt, 'end')

@@ -596,7 +596,7 @@ evaluate = function(models, Xt, criterion = "IC", start = 0.8, demean = TRUE, pr
     for (i in 1:nb_models){
       for (j in 1:m){
         fit_current = estimate(models[[i]], gts(Xt[1:(index_start+j-1)]), demean = demean)
-        pred[j,i] = as.numeric(predict(fit_current)$pred[1])
+        pred[j,i] = as.numeric(predict(fit_current, plot = FALSE)$pred[1])
       }
       model_names[i] = fit_current$model_name
       diff_pred = abs(pred[,i] - Xt[(index_start+1):n])

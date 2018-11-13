@@ -515,6 +515,18 @@ plot_select_arma = function(x){
       #        col = c(col_aic, col_bic, col_hq),
       #        bty = "n", cex = 1.25)
       
+      # legend("topright",
+      #        legend = c("AIC", "BIC", "HQ"),
+      #        text.col = rep("black", 3),
+      #        lty = rep(1,3),
+      #        pch = rep(16,3),
+      #        pt.cex = 1.5,
+      #        lwd = 1.5,
+      #        col = c(col_aic, col_bic, col_hq),
+      #        bty = "n", cex = 1.25,
+      #        inset = c(-0.15, -0.08),
+      #        y.intersp = 0.5)
+      
       legend("topright",
              legend = c("AIC", "BIC", "HQ"),
              text.col = rep("black", 3),
@@ -524,8 +536,7 @@ plot_select_arma = function(x){
              lwd = 1.5,
              col = c(col_aic, col_bic, col_hq),
              bty = "n", cex = 1.25,
-             inset = c(-0.15, -0.08),
-             y.intersp = 0.5)
+             inset = c(0, 0.05))
       
     }
   }

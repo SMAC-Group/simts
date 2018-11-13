@@ -368,7 +368,9 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic", plot = TRUE
     if(plot == TRUE){plot_select_arma(x=out)}
   }
   
-  best_model(out, ic = criterion)
+  result = best_model(out, ic = criterion)
+  class(result) = "fitsimts"
+  return(invisible(result))
 }
 
 #' Summary of fitsimts object

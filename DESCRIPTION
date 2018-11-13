@@ -6,8 +6,8 @@ Date: 2018-10-28
 LazyData: true
 Authors@R: c(
     person("Stéphane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
-    person("James", "Balamuta", role = "aut"),
-    person("Roberto", "Molinari", role = "aut"),
+    person("James", "Balamuta", role = c("aut","cph")),
+    person("Roberto", "Molinari", role = c("aut","cph")),
     person("Justin", "Lee", role = "aut"),
     person("Yuming", "Zhang", role = "aut"),
     person("Wenchao", "Yang", role = "ctb"), 

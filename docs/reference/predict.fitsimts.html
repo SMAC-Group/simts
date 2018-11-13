@@ -109,7 +109,8 @@
 
     <pre class="usage"><span class='co'># S3 method for fitsimts</span>
 <span class='fu'>predict</span>(<span class='no'>object</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>show_last</span> <span class='kw'>=</span> <span class='fl'>100</span>,
-  <span class='kw'>level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>level</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,6 +145,10 @@ By default, it uses the levels of 0.50 and 0.95.</p></td>
       <td><p>A <code>string</code> for the over all title of the plot.</p></td>
     </tr>
     <tr>
+      <th>plot</th>
+      <td><p>A <code>logical</code> value. logical. If <code>TRUE</code>(the default) the predictions are plotted.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Additional arguments.</p></td>
     </tr>
@@ -153,270 +158,12 @@ By default, it uses the levels of 0.50 and 0.95.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>300</span>, <span class='fu'><a href='AR.html'>AR</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0.8</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='estimate.html'>estimate</a></span>(<span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>3</span>), <span class='no'>Xt</span>)
-<span class='fu'>predict</span>(<span class='no'>model</span>)</div><div class='img'><img src='predict.fitsimts-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $pred
-#&gt; Time Series:
-#&gt; Start = 301 
-#&gt; End = 310 
-#&gt; Frequency = 1 
-#&gt;  [1] -1.7154762  0.6247164  0.3660653 -1.4065982  0.5010924  0.1730198
-#&gt;  [7] -1.1585547  0.3888403  0.0324295 -0.9603074
-#&gt; 
-#&gt; $se
-#&gt; Time Series:
-#&gt; Start = 301 
-#&gt; End = 310 
-#&gt; Frequency = 1 
-#&gt;  [1] 0.9488929 0.9499413 0.9501834 1.2043121 1.2063009 1.2068119 1.3369845
-#&gt;  [8] 1.3394043 1.3400935 1.4124346
-#&gt; 
-#&gt; $CI0.5
-#&gt;              [,1]        [,2]
-#&gt;  [1,] -2.35549475 -1.07545774
-#&gt;  [2,] -0.01600927  1.26544211
-#&gt;  [3,] -0.27482370  1.00695429
-#&gt;  [4,] -2.21889441 -0.59430207
-#&gt;  [5,] -0.31254517  1.31473005
-#&gt;  [6,] -0.64096251  0.98700201
-#&gt;  [7,] -2.06033702 -0.25677237
-#&gt;  [8,] -0.51457417  1.29225482
-#&gt;  [9,] -0.87144983  0.93630883
-#&gt; [10,] -1.91298013 -0.00763474
-#&gt; 
-#&gt; $CI0.95
-#&gt;            [,1]      [,2]
-#&gt;  [1,] -3.575272 0.1443196
-#&gt;  [2,] -1.237134 2.4865672
-#&gt;  [3,] -1.496260 2.2283906
-#&gt;  [4,] -3.767007 0.9538101
-#&gt;  [5,] -1.863214 2.8653988
-#&gt;  [6,] -2.192288 2.5383276
-#&gt;  [7,] -3.778996 1.4618867
-#&gt;  [8,] -2.236344 3.0140246
-#&gt;  [9,] -2.594105 2.6589645
-#&gt; [10,] -3.728628 1.8080136
-#&gt; </div><div class='input'><span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</div><div class='img'><img src='predict.fitsimts-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $pred
-#&gt; Time Series:
-#&gt; Start = 301 
-#&gt; End = 310 
-#&gt; Frequency = 1 
-#&gt;  [1] -1.7154762  0.6247164  0.3660653 -1.4065982  0.5010924  0.1730198
-#&gt;  [7] -1.1585547  0.3888403  0.0324295 -0.9603074
-#&gt; 
-#&gt; $se
-#&gt; Time Series:
-#&gt; Start = 301 
-#&gt; End = 310 
-#&gt; Frequency = 1 
-#&gt;  [1] 0.9488929 0.9499413 0.9501834 1.2043121 1.2063009 1.2068119 1.3369845
-#&gt;  [8] 1.3394043 1.3400935 1.4124346
-#&gt; 
-#&gt; $CI0.95
-#&gt;            [,1]      [,2]
-#&gt;  [1,] -3.575272 0.1443196
-#&gt;  [2,] -1.237134 2.4865672
-#&gt;  [3,] -1.496260 2.2283906
-#&gt;  [4,] -3.767007 0.9538101
-#&gt;  [5,] -1.863214 2.8653988
-#&gt;  [6,] -2.192288 2.5383276
-#&gt;  [7,] -3.778996 1.4618867
-#&gt;  [8,] -2.236344 3.0140246
-#&gt;  [9,] -2.594105 2.6589645
-#&gt; [10,] -3.728628 1.8080136
-#&gt; </div><div class='input'>
+<span class='fu'>predict</span>(<span class='no'>model</span>)</div><div class='img'><img src='predict.fitsimts-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</div><div class='img'><img src='predict.fitsimts-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='gts.html'>gts</a></span>(<span class='fu'>as.vector</span>(<span class='no'>lynx</span>), <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>1821</span>, <span class='kw'>end</span> <span class='kw'>=</span> <span class='fl'>1934</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>1</span>,
 <span class='kw'>unit_ts</span> <span class='kw'>=</span> <span class='fu'>bquote</span>(<span class='fu'>paste</span>(<span class='fl'>10</span>^<span class='fl'>8</span>,<span class='st'>" "</span>,<span class='no'>m</span>^<span class='fl'>3</span>)), <span class='kw'>name_ts</span> <span class='kw'>=</span> <span class='st'>"Numbers"</span>,
 <span class='kw'>unit_time</span> <span class='kw'>=</span> <span class='st'>"year"</span>, <span class='kw'>data_name</span> <span class='kw'>=</span> <span class='st'>"Annual Numbers of Lynx Trappings"</span>)
 <span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='estimate.html'>estimate</a></span>(<span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>1</span>), <span class='no'>x</span>)
-<span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='img'><img src='predict.fitsimts-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $pred
-#&gt; Time Series:
-#&gt; Start = 115 
-#&gt; End = 134 
-#&gt; Frequency = 1 
-#&gt;  [1] 2874.298 2500.078 2231.648 2039.102 1900.987 1801.917 1730.853 1679.879
-#&gt;  [9] 1643.315 1617.087 1598.274 1584.779 1575.099 1568.156 1563.175 1559.603
-#&gt; [17] 1557.040 1555.202 1553.883 1552.938
-#&gt; 
-#&gt; $se
-#&gt; Time Series:
-#&gt; Start = 115 
-#&gt; End = 134 
-#&gt; Frequency = 1 
-#&gt;  [1] 1100.247 1354.031 1467.609 1522.751 1550.359 1564.374 1571.536 1575.209
-#&gt;  [9] 1577.095 1578.065 1578.564 1578.820 1578.952 1579.020 1579.055 1579.073
-#&gt; [17] 1579.082 1579.087 1579.089 1579.091
-#&gt; 
-#&gt; $CI0.5
-#&gt;            [,1]     [,2]
-#&gt;  [1,] 2132.1925 3616.403
-#&gt;  [2,] 1586.7978 3413.357
-#&gt;  [3,] 1241.7606 3221.535
-#&gt;  [4,] 1012.0219 3066.181
-#&gt;  [5,]  855.2862 2946.688
-#&gt;  [6,]  746.7629 2857.071
-#&gt;  [7,]  670.8683 2790.838
-#&gt;  [8,]  617.4169 2742.341
-#&gt;  [9,]  579.5804 2707.050
-#&gt; [10,]  552.6988 2681.476
-#&gt; [11,]  533.5492 2662.999
-#&gt; [12,]  519.8813 2649.677
-#&gt; [13,]  510.1124 2640.086
-#&gt; [14,]  503.1232 2633.189
-#&gt; [15,]  498.1190 2628.232
-#&gt; [16,]  494.5343 2624.671
-#&gt; [17,]  491.9654 2622.115
-#&gt; [18,]  490.1240 2620.280
-#&gt; [19,]  488.8038 2618.963
-#&gt; [20,]  487.8572 2618.018
-#&gt; 
-#&gt; $CI0.95
-#&gt;             [,1]     [,2]
-#&gt;  [1,]   717.8539 5030.741
-#&gt;  [2,]  -153.7738 5153.929
-#&gt;  [3,]  -644.8127 5108.108
-#&gt;  [4,]  -945.4348 5023.638
-#&gt;  [5,] -1137.6598 4939.634
-#&gt;  [6,] -1264.1993 4868.033
-#&gt;  [7,] -1349.3011 4811.008
-#&gt;  [8,] -1407.4736 4767.232
-#&gt;  [9,] -1447.7348 4734.365
-#&gt; [10,] -1475.8630 4710.038
-#&gt; [11,] -1495.6536 4692.202
-#&gt; [12,] -1509.6513 4679.210
-#&gt; [13,] -1519.5898 4669.789
-#&gt; [14,] -1526.6664 4662.978
-#&gt; [15,] -1531.7154 4658.066
-#&gt; [16,] -1535.3232 4654.529
-#&gt; [17,] -1537.9040 4651.984
-#&gt; [18,] -1539.7515 4650.155
-#&gt; [19,] -1541.0749 4648.842
-#&gt; [20,] -1542.0231 4647.898
-#&gt; </div><div class='input'><span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</div><div class='img'><img src='predict.fitsimts-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $pred
-#&gt; Time Series:
-#&gt; Start = 115 
-#&gt; End = 134 
-#&gt; Frequency = 1 
-#&gt;  [1] 2874.298 2500.078 2231.648 2039.102 1900.987 1801.917 1730.853 1679.879
-#&gt;  [9] 1643.315 1617.087 1598.274 1584.779 1575.099 1568.156 1563.175 1559.603
-#&gt; [17] 1557.040 1555.202 1553.883 1552.938
-#&gt; 
-#&gt; $se
-#&gt; Time Series:
-#&gt; Start = 115 
-#&gt; End = 134 
-#&gt; Frequency = 1 
-#&gt;  [1] 1100.247 1354.031 1467.609 1522.751 1550.359 1564.374 1571.536 1575.209
-#&gt;  [9] 1577.095 1578.065 1578.564 1578.820 1578.952 1579.020 1579.055 1579.073
-#&gt; [17] 1579.082 1579.087 1579.089 1579.091
-#&gt; 
-#&gt; $CI0.95
-#&gt;             [,1]     [,2]
-#&gt;  [1,]   717.8539 5030.741
-#&gt;  [2,]  -153.7738 5153.929
-#&gt;  [3,]  -644.8127 5108.108
-#&gt;  [4,]  -945.4348 5023.638
-#&gt;  [5,] -1137.6598 4939.634
-#&gt;  [6,] -1264.1993 4868.033
-#&gt;  [7,] -1349.3011 4811.008
-#&gt;  [8,] -1407.4736 4767.232
-#&gt;  [9,] -1447.7348 4734.365
-#&gt; [10,] -1475.8630 4710.038
-#&gt; [11,] -1495.6536 4692.202
-#&gt; [12,] -1509.6513 4679.210
-#&gt; [13,] -1519.5898 4669.789
-#&gt; [14,] -1526.6664 4662.978
-#&gt; [15,] -1531.7154 4658.066
-#&gt; [16,] -1535.3232 4654.529
-#&gt; [17,] -1537.9040 4651.984
-#&gt; [18,] -1539.7515 4650.155
-#&gt; [19,] -1541.0749 4648.842
-#&gt; [20,] -1542.0231 4647.898
-#&gt; </div><div class='input'><span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.50</span>, <span class='fl'>0.80</span>, <span class='fl'>0.95</span>))</div><div class='img'><img src='predict.fitsimts-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $pred
-#&gt; Time Series:
-#&gt; Start = 115 
-#&gt; End = 134 
-#&gt; Frequency = 1 
-#&gt;  [1] 2874.298 2500.078 2231.648 2039.102 1900.987 1801.917 1730.853 1679.879
-#&gt;  [9] 1643.315 1617.087 1598.274 1584.779 1575.099 1568.156 1563.175 1559.603
-#&gt; [17] 1557.040 1555.202 1553.883 1552.938
-#&gt; 
-#&gt; $se
-#&gt; Time Series:
-#&gt; Start = 115 
-#&gt; End = 134 
-#&gt; Frequency = 1 
-#&gt;  [1] 1100.247 1354.031 1467.609 1522.751 1550.359 1564.374 1571.536 1575.209
-#&gt;  [9] 1577.095 1578.065 1578.564 1578.820 1578.952 1579.020 1579.055 1579.073
-#&gt; [17] 1579.082 1579.087 1579.089 1579.091
-#&gt; 
-#&gt; $CI0.5
-#&gt;            [,1]     [,2]
-#&gt;  [1,] 2132.1925 3616.403
-#&gt;  [2,] 1586.7978 3413.357
-#&gt;  [3,] 1241.7606 3221.535
-#&gt;  [4,] 1012.0219 3066.181
-#&gt;  [5,]  855.2862 2946.688
-#&gt;  [6,]  746.7629 2857.071
-#&gt;  [7,]  670.8683 2790.838
-#&gt;  [8,]  617.4169 2742.341
-#&gt;  [9,]  579.5804 2707.050
-#&gt; [10,]  552.6988 2681.476
-#&gt; [11,]  533.5492 2662.999
-#&gt; [12,]  519.8813 2649.677
-#&gt; [13,]  510.1124 2640.086
-#&gt; [14,]  503.1232 2633.189
-#&gt; [15,]  498.1190 2628.232
-#&gt; [16,]  494.5343 2624.671
-#&gt; [17,]  491.9654 2622.115
-#&gt; [18,]  490.1240 2620.280
-#&gt; [19,]  488.8038 2618.963
-#&gt; [20,]  487.8572 2618.018
-#&gt; 
-#&gt; $CI0.8
-#&gt;             [,1]     [,2]
-#&gt;  [1,] 1464.27481 4284.320
-#&gt;  [2,]  764.81744 4235.338
-#&gt;  [3,]  350.83133 4112.464
-#&gt;  [4,]   87.61810 3990.585
-#&gt;  [5,]  -85.87732 3887.852
-#&gt;  [6,] -202.90871 3806.743
-#&gt;  [7,] -283.15139 3744.858
-#&gt;  [8,] -338.83230 3698.591
-#&gt;  [9,] -377.81384 3664.444
-#&gt; [10,] -405.28417 3639.459
-#&gt; [11,] -424.73649 3621.285
-#&gt; [12,] -438.56007 3608.119
-#&gt; [13,] -448.40911 3598.608
-#&gt; [14,] -455.43958 3591.752
-#&gt; [15,] -460.46492 3586.816
-#&gt; [16,] -464.06055 3583.266
-#&gt; [17,] -466.63504 3580.715
-#&gt; [18,] -468.47933 3578.883
-#&gt; [19,] -469.80101 3577.568
-#&gt; [20,] -470.74843 3576.624
-#&gt; 
-#&gt; $CI0.95
-#&gt;             [,1]     [,2]
-#&gt;  [1,]   717.8539 5030.741
-#&gt;  [2,]  -153.7738 5153.929
-#&gt;  [3,]  -644.8127 5108.108
-#&gt;  [4,]  -945.4348 5023.638
-#&gt;  [5,] -1137.6598 4939.634
-#&gt;  [6,] -1264.1993 4868.033
-#&gt;  [7,] -1349.3011 4811.008
-#&gt;  [8,] -1407.4736 4767.232
-#&gt;  [9,] -1447.7348 4734.365
-#&gt; [10,] -1475.8630 4710.038
-#&gt; [11,] -1495.6536 4692.202
-#&gt; [12,] -1509.6513 4679.210
-#&gt; [13,] -1519.5898 4669.789
-#&gt; [14,] -1526.6664 4662.978
-#&gt; [15,] -1531.7154 4658.066
-#&gt; [16,] -1535.3232 4654.529
-#&gt; [17,] -1537.9040 4651.984
-#&gt; [18,] -1539.7515 4650.155
-#&gt; [19,] -1541.0749 4648.842
-#&gt; [20,] -1542.0231 4647.898
-#&gt; </div><div class='input'>
+<span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='img'><img src='predict.fitsimts-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</div><div class='img'><img src='predict.fitsimts-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>predict</span>(<span class='no'>model</span>, <span class='kw'>n.ahead</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.50</span>, <span class='fl'>0.80</span>, <span class='fl'>0.95</span>))</div><div class='img'><img src='predict.fitsimts-5.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

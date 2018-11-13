@@ -430,19 +430,6 @@ Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunsp
 Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<pre><code>## 
-## Call:
-## arima(x = xt, order = c(9, 0, 0), include.mean = include.mean)
-## 
-## Coefficients:
-##          ar1      ar2      ar3     ar4      ar5     ar6     ar7      ar8
-##       1.1851  -0.4197  -0.1672  0.1823  -0.1326  0.0458  0.0067  -0.0287
-## s.e.  0.0579   0.0911   0.0944  0.0948   0.0955  0.0961  0.0962   0.0925
-##          ar9  intercept
-##       0.2218    49.7655
-## s.e.  0.0588     7.7354
-## 
-## sigma^2 estimated as 221.9:  log likelihood = -1192.74,  aic = 2407.48</code></pre>
 <p>The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_sunspots =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">9</span>), sunspot)
 <span class="kw">predict</span>(model_sunspots, <span class="dt">n.ahead =</span> <span class="dv">10</span>, <span class="dt">level =</span> <span class="kw">c</span>(<span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>))</code></pre></div>
@@ -451,60 +438,6 @@ Figure 16: Results on model selection for AR(p) models for Yearly numbers of sun
 Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<pre><code>## $pred
-## Time Series:
-## Start = 290 
-## End = 299 
-## Frequency = 1 
-##  [1] 140.83139 155.70969 142.43144 113.76724  77.77908  43.97843  20.30640
-##  [8]  11.40728  27.76252  60.63753
-## 
-## $se
-## Time Series:
-## Start = 290 
-## End = 299 
-## Frequency = 1 
-##  [1] 14.89583 23.10014 27.36581 28.37124 28.47902 28.51438 28.66743
-##  [8] 28.82373 28.91176 28.96351
-## 
-## $CI0.6
-##             [,1]      [,2]
-##  [1,] 128.294746 153.36803
-##  [2,] 136.268124 175.15126
-##  [3,] 119.399799 165.46309
-##  [4,]  89.889397 137.64508
-##  [5,]  53.810530 101.74763
-##  [6,]  19.980124  67.97674
-##  [7,]  -3.820712  44.43352
-##  [8,] -12.851383  35.66595
-##  [9,]   3.429764  52.09527
-## [10,]  36.261224  85.01384
-## 
-## $CI0.9
-##             [,1]      [,2]
-##  [1,] 116.329936 165.33285
-##  [2,] 117.713343 193.70604
-##  [3,]  97.418697 187.44419
-##  [4,]  67.100696 160.43378
-##  [5,]  30.935254 124.62291
-##  [6,]  -2.923549  90.88041
-##  [7,] -26.847319  67.46013
-##  [8,] -36.003539  58.81810
-##  [9,] -19.793102  75.31814
-## [10,]  12.996791 108.27827
-## 
-## $CI0.95
-##             [,1]      [,2]
-##  [1,] 111.636107 170.02667
-##  [2,] 110.434250 200.98514
-##  [3,]  88.795448 196.06744
-##  [4,]  58.160624 169.37385
-##  [5,]  21.961219 133.59694
-##  [6,] -11.908725  99.86559
-##  [7,] -35.880722  76.49353
-##  [8,] -45.086196  67.90076
-##  [9,] -28.903498  84.42854
-## [10,]   3.870087 117.40498</code></pre>
 </div>
 <div id="nile-river-flow-dataset" class="section level3">
 <h3 class="hasAnchor">

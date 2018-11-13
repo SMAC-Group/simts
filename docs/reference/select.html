@@ -107,7 +107,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>select</span>(<span class='no'>model</span>, <span class='no'>Xt</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>criterion</span> <span class='kw'>=</span> <span class='st'>"aic"</span>)</pre>
+    <pre class="usage"><span class='fu'>select</span>(<span class='no'>model</span>, <span class='no'>Xt</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>criterion</span> <span class='kw'>=</span> <span class='st'>"aic"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,44 +128,21 @@
       <th>criterion</th>
       <td><p>A <code>string</code> indicating which model selection criterion should be used (possible values: <code>"aic"</code> (default), <code>"bic"</code>, <code>"hq"</code>).</p></td>
     </tr>
+    <tr>
+      <th>plot</th>
+      <td><p>A <code>boolean</code> indicating whether a model selection plot is returned or not.</p></td>
+    </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>set.seed</span>(<span class='fl'>763</span>)
 <span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>100</span>, <span class='fu'><a href='AR.html'>AR</a></span>(<span class='kw'>phi</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.2</span>, -<span class='fl'>0.5</span>, <span class='fl'>0.4</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
-<span class='fu'>select</span>(<span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>5</span>), <span class='no'>Xt</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='select-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; arima(x = xt, order = c(3, 0, 0), include.mean = include.mean)
-#&gt; 
-#&gt; Coefficients:
-#&gt;          ar1      ar2     ar3
-#&gt;       0.2668  -0.3739  0.3472
-#&gt; s.e.  0.0937   0.0890  0.0927
-#&gt; 
-#&gt; sigma^2 estimated as 0.9393:  log likelihood = -139.07,  aic = 286.14</div><div class='input'>
+<span class='fu'>select</span>(<span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>5</span>), <span class='no'>Xt</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='select-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>100</span>, <span class='fu'><a href='MA.html'>MA</a></span>(<span class='kw'>theta</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.2</span>, -<span class='fl'>0.5</span>, <span class='fl'>0.4</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
-<span class='fu'>select</span>(<span class='fu'><a href='MA.html'>MA</a></span>(<span class='fl'>5</span>), <span class='no'>Xt</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='select-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; arima(x = xt, order = c(0, 0, 3), include.mean = include.mean)
-#&gt; 
-#&gt; Coefficients:
-#&gt;          ma1      ma2     ma3
-#&gt;       0.2118  -0.3571  0.4311
-#&gt; s.e.  0.1198   0.1035  0.1017
-#&gt; 
-#&gt; sigma^2 estimated as 1.097:  log likelihood = -148.43,  aic = 304.87</div><div class='input'>
+<span class='fu'>select</span>(<span class='fu'><a href='MA.html'>MA</a></span>(<span class='fl'>5</span>), <span class='no'>Xt</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='select-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='no'>Xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_gts.html'>gen_gts</a></span>(<span class='fl'>500</span>, <span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='kw'>ar</span> <span class='kw'>=</span> <span class='fl'>0.5</span>, <span class='kw'>ma</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.5</span>, -<span class='fl'>0.5</span>, <span class='fl'>0.4</span>), <span class='kw'>sigma2</span> <span class='kw'>=</span> <span class='fl'>1</span>))
-<span class='fu'>select</span>(<span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='fl'>5</span>,<span class='fl'>3</span>), <span class='no'>Xt</span>, <span class='kw'>criterion</span> <span class='kw'>=</span> <span class='st'>"hq"</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='select-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; arima(x = xt, order = c(0, 0, 3), include.mean = include.mean)
-#&gt; 
-#&gt; Coefficients:
-#&gt;          ma1     ma2     ma3
-#&gt;       0.6476  0.0787  0.2568
-#&gt; s.e.  0.0442  0.0490  0.0429
-#&gt; 
-#&gt; sigma^2 estimated as 1.404:  log likelihood = -794.82,  aic = 1597.65</div><div class='input'>
+<span class='fu'>select</span>(<span class='fu'><a href='ARMA.html'>ARMA</a></span>(<span class='fl'>5</span>,<span class='fl'>3</span>), <span class='no'>Xt</span>, <span class='kw'>criterion</span> <span class='kw'>=</span> <span class='st'>"hq"</span>, <span class='kw'>include.mean</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='select-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

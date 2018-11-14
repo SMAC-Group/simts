@@ -4,12 +4,11 @@
 \name{simts-package}
 \alias{simts}
 \alias{simts-package}
-\alias{simts-package}
 \title{simts: Time Series Analysis Tools}
 \description{
-A system contains easy-to-use tools as a support for time series analysis courses. In particular, it incorporates a technique called Generalized Method of Wavelet Moments (GMWM) as well as its robust implementation for fast and robust parameter estimation of time series models which is described, for example, in Guerrier et al. (2013) <doi: 10.1080/01621459.2013.799920>. More details can also be found in the paper linked to via the URL below.
+\if{html}{\figure{logo.png}{options: align='right'}}
 
-Simulation and Plotting Tools Time Series (simts) Package
+A system contains easy-to-use tools as a support for time series analysis courses. In particular, it incorporates a technique called Generalized Method of Wavelet Moments (GMWM) as well as its robust implementation for fast and robust parameter estimation of time series models which is described, for example, in Guerrier et al. (2013) <doi: 10.1080/01621459.2013.799920>. More details can also be found in the paper linked to via the URL below.
 }
 \details{
 The data sets in this package may change at a moments notice.

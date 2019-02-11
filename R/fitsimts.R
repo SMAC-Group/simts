@@ -513,6 +513,7 @@ MAPE = function(model, Xt, start = 0.8, plot = TRUE){
 #' @param x  A \code{vector} of data. 
 #' @param B  A \code{numeric} indicating the number of simulations.
 #' @return Bootstrap standard error for the median
+#' @export
 #' @importFrom stats median
 np_boot_sd_med = function(x, B = 5000){
   set.seed(1982)

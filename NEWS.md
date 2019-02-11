@@ -1,6 +1,6 @@
 # simts 0.1.0
 
-## Features 
+## Features
 
 This R package provides a series of tools to simulate, plot, estimate, select and forecast different time series models. More specifically, it provides the following features:
 

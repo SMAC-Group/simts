@@ -509,7 +509,7 @@ MAPE = function(model, Xt, start = 0.8, plot = TRUE){
 #' @title Bootstrap standard error for the median 
 #'
 #' @description Non-parametric bootstrap to obtain the standard of the median of
-#' iid data. 
+#' iid data.
 #' @param x  A \code{vector} of data. 
 #' @param B  A \code{numeric} indicating the number of simulations.
 #' @return Bootstrap standard error for the median

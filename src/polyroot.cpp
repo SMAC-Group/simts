@@ -1,43 +1,19 @@
-/* Modified source from complex.c in R's directory
- * 
- * Formerly src/appl/cpoly.c:
+/* Copyright (C) 2014 - 2016  James Balamuta, Stephane Guerrier, Roberto Molinari
  *
- *  Copyright (C) 1997-1998 Ross Ihaka
- *  Copyright (C) 1999-2001 R Core Team
+ * This file is part of GMWM R Methods Package
  *
- *	cpoly finds the zeros of a complex polynomial.
+ * The `gmwm` R package is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
- *	On Entry
+ * The `gmwm` R package is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- *	opr, opi      -	 double precision vectors of real and
- *			 imaginary parts of the coefficients in
- *			 order of decreasing powers.
- *
- *	degree	      -	 int degree of polynomial.
- *
- *
- *	On Return
- *
- *	zeror, zeroi  -	 output double precision vectors of
- *			 real and imaginary parts of the zeros.
- *
- *	fail	      -	 output int parameter,	true  only if
- *			 leading coefficient is zero or if cpoly
- *			 has found fewer than degree zeros.
- *
- *	The program has been written to reduce the chance of overflow
- *	occurring. If it does occur, there is still a possibility that
- *	the zerofinder will work provided the overflowed quantity is
- *	replaced by a large number.
- *
- *	This is a C translation of the following.
- *
- *	TOMS Algorithm 419
- *	Jenkins and Traub.
- *	Comm. ACM 15 (1972) 97-99.
- *
- *	Ross Ihaka
- *	February 1997
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *  
  */
 
 #include <RcppArmadillo.h>

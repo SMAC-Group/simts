@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 - 2016  James Balamuta, Stephane Guerrier, Roberto Molinari
+/* Copyright (C) 2014 - 2018  James Balamuta, Stephane Guerrier, Roberto Molinari
  *
  * This file is part of simts R Methods Package
  *

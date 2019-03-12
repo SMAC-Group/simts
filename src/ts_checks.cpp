@@ -1,13 +1,13 @@
-/* Copyright (C) 2014 - 2016 James Balamuta, Stephane Guerrier, Roberto Molinari
+/* Copyright (C) 2014 - 2018  James Balamuta, Stephane Guerrier, Roberto Molinari
  *
- * This file is part of GMWM R Methods Package
+ * This file is part of simts R Methods Package
  *
- * The `gmwm` R package is free software: you can redistribute it and/or modify
+ * The `simts` R package is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  *
- * The `gmwm` R package is distributed in the hope that it will be useful, but
+ * The `simts` R package is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *

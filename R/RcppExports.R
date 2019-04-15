@@ -1576,7 +1576,7 @@ diff_cpp <- function(x, lag, differences) {
 #' @param lag_max A \code{int} of the largest MA(Inf) coefficient required.
 #' @return A \code{column vector} containing coefficients
 #' @details This function is a port of the base stats package's ARMAtoMA. There is no significant speed difference between the two.
-#' @author R Core Team and JJB
+#' @author JJB
 #' @keywords internal
 ARMAtoMA_cpp <- function(ar, ma, lag_max) {
     .Call('_simts_ARMAtoMA_cpp', PACKAGE = 'simts', ar, ma, lag_max)
@@ -1591,7 +1591,7 @@ ARMAtoMA_cpp <- function(ar, ma, lag_max) {
 #' @return A \code{column vec} that contains the results of the filtering process.
 #' @details This is a port of the cfilter function harnessed by the filter function in stats. 
 #' It is about 5-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
-#' @author R Core Team and JJB
+#' @author JJB
 #' @keywords internal
 cfilter <- function(x, filter, sides, circular) {
     .Call('_simts_cfilter', PACKAGE = 'simts', x, filter, sides, circular)
@@ -1607,7 +1607,7 @@ cfilter <- function(x, filter, sides, circular) {
 #' @details Note: The length of 'init' must be equal to the length of 'filter'.
 #' This is a port of the rfilter function harnessed by the filter function in stats. 
 #' It is about 6-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
-#' @author R Core Team and JJB
+#' @author JJB
 #' @keywords internal
 rfilter <- function(x, filter, init) {
     .Call('_simts_rfilter', PACKAGE = 'simts', x, filter, init)
@@ -1621,7 +1621,7 @@ rfilter <- function(x, filter, init) {
 #' @param lag_max A \code{unsigned integer} indicating the maximum lag necessary
 #' @return x A \code{matrix} listing values from 1...nx in one column and 1...1, 2...2,....,n...n, in the other
 #' @details This is an implementaiton of the ARMAacf function in R. It is approximately 40x times faster. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
-#' @author R Core Team and JJB
+#' @author JJB
 #' @keywords internal
 ARMAacf_cpp <- function(ar, ma, lag_max) {
     .Call('_simts_ARMAacf_cpp', PACKAGE = 'simts', ar, ma, lag_max)

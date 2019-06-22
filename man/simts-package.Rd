@@ -46,6 +46,10 @@ Other contributors:
   \item Wenchao Yang [contributor]
   \item Nathanael Claussen [contributor]
   \item Yunxiang Zhang [contributor]
+  \item Christian Gunning [copyright holder]
+  \item Romain Francois [copyright holder]
+  \item Ross Ihaka [copyright holder]
+  \item R Core Team [copyright holder]
 }
 
 

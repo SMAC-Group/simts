@@ -2,7 +2,7 @@ Package: simts
 Type: Package
 Title: Time Series Analysis Tools
 Version: 0.1.0
-Date: 2019-06-21
+Date: 2019-07-08
 LazyData: true
 Authors@R: c(
     person("Stéphane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
@@ -36,8 +36,7 @@ Imports:
     methods,
     purrr,
     tidyr,
-    robcor,
-    stringi
+    robcor
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.1
 Encoding: UTF-8

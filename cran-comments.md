@@ -10,7 +10,7 @@
 
 ## R CMD check results
 
-There was 2 NOTEs:
+There were 2 NOTES:
 
 * checking CRAN incoming feasibility ... NOTE
 * checking installed package size ... NOTE
@@ -23,3 +23,8 @@ There was 2 NOTEs:
 ## Downstream dependencies
 
 There are currently no downstream dependencies for this package.
+
+
+## Copyright Issues
+
+As a result of being the first R package submitted to CRAN by the maintainer and the authors, there have been some issues regarding the assignment of copyright holders and contributors to the package. Indeed there are functions in the files polyroot.cpp and sampler.cpp whose copyright belongs to authors that are not direct contributors to the package. Having tried to understand how to cite these authors in the package description (and not having found explicit indications) we have added these authors as contributors to the package (and not copyright holders of the package). We are ready to edit this description in any way that is appropriate should we receive any clear indication as to how to cite these authors.

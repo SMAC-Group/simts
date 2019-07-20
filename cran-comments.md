@@ -28,3 +28,7 @@ There are currently no downstream dependencies for this package.
 ## Copyright Issues
 
 As a result of being the first R package submitted to CRAN by the maintainer and the authors, there have been some issues regarding the assignment of copyright holders and contributors to the package. Indeed there are functions in the files polyroot.cpp and sampler.cpp whose copyright belongs to authors that are not direct contributors to the package. Having tried to understand how to cite these authors in the package description (and not having found explicit indications) we have added these authors as copyrights holders of the package (and not contributors to the package). We are ready to edit this description in any way that is appropriate should we receive any clear indication as to how to cite these authors.
+
+## Solaris Compatibility
+
+The initial release of the package reported some problems with Solaris due to C++ code compatibilty. With the current version we hope that these issues have been overcome but we remain available to correct the package should other issues arise.

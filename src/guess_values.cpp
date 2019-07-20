@@ -49,7 +49,7 @@
 std::string dom_process(double first_wv, double ci_low, double ci_high){
   
   arma::vec s(2);
-  double logof2 = log(2);
+  double logof2 = log(2.0);
   s(0) = log(ci_high/first_wv)/logof2 /2.0;
   s(1) = log(ci_low/first_wv)/logof2 /2.0;
   

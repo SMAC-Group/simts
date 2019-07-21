@@ -15,11 +15,11 @@ library(simts)
 ```
 
 [![Travis-CI Build Status](https://travis-ci.org/SMAC-Group/simts.svg?branch=master)](https://travis-ci.org/SMAC-Group/simts)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/tidyverse/dplyr?branch=master&svg=true)](https://ci.appveyor.com/project/stephaneguerrier/simts)
 [![Project Status: Active](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/licenses/AGPL-3.0)
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
 [![CRAN](http://www.r-pkg.org/badges/version/simts)](https://cran.r-project.org/package=simts)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/simts)](http://www.r-pkg.org/pkg/simts)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](https://github.com/SMAC-Group/simts/blob/master/DESCRIPTION)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](https://github.com/SMAC-Group/simts)
 
@@ -38,15 +38,20 @@ To understand the usage of the `simts` package, please refer to the "Vignettes" 
 
 ## Install Instructions
 
-To install the `simts` package, there is currently one option: [GitHub](https://github.com/SMAC-Group/simts/). For users who are interested in having the latest developments, this option is ideal although more dependencies are required to run a stable version of the package. Most importantly, users **must** have a (C++) compiler installed on their machine that is compatible with R (e.g. Clang).
+## Installation
 
-*The setup to obtain the development version of `simts` is platform dependent.*
+The `simts` package is available on both CRAN and GitHub. The CRAN
+version is considered stable while the GitHub version is in a state of
+development and may break. You can install the stable version of the
+`simts` package with:
 
-**All Systems**
+```{r, eval=FALSE}
+install.packages("simts")
+```
 
-The following R packages are also required. Once you've made sure that you have a compatible C++ compiler installed on your computer, run the following code in an R session and you will be ready to use the devlopment version of `simts`.
+For users who are interested in having the latest developments, the development version is ideal although more dependencies are required to run a stable version of the package. Most importantly, users **must** have a (C++) compiler installed on their machine that is compatible with R (e.g. Clang).
 
-```{r, eval = F}
+```{r, eval=FALSE}
 # Install dependencies
 install.packages(c("RcppArmadillo","devtools","knitr","rmarkdown"))
 
@@ -55,6 +60,16 @@ devtools::install_github("SMAC-Group/simts")
 
 # Install the package with Vignettes/User Guides 
 devtools::install_github("SMAC-Group/simts", build_vignettes = TRUE)
+```
+
+*The setup to obtain the development version of `simts` is platform dependent.*
+
+**All Systems**
+
+The following R packages are also required. Once you've made sure that you have a compatible C++ compiler installed on your computer, run the following code in an R session and you will be ready to use the devlopment version of `simts`.
+
+```{r, eval = F}
+
 ```
 
 ## License

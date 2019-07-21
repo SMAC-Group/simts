@@ -10,14 +10,11 @@
 
 ## R CMD check results
 
-There were 2 NOTES:
+There was 1 NOTE:
 
-* checking CRAN incoming feasibility ... NOTE
 * checking installed package size ... NOTE
-
-  This is a new submission, which is the reason for the first note.
   
-  It appears that within the Windows architecture, the CHECK procedure returns only one NOTE regarding the fact that the libs subdirectory is beyond the 1MB threshold. However, this NOTE only occurs for Windows systems while it isn't the case for Linux or OSX. My understanding is that this size inflation of the libs subdirectory is due to the use of the Rcpp package. Indeed, some functions of the simts package have been written in C++ using Rcpp without which various functions would lose a considerable amount of computational efficiency leading to major parts of the package becoming impractical to use.
+It appears that within the Windows and Linux architectures, the CHECK procedure returns only one NOTE regarding the fact that the libs subdirectory is beyond the 1MB threshold. However, this NOTE doesn't occur to the OSX. Our understanding is that this size inflation of the libs subdirectory is due to the use of the Rcpp package. Indeed, some functions of the simts package have been written in C++ using Rcpp without which various functions would lose a considerable amount of computational efficiency leading to major parts of the package becoming impractical to use.
 
 
 ## Downstream dependencies
@@ -31,4 +28,4 @@ As a result of being the first R package submitted to CRAN by the maintainer and
 
 ## Solaris Compatibility
 
-The initial release of the package reported some problems with Solaris due to C++ code compatibilty. With the current version we hope that these issues have been overcome but we remain available to correct the package should other issues arise.
+The initial release of the package (version 0.1.0) reported some problems with Solaris due to C++ code compatibilty. Some functions were misused on an integer type, which may cause the potential overloading ambiguity. In the latest version, we hope that these issues have been overcome but we remain available to correct the package should other issues arise.

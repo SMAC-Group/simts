@@ -10,15 +10,16 @@ version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-
 [![CRAN RStudio mirror
 downloads](http://cranlogs.r-pkg.org/badges/simts)](http://www.r-pkg.org/pkg/simts)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.1.0-orange.svg?style=flat-square)](https://github.com/SMAC-Group/simts/blob/master/DESCRIPTION)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2019--07--21-yellowgreen.svg)](https://github.com/SMAC-Group/simts)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2019--07--23-yellowgreen.svg)](https://github.com/SMAC-Group/simts)
 
 # `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
 The Time Series Tools (`simts`) R package provides a series of tools to
 simulate, plot, estimate, select and forecast different time series
-models. It is originally conceived as a support to the online textbook
+models. Its original purpose was to be a support to the online textbook
 [“Applied Time Series Analysis with
-R”](https://smac-group.github.io/ts/) and, more specifically, provides
+R”](https://smac-group.github.io/ts/) but can obviously be used for
+time series analysis in general. More specifically, the package provides
 tools with the following features:
 
   - Simulation of time series from SARIMA models to various state-space
@@ -41,19 +42,20 @@ To understand the usage of the `simts` package, please refer to the
 ## Installation
 
 The `simts` package is available on both CRAN and GitHub. The CRAN
-version is considered stable while the GitHub version is in a state of
-development and may break. You can install the stable version of the
-`simts` package with:
+version is considered stable while the GitHub version is subject to
+modifications/updates which may lead to installation problems or broken
+functions. You can install the stable version of the `simts` package
+with:
 
 ``` r
 install.packages("simts")
 ```
 
 For users who are interested in having the latest developments, the
-development version is ideal although more dependencies are required to
-run a stable version of the package. Most importantly, users **must**
-have a (C++) compiler installed on their machine that is compatible with
-R (e.g. Clang).
+GitHub version is ideal although more dependencies are required to run a
+stable version of the package. Most importantly, users **must** have a
+(C++) compiler installed on their machine that is compatible with R
+(e.g. Clang).
 
 ``` r
 # Install dependencies
@@ -68,13 +70,6 @@ devtools::install_github("SMAC-Group/simts", build_vignettes = TRUE)
 
 *The setup to obtain the development version of `simts` is platform
 dependent.*
-
-**All Systems**
-
-The following R packages are also required. Once you’ve made sure that
-you have a compatible C++ compiler installed on your computer, run the
-following code in an R session and you will be ready to use the
-devlopment version of `simts`.
 
 ## License
 

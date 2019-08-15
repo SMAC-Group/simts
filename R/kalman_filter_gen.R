@@ -28,17 +28,18 @@ sum_cov = function(x){
 #' \item{P_h}{Estimated variance-covariance matrix for each time \code{t}}
 #' \item{y}{Observed time serie}
 #' }
-#' @example 
+#' @examples 
 #' #Filter a 2*AR1 + DR + RW + WN process
 #' set.seed(123)
-#' model = AR(.3, 2) + AR(.5,3) +  DR(.1) + RW(3) + WN(4) 
+#' model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
 #' n = 250
 #' y = gen_lts(n = n, model = model)
 #' my_res = kalman_filter(model = model, y = y)
-#' @import dplyr
-#' @import simts
+#' @importFrom dplyr right_join
+#' @importFrom dplyr mutate
+#' @importFrom dplyr arrange
+#' @importFrom stats filter
 #' @export
-
 
 kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle'){
   "
@@ -215,9 +216,9 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 #' @title Plot Kalman filter estimate
 #' @description The function plots the observed time serie, the sum of the estimated states and the confidence intervals of the estimate
 #' @export
+
 # Define KF ploting fct
 plot.KF = function(obj){
-  par(mar=c(0,0,0,0))
   alpha = 0.05
   n = length(obj$X_h)
   estimated = sapply(obj$X_h, FUN = sum)
@@ -233,4 +234,3 @@ plot.KF = function(obj){
          lwd = c(1,1,NA), pch = c(NA, NA, 15), pt.cex = c(NA, NA, 1.5), bty = 'n',
         legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
 }
-

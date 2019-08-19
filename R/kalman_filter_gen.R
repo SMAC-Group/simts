@@ -14,7 +14,6 @@ sum_cov = function(x){
   sum(x[lower.tri(x)])
 }
 
-
 #' @title Kalman Filter Estimation 
 #' @description Compute the Kalman Filter estimation for the sum of any combinations of AR processes, RW, WN and DR
 #' @param model a \code{ts.model} object with specified parameters values
@@ -28,6 +27,17 @@ sum_cov = function(x){
 #' \item{P_h}{Estimated variance-covariance matrix for each time \code{t}}
 #' \item{y}{Observed time serie}
 #' }
+#' @details   
+#' Compute a kalman filter on a state space model which
+#'can be composed of the sum of AR(), RW(), DR() and WN() processes.
+#'Note that there can be any ammount of AR() processes while RW(), DR() and WN()
+#'processes are limited to 1. The function can both estimate the model parameter
+#'from a given model and apply the kalman filter or directly apply the kalman 
+#'filter with specified parameters. The function takes as input the
+#'model which is the defined model and y which is the observed time serie.
+#'If estimate_model is set to False (by default), the user need to provide a model
+#'and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
+#'the selected model to estimate and the estimation method (see function estimate)
 #' @examples 
 #' #Filter a 2*AR1 + DR + RW + WN process
 #' set.seed(123)
@@ -41,20 +51,12 @@ sum_cov = function(x){
 #' @importFrom stats filter
 #' @export
 
+#define kalamn filter fct
+
 kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle'){
-  "
-  Compute a kalman filter on a state space model which
-  can be composed of the sum of AR(), RW(), DR() and WN() processes.
-  Note that there can be any ammount of AR() processes while RW(), DR() and WN()
-  processes are limited to 1. The function can both estimate the model parameter
-  from a given model and apply the kalman filter or directly apply the kalman 
-  filter with specified parameters. The function takes as input the
-  model which is the defined model and y which is the observed time serie.
-  If estimate_model is set to False (by default), the user need to provide a model
-  and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
-  the selected model to estimate and the estimation method (see function estimate)
-  "
+
   #if generated via gen_lts, take the last column, i.e. the sum of all processes
+  y_decomp = y
   if (!is.null(dim(y))){
     y = y[, dim(y)[2]]
   }
@@ -64,7 +66,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   
   #return error if estimate_model == T and model to estimate is empty
   if(estimate_model == T & is.null(model_to_estimate)) stop("No defined model to estimate")
-
+  
   #extract info from model and build matrices
   #define specific order
   my_order = data.frame('sel_order' = c(1,2,3,4,4), 'process' = c('WN','DR','RW','AR','SIGMA2'))
@@ -87,8 +89,8 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   #join possible processes and model processes, had to do a little trick to avoid warnings
   combined = sort(union(levels(df$process), levels(my_order$process)))
   join_df <- right_join(mutate(my_order, process=factor(process, levels=combined)),
-                 mutate(df, process=factor(process, levels=combined)), by = 'process')
-
+                        mutate(df, process=factor(process, levels=combined)), by = 'process')
+  
   #isolate all processes and values
   
   #wn
@@ -113,6 +115,15 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     phi_vec_index = seq(1, dim_ar_processes, 2) #identify the phi parameters in the AR processes
     phi_vec = ar_processes[phi_vec_index,]$val  #extract the phi parameters in the AR processes
   }
+  
+  #define columns names for output
+  ar_names = c()
+  for(i in seq(dim(ar_processes)[1] %/% 2)){
+    ar_names = c(ar_names, paste("AR1() -", i))
+  }
+  dr_name = rep('DR()', dim(dr_process)[1])
+  rw_name = rep('RW()', dim(rw_process)[1])
+  column_names = c(ar_names, rw_name, dr_name)
   
   #Define trans mat 
   dr_process_length = dim(dr_process)[1]
@@ -162,7 +173,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   } else {
     process_noise_cov_mat = diag(c(phi_wn_vec, rw_process_val, dr_wn_vec))
   }
- 
+  
   #Define measurment error and if null set to 0
   if(length(measurment_error) == 0){
     measurment_error = 0
@@ -181,7 +192,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   total_states_length = length(c(phi_vec, rw_vec, dr_vec))
   H = matrix(rep(1, total_states_length), ncol = total_states_length)
   
-
+  
   #Initialization
   #define initial X_t
   if(length(trans_mat) == 1){
@@ -208,29 +219,126 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     P_h[[k+1]] = (diag(X_t_length)-K[[k+1]] %*% H) %*% P_t[[k+1]] #update process_noise_cov_mat
   }
   
-  out = list("X_h" = X_h, "P_h" = P_h, "y" = y)
+  #Structure output
+  length(X_t)
+  X_t_mat = matrix(unlist(X_t), nrow = length(X_t), byrow = T)
+  colnames(X_t_mat) = column_names
+  rownames(X_t_mat) = as.character(seq(dim(X_t_mat)[1]))
+  X_h_mat = matrix(unlist(X_h), nrow = length(X_h), byrow = T)
+  colnames(X_h_mat) = column_names
+  rownames(X_h_mat) = as.character(seq(dim(X_h_mat)[1]))
+  #Return output
+  out = list("forecast" = X_t_mat, "forecast_cov_mat" = P_t, 
+             "filter" = X_h_mat, "filter_cov_mat" = P_h,
+             "y" = y, "y_d" = y_decomp, print = model$print)
   class(out) = "KF"
-  return(out)
+  invisible(out)
 }
+
+
 
 #' @title Plot Kalman filter estimate
 #' @description The function plots the observed time serie, the sum of the estimated states and the confidence intervals of the estimate
+#' @param obj a \code{KF} object resulting from a \code{kalman_filter} command
+#' @param plot_state A numeric value indicating which state to plot. Default is "all"
+#' @importFrom dplyr select
+#' @importFrom stats filter
 #' @export
 
 # Define KF ploting fct
-plot.KF = function(obj){
+plot.KF = function(obj, plot_state = "all"){
   alpha = 0.05
-  n = length(obj$X_h)
-  estimated = sapply(obj$X_h, FUN = sum)
-  plot(obj$y, type = 'l', ylab = "Value", xlab = "Time", col = '#2E9AFE')
-  grid(lty = 1)
+  n = dim(obj$filter)[1]
+  estimated = rowSums(obj$filter)
+  make_frame(x_range = c(0, dim(obj$filter)[1]), xlab = "Time", ylab = "Value", y_range = range(estimated), main = obj$print)
+  lines(obj$y, col = 'blue4')
   lines(estimated, col = "#F8766DFF")
-  var_vec = sapply(obj$P_h, FUN = diagsum) + 2 * sapply(obj$P_h, FUN = sum_cov)
+  var_vec = sapply(obj$filter_cov_mat, FUN = diagsum) + 2 * sapply(obj$filter_cov_mat, FUN = sum_cov)
   fit_sd = sqrt(var_vec)
   polygon(x = c(1:n, rev(1:n)),
           y = c(estimated + qnorm(1-alpha/2)*-fit_sd,
                 rev(estimated + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
-  legend("bottomleft", col = c('#2E9AFE', "#F8766DFF", "#F8766D4D"), 
+  legend("bottomleft", col = c("blue4", "#F8766DFF", "#F8766D4D"), 
          lwd = c(1,1,NA), pch = c(NA, NA, 15), pt.cex = c(NA, NA, 1.5), bty = 'n',
-        legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
+         legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
+  X_h = obj$filter
+  y = as.data.frame(obj$y_d)
+  ar_processes_val = dplyr::select(y, contains('SARIMA'))
+  dr_process_val = dplyr::select(y, contains('DR'))
+  rw_process_val = dplyr::select(y, contains('RW'))
+  true_processes = cbind(ar_processes_val, rw_process_val, dr_process_val)
+  P_h = obj$filter_cov_mat
+  var_vec = lapply(P_h, diag)
+  var_df = data.frame(matrix(unlist(var_vec), nrow=length(var_vec), byrow=T))
+  if(plot_state == "all"){
+    dim_p = dim(true_processes)[2]
+    par(mfrow = c(dim_p, 1))
+    for(i in seq(dim_p-1)){
+      par(mai=c(0.02,0.5,0.02,0.02))
+      make_frame(x_range = range(0, dim(true_processes)[1]), xlab = "Time",ylab = "Value", main = colnames(obj$filter)[i], y_range = range(true_processes[,i]))
+      lines(true_processes[,i], type = 'l', col = 'blue4',xaxt='n')
+      lines(X_h[,i], col = "#F8766DFF")
+      fit_sd = var_df[,i]
+      n=length(var_df[,1])
+      alpha = .05
+      polygon(x = c(1:n, rev(1:n)),
+              y = c(X_h[,i] + qnorm(1-alpha/2)*-fit_sd,
+                    rev(X_h[,i] + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
+    }
+    #last state add axis values
+    i = i+1
+    par(mai=c(0.55,0.5,0.02,0.02))
+    make_frame(x_range = range(0, dim(true_processes)[1]), xlab = "Time", ylab = "Value", main = colnames(obj$filter)[i], y_range = range(true_processes[,i]))
+    lines(true_processes[,i], type = 'l', col = 'blue4')
+    lines(X_h[,i], col = "#F8766DFF")
+    fit_sd = var_df[,i]
+    n=length(var_df[,1])
+    alpha = .05
+    polygon(x = c(1:n, rev(1:n)),
+            y = c(X_h[,i] + qnorm(1-alpha/2)*-fit_sd,
+                  rev(X_h[,i] + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
+    legend("bottomleft",cex= 1, col = c('#2E9AFE', "#F8766DFF", "#F8766D4D"), 
+           lwd = c(1,1,NA), pch = c(NA, NA, 15), pt.cex = c(NA, NA, 1.5), bty = 'n',
+           legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
+    par(mfrow=c(1,1))
+  }else{
+    make_frame(x_range = range(0, dim(true_processes)[1]), xlab = "Time", ylab = "Value", main = colnames(obj$filter)[plot_state], y_range = range(true_processes[,plot_state]))
+    lines(true_processes[,plot_state], type = 'l', col = 'blue4')
+    lines(X_h[,plot_state], col = "#F8766DFF")
+    fit_sd = var_df[,plot_state]
+    n=length(var_df[,1])
+    alpha = .05
+    polygon(x = c(1:n, rev(1:n)),
+            y = c(X_h[,plot_state] + qnorm(1-alpha/2)*-fit_sd,
+                  rev(X_h[,plot_state] + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
+    legend("bottomleft",cex= 1, col = c('blue4', "#F8766DFF", "#F8766D4D"), 
+           lwd = c(1,1,NA), pch = c(NA, NA, 15), pt.cex = c(NA, NA, 1.5), bty = 'n',
+           legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
+    
+    
+  } 
+  
 }
+
+
+#for devlopement purposes
+# estimate_model = F
+# model_to_estimate = NULL
+# library(simts)
+# set.seed(123)
+# model = AR(.7,2) + AR(.65,1) + RW(.6) +DR(.02) + WN(6)
+# n = 250
+# y = gen_lts(n = n, model = model)
+# plot(y)
+# res = kalman_filter(y = y, model = model)
+# plot(res)
+# plot(res, plot_state = 3)
+
+#Example
+#Filter a 2*AR1 + DR + RW + WN process
+#set.seed(123)
+# model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
+# n = 250
+# y = gen_lts(n = n, model = model)
+# my_res = kalman_filter(model = model, y = y)
+

@@ -4,8 +4,18 @@
 \alias{plot.KF}
 \title{Plot Kalman filter estimate}
 \usage{
-\method{plot}{KF}(obj)
+\method{plot}{KF}(x, plot_state = "all", ...)
+}
+\arguments{
+\item{x}{A \code{KF} object resulting from the function \code{kalman_filter}}
+
+\item{plot_state}{A numeric value indicating which state to plot. Default is "all".}
+
+\item{...}{Additional arguments affecting the plot produced.}
 }
 \description{
 The function plots the observed time serie, the sum of the estimated states and the confidence intervals of the estimate
+}
+\author{
+Lionel Voirol
 }

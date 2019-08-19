@@ -38,6 +38,7 @@ Authors:
   \item James Balamuta [copyright holder]
   \item Roberto Molinari [copyright holder]
   \item Justin Lee
+  \item Lionel Voirol
   \item Yuming Zhang
 }
 

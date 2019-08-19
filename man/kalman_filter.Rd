@@ -29,6 +29,18 @@ a \code{KF} object with the structure:
 \description{
 Compute the Kalman Filter estimation for the sum of any combinations of AR processes, RW, WN and DR
 }
+\details{
+Compute a kalman filter on a state space model which
+can be composed of the sum of AR(), RW(), DR() and WN() processes.
+Note that there can be any ammount of AR() processes while RW(), DR() and WN()
+processes are limited to 1. The function can both estimate the model parameter
+from a given model and apply the kalman filter or directly apply the kalman 
+filter with specified parameters. The function takes as input the
+model which is the defined model and y which is the observed time serie.
+If estimate_model is set to False (by default), the user need to provide a model
+and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
+the selected model to estimate and the estimation method (see function estimate)
+}
 \examples{
 #Filter a 2*AR1 + DR + RW + WN process
 set.seed(123)
@@ -36,4 +48,7 @@ model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4)
 n = 250
 y = gen_lts(n = n, model = model)
 my_res = kalman_filter(model = model, y = y)
+}
+\author{
+Lionel Voirol
 }

@@ -29,15 +29,15 @@ sum_cov = function(x){
 #' }
 #' @details   
 #' Compute a kalman filter on a state space model which
-#'can be composed of the sum of AR(), RW(), DR() and WN() processes.
-#'Note that there can be any ammount of AR() processes while RW(), DR() and WN()
-#'processes are limited to 1. The function can both estimate the model parameter
-#'from a given model and apply the kalman filter or directly apply the kalman 
-#'filter with specified parameters. The function takes as input the
-#'model which is the defined model and y which is the observed time serie.
-#'If estimate_model is set to False (by default), the user need to provide a model
-#'and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
-#'the selected model to estimate and the estimation method (see function estimate)
+#' can be composed of the sum of AR(), RW(), DR() and WN() processes.
+#' Note that there can be any ammount of AR() processes while RW(), DR() and WN()
+#' processes are limited to 1. The function can both estimate the model parameter
+#' from a given model and apply the kalman filter or directly apply the kalman 
+#' filter with specified parameters. The function takes as input the
+#' model which is the defined model and y which is the observed time serie.
+#' If estimate_model is set to False (by default), the user need to provide a model
+#' and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
+#' the selected model to estimate and the estimation method (see function estimate)
 #' @examples 
 #' #Filter a 2*AR1 + DR + RW + WN process
 #' set.seed(123)
@@ -49,10 +49,8 @@ sum_cov = function(x){
 #' @importFrom dplyr mutate
 #' @importFrom dplyr arrange
 #' @importFrom stats filter
+#' @author Lionel Voirol
 #' @export
-
-#define kalamn filter fct
-
 kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle'){
 
   #if generated via gen_lts, take the last column, i.e. the sum of all processes
@@ -60,9 +58,6 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   if (!is.null(dim(y))){
     y = y[, dim(y)[2]]
   }
-  
-  #Load libraries
-  library(dplyr)
   
   #return error if estimate_model == T and model to estimate is empty
   if(estimate_model == T & is.null(model_to_estimate)) stop("No defined model to estimate")
@@ -239,14 +234,15 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 
 #' @title Plot Kalman filter estimate
 #' @description The function plots the observed time serie, the sum of the estimated states and the confidence intervals of the estimate
-#' @param obj a \code{KF} object resulting from a \code{kalman_filter} command
-#' @param plot_state A numeric value indicating which state to plot. Default is "all"
+#' @param x             A \code{KF} object resulting from the function \code{kalman_filter}
+#' @param plot_state    A numeric value indicating which state to plot. Default is "all".
+#' @param ...           Additional arguments affecting the plot produced.
 #' @importFrom dplyr select
 #' @importFrom stats filter
+#' @author Lionel Voirol
 #' @export
-
-# Define KF ploting fct
-plot.KF = function(obj, plot_state = "all"){
+plot.KF = function(x, plot_state = "all", ...){
+  obj = x
   alpha = 0.05
   n = dim(obj$filter)[1]
   estimated = rowSums(obj$filter)

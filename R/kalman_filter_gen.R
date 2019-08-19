@@ -89,20 +89,20 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   #isolate all processes and values
   
   #wn
-  wn_process = join_df %>% arrange(sel_order) %>% filter(sel_order == 1)
+  wn_process = join_df %>% arrange(sel_order) %>% dplyr::filter(sel_order == 1)
   wn_val = wn_process$val
   measurment_error = wn_val
   
   #dr
-  dr_process = join_df %>% arrange(sel_order) %>% filter(sel_order == 2)
+  dr_process = join_df %>% arrange(sel_order) %>% dplyr::filter(sel_order == 2)
   dr_process_val = dr_process$val
   
   #rw
-  rw_process = join_df %>% arrange(sel_order) %>% filter(sel_order == 3)
+  rw_process = join_df %>% arrange(sel_order) %>% dplyr::filter(sel_order == 3)
   rw_process_val = rw_process$val
   
   #ar
-  ar_processes = join_df %>% arrange(sel_order) %>% filter(sel_order == 4)
+  ar_processes = join_df %>% arrange(sel_order) %>% dplyr::filter(sel_order == 4)
   dim_ar_processes = dim(ar_processes)[1]
   if(dim_ar_processes == 0){
     phi_vec = NULL

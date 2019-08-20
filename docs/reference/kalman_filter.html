@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Analytic D matrix for MA(1) process — deriv_ma1 • simts</title>
+<title>Kalman Filter Estimation — kalman_filter • simts</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Analytic D matrix for MA(1) process — deriv_ma1" />
+<meta property="og:title" content="Kalman Filter Estimation — kalman_filter" />
 
-<meta property="og:description" content="Obtain the first derivative of the MA(1) process." />
+<meta property="og:description" content="Compute the Kalman Filter estimation for the sum of any combinations of AR processes, RW, WN and DR" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -98,50 +98,75 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Analytic D matrix for MA(1) process</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SMAC-Group/simts/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>deriv_ma1.Rd</code></div>
+    <h1>Kalman Filter Estimation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SMAC-Group/simts/blob/master/R/kalman_filter_gen.R'><code>R/kalman_filter_gen.R</code></a></small>
+    <div class="hidden name"><code>kalman_filter.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Obtain the first derivative of the MA(1) process.</p>
+    <p>Compute the Kalman Filter estimation for the sum of any combinations of AR processes, RW, WN and DR</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>deriv_ma1</span>(<span class='no'>theta</span>, <span class='no'>sigma2</span>, <span class='no'>tau</span>)</pre>
+    <pre class="usage"><span class='fu'>kalman_filter</span>(<span class='no'>model</span>, <span class='no'>y</span>, <span class='kw'>estimate_model</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>model_to_estimate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mle"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>theta</th>
-      <td><p>A <code>double</code> corresponding to the theta coefficient of an MA(1) process.</p></td>
+      <th>model</th>
+      <td><p>a <code>ts.model</code> object with specified parameters values</p></td>
     </tr>
     <tr>
-      <th>sigma2</th>
-      <td><p>A <code>double</code> corresponding to the error term of an MA(1) process.</p></td>
+      <th>y</th>
+      <td><p>a <code>lts</code> object</p></td>
     </tr>
     <tr>
-      <th>tau</th>
-      <td><p>A <code>vec</code> containing the scales e.g. \(2^{\tau}\)</p></td>
+      <th>estimate_model</th>
+      <td><p>a bolean indicating whether or not to estimate the parameters values of a provided model, default is <code>False</code></p></td>
+    </tr>
+    <tr>
+      <th>model_to_estimate</th>
+      <td><p>a <code>ts.model</code> object without parameters values specified if <code>estimate_model</code> is set to <code>True</code></p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>specify the method of estimation if <code>estimate_model</code> is set to <code>True</code> and <code>model_to_estimate</code> is provided</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>matrix</code> with the first column containing the partial derivative with respect to \(\theta\)
- and the second column contains the partial derivative with respect to \(\sigma ^2\)</p>
-    
-    <h2 class="hasAnchor" id="process-haar-wv-first-derivative"><a class="anchor" href="#process-haar-wv-first-derivative"></a>Process Haar WV First Derivative</h2>
+    <p>a <code>KF</code> object with the structure:</p><dl class='dl-horizontal'>
+<dt>X_h</dt><dd><p>Estimated states for each time <code>t</code></p></dd>
+<dt>P_h</dt><dd><p>Estimated variance-covariance matrix for each time <code>t</code></p></dd>
+<dt>y</dt><dd><p>Observed time serie</p></dd>
+</dl>
 
     
-    <p>Taking the derivative with respect to \(\theta\) yields:
-$$\frac{\partial }{{\partial \theta }}\nu _j^2\left( {\theta ,{\sigma ^2}} \right) = \frac{{{\sigma ^2}\left( {2\left( {\theta  + 1} \right){\tau _j} - 6} \right)}}{{\tau _j^2}}$$</p>
-<p>Taking the derivative with respect to \(\sigma^2\) yields:
-$$\frac{\partial }{{\partial {\sigma ^2}}}\nu _j^2\left( {\theta ,{\sigma ^2}} \right) = \frac{{{{\left( {\theta  + 1} \right)}^2}{\tau _j} - 6\theta }}{{\tau _j^2}}$$</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Compute a kalman filter on a state space model which
+can be composed of the sum of AR(), RW(), DR() and WN() processes.
+Note that there can be any ammount of AR() processes while RW(), DR() and WN()
+processes are limited to 1. The function can both estimate the model parameter
+from a given model and apply the kalman filter or directly apply the kalman 
+filter with specified parameters. The function takes as input the
+model which is the defined model and y which is the observed time serie.
+If estimate_model is set to False (by default), the user need to provide a model
+and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
+the selected model to estimate and the estimation method (see function estimate)</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>#Filter a 2*AR1 + DR + RW + WN process</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>123</span>)
+<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>.3</span>, <span class='fl'>2</span>) + <span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>.5</span>,<span class='fl'>3</span>) + <span class='fu'><a href='DR.html'>DR</a></span>(<span class='fl'>.1</span>) + <span class='fu'><a href='RW.html'>RW</a></span>(<span class='fl'>3</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='fl'>4</span>)
+<span class='no'>n</span> <span class='kw'>=</span> <span class='fl'>250</span>
+<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='gen_lts.html'>gen_lts</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>model</span>)
+<span class='no'>my_res</span> <span class='kw'>=</span> <span class='fu'>kalman_filter</span>(<span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>model</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -150,11 +175,13 @@ $$\frac{\partial }{{\partial {\sigma ^2}}}\nu _j^2\left( {\theta ,{\sigma ^2}} \
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#process-haar-wv-first-derivative">Process Haar WV First Derivative</a></li>
-          </ul>
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
-    <p>James Joseph Balamuta (JJB)</p>
+    <p>Lionel Voirol</p>
   </div>
 </div>
 

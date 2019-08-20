@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Analytic D matrix for MA(1) process — deriv_ma1 • simts</title>
+<title>Plot Kalman filter estimate — plot.KF • simts</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Analytic D matrix for MA(1) process — deriv_ma1" />
+<meta property="og:title" content="Plot Kalman filter estimate — plot.KF" />
 
-<meta property="og:description" content="Obtain the first derivative of the MA(1) process." />
+<meta property="og:description" content="The function plots the observed time serie, the sum of the estimated states and the confidence intervals of the estimate" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -98,48 +98,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Analytic D matrix for MA(1) process</h1>
-    <small class="dont-index">Source: <a href='https://github.com/SMAC-Group/simts/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>deriv_ma1.Rd</code></div>
+    <h1>Plot Kalman filter estimate</h1>
+    <small class="dont-index">Source: <a href='https://github.com/SMAC-Group/simts/blob/master/R/kalman_filter_gen.R'><code>R/kalman_filter_gen.R</code></a></small>
+    <div class="hidden name"><code>plot.KF.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Obtain the first derivative of the MA(1) process.</p>
+    <p>The function plots the observed time serie, the sum of the estimated states and the confidence intervals of the estimate</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>deriv_ma1</span>(<span class='no'>theta</span>, <span class='no'>sigma2</span>, <span class='no'>tau</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for KF</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>plot_state</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>theta</th>
-      <td><p>A <code>double</code> corresponding to the theta coefficient of an MA(1) process.</p></td>
+      <th>x</th>
+      <td><p>A <code>KF</code> object resulting from the function <code>kalman_filter</code></p></td>
     </tr>
     <tr>
-      <th>sigma2</th>
-      <td><p>A <code>double</code> corresponding to the error term of an MA(1) process.</p></td>
+      <th>plot_state</th>
+      <td><p>A numeric value indicating which state to plot. Default is "all".</p></td>
     </tr>
     <tr>
-      <th>tau</th>
-      <td><p>A <code>vec</code> containing the scales e.g. \(2^{\tau}\)</p></td>
+      <th>...</th>
+      <td><p>Additional arguments affecting the plot produced.</p></td>
     </tr>
     </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A <code>matrix</code> with the first column containing the partial derivative with respect to \(\theta\)
- and the second column contains the partial derivative with respect to \(\sigma ^2\)</p>
-    
-    <h2 class="hasAnchor" id="process-haar-wv-first-derivative"><a class="anchor" href="#process-haar-wv-first-derivative"></a>Process Haar WV First Derivative</h2>
-
-    
-    <p>Taking the derivative with respect to \(\theta\) yields:
-$$\frac{\partial }{{\partial \theta }}\nu _j^2\left( {\theta ,{\sigma ^2}} \right) = \frac{{{\sigma ^2}\left( {2\left( {\theta  + 1} \right){\tau _j} - 6} \right)}}{{\tau _j^2}}$$</p>
-<p>Taking the derivative with respect to \(\sigma^2\) yields:
-$$\frac{\partial }{{\partial {\sigma ^2}}}\nu _j^2\left( {\theta ,{\sigma ^2}} \right) = \frac{{{{\left( {\theta  + 1} \right)}^2}{\tau _j} - 6\theta }}{{\tau _j^2}}$$</p>
     
 
   </div>
@@ -147,14 +135,10 @@ $$\frac{\partial }{{\partial {\sigma ^2}}}\nu _j^2\left( {\theta ,{\sigma ^2}} \
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#process-haar-wv-first-derivative">Process Haar WV First Derivative</a></li>
-          </ul>
+                </ul>
 
     <h2>Author</h2>
-    <p>James Joseph Balamuta (JJB)</p>
+    <p>Lionel Voirol</p>
   </div>
 </div>
 

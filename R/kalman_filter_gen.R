@@ -48,10 +48,12 @@ sum_cov = function(x){
 #' @importFrom dplyr right_join
 #' @importFrom dplyr mutate
 #' @importFrom dplyr arrange
-#' @importFrom stats filter
+#' @importFrom dplyr filter
 #' @author Lionel Voirol
 #' @export
 kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle'){
+  #get rid of no visible binding for global variable notes
+  process = sel_order = NULL
 
   #if generated via gen_lts, take the last column, i.e. the sum of all processes
   y_decomp = y
@@ -240,6 +242,16 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 #' @importFrom dplyr select
 #' @importFrom stats filter
 #' @author Lionel Voirol
+#' @examples 
+#' #Filter a 2*AR1 + DR + RW + WN process
+#' set.seed(123)
+#' model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
+#' n = 250
+#' y = gen_lts(n = n, model = model)
+#' my_res = kalman_filter(model = model, y = y)
+#' plot(my_res)
+#' plot(my_res, plot_state = 3)
+
 #' @export
 plot.KF = function(x, plot_state = "all", ...){
   obj = x
@@ -332,9 +344,12 @@ plot.KF = function(x, plot_state = "all", ...){
 
 #Example
 #Filter a 2*AR1 + DR + RW + WN process
-#set.seed(123)
-# model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
+# set.seed(123)
+# library(simts)
+# library(dplyr)
+# model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4)
 # n = 250
 # y = gen_lts(n = n, model = model)
 # my_res = kalman_filter(model = model, y = y)
-
+# plot(my_res)
+# plot(my_res, plot_state = 3)

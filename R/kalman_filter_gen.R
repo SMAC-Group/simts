@@ -245,7 +245,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 #' @param ...           Additional arguments affecting the plot produced.
 #' @importFrom dplyr select
 #' @importFrom dplyr contains
-#' @importFrom stats filter
+#' @importFrom dplyr filter
 #' @author Lionel Voirol
 #' @examples 
 #' #Filter a 2*AR1 + DR + RW + WN process
@@ -256,7 +256,6 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 #' my_res = kalman_filter(model = model, y = y)
 #' plot(my_res)
 #' plot(my_res, plot_state = 3)
-
 #' @export
 plot.KF = function(x, plot_state = "all", ...){
   obj = x

@@ -44,6 +44,10 @@ reference:
   - title: Model selection of SARIMA models
     contents:
     - select
+  - title: Kalman Filtering
+    contents:
+    - kalman_filter
+    - plot.KF
   - title: Miscellanea
     contents:
     - RW2dimension

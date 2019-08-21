@@ -21,9 +21,13 @@ kalman_filter(model, y, estimate_model = F, model_to_estimate = NULL,
 \value{
 a \code{KF} object with the structure:
 \describe{
-\item{X_h}{Estimated states for each time \code{t}}
-\item{P_h}{Estimated variance-covariance matrix for each time \code{t}}
+\item{forecast}{X_t|t-1}
+\item{forecast_cov_mat}{Estimated variance-covariance for X_t|t-1}
+\item{filter}{X_t|t}
+\item{filter}{Estimated variance-covariance for X_t|t}
 \item{y}{Observed time serie}
+\item{y_d}{Unobserved states composing the time serie}
+\item{print}{Model structure}
 }
 }
 \description{

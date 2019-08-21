@@ -140,9 +140,13 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a <code>KF</code> object with the structure:</p><dl class='dl-horizontal'>
-<dt>X_h</dt><dd><p>Estimated states for each time <code>t</code></p></dd>
-<dt>P_h</dt><dd><p>Estimated variance-covariance matrix for each time <code>t</code></p></dd>
+<dt>forecast</dt><dd><p>X_t|t-1</p></dd>
+<dt>forecast_cov_mat</dt><dd><p>Estimated variance-covariance for X_t|t-1</p></dd>
+<dt>filter</dt><dd><p>X_t|t</p></dd>
+<dt>filter</dt><dd><p>Estimated variance-covariance for X_t|t</p></dd>
 <dt>y</dt><dd><p>Observed time serie</p></dd>
+<dt>y_d</dt><dd><p>Unobserved states composing the time serie</p></dd>
+<dt>print</dt><dd><p>Model structure</p></dd>
 </dl>
 
     

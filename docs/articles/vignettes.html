@@ -111,37 +111,37 @@
 </ul>
 <p>Quantization noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
 <p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from the above model specifications.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Set seed for reproducibility</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1337</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Number of observations</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">n =<span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># Generate a White Noise Process</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">wn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)) </a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># Generate a Quantization Noise</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">qn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/QN.html">QN</a></span>(<span class="dt">q2 =</span> <span class="fl">.5</span>)) </a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co"># Generate a Random Walk</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">rw =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">.75</span>)) </a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Set seed for reproducibility</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1337</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co"># Number of observations</span></a>
+<a class="sourceLine" id="cb1-5" title="5">n =<span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb1-6" title="6"></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co"># Generate a White Noise Process</span></a>
+<a class="sourceLine" id="cb1-8" title="8">wn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)) </a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co"># Generate a Quantization Noise</span></a>
+<a class="sourceLine" id="cb1-11" title="11">qn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/QN.html">QN</a></span>(<span class="dt">q2 =</span> <span class="fl">.5</span>)) </a>
+<a class="sourceLine" id="cb1-12" title="12"></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co"># Generate a Random Walk</span></a>
+<a class="sourceLine" id="cb1-14" title="14">rw =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">.75</span>)) </a></code></pre></div>
 <p>By applying the <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> function on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of our simulated data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(wn)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(qn)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(rw)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(wn)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(qn)</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(rw)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)" width="696"><p class="caption">
 Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)
 </p>
 </div>
 <p>Another example with a SARIMA model is given below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="fl">-0.27</span>,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">                        <span class="dt">sar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">-0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> <span class="fl">-0.9</span>,</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">                        <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sarima)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span></a>
+<a class="sourceLine" id="cb3-2" title="2">sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="fl">-0.27</span>,</a>
+<a class="sourceLine" id="cb3-3" title="3">                        <span class="dt">sar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">-0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> <span class="fl">-0.9</span>,</a>
+<a class="sourceLine" id="cb3-4" title="4">                        <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))</a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sarima)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 2: Simulated SARIMA(1,0,1)x(2,1,1)[12] process" width="696"><p class="caption">
 Figure 2: Simulated SARIMA(1,0,1)x(2,1,1)[12] process
@@ -154,20 +154,20 @@ X_t &amp;= X_{t-1} + \omega + U_t, \;\;\;\;\; U_t \sim \mathcal{N}(0,\gamma^2),\
 Y_t &amp;= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 \end{aligned}\]</span></p>
 <p>it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance <span class="math inline">\(\gamma^2\)</span>), a linear drift (with slope <span class="math inline">\(\omega\)</span>) and a white noise process (with variance <span class="math inline">\(\sigma^2\)</span>). Therefore, it can easily be simulated as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(Yt)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2">model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-3" title="3">Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(Yt)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Simulated state-space model (RW + WN + DR)" width="696"><p class="caption">
 Figure 3: Simulated state-space model (RW + WN + DR)
 </p>
 </div>
 <p>It is also possible to retrieve and visualize the three latent used to construct such state-space model using the function <code><a href="../reference/gen_lts.html">gen_lts()</a></code> instead of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(Yt)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2">model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3">Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(Yt)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes" width="696"><p class="caption">
 Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
@@ -175,35 +175,35 @@ Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
 </div>
 <p>Consider another example, let us suppose that different AR(1) processes are present in a state-space model. The syntax to insert “k” of these models into the state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Generate a ARMA(2,1) + WN()  </span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">arma_wn_model =</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.9</span>, <span class="fl">-0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co"># Plot simulation of ARMA(2,1) + WN()</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(arma_wn_sim)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Generate a ARMA(2,1) + WN()  </span></a>
+<a class="sourceLine" id="cb6-2" title="2">arma_wn_model =</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.9</span>, <span class="fl">-0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb6-5" title="5">arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)</a>
+<a class="sourceLine" id="cb6-6" title="6"></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co"># Plot simulation of ARMA(2,1) + WN()</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(arma_wn_sim)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 5: Simulated ARMA(2,1) + WN() process" width="696"><p class="caption">
 Figure 5: Simulated ARMA(2,1) + WN() process
 </p>
 </div>
 <p>As mentioned earlier, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot()</a></code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co"># Generate a SARMA() + WN() </span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">sarma_wn_model =<span class="st"> </span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co"># Plot simulation of SARMA() + WN() </span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sarma_wn_sim)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Generate a SARMA() + WN() </span></a>
+<a class="sourceLine" id="cb7-2" title="2">sarma_wn_model =<span class="st"> </span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb7-5" title="5">sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)</a>
+<a class="sourceLine" id="cb7-6" title="6"></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co"># Plot simulation of SARMA() + WN() </span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sarma_wn_sim)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
 Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
 </p>
 </div>
 <p>To better visualize the contribution to each process by using the sam range on the “y-axis”. This can be done with the option <code>fixed_range = TRUE</code> as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sarma_wn_sim, <span class="dt">fixed_range =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sarma_wn_sim, <span class="dt">fixed_range =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
 Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
@@ -229,32 +229,32 @@ Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the u
 <h3 class="hasAnchor">
 <a href="#hydrology-dataset" class="anchor"></a>Hydrology dataset</h3>
 <p>Frist, we consider the <code>hydro</code> dataset. The code below shows how to construct a <code>gts</code> object and plot the resulting time series.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Load hydro dataset</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"hydro"</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co"># Simulate based on data</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">hydro =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(hydro), <span class="dt">start =</span> <span class="dv">1907</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"in."</span>, </a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, </a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">            <span class="dt">data_name =</span> <span class="st">"Precipitation data from Hipel et al., (1994)"</span>)</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co"># Plot hydro simulation</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(hydro)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Load hydro dataset</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"hydro"</span>)</a>
+<a class="sourceLine" id="cb9-3" title="3"></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="co"># Simulate based on data</span></a>
+<a class="sourceLine" id="cb9-5" title="5">hydro =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(hydro), <span class="dt">start =</span> <span class="dv">1907</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"in."</span>, </a>
+<a class="sourceLine" id="cb9-6" title="6">            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, </a>
+<a class="sourceLine" id="cb9-7" title="7">            <span class="dt">data_name =</span> <span class="st">"Precipitation data from Hipel et al., (1994)"</span>)</a>
+<a class="sourceLine" id="cb9-8" title="8"></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="co"># Plot hydro simulation</span></a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(hydro)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time" width="696"><p class="caption">
 Figure 1: Monthly precipitation series from 1907 to 1972 taken from <span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
 <p>Using the object we created we can now compute its autocorrelation function using the <code><a href="../reference/auto_corr.html">auto_corr()</a></code> function as follows:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="co"># Compare the standard and robust ACF</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="../reference/compare_acf.html">compare_acf</a></span>(hydro)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># Compare the standard and robust ACF</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="kw"><a href="../reference/compare_acf.html">compare_acf</a></span>(hydro)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 2: Standard and Robust Empirical autocorrelation functions of monthly  precipitation  series  from @hipel1994time" width="696"><p class="caption">
 Figure 2: Standard and Robust Empirical autocorrelation functions of monthly precipitation series from <span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
 <p>This plot shows that no apparent autocorrelation exists when using the standard estimator of the ACF (left) but the picture changes compeltely when using the robust estimator (right). There therefore appears to be some possible contamination in the data and, if we wanted to estimate a model for the data, we would probably opt for a robust estimator. For this we can use the RGMWM to estimate an AR(1) model which could be a possible candidate to explain the robust ACF pattern.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">model_hydro =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">2</span>), hydro, <span class="dt">method =</span> <span class="st">"rgmwm"</span>)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">model_hydro<span class="op">$</span>mod<span class="op">$</span>estimate</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">model_hydro =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">2</span>), hydro, <span class="dt">method =</span> <span class="st">"rgmwm"</span>)</a>
+<a class="sourceLine" id="cb11-2" title="2">model_hydro<span class="op">$</span>mod<span class="op">$</span>estimate</a></code></pre></div>
 <pre><code>##          Estimates
 ## AR      0.42983779
 ## AR     -0.04681182
@@ -265,121 +265,121 @@ Figure 2: Standard and Robust Empirical autocorrelation functions of monthly pre
 <h3 class="hasAnchor">
 <a href="#personal-savings-dataset" class="anchor"></a>Personal Savings dataset</h3>
 <p>Similarly to the first dataset, we now consider the <code>savingrt</code> time series:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Load savingrt dataset</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"savingrt"</span>)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># Simulate based on data</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, </a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">            <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>,</a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">            <span class="dt">unit_time =</span> <span class="st">"year"</span>)</a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="co"># Plot savingrt simulation</span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(savingrt)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Load savingrt dataset</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"savingrt"</span>)</a>
+<a class="sourceLine" id="cb13-3" title="3"></a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="co"># Simulate based on data</span></a>
+<a class="sourceLine" id="cb13-5" title="5">savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, </a>
+<a class="sourceLine" id="cb13-6" title="6">            <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>,</a>
+<a class="sourceLine" id="cb13-7" title="7">            <span class="dt">unit_time =</span> <span class="st">"year"</span>)</a>
+<a class="sourceLine" id="cb13-8" title="8"></a>
+<a class="sourceLine" id="cb13-9" title="9"><span class="co"># Plot savingrt simulation</span></a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(savingrt)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
 Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from January 1959 to May 2015 provided by the Federal Reserve Bank of St. Louis.
 </p>
 </div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Compute ACF and plot result</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">savingrt_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(savingrt)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(savingrt_acf)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Compute ACF and plot result</span></a>
+<a class="sourceLine" id="cb14-2" title="2">savingrt_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(savingrt)</a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(savingrt_acf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 4: Empirical autocorrelation function of Personal Saving  Rates data" width="696"><p class="caption">
 Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 </p>
 </div>
 <p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Estimate the latent model ARMA(2,1) + RW()</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">model_savings =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dv">2</span>,<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(), savingrt, <span class="dt">method =</span> <span class="st">"gmwm"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Estimate the latent model ARMA(2,1) + RW()</span></a>
+<a class="sourceLine" id="cb15-2" title="2">model_savings =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dv">2</span>,<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(), savingrt, <span class="dt">method =</span> <span class="st">"gmwm"</span>)</a></code></pre></div>
 </div>
 <div id="retail-sales-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#retail-sales-dataset" class="anchor"></a>Retail Sales Dataset</h3>
 <p>Let’s consider the next dataset, the <code>sales</code> time series:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># Load sales dataset</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"sales"</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co"># Simulate based on data</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_time =</span> <span class="st">"year"</span>,</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">            <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, </a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">            <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)</a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"><span class="co"># Plot sales simulation</span></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sales)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Load sales dataset</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"sales"</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3"></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="co"># Simulate based on data</span></a>
+<a class="sourceLine" id="cb16-5" title="5">sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_time =</span> <span class="st">"year"</span>,</a>
+<a class="sourceLine" id="cb16-6" title="6">            <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, </a>
+<a class="sourceLine" id="cb16-7" title="7">            <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)</a>
+<a class="sourceLine" id="cb16-8" title="8"></a>
+<a class="sourceLine" id="cb16-9" title="9"><span class="co"># Plot sales simulation</span></a>
+<a class="sourceLine" id="cb16-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sales)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-17-1.png" alt="Figure 5: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 5: Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Compute ACF and plot result</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">sales_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sales_acf)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Compute ACF and plot result</span></a>
+<a class="sourceLine" id="cb17-2" title="2">sales_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales)</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sales_acf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-18-1.png" alt="Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co">#Compute PACF and plot result</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sales_pacf)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co">#Compute PACF and plot result</span></a>
+<a class="sourceLine" id="cb18-2" title="2">sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sales_pacf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-19-1.png" alt="Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <p>You can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> function in the package to get the same results as above:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># Compute and plot ACF and PACF</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">sales_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># Compute and plot ACF and PACF</span></a>
+<a class="sourceLine" id="cb19-2" title="2">sales_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-20-1.png" alt="Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Get ACF and PACF values</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">sales_acf =<span class="st"> </span>sales_corr<span class="op">$</span>ACF</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">sales_pacf =<span class="st"> </span>sales_corr<span class="op">$</span>PACF</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Get ACF and PACF values</span></a>
+<a class="sourceLine" id="cb20-2" title="2">sales_acf =<span class="st"> </span>sales_corr<span class="op">$</span>ACF</a>
+<a class="sourceLine" id="cb20-3" title="3">sales_pacf =<span class="st"> </span>sales_corr<span class="op">$</span>PACF</a></code></pre></div>
 <p>The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.</p>
 </div>
 <div id="lynx-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#lynx-dataset" class="anchor"></a>Lynx Dataset</h3>
 <p>We can look at another dataset, <code>lynx</code>, annual numbers of lynx trappings in Canada for 1821-1934 in the code below:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Load lynx dataset </span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(lynx)</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># Simulate based on data</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">lynx =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(lynx), <span class="dt">start =</span> <span class="dv">1821</span>, <span class="dt">end =</span> <span class="dv">1934</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, </a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Numbers of Lynx Trappings"</span>)</a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co"># Plot lynx simulation</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(lynx)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># Load lynx dataset </span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(lynx)</a>
+<a class="sourceLine" id="cb21-3" title="3"></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="co"># Simulate based on data</span></a>
+<a class="sourceLine" id="cb21-5" title="5">lynx =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(lynx), <span class="dt">start =</span> <span class="dv">1821</span>, <span class="dt">end =</span> <span class="dv">1934</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb21-6" title="6">           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, </a>
+<a class="sourceLine" id="cb21-7" title="7">           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Numbers of Lynx Trappings"</span>)</a>
+<a class="sourceLine" id="cb21-8" title="8"></a>
+<a class="sourceLine" id="cb21-9" title="9"><span class="co"># Plot lynx simulation</span></a>
+<a class="sourceLine" id="cb21-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(lynx)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-21-1.png" alt="Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada" width="696"><p class="caption">
 Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># Compute ACF and plot result</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2">lynx_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(lynx_acf)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Compute ACF and plot result</span></a>
+<a class="sourceLine" id="cb22-2" title="2">lynx_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx)</a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(lynx_acf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-22-1.png" alt="Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
 </p>
 </div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># Compute PACF and plot result</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">lynx_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(lynx_pacf)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># Compute PACF and plot result</span></a>
+<a class="sourceLine" id="cb23-2" title="2">lynx_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(lynx_pacf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-23-1.png" alt="Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
 </p>
 </div>
 <p>The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">test =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>), lynx)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw"><a href="../reference/check.html">check</a></span>(test)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">test =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>), lynx)</a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="kw"><a href="../reference/check.html">check</a></span>(test)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-24-1.png" alt="Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
@@ -391,48 +391,48 @@ Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx 
 <h3 class="hasAnchor">
 <a href="#sunspot-dataset" class="anchor"></a>Sunspot Dataset</h3>
 <p>We can look at another dataset, <code>sunspot.year</code>, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># Load sunspot dataset </span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">sunspot =<span class="st"> </span>datasets<span class="op">::</span>sunspot.year</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co"># Simulate based on data</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">sunspot =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(sunspot.year), <span class="dt">start =</span> <span class="dv">1700</span>, <span class="dt">end =</span> <span class="dv">1988</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, </a>
-<a class="sourceLine" id="cb25-7" data-line-number="7">           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Yearly Numbers of Sunspots"</span>)</a>
-<a class="sourceLine" id="cb25-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb25-9" data-line-number="9"><span class="co"># Plot sunspot simulation</span></a>
-<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sunspot)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Load sunspot dataset </span></a>
+<a class="sourceLine" id="cb25-2" title="2">sunspot =<span class="st"> </span>datasets<span class="op">::</span>sunspot.year</a>
+<a class="sourceLine" id="cb25-3" title="3"></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="co"># Simulate based on data</span></a>
+<a class="sourceLine" id="cb25-5" title="5">sunspot =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(sunspot.year), <span class="dt">start =</span> <span class="dv">1700</span>, <span class="dt">end =</span> <span class="dv">1988</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb25-6" title="6">           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, </a>
+<a class="sourceLine" id="cb25-7" title="7">           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Yearly Numbers of Sunspots"</span>)</a>
+<a class="sourceLine" id="cb25-8" title="8"></a>
+<a class="sourceLine" id="cb25-9" title="9"><span class="co"># Plot sunspot simulation</span></a>
+<a class="sourceLine" id="cb25-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sunspot)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-25-1.png" alt="Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># Compute ACF and plot result</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">sunspot_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot)</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sunspot_acf)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Compute ACF and plot result</span></a>
+<a class="sourceLine" id="cb26-2" title="2">sunspot_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot)</a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sunspot_acf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-26-1.png" alt="Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co">#Compute PACF and plot result</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">sunspot_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sunspot_pacf)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co">#Compute PACF and plot result</span></a>
+<a class="sourceLine" id="cb27-2" title="2">sunspot_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(sunspot_pacf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" alt="Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <p>Let us estimate an AR(p) model and for this reason let us select the order:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw"><a href="../reference/select.html">select</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">15</span>), sunspot)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw"><a href="../reference/select.html">select</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">15</span>), sunspot)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-28-1.png" alt="Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <p>The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">model_sunspots =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">9</span>), sunspot)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model_sunspots, <span class="dt">n.ahead =</span> <span class="dv">10</span>, <span class="dt">level =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">model_sunspots =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">9</span>), sunspot)</a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/predict">predict</a></span>(model_sunspots, <span class="dt">n.ahead =</span> <span class="dv">10</span>, <span class="dt">level =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>))</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-29-1.png" alt="Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988
@@ -443,41 +443,41 @@ Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly number
 <h3 class="hasAnchor">
 <a href="#nile-river-flow-dataset" class="anchor"></a>Nile River Flow Dataset</h3>
 <p>Finally, we consider the last dataset, <code>Nile</code>, Annual Nile river flow from 1871-1970 in the code below:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="co"># Load Nile dataset</span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">Nile =<span class="st"> </span>datasets<span class="op">::</span>Nile</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="co"># Simulate based on data</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5">nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(Nile), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb30-6" data-line-number="6">           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, </a>
-<a class="sourceLine" id="cb30-7" data-line-number="7">           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of the Nile River"</span>)</a>
-<a class="sourceLine" id="cb30-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb30-9" data-line-number="9"><span class="co"># Plot Nile simulation </span></a>
-<a class="sourceLine" id="cb30-10" data-line-number="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(nile)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Load Nile dataset</span></a>
+<a class="sourceLine" id="cb30-2" title="2">Nile =<span class="st"> </span>datasets<span class="op">::</span>Nile</a>
+<a class="sourceLine" id="cb30-3" title="3"></a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="co"># Simulate based on data</span></a>
+<a class="sourceLine" id="cb30-5" title="5">nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/vector">as.vector</a></span>(Nile), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb30-6" title="6">           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/bquote">bquote</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, </a>
+<a class="sourceLine" id="cb30-7" title="7">           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of the Nile River"</span>)</a>
+<a class="sourceLine" id="cb30-8" title="8"></a>
+<a class="sourceLine" id="cb30-9" title="9"><span class="co"># Plot Nile simulation </span></a>
+<a class="sourceLine" id="cb30-10" title="10"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(nile)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-30-1.png" alt="Figure 18: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
 Figure 18: Plot of Annual Nile river flow from 1871-1970
 </p>
 </div>
 <p>To get ACF, we can use <code><a href="../reference/auto_corr.html">auto_corr()</a></code> and make a plot:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># Compute ACF and plot result</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">nile_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(nile)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(nile_acf)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Compute ACF and plot result</span></a>
+<a class="sourceLine" id="cb31-2" title="2">nile_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(nile)</a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(nile_acf)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-31-1.png" alt="Figure 19: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
 Figure 19: Empirical autocorrelation function of the Nile river flow data
 </p>
 </div>
 <p>Similar to the example above, we can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> to get the ACF and PACF at the same time:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="co"># Compute and plot ACF and PACF</span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">nile_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(nile)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Compute and plot ACF and PACF</span></a>
+<a class="sourceLine" id="cb32-2" title="2">nile_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(nile)</a></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-32-1.png" alt="Figure 20: Empirical ACF and PACF of the Nile river flow data" width="696"><p class="caption">
 Figure 20: Empirical ACF and PACF of the Nile river flow data
 </p>
 </div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># Get ACF and PACF values</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">nile_acf =<span class="st"> </span>nile_corr<span class="op">$</span>ACF</a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">nile_pacf =<span class="st"> </span>nile_corr<span class="op">$</span>PACF</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Get ACF and PACF values</span></a>
+<a class="sourceLine" id="cb33-2" title="2">nile_acf =<span class="st"> </span>nile_corr<span class="op">$</span>ACF</a>
+<a class="sourceLine" id="cb33-3" title="3">nile_pacf =<span class="st"> </span>nile_corr<span class="op">$</span>PACF</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2">
@@ -486,7 +486,7 @@ Figure 20: Empirical ACF and PACF of the Nile river flow data
 <p>This package is developed mainly as a support to the online book <a href="https://smac-group.github.io/ts/">“Applied Time Series Analysis with R”</a>.</p>
 <div id="refs" class="references">
 <div id="ref-cobb1978problem">
-<p>Cobb, George W. 1978. “The Problem of the Nile: Conditional Solution to a Changepoint Problem.” <em>Biometrika</em>. JSTOR, 243–51.</p>
+<p>Cobb, George W. 1978. “The Problem of the Nile: Conditional Solution to a Changepoint Problem.” <em>Biometrika</em>, 243–51.</p>
 </div>
 <div id="ref-hipel1994time">
 <p>Hipel, Keith W, and A Ian McLeod. 1994. <em>Time Series Modelling of Water Resources and Environmental Systems</em>. Vol. 45. Elsevier.</p>

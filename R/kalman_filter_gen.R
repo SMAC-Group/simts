@@ -23,9 +23,13 @@ sum_cov = function(x){
 #' @param method specify the method of estimation if \code{estimate_model} is set to \code{True} and \code{model_to_estimate} is provided
 #' @return a \code{KF} object with the structure:
 #' \describe{
-#' \item{X_h}{Estimated states for each time \code{t}}
-#' \item{P_h}{Estimated variance-covariance matrix for each time \code{t}}
+#' \item{forecast}{X_t|t-1}
+#' \item{forecast_cov_mat}{Estimated variance-covariance for X_t|t-1}
+#' \item{filter}{X_t|t}
+#' \item{filter}{Estimated variance-covariance for X_t|t}
 #' \item{y}{Observed time serie}
+#' \item{y_d}{Unobserved states composing the time serie}
+#' \item{print}{Model structure}
 #' }
 #' @details   
 #' Compute a kalman filter on a state space model which

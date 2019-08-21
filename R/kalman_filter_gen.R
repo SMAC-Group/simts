@@ -240,6 +240,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 #' @param plot_state    A numeric value indicating which state to plot. Default is "all".
 #' @param ...           Additional arguments affecting the plot produced.
 #' @importFrom dplyr select
+#' @importFrom dplyr contains
 #' @importFrom stats filter
 #' @author Lionel Voirol
 #' @examples 
@@ -271,9 +272,9 @@ plot.KF = function(x, plot_state = "all", ...){
          legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
   X_h = obj$filter
   y = as.data.frame(obj$y_d)
-  ar_processes_val = dplyr::select(y, contains('SARIMA'))
-  dr_process_val = dplyr::select(y, contains('DR'))
-  rw_process_val = dplyr::select(y, contains('RW'))
+  ar_processes_val = dplyr::select(y, dplyr::contains('SARIMA'))
+  dr_process_val = dplyr::select(y, dplyr::contains('DR'))
+  rw_process_val = dplyr::select(y, dplyr::contains('RW'))
   true_processes = cbind(ar_processes_val, rw_process_val, dr_process_val)
   P_h = obj$filter_cov_mat
   var_vec = lapply(P_h, diag)
@@ -330,11 +331,14 @@ plot.KF = function(x, plot_state = "all", ...){
 
 
 #for devlopement purposes
+#Example
 # estimate_model = F
 # model_to_estimate = NULL
+#Filter a 2*AR1 + DR + RW + WN process
 # library(simts)
+# library(dplyr)
 # set.seed(123)
-# model = AR(.7,2) + AR(.65,1) + RW(.6) +DR(.02) + WN(6)
+# model = AR(.3, 2) + AR(.7, 1) + RW(3) + WN(2)
 # n = 250
 # y = gen_lts(n = n, model = model)
 # plot(y)
@@ -342,14 +346,3 @@ plot.KF = function(x, plot_state = "all", ...){
 # plot(res)
 # plot(res, plot_state = 3)
 
-#Example
-#Filter a 2*AR1 + DR + RW + WN process
-# set.seed(123)
-# library(simts)
-# library(dplyr)
-# model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4)
-# n = 250
-# y = gen_lts(n = n, model = model)
-# my_res = kalman_filter(model = model, y = y)
-# plot(my_res)
-# plot(my_res, plot_state = 3)

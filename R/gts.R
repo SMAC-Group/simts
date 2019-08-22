@@ -172,9 +172,10 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   }
   
   if ( is.null(end) ){
-    end = start + (n - 1)/freq} # freq conversion (unit conversion is handled in graphical function)
-  else if ( is.null(start) ){
-    start = end - (n - 1)/freq}
+    end = start + (n - 1)/freq
+    }else if ( is.null(start) ){  # freq conversion (unit conversion is handled in graphical function)
+    start = end - (n - 1)/freq
+    }
   
   # 4. 'unit_time'
   if(!is.null(unit_time)){
@@ -195,15 +196,15 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
   
   if(!model$starting){
     
+    if(any(model$desc == "DR") && freq != 1){
+      model$theta[model$process.desc == "DR"] = model$theta[model$process.desc == "DR"]/freq
+    }
+    
     theta = model$theta
     
     # Convert from AR1 to GM
     if(any(model$desc == "GM")){
       theta = conv.gm.to.ar1(theta, model$process.desc, freq)
-    }
-    
-    if(any(model$desc == "DR") && freq != 1){
-      model$theta[model$process.desc == "DR"] = model$theta[model$process.desc == "DR"]/freq
     }
     
     out = gen_model(n, theta, desc, obj)

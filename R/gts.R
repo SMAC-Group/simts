@@ -202,6 +202,10 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
       theta = conv.gm.to.ar1(theta, model$process.desc, freq)
     }
     
+    if(any(model$desc == "DR") && freq != 1){
+      model$theta[model$process.desc == "DR"] = model$theta[model$process.desc == "DR"]/freq
+    }
+    
     out = gen_model(n, theta, desc, obj)
   }else{
     stop("Need to supply initial values within the ts.model object.")

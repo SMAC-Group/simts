@@ -23,10 +23,12 @@ sum_cov = function(x){
 #' @param method specify the method of estimation if \code{estimate_model} is set to \code{True} and \code{model_to_estimate} is provided
 #' @return a \code{KF} object with the structure:
 #' \describe{
-#' \item{forecast}{X_t|t-1}
-#' \item{forecast_cov_mat}{Estimated variance-covariance for X_t|t-1}
-#' \item{filter}{X_t|t}
-#' \item{filter}{Estimated variance-covariance for X_t|t}
+#' \item{forecast}{\code{X_t|t-1}}
+#' \item{forecast_cov_mat}{Estimated variance-covariance for \code{X_t|t-1}}
+#' \item{filter}{\code{X_t|t}}
+#' \item{filter_cov_mat}{Estimated variance-covariance for \code{X_t|t}}
+#' \item{smooth}{\code{X_t|t} with a forward and backward Kalman filter}
+#' \item{smooth_cov_mat}{Estimated variance-covariance for the smoothed states}
 #' \item{y}{Observed time serie}
 #' \item{y_d}{Unobserved states composing the time serie}
 #' \item{print}{Model structure}
@@ -41,7 +43,21 @@ sum_cov = function(x){
 #' model which is the defined model and y which is the observed time serie.
 #' If estimate_model is set to False (by default), the user need to provide a model
 #' and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
-#' the selected model to estimate and the estimation method (see function estimate)
+#' the selected model to estimate and the estimation method (see function estimate).
+#' 
+#' Note on the calculation of the smoothed states:
+#' 
+#' The variance-covariance matrix \code{P_s} for the smoothed states is calculated as follows:
+#' 
+#' \code{P_s = (P_f^-1 + P_b^-1)^-1}
+#' 
+#' where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm.
+#' 
+#' The smoothed states \code{X_s} are calculated as follows:
+#' 
+#' \code{X_b + P_s*P_f^-1(X_f - X_b)}
+#' 
+#' where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and \code{X_f} and \code{X_b} are the filtered states for respectively the foward and backward kalman filter algorithm.
 #' @examples 
 #' #Filter a 2*AR1 + DR + RW + WN process
 #' set.seed(123)
@@ -55,6 +71,7 @@ sum_cov = function(x){
 #' @importFrom dplyr filter
 #' @author Lionel Voirol
 #' @export
+
 kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle'){
   #get rid of no visible binding for global variable notes
   process = sel_order = NULL
@@ -182,11 +199,18 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     measurment_error = wn_val
   }
   #creation of empty list of matrices and 2 vectors 
-  X_t = list() 
-  X_h = list()
+  X_t = list() #forecast
+  X_h = list() #filter
+  X_b_t = list() #backward 
+  X_b_h = list()
+  X_s = list() #smooth
   P_t = list()
   P_h = list()
+  P_b_t = list()
+  P_b_h = list()
+  P_s = list()
   K   = list() #Kalman gain
+  K_b = list()
   
   #define the matrix H that transform State space to measurement space, here just the sum of all states
   #we only observe the final time serie which is the sum of all state for each time t
@@ -220,6 +244,38 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     P_h[[k+1]] = (diag(X_t_length)-K[[k+1]] %*% H) %*% P_t[[k+1]] #update process_noise_cov_mat
   }
   
+  #Backward kalman flter
+  #init w/ values from X_t
+  X_b_t[[length(rev(seq(n)))]] = X_t[[length(rev(seq(n)))]]
+  P_b_t[[length(rev(seq(n)))]] = P_t[[length(rev(seq(n)))]]
+  X_b_h[[length(rev(seq(n)))]] = X_h[[length(rev(seq(n)))]]
+  P_b_h[[length(rev(seq(n)))]] = P_h[[length(rev(seq(n)))]]
+  # estimate next state 
+  for(k in rev(seq(n))[-length(rev(seq(n)))] ){
+    X_b_t[[k-1]] = trans_mat %*% X_h[[k]] + T_mat %*% U_vec
+    P_b_t[[k-1]] = trans_mat %*% P_h[[k]] %*% t(trans_mat) + process_noise_cov_mat
+    
+    #update
+    innovation = y[k-1] - H %*% X_b_t[[k-1]] #innovation
+    innovation_cov = H %*% P_b_t[[k-1]] %*% t(H) + measurment_error #innovation covariance
+    K_b[[k-1]]   = P_b_t[[k-1]] %*% t(H) %*% solve(innovation_cov)  #update optimal Kalman gain
+    X_b_h[[k-1]] = X_b_t[[k-1]] + K_b[[k-1]] %*% innovation #update state prediction
+    P_b_h[[k-1]] = (diag(X_t_length)-K_b[[k-1]] %*% H) %*% P_b_t[[k-1]] #update process_noise_cov_mat
+  }
+  
+  #smooth covariance matrix
+  P_smooth = list()
+  for(i in seq(length(X_b_h))){
+    P_f = solve(P_h[[i]])
+    P_b = solve(P_b_h[[i]])
+    P_smooth[[i]] = solve(P_f + P_b)
+  }
+  
+  #X_s_vector
+  X_s = list()
+  for(i in seq(length(X_b_h))){
+    X_s[[i]] = X_b_h[[i]] + P_smooth[[i]] %*% solve(P_h[[i]]) %*% (X_h[[i]] - X_b_h[[i]])
+  }
   #Structure output
   length(X_t)
   X_t_mat = matrix(unlist(X_t), nrow = length(X_t), byrow = T)
@@ -231,6 +287,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   #Return output
   out = list("forecast" = X_t_mat, "forecast_cov_mat" = P_t, 
              "filter" = X_h_mat, "filter_cov_mat" = P_h,
+             "smooth" = smooth, "smooth_cov_mat" = P_smooth,
              "y" = y, "y_d" = y_decomp, print = model$print)
   class(out) = "KF"
   invisible(out)
@@ -336,8 +393,8 @@ plot.KF = function(x, plot_state = "all", ...){
 #for devlopement purposes
 #Example
 # estimate_model = F
-# model_to_estimate = NULL
-#Filter a 2*AR1 + DR + RW + WN process
+# # model_to_estimate = NULL
+# #Filter a 2*AR1 + DR + RW + WN process
 # library(simts)
 # library(dplyr)
 # set.seed(123)
@@ -346,6 +403,8 @@ plot.KF = function(x, plot_state = "all", ...){
 # y = gen_lts(n = n, model = model)
 # plot(y)
 # res = kalman_filter(y = y, model = model)
+# plot(res$y, type = 'l')
+# lines(rowSums(res$smooth), col ='red')
 # plot(res)
 # plot(res, plot_state = 3)
 

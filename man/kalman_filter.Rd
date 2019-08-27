@@ -5,7 +5,7 @@
 \title{Kalman Filter Estimation}
 \usage{
 kalman_filter(model, y, estimate_model = F, model_to_estimate = NULL,
-  method = "mle")
+  method = "mle", h = 0)
 }
 \arguments{
 \item{model}{a \code{ts.model} object with specified parameters values}
@@ -17,6 +17,8 @@ kalman_filter(model, y, estimate_model = F, model_to_estimate = NULL,
 \item{model_to_estimate}{a \code{ts.model} object without parameters values specified if \code{estimate_model} is set to \code{True}}
 
 \item{method}{specify the method of estimation if \code{estimate_model} is set to \code{True} and \code{model_to_estimate} is provided}
+
+\item{h}{Number of periods for forecasting}
 }
 \value{
 a \code{KF} object with the structure:

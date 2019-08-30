@@ -110,7 +110,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>kalman_filter</span>(<span class='no'>model</span>, <span class='no'>y</span>, <span class='kw'>estimate_model</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>model_to_estimate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mle"</span>)</pre>
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mle"</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -135,15 +135,21 @@
       <th>method</th>
       <td><p>specify the method of estimation if <code>estimate_model</code> is set to <code>True</code> and <code>model_to_estimate</code> is provided</p></td>
     </tr>
+    <tr>
+      <th>h</th>
+      <td><p>Number of periods for forecasting</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a <code>KF</code> object with the structure:</p><dl class='dl-horizontal'>
-<dt>forecast</dt><dd><p>X_t|t-1</p></dd>
-<dt>forecast_cov_mat</dt><dd><p>Estimated variance-covariance for X_t|t-1</p></dd>
-<dt>filter</dt><dd><p>X_t|t</p></dd>
-<dt>filter</dt><dd><p>Estimated variance-covariance for X_t|t</p></dd>
+<dt>forecast</dt><dd><p><code>X_t|t-1</code></p></dd>
+<dt>forecast_cov_mat</dt><dd><p>Estimated variance-covariance for <code>X_t|t-1</code></p></dd>
+<dt>filter</dt><dd><p><code>X_t|t</code></p></dd>
+<dt>filter_cov_mat</dt><dd><p>Estimated variance-covariance for <code>X_t|t</code></p></dd>
+<dt>smooth</dt><dd><p><code>X_t|t</code> with a forward and backward Kalman filter</p></dd>
+<dt>smooth_cov_mat</dt><dd><p>Estimated variance-covariance for the smoothed states</p></dd>
 <dt>y</dt><dd><p>Observed time serie</p></dd>
 <dt>y_d</dt><dd><p>Unobserved states composing the time serie</p></dd>
 <dt>print</dt><dd><p>Model structure</p></dd>
@@ -161,7 +167,14 @@ filter with specified parameters. The function takes as input the
 model which is the defined model and y which is the observed time serie.
 If estimate_model is set to False (by default), the user need to provide a model
 and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
-the selected model to estimate and the estimation method (see function estimate)</p>
+the selected model to estimate and the estimation method (see function estimate).</p>
+<p>Note on the calculation of the smoothed states:</p>
+<p>The variance-covariance matrix <code>P_s</code> for the smoothed states is calculated as follows:</p>
+<p><code>P_s = (P_f^-1 + P_b^-1)^-1</code></p>
+<p>where <code>P_f</code> and <code>P_b</code> are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm.</p>
+<p>The smoothed states <code>X_s</code> are calculated as follows:</p>
+<p><code>X_b + P_s*P_f^-1(X_f - X_b)</code></p>
+<p>where <code>P_f</code> and <code>P_b</code> are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and <code>X_f</code> and <code>X_b</code> are the filtered states for respectively the foward and backward kalman filter algorithm.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

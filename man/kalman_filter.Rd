@@ -5,7 +5,7 @@
 \title{Kalman Filter Estimation}
 \usage{
 kalman_filter(model, y, estimate_model = F, model_to_estimate = NULL,
-  method = "mle")
+  method = "mle", h = 0)
 }
 \arguments{
 \item{model}{a \code{ts.model} object with specified parameters values}
@@ -17,14 +17,18 @@ kalman_filter(model, y, estimate_model = F, model_to_estimate = NULL,
 \item{model_to_estimate}{a \code{ts.model} object without parameters values specified if \code{estimate_model} is set to \code{True}}
 
 \item{method}{specify the method of estimation if \code{estimate_model} is set to \code{True} and \code{model_to_estimate} is provided}
+
+\item{h}{Number of periods for forecasting}
 }
 \value{
 a \code{KF} object with the structure:
 \describe{
-\item{forecast}{X_t|t-1}
-\item{forecast_cov_mat}{Estimated variance-covariance for X_t|t-1}
-\item{filter}{X_t|t}
-\item{filter}{Estimated variance-covariance for X_t|t}
+\item{forecast}{\code{X_t|t-1}}
+\item{forecast_cov_mat}{Estimated variance-covariance for \code{X_t|t-1}}
+\item{filter}{\code{X_t|t}}
+\item{filter_cov_mat}{Estimated variance-covariance for \code{X_t|t}}
+\item{smooth}{\code{X_t|t} with a forward and backward Kalman filter}
+\item{smooth_cov_mat}{Estimated variance-covariance for the smoothed states}
 \item{y}{Observed time serie}
 \item{y_d}{Unobserved states composing the time serie}
 \item{print}{Model structure}
@@ -43,7 +47,21 @@ filter with specified parameters. The function takes as input the
 model which is the defined model and y which is the observed time serie.
 If estimate_model is set to False (by default), the user need to provide a model
 and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
-the selected model to estimate and the estimation method (see function estimate)
+the selected model to estimate and the estimation method (see function estimate).
+
+Note on the calculation of the smoothed states:
+
+The variance-covariance matrix \code{P_s} for the smoothed states is calculated as follows:
+
+\code{P_s = (P_f^-1 + P_b^-1)^-1}
+
+where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm.
+
+The smoothed states \code{X_s} are calculated as follows:
+
+\code{X_b + P_s*P_f^-1(X_f - X_b)}
+
+where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and \code{X_f} and \code{X_b} are the filtered states for respectively the foward and backward kalman filter algorithm.
 }
 \examples{
 #Filter a 2*AR1 + DR + RW + WN process

@@ -22,7 +22,7 @@ set.seed(123)
 model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
 n = 250
 y = gen_lts(n = n, model = model)
-my_res = kalman_filter(model = model, y = y)
+my_res = kalman_filter(model = model, y = y, h = 10)
 plot(my_res)
 plot(my_res, plot_state = 3)
 }

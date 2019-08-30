@@ -21,12 +21,15 @@ sum_cov = function(x){
 #' @param estimate_model a bolean indicating whether or not to estimate the parameters values of a provided model, default is \code{False}
 #' @param model_to_estimate a \code{ts.model} object without parameters values specified if \code{estimate_model} is set to \code{True}
 #' @param method specify the method of estimation if \code{estimate_model} is set to \code{True} and \code{model_to_estimate} is provided
+#' @param h Number of periods for forecasting
 #' @return a \code{KF} object with the structure:
 #' \describe{
-#' \item{forecast}{X_t|t-1}
-#' \item{forecast_cov_mat}{Estimated variance-covariance for X_t|t-1}
-#' \item{filter}{X_t|t}
-#' \item{filter}{Estimated variance-covariance for X_t|t}
+#' \item{forecast}{\code{X_t|t-1}}
+#' \item{forecast_cov_mat}{Estimated variance-covariance for \code{X_t|t-1}}
+#' \item{filter}{\code{X_t|t}}
+#' \item{filter_cov_mat}{Estimated variance-covariance for \code{X_t|t}}
+#' \item{smooth}{\code{X_t|t} with a forward and backward Kalman filter}
+#' \item{smooth_cov_mat}{Estimated variance-covariance for the smoothed states}
 #' \item{y}{Observed time serie}
 #' \item{y_d}{Unobserved states composing the time serie}
 #' \item{print}{Model structure}
@@ -41,7 +44,21 @@ sum_cov = function(x){
 #' model which is the defined model and y which is the observed time serie.
 #' If estimate_model is set to False (by default), the user need to provide a model
 #' and its parameters (a ts.model class object). If estimate_model is set to True, the user just need to provide
-#' the selected model to estimate and the estimation method (see function estimate)
+#' the selected model to estimate and the estimation method (see function estimate).
+#' 
+#' Note on the calculation of the smoothed states:
+#' 
+#' The variance-covariance matrix \code{P_s} for the smoothed states is calculated as follows:
+#' 
+#' \code{P_s = (P_f^-1 + P_b^-1)^-1}
+#' 
+#' where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm.
+#' 
+#' The smoothed states \code{X_s} are calculated as follows:
+#' 
+#' \code{X_b + P_s*P_f^-1(X_f - X_b)}
+#' 
+#' where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and \code{X_f} and \code{X_b} are the filtered states for respectively the foward and backward kalman filter algorithm.
 #' @examples 
 #' #Filter a 2*AR1 + DR + RW + WN process
 #' set.seed(123)
@@ -55,7 +72,7 @@ sum_cov = function(x){
 #' @importFrom dplyr filter
 #' @author Lionel Voirol
 #' @export
-kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle'){
+kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL, method = 'mle', h = 0){
   #get rid of no visible binding for global variable notes
   process = sel_order = NULL
 
@@ -182,11 +199,18 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     measurment_error = wn_val
   }
   #creation of empty list of matrices and 2 vectors 
-  X_t = list() 
-  X_h = list()
+  X_t = list() #forecast
+  X_h = list() #filter
+  X_b_t = list() #backward 
+  X_b_h = list()
+  X_s = list() #smooth
   P_t = list()
   P_h = list()
+  P_b_t = list()
+  P_b_h = list()
+  P_s = list()
   K   = list() #Kalman gain
+  K_b = list()
   
   #define the matrix H that transform State space to measurement space, here just the sum of all states
   #we only observe the final time serie which is the sum of all state for each time t
@@ -220,6 +244,49 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     P_h[[k+1]] = (diag(X_t_length)-K[[k+1]] %*% H) %*% P_t[[k+1]] #update process_noise_cov_mat
   }
   
+  #Backward kalman flter
+  #init w/ values from X_t
+  X_b_t[[length(rev(seq(n)))]] = X_t[[length(rev(seq(n)))]]
+  P_b_t[[length(rev(seq(n)))]] = P_t[[length(rev(seq(n)))]]
+  X_b_h[[length(rev(seq(n)))]] = X_h[[length(rev(seq(n)))]]
+  P_b_h[[length(rev(seq(n)))]] = P_h[[length(rev(seq(n)))]]
+  # estimate next state 
+  for(k in rev(seq(n))[-length(rev(seq(n)))] ){
+    X_b_t[[k-1]] = trans_mat %*% X_h[[k]] + T_mat %*% U_vec
+    P_b_t[[k-1]] = trans_mat %*% P_h[[k]] %*% t(trans_mat) + process_noise_cov_mat
+    
+    #update
+    innovation = y[k-1] - H %*% X_b_t[[k-1]] #innovation
+    innovation_cov = H %*% P_b_t[[k-1]] %*% t(H) + measurment_error #innovation covariance
+    K_b[[k-1]]   = P_b_t[[k-1]] %*% t(H) %*% solve(innovation_cov)  #update optimal Kalman gain
+    X_b_h[[k-1]] = X_b_t[[k-1]] + K_b[[k-1]] %*% innovation #update state prediction
+    P_b_h[[k-1]] = (diag(X_t_length)-K_b[[k-1]] %*% H) %*% P_b_t[[k-1]] #update process_noise_cov_mat
+  }
+  
+  #smooth covariance matrix
+  P_smooth = list()
+  for(i in seq(length(X_b_h))){
+    P_f = solve(P_h[[i]])
+    P_b = solve(P_b_h[[i]])
+    P_smooth[[i]] = solve(P_f + P_b)
+  }
+  
+  #X_s_vector
+  X_s = list()
+  for(i in seq(length(X_b_h))){
+    X_s[[i]] = X_b_h[[i]] + P_smooth[[i]] %*% solve(P_h[[i]]) %*% (X_h[[i]] - X_b_h[[i]])
+  }
+  
+  #prediction for h time steps if > 0
+  if(h > 0){
+    #store a list of X_h until last point
+    last_point = length(X_h)
+    for(i in seq(h)){
+      X_h[[last_point + i]] = trans_mat %*% X_h[[last_point-1 + i]] + T_mat %*% U_vec
+      P_h[[last_point + i]] = trans_mat %*% P_h[[last_point-1 + i]] %*% t(trans_mat) + process_noise_cov_mat
+    }
+  }
+  
   #Structure output
   length(X_t)
   X_t_mat = matrix(unlist(X_t), nrow = length(X_t), byrow = T)
@@ -231,6 +298,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   #Return output
   out = list("forecast" = X_t_mat, "forecast_cov_mat" = P_t, 
              "filter" = X_h_mat, "filter_cov_mat" = P_h,
+             "smooth" = smooth, "smooth_cov_mat" = P_smooth,
              "y" = y, "y_d" = y_decomp, print = model$print)
   class(out) = "KF"
   invisible(out)
@@ -253,20 +321,25 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
 #' model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
 #' n = 250
 #' y = gen_lts(n = n, model = model)
-#' my_res = kalman_filter(model = model, y = y)
+#' my_res = kalman_filter(model = model, y = y, h = 10)
 #' plot(my_res)
 #' plot(my_res, plot_state = 3)
 #' @export
 plot.KF = function(x, plot_state = "all", ...){
+  #plot sum of filtered states and true state
   obj = x
   alpha = 0.05
   n = dim(obj$filter)[1]
   estimated = rowSums(obj$filter)
-  make_frame(x_range = c(0, dim(obj$filter)[1]), xlab = "Time", ylab = "Value", y_range = range(estimated), main = obj$print)
-  lines(obj$y, col = 'blue4')
-  lines(estimated, col = "#F8766DFF")
   var_vec = sapply(obj$filter_cov_mat, FUN = diagsum) + 2 * sapply(obj$filter_cov_mat, FUN = sum_cov)
   fit_sd = sqrt(var_vec)
+  make_frame(x_range = c(0, dim(obj$filter)[1]),
+             mar = (c(5.1, 4.1, 2.1, 2.1)),
+             y_range = c(min(estimated + qnorm(1-alpha/2)*-fit_sd ),max(estimated + qnorm(1-alpha/2)*fit_sd)),
+             xlab = "Time", ylab = "Observation", main = obj$print)
+  lines(obj$y, col = 'blue4')
+  lines(estimated, col = "#F8766DFF")
+  
   polygon(x = c(1:n, rev(1:n)),
           y = c(estimated + qnorm(1-alpha/2)*-fit_sd,
                 rev(estimated + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
@@ -282,28 +355,40 @@ plot.KF = function(x, plot_state = "all", ...){
   P_h = obj$filter_cov_mat
   var_vec = lapply(P_h, diag)
   var_df = data.frame(matrix(unlist(var_vec), nrow=length(var_vec), byrow=T))
+  #if select to plot all states
   if(plot_state == "all"){
     dim_p = dim(true_processes)[2]
     par(mfrow = c(dim_p, 1))
+    par(oma = c(4, 4, 0, 0)) # make room (i.e. the 4's) for the overall x and y axis titles
     for(i in seq(dim_p-1)){
-      par(mai=c(0.02,0.5,0.02,0.02))
-      make_frame(x_range = range(0, dim(true_processes)[1]), xlab = "Time",ylab = "Value", main = colnames(obj$filter)[i], y_range = range(true_processes[,i]))
+      fit_sd = var_df[,i]
+      alpha = .05
+      make_frame(x_range = range(0, dim(X_h)[1]), xlab = "Time",ylab = "Value",
+                 mar = c(.5,1,.5,1), 
+                 main = colnames(obj$filter)[i], 
+                 y_range = c(min(X_h[,i] + qnorm(1-alpha/2)*-fit_sd), max(X_h[,i] + qnorm(1-alpha/2)*fit_sd)),
+                 add_axis_x = F)
       lines(true_processes[,i], type = 'l', col = 'blue4',xaxt='n')
       lines(X_h[,i], col = "#F8766DFF")
-      fit_sd = var_df[,i]
       n=length(var_df[,1])
-      alpha = .05
       polygon(x = c(1:n, rev(1:n)),
               y = c(X_h[,i] + qnorm(1-alpha/2)*-fit_sd,
                     rev(X_h[,i] + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
     }
+    mtext('Time', side = 1, outer = TRUE, line = 2)
+    mtext('Observation', side = 2, outer = TRUE, line = 2)
     #last state add axis values
     i = i+1
-    par(mai=c(0.55,0.5,0.02,0.02))
-    make_frame(x_range = range(0, dim(true_processes)[1]), xlab = "Time", ylab = "Value", main = colnames(obj$filter)[i], y_range = range(true_processes[,i]))
+    fit_sd = var_df[,i]
+    make_frame(x_range = c(0, length(X_h[,i])), 
+               xlab = "Time", ylab = "Value", 
+               main = colnames(obj$filter)[i], 
+               y_range = c(min(X_h[,i] + qnorm(1-alpha/2)*-fit_sd), max(X_h[,i] + qnorm(1-alpha/2)*fit_sd)),
+               mar = c(.5,1,.5,1), 
+    )
     lines(true_processes[,i], type = 'l', col = 'blue4')
     lines(X_h[,i], col = "#F8766DFF")
-    fit_sd = var_df[,i]
+    
     n=length(var_df[,1])
     alpha = .05
     polygon(x = c(1:n, rev(1:n)),
@@ -311,13 +396,20 @@ plot.KF = function(x, plot_state = "all", ...){
                   rev(X_h[,i] + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
     legend("bottomleft",cex= 1, col = c('#2E9AFE', "#F8766DFF", "#F8766D4D"), 
            lwd = c(1,1,NA), pch = c(NA, NA, 15), pt.cex = c(NA, NA, 1.5), bty = 'n',
-           legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
+           legend = c("True state", 'Filtered state', 'CI'))
     par(mfrow=c(1,1))
+    par(oma = c(0, 0, 0, 0))
+  
+  #else if a specific state is selected
   }else{
-    make_frame(x_range = range(0, dim(true_processes)[1]), xlab = "Time", ylab = "Value", main = colnames(obj$filter)[plot_state], y_range = range(true_processes[,plot_state]))
+    fit_sd = var_df[,plot_state]
+    make_frame(x_range = c(0, length(X_h[,plot_state])), xlab = "Time", ylab = "Observation",
+               mar = (c(5.1, 4.1, 2.1, 2.1)),
+               y_range = c(min(X_h[,plot_state] + qnorm(1-alpha/2)*-fit_sd), max(X_h[,plot_state] + qnorm(1-alpha/2)*fit_sd)),
+               main = colnames(obj$filter)[plot_state],
+               )
     lines(true_processes[,plot_state], type = 'l', col = 'blue4')
     lines(X_h[,plot_state], col = "#F8766DFF")
-    fit_sd = var_df[,plot_state]
     n=length(var_df[,1])
     alpha = .05
     polygon(x = c(1:n, rev(1:n)),
@@ -325,27 +417,23 @@ plot.KF = function(x, plot_state = "all", ...){
                   rev(X_h[,plot_state] + qnorm(1-alpha/2)*fit_sd)), border = NA, col = "#F8766D4D")
     legend("bottomleft",cex= 1, col = c('blue4', "#F8766DFF", "#F8766D4D"), 
            lwd = c(1,1,NA), pch = c(NA, NA, 15), pt.cex = c(NA, NA, 1.5), bty = 'n',
-           legend = c("Observed time series", 'Estimated sum of the states', 'Sum of the states CI'))
-    
-    
+           legend = c("True state", 'Filtered state', 'CI'))
   } 
-  
 }
 
 
-#for devlopement purposes
-#Example
+# for devlopement purposes
+# Example
 # estimate_model = F
 # model_to_estimate = NULL
 #Filter a 2*AR1 + DR + RW + WN process
 # library(simts)
 # library(dplyr)
 # set.seed(123)
-# model = AR(.3, 2) + AR(.7, 1) + RW(3) + WN(2)
+# model = AR(.3, 2) + DR(.2) + RW(3) + WN(2)
 # n = 250
 # y = gen_lts(n = n, model = model)
-# plot(y)
-# res = kalman_filter(y = y, model = model)
+# res = kalman_filter(y = y, model = model, h = 10)
 # plot(res)
-# plot(res, plot_state = 3)
+# plot(res, plot_state = 2)
 

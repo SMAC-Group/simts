@@ -542,7 +542,7 @@ ARIMA = function(ar = 1, i = 0, ma = 1, sigma2 = 1.0) {
 #' SARMA(ar=0.23, ma=0.4, sar = .3, sma = .3)
 SARMA = function(ar = 1, ma = 1, sar = 1, sma = 1, s = 12, sigma2 = 1.0) {
   
-  out = SARIMA(ar = ar, i = 0,  ma = ma, sar = sar, si = 0,  sma = sma, s = 12, sigma2 = sigma2)
+  out = SARIMA(ar = ar, i = 0,  ma = ma, sar = sar, si = 0,  sma = sma, s = s, sigma2 = sigma2)
   
   invisible(out)
 }

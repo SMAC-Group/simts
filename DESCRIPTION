@@ -26,6 +26,7 @@ Depends:
 License: AGPL-3 | file LICENSE
 Imports:
     Rcpp,
+    wv,
     stats,
     utils,
     scales,
@@ -39,7 +40,7 @@ Imports:
     tidyr,
     robcor
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 Encoding: UTF-8
 Suggests:
     knitr,

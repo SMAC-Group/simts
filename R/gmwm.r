@@ -32,35 +32,35 @@
 #'                   default, this is set to 1 and only is important if \code{GM()}
 #'                   is in the model
 #' @return A \code{gmwm} object with the structure:
-#' \describe{
-#'  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
-#'  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
-#'  \item{wv.empir}{The data's empirical wavelet variance}
-#'  \item{ci_low}{Lower Confidence Interval}
-#'  \item{ci_high}{Upper Confidence Interval}
-#'  \item{orgV}{Original V matrix}
-#'  \item{V}{Updated V matrix (if bootstrapped)}
-#'  \item{omega}{The V matrix inversed}
-#'  \item{obj.fun}{Value of the objective function at Estimated Parameter Values}
-#'  \item{theo}{Summed Theoretical Wavelet Variance}
-#'  \item{decomp.theo}{Decomposed Theoretical Wavelet Variance by Process}
-#'  \item{scales}{Scales of the GMWM Object}
-#'  \item{robust}{Indicates if parameter estimation was done under robust or classical}
-#'  \item{eff}{Level of efficiency of robust estimation}
-#'  \item{model.type}{Models being guessed}
-#'  \item{compute.v}{Type of V matrix computation}
-#'  \item{augmented}{Indicates moments have been augmented}
-#'  \item{alpha}{Alpha level used to generate confidence intervals}
-#'  \item{expect.diff}{Mean of the First Difference of the Signal}
-#'  \item{N}{Length of the Signal}
-#'  \item{G}{Number of Guesses Performed}
-#'  \item{H}{Number of Bootstrap replications}
-#'  \item{K}{Number of V matrix bootstraps}
-#'  \item{model}{\code{ts.model} supplied to gmwm}
-#'  \item{model.hat}{A new value of \code{ts.model} object supplied to gmwm}
-#'  \item{starting}{Indicates whether the procedure used the initial guessing approach}
-#'  \item{seed}{Randomization seed used to generate the guessing values}
-#'  \item{freq}{Frequency of data}
+#' \itemize{
+#'  \item estimate: Estimated Parameters Values from the GMWM Procedure
+#'  \item init.guess: Initial Starting Values given to the Optimization Algorithm
+#'  \item wv.empir: The data's empirical wavelet variance
+#'  \item ci_low: Lower Confidence Interval
+#'  \item ci_high: Upper Confidence Interval
+#'  \item orgV: Original V matrix
+#'  \item V: Updated V matrix (if bootstrapped)
+#'  \item omega: The V matrix inversed
+#'  \item obj.fun: Value of the objective function at Estimated Parameter Values
+#'  \item theo: Summed Theoretical Wavelet Variance
+#'  \item decomp.theo: Decomposed Theoretical Wavelet Variance by Process
+#'  \item scales: Scales of the GMWM Object
+#'  \item robust: Indicates if parameter estimation was done under robust or classical
+#'  \item eff: Level of efficiency of robust estimation
+#'  \item model.type: Models being guessed
+#'  \item compute.v: Type of V matrix computation
+#'  \item augmented: Indicates moments have been augmented
+#'  \item alpha: Alpha level used to generate confidence intervals
+#'  \item expect.diff: Mean of the First Difference of the Signal
+#'  \item N: Length of the Signal
+#'  \item G: Number of Guesses Performed
+#'  \item H: Number of Bootstrap replications
+#'  \item K: Number of V matrix bootstraps
+#'  \item model: \code{ts.model} supplied to gmwm
+#'  \item model.hat: A new value of \code{ts.model} object supplied to gmwm
+#'  \item starting: Indicates whether the procedure used the initial guessing approach
+#'  \item seed: Randomization seed used to generate the guessing values
+#'  \item freq: Frequency of data
 #' }
 #' @export
 #' @details
@@ -91,14 +91,14 @@
 #' The function estimates a variety of time series models. If type = "imu" or "ssm", then
 #' parameter vector should indicate the characters of the models that compose the latent or state-space model. The model
 #' options are:
-#' \describe{
-#'   \item{"AR1"}{a first order autoregressive process with parameters \eqn{(\phi,\sigma^2)}{phi, sigma^2}}
-#'   \item{"GM"}{a guass-markov process \eqn{(\beta,\sigma_{gm}^2)}{beta, sigma[gm]^2}}
-#'   \item{"ARMA"}{an autoregressive moving average process with parameters \eqn{(\phi _p, \theta _q, \sigma^2)}{phi[p], theta[q], sigma^2}}
-#'   \item{"DR"}{a drift with parameter \eqn{\omega}{omega}}
-#'   \item{"QN"}{a quantization noise process with parameter \eqn{Q}}
-#'   \item{"RW"}{a random walk process with parameter \eqn{\sigma^2}{sigma^2}}
-#'   \item{"WN"}{a white noise process with parameter \eqn{\sigma^2}{sigma^2}}
+#' \itemize{
+#'   \item "AR1": a first order autoregressive process with parameters \eqn{(\phi,\sigma^2)}{phi, sigma^2}
+#'   \item "GM": a guass-markov process \eqn{(\beta,\sigma_{gm}^2)}{beta, sigma[gm]^2}
+#'   \item "ARMA": an autoregressive moving average process with parameters \eqn{(\phi _p, \theta _q, \sigma^2)}{phi[p], theta[q], sigma^2}
+#'   \item "DR": a drift with parameter \eqn{\omega}{omega}
+#'   \item "QN": a quantization noise process with parameter \eqn{Q}
+#'   \item "RW": a random walk process with parameter \eqn{\sigma^2}{sigma^2}
+#'   \item "WN": a white noise process with parameter \eqn{\sigma^2}{sigma^2}
 #' }
 #' If only an ARMA() term is supplied, then the function takes conditional least squares as starting values
 #' If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.
@@ -282,7 +282,7 @@ gmwm = function(model, data, model.type="imu", compute.v="auto",
 #' @param model   A \code{ts.model} object containing one of the allowed models
 #' @param ...     Additional parameters (not used)
 #' @return A \code{gmwm} object with the structure:
-#' \describe{
+#' \itemize{
 #'  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
 #'  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
 #'  \item{wv.empir}{The data's empirical wavelet variance}
@@ -428,7 +428,7 @@ update.gmwm = function(object, model, ...){
 #' ability to interpret with respect to \code{freq}, then use
 #' \code{AR1} terms.
 #' @return A \code{gmwm} object with the structure:
-#' \describe{
+#' \itemize{
 #'  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
 #'  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
 #'  \item{wv.empir}{The data's empirical wavelet variance}
@@ -537,7 +537,7 @@ print.gmwm = function(x, ...){
 #' @param B            An \code{int} that indicates how many bootstraps should be performed.
 #' @param ...          Other arguments passed to specific methods
 #' @return A \code{summary.gmwm} object with:
-#' \describe{
+#' \itemize{
 #'  \item{estimate}{Estimated Theta Values}
 #'  \item{testinfo}{Goodness of Fit Information}
 #'  \item{inference}{Inference performed? T/F}
@@ -700,7 +700,7 @@ print.summary.gmwm = function(x, ...){
 #' @param n.ahead      Number of observations to forecast
 #' @param ...          Additional parameters passed to ARIMA Predict
 #' @return A \code{predict.gmwm} object with:
-#' \describe{
+#' \itemize{
 #' \item{pred}{Predictions}
 #' \item{se}{Standard Errors}
 #' \item{resid}{Residuals from ARIMA ML Fit}
@@ -744,9 +744,30 @@ predict.gmwm = function(object, data.in.gmwm, n.ahead = 1, ...){
 
 }
 
-
+#' @title Plot the GMWM with the Wavelet Variance
+#'
+#' @description
+#' Displays a plot of the Wavelet Variance (WV) with the CI values and the WV implied by the estimated parameters.
+#' @method plot gmwm
+#' @param x                A \code{gmwm} object.
+#' @param decomp           A \code{boolean} that determines whether the contributions of each individual model are plotted.
+#' @param units            A \code{string} that specifies the units of time plotted on the x axis.
+#' @param xlab             A \code{string} that gives a title for the x axis.
+#' @param ylab             A \code{string} that gives a title for the y axis.
+#' @param main             A \code{string} that gives an overall title for the plot.
+#' @param col_wv           A \code{string} that specifies the color of the wavelet variance line.
+#' @param col_ci           A \code{string} that specifies the color of the shaded area covered by the confidence intervals.
+#' @param nb_ticks_x       An \code{integer} that specifies the maximum number of ticks for the x-axis.
+#' @param nb_ticks_y       An \code{integer} that specifies the maximum number of ticks for the y-axis.
+#' @param legend_position  A \code{string} that specifies the position of the legend (use \code{legend_position = NA} to remove legend).
+#' @param ci_wv            A \code{boolean} that determines whether to plot the confidence interval shaded area.
+#' @param point_cex        A \code{double} that specifies the size of each symbol to be plotted.
+#' @param point_pch        A \code{double} that specifies the symbol type to be plotted.
+#' @param ...              Additional arguments affecting the plot.
+#' @return Plot of WV and relative confidence intervals for each scale.
+#' @author Stephane Guerrier and Yuming Zhang 
 #' @export
-plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL, 
+plot.gmwm = function(x, decomp = FALSE, units = NULL, xlab = NULL, ylab = NULL, main = NULL, 
                      col_wv = NULL, col_ci = NULL, nb_ticks_x = NULL, nb_ticks_y = NULL,
                      legend_position = NULL, ci_wv = NULL, point_cex = NULL, 
                      point_pch = NULL, ...){
@@ -782,8 +803,8 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
   
   # Range
   x_range = range(x$scales)
-  x_low = floor(log2(x_range[1]))
-  x_high = ceiling(log2(x_range[2]))
+  x_low = floor(log10(x_range[1]))
+  x_high = ceiling(log10(x_range[2]))
   
   y_range = range(c(x$ci_low, x$ci_high))
   y_low = floor(log10(y_range[1]))
@@ -802,7 +823,7 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
   if (length(x_ticks) > nb_ticks_x){
     x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
   }
-  x_labels = sapply(x_ticks, function(i) as.expression(bquote(2^ .(i))))
+  x_labels = sapply(x_ticks, function(i) as.expression(bquote(10^ .(i))))
   
   y_ticks <- seq(y_low, y_high, by = 1)
   if (length(y_ticks) > nb_ticks_y){
@@ -812,11 +833,12 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
   
   # Legend Position
   if (is.null(legend_position)){
-    if (which.min(abs(c(y_low, y_high) - log2(x$wv.empir[1]))) == 1){
-      legend_position = "topleft"
-    }else{
-      legend_position = "bottomleft"
-    }
+    # if (which.min(abs(c(y_low, y_high) - log2(x$wv.empir[1]))) == 1){
+    #   legend_position = "topleft"
+    # }else{
+    #   legend_position = "bottomleft"
+    # }
+    legend_position = "bottomleft"
   }   
   
   # Main Plot                     
@@ -825,12 +847,12 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
   win_dim = par("usr")
   
   par(new = TRUE)
-  plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+  plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.22*(win_dim[4] - win_dim[3])),
        xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
   win_dim = par("usr")
   
   # Add Grid
-  abline(v = 2^x_ticks, lty = 1, col = "grey95")
+  abline(v = 10^x_ticks, lty = 1, col = "grey95")
   abline(h = 10^y_ticks, lty = 1, col = "grey95")
   
   # Add Title
@@ -846,7 +868,7 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
   #y_ticks = y_ticks[(2^y_ticks) < 10^(win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
   y_labels = y_labels[1:length(y_ticks)]
   box()
-  axis(1, at = 2^x_ticks, labels = x_labels, padj = 0.3)
+  axis(1, at = 10^x_ticks, labels = x_labels, padj = 0.3)
   axis(2, at = 10^y_ticks, labels = y_labels, padj = -0.2)  
   
   # CI for WV
@@ -897,10 +919,11 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
         legend(x = legend_position[1], y = legend_position[2],
                legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
                           as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
-                          x$model$process.desc, "Model-based WV"),
-               pch = c(16, 15, rep(NA, length(x$model$process.desc)), 1), 
-               lty = c(1, NA, rep(1, 1 + length(x$model$process.desc))), 
-               col = c(col_wv, col_ci, col_decomp, col_fit), cex = 1, pt.cex = c(1.25, 3, rep(1, length(x$model$process.desc)), 1.35), bty = "n")
+                          x$model$desc, "Model-based WV"),
+               pch = c(16, 15, rep(NA, m), 1), 
+               lty = c(1, NA, rep(1, m), 1), 
+               col = c(col_wv, col_ci, col_decomp, col_fit), 
+               cex = 1, pt.cex = c(1.25, 3, rep(1, m), 1.35), bty = "n")
       }else{
         legend(x = legend_position[1], y = legend_position[2],
                legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
@@ -908,7 +931,8 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
                           "Model-based WV"),
                pch = c(16, 15, 1), 
                lty = c(1, NA, 1), 
-               col = c(col_wv, col_ci, col_fit), cex = 1, pt.cex = c(1.25, 3, 1.35), bty = "n")
+               col = c(col_wv, col_ci, col_fit), 
+               cex = 1, pt.cex = c(1.25, 3, 1.35), bty = "n")
       }
       
     }else{
@@ -918,10 +942,11 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
           legend(x = legend_position[1], y = legend_position[2],
                  legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
                             as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
-                            x$model$process.desc, "Model-based WV"),
-                 pch = c(16, 15, rep(NA, length(x$model$process.desc)), 1), 
-                 lty = c(1, NA, rep(1, 1 + length(x$model$process.desc))), 
-                 col = c(col_wv, col_ci, col_decomp, col_fit), cex = 1, pt.cex = c(1.25, 3, rep(1, length(x$model$process.desc)), 1.35), bty = "n")
+                            x$model$desc, "Model-based WV"),
+                 pch = c(16, 15, rep(NA, m), 1), 
+                 lty = c(1, NA, rep(1, m), 1), 
+                 col = c(col_wv, col_ci, col_decomp, col_fit), 
+                 cex = 1, pt.cex = c(1.25, 3, rep(1, m), 1.35), bty = "n")
         }else{
           legend(x = legend_position[1], y = legend_position[2],
                  legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
@@ -936,10 +961,11 @@ plot.gmwm = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
           legend(x = legend_position[1], y = legend_position[2],
                  legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
                             as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")"))),
-                            x$model$process.desc, "Model-based WV"),
-                 pch = c(16, 15, rep(NA, length(x$model$process.desc)), 1), 
-                 lty = c(1, NA, rep(1, 1 + length(x$model$process.desc))), 
-                 col = c(col_wv, col_ci, col_decomp, col_fit), cex = 1, pt.cex = c(1.25, 3, rep(1, length(x$model$process.desc)), 1.35), bty = "n")
+                            x$model$desc, "Model-based WV"),
+                 pch = c(16, 15, rep(NA, m), 1), 
+                 lty = c(1, NA, rep(1, m), 1), 
+                 col = c(col_wv, col_ci, col_decomp, col_fit), 
+                 cex = 1, pt.cex = c(1.25, 3, rep(1, m), 1.35), bty = "n")
         }else{
           legend(x = legend_position[1], y = legend_position[2],
                  legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),

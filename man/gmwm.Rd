@@ -4,9 +4,20 @@
 \alias{gmwm}
 \title{Generalized Method of Wavelet Moments (GMWM)}
 \usage{
-gmwm(model, data, model.type = "imu", compute.v = "auto",
-  robust = FALSE, eff = 0.6, alpha = 0.05, seed = 1337, G = NULL,
-  K = 1, H = 100, freq = 1)
+gmwm(
+  model,
+  data,
+  model.type = "imu",
+  compute.v = "auto",
+  robust = FALSE,
+  eff = 0.6,
+  alpha = 0.05,
+  seed = 1337,
+  G = NULL,
+  K = 1,
+  H = 100,
+  freq = 1
+)
 }
 \arguments{
 \item{model}{A \code{ts.model} object containing one of the allowed models.}
@@ -53,35 +64,35 @@ is in the model}
 }
 \value{
 A \code{gmwm} object with the structure:
-\describe{
- \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
- \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
- \item{wv.empir}{The data's empirical wavelet variance}
- \item{ci_low}{Lower Confidence Interval}
- \item{ci_high}{Upper Confidence Interval}
- \item{orgV}{Original V matrix}
- \item{V}{Updated V matrix (if bootstrapped)}
- \item{omega}{The V matrix inversed}
- \item{obj.fun}{Value of the objective function at Estimated Parameter Values}
- \item{theo}{Summed Theoretical Wavelet Variance}
- \item{decomp.theo}{Decomposed Theoretical Wavelet Variance by Process}
- \item{scales}{Scales of the GMWM Object}
- \item{robust}{Indicates if parameter estimation was done under robust or classical}
- \item{eff}{Level of efficiency of robust estimation}
- \item{model.type}{Models being guessed}
- \item{compute.v}{Type of V matrix computation}
- \item{augmented}{Indicates moments have been augmented}
- \item{alpha}{Alpha level used to generate confidence intervals}
- \item{expect.diff}{Mean of the First Difference of the Signal}
- \item{N}{Length of the Signal}
- \item{G}{Number of Guesses Performed}
- \item{H}{Number of Bootstrap replications}
- \item{K}{Number of V matrix bootstraps}
- \item{model}{\code{ts.model} supplied to gmwm}
- \item{model.hat}{A new value of \code{ts.model} object supplied to gmwm}
- \item{starting}{Indicates whether the procedure used the initial guessing approach}
- \item{seed}{Randomization seed used to generate the guessing values}
- \item{freq}{Frequency of data}
+\itemize{
+ \item estimate: Estimated Parameters Values from the GMWM Procedure
+ \item init.guess: Initial Starting Values given to the Optimization Algorithm
+ \item wv.empir: The data's empirical wavelet variance
+ \item ci_low: Lower Confidence Interval
+ \item ci_high: Upper Confidence Interval
+ \item orgV: Original V matrix
+ \item V: Updated V matrix (if bootstrapped)
+ \item omega: The V matrix inversed
+ \item obj.fun: Value of the objective function at Estimated Parameter Values
+ \item theo: Summed Theoretical Wavelet Variance
+ \item decomp.theo: Decomposed Theoretical Wavelet Variance by Process
+ \item scales: Scales of the GMWM Object
+ \item robust: Indicates if parameter estimation was done under robust or classical
+ \item eff: Level of efficiency of robust estimation
+ \item model.type: Models being guessed
+ \item compute.v: Type of V matrix computation
+ \item augmented: Indicates moments have been augmented
+ \item alpha: Alpha level used to generate confidence intervals
+ \item expect.diff: Mean of the First Difference of the Signal
+ \item N: Length of the Signal
+ \item G: Number of Guesses Performed
+ \item H: Number of Bootstrap replications
+ \item K: Number of V matrix bootstraps
+ \item model: \code{ts.model} supplied to gmwm
+ \item model.hat: A new value of \code{ts.model} object supplied to gmwm
+ \item starting: Indicates whether the procedure used the initial guessing approach
+ \item seed: Randomization seed used to generate the guessing values
+ \item freq: Frequency of data
 }
 }
 \description{
@@ -115,14 +126,14 @@ END
 The function estimates a variety of time series models. If type = "imu" or "ssm", then
 parameter vector should indicate the characters of the models that compose the latent or state-space model. The model
 options are:
-\describe{
-  \item{"AR1"}{a first order autoregressive process with parameters \eqn{(\phi,\sigma^2)}{phi, sigma^2}}
-  \item{"GM"}{a guass-markov process \eqn{(\beta,\sigma_{gm}^2)}{beta, sigma[gm]^2}}
-  \item{"ARMA"}{an autoregressive moving average process with parameters \eqn{(\phi _p, \theta _q, \sigma^2)}{phi[p], theta[q], sigma^2}}
-  \item{"DR"}{a drift with parameter \eqn{\omega}{omega}}
-  \item{"QN"}{a quantization noise process with parameter \eqn{Q}}
-  \item{"RW"}{a random walk process with parameter \eqn{\sigma^2}{sigma^2}}
-  \item{"WN"}{a white noise process with parameter \eqn{\sigma^2}{sigma^2}}
+\itemize{
+  \item "AR1": a first order autoregressive process with parameters \eqn{(\phi,\sigma^2)}{phi, sigma^2}
+  \item "GM": a guass-markov process \eqn{(\beta,\sigma_{gm}^2)}{beta, sigma[gm]^2}
+  \item "ARMA": an autoregressive moving average process with parameters \eqn{(\phi _p, \theta _q, \sigma^2)}{phi[p], theta[q], sigma^2}
+  \item "DR": a drift with parameter \eqn{\omega}{omega}
+  \item "QN": a quantization noise process with parameter \eqn{Q}
+  \item "RW": a random walk process with parameter \eqn{\sigma^2}{sigma^2}
+  \item "WN": a white noise process with parameter \eqn{\sigma^2}{sigma^2}
 }
 If only an ARMA() term is supplied, then the function takes conditional least squares as starting values
 If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.

@@ -21,7 +21,7 @@ gmwm_imu(model, data, compute.v = "fast", robust = F, eff = 0.6, ...)
 }
 \value{
 A \code{gmwm} object with the structure:
-\describe{
+\itemize{
  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
  \item{wv.empir}{The data's empirical wavelet variance}

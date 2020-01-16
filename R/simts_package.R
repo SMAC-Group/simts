@@ -15,7 +15,7 @@
 #' Roberto Molinari \email{roberto.molinari@@hotmail.it},
 #' Wenchao Yang \email{wyang40@@illinois.edu}
 #' Justin Lee \email{munsheet93@@gmail.com}
-#' Yuming Zhang \email{yfz5097@@psu.edu}
+#' Yuming Zhang \email{yuming.zhang@@unige.ch}
 #'
 #' @name simts-package
 #' @docType package

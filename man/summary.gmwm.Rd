@@ -4,9 +4,16 @@
 \alias{summary.gmwm}
 \title{Summary of GMWM object}
 \usage{
-\method{summary}{gmwm}(object, inference = NULL, bs.gof = NULL,
-  bs.gof.p.ci = NULL, bs.theta.est = NULL, bs.ci = NULL, B = 100,
-  ...)
+\method{summary}{gmwm}(
+  object,
+  inference = NULL,
+  bs.gof = NULL,
+  bs.gof.p.ci = NULL,
+  bs.theta.est = NULL,
+  bs.ci = NULL,
+  B = 100,
+  ...
+)
 }
 \arguments{
 \item{object}{A \code{GMWM} object}
@@ -27,7 +34,7 @@
 }
 \value{
 A \code{summary.gmwm} object with:
-\describe{
+\itemize{
  \item{estimate}{Estimated Theta Values}
  \item{testinfo}{Goodness of Fit Information}
  \item{inference}{Inference performed? T/F}

@@ -4,7 +4,8 @@
 \alias{diag_ljungbox}
 \title{Ljung-Box}
 \usage{
-diag_ljungbox(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE)
+diag_ljungbox(x, order = NULL, stop_lag = 20, stdres = FALSE,
+  plot = TRUE)
 }
 \arguments{
 \item{x}{An \code{arima} or data set.}

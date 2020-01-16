@@ -4,18 +4,9 @@
 \alias{plot.simtsACF}
 \title{Plot Auto-Covariance and Correlation Functions}
 \usage{
-\method{plot}{simtsACF}(
-  x,
-  xlab = NULL,
-  ylab = NULL,
-  show.ci = TRUE,
-  alpha = NULL,
-  col_ci = NULL,
-  transparency = NULL,
-  main = NULL,
-  parValue = NULL,
-  ...
-)
+\method{plot}{simtsACF}(x, xlab = NULL, ylab = NULL, show.ci = TRUE,
+  alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL,
+  parValue = NULL, ...)
 }
 \arguments{
 \item{x}{An \code{"ACF"} object output from \code{theo_acf} and \code{auto_corr}.}

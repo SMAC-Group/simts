@@ -4,14 +4,8 @@
 \alias{kalman_filter}
 \title{Kalman Filter Estimation}
 \usage{
-kalman_filter(
-  model,
-  y,
-  estimate_model = F,
-  model_to_estimate = NULL,
-  method = "mle",
-  h = 0
-)
+kalman_filter(model, y, estimate_model = F, model_to_estimate = NULL,
+  method = "mle", h = 0)
 }
 \arguments{
 \item{model}{a \code{ts.model} object with specified parameters values}

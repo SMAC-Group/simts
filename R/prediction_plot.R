@@ -13,7 +13,6 @@
 #' @param main A \code{string} for the over all title of the plot
 #' @param ...      Additional parameters
 #' @author Yuming Zhang
-
 plot_pred = function(x, model, n.ahead, level = NULL, 
                      xlab = NULL, ylab = NULL, main = NULL, ...){
   

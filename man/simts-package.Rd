@@ -6,7 +6,7 @@
 \alias{simts-package}
 \title{simts: Time Series Analysis Tools}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: align='right'}}
 
 A system contains easy-to-use tools as a support for time series analysis courses. In particular, it incorporates a technique called Generalized Method of Wavelet Moments (GMWM) as well as its robust implementation for fast and robust parameter estimation of time series models which is described, for example, in Guerrier et al. (2013) <doi: 10.1080/01621459.2013.799920>. More details can also be found in the paper linked to via the URL below.
 }
@@ -55,7 +55,7 @@ Other contributors:
 
 
 James Balamuta \email{balamut2@illinois.edu},
-Stephane Guerrier \email{stephane@psu.edu},
+Stephane Guerrier \email{stef.guerrier@gmail.com},
 Roberto Molinari \email{roberto.molinari@hotmail.it},
 Wenchao Yang \email{wyang40@illinois.edu}
 Justin Lee \email{munsheet93@gmail.com}

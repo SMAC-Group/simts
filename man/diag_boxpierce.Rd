@@ -4,7 +4,8 @@
 \alias{diag_boxpierce}
 \title{Box-Pierce}
 \usage{
-diag_boxpierce(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE)
+diag_boxpierce(x, order = NULL, stop_lag = 20, stdres = FALSE,
+  plot = TRUE)
 }
 \arguments{
 \item{x}{An \code{arima} or data set.}

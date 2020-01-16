@@ -2,22 +2,11 @@
 % Please edit documentation in R/gmwm.r
 \name{gmwm}
 \alias{gmwm}
-\title{Generalized Method of Wavelet Moments (GMWM) for IMUs, ARMA, SSM, and Robust}
+\title{Generalized Method of Wavelet Moments (GMWM)}
 \usage{
-gmwm(
-  model,
-  data,
-  model.type = "ssm",
-  compute.v = "auto",
-  robust = FALSE,
-  eff = 0.6,
-  alpha = 0.05,
-  seed = 1337,
-  G = NULL,
-  K = 1,
-  H = 100,
-  freq = 1
-)
+gmwm(model, data, model.type = "imu", compute.v = "auto",
+  robust = FALSE, eff = 0.6, alpha = 0.05, seed = 1337, G = NULL,
+  K = 1, H = 100, freq = 1)
 }
 \arguments{
 \item{model}{A \code{ts.model} object containing one of the allowed models.}
@@ -68,8 +57,8 @@ A \code{gmwm} object with the structure:
  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
  \item{wv.empir}{The data's empirical wavelet variance}
- \item{ci.low}{Lower Confidence Interval}
- \item{ci.high}{Upper Confidence Interval}
+ \item{ci_low}{Lower Confidence Interval}
+ \item{ci_high}{Upper Confidence Interval}
  \item{orgV}{Original V matrix}
  \item{V}{Updated V matrix (if bootstrapped)}
  \item{omega}{The V matrix inversed}

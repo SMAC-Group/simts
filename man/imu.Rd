@@ -4,15 +4,8 @@
 \alias{imu}
 \title{Create an IMU Object}
 \usage{
-imu(
-  data,
-  gyros = NULL,
-  accels = NULL,
-  axis = NULL,
-  freq = NULL,
-  unit = NULL,
-  name = NULL
-)
+imu(data, gyros = NULL, accels = NULL, axis = NULL, freq = NULL,
+  unit = NULL, name = NULL)
 }
 \arguments{
 \item{data}{A \code{vector} which contains data, or a \code{matrix} or \code{data.frame} which contains the data in each column.}

@@ -19,8 +19,8 @@ A \code{gmwm} object with the structure:
  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
  \item{wv.empir}{The data's empirical wavelet variance}
- \item{ci.low}{Lower Confidence Interval}
- \item{ci.high}{Upper Confidence Interval}
+ \item{ci_low}{Lower Confidence Interval}
+ \item{ci_high}{Upper Confidence Interval}
  \item{orgV}{Original V matrix}
  \item{V}{Updated V matrix (if bootstrapped)}
  \item{omega}{The V matrix inversed}

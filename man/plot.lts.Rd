@@ -4,15 +4,8 @@
 \alias{plot.lts}
 \title{Plot Latent Time Series Object}
 \usage{
-\method{plot}{lts}(
-  x,
-  xlab = NULL,
-  ylab = NULL,
-  main = NULL,
-  color = NULL,
-  fixed_range = FALSE,
-  ...
-)
+\method{plot}{lts}(x, xlab = NULL, ylab = NULL, main = NULL,
+  color = NULL, fixed_range = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{lts} object}

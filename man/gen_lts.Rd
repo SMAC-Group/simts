@@ -4,18 +4,9 @@
 \alias{gen_lts}
 \title{Generate a Latent Time Series Object Based on a Model}
 \usage{
-gen_lts(
-  n,
-  model,
-  start = 0,
-  end = NULL,
-  freq = 1,
-  unit_ts = NULL,
-  unit_time = NULL,
-  name_ts = NULL,
-  name_time = NULL,
-  process = NULL
-)
+gen_lts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
+  unit_time = NULL, name_ts = NULL, name_time = NULL,
+  process = NULL)
 }
 \arguments{
 \item{n}{An \code{interger} indicating the amount of observations generated in this function.}

@@ -4,17 +4,8 @@
 \alias{gen_gts}
 \title{Simulate a simts TS object using a theoretical model}
 \usage{
-gen_gts(
-  n,
-  model,
-  start = 0,
-  end = NULL,
-  freq = 1,
-  unit_ts = NULL,
-  unit_time = NULL,
-  name_ts = NULL,
-  name_time = NULL
-)
+gen_gts(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
+  unit_time = NULL, name_ts = NULL, name_time = NULL)
 }
 \arguments{
 \item{n}{An \code{integer} containing the length of the time series.}

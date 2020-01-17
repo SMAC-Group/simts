@@ -104,7 +104,7 @@
 #' If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.
 gmwm = function(model, data, model.type="imu", compute.v="auto",
                 robust=FALSE, eff=0.6, alpha = 0.05, seed = 1337, G = NULL, K = 1, H = 100,
-                freq = 1){
+                freq = 1, wavelet_variance=FALSE){
 
 
   # Check data object

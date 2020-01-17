@@ -335,8 +335,14 @@ arma::field<arma::field<arma::mat> > model_select(arma::vec& data,
                                                   bool bs_optimism,
                                                   double alpha,
                                                   std::string compute_v, 
-                                                  unsigned int K, unsigned int H, unsigned int G, 
-                                                  bool robust, double eff, unsigned int seed){
+                                                  unsigned int K, 
+                                                  unsigned int H, 
+                                                  unsigned int G, 
+                                                  bool robust, 
+                                                  double eff, 
+                                                  unsigned int seed,
+                                                  bool wavelet_variance
+                                                  ){
   
   // Number of data points
   unsigned int N = data.n_rows;
@@ -379,7 +385,9 @@ arma::field<arma::field<arma::mat> > model_select(arma::vec& data,
                                                   "fast", // compute V
                                                   K, H,
                                                   G, 
-                                                  robust, eff);
+                                                  robust, 
+                                                  eff, 
+                                                  wavelet_variance);
   
   // Theta update
   theta = master(0);
@@ -640,9 +648,17 @@ arma::field< arma::field<arma::field<arma::mat> > >  rank_models_cpp(arma::vec& 
                                                                      const std::vector<std::vector < std::string > >& model_str, 
                                                                      const std::vector< std::string >&  full_model,
                                                                      double alpha, 
-                                                                     std::string compute_v, std::string model_type, 
-                                                                     unsigned int K, unsigned int H, unsigned int G, 
-                                                                     bool robust, double eff, bool bs_optimism, unsigned int seed){
+                                                                     std::string compute_v, 
+                                                                     std::string model_type, 
+                                                                     unsigned int K, 
+                                                                     unsigned int H,
+                                                                     unsigned int G, 
+                                                                     bool robust,
+                                                                     double eff,
+                                                                     bool bs_optimism,
+                                                                     unsigned int seed,
+                                                                     bool wavelet_variance
+                                                                     ){
   
   
   std::set<std::vector < std::string > > models = vector_to_set(model_str);
@@ -657,7 +673,7 @@ arma::field< arma::field<arma::field<arma::mat> > >  rank_models_cpp(arma::vec& 
     alpha,
     compute_v, 
     K, H, G, 
-    robust, eff, seed);
+    robust, eff, seed, wavelet_variance);
   
   return h;
 }
@@ -686,7 +702,8 @@ arma::field< arma::field<arma::field<arma::mat> > >  auto_imu_cpp(arma::mat& dat
                                                                   double alpha, 
                                                                   std::string compute_v, std::string model_type, 
                                                                   unsigned int K, unsigned int H, unsigned int G, 
-                                                                  bool robust, double eff, bool bs_optimism, unsigned int seed){
+                                                                  bool robust, double eff, bool bs_optimism, unsigned int seed, 
+                                                                  bool wavelet_variance){
   
   
   
@@ -712,7 +729,7 @@ arma::field< arma::field<arma::field<arma::mat> > >  auto_imu_cpp(arma::mat& dat
                         alpha,
                         compute_v, 
                         K, H, G, 
-                        robust, eff, seed);
+                        robust, eff, seed, wavelet_variance);
     
     Rcpp::Rcout << std::endl;
   }

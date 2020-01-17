@@ -399,8 +399,8 @@ find_full_model <- function(x) {
 #' @param seed A \code{unsigned int} that is the seed one wishes to use. 
 #' @return A \code{field<field<field<mat>>>} that contains the model score matrix and the best GMWM model object.
 #' @keywords internal
-rank_models_cpp <- function(data, model_str, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed) {
-    .Call('_simts_rank_models_cpp', PACKAGE = 'simts', data, model_str, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed)
+rank_models_cpp <- function(data, model_str, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed, wavelet_variance) {
+    .Call('_simts_rank_models_cpp', PACKAGE = 'simts', data, model_str, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed, wavelet_variance)
 }
 
 #' @title Find the auto imu result
@@ -420,8 +420,8 @@ rank_models_cpp <- function(data, model_str, full_model, alpha, compute_v, model
 #' @param seed A \code{unsigned int} that is the seed one wishes to use. 
 #' @return A \code{field<field<field<mat>>>} that contains the model score matrix and the best GMWM model object.
 #' @keywords internal
-auto_imu_cpp <- function(data, combs, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed) {
-    .Call('_simts_auto_imu_cpp', PACKAGE = 'simts', data, combs, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed)
+auto_imu_cpp <- function(data, combs, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed, wavelet_variance) {
+    .Call('_simts_auto_imu_cpp', PACKAGE = 'simts', data, combs, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed, wavelet_variance)
 }
 
 #' @title Bootstrap for Matrix V
@@ -1008,8 +1008,8 @@ gmwm_update_cpp <- function(theta, desc, objdesc, model_type, N, expect_diff, ra
 #' @export
 #' @backref src/gmwm_logic.cpp
 #' @backref src/gmwm_logic.h
-gmwm_master_cpp <- function(data, theta, desc, objdesc, model_type, starting, alpha, compute_v, K, H, G, robust, eff) {
-    .Call('_simts_gmwm_master_cpp', PACKAGE = 'simts', data, theta, desc, objdesc, model_type, starting, alpha, compute_v, K, H, G, robust, eff)
+gmwm_master_cpp <- function(data, theta, desc, objdesc, model_type, starting, alpha, compute_v, K, H, G, robust, eff, wavelet_variance) {
+    .Call('_simts_gmwm_master_cpp', PACKAGE = 'simts', data, theta, desc, objdesc, model_type, starting, alpha, compute_v, K, H, G, robust, eff, wavelet_variance)
 }
 
 #' @title Randomly guess a starting parameter

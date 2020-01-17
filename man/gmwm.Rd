@@ -4,20 +4,9 @@
 \alias{gmwm}
 \title{Generalized Method of Wavelet Moments (GMWM)}
 \usage{
-gmwm(
-  model,
-  data,
-  model.type = "imu",
-  compute.v = "auto",
-  robust = FALSE,
-  eff = 0.6,
-  alpha = 0.05,
-  seed = 1337,
-  G = NULL,
-  K = 1,
-  H = 100,
-  freq = 1
-)
+gmwm(model, data, model.type = "imu", compute.v = "auto",
+  robust = FALSE, eff = 0.6, alpha = 0.05, seed = 1337, G = NULL,
+  K = 1, H = 100, freq = 1, wavelet_variance = FALSE)
 }
 \arguments{
 \item{model}{A \code{ts.model} object containing one of the allowed models.}

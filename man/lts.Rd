@@ -4,17 +4,9 @@
 \alias{lts}
 \title{Generate a Latent Time Series Object from Data}
 \usage{
-lts(
-  data,
-  start = 0,
-  end = NULL,
-  freq = 1,
-  unit_ts = NULL,
-  unit_time = NULL,
-  name_ts = NULL,
-  name_time = NULL,
-  process = NULL
-)
+lts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
+  unit_time = NULL, name_ts = NULL, name_time = NULL,
+  process = NULL)
 }
 \arguments{
 \item{data}{A multiple-column \code{matrix} or \code{data.frame}. It must contain at least 3 columns of which the last represents the latent time series obtained through the sum of the previous columns.}

@@ -4,16 +4,8 @@
 \alias{plot_pred}
 \title{Plot Time Series Forecast Function}
 \usage{
-plot_pred(
-  x,
-  model,
-  n.ahead,
-  level = NULL,
-  xlab = NULL,
-  ylab = NULL,
-  main = NULL,
-  ...
-)
+plot_pred(x, model, n.ahead, level = NULL, xlab = NULL, ylab = NULL,
+  main = NULL, ...)
 }
 \arguments{
 \item{x}{A \code{gts} object}

@@ -4,19 +4,9 @@
 \alias{gts}
 \title{Create a simts TS object using time series data}
 \usage{
-gts(
-  data,
-  start = 0,
-  end = NULL,
-  freq = 1,
-  unit_ts = NULL,
-  unit_time = NULL,
-  name_ts = NULL,
-  name_time = NULL,
-  data_name = NULL,
-  Time = NULL,
-  time_format = NULL
-)
+gts(data, start = 0, end = NULL, freq = 1, unit_ts = NULL,
+  unit_time = NULL, name_ts = NULL, name_time = NULL,
+  data_name = NULL, Time = NULL, time_format = NULL)
 }
 \arguments{
 \item{data}{A one-column \code{matrix}, \code{data.frame}, or a numeric \code{vector}.}

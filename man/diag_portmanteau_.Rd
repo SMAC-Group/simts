@@ -4,14 +4,8 @@
 \alias{diag_portmanteau_}
 \title{Portmanteau Tests}
 \usage{
-diag_portmanteau_(
-  x,
-  order = NULL,
-  stop_lag = 20,
-  stdres = FALSE,
-  test = "Ljung-Box",
-  plot = TRUE
-)
+diag_portmanteau_(x, order = NULL, stop_lag = 20, stdres = FALSE,
+  test = "Ljung-Box", plot = TRUE)
 }
 \arguments{
 \item{x}{An \code{arima} or data set.}

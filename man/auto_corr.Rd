@@ -4,14 +4,8 @@
 \alias{auto_corr}
 \title{Empirical ACF and PACF}
 \usage{
-auto_corr(
-  x,
-  lag.max = NULL,
-  pacf = FALSE,
-  type = "correlation",
-  demean = TRUE,
-  robust = FALSE
-)
+auto_corr(x, lag.max = NULL, pacf = FALSE, type = "correlation",
+  demean = TRUE, robust = FALSE)
 }
 \arguments{
 \item{x}{A \code{vector} or \code{ts} object (of length \eqn{N > 1}).}

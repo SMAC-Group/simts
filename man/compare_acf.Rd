@@ -4,15 +4,8 @@
 \alias{compare_acf}
 \title{Comparison of Classical and Robust Correlation Analysis Functions}
 \usage{
-compare_acf(
-  x,
-  lag.max = NULL,
-  demean = TRUE,
-  show.ci = TRUE,
-  alpha = 0.05,
-  plot = TRUE,
-  ...
-)
+compare_acf(x, lag.max = NULL, demean = TRUE, show.ci = TRUE,
+  alpha = 0.05, plot = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{vector} or \code{"ts"} object (of length \eqn{N > 1}).}

@@ -9,7 +9,7 @@
 #' @author James Balamuta
 #' @rdname gm_conv
 conv.ar1.to.gm = function(theta, process.desc, freq){
-  idx = process.desc %in% c("BETA","SIGMA2_GM")
+  idx = process.desc %in% c("AR1","SIGMA2")
   theta[idx] = ar1_to_gm(theta[idx],freq)
   
   theta

@@ -235,6 +235,9 @@ gen_lts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL,
 #' @return A plot containing the graph of the latent time series.
 #' @author Stephane Gurrier and Justin Lee
 plot.lts = function(x, xlab = NULL, ylab = NULL, main = NULL, color = NULL, fixed_range = FALSE, ...){
+  
+  
+
   unit_ts = attr(x, 'unit_ts')
   name_ts = attr(x, 'name_ts')
   unit_time = attr(x, 'unit_time')

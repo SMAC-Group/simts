@@ -88,7 +88,7 @@ SIN = function(alpha2 = 9e-04, beta = 6e-02) {
                        theta = c(alpha2,beta),
                        plength = 2,
                        desc = "SIN",
-                       print = "SIN",
+                       print = "SIN()",
                        obj.desc = list(c(1,1)),
                        starting = starting), class = "ts.model")
   invisible(out)

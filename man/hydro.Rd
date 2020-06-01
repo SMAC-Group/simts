@@ -4,8 +4,10 @@
 \name{hydro}
 \alias{hydro}
 \title{Mean Monthly Precipitation, from 1907 to 1972}
-\format{A time series object with frequency 12 starting at 1907 and going to 1972
-for a total of 781 observations.}
+\format{
+A time series object with frequency 12 starting at 1907 and going to 1972
+for a total of 781 observations.
+}
 \source{
 \url{https://datamarket.com/data/set/22w1/mean-monthly-precipitation-1907-1972}
 }

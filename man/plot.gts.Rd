@@ -4,8 +4,15 @@
 \alias{plot.gts}
 \title{Plot simts Time Series Data}
 \usage{
-\method{plot}{gts}(x, evenly = TRUE, xlab = NULL, ylab = NULL,
-  main = NULL, couleur = "blue4", ...)
+\method{plot}{gts}(
+  x,
+  evenly = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  main = NULL,
+  couleur = "blue4",
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{gts} object}

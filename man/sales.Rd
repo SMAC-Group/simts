@@ -4,7 +4,9 @@
 \name{sales}
 \alias{sales}
 \title{Sales Dataset}
-\format{A dataframe with 302 rows and 1 variable:}
+\format{
+A dataframe with 302 rows and 1 variable:
+}
 \source{
 \url{http://r-exercises.com/wp-content/uploads/2017/04/sales.csv}
 }

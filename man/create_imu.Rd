@@ -4,8 +4,16 @@
 \alias{create_imu}
 \title{Internal IMU Object Construction}
 \usage{
-create_imu(data, ngyros, nacces, axis, freq, unit = NULL, name = NULL,
-  stype = NULL)
+create_imu(
+  data,
+  ngyros,
+  nacces,
+  axis,
+  freq,
+  unit = NULL,
+  name = NULL,
+  stype = NULL
+)
 }
 \arguments{
 \item{data}{A \code{matrix} with dimensions N x length(index)}

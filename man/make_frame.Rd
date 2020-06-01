@@ -4,10 +4,23 @@
 \alias{make_frame}
 \title{Default utility function for various plots titles}
 \usage{
-make_frame(x_range, y_range, xlab, ylab, main = "", mar = c(5.1, 5.1,
-  1, 2.1), add_axis_x = TRUE, add_axis_y = TRUE, col_box = "black",
-  col_grid = "grey95", col_band = "grey95", col_title = "black",
-  add_band = TRUE, title_band_width = 0.09, grid_lty = 1)
+make_frame(
+  x_range,
+  y_range,
+  xlab,
+  ylab,
+  main = "",
+  mar = c(5.1, 5.1, 1, 2.1),
+  add_axis_x = TRUE,
+  add_axis_y = TRUE,
+  col_box = "black",
+  col_grid = "grey95",
+  col_band = "grey95",
+  col_title = "black",
+  add_band = TRUE,
+  title_band_width = 0.09,
+  grid_lty = 1
+)
 }
 \arguments{
 \item{x_range}{A \code{numeric} providing the range of values for the x-axis.}

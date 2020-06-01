@@ -4,8 +4,22 @@
 \alias{gmwm_master_cpp}
 \title{Master Wrapper for the GMWM Estimator}
 \usage{
-gmwm_master_cpp(data, theta, desc, objdesc, model_type, starting, alpha,
-  compute_v, K, H, G, robust, eff, wavelet_variance)
+gmwm_master_cpp(
+  data,
+  theta,
+  desc,
+  objdesc,
+  model_type,
+  starting,
+  alpha,
+  compute_v,
+  K,
+  H,
+  G,
+  robust,
+  eff,
+  wavelet_variance
+)
 }
 \arguments{
 \item{data}{A \code{vec} containing the data.}

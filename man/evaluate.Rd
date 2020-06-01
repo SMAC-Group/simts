@@ -4,8 +4,14 @@
 \alias{evaluate}
 \title{Evalute a time series or a list of time series models}
 \usage{
-evaluate(models, Xt, criterion = "IC", start = 0.8, demean = TRUE,
-  print = TRUE)
+evaluate(
+  models,
+  Xt,
+  criterion = "IC",
+  start = 0.8,
+  demean = TRUE,
+  print = TRUE
+)
 }
 \arguments{
 \item{models}{A time series model or a list of time series models.}

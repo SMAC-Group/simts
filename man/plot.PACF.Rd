@@ -4,9 +4,18 @@
 \alias{plot.PACF}
 \title{Plot Partial Auto-Covariance and Correlation Functions}
 \usage{
-\method{plot}{PACF}(x, xlab = NULL, ylab = NULL, show.ci = TRUE,
-  alpha = NULL, col_ci = NULL, transparency = NULL, main = NULL,
-  parValue = NULL, ...)
+\method{plot}{PACF}(
+  x,
+  xlab = NULL,
+  ylab = NULL,
+  show.ci = TRUE,
+  alpha = NULL,
+  col_ci = NULL,
+  transparency = NULL,
+  main = NULL,
+  parValue = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{"PACF"} object output from \code{\link{theo_pacf}} or \code{\link{auto_corr}}.}

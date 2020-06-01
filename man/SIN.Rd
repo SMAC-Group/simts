@@ -4,7 +4,7 @@
 \alias{SIN}
 \title{Definition of a sinusoidal process}
 \usage{
-SIN(alpha2 = NULL, beta = 0.06)
+SIN(alpha2 = 9e-04, beta = 0.06)
 }
 \arguments{
 \item{alpha2}{A \code{double} value for the squared amplitude parameter \eqn{\alpha^2}{alpha} (see Note for details).}

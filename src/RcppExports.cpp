@@ -635,6 +635,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// gen_sin
+arma::vec gen_sin(const unsigned int N, const double alpha2, const double beta);
+RcppExport SEXP _simts_gen_sin(SEXP NSEXP, SEXP alpha2SEXP, SEXP betaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const unsigned int >::type N(NSEXP);
+    Rcpp::traits::input_parameter< const double >::type alpha2(alpha2SEXP);
+    Rcpp::traits::input_parameter< const double >::type beta(betaSEXP);
+    rcpp_result_gen = Rcpp::wrap(gen_sin(N, alpha2, beta));
+    return rcpp_result_gen;
+END_RCPP
+}
 // gen_dr
 arma::vec gen_dr(const unsigned int N, const double omega);
 RcppExport SEXP _simts_gen_dr(SEXP NSEXP, SEXP omegaSEXP) {
@@ -2265,6 +2278,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_modwt_cpp", (DL_FUNC) &_simts_modwt_cpp, 5},
     {"_simts_brick_wall", (DL_FUNC) &_simts_brick_wall, 3},
     {"_simts_gen_wn", (DL_FUNC) &_simts_gen_wn, 2},
+    {"_simts_gen_sin", (DL_FUNC) &_simts_gen_sin, 3},
     {"_simts_gen_dr", (DL_FUNC) &_simts_gen_dr, 2},
     {"_simts_gen_qn", (DL_FUNC) &_simts_gen_qn, 2},
     {"_simts_gen_ar1", (DL_FUNC) &_simts_gen_ar1, 3},

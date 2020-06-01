@@ -68,10 +68,10 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #' @examples
 #' SIN()
 #' SIN(alpha2 = .5, beta = .05)
-SIN = function(alpha2 = NULL, beta = 6e-02) {
+SIN = function(alpha2 = 9e-04, beta = 6e-02) {
   starting = FALSE;
   if(is.null(alpha2)){
-    alpha2 = 0.000961;
+    alpha2 = 9e-04;
     beta = 6e-02;
     starting = TRUE;
   }

@@ -626,6 +626,24 @@ gen_wn <- function(N, sigma2 = 1) {
     .Call('_simts_gen_wn', PACKAGE = 'simts', N, sigma2)
 }
 
+#' Generate a Sinusoidal Process given \eqn{\alpha^2} and \eqn{\beta}.
+#' 
+#' Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2} and \eqn{\beta}
+#' @param N      An \code{integer} for signal length.
+#' @param alpha2 A \code{double} that contains the squared amplitude parameter alpha2.
+#' @param beta A \code{double} that contains the angular frequency parameter beta.
+#' @return sn A \code{vec} containing the sinusoidal process.
+#' @section Generation Algorithm:
+#' The function first generates a initial cycle oscillation at t=0 from a Uniform law with parameter a = 0 and b = 2 * pi 
+#' and then compute the signal from its definition \deqn{X_t = \alpha \sin(\beta t + U)}.
+#' @backref src/gen_process.cpp
+#' @backref src/gen_process.h
+#' @keywords internal
+#' @export
+gen_sin <- function(N, alpha2 = 9e-04, beta = 6e-02) {
+    .Call('_simts_gen_sin', PACKAGE = 'simts', N, alpha2, beta)
+}
+
 #' Generate a Drift Process
 #' 
 #' Simulates a Drift Process with a given slope, \eqn{\omega}.

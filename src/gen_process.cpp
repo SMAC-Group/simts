@@ -677,7 +677,19 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
       // RW
   	  else if(element_type == "RW"){
   	    x += gen_rw(N, theta_value);
-  	  } 
+  	  }
+  	  // SIN
+  	  else if(element_type == "SIN"){
+  	    // First value is phi, increment for sigma2
+  	    ++i_theta;
+  	    
+  	    // get beta
+  	    
+  	    double beta = theta(i_theta);
+  	    
+  	    
+  	    x += gen_sin(N, theta_value, beta);
+  	  }
   	  // ARMA11
   	  else if(element_type == "ARMA11"){
   	    

@@ -785,6 +785,18 @@ arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<
       x.col(i) = gen_ma1(N, theta_value, sig2);
       x.col(num_desc) += x.col(i);
     } 
+    // SIN
+    else if(element_type == "SIN"){
+      // First value is phi, increment for sigma2
+      ++i_theta;
+      
+      // get beta
+      double beta = theta(i_theta);
+      
+      // generate data
+      x.col(i) = gen_sin(N, theta_value, beta);
+      x.col(num_desc) += x.col(i);
+    }
     // WN
     else if(element_type == "WN") {
       x.col(i) = gen_wn(N, theta_value);

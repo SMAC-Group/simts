@@ -51,6 +51,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #'
 #' @param alpha2 A \code{double} value for the squared amplitude parameter \eqn{\alpha^2}{alpha} (see Note for details).
 #' @param beta A \code{double} value for the angular frequency parameter \eqn{\beta}{beta} (see Note for details).
+#' @param U A \code{double} value for the phase parameter \eqn{\U}{beta} (see Note for details).
 #' @note We consider the following sinusoidal process : \deqn{X_t = \alpha \sin(\beta t + U)}, where \eqn{U \sim \mathcal{U}(0, 2\pi)}
 #' and \eqn{\beta \in (0, \frac{\pi}{2})}
 #' @return An S3 object containing the specified ts.model with the following structure:
@@ -68,12 +69,15 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #' @examples
 #' SIN()
 #' SIN(alpha2 = .5, beta = .05)
-SIN = function(alpha2 = 9e-04, beta = 6e-02) {
+SIN = function(alpha2 = 9e-04, beta = 6e-02, U = NULL) {
   starting = FALSE;
   if(is.null(alpha2)){
     alpha2 = 9e-04;
     beta = 6e-02;
-    starting = TRUE;
+    #starting = TRUE;
+  }
+  if(is.null(U)){
+    U = runif(n = 1, min = 0, max = 2*pi)
   }
   if(length(alpha2) != 1 & length(beta) != 1){
     stop("Incorrect SIN model submitted. Must be double values for two parameters.")
@@ -84,12 +88,16 @@ SIN = function(alpha2 = 9e-04, beta = 6e-02) {
   if(alpha2 <= 0 ){
     stop("Incorrect value of alpha2 provided. Alpha2 must be positive")
   }
-  out = structure(list(process.desc = c("ALPHA2","BETA"),
-                       theta = c(alpha2,beta),
-                       plength = 2,
+  if(U < 0 | U > 2*pi){
+    stop("Incorrect value of U provided. U must be between 0 and 2 pi")
+    
+  }
+  out = structure(list(process.desc = c("ALPHA2","BETA", "U"),
+                       theta = c(alpha2,beta, U),
+                       plength = 3,
                        desc = "SIN",
                        print = "SIN()",
-                       obj.desc = list(c(1,1)),
+                       obj.desc = list(c(1,1,1)),
                        starting = starting), class = "ts.model")
   invisible(out)
 }

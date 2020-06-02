@@ -75,11 +75,10 @@ arma::vec gen_wn(const unsigned int N, const double sigma2 = 1)
 //' @keywords internal
 //' @export
 // [[Rcpp::export]]
-arma::vec gen_sin(const unsigned int N, const double alpha2 = 9e-04, const double beta = 6e-02)
+arma::vec gen_sin(const unsigned int N, const double alpha2 = 9e-04, const double beta = 6e-02, const double U = 1)
 {
   arma::vec sn(N);
   double alpha = sqrt(alpha2);
-  double U = R::runif(0.0, M_PI*2);
   for(unsigned int i = 0; i < N; i++){
     sn(i) = alpha * sin(beta * i + U);
   }
@@ -680,15 +679,20 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	  }
   	  // SIN
   	  else if(element_type == "SIN"){
-  	    // First value is phi, increment for sigma2
+  	    // First value is alpha2, increment for sigma2
   	    ++i_theta;
   	    
   	    // get beta
-  	    
   	    double beta = theta(i_theta);
   	    
+  	    // get U
+  	    ++i_theta;
   	    
-  	    x += gen_sin(N, theta_value, beta);
+  	    // get U
+  	    double U = theta(i_theta);
+  	    
+  	    
+  	    x += gen_sin(N, theta_value, beta, U);
   	  }
   	  // ARMA11
   	  else if(element_type == "ARMA11"){
@@ -787,14 +791,20 @@ arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<
     } 
     // SIN
     else if(element_type == "SIN"){
-      // First value is phi, increment for sigma2
+      // First value is alpha2, increment for sigma2
       ++i_theta;
       
       // get beta
       double beta = theta(i_theta);
       
+      // get U
+      ++i_theta;
+      
+      // get U
+      double U = theta(i_theta);
+      
       // generate data
-      x.col(i) = gen_sin(N, theta_value, beta);
+      x.col(i) = gen_sin(N, theta_value, beta, U);
       x.col(num_desc) += x.col(i);
     }
     // WN

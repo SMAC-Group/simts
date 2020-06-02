@@ -640,8 +640,8 @@ gen_wn <- function(N, sigma2 = 1) {
 #' @backref src/gen_process.h
 #' @keywords internal
 #' @export
-gen_sin <- function(N, alpha2 = 9e-04, beta = 6e-02) {
-    .Call('_simts_gen_sin', PACKAGE = 'simts', N, alpha2, beta)
+gen_sin <- function(N, alpha2 = 9e-04, beta = 6e-02, U = 1) {
+    .Call('_simts_gen_sin', PACKAGE = 'simts', N, alpha2, beta, U)
 }
 
 #' Generate a Drift Process

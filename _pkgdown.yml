@@ -17,6 +17,7 @@ reference:
     - ARIMA 
     - SARMA
     - SARIMA
+    - SIN
   - title: Time Series Simulation 
     contents: 
     - gts

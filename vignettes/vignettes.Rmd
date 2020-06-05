@@ -31,6 +31,7 @@ In this section, we briefly list, describe, and provide the syntax used to simul
 * Integrated Autoregressive Moving Average `ARIMA()`
 * Seasonal Autoregressive Integrated Moving Average `SARIMA()`
 * Seasonal Autoregressive Moving Average `SARMA()`
+* Sinusoidal process `SIN()`
 * Quantization Noise `QN()`
 
 Quantization noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.

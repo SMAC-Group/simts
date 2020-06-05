@@ -8,21 +8,32 @@
 
 <title>Select the Best Model — best_model • simts</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,12 +41,12 @@
 
 
 
+
 <meta property="og:title" content="Select the Best Model — best_model" />
-
 <meta property="og:description" content="This function retrieves the best model from a selection procedure." />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -47,6 +58,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -78,7 +90,6 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/SMAC-Group/simts">
@@ -93,6 +104,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -104,13 +116,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>This function retrieves the best model from a selection procedure.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"aic"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -125,13 +135,14 @@
 Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>18</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>18</span>)
 <span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_arima.html'>gen_arima</a></span>(<span class='kw'>N</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>ar</span><span class='kw'>=</span><span class='fl'>0.3</span>, <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>ma</span><span class='kw'>=</span><span class='fl'>0.3</span>)
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='select_arima.html'>select_arima</a></span>(<span class='no'>xt</span>, <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1L</span>)</div><div class='img'><img src='best_model-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"aic"</span>)</div><div class='output co'>#&gt; 
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='select_arima.html'>select_arima</a></span>(<span class='no'>xt</span>, <span class='kw'>d</span><span class='kw'>=</span><span class='fl'>1L</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: attributes are not identical across measure variables;</span>
+#&gt; <span class='warning'>they will be dropped</span></div><div class='img'><img src='best_model-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"aic"</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; arima(x = xt, order = c(1, 1, 0), include.mean = include.mean)
 #&gt; 
@@ -141,9 +152,10 @@ Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).</p></td>
 #&gt; s.e.  0.0903
 #&gt; 
 #&gt; sigma^2 estimated as 1.415:  log likelihood = -157.8,  aic = 319.59</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>19</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>19</span>)
 <span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_ma1.html'>gen_ma1</a></span>(<span class='fl'>100</span>, <span class='fl'>0.3</span>, <span class='fl'>1</span>)
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='select_arima.html'>select_ma</a></span>(<span class='no'>xt</span>, <span class='kw'>q.min</span><span class='kw'>=</span><span class='fl'>2L</span>, <span class='kw'>q.max</span><span class='kw'>=</span><span class='fl'>5L</span>)</div><div class='img'><img src='best_model-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"bic"</span>)</div><div class='output co'>#&gt; 
+<span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='select_arima.html'>select_ma</a></span>(<span class='no'>xt</span>, <span class='kw'>q.min</span><span class='kw'>=</span><span class='fl'>2L</span>, <span class='kw'>q.max</span><span class='kw'>=</span><span class='fl'>5L</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: attributes are not identical across measure variables;</span>
+#&gt; <span class='warning'>they will be dropped</span></div><div class='img'><img src='best_model-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"bic"</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; arima(x = xt, order = c(0, 0, 2), include.mean = include.mean)
 #&gt; 
@@ -153,10 +165,11 @@ Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).</p></td>
 #&gt; s.e.  0.1007  0.1091     0.1079
 #&gt; 
 #&gt; sigma^2 estimated as 0.9544:  log likelihood = -139.56,  aic = 287.13</div><div class='input'>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>20</span>)
-<span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_arma.html'>gen_arma</a></span>(<span class='fl'>100</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>.3</span>,<span class='fl'>.5</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>.1</span>), <span class='fl'>1</span>, <span class='fl'>0</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>20</span>)
+<span class='no'>xt</span> <span class='kw'>=</span> <span class='fu'><a href='gen_arma.html'>gen_arma</a></span>(<span class='fl'>100</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.3</span>,<span class='fl'>.5</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>.1</span>), <span class='fl'>1</span>, <span class='fl'>0</span>)
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'><a href='select_arima.html'>select_arma</a></span>(<span class='no'>xt</span>, <span class='kw'>p.min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>p.max</span> <span class='kw'>=</span> <span class='fl'>4L</span>,
-                <span class='kw'>q.min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>q.max</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</div><div class='img'><img src='best_model-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"hq"</span>)</div><div class='output co'>#&gt; 
+                <span class='kw'>q.min</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>q.max</span> <span class='kw'>=</span> <span class='fl'>3L</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: attributes are not identical across measure variables;</span>
+#&gt; <span class='warning'>they will be dropped</span></div><div class='img'><img src='best_model-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>best_model</span>(<span class='no'>x</span>, <span class='kw'>ic</span> <span class='kw'>=</span> <span class='st'>"hq"</span>)</div><div class='output co'>#&gt; 
 #&gt; Call:
 #&gt; arima(x = xt, order = c(4, 0, 2), include.mean = include.mean)
 #&gt; 
@@ -172,12 +185,12 @@ Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -185,13 +198,16 @@ Supported criteria include "aic" (AIC), "bic" (BIC) and "hq" (HQ).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

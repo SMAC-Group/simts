@@ -2,7 +2,7 @@
 % Please edit documentation in R/ts.model.R
 \name{SIN}
 \alias{SIN}
-\title{Definition of a sinusoidal process}
+\title{Create an Sinusoidal (SIN) Process}
 \usage{
 SIN(alpha2 = 9e-04, beta = 0.06, U = NULL)
 }
@@ -26,7 +26,7 @@ An S3 object containing the specified ts.model with the following structure:
 }
 }
 \description{
-Definition of a sinusoidal process
+Create an Sinusoidal (SIN) Process
 }
 \note{
 We consider the following sinusoidal process : \deqn{X_t = \alpha \sin(\beta t + U)}, where \eqn{U \sim \mathcal{U}(0, 2\pi)}

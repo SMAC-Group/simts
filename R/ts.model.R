@@ -47,7 +47,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
   invisible(out)
 }
 
-#' Definition of a sinusoidal process
+#' Create an Sinusoidal (SIN) Process
 #'
 #' @param alpha2 A \code{double} value for the squared amplitude parameter \eqn{\alpha^2}{alpha} (see Note for details).
 #' @param beta A \code{double} value for the angular frequency parameter \eqn{\beta}{beta} (see Note for details).

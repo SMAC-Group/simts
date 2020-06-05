@@ -4,12 +4,14 @@
 \alias{SIN}
 \title{Definition of a sinusoidal process}
 \usage{
-SIN(alpha2 = 9e-04, beta = 0.06)
+SIN(alpha2 = 9e-04, beta = 0.06, U = NULL)
 }
 \arguments{
 \item{alpha2}{A \code{double} value for the squared amplitude parameter \eqn{\alpha^2}{alpha} (see Note for details).}
 
 \item{beta}{A \code{double} value for the angular frequency parameter \eqn{\beta}{beta} (see Note for details).}
+
+\item{U}{A \code{double} value for the phase parameter \eqn{\U}{beta} (see Note for details).}
 }
 \value{
 An S3 object containing the specified ts.model with the following structure:

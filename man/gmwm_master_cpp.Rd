@@ -17,8 +17,7 @@ gmwm_master_cpp(
   H,
   G,
   robust,
-  eff,
-  wavelet_variance
+  eff
 )
 }
 \arguments{

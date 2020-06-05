@@ -4,7 +4,7 @@
 \alias{gen_sin}
 \title{Generate a Sinusoidal Process given \eqn{\alpha^2} and \eqn{\beta}.}
 \usage{
-gen_sin(N, alpha2 = 9e-04, beta = 0.06)
+gen_sin(N, alpha2 = 9e-04, beta = 0.06, U = 1)
 }
 \arguments{
 \item{N}{An \code{integer} for signal length.}

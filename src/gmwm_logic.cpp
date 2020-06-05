@@ -268,7 +268,7 @@ arma::field<arma::mat> gmwm_master_cpp(arma::vec& data,
                                       double alpha, 
                                       std::string compute_v, unsigned int K, unsigned int H,
                                       unsigned int G, 
-                                      bool robust, double eff, bool wavelet_variance){
+                                      bool robust, double eff){
   
   // Obtain counts of the different models we need to work with
   std::map<std::string, int> models = count_models(desc);
@@ -324,11 +324,8 @@ arma::field<arma::mat> gmwm_master_cpp(arma::vec& data,
   arma::field<arma::vec> modwt_decomp = modwt_cpp(data, "haar", nlevels, "periodic", true);
   
   // Obtain WV and confidence intervals
-  arma::mat wvar(1,3);
-  
-  if(!wavelet_variance){
-    arma::mat wvar = wvar_cpp(modwt_decomp, robust, eff, alpha, "eta3");
-  } 
+  arma::mat wvar = wvar_cpp(modwt_decomp, robust, eff, alpha, "eta3");
+
   // Extract
   arma::vec wv_empir = wvar.col(0);
   arma::vec ci_lo = wvar.col(1);

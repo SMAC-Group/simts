@@ -16,8 +16,7 @@ gmwm(
   G = NULL,
   K = 1,
   H = 100,
-  freq = 1,
-  wavelet_variance = FALSE
+  freq = 1
 )
 }
 \arguments{

@@ -17,8 +17,7 @@ rank_models_cpp(
   robust,
   eff,
   bs_optimism,
-  seed,
-  wavelet_variance
+  seed
 )
 }
 \arguments{

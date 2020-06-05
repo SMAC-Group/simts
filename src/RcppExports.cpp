@@ -363,8 +363,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // rank_models_cpp
-arma::field< arma::field<arma::field<arma::mat> > > rank_models_cpp(arma::vec& data, const std::vector<std::vector < std::string > >& model_str, const std::vector< std::string >& full_model, double alpha, std::string compute_v, std::string model_type, unsigned int K, unsigned int H, unsigned int G, bool robust, double eff, bool bs_optimism, unsigned int seed, bool wavelet_variance);
-RcppExport SEXP _simts_rank_models_cpp(SEXP dataSEXP, SEXP model_strSEXP, SEXP full_modelSEXP, SEXP alphaSEXP, SEXP compute_vSEXP, SEXP model_typeSEXP, SEXP KSEXP, SEXP HSEXP, SEXP GSEXP, SEXP robustSEXP, SEXP effSEXP, SEXP bs_optimismSEXP, SEXP seedSEXP, SEXP wavelet_varianceSEXP) {
+arma::field< arma::field<arma::field<arma::mat> > > rank_models_cpp(arma::vec& data, const std::vector<std::vector < std::string > >& model_str, const std::vector< std::string >& full_model, double alpha, std::string compute_v, std::string model_type, unsigned int K, unsigned int H, unsigned int G, bool robust, double eff, bool bs_optimism, unsigned int seed);
+RcppExport SEXP _simts_rank_models_cpp(SEXP dataSEXP, SEXP model_strSEXP, SEXP full_modelSEXP, SEXP alphaSEXP, SEXP compute_vSEXP, SEXP model_typeSEXP, SEXP KSEXP, SEXP HSEXP, SEXP GSEXP, SEXP robustSEXP, SEXP effSEXP, SEXP bs_optimismSEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -381,14 +381,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type eff(effSEXP);
     Rcpp::traits::input_parameter< bool >::type bs_optimism(bs_optimismSEXP);
     Rcpp::traits::input_parameter< unsigned int >::type seed(seedSEXP);
-    Rcpp::traits::input_parameter< bool >::type wavelet_variance(wavelet_varianceSEXP);
-    rcpp_result_gen = Rcpp::wrap(rank_models_cpp(data, model_str, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed, wavelet_variance));
+    rcpp_result_gen = Rcpp::wrap(rank_models_cpp(data, model_str, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed));
     return rcpp_result_gen;
 END_RCPP
 }
 // auto_imu_cpp
-arma::field< arma::field<arma::field<arma::mat> > > auto_imu_cpp(arma::mat& data, const arma::mat& combs, const std::vector< std::string >& full_model, double alpha, std::string compute_v, std::string model_type, unsigned int K, unsigned int H, unsigned int G, bool robust, double eff, bool bs_optimism, unsigned int seed, bool wavelet_variance);
-RcppExport SEXP _simts_auto_imu_cpp(SEXP dataSEXP, SEXP combsSEXP, SEXP full_modelSEXP, SEXP alphaSEXP, SEXP compute_vSEXP, SEXP model_typeSEXP, SEXP KSEXP, SEXP HSEXP, SEXP GSEXP, SEXP robustSEXP, SEXP effSEXP, SEXP bs_optimismSEXP, SEXP seedSEXP, SEXP wavelet_varianceSEXP) {
+arma::field< arma::field<arma::field<arma::mat> > > auto_imu_cpp(arma::mat& data, const arma::mat& combs, const std::vector< std::string >& full_model, double alpha, std::string compute_v, std::string model_type, unsigned int K, unsigned int H, unsigned int G, bool robust, double eff, bool bs_optimism, unsigned int seed);
+RcppExport SEXP _simts_auto_imu_cpp(SEXP dataSEXP, SEXP combsSEXP, SEXP full_modelSEXP, SEXP alphaSEXP, SEXP compute_vSEXP, SEXP model_typeSEXP, SEXP KSEXP, SEXP HSEXP, SEXP GSEXP, SEXP robustSEXP, SEXP effSEXP, SEXP bs_optimismSEXP, SEXP seedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -405,8 +404,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type eff(effSEXP);
     Rcpp::traits::input_parameter< bool >::type bs_optimism(bs_optimismSEXP);
     Rcpp::traits::input_parameter< unsigned int >::type seed(seedSEXP);
-    Rcpp::traits::input_parameter< bool >::type wavelet_variance(wavelet_varianceSEXP);
-    rcpp_result_gen = Rcpp::wrap(auto_imu_cpp(data, combs, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed, wavelet_variance));
+    rcpp_result_gen = Rcpp::wrap(auto_imu_cpp(data, combs, full_model, alpha, compute_v, model_type, K, H, G, robust, eff, bs_optimism, seed));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -894,8 +892,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // gmwm_master_cpp
-arma::field<arma::mat> gmwm_master_cpp(arma::vec& data, arma::vec theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc, std::string model_type, bool starting, double alpha, std::string compute_v, unsigned int K, unsigned int H, unsigned int G, bool robust, double eff, bool wavelet_variance);
-RcppExport SEXP _simts_gmwm_master_cpp(SEXP dataSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP, SEXP model_typeSEXP, SEXP startingSEXP, SEXP alphaSEXP, SEXP compute_vSEXP, SEXP KSEXP, SEXP HSEXP, SEXP GSEXP, SEXP robustSEXP, SEXP effSEXP, SEXP wavelet_varianceSEXP) {
+arma::field<arma::mat> gmwm_master_cpp(arma::vec& data, arma::vec theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc, std::string model_type, bool starting, double alpha, std::string compute_v, unsigned int K, unsigned int H, unsigned int G, bool robust, double eff);
+RcppExport SEXP _simts_gmwm_master_cpp(SEXP dataSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP, SEXP model_typeSEXP, SEXP startingSEXP, SEXP alphaSEXP, SEXP compute_vSEXP, SEXP KSEXP, SEXP HSEXP, SEXP GSEXP, SEXP robustSEXP, SEXP effSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -912,8 +910,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< unsigned int >::type G(GSEXP);
     Rcpp::traits::input_parameter< bool >::type robust(robustSEXP);
     Rcpp::traits::input_parameter< double >::type eff(effSEXP);
-    Rcpp::traits::input_parameter< bool >::type wavelet_variance(wavelet_varianceSEXP);
-    rcpp_result_gen = Rcpp::wrap(gmwm_master_cpp(data, theta, desc, objdesc, model_type, starting, alpha, compute_v, K, H, G, robust, eff, wavelet_variance));
+    rcpp_result_gen = Rcpp::wrap(gmwm_master_cpp(data, theta, desc, objdesc, model_type, starting, alpha, compute_v, K, H, G, robust, eff));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -2263,8 +2260,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_set_seed", (DL_FUNC) &_simts_set_seed, 1},
     {"_simts_vector_to_set", (DL_FUNC) &_simts_vector_to_set, 1},
     {"_simts_find_full_model", (DL_FUNC) &_simts_find_full_model, 1},
-    {"_simts_rank_models_cpp", (DL_FUNC) &_simts_rank_models_cpp, 14},
-    {"_simts_auto_imu_cpp", (DL_FUNC) &_simts_auto_imu_cpp, 14},
+    {"_simts_rank_models_cpp", (DL_FUNC) &_simts_rank_models_cpp, 13},
+    {"_simts_auto_imu_cpp", (DL_FUNC) &_simts_auto_imu_cpp, 13},
     {"_simts_cov_bootstrapper", (DL_FUNC) &_simts_cov_bootstrapper, 8},
     {"_simts_optimism_bootstrapper", (DL_FUNC) &_simts_optimism_bootstrapper, 10},
     {"_simts_opt_n_gof_bootstrapper", (DL_FUNC) &_simts_opt_n_gof_bootstrapper, 10},
@@ -2296,7 +2293,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_code_zero", (DL_FUNC) &_simts_code_zero, 1},
     {"_simts_gmwm_engine", (DL_FUNC) &_simts_gmwm_engine, 8},
     {"_simts_gmwm_update_cpp", (DL_FUNC) &_simts_gmwm_update_cpp, 17},
-    {"_simts_gmwm_master_cpp", (DL_FUNC) &_simts_gmwm_master_cpp, 14},
+    {"_simts_gmwm_master_cpp", (DL_FUNC) &_simts_gmwm_master_cpp, 13},
     {"_simts_guess_initial", (DL_FUNC) &_simts_guess_initial, 10},
     {"_simts_ar1_draw", (DL_FUNC) &_simts_ar1_draw, 4},
     {"_simts_arma_draws", (DL_FUNC) &_simts_arma_draws, 3},

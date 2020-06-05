@@ -17,8 +17,7 @@ auto_imu_cpp(
   robust,
   eff,
   bs_optimism,
-  seed,
-  wavelet_variance
+  seed
 )
 }
 \arguments{

@@ -644,7 +644,7 @@ arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<st
       // Need to add ARMA generation
       
       // for compatibility with functions not yet brought to covariate
-      arma::vec theta_first = theta(0, arma::span::all);
+      arma::rowvec theta_first = theta(0, arma::span::all);
       double theta_value = theta_first(i_theta);
       
       std::string element_type = desc[i];

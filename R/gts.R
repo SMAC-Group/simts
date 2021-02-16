@@ -121,11 +121,12 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 #' @param freq       A \code{numeric} that provides the rate of samples. Default value is 1.
 #' @param unit_ts   A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.
 #' @param unit_time A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.
+#' @param covariate A \code{n x k}\code{matrix} containing deterministic variables needed to evaluate covariate dependent parameters. Default value is \code{NULL}
 #' @param name_ts   A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.
 #' @param name_time A \code{string} that provides an identifier for the time. Default value is \code{NULL}.
 #' @return A \code{gts} object
 #' @export
-#' @author James Balamuta and Wenchao Yang
+#' @author James Balamuta, Wenchao Yang, Davide A. Cucci
 #' @details
 #' This function accepts either a \code{ts.model} object (e.g. AR1(phi = .3, sigma2 =1) + WN(sigma2 = 1)) or a \code{simts} object.
 #' @examples
@@ -152,7 +153,7 @@ gts = function(data, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time 
 #' 
 #' # Same time series
 #' all.equal(x, x2, check.attributes = FALSE)
-gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, name_ts = NULL, name_time = NULL){
+gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, unit_time = NULL, covariate = NULL, name_ts = NULL, name_time = NULL){
   
   # 1. Do we have a valid model?
   if(!(is.ts.model(model))){
@@ -200,11 +201,41 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
       model$theta[model$process.desc == "DR"] = model$theta[model$process.desc == "DR"]/freq
     }
     
-    theta = model$theta
-    
+    if ("covariate.dependency" %in% names(model)) {
+      if (is.null(covariate)) {
+        warning("The supplied model has a covariate dependency but no values are provided, using nominal model parameters")
+        
+        theta = matrix(model$theta, nrow = 1, ncol = length(model$theta), byrow = TRUE)
+      } else {
+        # have it always as a matrix, deal with lenght(model$theta) = 1
+        theta = t(
+          matrix(
+            apply(temperature, 1, model[["covariate.dependency"]]), 
+            nrow = length(model$theta)
+          )
+        )
+        
+        if (dim(theta)[1] != n || dim(theta)[2] != length(model$theta)) {
+          stop("Applying covariate.dependency to supplied covariates didn't yield the expecte output")
+        }
+      }
+    } else {
+      if (! is.null(covariate)) {
+        stop("Covariates supplied but model does not have a covariate dependency specified")
+      }
+      
+      theta = matrix(model$theta, nrow = 1, ncol = length(model$theta), byrow = TRUE)
+    }
+
     # Convert from AR1 to GM
     if(any(model$desc == "GM")){
-      theta = conv.gm.to.ar1(theta, model$process.desc, freq)
+      theta = t(
+        apply(
+          theta, 
+          1, 
+          function(theta){conv.gm.to.ar1(theta, model$process.desc, freq)}
+        )
+      )
     }
     
     out = gen_model(n, theta, desc, obj)

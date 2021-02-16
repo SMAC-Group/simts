@@ -20,6 +20,7 @@
 #define GEN_PROCESS
 
 arma::vec gen_wn(const unsigned int N, const double sigma2);
+arma::vec gen_wn(const unsigned int N, const arma::vec &sigma2);
 
 arma::vec gen_dr(const unsigned int N, const double omega);
 
@@ -54,7 +55,7 @@ arma::vec gen_generic_sarima(const unsigned int N,
                              double sigma2,
                              unsigned int n_start);
 
-arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
+arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
 
 arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
 

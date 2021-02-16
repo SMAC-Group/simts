@@ -808,13 +808,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // gen_model
-arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
+arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc);
 RcppExport SEXP _simts_gen_model(SEXP NSEXP, SEXP thetaSEXP, SEXP descSEXP, SEXP objdescSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< unsigned int >::type N(NSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type theta(thetaSEXP);
+    Rcpp::traits::input_parameter< const arma::mat& >::type theta(thetaSEXP);
     Rcpp::traits::input_parameter< const std::vector<std::string>& >::type desc(descSEXP);
     Rcpp::traits::input_parameter< const arma::field<arma::vec>& >::type objdesc(objdescSEXP);
     rcpp_result_gen = Rcpp::wrap(gen_model(N, theta, desc, objdesc));

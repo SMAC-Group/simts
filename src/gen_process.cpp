@@ -58,6 +58,15 @@ arma::vec gen_wn(const unsigned int N, const double sigma2 = 1)
   return wn;
 }
 
+arma::vec gen_wn(const unsigned int N, const arma::vec &sigma2)
+{
+  arma::vec wn(N);
+  for(unsigned int i = 0; i < N; i++){
+    wn(i) = R::rnorm(0.0, sqrt(sigma2(i)));
+  }
+  
+  return wn;
+}
 
 
 //' Generate a Sinusoidal Process given \eqn{\alpha^2} and \eqn{\beta}.
@@ -626,7 +635,7 @@ arma::vec gen_generic_sarima(const unsigned int N,
 //' @keywords internal
 //' @export
 // [[Rcpp::export]]
-arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc){
+arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc){
     arma::vec x  = arma::zeros<arma::vec>(N);
     unsigned int i_theta = 0;
     unsigned int num_desc = desc.size();
@@ -634,7 +643,9 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
     for(unsigned int i = 0; i < num_desc; i++){
       // Need to add ARMA generation
       
-      double theta_value = theta(i_theta);
+      // for compatibility with functions not yet brought to covariate
+      arma::vec theta_first = theta(0, arma::span::all);
+      double theta_value = theta_first(i_theta);
       
       std::string element_type = desc[i];
       
@@ -645,7 +656,7 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    ++i_theta;
   	    
   	    // Get sigma2, this increment is taken care of at the end.
-  	    double sig2 = theta(i_theta);
+  	    double sig2 = theta_first(i_theta);
   	    
   	    // Compute theoretical WV
   	    x += gen_ar1(N, theta_value, sig2);
@@ -656,14 +667,18 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    ++i_theta;
   	    
   	    // Get sigma2, this increment is taken care of at the end.
-  	    double sig2 = theta(i_theta);
+  	    double sig2 = theta_first(i_theta);
   	    
   	    // Compute theoretical WV
   	    x += gen_ma1(N, theta_value, sig2);
   	  } 
   	  // WN
   	  else if(element_type == "WN") {
-  	    x += gen_wn(N, theta_value);
+  	    if (arma::size(theta)[0] == 1) {
+  	      x += gen_wn(N, theta(0,i_theta));
+  	    } else {
+  	      x += gen_wn(N, theta(arma::span::all, i_theta));
+  	    }
   	  } 
       // DR
   	  else if(element_type == "DR"){
@@ -683,13 +698,13 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    ++i_theta;
   	    
   	    // get beta
-  	    double beta = theta(i_theta);
+  	    double beta = theta_first(i_theta);
   	    
   	    // get U
   	    ++i_theta;
   	    
   	    // get U
-  	    double U = theta(i_theta);
+  	    double U = theta_first(i_theta);
   	    
   	    
   	    x += gen_sin(N, theta_value, beta, U);
@@ -700,13 +715,13 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    // First value is phi, increment for theta
   	    ++i_theta;
   	    
-  	    double th = theta(i_theta);
+  	    double th = theta_first(i_theta);
   	    
   	    // Increment for sigma2
   	    ++i_theta;
   	    
   	    // Get sigma2, this increment is taken care of at the end.
-  	    double sig2 = theta(i_theta);
+  	    double sig2 = theta_first(i_theta);
   	    
   	    x += gen_arma11(N, theta_value, th, sig2);
   	  } 

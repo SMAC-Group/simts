@@ -12,6 +12,7 @@ gen_gts(
   freq = 1,
   unit_ts = NULL,
   unit_time = NULL,
+  covariate = NULL,
   name_ts = NULL,
   name_time = NULL
 )
@@ -30,6 +31,8 @@ gen_gts(
 \item{unit_ts}{A \code{string} that contains the unit expression of the time series. Default value is \code{NULL}.}
 
 \item{unit_time}{A \code{string} that contains the unit expression of the time. Default value is \code{NULL}.}
+
+\item{covariate}{A \code{n x k}\code{matrix} containing deterministic variables needed to evaluate covariate dependent parameters. Default value is \code{NULL}}
 
 \item{name_ts}{A \code{string} that provides an identifier for the time series data. Default value is \code{NULL}.}
 
@@ -70,5 +73,5 @@ plot(x2)
 all.equal(x, x2, check.attributes = FALSE)
 }
 \author{
-James Balamuta and Wenchao Yang
+James Balamuta, Wenchao Yang, Davide A. Cucci
 }

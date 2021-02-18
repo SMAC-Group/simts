@@ -60,6 +60,10 @@ arma::vec gen_wn(const unsigned int N, const double sigma2 = 1)
 
 arma::vec gen_wn(const unsigned int N, const arma::vec &sigma2)
 {
+  if (sigma2.n_elem != N) {
+    Rcpp::stop("wn: the size of sigma2 must be N");
+  }
+
   arma::vec wn(N);
   for(unsigned int i = 0; i < N; i++){
     wn(i) = R::rnorm(0.0, sqrt(sigma2(i)));
@@ -187,7 +191,6 @@ arma::vec gen_qn(const unsigned int N, double q2 = .1)
 // [[Rcpp::export]]
 arma::vec gen_ar1(const unsigned int N, const double phi = .3, const double sigma2 = 1)
 {
-
 	arma::vec wn = gen_wn(N+1, sigma2);
 	arma::vec gm = arma::zeros<arma::vec>(N+1);
 	for(unsigned int i=1; i <= N; i++ )
@@ -196,6 +199,26 @@ arma::vec gen_ar1(const unsigned int N, const double phi = .3, const double sigm
 	}
 
 	return gm.rows(1,N);
+}
+
+arma::vec gen_ar1(const unsigned int N, const arma::vec &phi, const arma::vec &sigma2)
+{
+  if (phi.n_elem != N) {
+    Rcpp::stop("ar1: the size of phi must be N");
+  }
+
+  if (sigma2.n_elem != N) {
+    Rcpp::stop("ar1: the size of sigma2 must be N");
+  }
+
+  arma::vec wn = gen_wn(N, sigma2);
+  arma::vec gm = arma::zeros<arma::vec>(N+1);
+  for(unsigned int i=1; i <= N; i++ )
+  {		
+    gm(i) = phi(i-1)*gm(i-1) + wn(i-1);
+  }
+  
+  return gm.rows(1,N);
 }
 
 //' Generate a Random Walk without Drift
@@ -220,6 +243,19 @@ arma::vec gen_rw(const unsigned int N, const double sigma2 = 1)
   double sigma = sqrt(sigma2);
   for(unsigned int i = 0; i < N; i++){
       grw(i) = R::rnorm(0.0, sigma);
+  }
+  return cumsum(grw);
+}
+
+arma::vec gen_rw(const unsigned int N, const arma::vec &sigma2)
+{
+  if (sigma2.n_elem != N) {
+    Rcpp::stop("rw: the size of sigma2 must be N");
+  }
+  
+  arma::vec grw(N);
+  for(unsigned int i = 0; i < N; i++){
+    grw(i) = R::rnorm(0.0, sqrt(sigma2(i)));
   }
   return cumsum(grw);
 }
@@ -253,6 +289,26 @@ arma::vec gen_ma1(const unsigned int N, const double theta = .3, const double si
   for(unsigned int i=1; i <= N; i++ )
   {		
     ma(i) = theta*wn(i-1) + wn(i);
+  }
+  
+  return ma.rows(1,N);
+}
+
+arma::vec gen_ma1(const unsigned int N, const arma::vec &theta, const arma::vec &sigma2)
+{
+  if (theta.n_elem != N) {
+    Rcpp::stop("ma1: the size of thenta must be N");
+  }
+  
+  if (sigma2.n_elem != N) {
+    Rcpp::stop("ma1: the size of sigma2 must be N");
+  }
+  
+  arma::vec wn = gen_wn(N, sigma2);
+  arma::vec ma = arma::zeros<arma::vec>(N+1);
+  for(unsigned int i=1; i <= N; i++ )
+  {		
+    ma(i) = theta(i-1)*wn(i-1) + wn(i-1);
   }
   
   return ma.rows(1,N);
@@ -637,12 +693,10 @@ arma::vec gen_generic_sarima(const unsigned int N,
 // [[Rcpp::export]]
 arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc){
     arma::vec x  = arma::zeros<arma::vec>(N);
+
     unsigned int i_theta = 0;
-    unsigned int num_desc = desc.size();
-    
-    for(unsigned int i = 0; i < num_desc; i++){
-      // Need to add ARMA generation
-      
+    for(unsigned int i = 0; i < desc.size(); ++i, ++i_theta){
+
       // for compatibility with functions not yet brought to covariate
       arma::rowvec theta_first = theta(0, arma::span::all);
       double theta_value = theta_first(i_theta);
@@ -650,27 +704,26 @@ arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<st
       std::string element_type = desc[i];
       
   	  // AR 1
-  	  if(element_type == "AR1" || element_type == "GM"){
+  	  if(element_type == "AR1" || element_type == "GM") {
+  	    if (arma::size(theta)[0] == 1) {
+  	      x += gen_ar1(N, theta(0, i_theta), theta(0, i_theta));
+  	    } else {
+  	      x += gen_ar1(N, theta(arma::span::all, i_theta), theta(arma::span::all, i_theta+1));
+  	    }
   	    
   	    // First value is phi, increment for sigma2
   	    ++i_theta;
-  	    
-  	    // Get sigma2, this increment is taken care of at the end.
-  	    double sig2 = theta_first(i_theta);
-  	    
-  	    // Compute theoretical WV
-  	    x += gen_ar1(N, theta_value, sig2);
   	  }
-  	  else if(element_type == "MA1"){
-  	    
-  	    // First value is theta, increment for sigma2
+  	  // MA 1
+  	  else if(element_type == "MA1") {  	    
+  	    if (arma::size(theta)[0] == 1) {
+  	      x += gen_ma1(N, theta(0, i_theta), theta(0, i_theta));
+  	    } else {
+  	      x += gen_ma1(N, theta(arma::span::all, i_theta), theta(arma::span::all, i_theta+1));
+  	    }
+  	  
+  	    // First value is phi, increment for sigma2
   	    ++i_theta;
-  	    
-  	    // Get sigma2, this increment is taken care of at the end.
-  	    double sig2 = theta_first(i_theta);
-  	    
-  	    // Compute theoretical WV
-  	    x += gen_ma1(N, theta_value, sig2);
   	  } 
   	  // WN
   	  else if(element_type == "WN") {
@@ -682,18 +735,33 @@ arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<st
   	  } 
       // DR
   	  else if(element_type == "DR"){
+  	    if (arma::size(theta)[0] > 1) {
+  	      Rcpp::warning("covariate dependency not implemented for DR, using first value");
+  	    }
   	    x += gen_dr(N, theta_value);
   	  }
       // QN
   	  else if(element_type == "QN"){
+  	    if (arma::size(theta)[0] > 1) {
+  	      Rcpp::warning("covariate dependency not implemented for QN, using first value");
+  	    }
   	    x += gen_qn(N, theta_value);
   	  }
       // RW
   	  else if(element_type == "RW"){
-  	    x += gen_rw(N, theta_value);
+  	    if (arma::size(theta)[0] == 1) {
+  	      x += gen_rw(N, theta(0, i_theta));
+  	    } else {
+  	      x += gen_rw(N, theta(arma::span::all, i_theta));
+  	    }
+  	    
   	  }
   	  // SIN
-  	  else if(element_type == "SIN"){
+  	  else if(element_type == "SIN") {
+  	    if (arma::size(theta)[0] > 1) {
+  	      Rcpp::warning("covariate dependency not implemented for SIN, using first value");
+  	    }
+  	    
   	    // First value is alpha2, increment for sigma2
   	    ++i_theta;
   	    
@@ -710,7 +778,10 @@ arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<st
   	    x += gen_sin(N, theta_value, beta, U);
   	  }
   	  // ARMA11
-  	  else if(element_type == "ARMA11"){
+  	  else if(element_type == "ARMA11") {
+  	    if (arma::size(theta)[0] > 1) {
+  	      Rcpp::warning("covariate dependency not implemented for ARMA11, using first value");
+  	    }
   	    
   	    // First value is phi, increment for theta
   	    ++i_theta;
@@ -726,7 +797,11 @@ arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<st
   	    x += gen_arma11(N, theta_value, th, sig2);
   	  } 
   	  // ARMA
-  	  else {
+  	  else if(element_type == "ARMA") { 
+  	    if (arma::size(theta)[0] > 1) {
+  	      Rcpp::warning("covariate dependency not implemented for ARMA, using first value");
+  	    }
+  	    
   	    // Unpackage ARMA model parameter
   	    arma::vec model_params = objdesc(i);
   	    
@@ -743,10 +818,9 @@ arma::vec gen_model(unsigned int N, const arma::mat& theta, const std::vector<st
   	    double sig2 = theta(i_theta);
   	    
   	    x += gen_generic_sarima(N, theta_values, model_params, sig2, 0);
+  	  } else {
+  	    Rcpp::stop("unsupported process type: '%s'", element_type);
   	  }
-      
-      // Increment theta once to account for popped value
-      ++i_theta;
   }  
     
   return x;

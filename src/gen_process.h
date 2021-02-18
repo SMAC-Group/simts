@@ -27,8 +27,10 @@ arma::vec gen_dr(const unsigned int N, const double omega);
 arma::vec gen_qn(const unsigned int N, double q2);
 
 arma::vec gen_ar1(const unsigned int N, const double phi, const double sigma2);
+arma::vec gen_ar1(const unsigned int N, const arma::vec &phi, const arma::vec &sigma2);
 
 arma::vec gen_rw(const unsigned int N, const double sigma2);
+arma::vec gen_rw(const unsigned int N, const arma::vec &sigma2);
 
 arma::vec gen_arma(const unsigned int N,
                    const arma::vec& ar, const arma::vec& ma,

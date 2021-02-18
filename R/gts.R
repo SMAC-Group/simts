@@ -207,6 +207,17 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
         
         theta = matrix(model$theta, nrow = 1, ncol = length(model$theta), byrow = TRUE)
       } else {
+        if (!is.matrix(covariate) || dim(covariate)[1] != n) {
+          stop("the argument 'covariate' must be of type 'matrix' with n rows")
+        }
+        
+        # check that the output of covariate.dependency has the correct output
+        test = model[["covariate.dependency"]](covariate[1,])
+        
+        if (class(test) != 'numeric' || length(test) != length(model$theta)) {
+          stop("the model$covariate.dependency() function must return a vecotr of class 'numeric' and of the same lenght as model$theta")
+        }
+        
         # have it always as a matrix, deal with lenght(model$theta) = 1
         theta = t(
           matrix(

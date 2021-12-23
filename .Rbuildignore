@@ -10,3 +10,5 @@
 ^figures$
 ^docs$
 ^appveyor\.yml$
+^.*\.bak$
+^\.github$

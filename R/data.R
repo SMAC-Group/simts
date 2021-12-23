@@ -45,7 +45,8 @@
 #' 
 #' @format A dataframe with 302 rows and 1 variable: 
 #' 
-#' @source \url{http://r-exercises.com/wp-content/uploads/2017/04/sales.csv}
+#' @source \url{http://r-exercises.com/}
+# @source \url{http://r-exercises.com/wp-content/uploads/2017/04/sales.csv}
 "sales"
 
 #' @details The data sets in this package may change at a moments notice.

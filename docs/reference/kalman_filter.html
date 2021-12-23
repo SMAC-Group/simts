@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Kalman Filter Estimation — kalman_filter" />
 <meta property="og:description" content="Compute the Kalman Filter estimation for the sum of any combinations of AR processes, RW, WN and DR" />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -63,7 +66,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -119,14 +122,14 @@
     <p>Compute the Kalman Filter estimation for the sum of any combinations of AR processes, RW, WN and DR</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kalman_filter</span>(
-  <span class='no'>model</span>,
-  <span class='no'>y</span>,
-  <span class='kw'>estimate_model</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>model_to_estimate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"mle"</span>,
-  <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>0</span>
-)</pre>
+    <pre class="usage"><span class='fu'>kalman_filter</span><span class='op'>(</span>
+  <span class='va'>model</span>,
+  <span class='va'>y</span>,
+  estimate_model <span class='op'>=</span> <span class='cn'>F</span>,
+  model_to_estimate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  method <span class='op'>=</span> <span class='st'>"mle"</span>,
+  h <span class='op'>=</span> <span class='fl'>0</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,7 +162,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>KF</code> object with the structure:</p><dl class='dl-horizontal'>
+    <p>a <code>KF</code> object with the structure:</p><dl>
 <dt>forecast</dt><dd><p><code>X_t|t-1</code></p></dd>
 <dt>forecast_cov_mat</dt><dd><p>Estimated variance-covariance for <code>X_t|t-1</code></p></dd>
 <dt>filter</dt><dd><p><code>X_t|t</code></p></dd>
@@ -190,27 +193,22 @@ the selected model to estimate and the estimation method (see function estimate)
 <p>where <code>P_f</code> and <code>P_b</code> are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm.</p>
 <p>The smoothed states <code>X_s</code> are calculated as follows:</p>
 <p><code>X_b + P_s*P_f^-1(X_f - X_b)</code></p>
-<p>where <code>P_f</code> and <code>P_b</code> are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and <code>X_f</code> and <code>X_b</code> are the filtered states for respectively the foward and backward kalman filter algorithm.</p>
+<p>where <code>P_f</code> and <code>P_b</code> are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and <code>X_f</code> and <code>X_b</code> are the filtered states for respectively the foward and backward kalman filter algorithm.
+#Filter a 2*AR1 + DR + RW + WN process
+set.seed(123)
+model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
+n = 250
+y = gen_lts(n = n, model = model)
+my_res = kalman_filter(model = model, y = y)</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#Filter a 2*AR1 + DR + RW + WN process</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>123</span>)
-<span class='no'>model</span> <span class='kw'>=</span> <span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>.3</span>, <span class='fl'>2</span>) + <span class='fu'><a href='AR.html'>AR</a></span>(<span class='fl'>.5</span>,<span class='fl'>3</span>) + <span class='fu'><a href='DR.html'>DR</a></span>(<span class='fl'>.1</span>) + <span class='fu'><a href='RW.html'>RW</a></span>(<span class='fl'>3</span>) + <span class='fu'><a href='WN.html'>WN</a></span>(<span class='fl'>4</span>)
-<span class='no'>n</span> <span class='kw'>=</span> <span class='fl'>250</span>
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='gen_lts.html'>gen_lts</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>model</span>)
-<span class='no'>my_res</span> <span class='kw'>=</span> <span class='fu'>kalman_filter</span>(<span class='kw'>model</span> <span class='kw'>=</span> <span class='no'>model</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>)</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
     <p>Lionel Voirol</p>
+
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -221,7 +219,7 @@ the selected model to estimate and the estimation method (see function estimate)
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

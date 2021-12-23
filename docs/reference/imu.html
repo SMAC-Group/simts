@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -45,7 +49,6 @@
 <meta property="og:title" content="Create an IMU Object — imu" />
 <meta property="og:description" content="Builds an IMU object that provides the program with gyroscope, accelerometer, and axis information per column in the dataset." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -63,7 +66,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -77,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -119,15 +122,15 @@
     <p>Builds an IMU object that provides the program with gyroscope, accelerometer, and axis information per column in the dataset.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>imu</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>accels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>axis</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>freq</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>imu</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  gyros <span class='op'>=</span> <span class='cn'>NULL</span>,
+  accels <span class='op'>=</span> <span class='cn'>NULL</span>,
+  axis <span class='op'>=</span> <span class='cn'>NULL</span>,
+  freq <span class='op'>=</span> <span class='cn'>NULL</span>,
+  unit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  name <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,7 +167,7 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>imu</code> object in the following attributes:</p><dl class='dl-horizontal'>
+    <p>An <code>imu</code> object in the following attributes:</p><dl>
   <dt>sensor</dt><dd><p>A <code>vector</code> that indicates whether data contains gyroscope sensor, accelerometer sensor, or both.</p></dd>
   <dt>num.sensor</dt><dd><p>A <code>vector</code> that indicates how many columns of data are for gyroscope sensor and accelerometer sensor.</p></dd>
   <dt>axis</dt><dd><p>Axis value such as 'X', 'Y', 'Z'.</p></dd>
@@ -181,50 +184,47 @@
 In the new implementation, the length of <code>gyros</code> and <code>accels</code> do not need to be equal.</p>
 <p>In <code>axis</code>, duplicate elements are not alowed for each sensor. In the new implementation, please specify the axis for each column of data.
 <code>axis</code> will be automatically generated if there are less than or equal to 3 axises for each sensor.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>James Balamuta and Wenchao Yang</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='kw'>if</span>(!<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>"imudata"</span>)){
-   <span class='fu'>install_imudata</span>()
-   <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='st'>"imudata"</span>)
-}
-
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>imu6</span>)
-
-<span class='co'># Example 1 - Only gyros</span>
-<span class='no'>test1</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>axis</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df1</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test1</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>df1</span>)
-
-<span class='co'># Example 2 - One gyro and one accelerometer</span>
-<span class='no'>test2</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df2</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test2</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>df2</span>)
-
-<span class='co'># Example 3 - 3 gyros and 3 accelerometers</span>
-<span class='no'>test3</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span>
-                       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df3</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test3</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>df3</span>)
-
-<span class='co'># Example 4 - Custom axis</span>
-<span class='no'>test4</span> <span class='kw'>=</span> <span class='fu'>imu</span>(<span class='no'>imu6</span>, <span class='kw'>gyros</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>accels</span> <span class='kw'>=</span> <span class='fl'>4</span>:<span class='fl'>6</span>, <span class='kw'>axis</span> <span class='kw'>=</span>
-                       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>), <span class='kw'>freq</span> <span class='kw'>=</span> <span class='fl'>100</span>)
-<span class='no'>df4</span> <span class='kw'>=</span> <span class='fu'>wvar.imu</span>(<span class='no'>test4</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>df4</span>)
-}</div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span class='r-in'><span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/SMAC-Group/imudata'>"imudata"</a></span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span class='r-in'>   <span class='fu'>install_imudata</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'>   <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='st'><a href='https://github.com/SMAC-Group/imudata'>"imudata"</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>imu6</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Example 1 - Only gyros</span></span>
+<span class='r-in'><span class='va'>test1</span> <span class='op'>=</span> <span class='fu'>imu</span><span class='op'>(</span><span class='va'>imu6</span>, gyros <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, axis <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df1</span> <span class='op'>=</span> <span class='fu'>wvar.imu</span><span class='op'>(</span><span class='va'>test1</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>df1</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Example 2 - One gyro and one accelerometer</span></span>
+<span class='r-in'><span class='va'>test2</span> <span class='op'>=</span> <span class='fu'>imu</span><span class='op'>(</span><span class='va'>imu6</span>, gyros <span class='op'>=</span> <span class='fl'>1</span>, accels <span class='op'>=</span> <span class='fl'>4</span>, freq <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df2</span> <span class='op'>=</span> <span class='fu'>wvar.imu</span><span class='op'>(</span><span class='va'>test2</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>df2</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Example 3 - 3 gyros and 3 accelerometers</span></span>
+<span class='r-in'><span class='va'>test3</span> <span class='op'>=</span> <span class='fu'>imu</span><span class='op'>(</span><span class='va'>imu6</span>, gyros <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, accels <span class='op'>=</span> <span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>, axis <span class='op'>=</span> </span>
+<span class='r-in'>                       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df3</span> <span class='op'>=</span> <span class='fu'>wvar.imu</span><span class='op'>(</span><span class='va'>test3</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>df3</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Example 4 - Custom axis</span></span>
+<span class='r-in'><span class='va'>test4</span> <span class='op'>=</span> <span class='fu'>imu</span><span class='op'>(</span><span class='va'>imu6</span>, gyros <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, accels <span class='op'>=</span> <span class='fl'>4</span><span class='op'>:</span><span class='fl'>6</span>, axis <span class='op'>=</span> </span>
+<span class='r-in'>                       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'X'</span>, <span class='st'>'Y'</span>, <span class='st'>'Z'</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>df4</span> <span class='op'>=</span> <span class='fu'>wvar.imu</span><span class='op'>(</span><span class='va'>test4</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>df4</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+</pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>James Balamuta and Wenchao Yang</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -235,7 +235,7 @@ In the new implementation, the length of <code>gyros</code> and <code>accels</co
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

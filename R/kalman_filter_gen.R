@@ -59,7 +59,7 @@ sum_cov = function(x){
 #' \code{X_b + P_s*P_f^-1(X_f - X_b)}
 #' 
 #' where \code{P_f} and \code{P_b} are the variance-covariance matrices of the filtered states for respectively the foward and backward kalman filter algorithm, and \code{X_f} and \code{X_b} are the filtered states for respectively the foward and backward kalman filter algorithm.
-#' @examples 
+#' @examples
 #' #Filter a 2*AR1 + DR + RW + WN process
 #' set.seed(123)
 #' model = AR(.3, 2) + AR(.5,3) + DR(.1) + RW(3) + WN(4) 
@@ -83,7 +83,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
   }
   
   #return error if estimate_model == T and model to estimate is empty
-  if(estimate_model == T & is.null(model_to_estimate)) stop("No defined model to estimate")
+  if(estimate_model == T && is.null(model_to_estimate)) stop("No defined model to estimate")
   
   #extract info from model and build matrices
   #define specific order
@@ -238,6 +238,7 @@ kalman_filter = function(model, y, estimate_model = F, model_to_estimate = NULL,
     #update estimate given measurment t
     #Note that there is no measurment error in this model
     innovation = y[k+1] - H %*% X_t[[k+1]] #innovation
+    # TODO: fix the following line
     innovation_cov = H %*% P_t[[k+1]] %*% t(H) + measurment_error #innovation covariance
     K[[k+1]]   = P_t[[k+1]] %*% t(H) %*% solve(innovation_cov)  #update optimal Kalman gain
     X_h[[k+1]] = X_t[[k+1]] + K[[k+1]] %*% innovation #update state prediction

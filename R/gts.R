@@ -254,6 +254,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
 #' unitConversion(x, 'sec', 'min')
 #' y = 1:10
 #' unitConversion(y, 'hour', 'sec')
+#' @export
 unitConversion = function(x, from.unit, to.unit){
   
   #ns, ms, second, min, hour, day, month, year

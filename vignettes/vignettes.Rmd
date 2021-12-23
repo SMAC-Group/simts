@@ -1,5 +1,5 @@
 ---
-title: "`simts` Vignettes"
+title: "Simulations from Time Series Models"
 bibliography: biblio.bib
 output: 
   rmarkdown::html_vignette:
@@ -146,7 +146,8 @@ In this section, we will briefly show some of the `simts` package functionalitie
 
 * [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): This time series contains the monthly precipitation from 1907 and going to 1972 for total of 781 observations taken from @hipel1994time.
 * [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
-* [sales](http://r-exercises.com/wp-content/uploads/2017/04/sales.csv): This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations. 
+<!-- * [sales](http://r-exercises.com/wp-content/uploads/2017/04/sales.csv): This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations.  -->
+* [sales](http://r-exercises.com/): This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations.
 * [Nile](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html): This time series contains the measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in $10^8 m^3$ taken from Table 1 of @cobb1978problem.
 
 The code below shows how to setup a time series as a `gts()` object. Here, we take samples from each dataset at a rate of `freq` ticks per sample. By applying `plot()` on the result of a `gts()` object, we can observe a simple visualization of our data.

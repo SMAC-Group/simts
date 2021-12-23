@@ -5,27 +5,27 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>`simts` Vignettes • simts</title>
+<title>Simulations from Time Series Models • simts</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="`simts` Vignettes">
-<meta property="og:description" content="">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Simulations from Time Series Models">
+<meta property="og:description" content="simts">
 <meta property="og:image" content="/logo.png">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -68,11 +68,10 @@
 
       
 
-      </header><div class="row">
+      </header><script src="vignettes_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>
-<code>simts</code> Vignettes</h1>
+      <h1 data-toc-skip>Simulations from Time Series Models</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/SMAC-Group/simts/blob/master/vignettes/vignettes.Rmd"><code>vignettes/vignettes.Rmd</code></a></small>
@@ -120,37 +119,40 @@
 </ul>
 <p>Quantization noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
 <p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from the above model specifications.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Set seed for reproducibility</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1337</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Number of observations</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>n =<span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">4</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Generate a White Noise Process</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>wn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)) </span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># Generate a Quantization Noise</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>qn =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/QN.html">QN</a></span>(<span class="dt">q2 =</span> <span class="fl">.5</span>)) </span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># Generate a Random Walk</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>rw =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">.75</span>)) </span></code></pre></div>
-<p>By applying the <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> function on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of our simulated data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">1</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(wn)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(qn)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(rw)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Set seed for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1337</span><span class="op">)</span>
+
+<span class="co"># Number of observations</span>
+<span class="va">n</span> <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">4</span>
+
+<span class="co"># Generate a White Noise Process</span>
+<span class="va">wn</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="co"># Generate a Quantization Noise</span>
+<span class="va">qn</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="../reference/QN.html">QN</a></span><span class="op">(</span>q2 <span class="op">=</span> <span class="fl">.5</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="co"># Generate a Random Walk</span>
+<span class="va">rw</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">.75</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<p>By applying the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of our simulated data.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">wn</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">qn</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">rw</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)" width="696"><p class="caption">
 Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)
 </p>
 </div>
 <p>Another example with a SARIMA model is given below:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>sarima =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(n, <span class="kw"><a href="../reference/SARIMA.html">SARIMA</a></span>(<span class="dt">ar =</span> <span class="fl">0.3</span>, <span class="dt">i =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="fl">-0.27</span>,</span>
-<span id="cb3-3"><a href="#cb3-3"></a>                        <span class="dt">sar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="fl">0.12</span>, <span class="fl">-0.2</span>), <span class="dt">si =</span> <span class="dv">1</span>, <span class="dt">sma =</span> <span class="fl">-0.9</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>                        <span class="dt">sigma2 =</span> <span class="fl">1.5</span>, <span class="dt">s =</span> <span class="dv">12</span>))</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sarima)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Generate an SARIMA(1,0,1)x(2,1,1)[12]</span>
+<span class="va">sarima</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="../reference/SARIMA.html">SARIMA</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0.3</span>, i <span class="op">=</span> <span class="fl">0</span>, ma <span class="op">=</span> <span class="op">-</span><span class="fl">0.27</span>,
+                        sar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.12</span>, <span class="op">-</span><span class="fl">0.2</span><span class="op">)</span>, si <span class="op">=</span> <span class="fl">1</span>, sma <span class="op">=</span> <span class="op">-</span><span class="fl">0.9</span>,
+                        sigma2 <span class="op">=</span> <span class="fl">1.5</span>, s <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span>
+<span class="co"># Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sarima</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-4-1.png" alt="Figure 2: Simulated SARIMA(1,0,1)x(2,1,1)[12] process" width="696"><p class="caption">
 Figure 2: Simulated SARIMA(1,0,1)x(2,1,1)[12] process
@@ -163,20 +165,22 @@ X_t &amp;= X_{t-1} + \omega + U_t, \;\;\;\;\; U_t \sim \mathcal{N}(0,\gamma^2),\
 Y_t &amp;= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 \end{aligned}\]</span></p>
 <p>it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance <span class="math inline">\(\gamma^2\)</span>), a linear drift (with slope <span class="math inline">\(\omega\)</span>) and a white noise process (with variance <span class="math inline">\(\sigma^2\)</span>). Therefore, it can easily be simulated as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(Yt)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">model</span> <span class="op">=</span> <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/DR.html">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">Yt</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span><span class="va">model</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Yt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-5-1.png" alt="Figure 3: Simulated state-space model (RW + WN + DR)" width="696"><p class="caption">
 Figure 3: Simulated state-space model (RW + WN + DR)
 </p>
 </div>
 <p>It is also possible to retrieve and visualize the three latent used to construct such state-space model using the function <code><a href="../reference/gen_lts.html">gen_lts()</a></code> instead of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>model =<span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(<span class="dt">gamma2 =</span> <span class="fl">0.01</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/DR.html">DR</a></span>(<span class="dt">omega =</span> <span class="fl">0.001</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</span>
-<span id="cb5-3"><a href="#cb5-3"></a>Yt =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(model, <span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(Yt)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
+<span class="va">model</span> <span class="op">=</span> <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/DR.html">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">Yt</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_lts.html">gen_lts</a></span><span class="op">(</span><span class="va">model</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">Yt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes" width="696"><p class="caption">
 Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
@@ -184,35 +188,38 @@ Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
 </div>
 <p>Consider another example, let us suppose that different AR(1) processes are present in a state-space model. The syntax to insert “k” of these models into the state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Generate a ARMA(2,1) + WN()  </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>arma_wn_model =</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dt">ar =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.9</span>, <span class="fl">-0.5</span>), <span class="dt">ma =</span> <span class="fl">0.3</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma =</span> <span class="dv">4</span>)</span>
-<span id="cb6-5"><a href="#cb6-5"></a>arma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_gts.html">gen_gts</a></span>(<span class="dt">n =</span> n, <span class="dt">model  =</span> arma_wn_model)</span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># Plot simulation of ARMA(2,1) + WN()</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(arma_wn_sim)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
+<span class="va">arma_wn_model</span> <span class="op">=</span>
+  <span class="fu"><a href="../reference/ARMA.html">ARMA</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span>, ma <span class="op">=</span> <span class="fl">0.3</span>, sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
+<span class="va">arma_wn_sim</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, model  <span class="op">=</span> <span class="va">arma_wn_model</span><span class="op">)</span>
+
+<span class="co"># Plot simulation of ARMA(2,1) + WN()</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">arma_wn_sim</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-7-1.png" alt="Figure 5: Simulated ARMA(2,1) + WN() process" width="696"><p class="caption">
 Figure 5: Simulated ARMA(2,1) + WN() process
 </p>
 </div>
-<p>As mentioned earlier, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Generate a SARMA() + WN() </span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>sarma_wn_model =<span class="st"> </span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dt">ar =</span> <span class="dv">0</span>, <span class="dt">ma =</span> <span class="dv">0</span>, <span class="dt">sar =</span> <span class="fl">0.98</span>, <span class="dt">sma =</span> <span class="dv">0</span>, <span class="dt">s =</span> <span class="dv">10</span>, <span class="dt">sigma2 =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="kw"><a href="../reference/WN.html">WN</a></span>(<span class="dt">sigma2 =</span> <span class="dv">1</span>)</span>
-<span id="cb7-5"><a href="#cb7-5"></a>sarma_wn_sim =<span class="st"> </span><span class="kw"><a href="../reference/gen_lts.html">gen_lts</a></span>(<span class="dt">n =</span> <span class="dv">10</span><span class="op">^</span><span class="dv">3</span>, <span class="dt">model =</span> sarma_wn_model)</span>
-<span id="cb7-6"><a href="#cb7-6"></a></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co"># Plot simulation of SARMA() + WN() </span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sarma_wn_sim)</span></code></pre></div>
+<p>As mentioned earlier, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Generate a SARMA() + WN() </span>
+<span class="va">sarma_wn_model</span> <span class="op">=</span> 
+  <span class="fu"><a href="../reference/SARMA.html">SARMA</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0</span>, ma <span class="op">=</span> <span class="fl">0</span>, sar <span class="op">=</span> <span class="fl">0.98</span>, sma <span class="op">=</span> <span class="fl">0</span>, s <span class="op">=</span> <span class="fl">10</span>, sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">sarma_wn_sim</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_lts.html">gen_lts</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">3</span>, model <span class="op">=</span> <span class="va">sarma_wn_model</span><span class="op">)</span>
+
+<span class="co"># Plot simulation of SARMA() + WN() </span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sarma_wn_sim</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
 Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
 </p>
 </div>
-<p>To better visualize the contribution to each process by using the sam range on the “y-axis”. This can be done with the option <code>fixed_range = TRUE</code> as follows:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sarma_wn_sim, <span class="dt">fixed_range =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<p>To better visualize the contribution to each process by using the sam range on the “y-axis.” This can be done with the option <code>fixed_range = TRUE</code> as follows:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sarma_wn_sim</span>, fixed_range <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
 Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
@@ -227,43 +234,47 @@ Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the u
 <li>
 <a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html">hydro</a>: This time series contains the monthly precipitation from 1907 and going to 1972 for total of 781 observations taken from <span class="citation">Hipel and McLeod (1994)</span>.</li>
 <li>
-<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html">savingrt</a>: This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.</li>
+<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html">savingrt</a>: This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations. <!-- * [sales](http://r-exercises.com/wp-content/uploads/2017/04/sales.csv): This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations.  -->
+</li>
 <li>
-<a href="http://r-exercises.com/wp-content/uploads/2017/04/sales.csv">sales</a>: This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations.</li>
+<a href="http://r-exercises.com/">sales</a>: This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations.</li>
 <li>
 <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html">Nile</a>: This time series contains the measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span> taken from Table 1 of <span class="citation">Cobb (1978)</span>.</li>
 </ul>
-<p>The code below shows how to setup a time series as a <code><a href="../reference/gts.html">gts()</a></code> object. Here, we take samples from each dataset at a rate of <code>freq</code> ticks per sample. By applying <code><a href="https://rdrr.io/r/graphics/plot.html">plot()</a></code> on the result of a <code><a href="../reference/gts.html">gts()</a></code> object, we can observe a simple visualization of our data.</p>
+<p>The code below shows how to setup a time series as a <code><a href="../reference/gts.html">gts()</a></code> object. Here, we take samples from each dataset at a rate of <code>freq</code> ticks per sample. By applying <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code> on the result of a <code><a href="../reference/gts.html">gts()</a></code> object, we can observe a simple visualization of our data.</p>
 <div id="hydrology-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#hydrology-dataset" class="anchor"></a>Hydrology dataset</h3>
 <p>Frist, we consider the <code>hydro</code> dataset. The code below shows how to construct a <code>gts</code> object and plot the resulting time series.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Load hydro dataset</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"hydro"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Simulate based on data</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>hydro =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span>(hydro), <span class="dt">start =</span> <span class="dv">1907</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"in."</span>, </span>
-<span id="cb9-6"><a href="#cb9-6"></a>            <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">name_ts =</span> <span class="st">"Precipitation"</span>, </span>
-<span id="cb9-7"><a href="#cb9-7"></a>            <span class="dt">data_name =</span> <span class="st">"Precipitation data from Hipel et al., (1994)"</span>)</span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co"># Plot hydro simulation</span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(hydro)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load hydro dataset</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"hydro"</span><span class="op">)</span>
+
+<span class="co"># Simulate based on data</span>
+<span class="va">hydro</span> <span class="op">=</span> <span class="fu"><a href="../reference/gts.html">gts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">hydro</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1907</span>, freq <span class="op">=</span> <span class="fl">12</span>, unit_ts <span class="op">=</span> <span class="st">"in."</span>, 
+            unit_time <span class="op">=</span> <span class="st">"year"</span>, name_ts <span class="op">=</span> <span class="st">"Precipitation"</span>, 
+            data_name <span class="op">=</span> <span class="st">"Precipitation data from Hipel et al., (1994)"</span><span class="op">)</span>
+
+<span class="co"># Plot hydro simulation</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">hydro</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time" width="696"><p class="caption">
 Figure 1: Monthly precipitation series from 1907 to 1972 taken from <span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
 <p>Using the object we created we can now compute its autocorrelation function using the <code><a href="../reference/auto_corr.html">auto_corr()</a></code> function as follows:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Compare the standard and robust ACF</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="kw"><a href="../reference/compare_acf.html">compare_acf</a></span>(hydro)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compare the standard and robust ACF</span>
+<span class="fu"><a href="../reference/compare_acf.html">compare_acf</a></span><span class="op">(</span><span class="va">hydro</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 2: Standard and Robust Empirical autocorrelation functions of monthly  precipitation  series  from @hipel1994time" width="696"><p class="caption">
 Figure 2: Standard and Robust Empirical autocorrelation functions of monthly precipitation series from <span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
 <p>This plot shows that no apparent autocorrelation exists when using the standard estimator of the ACF (left) but the picture changes compeltely when using the robust estimator (right). There therefore appears to be some possible contamination in the data and, if we wanted to estimate a model for the data, we would probably opt for a robust estimator. For this we can use the RGMWM to estimate an AR(1) model which could be a possible candidate to explain the robust ACF pattern.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>model_hydro =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">2</span>), hydro, <span class="dt">method =</span> <span class="st">"rgmwm"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a>model_hydro<span class="op">$</span>mod<span class="op">$</span>estimate</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">model_hydro</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/AR.html">AR</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="va">hydro</span>, method <span class="op">=</span> <span class="st">"rgmwm"</span><span class="op">)</span>
+<span class="va">model_hydro</span><span class="op">$</span><span class="va">mod</span><span class="op">$</span><span class="va">estimate</span></code></pre></div>
 <pre><code>##          Estimates
 ## AR      0.42983749
 ## AR     -0.04681091
@@ -274,121 +285,133 @@ Figure 2: Standard and Robust Empirical autocorrelation functions of monthly pre
 <h3 class="hasAnchor">
 <a href="#personal-savings-dataset" class="anchor"></a>Personal Savings dataset</h3>
 <p>Similarly to the first dataset, we now consider the <code>savingrt</code> time series:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Load savingrt dataset</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"savingrt"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># Simulate based on data</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>savingrt =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span>(savingrt), <span class="dt">start =</span> <span class="dv">1959</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_ts =</span> <span class="st">"%"</span>, </span>
-<span id="cb13-6"><a href="#cb13-6"></a>            <span class="dt">name_ts =</span> <span class="st">"Saving Rates"</span>, <span class="dt">data_name =</span> <span class="st">"US Personal Saving Rates"</span>,</span>
-<span id="cb13-7"><a href="#cb13-7"></a>            <span class="dt">unit_time =</span> <span class="st">"year"</span>)</span>
-<span id="cb13-8"><a href="#cb13-8"></a></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="co"># Plot savingrt simulation</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(savingrt)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load savingrt dataset</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"savingrt"</span><span class="op">)</span>
+
+<span class="co"># Simulate based on data</span>
+<span class="va">savingrt</span> <span class="op">=</span> <span class="fu"><a href="../reference/gts.html">gts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">savingrt</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1959</span>, freq <span class="op">=</span> <span class="fl">12</span>, unit_ts <span class="op">=</span> <span class="st">"%"</span>, 
+            name_ts <span class="op">=</span> <span class="st">"Saving Rates"</span>, data_name <span class="op">=</span> <span class="st">"US Personal Saving Rates"</span>,
+            unit_time <span class="op">=</span> <span class="st">"year"</span><span class="op">)</span>
+
+<span class="co"># Plot savingrt simulation</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">savingrt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
 Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from January 1959 to May 2015 provided by the Federal Reserve Bank of St. Louis.
 </p>
 </div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Compute ACF and plot result</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>savingrt_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(savingrt)</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(savingrt_acf)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
+<span class="va">savingrt_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">savingrt</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">savingrt_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 4: Empirical autocorrelation function of Personal Saving  Rates data" width="696"><p class="caption">
 Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 </p>
 </div>
 <p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Estimate the latent model ARMA(2,1) + RW()</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>model_savings =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/ARMA.html">ARMA</a></span>(<span class="dv">2</span>,<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/RW.html">RW</a></span>(), savingrt, <span class="dt">method =</span> <span class="st">"gmwm"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Estimate the latent model ARMA(2,1) + RW()</span>
+<span class="va">model_savings</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/ARMA.html">ARMA</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">savingrt</span>, method <span class="op">=</span> <span class="st">"gmwm"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="retail-sales-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#retail-sales-dataset" class="anchor"></a>Retail Sales Dataset</h3>
 <p>Let’s consider the next dataset, the <code>sales</code> time series:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Load sales dataset</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"sales"</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="co"># Simulate based on data</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>sales =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span>(sales), <span class="dt">start =</span> <span class="dv">1992</span>, <span class="dt">freq =</span> <span class="dv">12</span>, <span class="dt">unit_time =</span> <span class="st">"year"</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>            <span class="dt">unit_ts =</span> <span class="kw"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">6</span>,<span class="st">"$"</span>)), <span class="dt">name_ts =</span> <span class="st">"Retail Sales"</span>, </span>
-<span id="cb16-7"><a href="#cb16-7"></a>            <span class="dt">data_name =</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span>)</span>
-<span id="cb16-8"><a href="#cb16-8"></a></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co"># Plot sales simulation</span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sales)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load sales dataset</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"sales"</span><span class="op">)</span>
+
+<span class="co"># Simulate based on data</span>
+<span class="va">sales</span> <span class="op">=</span> <span class="fu"><a href="../reference/gts.html">gts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1992</span>, freq <span class="op">=</span> <span class="fl">12</span>, unit_time <span class="op">=</span> <span class="st">"year"</span>,
+            unit_ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">6</span>,<span class="st">"$"</span><span class="op">)</span><span class="op">)</span>, name_ts <span class="op">=</span> <span class="st">"Retail Sales"</span>, 
+            data_name <span class="op">=</span> <span class="st">"Monthly Clothing Retail Sales in US for 1992-2016"</span><span class="op">)</span>
+
+<span class="co"># Plot sales simulation</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-17-1.png" alt="Figure 5: Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 5: Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Compute ACF and plot result</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>sales_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales)</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sales_acf)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
+<span class="va">sales_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sales_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-18-1.png" alt="Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co">#Compute PACF and plot result</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>sales_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sales, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sales_pacf)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Compute PACF and plot result</span>
+<span class="va">sales_pacf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">sales</span>, pacf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sales_pacf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-19-1.png" alt="Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
 <p>You can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> function in the package to get the same results as above:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Compute and plot ACF and PACF</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>sales_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(sales)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute and plot ACF and PACF</span>
+<span class="va">sales_corr</span> <span class="op">=</span> <span class="fu"><a href="../reference/corr_analysis.html">corr_analysis</a></span><span class="op">(</span><span class="va">sales</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-20-1.png" alt="Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016" width="696"><p class="caption">
 Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016
 </p>
 </div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Get ACF and PACF values</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>sales_acf =<span class="st"> </span>sales_corr<span class="op">$</span>ACF</span>
-<span id="cb20-3"><a href="#cb20-3"></a>sales_pacf =<span class="st"> </span>sales_corr<span class="op">$</span>PACF</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get ACF and PACF values</span>
+<span class="va">sales_acf</span> <span class="op">=</span> <span class="va">sales_corr</span><span class="op">$</span><span class="va">ACF</span>
+<span class="va">sales_pacf</span> <span class="op">=</span> <span class="va">sales_corr</span><span class="op">$</span><span class="va">PACF</span></code></pre></div>
 <p>The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.</p>
 </div>
 <div id="lynx-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#lynx-dataset" class="anchor"></a>Lynx Dataset</h3>
 <p>We can look at another dataset, <code>lynx</code>, annual numbers of lynx trappings in Canada for 1821-1934 in the code below:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Load lynx dataset </span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(lynx)</span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co"># Simulate based on data</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>lynx =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span>(lynx), <span class="dt">start =</span> <span class="dv">1821</span>, <span class="dt">end =</span> <span class="dv">1934</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </span>
-<span id="cb21-6"><a href="#cb21-6"></a>           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, </span>
-<span id="cb21-7"><a href="#cb21-7"></a>           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Numbers of Lynx Trappings"</span>)</span>
-<span id="cb21-8"><a href="#cb21-8"></a></span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="co"># Plot lynx simulation</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(lynx)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load lynx dataset </span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span>
+
+<span class="co"># Simulate based on data</span>
+<span class="va">lynx</span> <span class="op">=</span> <span class="fu"><a href="../reference/gts.html">gts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1821</span>, end <span class="op">=</span> <span class="fl">1934</span>, freq <span class="op">=</span> <span class="fl">1</span>, 
+           unit_ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">8</span>,<span class="st">" "</span>,<span class="va">m</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span>, name_ts <span class="op">=</span> <span class="st">"Numbers"</span>, 
+           unit_time <span class="op">=</span> <span class="st">"year"</span>, data_name <span class="op">=</span> <span class="st">"Annual Numbers of Lynx Trappings"</span><span class="op">)</span>
+
+<span class="co"># Plot lynx simulation</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-21-1.png" alt="Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada" width="696"><p class="caption">
 Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Compute ACF and plot result</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>lynx_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx)</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(lynx_acf)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
+<span class="va">lynx_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">lynx_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-22-1.png" alt="Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
 </p>
 </div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Compute PACF and plot result</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>lynx_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(lynx, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(lynx_pacf)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute PACF and plot result</span>
+<span class="va">lynx_pacf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">lynx</span>, pacf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">lynx_pacf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-23-1.png" alt="Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
 </p>
 </div>
 <p>The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>test =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/SARMA.html">SARMA</a></span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>), lynx)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="kw"><a href="../reference/check.html">check</a></span>(test)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">test</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/SARMA.html">SARMA</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>, <span class="va">lynx</span><span class="op">)</span>
+<span class="fu"><a href="../reference/check.html">check</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-24-1.png" alt="Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
 Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
@@ -400,50 +423,58 @@ Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx 
 <h3 class="hasAnchor">
 <a href="#sunspot-dataset" class="anchor"></a>Sunspot Dataset</h3>
 <p>We can look at another dataset, <code>sunspot.year</code>, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Load sunspot dataset </span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>sunspot =<span class="st"> </span>datasets<span class="op">::</span>sunspot.year</span>
-<span id="cb25-3"><a href="#cb25-3"></a></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="co"># Simulate based on data</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a>sunspot =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span>(sunspot.year), <span class="dt">start =</span> <span class="dv">1700</span>, <span class="dt">end =</span> <span class="dv">1988</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </span>
-<span id="cb25-6"><a href="#cb25-6"></a>           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Numbers"</span>, </span>
-<span id="cb25-7"><a href="#cb25-7"></a>           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Yearly Numbers of Sunspots"</span>)</span>
-<span id="cb25-8"><a href="#cb25-8"></a></span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="co"># Plot sunspot simulation</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sunspot)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load sunspot dataset </span>
+<span class="va">sunspot</span> <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/sunspot.year.html">sunspot.year</a></span>
+
+<span class="co"># Simulate based on data</span>
+<span class="va">sunspot</span> <span class="op">=</span> <span class="fu"><a href="../reference/gts.html">gts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">sunspot.year</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1700</span>, end <span class="op">=</span> <span class="fl">1988</span>, freq <span class="op">=</span> <span class="fl">1</span>, 
+           unit_ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">8</span>,<span class="st">" "</span>,<span class="va">m</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span>, name_ts <span class="op">=</span> <span class="st">"Numbers"</span>, 
+           unit_time <span class="op">=</span> <span class="st">"year"</span>, data_name <span class="op">=</span> <span class="st">"Yearly Numbers of Sunspots"</span><span class="op">)</span>
+
+<span class="co"># Plot sunspot simulation</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sunspot</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-25-1.png" alt="Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Compute ACF and plot result</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>sunspot_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot)</span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sunspot_acf)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
+<span class="va">sunspot_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">sunspot</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sunspot_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-26-1.png" alt="Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co">#Compute PACF and plot result</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>sunspot_pacf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(sunspot, <span class="dt">pacf =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(sunspot_pacf)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#Compute PACF and plot result</span>
+<span class="va">sunspot_pacf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">sunspot</span>, pacf <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sunspot_pacf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" alt="Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <p>Let us estimate an AR(p) model and for this reason let us select the order:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw"><a href="../reference/select.html">select</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">15</span>), sunspot)</span></code></pre></div>
-<pre><code>## Warning: attributes are not identical across measure variables;
-## they will be dropped</code></pre>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/AR.html">AR</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, <span class="va">sunspot</span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: `filter_()` was deprecated in dplyr 0.7.0.
+## Please use `filter()` instead.
+## See vignette('programming') for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-28-1.png" alt="Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 <p>The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>model_sunspots =<span class="st"> </span><span class="kw"><a href="../reference/estimate.html">estimate</a></span>(<span class="kw"><a href="../reference/AR.html">AR</a></span>(<span class="dv">9</span>), sunspot)</span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(model_sunspots, <span class="dt">n.ahead =</span> <span class="dv">10</span>, <span class="dt">level =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">model_sunspots</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/AR.html">AR</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, <span class="va">sunspot</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model_sunspots</span>, n.ahead <span class="op">=</span> <span class="fl">10</span>, level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-29-1.png" alt="Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
 Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988
@@ -454,70 +485,67 @@ Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly number
 <h3 class="hasAnchor">
 <a href="#nile-river-flow-dataset" class="anchor"></a>Nile River Flow Dataset</h3>
 <p>Finally, we consider the last dataset, <code>Nile</code>, Annual Nile river flow from 1871-1970 in the code below:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># Load Nile dataset</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>Nile =<span class="st"> </span>datasets<span class="op">::</span>Nile</span>
-<span id="cb31-3"><a href="#cb31-3"></a></span>
-<span id="cb31-4"><a href="#cb31-4"></a><span class="co"># Simulate based on data</span></span>
-<span id="cb31-5"><a href="#cb31-5"></a>nile =<span class="st"> </span><span class="kw"><a href="../reference/gts.html">gts</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span>(Nile), <span class="dt">start =</span> <span class="dv">1871</span>, <span class="dt">end =</span> <span class="dv">1970</span>, <span class="dt">freq =</span> <span class="dv">1</span>, </span>
-<span id="cb31-6"><a href="#cb31-6"></a>           <span class="dt">unit_ts =</span> <span class="kw"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="dv">10</span><span class="op">^</span><span class="dv">8</span>,<span class="st">" "</span>,m<span class="op">^</span><span class="dv">3</span>)), <span class="dt">name_ts =</span> <span class="st">"Flow"</span>, </span>
-<span id="cb31-7"><a href="#cb31-7"></a>           <span class="dt">unit_time =</span> <span class="st">"year"</span>, <span class="dt">data_name =</span> <span class="st">"Annual Flow of the Nile River"</span>)</span>
-<span id="cb31-8"><a href="#cb31-8"></a></span>
-<span id="cb31-9"><a href="#cb31-9"></a><span class="co"># Plot Nile simulation </span></span>
-<span id="cb31-10"><a href="#cb31-10"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(nile)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Load Nile dataset</span>
+<span class="va">Nile</span> <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/Nile.html">Nile</a></span>
+
+<span class="co"># Simulate based on data</span>
+<span class="va">nile</span> <span class="op">=</span> <span class="fu"><a href="../reference/gts.html">gts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="va">Nile</span><span class="op">)</span>, start <span class="op">=</span> <span class="fl">1871</span>, end <span class="op">=</span> <span class="fl">1970</span>, freq <span class="op">=</span> <span class="fl">1</span>, 
+           unit_ts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/bquote.html">bquote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fl">10</span><span class="op">^</span><span class="fl">8</span>,<span class="st">" "</span>,<span class="va">m</span><span class="op">^</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span>, name_ts <span class="op">=</span> <span class="st">"Flow"</span>, 
+           unit_time <span class="op">=</span> <span class="st">"year"</span>, data_name <span class="op">=</span> <span class="st">"Annual Flow of the Nile River"</span><span class="op">)</span>
+
+<span class="co"># Plot Nile simulation </span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">nile</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-30-1.png" alt="Figure 18: Plot of Annual Nile river flow from 1871-1970" width="696"><p class="caption">
 Figure 18: Plot of Annual Nile river flow from 1871-1970
 </p>
 </div>
 <p>To get ACF, we can use <code><a href="../reference/auto_corr.html">auto_corr()</a></code> and make a plot:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Compute ACF and plot result</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>nile_acf =<span class="st"> </span><span class="kw"><a href="../reference/auto_corr.html">auto_corr</a></span>(nile)</span>
-<span id="cb32-3"><a href="#cb32-3"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(nile_acf)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
+<span class="va">nile_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">nile</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">nile_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-31-1.png" alt="Figure 19: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
 Figure 19: Empirical autocorrelation function of the Nile river flow data
 </p>
 </div>
 <p>Similar to the example above, we can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> to get the ACF and PACF at the same time:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Compute and plot ACF and PACF</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>nile_corr =<span class="st"> </span><span class="kw"><a href="../reference/corr_analysis.html">corr_analysis</a></span>(nile)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Compute and plot ACF and PACF</span>
+<span class="va">nile_corr</span> <span class="op">=</span> <span class="fu"><a href="../reference/corr_analysis.html">corr_analysis</a></span><span class="op">(</span><span class="va">nile</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-32-1.png" alt="Figure 20: Empirical ACF and PACF of the Nile river flow data" width="696"><p class="caption">
 Figure 20: Empirical ACF and PACF of the Nile river flow data
 </p>
 </div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Get ACF and PACF values</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a>nile_acf =<span class="st"> </span>nile_corr<span class="op">$</span>ACF</span>
-<span id="cb34-3"><a href="#cb34-3"></a>nile_pacf =<span class="st"> </span>nile_corr<span class="op">$</span>PACF</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get ACF and PACF values</span>
+<span class="va">nile_acf</span> <span class="op">=</span> <span class="va">nile_corr</span><span class="op">$</span><span class="va">ACF</span>
+<span class="va">nile_pacf</span> <span class="op">=</span> <span class="va">nile_corr</span><span class="op">$</span><span class="va">PACF</span></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <p>This package is developed mainly as a support to the online book <a href="https://smac-group.github.io/ts/">“Applied Time Series Analysis with R”</a>.</p>
-<div id="refs" class="references">
-<div id="ref-cobb1978problem">
-<p>Cobb, George W. 1978. “The Problem of the Nile: Conditional Solution to a Changepoint Problem.” <em>Biometrika</em>, 243–51.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-cobb1978problem" class="csl-entry">
+Cobb, George W. 1978. <span>“The Problem of the Nile: Conditional Solution to a Changepoint Problem.”</span> <em>Biometrika</em>, 243–51.
 </div>
-<div id="ref-hipel1994time">
-<p>Hipel, Keith W, and A Ian McLeod. 1994. <em>Time Series Modelling of Water Resources and Environmental Systems</em>. Vol. 45. Elsevier.</p>
+<div id="ref-hipel1994time" class="csl-entry">
+Hipel, Keith W, and A Ian McLeod. 1994. <em>Time Series Modelling of Water Resources and Environmental Systems</em>. Vol. 45. Elsevier.
 </div>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#time-series-simulation">Time Series Simulation</a></li>
-      <li><a href="#time-series-analysis-tools">Time Series Analysis Tools</a></li>
-      <li><a href="#references">References</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -528,7 +556,7 @@ Figure 20: Empirical ACF and PACF of the Nile river flow data
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

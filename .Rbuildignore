@@ -12,3 +12,5 @@
 ^appveyor\.yml$
 ^.*\.bak$
 ^\.github$
+^pkgdown$
+R/kalman_filter_gen.R

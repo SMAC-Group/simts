@@ -10,3 +10,4 @@
 ^figures$
 ^docs$
 ^appveyor\.yml$
+^pkgdown$

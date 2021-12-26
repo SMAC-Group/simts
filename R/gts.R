@@ -238,6 +238,7 @@ gen_gts = function(n, model, start = 0, end = NULL, freq = 1, unit_ts = NULL, un
 #' @title Convert Unit of Time Series Data
 #' @description Manipulate the units of time to different ones
 #' @keywords internal
+#' @export
 #' @param x          A \code{vector} containing the values on x-axis.
 #' @param from.unit  A \code{string} indicating the unit which the data is converted from.
 #' @param to.unit    A \code{string} indicating the unit which the data is converted to.

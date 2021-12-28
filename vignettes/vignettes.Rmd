@@ -225,7 +225,7 @@ Let's consider the next dataset, the `sales` time series:
 data("sales")
 
 # Simulate based on data
-sales = gts(as.vector(sales), start = 1992, freq = 12, unit_time = "year",
+sales = gts(sales, start = 1992, freq = 12, unit_time = "year",
             unit_ts = bquote(paste(10^6,"$")), name_ts = "Retail Sales", 
             data_name = "Monthly Clothing Retail Sales in US for 1992-2016")
 

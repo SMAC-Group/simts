@@ -209,7 +209,7 @@ plot(savingrt_acf)
 
 This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 # Estimate the latent model ARMA(2,1) + RW()
 model_savings = estimate(ARMA(2,1) + RW(), savingrt, method = "gmwm")
 ```
@@ -219,7 +219,7 @@ model_savings = estimate(ARMA(2,1) + RW(), savingrt, method = "gmwm")
 
 Let's consider the next dataset, the `sales` time series:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Monthly Clothing Retail Sales in US for 1992-2016', , eval=FALSE}
 # Load sales dataset
 data("sales")
 
@@ -235,13 +235,13 @@ plot(sales)
 
 After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016', eval=FALSE}
 # Compute ACF and plot result
 sales_acf = auto_corr(sales)
 plot(sales_acf)
 ```
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016', eval=FALSE}
 #Compute PACF and plot result
 sales_pacf = auto_corr(sales, pacf = TRUE)
 plot(sales_pacf)
@@ -249,7 +249,7 @@ plot(sales_pacf)
 
 You can also use `corr_analysis()` function in the package to get the same results as above:  
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016'}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016', eval=FALSE}
 # Compute and plot ACF and PACF
 sales_corr = corr_analysis(sales)
 
@@ -295,7 +295,7 @@ plot(lynx_pacf)
 
 The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934', eval=FALSE}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934', eval=TRUE}
 test = estimate(SARMA(2,2,1), lynx)
 check(test)
 ```
@@ -335,13 +335,13 @@ plot(sunspot_pacf)
 
 Let us estimate an AR(p) model and for this reason let us select the order:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988', eval=FALSE}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988', eval=TRUE}
 select(AR(15), sunspot)
 ```
 
 The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:
 
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988', eval=FALSE}
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988', eval=TRUE}
 model_sunspots = estimate(AR(9), sunspot)
 predict(model_sunspots, n.ahead = 10, level = c(0.60, 0.90, 0.95))
 ```

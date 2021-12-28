@@ -9,7 +9,7 @@ A time series object with frequency 12 starting at 1907 and going to 1972
 for a total of 781 observations.
 }
 \source{
-\url{https://datamarket.com/data/set/22w1/mean-monthly-precipitation-1907-1972}
+datamarket, mean-monthly-precipitation-1907-1972
 }
 \usage{
 hydro

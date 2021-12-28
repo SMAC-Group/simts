@@ -12,8 +12,7 @@ A data frame with 127 rows and 2 variables:
 }
 }
 \source{
-Time Series Data Library (citing: Australian Bureau of Statistics) 
-\url{https://datamarket.com/data/set/22t0/quarterly-increase-in-stocks-non-farm-total-australia-sep-1959-march-1991#!ds=22t0&display=line}
+Time Series Data Library (citing: Australian Bureau of Statistics) datamarket
 }
 \usage{
 australia

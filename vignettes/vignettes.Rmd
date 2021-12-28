@@ -215,52 +215,6 @@ model_savings = estimate(ARMA(2,1) + RW(), savingrt, method = "gmwm")
 ```
 
 
-### Retail Sales Dataset
-
-Let's consider the next dataset, the `sales` time series:
-
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Monthly Clothing Retail Sales in US for 1992-2016', , eval=FALSE}
-# Load sales dataset
-data("sales")
-
-# Simulate based on data
-sales = gts(as.vector(sales), start = 1992, freq = 12, unit_time = "year",
-            unit_ts = bquote(paste(10^6,"$")), name_ts = "Retail Sales", 
-            data_name = "Monthly Clothing Retail Sales in US for 1992-2016")
-
-# Plot sales simulation
-plot(sales)
-```
-
-
-After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
-
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016', eval=FALSE}
-# Compute ACF and plot result
-sales_acf = auto_corr(sales)
-plot(sales_acf)
-```
-
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016', eval=FALSE}
-#Compute PACF and plot result
-sales_pacf = auto_corr(sales, pacf = TRUE)
-plot(sales_pacf)
-```
-
-You can also use `corr_analysis()` function in the package to get the same results as above:  
-
-```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016', eval=FALSE}
-# Compute and plot ACF and PACF
-sales_corr = corr_analysis(sales)
-
-# Get ACF and PACF values
-sales_acf = sales_corr$ACF
-sales_pacf = sales_corr$PACF
-```
-
-The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.
-
-
 ### Lynx Dataset 
 
 We can look at another dataset, `lynx`, annual numbers of lynx trappings in Canada for 1821-1934 in the code below: 

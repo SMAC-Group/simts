@@ -1,14 +1,13 @@
 ## Test environments
 
-* local OS X install, R 3.6.1
-* local Windows install, R 3.6.1
-* ubuntu 14.04 (on travis-ci), R 3.6.1
-* win-builder
-* appveyor
+* local OS X install, R 4.1.2
+* local Windows install, R 4.1.2
 * rhub
-
+* GitHub actions (macOS, windows, ubuntu)
 
 ## R CMD check results
+
+There were no ERRORs, WARNINGs or NOTEs.
 
 There was 1 NOTE:
 

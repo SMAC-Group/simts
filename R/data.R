@@ -6,7 +6,7 @@
 #' @format A time series object with frequency 12 starting at 1907 and going to 1972
 #' for a total of 781 observations.
 #'
-#' @source \url{https://datamarket.com/data/set/22w1/mean-monthly-precipitation-1907-1972}
+#' @source datamarket, mean-monthly-precipitation-1907-1972
 "hydro"
 
 
@@ -34,19 +34,8 @@
 #'   \item{Increase}{quarterly increase in stocks non-farm total}
 #' }
 #' 
-#' @source Time Series Data Library (citing: Australian Bureau of Statistics) 
-#' \url{https://datamarket.com/data/set/22t0/quarterly-increase-in-stocks-non-farm-total-australia-sep-1959-march-1991#!ds=22t0&display=line}
+#' @source Time Series Data Library (citing: Australian Bureau of Statistics) datamarket
 "australia"
-
-#' Sales Dataset 
-#' 
-#' This dataset contains the US monthly clothing retail sales in millions of dollars taken from 
-#' 1992 to 2016 for a total of 302 observations.
-#' 
-#' @format A dataframe with 302 rows and 1 variable: 
-#' 
-#' @source \url{http://r-exercises.com/wp-content/uploads/2017/04/sales.csv}
-"sales"
 
 #' @details The data sets in this package may change at a moments notice.
 "_PACKAGE"

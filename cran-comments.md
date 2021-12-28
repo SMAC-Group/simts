@@ -1,9 +1,14 @@
 ## Test environments
 
 * local OS X install, R 4.1.2
-* local Windows install, R 4.1.2
+* local Ubuntu 20.04 : Focal Fossa install, R 4.1.2 
 * rhub
 * GitHub actions (macOS, windows, ubuntu)
+  - MacOS-latest (release)
+  - windows-latest (release)
+  - ubuntu-latest (devel)
+  - ubuntu-latest (release)
+  - ubuntu-latest (oldrel-1)
 
 ## R CMD check results
 
@@ -14,6 +19,8 @@ There was 1 NOTE:
 * checking installed package size ... NOTE
   
 It appears that within the Windows and Linux architectures, the CHECK procedure returns only one NOTE regarding the fact that the libs subdirectory is beyond the 1MB threshold. However, this NOTE doesn't occur to the OSX. Our understanding is that this size inflation of the libs subdirectory is due to the use of the Rcpp package. Indeed, some functions of the simts package have been written in C++ using Rcpp without which various functions would lose a considerable amount of computational efficiency leading to major parts of the package becoming impractical to use.
+
+On Ubuntu 20.04, there is an additional warning if the package qpdf (https://sourceforge.net/projects/qpdf/files/latest/download) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears on the package check.
 
 
 ## Downstream dependencies

@@ -66,7 +66,7 @@ jobs:
     needs: [R-CMD-check]
 
     # Only run this workflow if it target is main branch on pull_request event
-    if: ${{ github.base_ref == 'main' && github.event_name == 'pull_request' }}
+    if: always()
 
     steps:
 

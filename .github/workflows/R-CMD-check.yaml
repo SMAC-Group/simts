@@ -65,7 +65,7 @@ jobs:
     # Only run this workflow when "build" workflow succeeds
     needs: [R-CMD-check]
 
-    # Only run this workflow if it target is main branch on pull_request event
+    # always notify
     if: always()
 
     steps:

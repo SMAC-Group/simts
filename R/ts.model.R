@@ -51,7 +51,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
 #'
 #' @param alpha2 A \code{double} value for the squared amplitude parameter \eqn{\alpha^2}{alpha} (see Note for details).
 #' @param beta A \code{double} value for the angular frequency parameter \eqn{\beta}{beta} (see Note for details).
-#' @param U A \code{double} value for the phase parameter \eqn{U}{beta} (see Note for details).
+#' @param U A \code{double} value for the phase parameter \eqn{U}{U} (see Note for details).
 #' @note We consider the following sinusoidal process : \deqn{X_t = \alpha \sin(\beta t + U)}, where \eqn{U \sim \mathcal{U}(0, 2\pi)}
 #' and \eqn{\beta \in (0, \frac{\pi}{2})}
 #' @return An S3 object containing the specified ts.model with the following structure:

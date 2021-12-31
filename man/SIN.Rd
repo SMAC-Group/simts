@@ -11,7 +11,7 @@ SIN(alpha2 = 9e-04, beta = 0.06, U = NULL)
 
 \item{beta}{A \code{double} value for the angular frequency parameter \eqn{\beta}{beta} (see Note for details).}
 
-\item{U}{A \code{double} value for the phase parameter \eqn{\U}{beta} (see Note for details).}
+\item{U}{A \code{double} value for the phase parameter \eqn{U}{U} (see Note for details).}
 }
 \value{
 An S3 object containing the specified ts.model with the following structure:

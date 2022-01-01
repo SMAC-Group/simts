@@ -83,7 +83,7 @@ It appears that within the Windows and Linux architectures, the CHECK procedure 
 
 ### additional requirements
 
-On Ubuntu 20.04, there is an additional warning if the package `qpdf` available [here](https://sourceforge.net/projects/qpdf/files/latest/download) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears.
+On Ubuntu 20.04, Windows Server 2022 and potentially other sytems, there is an additional warning if the package `qpdf` (available [here](https://sourceforge.net/projects/qpdf/files/latest/download)) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears.
 
 
 ## Downstream dependencies

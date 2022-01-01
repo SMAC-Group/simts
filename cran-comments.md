@@ -1,8 +1,8 @@
 ## Test environments 
 
-* local OS X install, R 4.1.2
-* local Ubuntu 20.04 : Focal Fossa install, R 4.1.2 
-* rhub
+* local OS X install, R 4.1.2 No warnings and no errors.
+* local Ubuntu 20.04 : Focal Fossa install, R 4.1.2 No warnings and no errors.
+* [`rhub`](https://r-hub.github.io/rhub/)
   No warnings and no errors on containers used with `rhub::check_for_cran()`.
   Find detailed output of `check_for_cran()` below:
 
@@ -83,7 +83,7 @@ It appears that within the Windows and Linux architectures, the CHECK procedure 
 
 ### additional requirements
 
-On Ubuntu 20.04, there is an additional warning if the package qpdf (https://sourceforge.net/projects/qpdf/files/latest/download) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears.
+On Ubuntu 20.04, there is an additional warning if the package `qpdf` (https://sourceforge.net/projects/qpdf/files/latest/download) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears.
 
 
 ## Downstream dependencies

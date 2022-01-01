@@ -1,7 +1,7 @@
 ## Test environments 
 
-* local OS X install, R 4.1.2 No warnings and no errors.
-* local Ubuntu 20.04 : Focal Fossa install, R 4.1.2 No warnings and no errors.
+* `devtools::check()` on local OS X install, R 4.1.2: No warnings and no errors.
+* `devtools::check()` on local Ubuntu 20.04 : Focal Fossa install, R 4.1.2: No warnings and no errors.
 * [`rhub`](https://r-hub.github.io/rhub/)
   No warnings and no errors on containers used with `rhub::check_for_cran()`.
   Find detailed output of `check_for_cran()` below:

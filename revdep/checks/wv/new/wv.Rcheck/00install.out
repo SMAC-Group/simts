@@ -1,0 +1,32 @@
+* installing *source* package ‘wv’ ...
+** package ‘wv’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c armadillo_manipulations.cpp -o armadillo_manipulations.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c dwt.cpp -o dwt.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c process_to_wv.cpp -o process_to_wv.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c robust_components.cpp -o robust_components.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c rtoarmadillo.cpp -o rtoarmadillo.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c sarma.cpp -o sarma.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c sp_dwt.cpp -o sp_dwt.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c spatial_filter.cpp -o spatial_filter.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c wave_variance.cpp -o wave_variance.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c wv_cov.cpp -o wv_cov.o
+g++ -std=gnu++14 -I"/usr/share/R/include" -DNDEBUG  -I'/home/lionel/github_repo/simts/revdep/library/simts/new/Rcpp/include' -I'/home/lionel/github_repo/simts/revdep/library/simts/new/RcppArmadillo/include'    -fpic  -g -O2 -fdebug-prefix-map=/build/r-base-i2PIHO/r-base-4.1.2=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g  -c wv_filters.cpp -o wv_filters.o
+g++ -std=gnu++14 -shared -L/usr/lib/R/lib -Wl,-Bsymbolic-functions -Wl,-z,relro -o wv.so RcppExports.o armadillo_manipulations.o dwt.o process_to_wv.o robust_components.o rtoarmadillo.o sarma.o sp_dwt.o spatial_filter.o wave_variance.o wv_cov.o wv_filters.o -llapack -lblas -lgfortran -lm -lquadmath -L/usr/lib/R/lib -lR
+installing to /home/lionel/github_repo/simts/revdep/checks/wv/new/wv.Rcheck/00LOCK-wv/00new/wv/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (wv)

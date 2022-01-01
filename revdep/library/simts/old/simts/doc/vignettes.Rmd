@@ -1,0 +1,386 @@
+---
+title: "`simts` Vignettes"
+bibliography: biblio.bib
+output: 
+  rmarkdown::html_vignette:
+    fig_caption: yes
+vignette: >
+  %\VignetteIndexEntry{Simulations from Time Series Models}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Time Series Simulation
+
+```{r, echo = FALSE}
+library(simts)
+```
+
+In this section, we briefly list, describe, and provide the syntax used to simulate time series data using the `simts` package. The following list includes some basic models available in this package:
+
+* White Noise `WN()`
+* Quantization Noise `QN()`
+* Random Walk `RW()`
+* Drift `DR()`
+* First-order Autoregressive `AR1()`
+* Autoregressive `AR()`
+* First-order Moving Average `MA1()`
+* Moving Average Process `MA()`
+* Gauss-Markov `GM()`
+* Autoregressive Moving Average `ARMA()`
+* Integrated Autoregressive Moving Average `ARIMA()`
+* Seasonal Autoregressive Integrated Moving Average `SARIMA()`
+* Seasonal Autoregressive Moving Average `SARMA()`
+* Quantization Noise `QN()`
+
+Quantization noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.
+
+The code below shows how to call the function `gen_gts()`, which allows the user to generate samples from the above model specifications.
+
+```{r}
+# Set seed for reproducibility
+set.seed(1337)
+
+# Number of observations
+n = 10^4
+
+# Generate a White Noise Process
+wn = gen_gts(n, WN(sigma2 = 1)) 
+
+# Generate a Quantization Noise
+qn = gen_gts(n, QN(q2 = .5)) 
+
+# Generate a Random Walk
+rw = gen_gts(n, RW(gamma2 = .75)) 
+```
+
+By applying the `plot()` function on the result of a `gen_gts()` simulation, we can observe a visualization of our simulated data.
+
+```{r, fig.align='center', fig.height = 11, fig.width = 7.25, fig.cap = 'Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)'}
+par(mfrow = c(3,1))
+plot(wn)
+plot(qn)
+plot(rw)
+```
+
+Another example with a SARIMA model is given below:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Simulated SARIMA(1,0,1)x(2,1,1)[12] process'}
+# Generate an SARIMA(1,0,1)x(2,1,1)[12]
+sarima = gen_gts(n, SARIMA(ar = 0.3, i = 0, ma = -0.27,
+                        sar = c(-0.12, -0.2), si = 1, sma = -0.9,
+                        sigma2 = 1.5, s = 12))
+# Plot simulation of SARIMA(1,0,1)x(2,1,1)[12]
+plot(sarima)
+```
+
+The `simts` package therefore allows users to easily simulate from a wide variety of classical time series models, but does not limit itself to these models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.
+
+`simts`'s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them. For example, consider the following state-space model:
+
+\[\begin{aligned}
+X_t &= X_{t-1} + \omega + U_t, \;\;\;\;\; U_t \sim \mathcal{N}(0,\gamma^2),\\
+Y_t &= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
+\end{aligned}\]
+
+it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance $\gamma^2$), a linear drift (with slope $\omega$) and a white noise process (with variance $\sigma^2$). Therefore, it can easily be simulated as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Simulated state-space model (RW + WN + DR)'}
+set.seed(1)
+model = RW(gamma2 = 0.01) + DR(omega = 0.001) + WN(sigma2 = 1)
+Yt = gen_gts(model, n = 10^3)
+plot(Yt)
+```
+
+It is also possible to retrieve and visualize the three latent used to construct such state-space model using the function `gen_lts()` instead of `gen_gts()`, as follows:
+
+```{r, fig.align='center', fig.height = 11, fig.width = 7.25, fig.cap = 'Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes'}
+set.seed(1)
+model = RW(gamma2 = 0.01) + DR(omega = 0.001) + WN(sigma2 = 1)
+Yt = gen_lts(model, n = 10^3)
+plot(Yt)
+```
+
+Consider another example, let us suppose that different AR(1) processes are present in a state-space model. The syntax to insert “k” of these models into the state-space model is `k*AR1()`. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: `3*AR1()+RW()+WN()`.
+
+Examples of simulating such models are generated below.
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Simulated ARMA(2,1) + WN() process'}
+# Generate a ARMA(2,1) + WN()  
+arma_wn_model =
+  ARMA(ar = c(0.9, -0.5), ma = 0.3, sigma2 = 1) + 
+  WN(sigma = 4)
+arma_wn_sim = gen_gts(n = n, model  = arma_wn_model)
+
+# Plot simulation of ARMA(2,1) + WN()
+plot(arma_wn_sim)
+```
+
+As mentioned earlier, `simts` provides a function specifically designed to generate and represent latent time series models: `gen_lts()`. This provides users the option to visualize a breakdown of the underlying processes by applying the `plot()` function on the result of `gen_lts()`.
+
+```{r, fig.align='center', fig.height = 7, fig.width = 7.25, fig.cap = 'Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes'}
+# Generate a SARMA() + WN() 
+sarma_wn_model = 
+  SARMA(ar = 0, ma = 0, sar = 0.98, sma = 0, s = 10, sigma2 = 1) + 
+  WN(sigma2 = 1)
+sarma_wn_sim = gen_lts(n = 10^3, model = sarma_wn_model)
+
+# Plot simulation of SARMA() + WN() 
+plot(sarma_wn_sim)
+```
+
+To better visualize the contribution to each process by using the sam range on the "y-axis". This can be done with the option `fixed_range = TRUE` as follows:
+
+```{r, fig.align='center', fig.height = 7, fig.width = 7.25, fig.cap = 'Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes'}
+plot(sarma_wn_sim, fixed_range = TRUE)
+```
+
+## Time Series Analysis Tools
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(datasets)
+```
+
+In this section, we will briefly show some of the `simts` package functionalities that can be applied to basic time series analysis. These functionalities are illustrated through example on the following four datasets (stored in `simts`):
+
+* [hydro](https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html): This time series contains the monthly precipitation from 1907 and going to 1972 for total of 781 observations taken from @hipel1994time.
+* [savingrt](https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html): This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.
+* [sales](http://r-exercises.com/wp-content/uploads/2017/04/sales.csv): This dataset contains the US monthly clothing retail sales in millions of dollars taken from 1992 to 2016 for a total of 302 observations. 
+* [Nile](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html): This time series contains the measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in $10^8 m^3$ taken from Table 1 of @cobb1978problem.
+
+The code below shows how to setup a time series as a `gts()` object. Here, we take samples from each dataset at a rate of `freq` ticks per sample. By applying `plot()` on the result of a `gts()` object, we can observe a simple visualization of our data.
+
+### Hydrology dataset
+
+Frist, we consider the `hydro` dataset. The code below shows how to construct a `gts` object and plot the resulting time series.
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time'}
+# Load hydro dataset
+data("hydro")
+
+# Simulate based on data
+hydro = gts(as.vector(hydro), start = 1907, freq = 12, unit_ts = "in.", 
+            unit_time = "year", name_ts = "Precipitation", 
+            data_name = "Precipitation data from Hipel et al., (1994)")
+
+# Plot hydro simulation
+plot(hydro)
+```
+
+Using the object we created we can now compute its autocorrelation function using the `auto_corr()` function as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 2: Standard and Robust Empirical autocorrelation functions of monthly  precipitation  series  from @hipel1994time'}
+# Compare the standard and robust ACF
+compare_acf(hydro)
+```
+
+This plot shows that no apparent autocorrelation exists when using the standard estimator of the ACF (left) but the picture changes compeltely when using the robust estimator (right). There therefore appears to be some possible contamination in the data and, if we wanted to estimate a model for the data, we would probably opt for a robust estimator. For this we can use the RGMWM to estimate an AR(1) model which could be a possible candidate to explain the robust ACF pattern.
+
+```{r}
+model_hydro = estimate(AR(2), hydro, method = "rgmwm")
+model_hydro$mod$estimate
+```
+
+The estimated value of the autoregressive parameter appears to confirm that there exists some autocorrelation in the data.
+
+### Personal Savings dataset
+
+Similarly to the first dataset, we now consider the `savingrt` time series:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis.'}
+# Load savingrt dataset
+data("savingrt")
+
+# Simulate based on data
+savingrt = gts(as.vector(savingrt), start = 1959, freq = 12, unit_ts = "%", 
+            name_ts = "Saving Rates", data_name = "US Personal Saving Rates",
+            unit_time = "year")
+
+# Plot savingrt simulation
+plot(savingrt)
+```
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 4: Empirical autocorrelation function of Personal Saving  Rates data'}
+# Compute ACF and plot result
+savingrt_acf = auto_corr(savingrt)
+plot(savingrt_acf)
+```
+
+This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.
+
+```{r}
+# Estimate the latent model ARMA(2,1) + RW()
+model_savings = estimate(ARMA(2,1) + RW(), savingrt, method = "gmwm")
+```
+
+
+### Retail Sales Dataset
+
+Let's consider the next dataset, the `sales` time series:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 5: Monthly Clothing Retail Sales in US for 1992-2016'}
+# Load sales dataset
+data("sales")
+
+# Simulate based on data
+sales = gts(as.vector(sales), start = 1992, freq = 12, unit_time = "year",
+            unit_ts = bquote(paste(10^6,"$")), name_ts = "Retail Sales", 
+            data_name = "Monthly Clothing Retail Sales in US for 1992-2016")
+
+# Plot sales simulation
+plot(sales)
+```
+
+
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 6: Empirical autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
+# Compute ACF and plot result
+sales_acf = auto_corr(sales)
+plot(sales_acf)
+```
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 7: Empirical partial autocorrelation function of Monthly Clothing Retail Sales in US for 1992-2016'}
+#Compute PACF and plot result
+sales_pacf = auto_corr(sales, pacf = TRUE)
+plot(sales_pacf)
+```
+
+You can also use `corr_analysis()` function in the package to get the same results as above:  
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 8: Empirical ACF and PACF of Monthly Clothing Retail Sales in US for 1992-2016'}
+# Compute and plot ACF and PACF
+sales_corr = corr_analysis(sales)
+
+# Get ACF and PACF values
+sales_acf = sales_corr$ACF
+sales_pacf = sales_corr$PACF
+```
+
+The autocorrelation graph reveals that there exits some seasonal features in this time series. As we can expect, the sales data is likely to present similar behaviors from year to year.
+
+
+### Lynx Dataset 
+
+We can look at another dataset, `lynx`, annual numbers of lynx trappings in Canada for 1821-1934 in the code below: 
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada'}
+# Load lynx dataset 
+data(lynx)
+
+# Simulate based on data
+lynx = gts(as.vector(lynx), start = 1821, end = 1934, freq = 1, 
+           unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
+           unit_time = "year", data_name = "Annual Numbers of Lynx Trappings")
+
+# Plot lynx simulation
+plot(lynx)
+```
+
+
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
+# Compute ACF and plot result
+lynx_acf = auto_corr(lynx)
+plot(lynx_acf)
+```
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
+# Compute PACF and plot result
+lynx_pacf = auto_corr(lynx, pacf = TRUE)
+plot(lynx_pacf)
+```
+
+The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934'}
+test = estimate(SARMA(2,2,1), lynx)
+check(test)
+```
+
+The residuals don't appear to follow a Gaussian distribution (first row of the plot) but there doesn't appear to be significant dependence in them as shown in the second row of the plot showing respectively the ACF, PACF and Ljung-Box test p-values for the residuals.
+
+### Sunspot Dataset 
+
+We can look at another dataset, `sunspot.year`, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below: 
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988'}
+# Load sunspot dataset 
+sunspot = datasets::sunspot.year
+
+# Simulate based on data
+sunspot = gts(as.vector(sunspot.year), start = 1700, end = 1988, freq = 1, 
+           unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Numbers", 
+           unit_time = "year", data_name = "Yearly Numbers of Sunspots")
+
+# Plot sunspot simulation
+plot(sunspot)
+```
+
+
+After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using `auto_corr()` as follows:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
+# Compute ACF and plot result
+sunspot_acf = auto_corr(sunspot)
+plot(sunspot_acf)
+```
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988'}
+#Compute PACF and plot result
+sunspot_pacf = auto_corr(sunspot, pacf = TRUE)
+plot(sunspot_pacf)
+```
+
+Let us estimate an AR(p) model and for this reason let us select the order:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988'}
+select(AR(15), sunspot)
+```
+
+The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988'}
+model_sunspots = estimate(AR(9), sunspot)
+predict(model_sunspots, n.ahead = 10, level = c(0.60, 0.90, 0.95))
+```
+
+### Nile River Flow Dataset
+
+Finally, we consider the last dataset, `Nile`, Annual Nile river flow from 1871-1970 in the code below:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 18: Plot of Annual Nile river flow from 1871-1970'}
+# Load Nile dataset
+Nile = datasets::Nile
+
+# Simulate based on data
+nile = gts(as.vector(Nile), start = 1871, end = 1970, freq = 1, 
+           unit_ts = bquote(paste(10^8," ",m^3)), name_ts = "Flow", 
+           unit_time = "year", data_name = "Annual Flow of the Nile River")
+
+# Plot Nile simulation 
+plot(nile)
+```
+
+To get ACF, we can use `auto_corr()` and make a plot:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 19: Empirical autocorrelation function of the Nile river flow data'}
+# Compute ACF and plot result
+nile_acf = auto_corr(nile)
+plot(nile_acf)
+```
+
+Similar to the example above, we can also use `corr_analysis()` to get the ACF and PACF at the same time:
+
+```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 20: Empirical ACF and PACF of the Nile river flow data'}
+# Compute and plot ACF and PACF
+nile_corr = corr_analysis(nile)
+
+# Get ACF and PACF values
+nile_acf = nile_corr$ACF
+nile_pacf = nile_corr$PACF
+```
+
+## References
+
+This package is developed mainly as a support to the online book ["Applied Time Series Analysis with R"](https://smac-group.github.io/ts/).
+

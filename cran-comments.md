@@ -61,7 +61,7 @@
 
 ```
 
-* Standard CI workflow with GitHub actions (macOS, windows, ubuntu) `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples)
+* Standard CI workflow with GitHub actions (macOS, windows, ubuntu) `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).
   - MacOS-latest (release)
   - windows-latest (release)
   - ubuntu-latest (devel)

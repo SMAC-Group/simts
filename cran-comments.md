@@ -97,6 +97,34 @@ There are currently no downstream dependencies for this package.
 
 Reverse dependencies were checked with `revdepcheck` (https://github.com/r-lib/revdepcheck). See results in `revdep` and `revdep/cran.md`.
 
+`R` console output `revdep_check(num_workers = 4)`:
+
+```
+> red_rev_dep_check = revdep_check(num_workers = 4)
+── INIT ────────────────────────────────────── Computing revdeps ──
+── INSTALL ────────────────────────────────────────── 2 versions ──
+Installing CRAN version of simts
+also installing the dependencies ‘colorspace’, ‘stringi’, ‘fansi’, ‘pkgconfig’, ‘digest’, ‘gtable’, ‘isoband’, ‘withr’, ‘cli’, ‘crayon’, ‘utf8’, ‘farver’, ‘labeling’, ‘lifecycle’, ‘munsell’, ‘R6’, ‘RColorBrewer’, ‘viridisLite’, ‘backports’, ‘ellipsis’, ‘generics’, ‘glue’, ‘rlang’, ‘stringr’, ‘tibble’, ‘ggplot2’, ‘tidyselect’, ‘vctrs’, ‘pillar’, ‘cpp11’, ‘Rcpp’, ‘scales’, ‘broom’, ‘dplyr’, ‘magrittr’, ‘purrr’, ‘tidyr’, ‘robcor’, ‘RcppArmadillo’
+
+Installing DEV version of simts
+Installing 39 packages: vctrs, utf8, rlang, lifecycle, fansi, ellipsis, crayon, cli, glue, purrr, withr, tibble, scales, isoband, gtable, digest, cpp11, tidyselect, magrittr, dplyr, pkgconfig, pillar, stringi, R6, generics, colorspace, Rcpp, ggplot2, tidyr, stringr, backports, viridisLite, RColorBrewer, munsell, labeling, farver, RcppArmadillo, robcor, broom
+── CHECK ──────────────────────────────────────────────────────────────────────── 2 packages ──
+✓ avar 0.1.1                             ── E: 0     | W: 0     | N: 0                         
+✓ wv 0.1.1                               ── E: 0     | W: 0     | N: 2                         
+OK: 2                                                                                        
+BROKEN: 0
+Total time: 6 min
+── REPORT ─────────────────────────────────────────────────────────────────────────────────────
+Writing summary to 'revdep/README.md'
+Writing problems to 'revdep/problems.md'
+Writing failures to 'revdep/failures.md'
+Writing CRAN report to 'revdep/cran.md'
+Warning message:
+call dbDisconnect() when finished working with a connection 
+```
+
+`revdep/cran.md`:
+
 ```
 ## revdepcheck results
 

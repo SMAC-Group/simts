@@ -25,7 +25,7 @@ rhub::last_check()
 devtools::document()
 
 # check for cran
-check = rhub::check_for_cran()
+check = rhub::check_for_cran(email = "lionelvoirol@hotmail.com")
 
 # check with specific compilation container
 check = rhub::check(platform = "linux-x86_64-rocker-gcc-san", email = "lionelvoirol@hotmail.com")

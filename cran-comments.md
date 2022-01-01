@@ -123,7 +123,7 @@ Warning message:
 call dbDisconnect() when finished working with a connection 
 ```
 
-`revdep/cran.md`:
+output of `revdep_report_cran()`:
 
 ```
 ## revdepcheck results

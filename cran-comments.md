@@ -59,6 +59,7 @@
 
 0 errors ✓ | 0 warnings ✓ | 0 notes ✓
 
+
 ```
 
 * Standard CI workflow with GitHub actions (macOS, windows, ubuntu) implemented using `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).

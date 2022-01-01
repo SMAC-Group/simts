@@ -93,6 +93,19 @@ On Ubuntu 20.04, Windows Server 2022 and potentially other sytems, there is an a
 
 There are currently no downstream dependencies for this package.
 
+## Reverse Dependencies
+
+Reverse dependencies were checked with `revdepcheck` (https://github.com/r-lib/revdepcheck). See results in `revdep` and `revdep/cran.md`.
+
+```
+## revdepcheck results
+
+We checked 2 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
+```
+
 
 ## Copyright Issues
 

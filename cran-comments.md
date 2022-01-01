@@ -72,7 +72,7 @@
 
 ## R CMD check results
 
-There was 2 NOTE:
+There were 2 NOTE:
 
 * checking installed package size ... NOTE
   

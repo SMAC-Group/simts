@@ -14,4 +14,13 @@ This R package provides a series of tools to simulate, plot, estimate, select an
 
 ## Updates
 
+### version 0.1.0
+
 The initial release of the package (version 0.1.0) reported some problems with Solaris due to C++ code compatibilty. Some functions were misused on an integer type, which may cause the potential overloading ambiguity. In the latest version, we hope that these issues have been overcome but we remain available to correct the package should other issues arise.
+
+### version 0.2.0
+
+- Correct LaTeX errors in the documentation for SIN process.
+- Removed `sales` dataset and update vignette examples accordingly.
+- Added GitHub Actions CI/CD workflow for package check.
+- Specified C++11 compilation for portability.

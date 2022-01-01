@@ -61,7 +61,8 @@
 
 ```
 
-* Standard CI workflow with GitHub actions (macOS, windows, ubuntu) `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).
+* Standard CI workflow with GitHub actions (macOS, windows, ubuntu) implemented using `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).
+Results on the following environments:
   - MacOS-latest (release)
   - windows-latest (release)
   - ubuntu-latest (devel)
@@ -80,6 +81,7 @@ It appears that within the Windows and Linux architectures, the CHECK procedure 
 
 * checking for detritus in the temp directory ... NOTE
 
+It appears that this NOTE is due to the launch of a web browser in the examples or tests and can be ignored.
 
 ### additional requirements
 

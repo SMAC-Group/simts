@@ -37,3 +37,7 @@ revdepcheck::revdep_report_summary()
 
 # reverse dependency cran
 revdep_report_cran()
+
+# spell check
+spell_check_report = devtools::spell_check()
+summary(spell_check_report)

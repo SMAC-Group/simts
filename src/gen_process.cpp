@@ -889,6 +889,21 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    
   	    x += gen_powerlaw(N, theta_value, d);
   	  }
+  	  // MAT Matèrn process
+  	  else if(element_type == "MAT"){
+  	    // First value is sigma2 we update i_theta
+  	    ++i_theta;
+  	    
+  	    // get lambda
+  	    double lambda = theta(i_theta);
+  	    
+  	    //  get alpha
+  	    ++i_theta;
+  	    double alpha = theta(i_theta);
+  	    
+  	    // generate data
+  	    x += gen_matern(N, theta_value, lambda, alpha);
+  	  }
   	  // ARMA11
   	  else if(element_type == "ARMA11"){
   	    
@@ -1026,6 +1041,23 @@ arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<
       x.col(i) = gen_powerlaw(N, theta_value, d);
       x.col(num_desc) += x.col(i);
     }
+    // MAT Matèrn process
+    else if(element_type == "MAT"){
+      // First value is sigma2 we update i_theta
+      ++i_theta;
+      
+      // get lambda
+      double lambda = theta(i_theta);
+      
+      //  get alpha
+      ++i_theta;
+      double alpha = theta(i_theta);
+      
+      // generate data
+      x.col(i) = gen_matern(N, theta_value, lambda, alpha);
+      x.col(num_desc) += x.col(i);
+    }
+    
     // WN
     else if(element_type == "WN") {
       x.col(i) = gen_wn(N, theta_value);

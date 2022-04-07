@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 - 2018  James Balamuta, Stephane Guerrier, Roberto Molinari
+/* Copyright (C) 2014 - 2018  James Balamuta, Stephane Guerrier, Roberto Molinari, Davide Cucci, Lionel Voirol
  *
  * This file is part of simts R Methods Package
  *
@@ -113,12 +113,65 @@ arma::vec gen_fgn(const unsigned int N, const double sigma2 = 1, const double H 
   //  generate acf
   Rcpp::NumericVector res1 = f1(N, H);
   Rcpp::NumericVector acf = res1 * sigma2;
+  
+  // simGauss on autocovariance vector
   Rcpp::NumericVector fgn = f2(acf);
   
   //  return
   return(fgn);
   
 }
+
+
+
+//' Generate a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+//' 
+//' Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+//' @param N An \code{integer} for signal length.
+//' @param sigma2 A \code{double}.
+//' @param d A \code{double}.
+//' @return plp A \code{vec} containing the Fractional Gaussian noise process.
+//' @backref src/gen_process.cpp
+//' @backref src/gen_process.h
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+arma::vec gen_powerlaw(const unsigned int N, const double sigma2 = 1, const double d = 0.9){
+  // Obtaining namespace of longmemo package
+  Rcpp::Environment pkg = Rcpp::Environment::namespace_env("longmemo");
+  
+
+  // Picking up functions from longmemo package
+  Rcpp::Function f1 = pkg["simGauss"];
+  
+  // calling gamma()
+  Rcpp::Function f2("gamma");   
+  
+  //  generate acf
+  Rcpp::NumericVector acf (N);
+  Rcpp::NumericVector res1 =  f2(1.0-2.0*d);
+  Rcpp::NumericVector res2 = f2(1.0-d);
+  Rcpp::NumericVector res3 = pow(res2, 2);
+  Rcpp::NumericVector res4 = res1 / res3 * sigma2;
+  
+  // assign value to first element of acf vector
+  acf(0) = res4(0);
+  
+  // fill acf vector
+  for(unsigned int i=1; i <= N-1; i++ ){
+    acf(i) = (d+i - 1.0) * acf(i-1) / (i-d);
+  }
+
+  // simGauss on autocovariance vector
+  Rcpp::NumericVector fgn = f1(acf);
+  
+  //  return
+  return(acf);
+  
+}
+
+
+
 
 
 

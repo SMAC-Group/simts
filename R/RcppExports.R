@@ -659,6 +659,21 @@ gen_fgn <- function(N, sigma2 = 1, H = 0.9) {
     .Call('_simts_gen_fgn', PACKAGE = 'simts', N, sigma2, H)
 }
 
+#' Generate a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+#' 
+#' Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+#' @param N An \code{integer} for signal length.
+#' @param sigma2 A \code{double}.
+#' @param d A \code{double}.
+#' @return plp A \code{vec} containing the Fractional Gaussian noise process.
+#' @backref src/gen_process.cpp
+#' @backref src/gen_process.h
+#' @keywords internal
+#' @export
+gen_powerlaw <- function(N, sigma2 = 1, d = 0.9) {
+    .Call('_simts_gen_powerlaw', PACKAGE = 'simts', N, sigma2, d)
+}
+
 #' Generate a Drift Process
 #' 
 #' Simulates a Drift Process with a given slope, \eqn{\omega}.

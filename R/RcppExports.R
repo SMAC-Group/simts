@@ -686,9 +686,15 @@ Ma_cpp <- function(x, alpha) {
     .Call('_simts_Ma_cpp', PACKAGE = 'simts', x, alpha)
 }
 
+#' Ma vectorized function.
+#' 
+#' @param x A \code{NumericVector}.
+#' @backref src/gen_process.cpp
+#' @backref src/gen_process.h
+#' @keywords internal
 #' @export
-power_test <- function(x) {
-    .Call('_simts_power_test', PACKAGE = 'simts', x)
+Ma_cpp_vec <- function(x, alpha) {
+    .Call('_simts_Ma_cpp_vec', PACKAGE = 'simts', x, alpha)
 }
 
 #' Generate a Matern Process given \eqn{\sigma^2}, \eqn{\lambda} and \eqn{\alpha}.

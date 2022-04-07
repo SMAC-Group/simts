@@ -199,6 +199,25 @@ double Ma_cpp(const double x, const double alpha){
 }
 
 
+//' Ma vectorized function.
+//' 
+//' @param x A \code{NumericVector}.
+//' @backref src/gen_process.cpp
+//' @backref src/gen_process.h
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+Rcpp::NumericVector Ma_cpp_vec(const Rcpp::NumericVector x, double alpha){
+  double length_vec = x.length();
+  Rcpp::NumericVector transformed_x (length_vec);
+  // transform each element with Ma_cpp functions
+  for(unsigned int i=0; i <= length_vec-1; i++ ){
+    double val_i = x(i);
+    transformed_x(i) = Ma_cpp(val_i,  alpha);
+  }
+  return transformed_x ;
+}
+  
 
 //' Generate a Matern Process given \eqn{\sigma^2}, \eqn{\lambda} and \eqn{\alpha}.
 //' 

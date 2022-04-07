@@ -690,14 +690,15 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// power_test
-double power_test(double x);
-RcppExport SEXP _simts_power_test(SEXP xSEXP) {
+// Ma_cpp_vec
+Rcpp::NumericVector Ma_cpp_vec(const Rcpp::NumericVector x, double alpha);
+RcppExport SEXP _simts_Ma_cpp_vec(SEXP xSEXP, SEXP alphaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(power_test(x));
+    Rcpp::traits::input_parameter< const Rcpp::NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type alpha(alphaSEXP);
+    rcpp_result_gen = Rcpp::wrap(Ma_cpp_vec(x, alpha));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -2348,7 +2349,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_gen_fgn", (DL_FUNC) &_simts_gen_fgn, 3},
     {"_simts_gen_powerlaw", (DL_FUNC) &_simts_gen_powerlaw, 3},
     {"_simts_Ma_cpp", (DL_FUNC) &_simts_Ma_cpp, 2},
-    {"_simts_power_test", (DL_FUNC) &_simts_power_test, 1},
+    {"_simts_Ma_cpp_vec", (DL_FUNC) &_simts_Ma_cpp_vec, 2},
     {"_simts_gen_matern", (DL_FUNC) &_simts_gen_matern, 4},
     {"_simts_gen_dr", (DL_FUNC) &_simts_gen_dr, 2},
     {"_simts_gen_qn", (DL_FUNC) &_simts_gen_qn, 2},

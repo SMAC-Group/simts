@@ -792,6 +792,17 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    
   	    x += gen_fgn(N, theta_value, H);
   	  }
+  	  // PLP Power Law Process
+  	  else if(element_type == "PLP"){
+  	    // First value is sigma2
+  	    ++i_theta;
+  	    
+  	    // get d
+  	    double d = theta(i_theta);
+  	    
+  	    
+  	    x += gen_powerlaw(N, theta_value, d);
+  	  }
   	  // ARMA11
   	  else if(element_type == "ARMA11"){
   	    
@@ -915,6 +926,18 @@ arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<
       
       // generate data
       x.col(i) = gen_fgn(N, theta_value, H);
+      x.col(num_desc) += x.col(i);
+    }
+    // PLP Power Law Process
+    else if(element_type == "PLP"){
+      // First value is sigma2
+      ++i_theta;
+      
+      // get d
+      double d = theta(i_theta);
+      
+      // generate data
+      x.col(i) = gen_powerlaw(N, theta_value, d);
       x.col(num_desc) += x.col(i);
     }
     // WN

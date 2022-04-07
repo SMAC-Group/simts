@@ -665,7 +665,7 @@ gen_fgn <- function(N, sigma2 = 1, H = 0.9) {
 #' @param N An \code{integer} for signal length.
 #' @param sigma2 A \code{double}.
 #' @param d A \code{double}.
-#' @return plp A \code{vec} containing the Fractional Gaussian noise process.
+#' @return plp A \code{vec} containing the Power Law Process.
 #' @backref src/gen_process.cpp
 #' @backref src/gen_process.h
 #' @keywords internal

@@ -14,7 +14,7 @@ gen_powerlaw(N, sigma2 = 1, d = 0.9)
 \item{d}{A \code{double}.}
 }
 \value{
-plp A \code{vec} containing the Fractional Gaussian noise process.
+plp A \code{vec} containing the Power Law Process.
 }
 \description{
 Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.

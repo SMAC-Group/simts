@@ -47,7 +47,7 @@ AR1 = function(phi = NULL, sigma2 = 1) {
   invisible(out)
 }
 
-#' Create an Sinusoidal (SIN) Process
+#' Definition of a Sinusoidal (SIN) Process
 #'
 #' @param alpha2 A \code{double} value for the squared amplitude parameter \eqn{\alpha^2}{alpha} (see Note for details).
 #' @param beta A \code{double} value for the angular frequency parameter \eqn{\beta}{beta} (see Note for details).
@@ -108,7 +108,7 @@ SIN = function(alpha2 = 9e-04, beta = 6e-02, U = NULL) {
 
 
 
-#' Create a Fractional Gaussian Noise Process
+#' Definition of a Fractional Gaussian Noise (FGN) Process
 #'
 #' @param sigma2 A \code{double}.
 #' @param H A \code{double}.
@@ -149,6 +149,47 @@ FGN = function(sigma2 = 1, H = .9999) {
   invisible(out)
 }
 
+
+#' Definition of a Power Law Process
+#'
+#' @param sigma2 A \code{double}.
+#' @param d A \code{double}.
+#' @return An S3 object containing the specified ts.model with the following structure:
+#' \describe{
+#'  \item{process.desc}{Used in summary: "SIGMA2","d"}
+#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2}, \eqn{\d}{H}}
+#'  \item{plength}{Number of parameters}
+#'  \item{print}{String containing simplified model}
+#'  \item{desc}{"PLP"}
+#'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
+#'  \item{starting}{Find starting values? TRUE or FALSE (e.g. specified value)}
+#' }
+#' @author Lionel Voirol,  Davide Cucci
+#' @export
+#' @examples
+#' PLP()
+#' PLP(sigma2 = 1, d = 0.4)
+PLP = function(sigma2 = 1, d = 0.4) {
+  starting = FALSE;
+  if(is.null(sigma2)){
+    sigma2 = 1
+  }
+  if(is.null(d)){
+    d = 0.4
+  }
+  if(length(sigma2) != 1 & length(d) != 1){
+    stop("Incorrect PLP model submitted. Must be double values for two parameters.")
+  }
+  
+  out = structure(list(process.desc = c("SIGMA2","d"),
+                       theta = c(sigma2,d),
+                       plength = 2,
+                       desc = "PLP",
+                       print = "PLP()",
+                       obj.desc = list(c(1,1)),
+                       starting = starting), class = "ts.model")
+  invisible(out)
+}
 
 
 

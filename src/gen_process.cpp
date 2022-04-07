@@ -130,7 +130,7 @@ arma::vec gen_fgn(const unsigned int N, const double sigma2 = 1, const double H 
 //' @param N An \code{integer} for signal length.
 //' @param sigma2 A \code{double}.
 //' @param d A \code{double}.
-//' @return plp A \code{vec} containing the Fractional Gaussian noise process.
+//' @return plp A \code{vec} containing the Power Law Process.
 //' @backref src/gen_process.cpp
 //' @backref src/gen_process.h
 //' @keywords internal
@@ -163,10 +163,10 @@ arma::vec gen_powerlaw(const unsigned int N, const double sigma2 = 1, const doub
   }
 
   // simGauss on autocovariance vector
-  Rcpp::NumericVector fgn = f1(acf);
+  Rcpp::NumericVector plp = f1(acf);
   
   //  return
-  return(acf);
+  return(plp);
   
 }
 

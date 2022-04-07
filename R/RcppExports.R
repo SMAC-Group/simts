@@ -674,6 +674,39 @@ gen_powerlaw <- function(N, sigma2 = 1, d = 0.9) {
     .Call('_simts_gen_powerlaw', PACKAGE = 'simts', N, sigma2, d)
 }
 
+#' Ma function.
+#' 
+#' @param x A \code{double}.
+#' @param alpha A \code{double}.
+#' @backref src/gen_process.cpp
+#' @backref src/gen_process.h
+#' @keywords internal
+#' @export
+Ma_cpp <- function(x, alpha) {
+    .Call('_simts_Ma_cpp', PACKAGE = 'simts', x, alpha)
+}
+
+#' @export
+power_test <- function(x) {
+    .Call('_simts_power_test', PACKAGE = 'simts', x)
+}
+
+#' Generate a Matern Process given \eqn{\sigma^2}, \eqn{\lambda} and \eqn{\alpha}.
+#' 
+#' Simulates a Matern Process given \eqn{\sigma^2}, \eqn{\lambda} and \eqn{\alpha}.
+#' @param N An \code{integer} for signal length.
+#' @param sigma2 A \code{double}.
+#' @param lambda A \code{double}.
+#' @param alpha A \code{double}.
+#' @return mtp A \code{vec} containing the Matern Process.
+#' @backref src/gen_process.cpp
+#' @backref src/gen_process.h
+#' @keywords internal
+#' @export
+gen_matern <- function(N, sigma2 = 1, lambda = 0.35, alpha = 0.9) {
+    .Call('_simts_gen_matern', PACKAGE = 'simts', N, sigma2, lambda, alpha)
+}
+
 #' Generate a Drift Process
 #' 
 #' Simulates a Drift Process with a given slope, \eqn{\omega}.

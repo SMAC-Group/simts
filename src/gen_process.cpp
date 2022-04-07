@@ -173,6 +173,80 @@ arma::vec gen_powerlaw(const unsigned int N, const double sigma2 = 1, const doub
 
 
 
+//' Ma function.
+//' 
+//' @param x A \code{double}.
+//' @param alpha A \code{double}.
+//' @backref src/gen_process.cpp
+//' @backref src/gen_process.h
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+double Ma_cpp(const double x, const double alpha){
+  // calling gamma() from base R 
+  Rcpp::Function f1("gamma"); 
+  Rcpp::Function f2("besselK"); 
+  double val_1 = alpha - 0.5;
+  Rcpp::NumericVector val_2 = f1(val_1);
+  double val_3 = 2 / val_2(0);
+  double val_4 = pow(2, val_1 );
+  double val_5 = val_3 / val_4; // res 1
+  double val_6 = pow(fabs(x), val_1); // res 2
+  Rcpp::NumericVector val_7 = f2(fabs(x), fabs(val_1));
+  double val_8 = val_5 * val_6 * val_7(0);
+  return val_8;
+
+}
+
+
+
+//' Generate a Matern Process given \eqn{\sigma^2}, \eqn{\lambda} and \eqn{\alpha}.
+//' 
+//' Simulates a Matern Process given \eqn{\sigma^2}, \eqn{\lambda} and \eqn{\alpha}.
+//' @param N An \code{integer} for signal length.
+//' @param sigma2 A \code{double}.
+//' @param lambda A \code{double}.
+//' @param alpha A \code{double}.
+//' @return mtp A \code{vec} containing the Matern Process.
+//' @backref src/gen_process.cpp
+//' @backref src/gen_process.h
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double lambda = 0.35, double alpha = 0.9){
+  // Obtaining namespace of longmemo package
+  Rcpp::Environment pkg = Rcpp::Environment::namespace_env("longmemo");
+  
+  // Picking up functions from longmemo package
+  Rcpp::Function f1 = pkg["simGauss"];
+  
+  // calling gamma()
+  Rcpp::Function f2("gamma");   
+  
+  //  generate acf
+  Rcpp::NumericVector acf (N);
+
+  
+
+  // simGauss on autocovariance vector
+  Rcpp::NumericVector mtp = f1(acf);
+  
+  //  return
+  return(mtp);
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //' Generate a Drift Process

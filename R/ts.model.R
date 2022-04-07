@@ -195,6 +195,65 @@ PLP = function(sigma2 = 1, d = 0.4) {
 
 
 
+
+#' Definition of a Matèrn Process
+#'
+#' @param sigma2 A \code{double}.
+#' @param lambda A \code{double}.
+#' @param alpha A \code{double}.
+#' @return An S3 object containing the specified ts.model with the following structure:
+#' \describe{
+#'  \item{process.desc}{Used in summary: "SIGMA2","LAMBDA""ALPHA"}
+#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2},  \eqn{\lambda}{lambda},\eqn{\alpha}{alpha}}
+#'  \item{plength}{Number of parameters}
+#'  \item{print}{String containing simplified model}
+#'  \item{desc}{"MAT"}
+#'  \item{obj.desc}{Depth of Parameters e.g. list(1,1,1)}
+#'  \item{starting}{Find starting values? TRUE or FALSE (e.g. specified value)}
+#' }
+#' @author Lionel Voirol,  Davide Cucci
+#' @export
+#' @examples
+#' MAT()
+#' MAT(sigma2 = 1, lambda = 0.35, alpha = 0.9)
+MAT = function(sigma2 = 1, lambda = 0.35, alpha = 0.9) {
+  starting = FALSE;
+  if(is.null(sigma2)){
+    sigma2 = 1
+  }
+  if(is.null(lambda)){
+    lambda = 0.35
+  }
+  if(is.null(alpha)){
+    lambda = 0.9
+  }
+  
+  if(length(sigma2) != 1 & length(lambda) != 1 & length(alpha) != 1){
+    stop("Incorrect MAT model submitted. Must be double values for three parameters.")
+  }
+  
+  out = structure(list(process.desc = c("SIGMA2","LAMBDA", "ALPHA"),
+                       theta = c(sigma2,lambda, alpha),
+                       plength = 3,
+                       desc = "MAT",
+                       print = "MAT()",
+                       obj.desc = list(c(1,1,1)),
+                       starting = starting), class = "ts.model")
+  invisible(out)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 #' Definition of an Moving Average Process of Order 1
 #' 
 #' @param theta  A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).

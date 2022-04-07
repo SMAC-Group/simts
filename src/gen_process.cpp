@@ -88,6 +88,40 @@ arma::vec gen_sin(const unsigned int N, const double alpha2 = 9e-04, const doubl
 
 
 
+
+
+//' Generate a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
+//' 
+//' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
+//' @param N      An \code{integer} for signal length.
+//' @param sigma2 A \code{double}.
+//' @param H A \code{double}.
+//' @return fgn A \code{vec} containing the Fractional Gaussian noise process.
+//' @backref src/gen_process.cpp
+//' @backref src/gen_process.h
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+Rcpp::NumericVector gen_fgn(const unsigned int N, const double sigma2 = 1, const double H = 0.9){
+  // Obtaining namespace of longmemo package
+  Rcpp::Environment pkg = Rcpp::Environment::namespace_env("longmemo");
+  
+  // Picking up functions from longmemo package
+  Rcpp::Function f1 = pkg["ckFGN0"];
+  Rcpp::Function f2 = pkg["simGauss"];
+  
+  //  generate acf
+  Rcpp::NumericVector res1 = f1(N, H);
+  Rcpp::NumericVector acf = res1 * sigma2;
+  Rcpp::NumericVector fgn = f2(acf);
+  
+  //  return
+  return(fgn);
+  
+}
+
+
+
 //' Generate a Drift Process
 //' 
 //' Simulates a Drift Process with a given slope, \eqn{\omega}.

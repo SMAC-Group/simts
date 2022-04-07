@@ -653,7 +653,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // gen_fgn
-Rcpp::NumericVector gen_fgn(const unsigned int N, const double sigma2, const double H);
+arma::vec gen_fgn(const unsigned int N, const double sigma2, const double H);
 RcppExport SEXP _simts_gen_fgn(SEXP NSEXP, SEXP sigma2SEXP, SEXP HSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

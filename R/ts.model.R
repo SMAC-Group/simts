@@ -105,6 +105,55 @@ SIN = function(alpha2 = 9e-04, beta = 6e-02, U = NULL) {
 
 
 
+
+
+
+#' Create a Fractional Gaussian Noise Process
+#'
+#' @param sigma2 A \code{double}.
+#' @param H A \code{double}.
+#' @return An S3 object containing the specified ts.model with the following structure:
+#' \describe{
+#'  \item{process.desc}{Used in summary: "SIGMA2","H"}
+#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2}, \eqn{\H}{H}}
+#'  \item{plength}{Number of parameters}
+#'  \item{print}{String containing simplified model}
+#'  \item{desc}{"FGN"}
+#'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
+#'  \item{starting}{Find starting values? TRUE or FALSE (e.g. specified value)}
+#' }
+#' @author Lionel Voirol,  Davide Cucci
+#' @export
+#' @examples
+#' FGN()
+#' FGN(sigma2 = 1, H = 0.9999)
+FGN = function(sigma2 = 1, H = .9999) {
+  starting = FALSE;
+  if(is.null(sigma2)){
+    sigma2 = 1
+  }
+  if(is.null(H)){
+    H = 0.9999
+  }
+  if(length(sigma2) != 1 & length(H) != 1){
+    stop("Incorrect FGN model submitted. Must be double values for two parameters.")
+  }
+
+  out = structure(list(process.desc = c("SIGMA2","H"),
+                       theta = c(sigma2,H),
+                       plength = 2,
+                       desc = "FGN",
+                       print = "FGN()",
+                       obj.desc = list(c(1,1)),
+                       starting = starting), class = "ts.model")
+  invisible(out)
+}
+
+
+
+
+
+
 #' Definition of an Moving Average Process of Order 1
 #' 
 #' @param theta  A \code{double} value for the parameter \eqn{\theta}{theta} (see Note for details).

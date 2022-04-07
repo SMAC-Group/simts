@@ -102,7 +102,7 @@ arma::vec gen_sin(const unsigned int N, const double alpha2 = 9e-04, const doubl
 //' @keywords internal
 //' @export
 // [[Rcpp::export]]
-Rcpp::NumericVector gen_fgn(const unsigned int N, const double sigma2 = 1, const double H = 0.9){
+arma::vec gen_fgn(const unsigned int N, const double sigma2 = 1, const double H = 0.9){
   // Obtaining namespace of longmemo package
   Rcpp::Environment pkg = Rcpp::Environment::namespace_env("longmemo");
   
@@ -728,6 +728,17 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    
   	    x += gen_sin(N, theta_value, beta, U);
   	  }
+  	  // FGN
+  	  else if(element_type == "FGN"){
+  	    // First value is sigma2
+  	    ++i_theta;
+  	    
+  	    // get H
+  	    double H = theta(i_theta);
+
+  	    
+  	    x += gen_fgn(N, theta_value, H);
+  	  }
   	  // ARMA11
   	  else if(element_type == "ARMA11"){
   	    
@@ -839,6 +850,18 @@ arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<
       
       // generate data
       x.col(i) = gen_sin(N, theta_value, beta, U);
+      x.col(num_desc) += x.col(i);
+    }
+    // FGN
+    else if(element_type == "FGN"){
+      // First value is sigma2, increment for H
+      ++i_theta;
+      
+      // get H
+      double H = theta(i_theta);
+      
+      // generate data
+      x.col(i) = gen_fgn(N, theta_value, H);
       x.col(num_desc) += x.col(i);
     }
     // WN

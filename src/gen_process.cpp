@@ -239,13 +239,15 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
   // Picking up functions from longmemo package
   Rcpp::Function f1 = pkg["simGauss"];
   
-  // calling gamma()
-  Rcpp::Function f2("gamma");   
-  
   //  generate acf
   Rcpp::NumericVector acf (N);
-
+  //  define first element as sigma2
+  acf(0) = sigma2;
   
+  // define all other elements
+  for(unsigned int i=1; i <= N-1; i++ ){
+    acf(i) = sigma2 * Ma_cpp(lambda*i, alpha=alpha);
+  }
 
   // simGauss on autocovariance vector
   Rcpp::NumericVector mtp = f1(acf);
@@ -254,15 +256,6 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
   return(mtp);
   
 }
-
-
-
-
-
-
-
-
-
 
 
 

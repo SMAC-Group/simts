@@ -203,16 +203,9 @@ plot(Xt)
 
 # support in gen_lts
 Xt = gen_lts(n = 100, model = model_i + RW(3) )
+Xt
 plot(Xt)
 
-
-# support in gen_gts
-Xt = gen_gts(n = 100000, model = SIN(alpha2 = 9e-04, beta = .06, U = 0) + RW(9e-10))
-plot(wv::wvar(Xt))
-
-# support in gen_lts
-Xt = gen_lts(n = 100, model = model_i+ RW(9e-10))
-plot(Xt)
 
 
 

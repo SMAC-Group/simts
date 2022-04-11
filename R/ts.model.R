@@ -251,6 +251,55 @@ MAT = function(sigma2 = 1, lambda = 0.35, alpha = 0.9) {
 
 
 
+#' Definition of a Mean deterministic vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta} 
+#'
+#' @param X A \code{Matrix}  with dimension n*p.
+#' @param beta A \code{vector} with dimension p*1
+#' @return An S3 object containing the specified ts.model with the following structure:
+#' \describe{
+#'  \item{process.desc}{Used in summary: "X","BETA"}
+#'  \item{theta}{Matrix X, vector beta}
+#'  \item{plength}{Number of parameters}
+#'  \item{print}{String containing simplified model}
+#'  \item{desc}{"M"}
+#'  \item{obj.desc}{Depth of Parameters e.g. list(1,1)}
+#'  \item{starting}{Find starting values? TRUE or FALSE (e.g. specified value)}
+#' }
+#' @author Lionel Voirol,  Davide Cucci
+#' @export
+#' @examples
+#' X = matrix(rnorm(15*5), nrow = 15, ncol = 5)
+#' beta=seq(5)
+#' M(X = X, beta = beta)
+M = function(X, beta) {
+  starting =F
+  dim_mat = dim(X)[2]
+  length_beta = length(beta)
+  
+  if(dim_mat != length_beta){
+    stop("Incorect dimensions in provided argument `X` and `beta`")
+  }
+  
+  out = structure(list(process.desc = c("X", "BETA"),
+                       theta = c(X, beta),
+                       plength = 2,
+                       desc = "M",
+                       print = "M()",
+                       obj.desc = list(c(1,1)),
+                       starting = starting), class = "ts.model")
+  invisible(out)
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

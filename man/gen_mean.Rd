@@ -15,6 +15,6 @@ gen_mean(X, beta)
 mean_vec A \code{vec} containing the determinist vector.
 }
 \description{
-Simulates a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
 }
 \keyword{internal}

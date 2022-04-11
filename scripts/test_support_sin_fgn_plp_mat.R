@@ -2,8 +2,8 @@
 
 # When you add a new process you have to:
 
-# - define a generating data function in gen_process.cpp
-# - define a function for its definition in ts.model.R
+# - define a generating data function in src/gen_process.cpp
+# - define a function for its definition in R/ts.model.R
 # - add its inclusion in function gen_gts_cpp in file gen_process.cpp
 # - add its inclusion in gen_lts_cpp in file gen_process.cpp
 

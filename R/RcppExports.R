@@ -715,7 +715,7 @@ gen_matern <- function(N, sigma2 = 1, lambda = 0.35, alpha = 0.9) {
 
 #' Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
 #' 
-#' Simulates a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+#' Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
 #' @param X A \code{Matrix}  with dimension n*p.
 #' @param beta A \code{vector} with dimension p*1
 #' @return mean_vec A \code{vec} containing the determinist vector.

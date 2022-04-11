@@ -264,7 +264,7 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
 
 //' Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
 //' 
-//' Simulates a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+//' Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
 //' @param X A \code{Matrix}  with dimension n*p.
 //' @param beta A \code{vector} with dimension p*1
 //' @return mean_vec A \code{vec} containing the determinist vector.

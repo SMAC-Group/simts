@@ -228,6 +228,7 @@ gen_mean(X, beta = beta)
 model_i= AR1(phi = .9, sigma2 = 5) + WN(sigma2 = 2)
 set.seed(myseed)
 yy = gen_gts(n = n, model = model_i)  + gen_mean(X, beta = beta)
+plot(yy)
 plot(wv::wvar(yy))
 
 # test incorrect dimension dimension

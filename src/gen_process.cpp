@@ -261,6 +261,36 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
 
 
 
+
+//' Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+//' 
+//' Simulates a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+//' @param X A \code{Matrix}  with dimension n*p.
+//' @param beta A \code{vector} with dimension p*1
+//' @return mean_vec A \code{vec} containing the determinist vector.
+//' @backref src/gen_process.cpp
+//' @backref src/gen_process.h
+//' @keywords internal
+//' @export
+// [[Rcpp::export]]
+arma::vec gen_mean(const arma::mat X,  const arma::vec beta){
+  // compute dimensions of input
+  double dim_2_X_mat = X.n_cols;
+  double length_beta = beta.n_elem;
+  // check on matrix X and beta vector
+  if (dim_2_X_mat != length_beta) {         
+    throw std::range_error("Incorrect dimensions for matrix X and vector `beta`");
+  }
+  // matrix by vector multiplication
+      arma::vec mean_vec = X * beta;
+      return mean_vec;
+  
+}
+
+
+
+
+
 //' Generate a Drift Process
 //' 
 //' Simulates a Drift Process with a given slope, \eqn{\omega}.

@@ -716,6 +716,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// gen_mean
+arma::vec gen_mean(const arma::mat X, const arma::vec beta);
+RcppExport SEXP _simts_gen_mean(SEXP XSEXP, SEXP betaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< const arma::vec >::type beta(betaSEXP);
+    rcpp_result_gen = Rcpp::wrap(gen_mean(X, beta));
+    return rcpp_result_gen;
+END_RCPP
+}
 // gen_dr
 arma::vec gen_dr(const unsigned int N, const double omega);
 RcppExport SEXP _simts_gen_dr(SEXP NSEXP, SEXP omegaSEXP) {
@@ -2351,6 +2363,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_simts_Ma_cpp", (DL_FUNC) &_simts_Ma_cpp, 2},
     {"_simts_Ma_cpp_vec", (DL_FUNC) &_simts_Ma_cpp_vec, 2},
     {"_simts_gen_matern", (DL_FUNC) &_simts_gen_matern, 4},
+    {"_simts_gen_mean", (DL_FUNC) &_simts_gen_mean, 2},
     {"_simts_gen_dr", (DL_FUNC) &_simts_gen_dr, 2},
     {"_simts_gen_qn", (DL_FUNC) &_simts_gen_qn, 2},
     {"_simts_gen_ar1", (DL_FUNC) &_simts_gen_ar1, 3},

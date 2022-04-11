@@ -713,6 +713,20 @@ gen_matern <- function(N, sigma2 = 1, lambda = 0.35, alpha = 0.9) {
     .Call('_simts_gen_matern', PACKAGE = 'simts', N, sigma2, lambda, alpha)
 }
 
+#' Generate a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+#' 
+#' Simulates a determinist vector returned by the matrix by vector product of matrix \eqn{X} and vector \eqn{\beta}.
+#' @param X A \code{Matrix}  with dimension n*p.
+#' @param beta A \code{vector} with dimension p*1
+#' @return mean_vec A \code{vec} containing the determinist vector.
+#' @backref src/gen_process.cpp
+#' @backref src/gen_process.h
+#' @keywords internal
+#' @export
+gen_mean <- function(X, beta) {
+    .Call('_simts_gen_mean', PACKAGE = 'simts', X, beta)
+}
+
 #' Generate a Drift Process
 #' 
 #' Simulates a Drift Process with a given slope, \eqn{\omega}.

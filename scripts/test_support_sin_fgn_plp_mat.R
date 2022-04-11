@@ -209,23 +209,28 @@ plot(Xt)
 
 
 ###########################
-# generate deterministic vector
+# generate deterministic vector with matrix by vector multiplication X beta
 ###########################
+library(simts)
 
 # create matrix X
-set.seed(1234)
+myseed=1234
 p = 15
 n=10000
+set.seed(myseed)
 X = matrix(rnorm(n, p),nrow=n, ncol = p)
 
-# createvector beta
+# create vector beta
 beta=seq(from=0.05, to = 0.7, length.out = p)
 gen_mean(X, beta = beta)
 
 #  define model
 model_i= AR1(phi = .9, sigma2 = 5) + WN(sigma2 = 2)
-set.seed(123)
+set.seed(myseed)
 yy = gen_gts(n = n, model = model_i)  + gen_mean(X, beta = beta)
 plot(wv::wvar(yy))
 
 # test incorrect dimension dimension
+X_wrong_dimension = matrix(rnorm(100, 10),nrow=n, ncol = 10)
+beta_wrong_dimension=seq(from=0.05, to = 0.7, length.out = 5)
+gen_mean(X_wrong_dimension,beta_wrong_dimension)

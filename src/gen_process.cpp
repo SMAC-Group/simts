@@ -279,7 +279,7 @@ arma::vec gen_mean(const arma::mat X,  const arma::vec beta){
   double length_beta = beta.n_elem;
   // check on matrix X and beta vector
   if (dim_2_X_mat != length_beta) {         
-    throw std::range_error("Incorrect dimensions for matrix X and vector `beta`");
+    throw std::range_error("Incorrect dimensions for matrix X and vector `beta`. The number of columns of matrix X should be equal to the length of the vector beta.");
   }
   // matrix by vector multiplication
       arma::vec mean_vec = X * beta;

@@ -934,6 +934,25 @@ arma::vec gen_model(unsigned int N, const arma::vec& theta, const std::vector<st
   	    // generate data
   	    x += gen_matern(N, theta_value, lambda, alpha);
   	  }
+  	  
+  	  // M() deterministic mean vector
+  	  // else if(element_type == "M"){
+  	  //   // First value is matrix X
+  	  //   ++i_theta;
+  	  //   
+  	  //   // get X
+  	  //   arma::mat X = theta(i_theta);
+  	  //   
+  	  //   //  get beta
+  	  //   ++i_theta;
+  	  //   double beta = theta(i_theta);
+  	  //   
+  	  //   // generate data
+  	  //   x += gen_mean(theta_value, beta);
+  	  // }
+  	  
+
+  	  
   	  // ARMA11
   	  else if(element_type == "ARMA11"){
   	    
@@ -1087,6 +1106,14 @@ arma::mat gen_lts_cpp(unsigned int N, const arma::vec& theta, const std::vector<
       x.col(i) = gen_matern(N, theta_value, lambda, alpha);
       x.col(num_desc) += x.col(i);
     }
+    
+    
+    
+    
+    //  NEED TO ADD M() deterministic mean vector
+    
+    
+    
     
     // WN
     else if(element_type == "WN") {

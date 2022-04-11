@@ -276,6 +276,7 @@ M = function(X, beta) {
   dim_mat = dim(X)[2]
   length_beta = length(beta)
   
+  #  ensure check on dimension of inputs
   if(dim_mat != length_beta){
     stop("Incorect dimensions in provided argument `X` and `beta`")
   }

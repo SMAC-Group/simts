@@ -208,5 +208,24 @@ plot(Xt)
 
 
 
+###########################
+# generate deterministic vector
+###########################
 
+# create matrix X
+set.seed(1234)
+p = 15
+n=10000
+X = matrix(rnorm(n, p),nrow=n, ncol = p)
 
+# createvector beta
+beta=seq(from=0.05, to = 0.7, length.out = p)
+gen_mean(X, beta = beta)
+
+#  define model
+model_i= AR1(phi = .9, sigma2 = 5) + WN(sigma2 = 2)
+set.seed(123)
+yy = gen_gts(n = n, model = model_i)  + gen_mean(X, beta = beta)
+plot(wv::wvar(yy))
+
+# test incorrect dimension dimension

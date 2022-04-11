@@ -227,6 +227,7 @@ gen_mean(X, beta = beta)
 #  define model
 model_i= AR1(phi = .9, sigma2 = 5) + WN(sigma2 = 2)
 set.seed(myseed)
+# add determinist vector to time series
 yy = gen_gts(n = n, model = model_i)  + gen_mean(X, beta = beta)
 plot(yy)
 plot(wv::wvar(yy))
@@ -235,3 +236,9 @@ plot(wv::wvar(yy))
 X_wrong_dimension = matrix(rnorm(100, 10),nrow=n, ncol = 10)
 beta_wrong_dimension=seq(from=0.05, to = 0.7, length.out = 5)
 gen_mean(X_wrong_dimension,beta_wrong_dimension)
+
+#  show problem with gen gets, gen model or gen lts
+model_i = AR1(phi = .9, sigma2 = 5) + M(X = X, beta = beta)
+set.seed(myseed)
+yy = gen_gts(n = n, model = model_i)  
+

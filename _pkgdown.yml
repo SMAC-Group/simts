@@ -18,6 +18,9 @@ reference:
     - SARMA
     - SARIMA
     - SIN
+    - MAT
+    - FGN
+    - PLP
   - title: Time Series Simulation 
     contents: 
     - gts
@@ -64,3 +67,7 @@ navbar:
   right: 
   - icon: fa-github
     href: https://github.com/SMAC-Group/simts
+
+
+
+

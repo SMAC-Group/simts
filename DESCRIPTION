@@ -1,7 +1,7 @@
 Package: simts
 Type: Package
 Title: Time Series Analysis Tools
-Version: 0.2.0
+Version: 0.2.1
 Date: 2021-12-26
 LazyData: true
 Authors@R: c(
@@ -39,7 +39,7 @@ Imports:
     tidyr,
     robcor
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Encoding: UTF-8
 Suggests:
     knitr,

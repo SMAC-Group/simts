@@ -24,3 +24,11 @@ The initial release of the package (version 0.1.0) reported some problems with S
 - Removed `sales` dataset and update vignette examples accordingly.
 - Added GitHub Actions CI/CD workflow for package check.
 - Specified C++11 compilation for portability.
+
+### version 0.2.1
+
+- Added support for generating Matérn process
+- Added support for generating fractional Gaussian noise
+- Added support for generating Power Law Process
+- re-generate vignettes roxygen2 v.7.2.1 for HTML5 standard compatibility
+

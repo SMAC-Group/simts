@@ -31,9 +31,9 @@ To access information about \code{imu} properties use:
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{imu}: Access \code{imu} object properties
-}}
+\item \code{has(imu)}: Access \code{imu} object properties
 
+}}
 \author{
 James Balamuta
 }

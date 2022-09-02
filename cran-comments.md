@@ -1,11 +1,11 @@
-## Test environments 
+## Test environmentsfor version simts 0.2.1
 
 ### Local checks
-`devtools::check()` on local Ubuntu 20.04 : Focal Fossa install, R 4.1.2: No warnings and no errors.
 
+`devtools::check()` on local Ubuntu 20.04: Focal Fossa install, R 4.2.1: 
 
-── R CMD check results ─────────────────────── simts 0.2.1 ────
-Duration: 5m 39.2s
+── R CMD check results ───────────── simts 0.2.1 ────
+Duration: 5m 24s
 
 ❯ checking installed package size ... NOTE
     installed size is 42.9Mb
@@ -21,29 +21,91 @@ Duration: 5m 39.2s
 
 R CMD check succeeded
 
+### Github actions CI workflows
 
+Standard CI workflow with GitHub actions (macOS, windows, ubuntu) implemented using `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).
 
-
+Results on the following environments:
+  - MacOS-latest (release)
+  - ubuntu-latest (devel)
+  - ubuntu-latest (oldrel-1)
+  - ubuntu-latest (release)
+  - windows-latest (release)
+  
+All builds pass successfully.
 
 ### Rhub checks
 
-[`rhub`](https://r-hub.github.io/rhub/)
-No warnings and no errors on containers used with `rhub::check_for_cran()`.
+Checks on [`rhub`](https://r-hub.github.io/rhub/) with `rhub::check_for_cran()`:
 
 
-Find detailed output of `check_for_cran()` below:
+── simts 0.2.1: OK
 
-### Github actions CI workflows
+  Build ID:   simts_0.2.1.tar.gz-39727cce8e7d44cba91daf523a36f7b7
+  Platform:   Debian Linux, R-devel, GCC ASAN/UBSAN
+  Submitted:  6h 29m 45.5s ago
+  Build time: 1h 18m 54.5s
 
-* Standard CI workflow with GitHub actions (macOS, windows, ubuntu) implemented using `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).
-Results on the following environments:
-  - MacOS-latest (release)
-  - windows-latest (release)
-  - ubuntu-latest (devel)
-  - ubuntu-latest (release)
-  - ubuntu-latest (oldrel-1)
-  
-  All builds pass successfully.
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
+
+── simts 0.2.1: NOTE
+
+  Build ID:   simts_0.2.1.tar.gz-69e5bfac8716484693b4d07d5a627b5d
+  Platform:   Ubuntu Linux 20.04.1 LTS, R-release, GCC
+  Submitted:  6h 29m 45.5s ago
+  Build time: 48m 19.5s
+
+❯ checking installed package size ... NOTE
+    installed size is 42.9Mb
+    sub-directories of 1Mb or more:
+      doc    1.5Mb
+      libs  40.4Mb
+
+❯ checking top-level files ... NOTE
+  Non-standard file/directory found at top level:
+    ‘scripts’
+
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+── simts 0.2.1: NOTE
+
+  Build ID:   simts_0.2.1.tar.gz-8d126009c0ea4e009f94d915a9239811
+  Platform:   Windows Server 2022, R-devel, 64 bit
+  Submitted:  6h 29m 45.5s ago
+  Build time: 17m 29.9s
+
+❯ checking top-level files ... NOTE
+  Non-standard file/directory found at top level:
+    'scripts'
+
+❯ checking for detritus in the temp directory ... NOTE
+  Found the following files/directories:
+    'lastMiKTeXException'
+
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+
+── simts 0.2.1: NOTE
+
+  Build ID:   simts_0.2.1.tar.gz-fb3ad6d7e4f0472099a57ba9c38d1b3d
+  Platform:   Fedora Linux, R-devel, clang, gfortran
+  Submitted:  6h 29m 45.5s ago
+  Build time: 48m 44.6s
+
+❯ checking installed package size ... NOTE
+    installed size is 24.4Mb
+    sub-directories of 1Mb or more:
+      doc    1.5Mb
+      libs  22.0Mb
+
+❯ checking top-level files ... NOTE
+  Non-standard file/directory found at top level:
+    ‘scripts’
+
+❯ checking HTML version of manual ... NOTE
+  Skipping checking HTML validation: no command 'tidy' found
+  Skipping checking math rendering: package 'V8' unavailable
+
+0 errors ✔ | 0 warnings ✔ | 3 notes ✖
 
 
 
@@ -51,7 +113,6 @@ Results on the following environments:
 ### additional requirements
 
 On Ubuntu 20.04, Windows Server 2022 and potentially other sytems, there is an additional warning if the package `qpdf` (https://sourceforge.net/projects/qpdf/files/latest/download) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears.
-
 
 ## Downstream dependencies
 

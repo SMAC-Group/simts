@@ -16,7 +16,14 @@ mypath = getwd()
 previous_checks <- rhub::list_package_checks(mypath,
                                              email="lionelvoirol@hotmail.com",
                                              howmany = 10)
+previous_checks$platform_name
 previous_checks
+
+# check last group of launched jobs
+group_id <- previous_checks$group[1]
+group_check <- rhub::get_check(group_id)
+group_check
+
 
 # get last check
 rhub::last_check()

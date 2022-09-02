@@ -24,6 +24,9 @@ rhub::last_check()
 # document manual
 devtools::document()
 
+# check mac
+check_mac = rhub::check(platform = "macos-highsierra-release-cran", email = "lionelvoirol@hotmail.com")
+
 # check for cran
 check = rhub::check_for_cran(email = "lionelvoirol@hotmail.com")
 

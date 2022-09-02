@@ -90,9 +90,9 @@ arma::vec gen_sin(const unsigned int N, const double alpha2 = 9e-04, const doubl
 
 
 
-//' Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{\H}{H}.
+//' Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{H}{H}.
 //' 
-//' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
+//' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{H}.
 //' @param N      An \code{integer} for signal length.
 //' @param sigma2 A \code{double}.
 //' @param H A \code{double}.
@@ -124,9 +124,9 @@ arma::vec gen_fgn(const unsigned int N, const double sigma2 = 1, const double H 
 
 
 
-//' Generate a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+//' Generate a Power Law Process given \eqn{\sigma^2} and \eqn{d}.
 //' 
-//' Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+//' Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{d}.
 //' @param N An \code{integer} for signal length.
 //' @param sigma2 A \code{double}.
 //' @param d A \code{double}.

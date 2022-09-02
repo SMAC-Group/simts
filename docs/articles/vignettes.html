@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">simts</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
       </span>
     </div>
 
@@ -87,7 +87,10 @@
 <div class="section level2">
 <h2 id="time-series-simulation">Time Series Simulation<a class="anchor" aria-label="anchor" href="#time-series-simulation"></a>
 </h2>
-<p>In this section, we briefly list, describe, and provide the syntax used to simulate time series data using the <code>simts</code> package. The following list includes some basic models available in this package:</p>
+<p>In this section, we briefly list, describe, and provide the syntax
+used to simulate time series data using the <code>simts</code> package.
+The following list includes some basic models available in this
+package:</p>
 <ul>
 <li>White Noise <code><a href="../reference/WN.html">WN()</a></code>
 </li>
@@ -111,7 +114,8 @@
 </li>
 <li>Integrated Autoregressive Moving Average <code><a href="../reference/ARIMA.html">ARIMA()</a></code>
 </li>
-<li>Seasonal Autoregressive Integrated Moving Average <code><a href="../reference/SARIMA.html">SARIMA()</a></code>
+<li>Seasonal Autoregressive Integrated Moving Average
+<code><a href="../reference/SARIMA.html">SARIMA()</a></code>
 </li>
 <li>Seasonal Autoregressive Moving Average <code><a href="../reference/SARMA.html">SARMA()</a></code>
 </li>
@@ -126,8 +130,12 @@
 <li>Matèrn Process <code><a href="../reference/MAT.html">MAT()</a></code>
 </li>
 </ul>
-<p>Quantization noise is a less known process that is used in engineering applications. It can be described in layperson terms as being a good estimator of a rounding error.</p>
-<p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, which allows the user to generate samples from the above model specifications.</p>
+<p>Quantization noise is a less known process that is used in
+engineering applications. It can be described in layperson terms as
+being a good estimator of a rounding error.</p>
+<p>The code below shows how to call the function <code><a href="../reference/gen_gts.html">gen_gts()</a></code>,
+which allows the user to generate samples from the above model
+specifications.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Set seed for reproducibility</span>
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1337</span><span class="op">)</span>
@@ -143,7 +151,9 @@
 
 <span class="co"># Generate a Random Walk</span>
 <span class="va">rw</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_gts.html">gen_gts</a></span><span class="op">(</span><span class="va">n</span>, <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">.75</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p>By applying the <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function on the result of a <code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of our simulated data.</p>
+<p>By applying the <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function on the result of a
+<code><a href="../reference/gen_gts.html">gen_gts()</a></code> simulation, we can observe a visualization of our
+simulated data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">wn</span><span class="op">)</span>
@@ -151,7 +161,8 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rw</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-3-1.png" alt="Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)" width="696"><p class="caption">
-Figure 1: Simulated white noise process (top panel), quantiation noise (middle panel) and random walk process (bottom panel)
+Figure 1: Simulated white noise process (top panel), quantiation noise
+(middle panel) and random walk process (bottom panel)
 </p>
 </div>
 <p>Another example with a SARIMA model is given below:</p>
@@ -167,13 +178,26 @@ Figure 1: Simulated white noise process (top panel), quantiation noise (middle p
 Figure 2: Simulated SARIMA(1,0,1)x(2,1,1)[12] process
 </p>
 </div>
-<p>The <code>simts</code> package therefore allows users to easily simulate from a wide variety of classical time series models, but does not limit itself to these models. Indeed, under some restrictions, these models can be combined in different ways to deliver many state-space (latent) models which can be represented as the sum of basic models.</p>
-<p><code>simts</code>’s user friendly interface allows for easy construction of such linear state-space models. In fact, to specify that a certain model is a combination of different models, all that is needed is the “+” symbol between them. For example, consider the following state-space model:</p>
+<p>The <code>simts</code> package therefore allows users to easily
+simulate from a wide variety of classical time series models, but does
+not limit itself to these models. Indeed, under some restrictions, these
+models can be combined in different ways to deliver many state-space
+(latent) models which can be represented as the sum of basic models.</p>
+<p><code>simts</code>’s user friendly interface allows for easy
+construction of such linear state-space models. In fact, to specify that
+a certain model is a combination of different models, all that is needed
+is the “+” symbol between them. For example, consider the following
+state-space model:</p>
 <p><span class="math display">\[\begin{aligned}
-X_t &amp;= X_{t-1} + \omega + U_t, \;\;\;\;\; U_t \sim \mathcal{N}(0,\gamma^2),\\
+X_t &amp;= X_{t-1} + \omega + U_t, \;\;\;\;\; U_t \sim
+\mathcal{N}(0,\gamma^2),\\
 Y_t &amp;= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 \end{aligned}\]</span></p>
-<p>it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance <span class="math inline">\(\gamma^2\)</span>), a linear drift (with slope <span class="math inline">\(\omega\)</span>) and a white noise process (with variance <span class="math inline">\(\sigma^2\)</span>). Therefore, it can easily be simulated as follows:</p>
+<p>it is easy to see that this model is exactly equivalent to the sum of
+a random walk (with inivation variance <span class="math inline">\(\gamma^2\)</span>), a linear drift (with slope
+<span class="math inline">\(\omega\)</span>) and a white noise process
+(with variance <span class="math inline">\(\sigma^2\)</span>).
+Therefore, it can easily be simulated as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">model</span> <span class="op">=</span> <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/DR.html">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
@@ -184,7 +208,10 @@ Y_t &amp;= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 Figure 3: Simulated state-space model (RW + WN + DR)
 </p>
 </div>
-<p>It is also possible to retrieve and visualize the three latent used to construct such state-space model using the function <code><a href="../reference/gen_lts.html">gen_lts()</a></code> instead of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, as follows:</p>
+<p>It is also possible to retrieve and visualize the three latent used
+to construct such state-space model using the function
+<code><a href="../reference/gen_lts.html">gen_lts()</a></code> instead of <code><a href="../reference/gen_gts.html">gen_gts()</a></code>, as
+follows:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
 <span class="va">model</span> <span class="op">=</span> <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span>gamma2 <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/DR.html">DR</a></span><span class="op">(</span>omega <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/WN.html">WN</a></span><span class="op">(</span>sigma2 <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
@@ -192,10 +219,16 @@ Figure 3: Simulated state-space model (RW + WN + DR)
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Yt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-6-1.png" alt="Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes" width="696"><p class="caption">
-Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
+Figure 4: Simulated state-space model (RW + WN + DR) showing latent
+processes
 </p>
 </div>
-<p>Consider another example, let us suppose that different AR(1) processes are present in a state-space model. The syntax to insert “k” of these models into the state-space model is <code>k*AR1()</code>. So, for example, the sum of three AR1 models, a random walk and a white noise process can be given by a simple expression: <code>3*AR1()+RW()+WN()</code>.</p>
+<p>Consider another example, let us suppose that different AR(1)
+processes are present in a state-space model. The syntax to insert “k”
+of these models into the state-space model is <code>k*AR1()</code>. So,
+for example, the sum of three AR1 models, a random walk and a white
+noise process can be given by a simple expression:
+<code>3*AR1()+RW()+WN()</code>.</p>
 <p>Examples of simulating such models are generated below.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Generate a ARMA(2,1) + WN()  </span>
@@ -211,7 +244,12 @@ Figure 4: Simulated state-space model (RW + WN + DR) showing latent processes
 Figure 5: Simulated ARMA(2,1) + WN() process
 </p>
 </div>
-<p>As mentioned earlier, <code>simts</code> provides a function specifically designed to generate and represent latent time series models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to visualize a breakdown of the underlying processes by applying the <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function on the result of <code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
+<p>As mentioned earlier, <code>simts</code> provides a function
+specifically designed to generate and represent latent time series
+models: <code><a href="../reference/gen_lts.html">gen_lts()</a></code>. This provides users the option to
+visualize a breakdown of the underlying processes by applying the
+<code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> function on the result of
+<code><a href="../reference/gen_lts.html">gen_lts()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Generate a SARMA() + WN() </span>
 <span class="va">sarma_wn_model</span> <span class="op">=</span> 
@@ -223,35 +261,56 @@ Figure 5: Simulated ARMA(2,1) + WN() process
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sarma_wn_sim</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-8-1.png" alt="Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
-Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
+Figure 6: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown
+of the underlying latent processes
 </p>
 </div>
-<p>To better visualize the contribution to each process by using the sam range on the “y-axis.” This can be done with the option <code>fixed_range = TRUE</code> as follows:</p>
+<p>To better visualize the contribution to each process by using the sam
+range on the “y-axis”. This can be done with the option
+<code>fixed_range = TRUE</code> as follows:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sarma_wn_sim</span>, fixed_range <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-9-1.png" alt="Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes" width="696"><p class="caption">
-Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the underlying latent processes
+Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown
+of the underlying latent processes
 </p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="time-series-analysis-tools">Time Series Analysis Tools<a class="anchor" aria-label="anchor" href="#time-series-analysis-tools"></a>
 </h2>
-<p>In this section, we will briefly show some of the <code>simts</code> package functionalities that can be applied to basic time series analysis. These functionalities are illustrated through example on the following four datasets (stored in <code>simts</code>):</p>
+<p>In this section, we will briefly show some of the <code>simts</code>
+package functionalities that can be applied to basic time series
+analysis. These functionalities are illustrated through example on the
+following four datasets (stored in <code>simts</code>):</p>
 <ul>
 <li>
-<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html" class="external-link">hydro</a>: This time series contains the monthly precipitation from 1907 and going to 1972 for total of 781 observations taken from <span class="citation">Hipel and McLeod (1994)</span>.</li>
+<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/hydro.html" class="external-link">hydro</a>:
+This time series contains the monthly precipitation from 1907 and going
+to 1972 for total of 781 observations taken from <span class="citation">Hipel and McLeod (1994)</span>.</li>
 <li>
-<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html" class="external-link">savingrt</a>: This dataset contains the US personal saving (after removing seasonal trends) which represent the percentage of income saved from the disposable personal income. This time series with frequency 12 starting in year 1959 and going to 2016 for a total of 691 observations.</li>
+<a href="https://rdrr.io/github/SMAC-Group/datapkg/man/savingrt.html" class="external-link">savingrt</a>:
+This dataset contains the US personal saving (after removing seasonal
+trends) which represent the percentage of income saved from the
+disposable personal income. This time series with frequency 12 starting
+in year 1959 and going to 2016 for a total of 691 observations.</li>
 <li>
-<a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html" class="external-link">Nile</a>: This time series contains the measurements of the annual flow of the river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span> taken from Table 1 of <span class="citation">Cobb (1978)</span>.</li>
+<a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Nile.html" class="external-link">Nile</a>:
+This time series contains the measurements of the annual flow of the
+river Nile at Aswan (formerly Assuan), 1871–1970, in <span class="math inline">\(10^8 m^3\)</span> taken from Table 1 of <span class="citation">Cobb (1978)</span>.</li>
 </ul>
-<p>The code below shows how to setup a time series as a <code><a href="../reference/gts.html">gts()</a></code> object. Here, we take samples from each dataset at a rate of <code>freq</code> ticks per sample. By applying <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> on the result of a <code><a href="../reference/gts.html">gts()</a></code> object, we can observe a simple visualization of our data.</p>
+<p>The code below shows how to setup a time series as a
+<code><a href="../reference/gts.html">gts()</a></code> object. Here, we take samples from each dataset at a
+rate of <code>freq</code> ticks per sample. By applying
+<code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> on the result of a <code><a href="../reference/gts.html">gts()</a></code> object, we can
+observe a simple visualization of our data.</p>
 <div class="section level3">
 <h3 id="hydrology-dataset">Hydrology dataset<a class="anchor" aria-label="anchor" href="#hydrology-dataset"></a>
 </h3>
-<p>Frist, we consider the <code>hydro</code> dataset. The code below shows how to construct a <code>gts</code> object and plot the resulting time series.</p>
+<p>Frist, we consider the <code>hydro</code> dataset. The code below
+shows how to construct a <code>gts</code> object and plot the resulting
+time series.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load hydro dataset</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"hydro"</span><span class="op">)</span>
@@ -265,19 +324,30 @@ Figure 7: Simulated SARMA(1,0) x (0,1) + WN(2) process with a breakdown of the u
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">hydro</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-11-1.png" alt="Figure 1: Monthly  precipitation  series  from  1907  to  1972  taken  from @hipel1994time" width="696"><p class="caption">
-Figure 1: Monthly precipitation series from 1907 to 1972 taken from <span class="citation">Hipel and McLeod (1994)</span>
+Figure 1: Monthly precipitation series from 1907 to 1972 taken from
+<span class="citation">Hipel and McLeod (1994)</span>
 </p>
 </div>
-<p>Using the object we created we can now compute its autocorrelation function using the <code><a href="../reference/auto_corr.html">auto_corr()</a></code> function as follows:</p>
+<p>Using the object we created we can now compute its autocorrelation
+function using the <code><a href="../reference/auto_corr.html">auto_corr()</a></code> function as follows:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Compare the standard and robust ACF</span>
 <span class="fu"><a href="../reference/compare_acf.html">compare_acf</a></span><span class="op">(</span><span class="va">hydro</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-12-1.png" alt="Figure 2: Standard and Robust Empirical autocorrelation functions of monthly  precipitation  series  from @hipel1994time" width="696"><p class="caption">
-Figure 2: Standard and Robust Empirical autocorrelation functions of monthly precipitation series from <span class="citation">Hipel and McLeod (1994)</span>
+Figure 2: Standard and Robust Empirical autocorrelation functions of
+monthly precipitation series from <span class="citation">Hipel and
+McLeod (1994)</span>
 </p>
 </div>
-<p>This plot shows that no apparent autocorrelation exists when using the standard estimator of the ACF (left) but the picture changes compeltely when using the robust estimator (right). There therefore appears to be some possible contamination in the data and, if we wanted to estimate a model for the data, we would probably opt for a robust estimator. For this we can use the RGMWM to estimate an AR(1) model which could be a possible candidate to explain the robust ACF pattern.</p>
+<p>This plot shows that no apparent autocorrelation exists when using
+the standard estimator of the ACF (left) but the picture changes
+compeltely when using the robust estimator (right). There therefore
+appears to be some possible contamination in the data and, if we wanted
+to estimate a model for the data, we would probably opt for a robust
+estimator. For this we can use the RGMWM to estimate an AR(1) model
+which could be a possible candidate to explain the robust ACF
+pattern.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model_hydro</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/AR.html">AR</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="va">hydro</span>, method <span class="op">=</span> <span class="st">"rgmwm"</span><span class="op">)</span>
 <span class="va">model_hydro</span><span class="op">$</span><span class="va">mod</span><span class="op">$</span><span class="va">estimate</span></code></pre></div>
@@ -285,12 +355,14 @@ Figure 2: Standard and Robust Empirical autocorrelation functions of monthly pre
 <span class="co">## AR      0.42983749</span>
 <span class="co">## AR     -0.04681091</span>
 <span class="co">## SIGMA2  0.10528161</span></code></pre>
-<p>The estimated value of the autoregressive parameter appears to confirm that there exists some autocorrelation in the data.</p>
+<p>The estimated value of the autoregressive parameter appears to
+confirm that there exists some autocorrelation in the data.</p>
 </div>
 <div class="section level3">
 <h3 id="personal-savings-dataset">Personal Savings dataset<a class="anchor" aria-label="anchor" href="#personal-savings-dataset"></a>
 </h3>
-<p>Similarly to the first dataset, we now consider the <code>savingrt</code> time series:</p>
+<p>Similarly to the first dataset, we now consider the
+<code>savingrt</code> time series:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load savingrt dataset</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"savingrt"</span><span class="op">)</span>
@@ -304,7 +376,9 @@ Figure 2: Standard and Robust Empirical autocorrelation functions of monthly pre
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">savingrt</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-14-1.png" alt="Figure 3: Monthly  (seasonally  adjusted)  Personal Saving  Rates data  from  January  1959  to  May  2015  provided  by  the Federal  Reserve  Bank  of  St.  Louis." width="696"><p class="caption">
-Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from January 1959 to May 2015 provided by the Federal Reserve Bank of St. Louis.
+Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from
+January 1959 to May 2015 provided by the Federal Reserve Bank of
+St. Louis.
 </p>
 </div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -313,10 +387,16 @@ Figure 3: Monthly (seasonally adjusted) Personal Saving Rates data from January 
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">savingrt_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-15-1.png" alt="Figure 4: Empirical autocorrelation function of Personal Saving  Rates data" width="696"><p class="caption">
-Figure 4: Empirical autocorrelation function of Personal Saving Rates data
+Figure 4: Empirical autocorrelation function of Personal Saving Rates
+data
 </p>
 </div>
-<p>This graph indicates that this time series is likely to present some non-stationary features. This is actually not a surprising observation as such data are often assumed to be close to a random walk model plus some (autocorrelated) noise. For this reason, let us use the GMWM to estimate a latent model given by the sum of two AR(1) models (equivalent to an ARMA(2,1) model) and a random walk.</p>
+<p>This graph indicates that this time series is likely to present some
+non-stationary features. This is actually not a surprising observation
+as such data are often assumed to be close to a random walk model plus
+some (autocorrelated) noise. For this reason, let us use the GMWM to
+estimate a latent model given by the sum of two AR(1) models (equivalent
+to an ARMA(2,1) model) and a random walk.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Estimate the latent model ARMA(2,1) + RW()</span>
 <span class="va">model_savings</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/ARMA.html">ARMA</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/RW.html">RW</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">savingrt</span>, method <span class="op">=</span> <span class="st">"gmwm"</span><span class="op">)</span></code></pre></div>
@@ -324,7 +404,8 @@ Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 <div class="section level3">
 <h3 id="lynx-dataset">Lynx Dataset<a class="anchor" aria-label="anchor" href="#lynx-dataset"></a>
 </h3>
-<p>We can look at another dataset, <code>lynx</code>, annual numbers of lynx trappings in Canada for 1821-1934 in the code below:</p>
+<p>We can look at another dataset, <code>lynx</code>, annual numbers of
+lynx trappings in Canada for 1821-1934 in the code below:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load lynx dataset </span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span>
@@ -338,17 +419,21 @@ Figure 4: Empirical autocorrelation function of Personal Saving Rates data
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-17-1.png" alt="Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada" width="696"><p class="caption">
-Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in Canada
+Figure 9: Plot of Annual numbers of lynx trappings for 1821-1934 in
+Canada
 </p>
 </div>
-<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
+<p>After creating the time series object, now we can compute its
+autocorrelation function and partial autocorrelation function by using
+<code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
 <span class="va">lynx_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">lynx</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">lynx_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-18-1.png" alt="Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
-Figure 10: Empirical autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
+Figure 10: Empirical autocorrelation function of Annual numbers of lynx
+trappings in Canada for 1821-1934
 </p>
 </div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -357,24 +442,32 @@ Figure 10: Empirical autocorrelation function of Annual numbers of lynx trapping
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">lynx_pacf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-19-1.png" alt="Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
-Figure 11: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
+Figure 11: Empirical partial autocorrelation function of Annual numbers
+of lynx trappings in Canada for 1821-1934
 </p>
 </div>
-<p>The plot suggests some form of seasonality so one could estimate a SARMA(2,2,1) model and check its residuals as follows:</p>
+<p>The plot suggests some form of seasonality so one could estimate a
+SARMA(2,2,1) model and check its residuals as follows:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/SARMA.html">SARMA</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>, <span class="va">lynx</span><span class="op">)</span>
 <span class="fu"><a href="../reference/check.html">check</a></span><span class="op">(</span><span class="va">test</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-20-1.png" alt="Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934" width="696"><p class="caption">
-Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx trappings in Canada for 1821-1934
+Figure 12: Empirical partial autocorrelation function of Annual numbers
+of lynx trappings in Canada for 1821-1934
 </p>
 </div>
-<p>The residuals don’t appear to follow a Gaussian distribution (first row of the plot) but there doesn’t appear to be significant dependence in them as shown in the second row of the plot showing respectively the ACF, PACF and Ljung-Box test p-values for the residuals.</p>
+<p>The residuals don’t appear to follow a Gaussian distribution (first
+row of the plot) but there doesn’t appear to be significant dependence
+in them as shown in the second row of the plot showing respectively the
+ACF, PACF and Ljung-Box test p-values for the residuals.</p>
 </div>
 <div class="section level3">
 <h3 id="sunspot-dataset">Sunspot Dataset<a class="anchor" aria-label="anchor" href="#sunspot-dataset"></a>
 </h3>
-<p>We can look at another dataset, <code>sunspot.year</code>, yearly numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code below:</p>
+<p>We can look at another dataset, <code>sunspot.year</code>, yearly
+numbers of sunspots from 1700 to 1988 (rounded to one digit) in the code
+below:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load sunspot dataset </span>
 <span class="va">sunspot</span> <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/sunspot.year.html" class="external-link">sunspot.year</a></span>
@@ -391,14 +484,17 @@ Figure 12: Empirical partial autocorrelation function of Annual numbers of lynx 
 Figure 13: Plot of Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<p>After creating the time series object, now we can compute its autocorrelation function and partial autocorrelation function by using <code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
+<p>After creating the time series object, now we can compute its
+autocorrelation function and partial autocorrelation function by using
+<code><a href="../reference/auto_corr.html">auto_corr()</a></code> as follows:</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Compute ACF and plot result</span>
 <span class="va">sunspot_acf</span> <span class="op">=</span> <span class="fu"><a href="../reference/auto_corr.html">auto_corr</a></span><span class="op">(</span><span class="va">sunspot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sunspot_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-22-1.png" alt="Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
+Figure 14: Empirical autocorrelation function of Yearly numbers of
+sunspots from 1700 to 1988
 </p>
 </div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -407,10 +503,12 @@ Figure 14: Empirical autocorrelation function of Yearly numbers of sunspots from
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sunspot_pacf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-23-1.png" alt="Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunspots from 1700 to 1988
+Figure 15: Empirical partial autocorrelation function of Yearly numbers
+of sunspots from 1700 to 1988
 </p>
 </div>
-<p>Let us estimate an AR(p) model and for this reason let us select the order:</p>
+<p>Let us estimate an AR(p) model and for this reason let us select the
+order:</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/select.html">select</a></span><span class="op">(</span><span class="fu"><a href="../reference/AR.html">AR</a></span><span class="op">(</span><span class="fl">15</span><span class="op">)</span>, <span class="va">sunspot</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Warning: `filter_()` was deprecated in dplyr 0.7.0.</span>
@@ -420,23 +518,29 @@ Figure 15: Empirical partial autocorrelation function of Yearly numbers of sunsp
 <span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</span></span></code></pre>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-24-1.png" alt="Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 16: Results on model selection for AR(p) models for Yearly numbers of sunspots from 1700 to 1988
+Figure 16: Results on model selection for AR(p) models for Yearly
+numbers of sunspots from 1700 to 1988
 </p>
 </div>
-<p>The results of the model selection procedure seem to indicate that the AR(9) model is the best so let us use this model to predict the future 10 observations along with their 60%, 90% and 95% confidence intervals:</p>
+<p>The results of the model selection procedure seem to indicate that
+the AR(9) model is the best so let us use this model to predict the
+future 10 observations along with their 60%, 90% and 95% confidence
+intervals:</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model_sunspots</span> <span class="op">=</span> <span class="fu"><a href="../reference/estimate.html">estimate</a></span><span class="op">(</span><span class="fu"><a href="../reference/AR.html">AR</a></span><span class="op">(</span><span class="fl">9</span><span class="op">)</span>, <span class="va">sunspot</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model_sunspots</span>, n.ahead <span class="op">=</span> <span class="fl">10</span>, level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.60</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-25-1.png" alt="Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988" width="696"><p class="caption">
-Figure 17: 10-steps-ahead forecasts (and confidence intervals) for Yearly numbers of sunspots from 1700 to 1988
+Figure 17: 10-steps-ahead forecasts (and confidence intervals) for
+Yearly numbers of sunspots from 1700 to 1988
 </p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="nile-river-flow-dataset">Nile River Flow Dataset<a class="anchor" aria-label="anchor" href="#nile-river-flow-dataset"></a>
 </h3>
-<p>Finally, we consider the last dataset, <code>Nile</code>, Annual Nile river flow from 1871-1970 in the code below:</p>
+<p>Finally, we consider the last dataset, <code>Nile</code>, Annual Nile
+river flow from 1871-1970 in the code below:</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load Nile dataset</span>
 <span class="va">Nile</span> <span class="op">=</span> <span class="fu">datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/datasets/Nile.html" class="external-link">Nile</a></span>
@@ -460,10 +564,13 @@ Figure 18: Plot of Annual Nile river flow from 1871-1970
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">nile_acf</span><span class="op">)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="vignettes_files/figure-html/unnamed-chunk-27-1.png" alt="Figure 19: Empirical autocorrelation function of the Nile river flow data" width="696"><p class="caption">
-Figure 19: Empirical autocorrelation function of the Nile river flow data
+Figure 19: Empirical autocorrelation function of the Nile river flow
+data
 </p>
 </div>
-<p>Similar to the example above, we can also use <code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> to get the ACF and PACF at the same time:</p>
+<p>Similar to the example above, we can also use
+<code><a href="../reference/corr_analysis.html">corr_analysis()</a></code> to get the ACF and PACF at the same
+time:</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Compute and plot ACF and PACF</span>
 <span class="va">nile_corr</span> <span class="op">=</span> <span class="fu"><a href="../reference/corr_analysis.html">corr_analysis</a></span><span class="op">(</span><span class="va">nile</span><span class="op">)</span></code></pre></div>
@@ -481,13 +588,16 @@ Figure 20: Empirical ACF and PACF of the Nile river flow data
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>This package is developed mainly as a support to the online book <a href="https://smac-group.github.io/ts/" class="external-link">“Applied Time Series Analysis with R”</a>.</p>
+<p>This package is developed mainly as a support to the online book <a href="https://smac-group.github.io/ts/" class="external-link">“Applied Time Series Analysis
+with R”</a>.</p>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-cobb1978problem" class="csl-entry">
-Cobb, George W. 1978. <span>“The Problem of the Nile: Conditional Solution to a Changepoint Problem.”</span> <em>Biometrika</em>, 243–51.
+Cobb, George W. 1978. <span>“The Problem of the Nile: Conditional
+Solution to a Changepoint Problem.”</span> <em>Biometrika</em>, 243–51.
 </div>
 <div id="ref-hipel1994time" class="csl-entry">
-Hipel, Keith W, and A Ian McLeod. 1994. <em>Time Series Modelling of Water Resources and Environmental Systems</em>. Vol. 45. Elsevier.
+Hipel, Keith W, and A Ian McLeod. 1994. <em>Time Series Modelling of
+Water Resources and Environmental Systems</em>. Vol. 45. Elsevier.
 </div>
 </div>
 </div>

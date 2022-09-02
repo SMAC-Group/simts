@@ -196,7 +196,7 @@ PLP = function(sigma2 = 1, d = 0.4) {
 
 
 
-#' Definition of a Matèrn Process
+#' Definition of a Matérn Process
 #'
 #' @param sigma2 A \code{double}.
 #' @param lambda A \code{double}.

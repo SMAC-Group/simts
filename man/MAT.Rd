@@ -2,7 +2,7 @@
 % Please edit documentation in R/ts.model.R
 \name{MAT}
 \alias{MAT}
-\title{Definition of a Matèrn Process}
+\title{Definition of a Matérn Process}
 \usage{
 MAT(sigma2 = 1, lambda = 0.35, alpha = 0.9)
 }
@@ -26,7 +26,7 @@ An S3 object containing the specified ts.model with the following structure:
 }
 }
 \description{
-Definition of a Matèrn Process
+Definition of a Matérn Process
 }
 \examples{
 MAT()

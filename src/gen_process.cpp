@@ -213,7 +213,7 @@ Rcpp::NumericVector Ma_cpp_vec(const Rcpp::NumericVector x, double alpha){
   // transform each element with Ma_cpp functions
   for(unsigned int i=0; i <= length_vec-1; i++ ){
     double val_i = x(i);
-    transformed_x(i) = Ma_cpp(val_i,  alpha);
+    transformed_x(i) = Ma_cpp(val_i, alpha);
   }
   return transformed_x ;
 }
@@ -248,7 +248,8 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
   
   // define all other elements of acf vector
   for(unsigned int i=1; i <= N-1; i++ ){
-    double acf_value_i = sigma2 * Ma_cpp(lambda*i, alpha=alpha);
+    double lambda_i = lambda*i;
+    double acf_value_i = sigma2 * Ma_cpp(lambda_i, alpha=alpha);
     acf(i) = acf_value_i;
   }
 

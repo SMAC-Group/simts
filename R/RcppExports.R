@@ -644,9 +644,9 @@ gen_sin <- function(N, alpha2 = 9e-04, beta = 6e-02, U = 1) {
     .Call('_simts_gen_sin', PACKAGE = 'simts', N, alpha2, beta, U)
 }
 
-#' Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{\H}{H}.
+#' Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{H}{H}.
 #' 
-#' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
+#' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{H}.
 #' @param N      An \code{integer} for signal length.
 #' @param sigma2 A \code{double}.
 #' @param H A \code{double}.
@@ -659,9 +659,9 @@ gen_fgn <- function(N, sigma2 = 1, H = 0.9) {
     .Call('_simts_gen_fgn', PACKAGE = 'simts', N, sigma2, H)
 }
 
-#' Generate a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+#' Generate a Power Law Process given \eqn{\sigma^2} and \eqn{d}.
 #' 
-#' Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+#' Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{d}.
 #' @param N An \code{integer} for signal length.
 #' @param sigma2 A \code{double}.
 #' @param d A \code{double}.

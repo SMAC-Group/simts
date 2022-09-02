@@ -2,7 +2,7 @@
 % Please edit documentation in src/gen_process.cpp, src/gen_process.h
 \name{gen_powerlaw}
 \alias{gen_powerlaw}
-\title{Generate a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.}
+\title{Generate a Power Law Process given \eqn{\sigma^2} and \eqn{d}.}
 \usage{
 gen_powerlaw(N, sigma2 = 1, d = 0.9)
 }
@@ -17,6 +17,6 @@ gen_powerlaw(N, sigma2 = 1, d = 0.9)
 plp A \code{vec} containing the Power Law Process.
 }
 \description{
-Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{\d}.
+Simulates a a Power Law Process given \eqn{\sigma^2} and \eqn{d}.
 }
 \keyword{internal}

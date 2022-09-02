@@ -87,7 +87,7 @@ X_t &= X_{t-1} + \omega + U_t, \;\;\;\;\; U_t \sim \mathcal{N}(0,\gamma^2),\\
 Y_t &= X_t + Z_t , \;\;\;\;\; Z_t \sim \mathcal{N}(0,\sigma^2),
 \end{aligned}\]
 
-it is easy to see that this model is exactely equivalent to the sum of a random walk (with inivation variance $\gamma^2$), a linear drift (with slope $\omega$) and a white noise process (with variance $\sigma^2$). Therefore, it can easily be simulated as follows:
+it is easy to see that this model is exactly equivalent to the sum of a random walk (with inivation variance $\gamma^2$), a linear drift (with slope $\omega$) and a white noise process (with variance $\sigma^2$). Therefore, it can easily be simulated as follows:
 
 ```{r, fig.align='center', fig.height = 4, fig.width = 7.25, fig.cap = 'Figure 3: Simulated state-space model (RW + WN + DR)'}
 set.seed(1)

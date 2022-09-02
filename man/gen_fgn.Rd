@@ -2,7 +2,7 @@
 % Please edit documentation in src/gen_process.cpp, src/gen_process.h
 \name{gen_fgn}
 \alias{gen_fgn}
-\title{Generate a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.}
+\title{Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{\H}{H}.}
 \usage{
 gen_fgn(N, sigma2 = 1, H = 0.9)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in src/gen_process.cpp, src/gen_process.h
 \name{gen_sin}
 \alias{gen_sin}
-\title{Generate a Sinusoidal Process given \eqn{\alpha^2} and \eqn{\beta}.}
+\title{Generate a Sinusoidal Process given \eqn{\alpha^2}{alpha^2} and \eqn{\beta}{beta}.}
 \usage{
 gen_sin(N, alpha2 = 9e-04, beta = 0.06, U = 1)
 }
@@ -17,7 +17,7 @@ gen_sin(N, alpha2 = 9e-04, beta = 0.06, U = 1)
 sn A \code{vec} containing the sinusoidal process.
 }
 \description{
-Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2} and \eqn{\beta}
+Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2}{alpha^2}  and \eqn{\beta}{beta}
 }
 \section{Generation Algorithm}{
 

@@ -626,9 +626,9 @@ gen_wn <- function(N, sigma2 = 1) {
     .Call('_simts_gen_wn', PACKAGE = 'simts', N, sigma2)
 }
 
-#' Generate a Sinusoidal Process given \eqn{\alpha^2} and \eqn{\beta}.
+#' Generate a Sinusoidal Process given \eqn{\alpha^2}{alpha^2} and \eqn{\beta}{beta}.
 #' 
-#' Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2} and \eqn{\beta}
+#' Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2}{alpha^2}  and \eqn{\beta}{beta}
 #' @param N      An \code{integer} for signal length.
 #' @param alpha2 A \code{double} that contains the squared amplitude parameter alpha2.
 #' @param beta A \code{double} that contains the angular frequency parameter beta.
@@ -644,7 +644,7 @@ gen_sin <- function(N, alpha2 = 9e-04, beta = 6e-02, U = 1) {
     .Call('_simts_gen_sin', PACKAGE = 'simts', N, alpha2, beta, U)
 }
 
-#' Generate a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
+#' Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{\H}{H}.
 #' 
 #' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
 #' @param N      An \code{integer} for signal length.

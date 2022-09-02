@@ -60,9 +60,9 @@ arma::vec gen_wn(const unsigned int N, const double sigma2 = 1)
 
 
 
-//' Generate a Sinusoidal Process given \eqn{\alpha^2} and \eqn{\beta}.
+//' Generate a Sinusoidal Process given \eqn{\alpha^2}{alpha^2} and \eqn{\beta}{beta}.
 //' 
-//' Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2} and \eqn{\beta}
+//' Simulates a Sinusoidal Process Process with parameter \eqn{\alpha^2}{alpha^2}  and \eqn{\beta}{beta}
 //' @param N      An \code{integer} for signal length.
 //' @param alpha2 A \code{double} that contains the squared amplitude parameter alpha2.
 //' @param beta A \code{double} that contains the angular frequency parameter beta.
@@ -90,7 +90,7 @@ arma::vec gen_sin(const unsigned int N, const double alpha2 = 9e-04, const doubl
 
 
 
-//' Generate a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
+//' Generate a Fractional Gaussian noise given \eqn{\sigma^2}{sigma^2} and \eqn{\H}{H}.
 //' 
 //' Simulates a Fractional Gaussian noise given \eqn{\sigma^2} and \eqn{\H}.
 //' @param N      An \code{integer} for signal length.
@@ -239,8 +239,9 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
   // Picking up functions from longmemo package
   Rcpp::Function f1 = pkg["simGauss"];
   
-  //  generate acf
+  //  create acf vector
   Rcpp::NumericVector acf (N);
+  
   //  define first element as sigma2
   acf(0) = sigma2;
   

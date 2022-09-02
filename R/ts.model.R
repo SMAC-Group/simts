@@ -115,7 +115,7 @@ SIN = function(alpha2 = 9e-04, beta = 6e-02, U = NULL) {
 #' @return An S3 object containing the specified ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "SIGMA2","H"}
-#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2}, \eqn{\H}{H}}
+#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2}, \eqn{H}{H} }
 #'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{"FGN"}
@@ -157,7 +157,7 @@ FGN = function(sigma2 = 1, H = .9999) {
 #' @return An S3 object containing the specified ts.model with the following structure:
 #' \describe{
 #'  \item{process.desc}{Used in summary: "SIGMA2","d"}
-#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2}, \eqn{\d}{H}}
+#'  \item{theta}{Parameter vector including \eqn{\sigma^2}{sigma2}, \eqn{d}{d}}
 #'  \item{plength}{Number of parameters}
 #'  \item{print}{String containing simplified model}
 #'  \item{desc}{"PLP"}

@@ -348,7 +348,8 @@ plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, cou
   }
   
   if (!is.null(unit_time)){
-    if (class(unit_time) == "name" || class(unit_time) == "call"){
+    
+    if (inherits(unit_time, "name") || inherits(unit_time, "call")){
       name_time = comb(name_time, " (", unit_time, ")")
     }else{
       name_time = paste(name_time, " (", unit_time, ")", sep = "")
@@ -356,7 +357,9 @@ plot.gts = function(x, evenly = TRUE, xlab = NULL, ylab = NULL, main = NULL, cou
   }
   
   if (!is.null(unit_ts)){
-    if (class(unit_ts) == "name" || class(unit_ts) == "call"){
+    
+    
+    if (inherits(unit_ts, "name") || inherits(unit_ts, "call") ){
       name_ts = comb(name_ts, " (", unit_ts, ")")
     }else{
       name_ts = paste(name_ts, " (", unit_ts, ")", sep = "")

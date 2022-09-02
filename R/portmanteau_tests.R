@@ -79,7 +79,8 @@ diag_portmanteau_ = function(x, order = NULL, stop_lag = 20, stdres = FALSE, tes
 #' @export
 #' @rdname diag_ljungbox
 diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE){
-  if (class(x) == "Arima"){
+  
+  if (inherits(x, "Arima")){
     diag_portmanteau_(x$residuals, order = length(x$coef), 
                       stop_lag = stop_lag, stdres = stdres, test = "Ljung-Box", plot = plot)
   }else{
@@ -107,7 +108,8 @@ diag_ljungbox = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = 
 #' @export
 #' @rdname diag_boxpierce
 diag_boxpierce = function(x, order = NULL, stop_lag = 20, stdres = FALSE, plot = TRUE){
-  if (class(x) == "Arima"){
+  
+  if (inherits(x, "Arima")){
     diag_portmanteau_(x$residuals, order = length(x$coef), 
                       stop_lag = stop_lag, stdres = stdres, test = "Box-Pierce", plot = plot)
   }else{

@@ -240,10 +240,11 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
   Rcpp::Function f1 = pkg["simGauss"];
   
   //  create acf vector
-  Rcpp::NumericVector acf (N);
+  Rcpp::NumericVector acf (N,sigma2);
+  // Rcpp::NumericVector acf (N);
   
   //  define first element as sigma2
-  acf(0) = sigma2;
+  // acf(0) = sigma2;
   
   // define all other elements of acf vector
   for(unsigned int i=1; i <= N-1; i++ ){

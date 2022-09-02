@@ -179,66 +179,66 @@
 # Matern process
 ###########################
 
-# set n
-n = 5000
-# define a Matern process
-
-test = MAT()
-test
-
-# generate sin data
-test = gen_matern(N = n)
-test[2]
-
-model_i =MAT()
-
-# support in gen_model
-Xt = gen_model(N = 100, theta = model_i$theta, desc = model_i$desc, objdesc = model_i$obj.desc)
-Xt[2]
-
-
-# support in gen_gts
-Xt = gen_gts(n = 100, model = model_i)
-plot(Xt)
-
-# support in gen_lts
-Xt = gen_lts(n = 100, model = model_i + RW(3) )
-Xt
-plot(Xt)
+# # set n
+# n = 5000
+# # define a Matern process
+# 
+# test = MAT()
+# test
+# 
+# # generate sin data
+# test = gen_matern(N = n)
+# test[2]
+# 
+# model_i =MAT()
+# 
+# # support in gen_model
+# Xt = gen_model(N = 100, theta = model_i$theta, desc = model_i$desc, objdesc = model_i$obj.desc)
+# Xt[2]
+# 
+# 
+# # support in gen_gts
+# Xt = gen_gts(n = 100, model = model_i)
+# plot(Xt)
+# 
+# # support in gen_lts
+# Xt = gen_lts(n = 100, model = model_i + RW(3) )
+# Xt
+# plot(Xt)
 
 
 
 ###########################
 # generate deterministic vector with matrix by vector multiplication X beta
 ###########################
-library(simts)
-
-# create matrix X
-myseed=1234
-p = 15
-n=10000
-set.seed(myseed)
-X = matrix(rnorm(n, p),nrow=n, ncol = p)
-
-# create vector beta
-beta=seq(from=0.05, to = 0.7, length.out = p)
-gen_mean(X, beta = beta)
-
-#  define model
-model_i= AR1(phi = .9, sigma2 = 5) + WN(sigma2 = 2)
-set.seed(myseed)
-# add determinist vector to time series
-yy = gen_gts(n = n, model = model_i)  + gen_mean(X, beta = beta)
-plot(yy)
-plot(wv::wvar(yy))
-
-# test incorrect dimension dimension
-X_wrong_dimension = matrix(rnorm(100, 10),nrow=n, ncol = 10)
-beta_wrong_dimension=seq(from=0.05, to = 0.7, length.out = 5)
-gen_mean(X_wrong_dimension,beta_wrong_dimension)
-
-#  show problem with gen gets, gen model or gen lts
-model_i = AR1(phi = .9, sigma2 = 5) + M(X = X, beta = beta)
-set.seed(myseed)
-yy = gen_gts(n = n, model = model_i)  
-
+# library(simts)
+# 
+# # create matrix X
+# myseed=1234
+# p = 15
+# n=10000
+# set.seed(myseed)
+# X = matrix(rnorm(n, p),nrow=n, ncol = p)
+# 
+# # create vector beta
+# beta=seq(from=0.05, to = 0.7, length.out = p)
+# gen_mean(X, beta = beta)
+# 
+# #  define model
+# model_i= AR1(phi = .9, sigma2 = 5) + WN(sigma2 = 2)
+# set.seed(myseed)
+# # add determinist vector to time series
+# yy = gen_gts(n = n, model = model_i)  + gen_mean(X, beta = beta)
+# plot(yy)
+# plot(wv::wvar(yy))
+# 
+# # test incorrect dimension dimension
+# X_wrong_dimension = matrix(rnorm(100, 10),nrow=n, ncol = 10)
+# beta_wrong_dimension=seq(from=0.05, to = 0.7, length.out = 5)
+# gen_mean(X_wrong_dimension,beta_wrong_dimension)
+# 
+# #  show problem with gen gets, gen model or gen lts
+# model_i = AR1(phi = .9, sigma2 = 5) + M(X = X, beta = beta)
+# set.seed(myseed)
+# yy = gen_gts(n = n, model = model_i)  
+# 

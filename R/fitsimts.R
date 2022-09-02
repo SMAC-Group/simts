@@ -163,7 +163,7 @@ check = function(model = NULL, resids = NULL, simple = FALSE){
   }
   
   if(!is.null(model) & is.null(resids)){
-    if(class(model) == "fitsimts"){
+    if(inherits(model, "fitsimts")){
       if (simple){
         simple_diag_plot(Xt = model$Xt, model = model)
       }else{
@@ -384,7 +384,8 @@ select = function(model, Xt, include.mean = TRUE, criterion = "aic", plot = TRUE
 #' @export
 #' @author Stéphane Guerrier
 summary.fitsimts = function(object, ...){
-  if (class(object$mod) == "Arima"){
+  
+  if (inherits(object$mod, "Arima")){
     print(object)
   }else{
     cat("Fitted model: ")
@@ -556,16 +557,17 @@ evaluate = function(models, Xt, criterion = "IC", start = 0.8, demean = TRUE, pr
     Xt = gts(Xt)
   }
   
-  if (class(models) == "ts.model"){
+  if (inherits(models,  "ts.model")){
     nb_models = 1
     models = list(models)
-  }else if (class(models) == "list"){
+    
+  }else if (inherits(models,  "list")){
     nb_models = length(models)
     if (sum(sapply(models, class) != "ts.model") > 0){
-      stop("This funciton only supports list of time series models.")
+      stop("This function only supports list of time series models.")
     }
   }else{
-    stop("This funciton only supports list of time series models or directley a time series model.")
+    stop("This function only supports list of time series models or directley a time series model.")
   }
   
   if (criterion == "IC"){

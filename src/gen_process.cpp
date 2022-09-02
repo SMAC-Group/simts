@@ -213,7 +213,7 @@ Rcpp::NumericVector Ma_cpp_vec(const Rcpp::NumericVector x, double alpha){
   // transform each element with Ma_cpp functions
   for(unsigned int i=0; i <= length_vec-1; i++ ){
     double val_i = x(i);
-    transformed_x(i) = Ma_cpp(val_i, alpha = alpha);
+    transformed_x(i) = Ma_cpp(val_i, alpha);
   }
   return transformed_x ;
 }

@@ -248,7 +248,8 @@ arma::vec gen_matern(const unsigned int N, const double sigma2 = 1, const double
   
   // define all other elements of acf vector
   for(unsigned int i=1; i <= N-1; i++ ){
-    acf(i) = sigma2 * Ma_cpp(lambda*i, alpha=alpha);
+    double acf_value_i = sigma2 * Ma_cpp(lambda*i, alpha=alpha);
+    acf(i) = acf_value_i;
   }
 
   // simGauss on autocovariance vector

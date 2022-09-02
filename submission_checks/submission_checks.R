@@ -15,7 +15,7 @@ platforms()
 mypath = getwd()
 previous_checks <- rhub::list_package_checks(mypath,
                                              email="lionelvoirol@hotmail.com",
-                                             howmany = 20)
+                                             howmany = 10)
 previous_checks
 
 # get last check

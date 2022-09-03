@@ -4,8 +4,8 @@
 
 `devtools::check()` on local Ubuntu 20.04: Focal Fossa install, R 4.2.1: 
 
-── R CMD check results ───────────── simts 0.2.1 ────
-Duration: 5m 24s
+── R CMD check results ────── simts 0.2.1 ────
+Duration: 5m 34.7s
 
 ❯ checking installed package size ... NOTE
     installed size is 42.9Mb
@@ -13,11 +13,7 @@ Duration: 5m 24s
       doc    1.5Mb
       libs  40.5Mb
 
-❯ checking top-level files ... NOTE
-  Non-standard file/directory found at top level:
-    ‘scripts’
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+0 errors ✔ | 0 warnings ✔ | 1 note ✖
 
 R CMD check succeeded
 
@@ -38,22 +34,21 @@ All builds pass successfully.
 
 Checks on [`rhub`](https://r-hub.github.io/rhub/) with `rhub::check_for_cran()`:
 
-
 ── simts 0.2.1: OK
 
-  Build ID:   simts_0.2.1.tar.gz-39727cce8e7d44cba91daf523a36f7b7
+  Build ID:   simts_0.2.1.tar.gz-5bc498627123416ab7ffba89866539bd
   Platform:   Debian Linux, R-devel, GCC ASAN/UBSAN
-  Submitted:  6h 29m 45.5s ago
-  Build time: 1h 18m 54.5s
+  Submitted:  1h 2m 38.9s ago
+  Build time: 49m 12.1s
 
 0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ── simts 0.2.1: NOTE
 
-  Build ID:   simts_0.2.1.tar.gz-69e5bfac8716484693b4d07d5a627b5d
+  Build ID:   simts_0.2.1.tar.gz-7d0185ba29ef4615bb7e9e675af4642c
   Platform:   Ubuntu Linux 20.04.1 LTS, R-release, GCC
-  Submitted:  6h 29m 45.5s ago
-  Build time: 48m 19.5s
+  Submitted:  1h 2m 38.9s ago
+  Build time: 22m 38.1s
 
 ❯ checking installed package size ... NOTE
     installed size is 42.9Mb
@@ -61,35 +56,14 @@ Checks on [`rhub`](https://r-hub.github.io/rhub/) with `rhub::check_for_cran()`:
       doc    1.5Mb
       libs  40.4Mb
 
-❯ checking top-level files ... NOTE
-  Non-standard file/directory found at top level:
-    ‘scripts’
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖
+0 errors ✔ | 0 warnings ✔ | 1 note ✖
 
 ── simts 0.2.1: NOTE
 
-  Build ID:   simts_0.2.1.tar.gz-8d126009c0ea4e009f94d915a9239811
-  Platform:   Windows Server 2022, R-devel, 64 bit
-  Submitted:  6h 29m 45.5s ago
-  Build time: 17m 29.9s
-
-❯ checking top-level files ... NOTE
-  Non-standard file/directory found at top level:
-    'scripts'
-
-❯ checking for detritus in the temp directory ... NOTE
-  Found the following files/directories:
-    'lastMiKTeXException'
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖
-
-── simts 0.2.1: NOTE
-
-  Build ID:   simts_0.2.1.tar.gz-fb3ad6d7e4f0472099a57ba9c38d1b3d
+  Build ID:   simts_0.2.1.tar.gz-bdc5c82890674c6ba48b1a5c594f6f82
   Platform:   Fedora Linux, R-devel, clang, gfortran
-  Submitted:  6h 29m 45.5s ago
-  Build time: 48m 44.6s
+  Submitted:  1h 2m 38.9s ago
+  Build time: 22m 46.9s
 
 ❯ checking installed package size ... NOTE
     installed size is 24.4Mb
@@ -97,17 +71,24 @@ Checks on [`rhub`](https://r-hub.github.io/rhub/) with `rhub::check_for_cran()`:
       doc    1.5Mb
       libs  22.0Mb
 
-❯ checking top-level files ... NOTE
-  Non-standard file/directory found at top level:
-    ‘scripts’
-
 ❯ checking HTML version of manual ... NOTE
   Skipping checking HTML validation: no command 'tidy' found
   Skipping checking math rendering: package 'V8' unavailable
 
-0 errors ✔ | 0 warnings ✔ | 3 notes ✖
+0 errors ✔ | 0 warnings ✔ | 2 notes ✖
 
+── simts 0.2.1: NOTE
 
+  Build ID:   simts_0.2.1.tar.gz-e63ae251c38e44c6aced1876d198a548
+  Platform:   Windows Server 2022, R-devel, 64 bit
+  Submitted:  1h 2m 38.9s ago
+  Build time: 12m 58.3s
+
+❯ checking for detritus in the temp directory ... NOTE
+  Found the following files/directories:
+    'lastMiKTeXException'
+
+0 errors ✔ | 0 warnings ✔ | 1 note ✖
 
 
 ### additional requirements

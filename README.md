@@ -10,8 +10,7 @@ version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-
 downloads](http://cranlogs.r-pkg.org/badges/simts)](https://www.r-pkg.org/pkg/simts)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/simts)](https://www.r-pkg.org/pkg/simts)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2022--01--03-green.svg)](https://github.com/SMAC-Group/simts)
-
+![](https://img.shields.io/github/last-commit/SMAC-Group/gmwmx) 
 # `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
 The Time Series Tools (`simts`) R package provides a series of tools to

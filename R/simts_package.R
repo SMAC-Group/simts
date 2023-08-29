@@ -1,13 +1,5 @@
 #' Simulation and Plotting Tools Time Series (simts) Package
 #' @keywords internal
-#' @details 
-#' \tabular{ll}{
-#' Package: \tab simts\cr
-#' Type: \tab Package\cr
-#' Version: \tab 1.0\cr
-#' Date: \tab 2018-09-15\cr
-#' License: \tab GPL\cr
-#' }
 #' 
 #' @author
 #' James Balamuta \email{balamut2@@illinois.edu},

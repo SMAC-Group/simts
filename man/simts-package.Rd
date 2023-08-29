@@ -12,14 +12,6 @@ A system contains easy-to-use tools as a support for time series analysis course
 }
 \details{
 The data sets in this package may change at a moments notice.
-
-\tabular{ll}{
-Package: \tab simts\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2018-09-15\cr
-License: \tab GPL\cr
-}
 }
 \seealso{
 Useful links:

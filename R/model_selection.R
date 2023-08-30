@@ -116,7 +116,7 @@ select_arma = function(xt,
   invisible(out)
 }
 
-print.select_arma = function(x) {
+print.select_arma = function(x, ...) {
   
   cat("Use plot() to see the model criteria or best_model() to select which model you want")
   

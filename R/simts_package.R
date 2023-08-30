@@ -19,4 +19,5 @@
 #' @importFrom Rcpp evalCpp
 #' @importFrom stats arima predict ts as.ts is.ts qnorm rnorm
 #' @importFrom scales trans_breaks trans_format math_format
+"_PACKAGE"
 NULL

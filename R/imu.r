@@ -161,7 +161,7 @@ imu = function(data, gyros = NULL, accels = NULL, axis = NULL, freq = NULL, unit
 #' @description Internal quick build for imu object.
 #' @param data A \code{matrix} with dimensions N x length(index)
 #' @param ngyros An \code{integer} containing the number of gyroscopes
-#' @param naccess An \code{integer} containing the number of accelerometers
+#' @param nacces An \code{integer} containing the number of accelerometers
 #' @param axis A \code{vector} unique representation of elements e.g. x,y,z or x,y or x.
 #' @param freq An \code{integer} that provides the frequency for the data.
 #' @param unit A \code{string} that contains the unit expression of the frequency. Default value is \code{NULL}.

@@ -146,8 +146,6 @@ arma::vec gmwm_engine(const arma::vec& theta,
 //' @param desc A \code{vector<string>} indicating the models that should be considered.
 //' @param objdesc A \code{field<vec>} containing a list of parameters (e.g. AR(1) = c(1,1), ARMA(p,q) = c(p,q,1))
 //' @param model_type A \code{string} that represents the model transformation
-//' @param wv_empir A \code{vec} that contains the empirical wavelet variance
-//' @param omega A \code{mat} that represents the covariance matrix.
 //' @param scales A \code{vec} that contains the scales or taus (2^(1:J))
 //' @param starting A \code{bool} that indicates whether we guessed starting (T) or the user supplied estimates (F).
 //' @return A \code{field<mat>} that contains the parameter estimates from GMWM estimator.

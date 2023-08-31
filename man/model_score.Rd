@@ -12,10 +12,6 @@ model_score(A, D, omega, v_hat, obj_value)
 \item{omega}{A \code{mat} that contains the omega used when calculating the GMWM}
 
 \item{v_hat}{A \code{mat} that contains the covariance matrix}
-
-\item{At_j}{A \code{mat} that contains the second derivative of each process}
-
-\item{diff}{A \code{vec} that is the difference of the WV empirical and WV theoretical}
 }
 \value{
 A \code{vec}

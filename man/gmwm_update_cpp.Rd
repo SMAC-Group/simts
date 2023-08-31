@@ -36,10 +36,6 @@ gmwm_update_cpp(
 \item{scales}{A \code{vec} that contains the scales or taus (2^(1:J))}
 
 \item{starting}{A \code{bool} that indicates whether we guessed starting (T) or the user supplied estimates (F).}
-
-\item{wv_empir}{A \code{vec} that contains the empirical wavelet variance}
-
-\item{omega}{A \code{mat} that represents the covariance matrix.}
 }
 \value{
 A \code{field<mat>} that contains the parameter estimates from GMWM estimator.

@@ -99,7 +99,6 @@ void set_seed(unsigned int seed) {
 
 //' @title Conversion function of Vector to Set
 //' @description Converts a vector into a set
-//' @param x A \code{vec<vec<string>>} that contains a list of model descriptors.
 //' @return A \code{set<vector<string>>} that contains the list of unique models.
 //' @keywords internal
 // [[Rcpp::export]]
@@ -678,7 +677,6 @@ arma::field< arma::field<arma::field<arma::mat> > >  rank_models_cpp(arma::vec& 
 //' @title Find the auto imu result
 //' @description Provides the core material to create an S3 object for auto.imu
 //' @param data A \code{mat} containing multiple columns of independent data with the same number of observations.
-//' @param model_str A \code{vector<vector<string>>} that gives a list of models to test.
 //' @param full_model A \code{vector<string>} that contains the largest / full model.
 //' @param alpha A \code{double} that indicates the alpha level for CIs.
 //' @param compute_v A \code{string} indicating the type of V matrix to generate

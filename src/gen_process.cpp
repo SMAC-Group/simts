@@ -772,7 +772,6 @@ arma::vec gen_sarima(const unsigned int N,
 //' @param theta_values A \code{vec} containing the parameters for (S)AR and (S)MA.
 //' @param objdesc      A \code{vec} that contains the \code{\link{+.ts.model}}'s obj.desc field.
 //' @param sigma2       A \code{double} that contains process variance.
-//' @param s            An \code{integer} that contains a seasonal id. 
 //' @param n_start      An \code{unsigned int} that indicates the amount of observations to be used for the burn in period. 
 //' @return A \code{vec} that contains the generated observations.
 //' @details 

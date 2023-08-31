@@ -366,7 +366,6 @@ set_seed <- function(seed) {
 
 #' @title Conversion function of Vector to Set
 #' @description Converts a vector into a set
-#' @param x A \code{vec<vec<string>>} that contains a list of model descriptors.
 #' @return A \code{set<vector<string>>} that contains the list of unique models.
 #' @keywords internal
 vector_to_set <- function(model_str) {
@@ -406,7 +405,6 @@ rank_models_cpp <- function(data, model_str, full_model, alpha, compute_v, model
 #' @title Find the auto imu result
 #' @description Provides the core material to create an S3 object for auto.imu
 #' @param data A \code{mat} containing multiple columns of independent data with the same number of observations.
-#' @param model_str A \code{vector<vector<string>>} that gives a list of models to test.
 #' @param full_model A \code{vector<string>} that contains the largest / full model.
 #' @param alpha A \code{double} that indicates the alpha level for CIs.
 #' @param compute_v A \code{string} indicating the type of V matrix to generate
@@ -975,7 +973,6 @@ gen_sarima <- function(N, ar, d, ma, sar, sd, sma, sigma2 = 1.5, s = 12L, n_star
 #' @param theta_values A \code{vec} containing the parameters for (S)AR and (S)MA.
 #' @param objdesc      A \code{vec} that contains the \code{\link{+.ts.model}}'s obj.desc field.
 #' @param sigma2       A \code{double} that contains process variance.
-#' @param s            An \code{integer} that contains a seasonal id. 
 #' @param n_start      An \code{unsigned int} that indicates the amount of observations to be used for the burn in period. 
 #' @return A \code{vec} that contains the generated observations.
 #' @details 
@@ -1073,8 +1070,6 @@ gmwm_engine <- function(theta, desc, objdesc, model_type, wv_empir, omega, scale
 #' @param desc A \code{vector<string>} indicating the models that should be considered.
 #' @param objdesc A \code{field<vec>} containing a list of parameters (e.g. AR(1) = c(1,1), ARMA(p,q) = c(p,q,1))
 #' @param model_type A \code{string} that represents the model transformation
-#' @param wv_empir A \code{vec} that contains the empirical wavelet variance
-#' @param omega A \code{mat} that represents the covariance matrix.
 #' @param scales A \code{vec} that contains the scales or taus (2^(1:J))
 #' @param starting A \code{bool} that indicates whether we guessed starting (T) or the user supplied estimates (F).
 #' @return A \code{field<mat>} that contains the parameter estimates from GMWM estimator.
@@ -1121,9 +1116,7 @@ gmwm_master_cpp <- function(data, theta, desc, objdesc, model_type, starting, al
 #' @param num_param An \code{unsigned int} number of parameters in the model (e.g. # of thetas).
 #' @param expect_diff A \code{double} that contains the mean of the first difference of the data
 #' @param N A \code{integer} that contains the number of observations in the data.
-#' @param wv_empir A \code{vec} that contains the empirical wavelet variance.
 #' @param tau A \code{vec} that contains the scales. (e.g. 2^(1:J))
-#' @param double A \code{double} that contains the drift slope given by \eqn{\frac{max-min}{N}}{(Max-Min)/N}
 #' @param G A \code{integer} that indicates how many random draws that should be performed.
 #' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 #' @keywords internal
@@ -1334,10 +1327,8 @@ B_matrix <- function(A, at_omega) {
 #' @title Model Score
 #' @description Calculates the modeling score of a GMWM
 #' @param A A \code{mat} that contains the first derivatives of the processes
-#' @param At_j  A \code{mat} that contains the second derivative of each process
 #' @param omega A \code{mat} that contains the omega used when calculating the GMWM
 #' @param v_hat A \code{mat} that contains the covariance matrix
-#' @param diff A \code{vec} that is the difference of the WV empirical and WV theoretical
 #' @return A \code{vec}
 #' @keywords internal
 #' @backref src/model_selection.cpp

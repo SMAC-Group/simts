@@ -180,16 +180,21 @@ arma::vec draw_ar1_memory_large(double sigma2_total, double last_phi){
 //' @param num_param An \code{unsigned int} number of parameters in the model (e.g. # of thetas).
 //' @param expect_diff A \code{double} that contains the mean of the first difference of the data
 //' @param N A \code{integer} that contains the number of observations in the data.
-//' @param wv_empir A \code{vec} that contains the empirical wavelet variance.
 //' @param tau A \code{vec} that contains the scales. (e.g. 2^(1:J))
-//' @param double A \code{double} that contains the drift slope given by \eqn{\frac{max-min}{N}}{(Max-Min)/N}
 //' @param G A \code{integer} that indicates how many random draws that should be performed.
 //' @return A \code{vec} containing smart parameter starting guesses to be iterated over.
 //' @keywords internal
 // [[Rcpp::export]]
-arma::vec guess_initial(const std::vector<std::string>& desc, const arma::field<arma::vec>& objdesc,
-                        std::string model_type, unsigned int num_param, double expect_diff, unsigned int N,
-                        const arma::mat& wv, const arma::vec& tau, double ranged, unsigned int G){
+arma::vec guess_initial(const std::vector<std::string>& desc, 
+                        const arma::field<arma::vec>& objdesc,
+                        std::string model_type, 
+                        unsigned int num_param, 
+                        double expect_diff,
+                        unsigned int N,
+                        const arma::mat& wv,
+                        const arma::vec& tau, 
+                        double ranged, 
+                        unsigned int G){
   
   // Obtain the sum of variances for sigma^2_total.
   

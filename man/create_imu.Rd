@@ -20,6 +20,8 @@ create_imu(
 
 \item{ngyros}{An \code{integer} containing the number of gyroscopes}
 
+\item{nacces}{An \code{integer} containing the number of accelerometers}
+
 \item{axis}{A \code{vector} unique representation of elements e.g. x,y,z or x,y or x.}
 
 \item{freq}{An \code{integer} that provides the frequency for the data.}
@@ -29,8 +31,6 @@ create_imu(
 \item{name}{A \code{string} that provides an identifier to the data. Default value is \code{NULL}.}
 
 \item{stype}{A \code{string} that describes the sensor type. Default value is \code{NULL}.}
-
-\item{naccess}{An \code{integer} containing the number of accelerometers}
 }
 \value{
 An \code{imu} object class.

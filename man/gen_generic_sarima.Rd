@@ -16,8 +16,6 @@ gen_generic_sarima(N, theta_values, objdesc, sigma2 = 1.5, n_start = 0L)
 \item{sigma2}{A \code{double} that contains process variance.}
 
 \item{n_start}{An \code{unsigned int} that indicates the amount of observations to be used for the burn in period.}
-
-\item{s}{An \code{integer} that contains a seasonal id.}
 }
 \value{
 A \code{vec} that contains the generated observations.

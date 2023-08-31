@@ -44,8 +44,6 @@ auto_imu_cpp(
 \item{bs_optimism}{A \code{bool} that indicates whether the model selection score should be calculated with bootstrap or asymptotics.}
 
 \item{seed}{A \code{unsigned int} that is the seed one wishes to use.}
-
-\item{model_str}{A \code{vector<vector<string>>} that gives a list of models to test.}
 }
 \value{
 A \code{field<field<field<mat>>>} that contains the model score matrix and the best GMWM model object.

@@ -53,10 +53,8 @@ arma::mat B_matrix(const arma::mat& A, const arma::mat& at_omega){
 //' @title Model Score
 //' @description Calculates the modeling score of a GMWM
 //' @param A A \code{mat} that contains the first derivatives of the processes
-//' @param At_j  A \code{mat} that contains the second derivative of each process
 //' @param omega A \code{mat} that contains the omega used when calculating the GMWM
 //' @param v_hat A \code{mat} that contains the covariance matrix
-//' @param diff A \code{vec} that is the difference of the WV empirical and WV theoretical
 //' @return A \code{vec}
 //' @keywords internal
 //' @backref src/model_selection.cpp

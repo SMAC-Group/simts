@@ -6,9 +6,6 @@
 \usage{
 vector_to_set(model_str)
 }
-\arguments{
-\item{x}{A \code{vec<vec<string>>} that contains a list of model descriptors.}
-}
 \value{
 A \code{set<vector<string>>} that contains the list of unique models.
 }

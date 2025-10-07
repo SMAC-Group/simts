@@ -96,11 +96,9 @@ arma::vec qmf(arma::vec g, bool inverse = true) {
 //' @description Creates the haar filter
 //' @usage haar_filter()
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -129,11 +127,9 @@ arma::field<arma::vec> haar_filter() {
 //' @title d4 filter construction
 //' @description Creates the d4 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -166,11 +162,9 @@ arma::field<arma::vec> d4_filter() {
 //' @title mb4 filter construction
 //' @description Creates the mb4 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -201,11 +195,9 @@ arma::field<arma::vec> mb4_filter() {
 //' @title w4 filter construction
 //' @description Creates the w4 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -240,11 +232,9 @@ arma::field<arma::vec> w4_filter() {
 //' @title fk4 filter construction
 //' @description Creates the fk4 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -275,11 +265,9 @@ arma::field<arma::vec> fk4_filter() {
 //' @title d6 filter construction
 //' @description Creates the d6 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -313,11 +301,9 @@ arma::field<arma::vec> d6_filter() {
 //' @title fk6 filter construction
 //' @description Creates the fk6 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -350,11 +336,9 @@ arma::field<arma::vec> fk6_filter() {
 //' @title d8 filter construction
 //' @description Creates the d8 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -390,11 +374,9 @@ arma::field<arma::vec> d8_filter() {
 //' @title fk8 filter construction
 //' @description Creates the fk8 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -429,11 +411,9 @@ arma::field<arma::vec> fk8_filter() {
 //' @title la8 filter construction
 //' @description Creates the la8 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -468,11 +448,9 @@ arma::field<arma::vec> la8_filter() {
 //' @title mb8 filter construction
 //' @description Creates the mb8 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -507,11 +485,9 @@ arma::field<arma::vec> mb8_filter() {
 //' @title bl14 filter construction
 //' @description Creates the bl14 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -552,11 +528,9 @@ arma::field<arma::vec> bl14_filter() {
 //' @title fk14 filter construction
 //' @description Creates the fk14 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -597,11 +571,9 @@ arma::field<arma::vec> fk14_filter() {
 //' @title d16 filter construction
 //' @description Creates the d16 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -645,11 +617,9 @@ arma::field<arma::vec> d16_filter() {
 //' @title la16 filter construction
 //' @description Creates the la16 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -693,11 +663,9 @@ arma::field<arma::vec> la16_filter() {
 //' @title mb16 filter construction
 //' @description Creates the mb16 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -741,11 +709,9 @@ arma::field<arma::vec> mb16_filter() {
 //' @title la20 filter construction
 //' @description Creates the la20 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -793,11 +759,9 @@ arma::field<arma::vec> la20_filter() {
 //' @title bl20 filter construction
 //' @description Creates the bl20 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -846,11 +810,9 @@ arma::field<arma::vec> bl20_filter() {
 //' @title fk22 filter construction
 //' @description Creates the fk22 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -900,11 +862,9 @@ arma::field<arma::vec> fk22_filter() {
 //' @title mb24 filter construction
 //' @description Creates the mb24 filter
 //' @return A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details
 //' This template can be used to increase the amount of filters available for selection.
 //' @author JJB
@@ -961,11 +921,9 @@ arma::field<arma::vec> mb24_filter() {
 //' @usage select_filter(filter_name)
 //' @param filter_name A \code{String} that must receive: \code{"haar"}.
 //' @return info A \code{field<vec>} that contains:
-//' \itemize{
 //'  \item{"L"}{A \code{integer} specifying the length of the filter}
 //'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 //'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-//' }
 //' @details 
 //' The package is oriented toward using only the haar filter. If the package extends at a later time, then the supporting infrastructure is there.
 //' @author JJB

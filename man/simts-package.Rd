@@ -2,7 +2,6 @@
 % Please edit documentation in R/data.R, R/simts_package.R
 \docType{package}
 \name{simts-package}
-\alias{simts}
 \alias{simts-package}
 \title{simts: Time Series Analysis Tools}
 \description{

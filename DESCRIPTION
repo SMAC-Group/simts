@@ -39,7 +39,7 @@ Imports:
     tidyr,
     robcor
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Encoding: UTF-8
 Suggests:
     knitr,
@@ -47,4 +47,3 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://github.com/SMAC-Group/simts, https://arxiv.org/pdf/1607.04543.pdf
 BugReports: https://github.com/SMAC-Group/simts/issues
-

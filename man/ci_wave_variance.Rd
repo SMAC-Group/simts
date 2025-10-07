@@ -28,11 +28,9 @@ ci_wave_variance(
 }
 \value{
 A \code{matrix} with the structure:
-\itemize{
  \item{Column 1}{Wavelet Variance}
  \item{Column 2}{Chi-squared Lower Bounds}
  \item{Column 3}{Chi-squared Upper Bounds}
-}
 }
 \description{
 Computes an estimate of the multiscale variance and a chi-squared confidence interval

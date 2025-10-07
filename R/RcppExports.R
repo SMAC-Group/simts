@@ -2128,11 +2128,9 @@ model_process_desc <- function(desc) {
 #' @param dims       A \code{String} indicating the confidence interval being calculated.
 #' @param alpha_ov_2 A \code{double} that indicates the \eqn{\left(1-p\right)*\alpha}{(1-p)*alpha} confidence level 
 #' @return A \code{matrix} with the structure:
-#' \itemize{
 #'  \item{Column 1}{Wavelet Variance}
 #'  \item{Column 2}{Chi-squared Lower Bounds}
 #'  \item{Column 3}{Chi-squared Upper Bounds}
-#' }
 #' @keywords internal
 ci_eta3 <- function(y, dims, alpha_ov_2) {
     .Call('_simts_ci_eta3', PACKAGE = 'simts', y, dims, alpha_ov_2)
@@ -2145,11 +2143,9 @@ ci_eta3 <- function(y, dims, alpha_ov_2) {
 #' @param alpha_ov_2  A \code{double} that indicates the \eqn{\left(1-p\right)*\alpha}{(1-p)*alpha} confidence level
 #' @param eff         A \code{double} that indicates the efficiency.
 #' @return A \code{matrix} with the structure:
-#' \itemize{
 #'  \item{Column 1}{Robust Wavelet Variance}
 #'  \item{Column 2}{Chi-squared Lower Bounds}
 #'  \item{Column 3}{Chi-squared Upper Bounds}
-#' }
 #' @details
 #' Within this function we are scaling the classical 
 #' @keywords internal
@@ -2166,11 +2162,9 @@ ci_eta3_robust <- function(wv_robust, wv_ci_class, alpha_ov_2, eff) {
 #' @param robust          A \code{boolean} to determine the type of wave estimation.
 #' @param eff             A \code{double} that indicates the efficiency.
 #' @return A \code{matrix} with the structure:
-#' \itemize{
 #'  \item{Column 1}{Wavelet Variance}
 #'  \item{Column 2}{Chi-squared Lower Bounds}
 #'  \item{Column 3}{Chi-squared Upper Bounds}
-#' }
 #' @keywords internal
 #' @details 
 #' This function can be expanded to allow for other confidence interval calculations.
@@ -2241,11 +2235,9 @@ modwt_wvar_cpp <- function(signal, nlevels, robust, eff, alpha, ci_type, strWave
 #' @param strWavelet A \code{string} indicating the type of wave filter to be applied. Must be "haar"
 #' @param decomp     A \code{string} indicating whether to use "modwt" or "dwt" decomp
 #' @return A \code{field<mat>} with the structure:
-#' \itemize{
 #'   \item{"variance"}{Wavelet Variance}
 #'   \item{"low"}{Lower CI}
 #'   \item{"high"}{Upper CI}
-#' }
 #' @keywords internal
 #' @details 
 #' This function processes the decomposition of multiple signals quickly
@@ -2281,11 +2273,9 @@ qmf <- function(g, inverse = TRUE) {
 #' @description Creates the haar filter
 #' @usage haar_filter()
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2297,11 +2287,9 @@ haar_filter <- function() {
 #' @title d4 filter construction
 #' @description Creates the d4 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2313,11 +2301,9 @@ d4_filter <- function() {
 #' @title mb4 filter construction
 #' @description Creates the mb4 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2329,11 +2315,9 @@ mb4_filter <- function() {
 #' @title w4 filter construction
 #' @description Creates the w4 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2345,11 +2329,9 @@ w4_filter <- function() {
 #' @title fk4 filter construction
 #' @description Creates the fk4 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2361,11 +2343,9 @@ fk4_filter <- function() {
 #' @title d6 filter construction
 #' @description Creates the d6 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2377,11 +2357,9 @@ d6_filter <- function() {
 #' @title fk6 filter construction
 #' @description Creates the fk6 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2393,11 +2371,9 @@ fk6_filter <- function() {
 #' @title d8 filter construction
 #' @description Creates the d8 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2409,11 +2385,9 @@ d8_filter <- function() {
 #' @title fk8 filter construction
 #' @description Creates the fk8 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2425,11 +2399,9 @@ fk8_filter <- function() {
 #' @title la8 filter construction
 #' @description Creates the la8 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2441,11 +2413,9 @@ la8_filter <- function() {
 #' @title mb8 filter construction
 #' @description Creates the mb8 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2457,11 +2427,9 @@ mb8_filter <- function() {
 #' @title bl14 filter construction
 #' @description Creates the bl14 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2473,11 +2441,9 @@ bl14_filter <- function() {
 #' @title fk14 filter construction
 #' @description Creates the fk14 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2489,11 +2455,9 @@ fk14_filter <- function() {
 #' @title d16 filter construction
 #' @description Creates the d16 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2505,11 +2469,9 @@ d16_filter <- function() {
 #' @title la16 filter construction
 #' @description Creates the la16 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2521,11 +2483,9 @@ la16_filter <- function() {
 #' @title mb16 filter construction
 #' @description Creates the mb16 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2537,11 +2497,9 @@ mb16_filter <- function() {
 #' @title la20 filter construction
 #' @description Creates the la20 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2553,11 +2511,9 @@ la20_filter <- function() {
 #' @title bl20 filter construction
 #' @description Creates the bl20 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2569,11 +2525,9 @@ bl20_filter <- function() {
 #' @title fk22 filter construction
 #' @description Creates the fk22 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2585,11 +2539,9 @@ fk22_filter <- function() {
 #' @title mb24 filter construction
 #' @description Creates the mb24 filter
 #' @return A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details
 #' This template can be used to increase the amount of filters available for selection.
 #' @author JJB
@@ -2603,11 +2555,9 @@ mb24_filter <- function() {
 #' @usage select_filter(filter_name)
 #' @param filter_name A \code{String} that must receive: \code{"haar"}.
 #' @return info A \code{field<vec>} that contains:
-#' \itemize{
 #'  \item{"L"}{A \code{integer} specifying the length of the filter}
 #'  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
 #'  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-#' }
 #' @details 
 #' The package is oriented toward using only the haar filter. If the package extends at a later time, then the supporting infrastructure is there.
 #' @author JJB

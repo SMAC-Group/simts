@@ -33,11 +33,9 @@
 //' @param dims       A \code{String} indicating the confidence interval being calculated.
 //' @param alpha_ov_2 A \code{double} that indicates the \eqn{\left(1-p\right)*\alpha}{(1-p)*alpha} confidence level 
 //' @return A \code{matrix} with the structure:
-//' \itemize{
 //'  \item{Column 1}{Wavelet Variance}
 //'  \item{Column 2}{Chi-squared Lower Bounds}
 //'  \item{Column 3}{Chi-squared Upper Bounds}
-//' }
 //' @keywords internal
 // [[Rcpp::export]]
 arma::mat ci_eta3(const arma::vec& y, const arma::vec& dims, double alpha_ov_2) {
@@ -64,11 +62,9 @@ arma::mat ci_eta3(const arma::vec& y, const arma::vec& dims, double alpha_ov_2) 
 //' @param alpha_ov_2  A \code{double} that indicates the \eqn{\left(1-p\right)*\alpha}{(1-p)*alpha} confidence level
 //' @param eff         A \code{double} that indicates the efficiency.
 //' @return A \code{matrix} with the structure:
-//' \itemize{
 //'  \item{Column 1}{Robust Wavelet Variance}
 //'  \item{Column 2}{Chi-squared Lower Bounds}
 //'  \item{Column 3}{Chi-squared Upper Bounds}
-//' }
 //' @details
 //' Within this function we are scaling the classical 
 //' @keywords internal
@@ -120,11 +116,9 @@ arma::mat ci_eta3_robust(const arma::vec& wv_robust, const arma::mat& wv_ci_clas
 //' @param robust          A \code{boolean} to determine the type of wave estimation.
 //' @param eff             A \code{double} that indicates the efficiency.
 //' @return A \code{matrix} with the structure:
-//' \itemize{
 //'  \item{Column 1}{Wavelet Variance}
 //'  \item{Column 2}{Chi-squared Lower Bounds}
 //'  \item{Column 3}{Chi-squared Upper Bounds}
-//' }
 //' @keywords internal
 //' @details 
 //' This function can be expanded to allow for other confidence interval calculations.
@@ -272,11 +266,9 @@ arma::mat modwt_wvar_cpp(const arma::vec& signal, unsigned int nlevels, bool rob
 //' @param strWavelet A \code{string} indicating the type of wave filter to be applied. Must be "haar"
 //' @param decomp     A \code{string} indicating whether to use "modwt" or "dwt" decomp
 //' @return A \code{field<mat>} with the structure:
-//' \itemize{
 //'   \item{"variance"}{Wavelet Variance}
 //'   \item{"low"}{Lower CI}
 //'   \item{"high"}{Upper CI}
-//' }
 //' @keywords internal
 //' @details 
 //' This function processes the decomposition of multiple signals quickly

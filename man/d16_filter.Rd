@@ -8,11 +8,9 @@ d16_filter()
 }
 \value{
 A \code{field<vec>} that contains:
-\itemize{
  \item{"L"}{A \code{integer} specifying the length of the filter}
  \item{"h"}{A \code{vector} containing the coefficients for the wavelet filter}
  \item{"g"}{A \code{vector} containing the coefficients for the scaling filter}
-}
 }
 \description{
 Creates the d16 filter

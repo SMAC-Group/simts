@@ -15,11 +15,9 @@ ci_eta3(y, dims, alpha_ov_2)
 }
 \value{
 A \code{matrix} with the structure:
-\itemize{
  \item{Column 1}{Wavelet Variance}
  \item{Column 2}{Chi-squared Lower Bounds}
  \item{Column 3}{Chi-squared Upper Bounds}
-}
 }
 \description{
 Computes the eta3 CI

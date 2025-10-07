@@ -15,7 +15,6 @@
 }
 \value{
 A \code{gmwm} object with the structure:
-\itemize{
  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
  \item{wv.empir}{The data's empirical wavelet variance}
@@ -44,7 +43,6 @@ A \code{gmwm} object with the structure:
  \item{starting}{Indicates whether the procedure used the initial guessing approach}
  \item{seed}{Randomization seed used to generate the guessing values}
  \item{freq}{Frequency of data}
-}
 }
 \description{
 Provides a way to estimate different models over the previously estimated

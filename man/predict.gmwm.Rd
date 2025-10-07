@@ -18,11 +18,9 @@ Generalized Method of Wavelet Moments}
 }
 \value{
 A \code{predict.gmwm} object with:
-\itemize{
 \item{pred}{Predictions}
 \item{se}{Standard Errors}
 \item{resid}{Residuals from ARIMA ML Fit}
-}
 }
 \description{
 Creates a prediction using the estimated values of GMWM through the

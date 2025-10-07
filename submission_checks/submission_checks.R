@@ -41,6 +41,7 @@ check = rhub::check_for_cran(email = "lionelvoirol@hotmail.com")
 check = rhub::check(platform = "linux-x86_64-rocker-gcc-san", email = "lionelvoirol@hotmail.com")
 
 # reverse dependency
+library(revdepcheck)
 red_rev_dep_check = revdep_check(num_workers = 4)
 revdepcheck::revdep_report()
 revdepcheck::revdep_report_summary()

@@ -1,25 +1,141 @@
-## Test environmentsfor version simts 0.2.1
+## Test environmentsfor version simts 0.2.3
 
 ### Local checks
 
-`devtools::check()` on local Ubuntu 20.04: Focal Fossa install, R 4.2.1: 
+`devtools::check()` on local Ubuntu 20.04
 
-── R CMD check results ────── simts 0.2.1 ────
-Duration: 5m 34.7s
+==> Rcpp::compileAttributes()
 
-❯ checking installed package size ... NOTE
-    installed size is 42.9Mb
-    sub-directories of 1Mb or more:
-      doc    1.5Mb
-      libs  40.5Mb
+* Updated R/RcppExports.R
 
-0 errors ✔ | 0 warnings ✔ | 1 note ✖
+==> devtools::check()
+
+══ Documenting ════════════════════════════════════
+ℹ Updating simts documentation
+ℹ Loading simts
+
+══ Building ═══════════════════════════════════════
+Setting env vars:
+• CFLAGS    : -Wall -pedantic -fdiagnostics-color=always
+• CXXFLAGS  : -Wall -pedantic -fdiagnostics-color=always
+• CXX11FLAGS: -Wall -pedantic -fdiagnostics-color=always
+• CXX14FLAGS: -Wall -pedantic -fdiagnostics-color=always
+• CXX17FLAGS: -Wall -pedantic -fdiagnostics-color=always
+• CXX20FLAGS: -Wall -pedantic -fdiagnostics-color=always
+── R CMD build ────────────────────────────────────
+✔  checking for file ‘/home/lionel/github_repo/simts/DESCRIPTION’ ...
+─  preparing ‘simts’:
+✔  checking DESCRIPTION meta-information ...
+─  cleaning src
+─  installing the package to build vignettes
+✔  creating vignettes (3m 26.9s)
+─  cleaning src
+─  checking for LF line-endings in source and make files and shell scripts (578ms)
+─  checking for empty or unneeded directories
+─  building ‘simts_0.2.3.tar.gz’ (655ms)
+   
+══ Checking ═══════════════════════════════════════
+Setting env vars:
+• _R_CHECK_CRAN_INCOMING_USE_ASPELL_           : TRUE
+• _R_CHECK_CRAN_INCOMING_REMOTE_               : FALSE
+• _R_CHECK_CRAN_INCOMING_                      : FALSE
+• _R_CHECK_FORCE_SUGGESTS_                     : FALSE
+• _R_CHECK_PACKAGES_USED_IGNORE_UNUSED_IMPORTS_: FALSE
+• NOT_CRAN                                     : true
+── R CMD check ────────────────────────────────────
+─  using log directory ‘/home/lionel/github_repo/simts.Rcheck’ (359ms)
+─  using R version 4.5.1 (2025-06-13)
+─  using platform: x86_64-pc-linux-gnu
+─  R was compiled by
+       gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+       GNU Fortran (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+─  running under: Ubuntu 22.04.5 LTS
+─  using session charset: UTF-8
+─  using options ‘--no-manual --as-cran’ (533ms)
+✔  checking for file ‘simts/DESCRIPTION’
+─  checking extension type ... Package
+─  this is package ‘simts’ version ‘0.2.3’
+─  package encoding: UTF-8
+✔  checking package namespace information ...
+✔  checking package dependencies (1.5s)
+✔  checking if this is a source package
+✔  checking if there is a namespace
+✔  checking for executable files (1.1s)
+✔  checking for hidden files and directories ...
+✔  checking for portable file names ...
+✔  checking for sufficient/correct file permissions
+─  checking whether package ‘simts’ can be installed ... [190s/190s] OK (3m 9.8s)
+─  used C++ compiler: ‘g++ (Ubuntu 11.4.0-1ubuntu1~22.04.2) 11.4.0’
+─  checking installed package size ... INFO
+     installed size is 33.3Mb
+     sub-directories of 1Mb or more:
+       doc    1.5Mb
+       libs  30.8Mb
+✔  checking package directory ...
+✔  checking for future file timestamps (1.2s)
+✔  checking ‘build’ directory
+✔  checking DESCRIPTION meta-information (908ms)
+✔  checking top-level files
+✔  checking for left-over files
+✔  checking index information (402ms)
+✔  checking package subdirectories (957ms)
+✔  checking code files for non-ASCII characters ...
+✔  checking R files for syntax errors ...
+✔  checking whether the package can be loaded (880ms)
+✔  checking whether the package can be loaded with stated dependencies (704ms)
+✔  checking whether the package can be unloaded cleanly (746ms)
+✔  checking whether the namespace can be loaded with stated dependencies (755ms)
+✔  checking whether the namespace can be unloaded cleanly (848ms)
+✔  checking loading without being on the library search path (889ms)
+✔  checking dependencies in R code (1.8s)
+✔  checking S3 generic/method consistency (883ms)
+✔  checking replacement functions (697ms)
+✔  checking foreign function calls (942ms)
+─  checking R code for possible problems ... [11s/11s] OK (10.9s)
+✔  checking Rd files (1s)
+✔  checking Rd metadata ...
+✔  checking Rd line widths (459ms)
+✔  checking Rd cross-references (764ms)
+✔  checking for missing documentation entries (888ms)
+✔  checking for code/documentation mismatches (2.5s)
+✔  checking Rd \usage sections (1.6s)
+✔  checking Rd contents (537ms)
+✔  checking for unstated dependencies in examples ...
+✔  checking contents of ‘data’ directory ...
+✔  checking data for non-ASCII characters ...
+✔  checking LazyData
+✔  checking data for ASCII and uncompressed saves ...
+✔  checking line endings in C/C++/Fortran sources/headers ...
+✔  checking line endings in Makefiles
+✔  checking compilation flags in Makevars ...
+✔  checking for GNU extensions in Makefiles ...
+✔  checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS)
+✔  checking use of PKG_*FLAGS in Makefiles ...
+✔  checking use of SHLIB_OPENMP_*FLAGS in Makefiles
+✔  checking pragmas in C/C++ headers and code ...
+✔  checking compilation flags used
+✔  checking compiled code ...
+✔  checking installed files from ‘inst/doc’ ...
+✔  checking files in ‘vignettes’ ...
+─  checking examples ... [13s/13s] OK (13.4s)
+✔  checking for unstated dependencies in vignettes ...
+✔  checking package vignettes ...
+─  checking re-building of vignette outputs ... [11s/11s] OK (10.6s)
+✔  checking for non-standard things in the check directory
+✔  checking for detritus in the temp directory
+   
+   
+── R CMD check results ─────────── simts 0.2.3 ────
+Duration: 4m 11.5s
+
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 R CMD check succeeded
 
+
 ### Github actions CI workflows
 
-Standard CI workflow with GitHub actions (macOS, windows, ubuntu) implemented using `usethis::use_github_action("check-standard")` described [here](https://github.com/r-lib/actions/tree/master/examples).
+Standard CI workflow with GitHub actions (macOS, windows, ubuntu)
 
 Results on the following environments:
   - MacOS-latest (release)
@@ -30,116 +146,12 @@ Results on the following environments:
   
 All builds pass successfully.
 
-### Rhub checks
 
-Checks on [`rhub`](https://r-hub.github.io/rhub/) with `rhub::check_for_cran()`:
-
-── simts 0.2.1: OK
-
-  Build ID:   simts_0.2.1.tar.gz-5bc498627123416ab7ffba89866539bd
-  Platform:   Debian Linux, R-devel, GCC ASAN/UBSAN
-  Submitted:  1h 2m 38.9s ago
-  Build time: 49m 12.1s
-
-0 errors ✔ | 0 warnings ✔ | 0 notes ✔
-
-── simts 0.2.1: NOTE
-
-  Build ID:   simts_0.2.1.tar.gz-7d0185ba29ef4615bb7e9e675af4642c
-  Platform:   Ubuntu Linux 20.04.1 LTS, R-release, GCC
-  Submitted:  1h 2m 38.9s ago
-  Build time: 22m 38.1s
-
-❯ checking installed package size ... NOTE
-    installed size is 42.9Mb
-    sub-directories of 1Mb or more:
-      doc    1.5Mb
-      libs  40.4Mb
-
-0 errors ✔ | 0 warnings ✔ | 1 note ✖
-
-── simts 0.2.1: NOTE
-
-  Build ID:   simts_0.2.1.tar.gz-bdc5c82890674c6ba48b1a5c594f6f82
-  Platform:   Fedora Linux, R-devel, clang, gfortran
-  Submitted:  1h 2m 38.9s ago
-  Build time: 22m 46.9s
-
-❯ checking installed package size ... NOTE
-    installed size is 24.4Mb
-    sub-directories of 1Mb or more:
-      doc    1.5Mb
-      libs  22.0Mb
-
-❯ checking HTML version of manual ... NOTE
-  Skipping checking HTML validation: no command 'tidy' found
-  Skipping checking math rendering: package 'V8' unavailable
-
-0 errors ✔ | 0 warnings ✔ | 2 notes ✖
-
-── simts 0.2.1: NOTE
-
-  Build ID:   simts_0.2.1.tar.gz-e63ae251c38e44c6aced1876d198a548
-  Platform:   Windows Server 2022, R-devel, 64 bit
-  Submitted:  1h 2m 38.9s ago
-  Build time: 12m 58.3s
-
-❯ checking for detritus in the temp directory ... NOTE
-  Found the following files/directories:
-    'lastMiKTeXException'
-
-0 errors ✔ | 0 warnings ✔ | 1 note ✖
-
-
-### additional requirements
-
-On Ubuntu 20.04, Windows Server 2022 and potentially other sytems, there is an additional warning if the package `qpdf` (https://sourceforge.net/projects/qpdf/files/latest/download) is not previously installed. This appears to be a common note for package check on Linux systems and once installed, the warning does not appears.
+see https://github.com/SMAC-Group/simts/actions/workflows/R-CMD-check.yaml
 
 ## Downstream dependencies
 
 There are currently no downstream dependencies for this package.
-
-## Reverse Dependencies
-
-Reverse dependencies were checked with `revdepcheck` (https://github.com/r-lib/revdepcheck). See results in `revdep` and `revdep/cran.md`.
-
-`R` console output `revdep_check(num_workers = 4)`:
-
-```
-> red_rev_dep_check = revdep_check(num_workers = 4)
-── INIT ────────────────────────────────────── Computing revdeps ──
-── INSTALL ────────────────────────────────────────── 2 versions ──
-Installing CRAN version of simts
-also installing the dependencies ‘colorspace’, ‘stringi’, ‘fansi’, ‘pkgconfig’, ‘digest’, ‘gtable’, ‘isoband’, ‘withr’, ‘cli’, ‘crayon’, ‘utf8’, ‘farver’, ‘labeling’, ‘lifecycle’, ‘munsell’, ‘R6’, ‘RColorBrewer’, ‘viridisLite’, ‘backports’, ‘ellipsis’, ‘generics’, ‘glue’, ‘rlang’, ‘stringr’, ‘tibble’, ‘ggplot2’, ‘tidyselect’, ‘vctrs’, ‘pillar’, ‘cpp11’, ‘Rcpp’, ‘scales’, ‘broom’, ‘dplyr’, ‘magrittr’, ‘purrr’, ‘tidyr’, ‘robcor’, ‘RcppArmadillo’
-
-Installing DEV version of simts
-Installing 39 packages: vctrs, utf8, rlang, lifecycle, fansi, ellipsis, crayon, cli, glue, purrr, withr, tibble, scales, isoband, gtable, digest, cpp11, tidyselect, magrittr, dplyr, pkgconfig, pillar, stringi, R6, generics, colorspace, Rcpp, ggplot2, tidyr, stringr, backports, viridisLite, RColorBrewer, munsell, labeling, farver, RcppArmadillo, robcor, broom
-── CHECK ──────────────────────────────────────────────────────────────────────── 2 packages ──
-✓ avar 0.1.1                             ── E: 0     | W: 0     | N: 0                         
-✓ wv 0.1.1                               ── E: 0     | W: 0     | N: 2                         
-OK: 2                                                                                        
-BROKEN: 0
-Total time: 6 min
-── REPORT ─────────────────────────────────────────────────────────────────────────────────────
-Writing summary to 'revdep/README.md'
-Writing problems to 'revdep/problems.md'
-Writing failures to 'revdep/failures.md'
-Writing CRAN report to 'revdep/cran.md'
-Warning message:
-call dbDisconnect() when finished working with a connection 
-```
-
-output of `revdep_report_cran()`:
-
-```
-## revdepcheck results
-
-We checked 2 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
-
- * We saw 0 new problems
- * We failed to check 0 packages
-```
-
 
 ## Copyright Issues
 

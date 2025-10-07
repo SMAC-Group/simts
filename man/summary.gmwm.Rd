@@ -34,7 +34,6 @@
 }
 \value{
 A \code{summary.gmwm} object with:
-\itemize{
  \item{estimate}{Estimated Theta Values}
  \item{testinfo}{Goodness of Fit Information}
  \item{inference}{Inference performed? T/F}
@@ -46,7 +45,6 @@ A \code{summary.gmwm} object with:
  \item{seed}{Seed used during guessing / bootstrapping}
  \item{obj.fun}{Value of obj.fun at minimized theta}
  \item{N}{Length of Time Series}
-}
 }
 \description{
 Displays summary information about GMWM object

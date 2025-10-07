@@ -197,11 +197,9 @@ arma::vec wave_variance(const arma::field<arma::vec>& signal_modwt_bw, bool robu
 //' @param alpha            A \code{double} that indicates the \eqn{\left(1-p\right)*\alpha}{(1-p)*alpha} confidence level 
 //' @param ci_type          A \code{String} indicating the confidence interval being calculated. Valid value: "eta3"
 //' @return A \code{mat} with the structure:
-//' \itemize{
 //'   \item{"variance"}{Wavelet Variance}
 //'   \item{"low"}{Lower CI}
 //'   \item{"high"}{Upper CI}
-//' }
 //' @keywords internal
 //' @details 
 //' This function does the heavy lifting with the signal_modwt_bw
@@ -230,11 +228,9 @@ arma::mat wvar_cpp(const arma::field<arma::vec>& signal_modwt_bw,
 //' @param strWavelet A \code{string} indicating the type of wave filter to be applied. Must be "haar"
 //' @param decomp     A \code{string} indicating whether to use "modwt" or "dwt" decomp
 //' @return A \code{mat} with the structure:
-//' \itemize{
 //'   \item{"variance"}{Wavelet Variance}
 //'   \item{"low"}{Lower CI}
 //'   \item{"high"}{Upper CI}
-//' }
 //' @keywords internal
 //' @details 
 //' This function powers the wvar object. It is also extendable...

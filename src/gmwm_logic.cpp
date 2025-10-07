@@ -93,14 +93,14 @@ arma::vec code_zero(arma::vec theta){
 //' @details
 //' If type = "imu" or "ssm", then parameter vector should indicate the characters of the models that compose the latent or state-space model.
 //' The model options are:
-//' \itemize{
+//' \describe{
 //'   \item{"AR1"}{a first order autoregressive process with parameters \eqn{(\phi,\sigma^2)}{phi, sigma^2}}
 //'   \item{"ARMA"}{an autoregressive moving average process with parameters \eqn{(\phi _p, \theta _q, \sigma^2)}{phi[p], theta[q], sigma^2}}
 //'   \item{"DR"}{a drift with parameter \eqn{\omega}{omega}}
 //'   \item{"QN"}{a quantization noise process with parameter \eqn{Q}}
 //'   \item{"RW"}{a random walk process with parameter \eqn{\sigma^2}{sigma^2}}
 //'   \item{"WN"}{a white noise process with parameter \eqn{\sigma^2}{sigma^2}}
-//' }
+//'   }
 //' If model_type = "imu" or type = "ssm" then
 //' starting values pass through an initial bootstrap and pseudo-optimization before being passed to the GMWM optimization.
 //' If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.

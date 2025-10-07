@@ -19,11 +19,9 @@ wvar_cpp(signal_modwt_bw, robust, eff, alpha, ci_type)
 }
 \value{
 A \code{mat} with the structure:
-\itemize{
   \item{"variance"}{Wavelet Variance}
   \item{"low"}{Lower CI}
   \item{"high"}{Upper CI}
-}
 }
 \description{
 Calculates the (MODWT) wavelet variance

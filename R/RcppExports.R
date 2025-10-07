@@ -1043,14 +1043,14 @@ code_zero <- function(theta) {
 #' @details
 #' If type = "imu" or "ssm", then parameter vector should indicate the characters of the models that compose the latent or state-space model.
 #' The model options are:
-#' \itemize{
+#' \describe{
 #'   \item{"AR1"}{a first order autoregressive process with parameters \eqn{(\phi,\sigma^2)}{phi, sigma^2}}
 #'   \item{"ARMA"}{an autoregressive moving average process with parameters \eqn{(\phi _p, \theta _q, \sigma^2)}{phi[p], theta[q], sigma^2}}
 #'   \item{"DR"}{a drift with parameter \eqn{\omega}{omega}}
 #'   \item{"QN"}{a quantization noise process with parameter \eqn{Q}}
 #'   \item{"RW"}{a random walk process with parameter \eqn{\sigma^2}{sigma^2}}
 #'   \item{"WN"}{a white noise process with parameter \eqn{\sigma^2}{sigma^2}}
-#' }
+#'   }
 #' If model_type = "imu" or type = "ssm" then
 #' starting values pass through an initial bootstrap and pseudo-optimization before being passed to the GMWM optimization.
 #' If robust = TRUE the function takes the robust estimate of the wavelet variance to be used in the GMWM estimation procedure.
@@ -2191,11 +2191,9 @@ wave_variance <- function(signal_modwt_bw, robust = FALSE, eff = 0.6) {
 #' @param alpha            A \code{double} that indicates the \eqn{\left(1-p\right)*\alpha}{(1-p)*alpha} confidence level 
 #' @param ci_type          A \code{String} indicating the confidence interval being calculated. Valid value: "eta3"
 #' @return A \code{mat} with the structure:
-#' \itemize{
 #'   \item{"variance"}{Wavelet Variance}
 #'   \item{"low"}{Lower CI}
 #'   \item{"high"}{Upper CI}
-#' }
 #' @keywords internal
 #' @details 
 #' This function does the heavy lifting with the signal_modwt_bw
@@ -2213,11 +2211,9 @@ wvar_cpp <- function(signal_modwt_bw, robust, eff, alpha, ci_type) {
 #' @param strWavelet A \code{string} indicating the type of wave filter to be applied. Must be "haar"
 #' @param decomp     A \code{string} indicating whether to use "modwt" or "dwt" decomp
 #' @return A \code{mat} with the structure:
-#' \itemize{
 #'   \item{"variance"}{Wavelet Variance}
 #'   \item{"low"}{Lower CI}
 #'   \item{"high"}{Upper CI}
-#' }
 #' @keywords internal
 #' @details 
 #' This function powers the wvar object. It is also extendable...

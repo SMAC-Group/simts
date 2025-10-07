@@ -282,7 +282,6 @@ gmwm = function(model, data, model.type="imu", compute.v="auto",
 #' @param model   A \code{ts.model} object containing one of the allowed models
 #' @param ...     Additional parameters (not used)
 #' @return A \code{gmwm} object with the structure:
-#' \itemize{
 #'  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
 #'  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
 #'  \item{wv.empir}{The data's empirical wavelet variance}
@@ -311,7 +310,6 @@ gmwm = function(model, data, model.type="imu", compute.v="auto",
 #'  \item{starting}{Indicates whether the procedure used the initial guessing approach}
 #'  \item{seed}{Randomization seed used to generate the guessing values}
 #'  \item{freq}{Frequency of data}
-#' }
 update.gmwm = function(object, model, ...){
   # Do we have a valid model?
   if(!is.ts.model(model)){
@@ -428,7 +426,6 @@ update.gmwm = function(object, model, ...){
 #' ability to interpret with respect to \code{freq}, then use
 #' \code{AR1} terms.
 #' @return A \code{gmwm} object with the structure:
-#' \itemize{
 #'  \item{estimate}{Estimated Parameters Values from the GMWM Procedure}
 #'  \item{init.guess}{Initial Starting Values given to the Optimization Algorithm}
 #'  \item{wv.empir}{The data's empirical wavelet variance}
@@ -457,7 +454,6 @@ update.gmwm = function(object, model, ...){
 #'  \item{starting}{Indicates whether the procedure used the initial guessing approach}
 #'  \item{seed}{Randomization seed used to generate the guessing values}
 #'  \item{freq}{Frequency of data}
-#' }
 gmwm_imu = function(model, data, compute.v = "fast", robust = F, eff = 0.6, ...){
 
   x = gmwm(model = model,
@@ -537,7 +533,6 @@ print.gmwm = function(x, ...){
 #' @param B            An \code{int} that indicates how many bootstraps should be performed.
 #' @param ...          Other arguments passed to specific methods
 #' @return A \code{summary.gmwm} object with:
-#' \itemize{
 #'  \item{estimate}{Estimated Theta Values}
 #'  \item{testinfo}{Goodness of Fit Information}
 #'  \item{inference}{Inference performed? T/F}
@@ -549,7 +544,6 @@ print.gmwm = function(x, ...){
 #'  \item{seed}{Seed used during guessing / bootstrapping}
 #'  \item{obj.fun}{Value of obj.fun at minimized theta}
 #'  \item{N}{Length of Time Series}
-#' }
 #' @export
 #' @author JJB
 summary.gmwm = function(object, inference = NULL,
@@ -700,11 +694,9 @@ print.summary.gmwm = function(x, ...){
 #' @param n.ahead      Number of observations to forecast
 #' @param ...          Additional parameters passed to ARIMA Predict
 #' @return A \code{predict.gmwm} object with:
-#' \itemize{
 #' \item{pred}{Predictions}
 #' \item{se}{Standard Errors}
 #' \item{resid}{Residuals from ARIMA ML Fit}
-#' }
 #' @export
 predict.gmwm = function(object, data.in.gmwm, n.ahead = 1, ...){
 

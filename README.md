@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![R-CMD-check](https://github.com/SMAC-Group/simts/workflows/R-CMD-check/badge.svg)](https://github.com/SMAC-Group/simts/actions)
-[![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/licenses/AGPL-3.0)
+[![Licence](https://img.shields.io/badge/licence-AGPL--3.0-blue.svg)](https://opensource.org/license/agpl-v3)
 [![minimal R
 version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-project.org/)
 [![CRAN](http://www.r-pkg.org/badges/version/simts)](https://cran.r-project.org/package=simts)
@@ -10,7 +10,7 @@ version](https://img.shields.io/badge/R%3E%3D-3.4.0-6666ff.svg)](https://cran.r-
 downloads](http://cranlogs.r-pkg.org/badges/simts)](https://www.r-pkg.org/pkg/simts)
 [![CRAN RStudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/simts)](https://www.r-pkg.org/pkg/simts)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2025--10--07-green.svg)](https://github.com/SMAC-Group/simts)
+![](https://img.shields.io/github/last-commit/SMAC-Group/simts)
 
 # `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
 
@@ -75,10 +75,8 @@ dependent.*
 
 The license this source code is released under is the GNU AFFERO GENERAL
 PUBLIC LICENSE (AGPL) v3.0. Please see the LICENSE file for full text.
-Otherwise, please consult [TLDR
-Legal](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0))
-or [GNU](https://www.gnu.org/licenses/agpl-3.0.en.html) which will
-provide a synopsis of the restrictions placed upon the code.
+Otherwise, please see [here](https://opensource.org/license/agpl-v3)
+which will provide a synopsis of the restrictions placed upon the code.
 
 <!-- ### Requirements and Dependencies -->
 

@@ -12,7 +12,7 @@ downloads](http://cranlogs.r-pkg.org/badges/simts)](https://www.r-pkg.org/pkg/si
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/simts)](https://www.r-pkg.org/pkg/simts)
 ![](https://img.shields.io/github/last-commit/SMAC-Group/simts)
 
-# `simts` Overview <a href="https://smac-group.com/"><img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/></a>
+# `simts` Overview <img src="man/figures/logo.png" align="right" style="width: 20%; height: 20%"/>
 
 The Time Series Tools (`simts`) R package provides a series of tools to
 simulate, plot, estimate, select and forecast different time series

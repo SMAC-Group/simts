@@ -35,6 +35,7 @@ Imports:
     magrittr,
     methods,
     purrr,
+    rlang,
     tidyr,
     robcor
 LinkingTo: Rcpp, RcppArmadillo

@@ -183,19 +183,18 @@ select_ma = function(xt, q.min = 0L, q.max = 3L,
 #'                 q.min = 1L, q.max = 3L)
 #' best_model(x, ic = "hq")
 #' 
-#' @importFrom dplyr filter_
+#' @importFrom dplyr filter
+#' @importFrom rlang .data
 best_model = function(x, ic = "aic"){
-  
+
   criterion = switch(tolower(ic),
                      "aic" = "AIC",
                      "bic" = "BIC",
                      "hq" = "HQ",
                      stop("`criterion` not supported!"))
-  
-  crt = paste0("ic == '", criterion,"' & (minval == TRUE)")
-  
+
   x %>%
-    filter_(crt) -> o
+    filter(.data[["ic"]] == criterion & .data[["minval"]] == TRUE) -> o
   
   o$models[[1]]$call$order = eval(parse(text=paste0("c(",o$p,",",o$d,",",o$q,")")))
   

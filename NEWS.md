@@ -1,3 +1,7 @@
+# simts 0.2.4
+
+- Modernized best_model() by replacing deprecated dplyr::filter_() usage with current filtering syntax and improving package check compatibility.
+
 # simts 0.2.3
 
 - solved problems related to documentation with itemize tags in return tags that were creating problems on check

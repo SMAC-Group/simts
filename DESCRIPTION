@@ -1,7 +1,7 @@
 Package: simts
 Type: Package
 Title: Time Series Analysis Tools
-Version: 0.2.3
+Version: 0.2.4
 LazyData: true
 Authors@R: c(
     person("Stéphane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),

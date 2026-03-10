@@ -185,6 +185,7 @@ select_ma = function(xt, q.min = 0L, q.max = 3L,
 #' 
 #' @importFrom dplyr filter
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
 best_model = function(x, ic = "aic"){
 
 
@@ -198,7 +199,7 @@ best_model = function(x, ic = "aic"){
                      stop("`criterion` not supported!"))
 
   o <- x %>%
-    dplyr::filter(ic == criterion, minval)
+    dplyr::filter(.data$ic == criterion, .data$minval)
   
   o$models[[1]]$call$order <- c(o$p[[1]], o$d[[1]], o$q[[1]])
   

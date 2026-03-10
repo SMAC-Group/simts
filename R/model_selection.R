@@ -183,23 +183,37 @@ select_ma = function(xt, q.min = 0L, q.max = 3L,
 #'                 q.min = 1L, q.max = 3L)
 #' best_model(x, ic = "hq")
 #' 
-#' @importFrom dplyr filter_
+#' @importFrom dplyr filter
+#' @importFrom magrittr %>%
 best_model = function(x, ic = "aic"){
+
+
+  
+  
   
   criterion = switch(tolower(ic),
                      "aic" = "AIC",
                      "bic" = "BIC",
                      "hq" = "HQ",
                      stop("`criterion` not supported!"))
+
+  o <- x %>%
+    dplyr::filter(ic == criterion, minval)
   
-  crt = paste0("ic == '", criterion,"' & (minval == TRUE)")
-  
-  x %>%
-    filter_(crt) -> o
-  
-  o$models[[1]]$call$order = eval(parse(text=paste0("c(",o$p,",",o$d,",",o$q,")")))
+  o$models[[1]]$call$order <- c(o$p[[1]], o$d[[1]], o$q[[1]])
   
   o$models[[1]]
+  
+  
+  # remove this due to filter_ is deprecated and filter_ is not working with the new version of dplyr
+  # crt = paste0("ic == '", criterion,"' & (minval == TRUE)")
+  # 
+  # x %>%
+  #   filter_(crt) -> o
+  # 
+  # o$models[[1]]$call$order = eval(parse(text=paste0("c(",o$p,",",o$d,",",o$q,")")))
+  # 
+  # o$models[[1]]
 }
 
 

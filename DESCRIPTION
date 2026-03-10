@@ -36,7 +36,8 @@ Imports:
     methods,
     purrr,
     tidyr,
-    robcor
+    robcor,
+    rlang
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 7.3.3
 Encoding: UTF-8
